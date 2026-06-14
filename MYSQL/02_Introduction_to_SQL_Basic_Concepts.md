@@ -31,6 +31,45 @@ DCL  →  Security (grant, revoke)
 
 **Note:** TCL and DCL are covered in [Transactions and Indexes](09_Transactions_and_Indexes.md).
 
+## DDL vs DML: Commit Behavior
+
+In MySQL, **DDL** and **DML** commands behave differently when it comes to saving changes.
+
+| | DDL | DML |
+|---|-----|-----|
+| **Commands** | `CREATE`, `ALTER`, `DROP`, `TRUNCATE` | `INSERT`, `UPDATE`, `DELETE` |
+| **What it changes** | Database structure (tables, columns) | Data inside tables |
+| **Auto-commit** | **Yes** — changes are saved immediately | **No** — changes are pending until you `COMMIT` |
+| **ROLLBACK** | **Cannot** undo a completed DDL statement | **Can** undo uncommitted changes with `ROLLBACK` |
+
+**Example — DDL is auto-committed:**
+
+```sql
+CREATE TABLE customers (
+    name VARCHAR(60),
+    mobile_number VARCHAR(15),
+    account_id VARCHAR(20) PRIMARY KEY
+);
+-- Table is created immediately. There is nothing to ROLLBACK.
+```
+
+**Example — DML can be rolled back:**
+
+```sql
+START TRANSACTION;
+
+UPDATE customers
+SET mobile_number = '9998888567'
+WHERE account_id = '123456';
+
+-- Changes are NOT permanent yet
+ROLLBACK;   -- undoes the UPDATE
+
+-- Or use COMMIT; to save the changes permanently
+```
+
+**Note:** `DROP TABLE` and `TRUNCATE TABLE` are DDL commands — once they run successfully, the structure or data they remove cannot be recovered with `ROLLBACK`. Use them carefully.
+
 ## Creating Tables
 
 **Create Table** — Creates a new table in the database.

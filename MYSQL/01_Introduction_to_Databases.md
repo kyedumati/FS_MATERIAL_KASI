@@ -20,6 +20,31 @@ Any sort of information that is stored is called **data**.
 2. Products and orders on Amazon
 3. Contact details in telephone directory, etc.
 
+In real applications, data includes fields like `firstname`, `lastname`, `date_of_birth`, `mobile_number`, and also content such as posts, images, likes, and shares.
+
+## Where Can We Store Data?
+
+Before choosing a database, it helps to know the common storage options:
+
+| Option | Examples | Best for |
+|--------|----------|----------|
+| **Flat files** | `.txt`, `.json`, `.yaml`, `.csv`, Excel | Small datasets, personal use, quick exports |
+| **Database** | MySQL, PostgreSQL, MongoDB | Applications with many users, large data, and strict rules |
+
+Many beginners start with **Excel** because it is familiar. Excel works for small, personal datasets — but most software products move to a database as data and users grow.
+
+## Why Not Excel for Applications?
+
+| Limitation | What happens |
+|------------|--------------|
+| **Single flat file** | All data sits in one sheet — hard to model relationships (e.g., customers and their orders) |
+| **Row limit** | Excel supports roughly **1 million rows** per sheet — not enough for large apps |
+| **Concurrent users** | Multiple users editing the same file at once causes conflicts and overwrites |
+| **Performance** | Searching, filtering, and reporting slow down as data grows |
+| **Data integrity** | Users can type wrong values (e.g., text in a salary column) — Excel does not enforce rules strictly |
+
+A **database** solves these problems: it stores related data in structured tables, handles many users at once, enforces data types and constraints, and stays fast at scale.
+
 ## Database
 
 An organized collection of data is called a **database**.
