@@ -113,7 +113,7 @@ In a typical e-commerce application:
 ```
 Customer --1-- has --1-- Cart
 Customer --1-- has --n-- Address
-Cart --1-- contains --n-- Product
+Cart --m-- contains --n-- Product
 ```
 
 **ER Model to Relational Database Mapping:**
@@ -171,6 +171,32 @@ Properties related to a many-to-many relationship (e.g., quantity of each produc
 
 ## Creating a Relational Database
 
+## Table Constraints
+
+When creating tables, we apply constraints to enforce data integrity:
+
+| Constraint | Purpose | Example |
+|------------|---------|---------|
+| `NOT NULL` | Column cannot be empty | `name VARCHAR(250) NOT NULL` |
+| `UNIQUE` | No duplicate values allowed | `email VARCHAR(250) UNIQUE` |
+| `DEFAULT` | Value used when none is provided | `status VARCHAR(20) DEFAULT 'active'` |
+| `CHECK` | Validates a condition | `price INT CHECK (price > 0)` |
+| `PRIMARY KEY` | Unique row identifier | `id INTEGER PRIMARY KEY` |
+| `FOREIGN KEY` | References another table | `customer_id REFERENCES customer(id)` |
+
+**Example:** Enforce one cart per customer using `UNIQUE` on the foreign key.
+
+```sql
+CREATE TABLE cart (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    customer_id INTEGER NOT NULL UNIQUE,
+    total_price INTEGER,
+    FOREIGN KEY(customer_id) REFERENCES customer(id) ON DELETE CASCADE
+);
+```
+
+`UNIQUE` on `customer_id` ensures the one-to-one relationship between customer and cart.
+
 ## Primary Key Syntax
 
 ```sql
@@ -196,19 +222,19 @@ CREATE TABLE table2 (
 
 **ON DELETE CASCADE:** If a row in table1 is deleted, then all its related rows in table2 will also be deleted.
 
-**Note:** To enable foreign key constraints in SQLite, use `PRAGMA foreign_keys = ON;` By default it is enabled in our platform.
+**Note:** In MySQL, foreign key constraints are enforced automatically when using the **InnoDB** storage engine (the default). Ensure referenced tables use InnoDB: `ENGINE=InnoDB`.
 
 ## Creating Tables
 
 ```sql
 CREATE TABLE customer (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(250),
     age INT
 );
 
 CREATE TABLE product (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(250),
     price INT,
     brand VARCHAR(250),
@@ -216,7 +242,7 @@ CREATE TABLE product (
 );
 
 CREATE TABLE address (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     pin_code INTEGER,
     door_no VARCHAR(250),
     city VARCHAR(250),
@@ -225,14 +251,14 @@ CREATE TABLE address (
 );
 
 CREATE TABLE cart (
-    id INTEGER NOT NULL PRIMARY KEY,
-    customer_id INTEGER NOT NULL,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    customer_id INTEGER NOT NULL UNIQUE,
     total_price INTEGER,
     FOREIGN KEY(customer_id) REFERENCES customer(id) ON DELETE CASCADE
 );
 
 CREATE TABLE cart_product (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     cart_id INTEGER,
     product_id INTEGER,
     quantity INTEGER,
