@@ -10,26 +10,26 @@ Structured training material for **Python**, **MySQL**, and **React** — design
 
 **Prerequisites:** Basic computer literacy. No prior SQL experience required.
 
-**Setup:** Start with [MySQL Setup and Connection](SQL/00_MySQL_Setup_and_Connection.md) — install MySQL, connect via CLI or Workbench, and create the `training_db` database.
+**Setup:** Start with [MySQL Setup and Connection](MYSQL/00_MySQL_Setup_and_Connection.md) — install MySQL, connect via CLI or Workbench, and create the `training_db` database.
 
 ### Recommended Teaching Order
 
 | Order | File | Topic | Focus |
 |-------|------|-------|-------|
-| 1 | [00_MySQL_Setup_and_Connection](SQL/00_MySQL_Setup_and_Connection.md) | Install & connect | Fresher — get MySQL running |
-| 2 | [01_Introduction_to_Databases](SQL/01_Introduction_to_Databases.md) | DB fundamentals | Tables, rows, DBMS vs RDBMS |
-| 3 | [02_Introduction_to_SQL_Basic_Concepts](SQL/02_Introduction_to_SQL_Basic_Concepts.md) | SQL basics | DDL, DML, DQL, constraints, CRUD |
-| 4 | [03_Querying_with_SQL](SQL/03_Querying_with_SQL.md) | Querying | WHERE, LIKE, NULL, ORDER BY, LIMIT |
-| 5 | [04_Aggregations_and_Group_By](SQL/04_Aggregations_and_Group_By.md) | Aggregations | COUNT, SUM, GROUP BY, HAVING |
-| 6 | [05_Common_Concepts](SQL/05_Common_Concepts.md) | Functions & sets | CONCAT, DATE_FORMAT, ROUND, UNION |
-| 7 | [06_Modeling_Databases](SQL/06_Modeling_Databases.md) | Data modeling | ER model, PK/FK, junction tables |
-| 8 | [07_Joins](SQL/07_Joins.md) | Joins | INNER, LEFT, RIGHT, FULL, self-join |
-| 9 | [08_Views_and_Subqueries](SQL/08_Views_and_Subqueries.md) | Views & subqueries | EXISTS, correlated subqueries |
-| 10 | [09_Transactions_and_Indexes](SQL/09_Transactions_and_Indexes.md) | Transactions & indexes | ACID, GRANT/REVOKE, CREATE INDEX |
-| 11 | [11_Window_Functions_and_CTEs](SQL/11_Window_Functions_and_CTEs.md) | Window functions & CTEs | ROW_NUMBER, RANK, recursive CTE |
-| 12 | [12_Real_Time_Projects](SQL/12_Real_Time_Projects.md) | Capstone projects | AcmeHR, TechMart, MedCare, SecureBank |
+| 1 | [00_MySQL_Setup_and_Connection](MYSQL/00_MySQL_Setup_and_Connection.md) | Install & connect | Fresher — get MySQL running |
+| 2 | [01_Introduction_to_Databases](MYSQL/01_Introduction_to_Databases.md) | DB fundamentals | Tables, rows, DBMS vs RDBMS |
+| 3 | [02_Introduction_to_SQL_Basic_Concepts](MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | SQL basics | DDL, DML, DQL, constraints, CRUD |
+| 4 | [03_Querying_with_SQL](MYSQL/03_Querying_with_SQL.md) | Querying | WHERE, LIKE, NULL, ORDER BY, LIMIT |
+| 5 | [04_Aggregations_and_Group_By](MYSQL/04_Aggregations_and_Group_By.md) | Aggregations | COUNT, SUM, GROUP BY, HAVING |
+| 6 | [05_Common_Concepts](MYSQL/05_Common_Concepts.md) | Functions & sets | CONCAT, DATE_FORMAT, ROUND, UNION |
+| 7 | [06_Modeling_Databases](MYSQL/06_Modeling_Databases.md) | Data modeling | ER model, PK/FK, junction tables |
+| 8 | [07_Joins](MYSQL/07_Joins.md) | Joins | INNER, LEFT, RIGHT, FULL, self-join |
+| 9 | [08_Views_and_Subqueries](MYSQL/08_Views_and_Subqueries.md) | Views & subqueries | EXISTS, correlated subqueries |
+| 10 | [09_Transactions_and_Indexes](MYSQL/09_Transactions_and_Indexes.md) | Transactions & indexes | ACID, GRANT/REVOKE, CREATE INDEX |
+| 11 | [11_Window_Functions_and_CTEs](MYSQL/11_Window_Functions_and_CTEs.md) | Window functions & CTEs | ROW_NUMBER, RANK, recursive CTE |
+| 12 | [12_Real_Time_Projects](MYSQL/12_Real_Time_Projects.md) | Capstone projects | AcmeHR, TechMart, MedCare, SecureBank |
 
-**Homework (use throughout):** [10_Practice_Exercises](SQL/10_Practice_Exercises.md) — chapter-wise exercises aligned to each module above.
+**Homework (use throughout):** [10_Practice_Exercises](MYSQL/10_Practice_Exercises.md) — chapter-wise exercises aligned to each module above.
 
 ### Suggested Class Plan (~18 sessions)
 
@@ -81,5 +81,5 @@ Structured training material for **Python**, **MySQL**, and **React** — design
 PFS_MATERIAL_KASI/
 ├── README.md
 ├── PYTHON/          # Python fundamentals (4 modules)
-└── SQL/             # MySQL course (13 modules + exercises)
+└── MYSQL/             # MySQL course (13 modules + exercises)
 ```
