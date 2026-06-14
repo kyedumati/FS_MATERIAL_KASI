@@ -76,20 +76,6 @@ print("Hello World")
 3) print("The Sum:",(a+b))
 ```
 
-The name Python was selected from the TV Show
-"The Complete
-Monty
-Python's
-Circus", which was broadcasted in BBC from 1969 to 1974.
-
-Guido developed Python language by taking almost all programming features from different languages
-
-1. Functional Programming Features from C
-2. Object Oriented Programming Features from C++
-3. Scripting Language Features from Perl and Shell Script
-4. Modular Programming Features from Modula-3
-
-Most of syntax in Python Derived from C and ABC languages.
 
 ### Where we can use Python:
 
