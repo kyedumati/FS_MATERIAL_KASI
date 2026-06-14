@@ -141,7 +141,7 @@ ON
     course.instructor_id = instructor.instructor_id;
 ```
 
-**Note:** RIGHT JOIN is not supported in some DBMS (SQLite).
+**Note:** RIGHT JOIN is supported in MySQL. Some DBMS such as SQLite do not support RIGHT JOIN.
 
 ## Full Join
 
@@ -169,7 +169,23 @@ ON
     course.instructor_id = instructor.instructor_id;
 ```
 
-**Note:** FULL JOIN is not supported in some DBMS (SQLite).
+**Note:** FULL JOIN is not supported in MySQL. Use the **UNION workaround** below.
+
+**MySQL workaround for FULL OUTER JOIN:**
+
+```sql
+SELECT course.name, instructor.full_name
+FROM course
+LEFT JOIN instructor
+ON course.instructor_id = instructor.id
+UNION
+SELECT course.name, instructor.full_name
+FROM course
+RIGHT JOIN instructor
+ON course.instructor_id = instructor.id;
+```
+
+`UNION` combines the LEFT JOIN result (all courses) with unmatched instructors from the RIGHT JOIN, giving the same effect as FULL OUTER JOIN.
 
 ## Cross Join
 

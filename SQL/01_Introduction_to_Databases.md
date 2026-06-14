@@ -58,6 +58,39 @@ There are different types of databases based on how we organize the data:
 
 In relational databases, the data is organized in the form of **tables**.
 
+## Tables, Rows, and Columns
+
+A relational database stores data in **tables**. Understanding these three terms is essential before writing SQL.
+
+| Term | Description | Example (player table) |
+|------|-------------|------------------------|
+| **Table** | A collection of related data organized in rows and columns | `player` |
+| **Column** | A vertical field that stores one type of data (attribute) | `name`, `age`, `score` |
+| **Row** | A horizontal record representing one entry (tuple) | `('Virat', 32, 50)` |
+
+```
+player table
+┌──────────┬─────┬───────┐
+│ name     │ age │ score │  ← columns (attributes)
+├──────────┼─────┼───────┤
+│ Virat    │ 32  │ 50    │  ← row 1
+│ Rakesh   │ 39  │ 35    │  ← row 2
+│ Sai      │ 47  │ 38    │  ← row 3
+└──────────┴─────┴───────┘
+```
+
+## DBMS vs RDBMS
+
+| | DBMS | RDBMS |
+|---|------|-------|
+| **Full form** | Database Management System | Relational Database Management System |
+| **Data format** | Files, objects, documents, graphs, etc. | Tables with rows and columns |
+| **Relationships** | Limited or no formal relationships | Enforces relationships via keys |
+| **SQL support** | May or may not support SQL | Uses SQL as the standard language |
+| **Examples** | MongoDB, Redis, Cassandra | MySQL, PostgreSQL, Oracle, SQL Server |
+
+**Note:** All RDBMS are DBMS, but not all DBMS are RDBMS. This course focuses on **RDBMS using MySQL**.
+
 ## Non-Relational Database
 
 Graph, Key-Value, Column Family, and Document — these four types are commonly referred to as **non-relational databases**.
@@ -71,7 +104,9 @@ Graph, Key-Value, Column Family, and Document — these four types are commonly 
 
 A Relational DBMS is a DBMS designed specifically for relational databases. Relational databases organize the data in the form of tables.
 
-**Examples:** Oracle, PostgreSQL, MySQL, SQLite, SQL Server, IBM DB2, etc.
+**Examples:** MySQL, Oracle, PostgreSQL, SQLite, SQL Server, IBM DB2, etc.
+
+**Note:** This course uses **MySQL** as the primary RDBMS. See [MySQL Setup and Connection](00_MySQL_Setup_and_Connection.md) for installation.
 
 ## Non-Relational DBMS
 
