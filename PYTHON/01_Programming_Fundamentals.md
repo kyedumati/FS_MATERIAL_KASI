@@ -1,4 +1,4 @@
-# Language Fundamentals
+# Programming Fundamentals
 
 ## Introduction
 
@@ -76,7 +76,6 @@ print("Hello World")
 3) print("The Sum:",(a+b))
 ```
 
-
 ### Where we can use Python:
 
 We can use everywhere. The most common important application areas are
@@ -90,6 +89,7 @@ We can use everywhere. The most common important application areas are
 7. For Machine Learning
 8. For developing Artificial Intelligence Applications
 9. For IOT
+
 ...
 
 **Note:**
@@ -175,21 +175,27 @@ etc...
 ## Flavors of Python:
 
 ### 1.CPython:
+
 It is the standard flavor of Python. It can be used to work with C lanugage Applications
 
 ### 2. Jython or JPython:
+
 It is for Java Applications. It can run on JVM
 
 ### 3. IronPython:
+
 It is for C#.Net platform
 
 ### 4.PyPy:
+
 The main advantage of PyPy is performance will be improved because JIT compiler is available inside PVM.
 
 ### 5.RubyPython
+
  For Ruby Platforms
 
 ### 6. AnacondaPython
+
 It is specially designed for handling large volume of data processing.
 ...
 
@@ -249,7 +255,7 @@ a = 10
 3. Identifier should not start with Digits.
 4. Identifiers are case sensitive.
 5. We cannot use reserved words as identifiers
- **Eg:** def=10 ✗
+  *Eg:** def=10 ✗
 6. There is no length limit for Python identifiers. But not recommended to use too lengthy identifiers.
 7. Dollor ($) Symbol is not allowed in Python.
 
@@ -269,9 +275,10 @@ a = 10
 
 1. If identifier starts with _ symbol then it indicates that it is private
 2. If identifier starts with __(two under score symbols) indicating that strongly private identifier.
+
 3.If the identifier starts and ends with two underscore symbols then the identifier is language defined special name,which is also known as magic methods.
 
-**Eg:** \_\_add\_\_
+**Eg:** add
 
 ## Reserved Words
 
@@ -287,8 +294,8 @@ There are 33 reserved words available in Python.
 - import,from,as,class,def,pass,global,nonlocal,lambda,del,with
 
 **Note:**
-1. All Reserved words in Python contain only alphabet symbols.
 
+1. All Reserved words in Python contain only alphabet symbols.
 2. Except the following 3 reserved words, all contain only lower case alphabet symbols.
 
 - True
@@ -316,6 +323,7 @@ Python contains the following inbuilt data types
 
 1. int
 2. float
+
 3.complex
 4.bool
 5.str
@@ -565,6 +573,7 @@ type(b)   =>bool
 ```
 
 **Eg:**
+
 ```python
 a=10
 b=20
@@ -660,6 +669,7 @@ IndexError: string index out of range
 ```
 
 **Note:**
+
 1. In Python the following data types are considered as Fundamental Data types
 
 - int
@@ -668,7 +678,7 @@ IndexError: string index out of range
 - bool
 - str
 
-2. In Python,we can represent char values also by using str type and explicitly char type is not available.
+1. In Python,we can represent char values also by using str type and explicitly char type is not available.
 
 **Eg:**
 
@@ -678,9 +688,8 @@ IndexError: string index out of range
 3) <class 'str'>
 ```
 
-3. long Data Type is available in Python2 but not in Python3. In Python3 long values also we can represent by using int type only.
-
-4. In Python we can present char Value also by using str Type and explicitly char Type is not available.
+1. long Data Type is available in Python2 but not in Python3. In Python3 long values also we can represent by using int type only.
+2. In Python we can present char Value also by using str Type and explicitly char Type is not available.
 
 ## Type Casting
 
@@ -748,8 +757,8 @@ We can use float() function to convert other type values to float type.
 ```
 
 **Note:**
-1. We can convert any type value to float type except complex type.
 
+1. We can convert any type value to float type except complex type.
 2. Whenever we are trying to convert str type to float type compulsary str should be either integral or floating point literal and should be specified only in base-10.
 
 ### 3.complex():
@@ -1059,6 +1068,7 @@ The elements present in range Data type are not modifiable. i.e range Data type 
 generate numbers from 0 to 9
 
 **Eg:**
+
 ```python
 r=range(10)
 for i in r : print(i)    0 to 9
@@ -1083,6 +1093,7 @@ for i in r : print(i)   10,12,14,16,18
 ```
 
 We can access elements present in the range Data Type by using index.
+
 ```python
 r=range(10,20)
 r[0]==>10
@@ -1092,6 +1103,7 @@ r[15]==>IndexError: range object index out of range
 We cannot modify the values of range data type
 
 **Eg:**
+
 ```python
 r[0]=100
 TypeError: 'range' object does not support item assignment
@@ -1165,6 +1177,7 @@ Hence we cannot use add or remove functions.
 If we want to represent a group of values as key-value pairs then we should go for dict data type.
 
 **Eg:**
+
 ```python
 d={101:'durga',102:'ravi',103:'shiva'}
 ```
@@ -1197,21 +1210,23 @@ Duplicate keys are not allowed but values can be duplicated. If we are trying to
 
 ## Summary of Datatypes in Python3
 
-| Datatype | Description | Is Immutable | Example |
-|---|---|---|---|
-| Int | We can use to represent the whole/integral numbers | Immutable | `>>> a=10`<br>`>>> type(a)`<br>`<class 'int'>` |
-| Float | We can use to represent the decimal/floating point numbers | Immutable | `>>> b=10.5`<br>`>>> type(b)`<br>`<class 'float'>` |
-| Complex | We can use to represent the complex numbers | Immutable | `>>> c=10+5j`<br>`>>> type(c)`<br>`<class 'complex'>`<br>`>>> c.real`<br>`10.0`<br>`>>> c.imag`<br>`5.0` |
-| Bool | We can use to represent the logical values(Only allowed values are True and False) | Immutable | `>>> flag=True`<br>`>>> flag=False`<br>`>>> type(flag)`<br>`<class 'bool'>` |
-| Str | To represent sequence of Characters | Immutable | `>>> s='virat'`<br>`>>> type(s)`<br>`<class 'str'>`<br>`>>> s="virat"`<br>`>>> type(s)`<br>`<class 'str'>` |
-| bytes | To represent a sequence of byte values from 0-255 | Immutable | `>>> list=[1,2,3,4]`<br>`>>> b=bytes(list)`<br>`>>> type(b)`<br>`<class 'bytes'>` |
-| bytearray | To represent a sequence of byte values from 0-255 | Mutable | `>>> list=[10,20,30]`<br>`>>> ba=bytearray(list)`<br>`>>> type(ba)`<br>`<class 'bytearray'>` |
-| range | To represent a range of values | Immutable | `>>> r=range(10)`<br>`>>> r1=range(0,10)`<br>`>>> r2=range(0,10,2)` |
-| list | To represent an ordered collection of objects | Mutable | `>>> l=[10,11,12,13,14,15]`<br>`>>> type(l)`<br>`<class 'list'>` |
-| tuple | To represent an ordered collections of objects | Immutable | `>>> t=(1,2,3,4,5)`<br>`>>> type(t)`<br>`<class 'tuple'>` |
-| set | To represent an unordered collection of unique objects | Mutable | `>>> s={1,2,3,4,5,6}`<br>`>>> type(s)`<br>`<class 'set'>` |
-| frozenset | To represent an unordered collection of unique objects | Immutable | `>>> s={11,2,3,'Virat',100,'Ramu'}`<br>`>>> fs=frozenset(s)`<br>`>>> type(fs)`<br>`<class 'frozenset'>` |
-| dict | To represent a group of key value pairs | Mutable | `>>> d={101:'virat',102:'ramu',103:'hari'}`<br>`>>> type(d)`<br>`<class 'dict'>` |
+
+| Datatype  | Duplicates                 | Insertion order         | Heterogeneous | Mutable / Immutable | Syntax                       | Follows index?           | Description                                           | Example                                                                                                                        |
+| --------- | -------------------------- | ----------------------- | ------------- | ------------------- | ---------------------------- | ------------------------ | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| int       | N/A                        | N/A                     | N/A           | Immutable           | `a = 10`                     | N/A                      | Represents whole/integral numbers                     | `>>> a = 10` `>>> type(a)` `<class 'int'>`                                                                                     |
+| float     | N/A                        | N/A                     | N/A           | Immutable           | `a = 10.5`                   | N/A                      | Represents decimal/floating-point numbers             | `>>> b = 10.5` `>>> type(b)` `<class 'float'>`                                                                                 |
+| complex   | N/A                        | N/A                     | N/A           | Immutable           | `a = 3 + 2j`                 | N/A                      | Represents complex numbers (real and imaginary parts) | `>>> c = 10 + 5j` `>>> type(c)` `<class 'complex'>` `>>> c.real` `10.0` `>>> c.imag` `5.0`                                     |
+| bool      | N/A                        | N/A                     | True or False | Immutable           | `a = True`                   | N/A                      | Represents logical values                             | `>>> flag = True` `>>> flag = False` `>>> type(flag)` `<class 'bool'>`                                                         |
+| str       | Allowed                    | Preserved               | No            | Immutable           | `a = "hello"`                | Yes, e.g. `a[2]`         | Represents a sequence of characters                   | `>>> s = 'virat'` `>>> type(s)` `<class 'str'>` `>>> s[2]` `'r'`                                                               |
+| bytes     | Allowed                    | Preserved               | No (0 to 255) | Immutable           | `b = bytes([10, 20, 30])`    | Yes                      | Represents a sequence of byte values (0–255)          | `>>> b = bytes([1, 2, 3, 4])` `>>> type(b)` `<class 'bytes'>` `>>> b[0]` `1`                                                   |
+| bytearray | Allowed                    | Preserved               | No (0 to 255) | Mutable             | `b = bytearray([10, 20])`    | Yes                      | Mutable sequence of byte values (0–255)               | `>>> ba = bytearray([10, 20, 30])` `>>> type(ba)` `<class 'bytearray'>` `>>> ba[0] = 15` `>>> ba` `bytearray(b'\x0f\x14\x1e')` |
+| range     | Allowed                    | Preserved               | No            | Immutable           | `x = range(0, 9)`            | Yes                      | Represents a range of integer values                  | `>>> r = range(10)` `>>> r[3]` `3` `>>> list(r)` `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`                                              |
+| list      | Allowed                    | Preserved               | Yes           | Mutable             | `names = ['shreyas', 'sai']` | Yes, e.g. `names[1]`     | Ordered collection of objects                         | `>>> l = [10, 11, 12, 13, 14, 15]` `>>> type(l)` `<class 'list'>` `>>> l[1]` `11`                                              |
+| tuple     | Allowed                    | Preserved               | Yes           | Immutable           | `x = (1, 3+2j, 'chandu')`    | Yes, e.g. `x[2]`         | Ordered collection of objects                         | `>>> t = (1, 2, 3, 4, 5)` `>>> type(t)` `<class 'tuple'>` `>>> t[2]` `3`                                                       |
+| set       | Not allowed                | Not preserved           | Yes           | Mutable             | `x = {1, 2, 3, 4}`           | No (hash-based)          | Unordered collection of unique objects                | `>>> s = {1, 2, 3, 4, 5, 6}` `>>> type(s)` `<class 'set'>`                                                                     |
+| frozenset | Not allowed                | Not preserved           | Yes           | Immutable           | `x = frozenset([1, 2, 3])`   | No (hash-based)          | Immutable unordered collection of unique objects      | `>>> fs = frozenset({11, 2, 3, 'Virat', 100, 'Ramu'})` `>>> type(fs)` `<class 'frozenset'>`                                    |
+| dict      | Duplicate keys not allowed | Preserved (Python 3.7+) | Yes           | Mutable             | `d = {'a': 1, 'b': 2}`       | Access by key, not index | Group of key–value pairs                              | `>>> d = {101: 'virat', 102: 'ramu', 103: 'hari'}` `>>> type(d)` `<class 'dict'>` `>>> d[101]` `'virat'`                       |
+
 
 ## None Data Type:
 
@@ -1219,6 +1234,7 @@ None means Nothing or No value associated.
 If the value is not available,then to handle such type of cases None introduced.
 It is something like null value in Java.
 **Eg:**
+
 ```python
 def  m1():
   a=10
@@ -1227,48 +1243,3 @@ print(m1())
   None
 ```
 
-## Escape Characters:
-
-In String literals we can use esacpe characters to associate a special meaning.
-
-```python
-1) >>> s="virat\nkohli"
-2)    >>> print(s)
-3) virat
-4) kohli
-5) >>> s="virat\tkohli"
-6)    >>> print(s)
-7) virat   kohli
-8)    >>> s="This is " symbol"
-9)     File "<stdin>", line 1
-10)     s="This is " symbol"
-11)              ^
-12) SyntaxError: invalid syntax
-13) >>> s="This is \" symbol"
-14) >>> print(s)
-15) This is " symbol
-```
-
-The following are various important escape characters in Python
-
-1) \n==>New Line
-2) \t===>Horizontal tab
-3) \r ==>Carriage Return
-4) \b===>Back space
-5) \f===>Form Feed
-6) \v==>Vertical tab
-7) \'===>Single quote
-8) \"===>Double quote
-9) \\\\===>back slash symbol
-....
-
-## Constants:
-
-Constants concept is not applicable in Python.
-But it is convention to use only uppercase characters if we don't want to change value.
-
-```python
-MAX_VALUE=10
-```
-
-It is just convention but we can change the value.

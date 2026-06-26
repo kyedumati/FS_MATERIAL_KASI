@@ -80,6 +80,68 @@ Structured training material for **Python**, **MySQL**, and **React** — design
 ```
 PFS_MATERIAL_KASI/
 ├── README.md
-├── PYTHON/          # Python fundamentals (4 modules)
-└── MYSQL/             # MySQL course (13 modules + exercises)
+├── requirements.txt       # Python deps for PDF build
+├── PYTHON/                # Source: Python course (4 modules)
+├── MYSQL/                 # Source: MySQL course (13 modules + exercises)
+├── PDF/                   # Generated: student PDFs (not edited by hand)
+│   ├── PYTHON/
+│   └── MYSQL/
+└── scripts/
+    ├── build.sh           # One-command PDF build
+    ├── build_pdfs.py      # Conversion script
+    └── pdf-style.css      # PDF styling
 ```
+
+---
+
+## PDF Workflow (for trainers)
+
+**Source of truth:** edit and commit `.md` files only.  
+**For students:** generate PDFs and share the `PDF/` folder.
+
+### One-time setup
+
+1. Install [Google Chrome](https://www.google.com/chrome/) (used for PDF rendering).
+2. Install Python dependencies:
+
+```bash
+pip3 install -r requirements.txt
+```
+
+### Build all PDFs
+
+```bash
+chmod +x scripts/build.sh   # first time only
+./scripts/build.sh
+```
+
+### Build one course
+
+```bash
+./scripts/build.sh mysql
+./scripts/build.sh python
+./scripts/build.sh sql
+```
+
+### Rebuild after editing a chapter
+
+The script skips files that are already up to date. To force a rebuild:
+
+```bash
+./scripts/build.sh --force
+```
+
+Or build a single file:
+
+```bash
+python3 scripts/build_pdfs.py --file MYSQL/07_Joins.md
+```
+
+### Typical workflow
+
+1. Edit a chapter in `MYSQL/` or `PYTHON/`.
+2. Commit and push the `.md` change to git.
+3. Run `./scripts/build.sh` (or just the course you changed).
+4. Upload updated PDFs from `PDF/` to Google Drive / LMS / email.
+
+Generated PDFs mirror the source folder structure — e.g. `MYSQL/07_Joins.md` becomes `PDF/MYSQL/07_Joins.pdf`.
