@@ -1,0 +1,13 @@
+# Generated PDFs (rebuild with: ./scripts/build.sh)
+PDF/*
+!PDF/README.md
+
+# Temporary PDF preview artifacts
+.pdf_pages/
+.pdf_pages_review/
+.pdf_check/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
