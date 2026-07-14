@@ -29,6 +29,7 @@ if condition :
    statement-2
    statement-3
 ```
+
 If condition is true then statements will be executed.
 
 **Eg:**
@@ -130,13 +131,12 @@ Based condition the corresponding action will be executed.
 
 **Note:**
 
-1.  else part is always optional
-   Hence the following are various possible syntaxes.
-   1. if
-   2. if - else
-   3. if-elif-else
-   4.if-elif
-
+1. else part is always optional
+  Hence the following are various possible syntaxes.
+  1. if
+  2. if - else
+  3. if-elif-else
+    if-elif
 2. There is no switch statement in Python
 
 ## Q. Write a program to find biggest of given 2 numbers from the commad prompt?
@@ -182,8 +182,11 @@ Based condition the corresponding action will be executed.
 ```
 
 ## Q. Write a program to find smallest of given 2 numbers?
+
 ## Q. Write a program to find smallest of given 3 numbers?
+
 ## Q. Write a program to check whether the given number is even or odd?
+
 ## Q.  Write a program to check whether the given number is in between 1 and 100?
 
 ```python
@@ -626,12 +629,19 @@ else means  loop without break
  Repeat code as long as condition is true ==>while loop
 
 ## Q.  How to exit from the loop?
-     by using break statement
+
+```
+ by using break statement
+```
 
 ## Q. How to skip some iterations inside loop?
-     by using continue statement.
+
+```
+ by using continue statement.
+```
 
 ## Q.  When else part will be executed wrt loops?
+
    If loop executed without break
 
 ## 3) pass statement:
@@ -667,6 +677,7 @@ def m1(): pass
  Sometimes in the parent class we have to declare a function  with empty  body and child class responsible to provide proper implementation. Such type of empty body we can define by using pass keyword. (It is something like abstract method in java)
 
 **Eg:**
+
 ```python
  def m1(): pass
 ```
@@ -750,3 +761,4 @@ But in the case of None assignment the variable won't be removed but the corresp
 2)  s=None
 3)  print(s)   # None
 ```
+

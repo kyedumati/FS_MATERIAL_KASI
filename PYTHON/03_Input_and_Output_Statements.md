@@ -2,22 +2,7 @@
 
 ## Reading dynamic input from the keyboard:
 
-In Python 2 the following 2 functions are available to read dynamic input from the keyboard.
-
- 1. raw_input()
- 2. input()
-
-### 1. raw_input():
-
- This function always reads the data from the keyboard in the form of String Format.  We have to convert that string type to our required type by using the corresponding type casting methods.
-
-**Eg:**
-```python
- x=raw_input("Enter First Number:")
- print(type(x))    It will always print  str type only for any input type
-```
-
-### 2. input():
+### input():
 
  input() function can be used to read data directly in our required format.We are not required to perform type casting.
 
@@ -64,7 +49,7 @@ In Python 2 the following 2 functions are available to read dynamic input from t
 9) The Sum: 300
 ```
 
------------------------------------------------------
+---
 
 ```python
 1) x=int(input("Enter First Number:"))
@@ -72,7 +57,7 @@ In Python 2 the following 2 functions are available to read dynamic input from t
 3) print("The Sum:",x+y)
 ```
 
------------------------------------------------------------
+---
 
 ```python
 1) print("The Sum:",int(input("Enter First Number:"))+int(input("Enter Second Number:")))
@@ -138,7 +123,9 @@ eval Function take a String and evaluate the Result.
 **Eg:** x = eval("10+20+30")
     print(x)
 
-    Output: 60
+```
+Output: 60
+```
 
 **Eg:** x = eval(input("Enter Expression"))
     Enter Expression:  10+2*3/4
@@ -444,3 +431,4 @@ print("formatted string"  %(variable list))
 8) Hello Virat your salary is 10000 and Your Friend Sunny is waiting
 9) Hello Virat your salary is 10000 and Your Friend Sunny is waiting
 ```
+
