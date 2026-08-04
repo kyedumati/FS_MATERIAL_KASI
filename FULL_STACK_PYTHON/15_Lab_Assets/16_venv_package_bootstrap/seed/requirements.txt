@@ -1,0 +1,2 @@
+# create venv then: pip install -r requirements.txt
+# (no third-party deps required for this kit)

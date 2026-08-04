@@ -1,0 +1,3 @@
+.cards { display: flex; } /* Bug: no wrap — overflows mobile */
+.card { width: 400px; padding: 4px; }
+/* Bug: no media query */

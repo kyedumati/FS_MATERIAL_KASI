@@ -1,0 +1,2 @@
+pwd: /Users/you/KSR_Python
+folders: projects notes labs

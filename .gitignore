@@ -2,10 +2,17 @@
 PDF/*
 !PDF/README.md
 
+# Student packs (rebuild with: ./scripts/pack_student_share.sh)
+dist/
+
 # Temporary PDF preview artifacts
 .pdf_pages/
 .pdf_pages_review/
 .pdf_check/
+
+# OS / editor noise
+.DS_Store
+**/.DS_Store
 
 # Python
 __pycache__/

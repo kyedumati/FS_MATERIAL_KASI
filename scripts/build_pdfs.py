@@ -18,12 +18,18 @@ from pygments.lexers import TextLexer, get_lexer_by_name, guess_lexer
 
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_COURSES = ("PYTHON", "MYSQL")
+DEFAULT_COURSES = ("MYSQL",)
+NESTED_COURSES = ("FULL_STACK_PYTHON",)  # recursive md tree; excludes trainer-only
+TRAINER_ONLY_DIR_NAME = "14_Trainer_Only"
 STYLE_PATH = Path(__file__).resolve().parent / "pdf-style.css"
 CHROME_PATHS = (
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     "/Applications/Chromium.app/Contents/MacOS/Chromium",
 )
+
+# Allow `from strip_trainer_sections import ...` when running as scripts/build_pdfs.py
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from strip_trainer_sections import strip_trainer_sections  # noqa: E402
 
 
 def find_chrome() -> Path:
@@ -259,7 +265,13 @@ def html_to_pdf(html_path: Path, pdf_path: Path, chrome: Path) -> None:
 
 
 def convert_file(
-    md_path: Path, out_dir: Path, css: str, chrome: Path, force: bool
+    md_path: Path,
+    out_dir: Path,
+    css: str,
+    chrome: Path,
+    force: bool,
+    *,
+    strip_trainer: bool = False,
 ) -> Path | None:
     pdf_path = out_dir / f"{md_path.stem}.pdf"
     if pdf_path.exists() and not force and pdf_path.stat().st_mtime >= md_path.stat().st_mtime:
@@ -267,6 +279,8 @@ def convert_file(
         return None
 
     md_text = md_path.read_text(encoding="utf-8")
+    if strip_trainer:
+        md_text = strip_trainer_sections(md_text)
     body_html = style_callouts(
         wrap_tables(highlight_code_blocks(md_to_html(md_text)))
     )
@@ -282,14 +296,28 @@ def convert_file(
     return pdf_path
 
 
-def collect_md_files(course_dirs: list[Path]) -> list[Path]:
+def collect_md_files(course_dirs: list[Path], recursive: bool = False) -> list[Path]:
     files: list[Path] = []
     for course_dir in course_dirs:
         if not course_dir.is_dir():
             print(f"warning: course folder not found: {course_dir.relative_to(ROOT)}")
             continue
-        files.extend(sorted(course_dir.glob("*.md")))
+        if recursive:
+            found = sorted(course_dir.rglob("*.md"))
+            files.extend(
+                p
+                for p in found
+                if TRAINER_ONLY_DIR_NAME not in p.parts
+            )
+        else:
+            files.extend(sorted(course_dir.glob("*.md")))
     return files
+
+
+def output_dir_for(md_path: Path, course_root: Path, output_root: Path) -> Path:
+    """Preserve nested folders under PDF/<course>/..."""
+    rel = md_path.relative_to(course_root)
+    return output_root / course_root.name / rel.parent
 
 
 def main() -> int:
@@ -299,8 +327,8 @@ def main() -> int:
     parser.add_argument(
         "--course",
         action="append",
-        choices=[*DEFAULT_COURSES, "SQL", "all"],
-        help="Course folder to build (repeatable). Default: all course folders.",
+        choices=[*DEFAULT_COURSES, *NESTED_COURSES, "SQL", "all"],
+        help="Course folder to build (repeatable). Default: MYSQL.",
     )
     parser.add_argument(
         "--file",
@@ -343,10 +371,21 @@ def main() -> int:
         if not md_path.exists():
             print(f"error: file not found: {md_path}", file=sys.stderr)
             return 1
-        course_name = md_path.parent.name
-        out_dir = args.output / course_name
+        # Prefer nested course root when under FULL_STACK_PYTHON
+        course_root = md_path.parent
+        for part in md_path.resolve().relative_to(ROOT).parts:
+            if part in NESTED_COURSES or part in DEFAULT_COURSES:
+                course_root = ROOT / part
+                break
+        if course_root.name in NESTED_COURSES:
+            out_dir = output_dir_for(md_path, course_root, args.output)
+        else:
+            out_dir = args.output / md_path.parent.name
         print(f"Building {md_path.relative_to(ROOT)}")
-        if convert_file(md_path, out_dir, css, chrome, args.force):
+        strip = course_root.name in NESTED_COURSES
+        if convert_file(
+            md_path, out_dir, css, chrome, args.force, strip_trainer=strip
+        ):
             built += 1
     else:
         selected = args.course or ["all"]
@@ -355,18 +394,29 @@ def main() -> int:
         else:
             course_names = selected
 
-        course_dirs = [ROOT / name for name in course_names]
-        md_files = collect_md_files(course_dirs)
-
-        if not md_files:
-            print("No Markdown files found to convert.")
-            return 1
-
-        print(f"Building {len(md_files)} file(s) -> {args.output.relative_to(ROOT)}/")
-        for md_path in md_files:
-            out_dir = args.output / md_path.parent.name
-            if convert_file(md_path, out_dir, css, chrome, args.force):
-                built += 1
+        print(f"Building courses {course_names} -> {args.output.relative_to(ROOT)}/")
+        for name in course_names:
+            course_dir = ROOT / name
+            recursive = name in NESTED_COURSES
+            md_files = collect_md_files([course_dir], recursive=recursive)
+            if not md_files:
+                print(f"  warning: no Markdown in {name}")
+                continue
+            print(f"  {name}: {len(md_files)} file(s)")
+            for md_path in md_files:
+                if recursive:
+                    out_dir = output_dir_for(md_path, course_dir, args.output)
+                else:
+                    out_dir = args.output / course_dir.name
+                if convert_file(
+                    md_path,
+                    out_dir,
+                    css,
+                    chrome,
+                    args.force,
+                    strip_trainer=recursive,
+                ):
+                    built += 1
 
     print(f"Done. {built} PDF(s) generated.")
     return 0

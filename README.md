@@ -1,6 +1,28 @@
 # PFS Training Material
 
-Structured training material for **Python**, **MySQL**, and **React** — designed for freshers and mid-level engineers switching careers.
+Structured training material for **Python Full Stack** and shared **MySQL / Frontend** topics.
+
+---
+
+## Python Full Stack Development (primary program — **one material**)
+
+**Audience:** Fresh graduates, non-IT career switchers, and learners targeting entry-level Python / Django / full-stack roles in India.
+
+**Teach:** [`FULL_STACK_PYTHON/`](FULL_STACK_PYTHON/) + shared [`FRONTEND/`](FRONTEND/) (HTML/CSS/JS + React) · [`MYSQL/`](MYSQL/).  
+Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
+
+| Resource | Link |
+|----------|------|
+| Syllabus map | [COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md](COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md) |
+| Course folder | [FULL_STACK_PYTHON/](FULL_STACK_PYTHON/) |
+| One-material sharing guide | [FULL_STACK_PYTHON/00_Course_Guide/07_Student_and_Trainer_Sharing_Guide.md](FULL_STACK_PYTHON/00_Course_Guide/07_Student_and_Trainer_Sharing_Guide.md) |
+| Master guide | [FULL_STACK_PYTHON/00_Course_Guide/00_Master_Course_Guide.md](FULL_STACK_PYTHON/00_Course_Guide/00_Master_Course_Guide.md) |
+| Student pack | `./scripts/pack_student_share.sh` → `dist/FULL_STACK_PYTHON_STUDENT/` |
+| Student PDFs | `./scripts/build.sh fullstack` → `PDF/FULL_STACK_PYTHON/` |
+
+**Default schedule:** 20 weeks × **1 hour 15 minutes/day** live (100 sessions) · Stack: Python 3, MySQL 8+, Django 5.x, HTML/CSS/JS, React, Flask overview, GitHub, VS Code.
+
+**Phases:** Foundations → Core Python → Advanced Python → Git → MySQL → Frontend → Django → Flask/REST → React → Testing/AI lite → Placement.
 
 ---
 
@@ -48,30 +70,16 @@ Structured training material for **Python**, **MySQL**, and **React** — design
 
 ---
 
-## Python Course
-
-**Audience:** Absolute beginners learning programming fundamentals.
-
-| Order | File | Topic |
-|-------|------|-------|
-| 1 | [01_Programming_Fundamentals](PYTHON/01_Programming_Fundamentals.md) | Variables, data types, strings |
-| 2 | [02_Operators](PYTHON/02_Operators.md) | Arithmetic, comparison, logical operators |
-| 3 | [03_Input_and_Output_Statements](PYTHON/03_Input_and_Output_Statements.md) | Input/output, formatting |
-| 4 | [04_Flow_Control](PYTHON/04_Flow_Control.md) | if/else, loops |
-
----
-
 ## How to Use This Material
 
-**For trainers**
-- Follow the numbered order within each folder.
-- Use `10_Practice_Exercises.md` for weekly homework after each MySQL chapter.
-- Reserve extra time on **Joins (07)** and the **capstone projects (12)** — these are the highest-value modules for career switchers.
+**For Full Stack trainers (recommended)**
+- Teach **only** from `FULL_STACK_PYTHON/` (same files students get).
+- Share: `./scripts/pack_student_share.sh` or `./scripts/build.sh fullstack`.
+- Keep `14_Trainer_Only/` private.
+- SQL depth: Required MySQL labs checklist → `MYSQL/` (planned dependency, not a second Python course).
 
-**For students**
-- Install MySQL first (file `00`), then work through chapters in order.
-- Run every SQL example in Workbench or the CLI — do not just read.
-- Complete at least one project from `12_Real_Time_Projects.md` for your portfolio.
+**For MySQL-only batches**
+- Follow numbered order in `MYSQL/`; use `10_Practice_Exercises.md` for homework.
 
 ---
 
@@ -80,16 +88,13 @@ Structured training material for **Python**, **MySQL**, and **React** — design
 ```
 PFS_MATERIAL_KASI/
 ├── README.md
-├── requirements.txt       # Python deps for PDF build
-├── PYTHON/                # Source: Python course (4 modules)
-├── MYSQL/                 # Source: MySQL course (13 modules + exercises)
-├── PDF/                   # Generated: student PDFs (not edited by hand)
-│   ├── PYTHON/
-│   └── MYSQL/
+├── FULL_STACK_PYTHON/        # Python program (calendar, Django, Python labs)
+├── FRONTEND/                 # Shared HTML/CSS/JS + REACT/ (+ labs)
+├── MYSQL/                    # Shared SQL (FS Weeks 10–11 + MySQL-only)
+├── COURSE_CONTENTS/          # Syllabus / brochure maps
+├── PDF/                      # Generated PDFs
+├── dist/                     # Student batch packs
 └── scripts/
-    ├── build.sh           # One-command PDF build
-    ├── build_pdfs.py      # Conversion script
-    └── pdf-style.css      # PDF styling
 ```
 
 ---
@@ -119,8 +124,7 @@ chmod +x scripts/build.sh   # first time only
 
 ```bash
 ./scripts/build.sh mysql
-./scripts/build.sh python
-./scripts/build.sh sql
+./scripts/build.sh fullstack
 ```
 
 ### Rebuild after editing a chapter
@@ -139,9 +143,9 @@ python3 scripts/build_pdfs.py --file MYSQL/07_Joins.md
 
 ### Typical workflow
 
-1. Edit a chapter in `MYSQL/` or `PYTHON/`.
+1. Edit a chapter in `MYSQL/` or `FULL_STACK_PYTHON/`.
 2. Commit and push the `.md` change to git.
-3. Run `./scripts/build.sh` (or just the course you changed).
+3. Run `./scripts/build.sh mysql` or `./scripts/build.sh fullstack`.
 4. Upload updated PDFs from `PDF/` to Google Drive / LMS / email.
 
 Generated PDFs mirror the source folder structure — e.g. `MYSQL/07_Joins.md` becomes `PDF/MYSQL/07_Joins.pdf`.

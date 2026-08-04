@@ -1,0 +1,15 @@
+body { font-family: system-ui, sans-serif; margin: 1rem; }
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.card {
+  flex: 1 1 220px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+}
+@media (max-width: 600px) {
+  .cards { flex-direction: column; }
+}

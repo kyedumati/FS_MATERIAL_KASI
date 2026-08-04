@@ -1,0 +1,27 @@
+# Frontend (HTML · CSS · JavaScript · React)
+
+**Shared topic pack** — used by Python Full Stack and (later) Java Full Stack.  
+Not owned by `FULL_STACK_PYTHON/`.
+
+## HTML / CSS / JS
+
+| Order | Module | Labs |
+|------:|--------|------|
+| 1 | [01_HTML.md](01_HTML.md) | [labs/21_html_profile_form](labs/21_html_profile_form/) |
+| 2 | [02_CSS_and_Responsive.md](02_CSS_and_Responsive.md) | [labs/22_css_responsive_cards](labs/22_css_responsive_cards/) |
+| 3 | [03_JavaScript_DOM_Forms.md](03_JavaScript_DOM_Forms.md) | [labs/23_js_form_validation](labs/23_js_form_validation/) |
+
+**Python FS schedule:** Weeks 12–13 / S56–62
+
+## React
+
+| Order | Module | Labs |
+|------:|--------|------|
+| 4 | [REACT/01_React_Fundamentals.md](REACT/01_React_Fundamentals.md) | [REACT/labs/05_react_product_list](REACT/labs/05_react_product_list/) |
+| 5 | [REACT/02_React_Hooks_Routing_API_Deploy.md](REACT/02_React_Hooks_Routing_API_Deploy.md) | [REACT/labs/28_cors_fetch_debug](REACT/labs/28_cors_fetch_debug/) |
+
+**Python FS schedule:** Week 18 / S86–90 — details in [REACT/README.md](REACT/README.md)
+
+**Calendar:** [`FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md`](../FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md)
+
+**Sibling shared topic:** [`MYSQL/`](../MYSQL/)

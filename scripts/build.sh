@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Build PDFs from training Markdown files.
 # Usage:
-#   ./scripts/build.sh              # all courses
-#   ./scripts/build.sh mysql        # one course
-#   ./scripts/build.sh python mysql # multiple courses
-#   ./scripts/build.sh --force      # rebuild everything
+#   ./scripts/build.sh                    # MYSQL (default)
+#   ./scripts/build.sh fullstack          # FULL_STACK_PYTHON (teach + share same notes)
+#   ./scripts/build.sh mysql
+#   ./scripts/build.sh --force fullstack
 
 set -euo pipefail
 
@@ -25,7 +25,8 @@ for arg in "$@"; do
       FORCE=true
       ;;
     python|PYTHON)
-      ARGS+=(--course PYTHON)
+      echo "error: legacy PYTHON / PDF/PYTHON was removed. Use: $0 fullstack" >&2
+      exit 1
       ;;
     mysql|MYSQL)
       ARGS+=(--course MYSQL)
@@ -33,9 +34,12 @@ for arg in "$@"; do
     sql|SQL)
       ARGS+=(--course SQL)
       ;;
+    fullstack|FULL_STACK_PYTHON|full-stack|fs)
+      ARGS+=(--course FULL_STACK_PYTHON)
+      ;;
     *)
       echo "Unknown argument: $arg"
-      echo "Usage: $0 [--force] [python|mysql|sql ...]"
+      echo "Usage: $0 [--force] [fullstack|mysql|sql ...]"
       exit 1
       ;;
   esac

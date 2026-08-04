@@ -1,0 +1,5 @@
+[
+  {"name": "Wireless Mouse", "price": "899.00", "in_stock": true},
+  {"name": "USB Hub", "price": "1299.00", "in_stock": true},
+  {"name": "Laptop Stand", "price": "1499.00", "in_stock": false}
+]
