@@ -90,6 +90,11 @@ print(employee.get("email", "N/A"))   # N/A — default provided
 # print(employee["email"])          # KeyError
 ```
 
+**Note / trap:**
+- Wrong: Using a list as a key → `TypeError: unhashable type: 'list'`; `d["missing"]` without a check → `KeyError`; duplicate keys in a literal (last value wins silently).
+- Prefer: String or tuple keys; `.get()` or `if key in d`; avoid duplicate keys (`{"a": 1, "a": 2}` → `a` is 2).
+
+
 **Try these (2 programs):**
 
 **Program 1 — Student dict with .get**
@@ -232,6 +237,11 @@ sale_prices = {k: round(v * 0.9, 2) for k, v in prices.items()}
 print(sale_prices)
 ```
 
+**Note / trap:**
+- Wrong: Modifying a dict while iterating — RuntimeError or skipped keys.
+- Prefer: Iterate over a copy: `list(d.items())`.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Word frequency with .get**
@@ -274,6 +284,11 @@ print(employee["skills"][0])          # Python
 # UPDATE nested
 employee["address"]["pincode"] = "600002"
 ```
+
+**Note / trap:**
+- Wrong: Shared nested dict reference — changing a shallow copy affects the original.
+- Prefer: `copy.deepcopy()` for nested structures.
+
 
 **Try these (2 programs):**
 
@@ -363,6 +378,11 @@ user_backup["role"] = "admin"
 print(user["role"])                   # staff — original unchanged
 ```
 
+**Note / trap:**
+- Wrong: Using `in` as if it checks values (`"aisha" in d` checks **keys** only).
+- Prefer: `if "aisha" in d.values():` when you mean values.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Key membership check**
@@ -397,6 +417,11 @@ parsed = json.loads(json_text)
 print(parsed["name"])                 # Mouse
 ```
 
+**Note / trap:**
+- Wrong: Assuming JSON allows a tuple — JSON has no tuple type.
+- Prefer: Convert tuples to lists before `json.dumps`.
+
+
 **Try these (2 programs):**
 
 **Program 1 — dict to JSON string**
@@ -417,20 +442,6 @@ text = json.dumps({"sku": "P001", "name": "Mouse", "price": 799})
 product = json.loads(text)
 print(product["name"])
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | What goes wrong | Fix |
-|---------|-----------------|-----|
-| Using list as key | `TypeError: unhashable type: 'list'` | Use string or tuple key |
-| `d["missing"]` without check | `KeyError` | Use `.get()` or `if key in d` |
-| Confusing `in` for values | `"aisha" in d` checks **keys** only | `if "aisha" in d.values():` |
-| Modifying dict while iterating | RuntimeError or skipped keys | Iterate over `list(d.items())` copy |
-| Shared nested dict reference | Changing copy affects original | Use `copy.deepcopy()` for nested |
-| Assuming JSON allows tuple | JSON has no tuple | Convert tuples to lists before `json.dumps` |
-| Duplicate keys in literal | Last value wins silently | `{ "a": 1, "a": 2 }` → `a` is 2 |
 
 ---
 

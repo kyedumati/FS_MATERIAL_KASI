@@ -68,6 +68,11 @@ except ZeroDivisionError:
     print("Cannot divide by zero.")
 ```
 
+**Note / trap:**
+- Bare `except:` catches `KeyboardInterrupt` and hides bugs — catch specific exceptions.
+- Swallowing exceptions with empty `except: pass` — log and handle, or re-raise.
+- Using exceptions for flow control is slow and unreadable — use if/else for expected cases.
+
 **Try these (2 programs):**
 
 **Program 1 — UPI PIN with retry**
@@ -110,6 +115,9 @@ try:
 except (FileNotFoundError, ValueError) as e:
     print("Error:", e)
 ```
+
+**Note / trap:**
+- Over-broad `except Exception` masks real bugs — catch narrow types first.
 
 **Try these (2 programs):**
 
@@ -159,6 +167,9 @@ finally:
     print("Cleanup block always runs")
     # if f was opened, close here in real code — prefer `with`
 ```
+
+**Note / trap:**
+- `return` inside `finally` can suppress exceptions — keep `finally` for cleanup only.
 
 **Try these (2 programs):**
 
@@ -248,6 +259,9 @@ class InvalidAccountError(Exception):
         self.account_id = account_id
         super().__init__(f"{message}: {account_id}")
 ```
+
+**Note / trap:**
+- Custom exception not inheriting `Exception` → not caught as expected — always inherit `Exception`.
 
 **Try these (2 programs):**
 
@@ -483,19 +497,6 @@ try:
 except InsufficientBalanceError as e:
     print("Transaction failed:", e)
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Bare `except:` | Catches KeyboardInterrupt, hides bugs | Catch specific exceptions |
-| Swallowing exceptions | Empty `except: pass` | Log + handle or re-raise |
-| Using exceptions for flow control | Slow, unreadable | Use if/else for expected cases |
-| finally with return | Can suppress exceptions | Keep finally for cleanup only |
-| Over-broad `except Exception` | Masks real bugs | Catch narrow types first |
-| Custom exception not inheriting `Exception` | Not caught as expected | Always inherit `Exception` |
 
 ---
 

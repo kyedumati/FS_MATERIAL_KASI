@@ -135,6 +135,9 @@ print(even_odd(10))  # Even
 print(even_odd(15))  # Odd
 ```
 
+**Note / trap:**
+- If you forget `return`, the function silently returns `None` — always return an explicit value when the caller needs a result.
+
 ### 2. Types of arguments (what / why, then syntax)
 
 When you write `def sub(a, b):` and call `sub(100, 200)`, `a`/`b` are **formal** parameters and `100`/`200` are **actual** arguments.
@@ -183,6 +186,10 @@ def wish(name="Guest"):
 wish("Ravi")
 wish()  # uses "Guest"
 ```
+
+**Note / trap:**
+- Never use a mutable default like `def f(x=[])` — the same list is reused across calls. Use `None` and create the list inside the function.
+- Put required parameters **before** defaults; `*args` cannot appear before a required positional parameter (SyntaxError).
 
 #### 2d. Variable-length arguments (`*args`, `**kwargs`)
 
@@ -258,6 +265,9 @@ def calculate_total(amount):
 
 Use `global x` only when you must **reassign** a global name. Prefer passing values in and returning results — globals make bugs hard to find in real projects.
 
+**Note / trap:**
+- Using `global` everywhere creates hard-to-debug shared state. Pass values as parameters and return results instead.
+
 **Try these (2 programs):**
 
 **Program 1 — Fix counter with return (prefer this over `global`)**
@@ -305,6 +315,9 @@ print(sorted(names, key=lambda x: len(x)))
 ```
 
 Lambda **returns** the expression result automatically — no `return` keyword.
+
+**Note / trap:**
+- Overusing lambda makes code hard to read. Prefer `def` for multi-step or reusable logic.
 
 **Try these (2 programs):**
 
@@ -364,6 +377,10 @@ passed = [m for m in marks if m >= 75]
 - `reduce` lives in `functools` (not a built-in). The function takes **(accumulator, next_item)**.
 - Do not force `reduce` for a simple sum — `sum(prices)` is better. Use `reduce` when the fold is custom (e.g. merge dicts, running max with a twist).
 
+**Note / trap:**
+- Forgetting `list(map(...))` / `list(filter(...))` leaves you with a lazy map/filter object — convert when you need a list or length.
+- Prefer `sum` / `max` / a comprehension over `reduce` for simple folds.
+
 **Try these (2 programs):**
 
 **Program 1 — `map` + `filter` on canteen prices**
@@ -418,6 +435,9 @@ def slow_task():
 
 `@timer` above `def slow_task` means: `slow_task = timer(slow_task)`.
 
+**Note / trap:**
+- Without `functools.wraps`, the wrapper steals the function’s `__name__` (debugging/docs look wrong). Prefer `@wraps(func)` on the inner wrapper.
+
 **Try these (2 programs):**
 
 **Program 1 — `@shout` decorator**
@@ -468,6 +488,9 @@ print(view_dashboard())   # Welcome, Ravi
 | Syntax | `[x*2 for x in range(n)]` | `(x*2 for x in range(n))` or `yield` |
 | Reusable | Yes | Exhausted after one full pass |
 | Best for | Small/medium data | Large files, streams |
+
+**Note / trap:**
+- Do not index a generator like a list (`gen[0]` fails). Use `next(gen)` or a `for` loop.
 
 **Try these (2 programs):**
 
@@ -632,38 +655,6 @@ def squares_gen(n):
 
 for val in squares_gen(5):
     print(val, end=" ")   # 0 1 4 9 16
-```
-
----
-
-## Common Mistakes
-
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Mutable default arg `def f(x=[])` | Same list reused across calls | Use `None` and create list inside |
-| Forgetting `return` | Function returns `None` silently | Always return explicit value |
-| Using `global` everywhere | Hard-to-debug shared state | Pass values as parameters |
-| Overusing lambda | Unreadable code | Use `def` for multi-step logic |
-| Forcing `reduce` for simple sum | Harder to read than `sum(x)` | Prefer `sum` / `max` / comprehension |
-| Forgetting `list(map(...))` | Surprised by a map object | Convert when you need a list |
-| Calling generator like list | `gen[0]` fails | Use `next(gen)` or loop |
-| Decorator without `@wraps` | Lost function name in debugging | `from functools import wraps` |
-| `*args` before required param | SyntaxError | Required params come first |
-
-**Classic mutable default bug:**
-
-```python
-# BAD
-def add_item(item, bucket=[]):
-    bucket.append(item)
-    return bucket
-
-# GOOD
-def add_item(item, bucket=None):
-    if bucket is None:
-        bucket = []
-    bucket.append(item)
-    return bucket
 ```
 
 ---

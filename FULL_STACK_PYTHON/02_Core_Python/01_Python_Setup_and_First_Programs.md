@@ -168,6 +168,13 @@ cd ~/ksr_python_fullstack/projects
 python3 env_check.py
 ```
 
+**Note / trap:**
+- Wrong: Using Python 2 style (`print "hi"`) or a terminal where `python` is not found / PATH missing.
+- Prefer: Install Python 3, use `python3` on Mac/Linux, and tick “Add to PATH” on Windows.
+- Wrong: VS Code running a different interpreter than the one you installed.
+- Prefer: Pick the correct Interpreter from the status bar.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Print version and ready line**
@@ -246,6 +253,11 @@ python3 hello.py
 - `#` starts a **comment** — Python skips it
 - `print(...)` is a **function** that displays text on screen
 - Text in quotes is a **string literal**
+
+**Note / trap:**
+- Wrong: Running without saving (tab still shows a dot) — you see old output; or `print(Hello)` without quotes.
+- Prefer: Save (`Ctrl+S` / `Cmd+S`) before run; strings need `'...'` or `"..."`.
+
 
 **Try these (2 programs):**
 
@@ -332,6 +344,11 @@ Check keywords in REPL:
 # Long list including: False, None, True, and, as, assert, break, class, ...
 ```
 
+**Note / trap:**
+- Wrong: Using a keyword as a variable name (`if = 10`) → `SyntaxError`.
+- Prefer: Rename (`is_valid`, `if_flag`).
+
+
 **Try these (2 programs):**
 
 **Program 1 — Count Python keywords**
@@ -371,6 +388,11 @@ x = "Ananya Sharma"      # too vague
 FullName = "Ananya"      # PascalCase reserved mostly for classes
 employee id = "E1"       # SyntaxError — space not allowed
 ```
+
+**Note / trap:**
+- Wrong: CamelCase everywhere for variables (`FullName`) — works but un-Pythonic.
+- Prefer: `snake_case` for variables and functions.
+
 
 **Try these (2 programs):**
 
@@ -445,6 +467,11 @@ print("Expense Tracker v0.1")
 print("Module: Setup — no amounts yet")
 ```
 
+**Note / trap:**
+- Wrong: Running a script from the wrong folder → `FileNotFoundError`.
+- Prefer: `cd` to the folder that contains the script, or use a full path.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Canteen banner one line**
@@ -459,21 +486,6 @@ print("Canteen Bill")
 print("Canteen Bill")
 print("Pay at counter")
 ```
-
----
-
-## Common Mistakes and How to Fix Them
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Python 2 vs 3 | `print "hi"` syntax errors | Install Python 3; use `python3` on Mac/Linux |
-| PATH not set (Windows) | `'python' is not recognized` | Reinstall with "Add to PATH" or add manually |
-| Wrong interpreter in VS Code | Runs different Python | Select Interpreter from status bar |
-| File not saved before run | Old output shown | Save (`Ctrl+S`) — watch dot on tab disappear |
-| Using keyword as variable name | `SyntaxError: invalid syntax` | Rename: `if` → `is_valid` |
-| CamelCase everywhere | Works but un-Pythonic | Use `snake_case` for variables/functions |
-| Running from wrong folder | `FileNotFoundError` | `cd` to folder containing script or use full path |
-| Missing quotes in print | `SyntaxError` | Strings need `'...'` or `"..."` |
 
 ---
 

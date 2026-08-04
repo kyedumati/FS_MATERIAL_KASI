@@ -114,6 +114,11 @@ git status                    # clean — snapshot is in Repository
 | `git push origin main` | Upload commits |
 | `git pull origin main` | Download + merge remote |
 
+**Note / trap:**
+- Never pulling before push → rejected push / conflicts — make `git pull --rebase` a habit.
+- Committing broken code to `main` → team blocked — use branches for features.
+- Force push to shared `main` destroys teammates' work — avoid `--force` unless solo and sure.
+
 **Try these (2 programs):**
 
 **Program 1 — First three commits**
@@ -154,6 +159,9 @@ Update README with setup steps
 ```
 
 Use imperative mood; first line ≤ 50 chars; optional body after blank line.
+
+**Note / trap:**
+- Vague messages ("update", "fix") → useless history — write descriptive imperative messages.
 
 **Try these (2 programs):**
 
@@ -209,6 +217,9 @@ credentials.json
 config.local.json
 ```
 
+**Note / trap:**
+- Committing `venv/` or `.env` → huge repo / leaked secrets — add `.gitignore` before the first push.
+
 **Try these (2 programs):**
 
 **Program 1 — Write a course .gitignore**
@@ -260,6 +271,10 @@ Python 3.11, MySQL, Django
 ## Author
 Your Name — LinkedIn — Hyderabad
 ```
+
+**Note / trap:**
+- No README → recruiter skips the repo — add setup steps and screenshots.
+- Empty GitHub profile looks inactive — pin 3–6 best repos.
 
 **Try these (2 programs):**
 
@@ -412,20 +427,6 @@ git commit -m "Resolve README merge conflict"
 
 **Good:** `Add parameterized MySQL queries` → `Fix FileNotFoundError` → `Initial structure`  
 **Bad:** `ok` → `done` → `final`
-
----
-
-## Common Mistakes
-
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Committing `venv/` or `.env` | Huge repo / leaked secrets | `.gitignore` before first push |
-| Vague messages ("update", "fix") | Useless history | Descriptive imperative messages |
-| Never pulling before push | Rejected push / conflicts | `git pull --rebase` habit |
-| Committing broken code to main | Team blocked | Use branches for features |
-| Force push to shared main | Destroys teammates' work | Avoid `--force` unless solo + sure |
-| No README | Recruiter skips repo | Add setup + screenshots |
-| Empty GitHub profile | Looks inactive | Pin 3–6 best repos |
 
 ---
 

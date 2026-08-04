@@ -61,6 +61,9 @@ Creates table `blog_post` (app label + model name lowercase).
 | **`default`** | Value when not provided |
 | **`auto_now_add`** | Set once on create (timestamp) |
 
+**Note / trap:**
+- Prefer `blank=True` only for optional text fields — avoid `null=True` on `CharField` unless you truly need SQL NULL (NULL vs empty-string confusion).
+
 ### Relationships Overview
 
 **ForeignKey (FK)** — **many-to-one**. Many blog posts → one author.  
@@ -91,9 +94,15 @@ erDiagram
 
 **`on_delete=models.CASCADE`** — if parent Author deleted, delete their posts too (common default for learning; discuss PROTECT in production).
 
+**Note / trap:**
+- `ForeignKey` without `on_delete` → model error. Always set `on_delete` (e.g. `CASCADE`, `PROTECT`).
+
 ### Django Admin
 
 Built-in **staff interface** at `/admin/` for non-developers to manage data. Register models in **`admin.py`**. Requires **superuser** account.
+
+**Note / trap:**
+- Forgot to register in `admin.py` → model missing from `/admin/`. Add `@admin.register(...)` or `admin.site.register(...)`.
 
 ---
 
@@ -106,6 +115,10 @@ Change models.py → makemigrations → migrate → MySQL schema updated
 ```
 
 Never edit applied migration files manually as a beginner — create new migration instead.
+
+**Note / trap:**
+- Forgot `makemigrations` after editing `models.py` → no schema change. Run `makemigrations` then `migrate`.
+- Editing an applied migration by hand often causes conflicts — regenerate in lab or ask the trainer.
 
 **Try these (2 programs):**
 
@@ -131,6 +144,10 @@ Then migrate.
 ### 2. QuerySet
 
 **QuerySet** — lazy collection of objects from database. `.filter(published=True)` returns QuerySet; DB hit may defer until iteration.
+
+**Note / trap:**
+- `Post.objects.get()` with 0 or 2+ rows → `DoesNotExist` / `MultipleObjectsReturned`. Prefer `filter().first()` or handle the exception.
+- N+1 queries in a template (looping related objects) slow the page — use `select_related('author')` when you know you'll need the FK (interview teaser).
 
 **Try these (2 programs):**
 
@@ -378,20 +395,6 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.name} (₹{self.price})"
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Forgot makemigrations | No schema change | Run makemigrations after models.py edit |
-| `ForeignKey` without `on_delete` | Model error | Always set `on_delete` |
-| Used `Post.objects.get()` when 0 or 2+ rows | `DoesNotExist` / `MultipleObjectsReturned` | Use `filter().first()` or handle exception |
-| `null=True` on CharField unnecessarily | NULL vs empty string confusion | Prefer `blank=True` only for optional text |
-| Edited migration by hand incorrectly | Migration conflicts | Regenerate in lab; ask trainer |
-| Forgot register in admin | Model missing in admin | Add to admin.py |
-| N+1 queries in template | Slow page | Use `select_related('author')` (interview teaser) |
 
 ---
 

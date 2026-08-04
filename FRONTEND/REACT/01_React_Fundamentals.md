@@ -51,6 +51,9 @@ Product UIs and many admin dashboards use React (or similar) because:
 - **State:** When data changes, UI updates automatically
 - **Pairs with Django:** Django/DRF backend + React frontend is a common junior stack
 
+**Note / trap:**
+- Comparing React to Django MVC literally causes confusion — React is the view layer only.
+
 ### SPA (Single Page Application)
 
 **What:** The browser loads the app once; JavaScript swaps views without full page reloads.  
@@ -86,6 +89,9 @@ function Welcome() { return <h1>Hello, KSR Batch!</h1>; }
 export default Welcome;
 ```
 
+**Note / trap:**
+- Import path wrong on Linux deploy — module not found; match case exactly (`ProductCard.jsx`).
+
 **Try these (2 programs):**
 
 **Program 1 — Hello component**
@@ -119,6 +125,9 @@ export default function App() {
 **Why:** Keep markup next to the component logic.
 
 Return **one parent** (or fragment); use `className`; JS in `{ }`; self-close tags.
+
+**Note / trap:**
+- `class` instead of `className` — console warning; use `className` in JSX.
 
 **Try these (2 programs):**
 
@@ -202,6 +211,9 @@ const [count, setCount] = useState(0);
 return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
 ```
 
+**Note / trap:**
+- Mutating state directly — UI does not update; use the setter: `setProducts([...products, newItem])`.
+
 **Try these (2 programs):**
 
 **Program 1 — Cart counter**
@@ -244,6 +256,10 @@ export default function StockToggle() {
 ```
 
 Use stable unique `key` (prefer id over index when list changes).
+
+**Note / trap:**
+- Missing `key` in `.map()` — console warning; add unique `key={item.id}`.
+- Index as `key` when reordering — wrong row updates; prefer a stable id.
 
 **Try these (2 programs):**
 
@@ -290,7 +306,9 @@ function ProductList({ items }) {
 
 Input `value` + `onChange` tied to state — single source of truth.
 
----
+**Note / trap:**
+- Forgot `e.preventDefault()` on form — page reloads; call it in the submit handler.
+- Uncontrolled + controlled mix — cursor jump bugs; always set `value` + `onChange`.
 
 **Try these (2 programs):**
 
@@ -453,21 +471,6 @@ export default ProductForm;
 .product-form { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .error { color: #c0392b; width: 100%; }
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| `class` instead of `className` | Warning in console | Use `className` |
-| Mutating state directly | UI does not update | Use setter: `setProducts([...products, new])` |
-| Missing `key` in map | Console warning | Add unique `key={item.id}` |
-| Index as key when reordering | Wrong row updates | Prefer stable id |
-| Forgot `e.preventDefault()` on form | Page reloads | Call in submit handler |
-| Uncontrolled + controlled mix | Cursor jump bugs | Always set `value` + `onChange` |
-| Import path wrong on Linux deploy | Module not found | Match case: `ProductCard.jsx` |
-| Comparing React to Django MVC literally | Confusion | React = view layer only |
 
 ---
 

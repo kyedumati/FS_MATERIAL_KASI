@@ -175,6 +175,11 @@ print(multi)
 print(newline)
 ```
 
+**Note / trap:**
+- Wrong: Comparing or adding strings to numbers (`"42" + 1`); using `is` for string *content* (`a is "hi"`).
+- Prefer: Convert (`int("42") + 1`); use `==` for value compare.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Multi-line portal banner**
@@ -213,6 +218,11 @@ Alternative with split (cleaner):
 username, domain = email.split("@")
 ```
 
+**Note / trap:**
+- Wrong: Indexing past the end (`s[100]` on a short string); expecting `s[0:3]` to be 4 characters; confusing negative-step slices like `s[::-1]`.
+- Prefer: Check `len(s)` first; remember stop is exclusive (3 chars); draw an index diagram for reverse slices.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Split email at @**
@@ -242,6 +252,11 @@ status = status.replace("pending", "approved")   # new string object
 print(status)          # approved
 print(id(status))      # different id than before
 ```
+
+**Note / trap:**
+- Wrong: Calling `s.upper()` and expecting `s` to change (`print(s)` still old).
+- Prefer: Assign the result: `s = s.upper()`.
+
 
 **Try these (2 programs):**
 
@@ -282,6 +297,11 @@ else:
 - `strip()` removes accidental spaces from copy-paste
 - `lower()` avoids case mismatch
 
+**Note / trap:**
+- Wrong: Skipping `.strip()` on input — `" admin "` fails a login compare.
+- Prefer: `.strip()` (and usually `.lower()`) on user-entered text.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Normalize login email**
@@ -320,6 +340,11 @@ parts = record.split("|")
 roll, name, py, sql, html = parts
 print(f"Roll {roll}: {name} — Python {py}")
 ```
+
+**Note / trap:**
+- Wrong: Splitting with the wrong delimiter (`"a,b,c".split(", ")` vs `split(",")`).
+- Prefer: Match the exact separator in the data.
+
 
 **Try these (2 programs):**
 
@@ -512,21 +537,6 @@ phone = "98a76b543210"
 digits = sum(1 for ch in phone if ch.isdigit())
 print(digits)
 ```
-
----
-
-## Common Mistakes and How to Fix Them
-
-| Mistake | Example | Fix |
-|---------|---------|-----|
-| Index out of range | `s[100]` on short string | Check `len(s)` first |
-| Confuse slice stop | Expect `s[0:3]` → 4 chars | Stop is exclusive → 3 chars |
-| Think upper() changes original | `s.upper(); print(s)` unchanged | Assign: `s = s.upper()` |
-| Split wrong delimiter | `"a,b,c".split(", ")` vs `split(",")` | Match exact separator |
-| Compare strings to numbers | `"42" + 1` | Convert: `int("42") + 1` |
-| Forget strip on input | `" admin "` fails login | `.strip()` on input |
-| Use `is` for string content | `a is "hi"` | Use `==` for value compare |
-| Negative step confusion | `s[::-1]` reverses — practice | Draw index diagram |
 
 ---
 

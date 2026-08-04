@@ -73,6 +73,9 @@ Not every API is pure REST, but Indian job interviews expect REST vocabulary.
 | PATCH | Partial update | `/api/products/3/` | Yes (partial) |
 | DELETE | Remove | `/api/products/3/` | Usually no |
 
+**Note / trap:**
+- GET conventionally has no body — putting a body on GET confuses proxies and clients.
+
 ### Status Codes (memorize these)
 
 | Code | Meaning | When |
@@ -130,6 +133,10 @@ print(json.dumps(product, indent=2))
 3. Add requests for each CRUD operation
 4. Header: `Content-Type: application/json` for POST/PUT
 5. Save examples for regression testing
+
+**Note / trap:**
+- POST without a JSON `Content-Type` header → 415 or empty data. Set it in Postman.
+- Bad JSON (e.g. Decimal as a bare number in invalid payloads) → parse errors; send valid JSON — DRF often accepts string decimals like `"45.00"`.
 
 **Try these (2 programs):**
 
@@ -209,6 +216,9 @@ INSTALLED_APPS = [
     'shop',                    # your app
 ]
 ```
+
+**Note / trap:**
+- Forgot `rest_framework` in `INSTALLED_APPS` → import/config errors. Add it after install.
 
 ### Step 2 — Product model
 
@@ -308,6 +318,9 @@ urlpatterns = [
 | PATCH | `/api/products/1/` | partial_update |
 | DELETE | `/api/products/1/` | destroy |
 
+**Note / trap:**
+- Wrong trailing slash → 404 on Django. Match `APPEND_SLASH` / router URLs (usually with a trailing `/`).
+
 Optional DRF browsable API: open `http://127.0.0.1:8000/api/products/` in the browser while `DEBUG=True`.
 
 ### Step 6 — Postman test create
@@ -377,6 +390,11 @@ print(resp.status_code)      # 201
 print(resp.json())
 ```
 
+**Note / trap:**
+- `requests` to the wrong port → connection refused (Django usually `8000`, Flask `5000`).
+- List endpoints return an **array** — treating it as a dict → `KeyError` on `['id']`.
+- Ignore status codes at your peril — check `resp.ok` (or equivalent) so failures are not silent.
+
 ### Step 8 — Consume with fetch (browser / React preview)
 
 ```javascript
@@ -385,21 +403,6 @@ const products = await res.json();
 ```
 
 **Note:** Browser calls may hit **CORS** errors until Django allows frontend origin — covered in React module; mention `django-cors-headers` preview here.
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Forgot `rest_framework` in INSTALLED_APPS | Import errors | Add to settings |
-| POST without JSON header | 415 or empty data | Set Content-Type in Postman |
-| Decimal as number without quotes in bad JSON | Parse error | Valid JSON; DRF accepts string decimals |
-| Using GET with body | Confusing proxies | GET has no body by convention |
-| Wrong URL trailing slash | 404 on Django | Match Django APPEND_SLASH behavior |
-| `requests` to wrong port | Connection refused | Django on 8000, Flask on 5000 |
-| Assuming list response is dict | KeyError on `['id']` | List endpoint returns array |
-| No error handling on status | Silent failures | Check `resp.ok` or `res.ok` |
 
 ---
 

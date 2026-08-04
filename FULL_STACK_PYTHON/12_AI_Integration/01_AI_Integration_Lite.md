@@ -78,6 +78,10 @@ Both end the same way for your React/Flask app: **JSON in, JSON out**.
 2. **Predict** new sample (`predict` or `predict_proba`)
 3. **Serve** result via web endpoint
 
+**Note / trap:**
+- Expecting ML magic on 6 samples → wrong predictions — explain toy-model limits.
+- Training on every request → slow server — train once, load the model at startup.
+
 **Try these (2 programs):**
 
 **Program 1 — Tiny classifier sketch**
@@ -124,6 +128,9 @@ return resp.json()
 
 Course may use mock URL in lab if no paid API key — pattern matters.
 
+**Note / trap:**
+- Blocking call without timeout → hung request — use `timeout=30` on requests.
+
 **Try these (2 programs):**
 
 **Program 1 — Env-based key pattern**
@@ -154,6 +161,10 @@ print(mock_analyze("Good filter coffee in Hyderabad"))
 2. `loading` state true during fetch
 3. Display result or error message
 4. Disable double-submit
+
+**Note / trap:**
+- No input validation → crash or abuse — add length limits and strip text.
+- CORS again on AI Flask → browser block — reuse the same cors-headers pattern.
 
 **Try these (2 programs):**
 
@@ -204,6 +215,10 @@ export default function Analyzer() {
 - Do not log full user PII
 
 ---
+
+**Note / trap:**
+- API key in GitHub → key revoked / security incident — use `.env` + gitignore.
+- Overclaiming on resume → interview embarrassment — say "integrated API," not "built GPT."
 
 **Try these (2 programs):**
 
@@ -308,20 +323,6 @@ Use `@api_view(['POST'])`, load joblib model once, return `Response({'label': ..
 Form with textarea → `fetch POST /api/analyze` → show loading → display `label` or error. Disable submit while loading; validate empty text client-side.
 
 Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analyze; replace with real LLM API in production.
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| API key in GitHub | Key revoked, security incident | .env + gitignore |
-| No input validation | Crash or abuse | Length limits, strip text |
-| Blocking call without timeout | Hung request | `timeout=30` on requests |
-| Expecting ML magic on 6 samples | Wrong predictions | Explain toy model limits |
-| Training on every request | Slow server | Train once, load model at startup |
-| CORS again on AI Flask | Browser block | Same cors-headers pattern |
-| Overclaiming on resume | Interview embarrassment | Say "integrated API" not "built GPT" |
 
 ---
 

@@ -157,6 +157,11 @@ names = ["Aisha", "Dev", "Meera"]
 API_VERSION = ("v2",)
 ```
 
+**Note / trap:**
+- Wrong: Using a list for many `in` checks (O(n) each time); a dict when an order-only list suffices; a tuple for data you must update.
+- Prefer: Set for membership; a simple list when you only need order; list or dict when data must change.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Banned users as a set**
@@ -198,6 +203,11 @@ visit("cart")
 go_back()                             # Back from: cart → Now at: products
 go_back()                             # Back from: products → Now at: home
 ```
+
+**Note / trap:**
+- Wrong: Stack pop from the front — wrong end; not LIFO.
+- Prefer: `pop()` from the end.
+
 
 **Try these (2 programs):**
 
@@ -257,6 +267,11 @@ fast_queue.append("T-201")
 fast_queue.popleft()                  # O(1) — good for interviews to name
 ```
 
+**Note / trap:**
+- Wrong: Queue pop from the end — that is LIFO, not FIFO.
+- Prefer: `pop(0)` (or `deque.popleft()`).
+
+
 **Try these (2 programs):**
 
 **Program 1 — Ticket queue with list**
@@ -315,6 +330,11 @@ for i in range(len(marks)):
             pairs += 1
 # Doubling list size ≈ 4× work — avoid in hot paths
 ```
+
+**Note / trap:**
+- Wrong: Ignoring nested-loop cost (hidden O(n²)); memorizing Big-O with no job context.
+- Prefer: Know your loop depth; tie complexity to cart, lookup, and dedupe examples in interviews.
+
 
 **Try these (2 programs):**
 
@@ -486,20 +506,6 @@ for e in expenses:
 print(totals)
 print(set(totals))
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Why it hurts | Better approach |
-|---------|--------------|-----------------|
-| Using list for `in` checks on large data | O(n) every check | Use set for membership |
-| Using dict when order-only list suffices | Extra complexity | Simple list |
-| Tuple for data you need to update | TypeError or awkward rebuild | List or dict |
-| Stack pop from front | Wrong end; not LIFO | `pop()` from end |
-| Queue pop from end | LIFO not FIFO | `pop(0)` or `deque` |
-| Ignoring nested structure cost | Hidden O(n²) loops | Know loop depth |
-| Memorizing Big-O without context | Cannot explain in interview | Tie to cart, lookup, dedupe examples |
 
 ---
 

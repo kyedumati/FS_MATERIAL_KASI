@@ -44,22 +44,37 @@ Attacker site triggers browser to POST to **your** site while user is logged in.
 
 Attacker injects **JavaScript** via stored or reflected user input (comment field). Django templates **auto-escape** HTML in `{{ variable }}`. Danger: marking untrusted data **`safe`** or using `|safe` filter without sanitization.
 
+**Note / trap:**
+- `|safe` on user HTML enables XSS — escape by default, or sanitize with a library like bleach.
+
 ### SQL Injection
 
 Attacker manipulates input to alter SQL queries. Django **ORM** and **parameterized queries** prevent classic injection. **Never** build SQL with f-strings from user input.
+
+**Note / trap:**
+- Raw SQL built with an f-string from user input → SQL injection. Prefer ORM `.filter(...)`.
 
 ### DEBUG Setting
 
 **`DEBUG=True`** (development): detailed error pages with code snippets — helpful locally.  
 **`DEBUG=False`** (production): generic error pages — hides internals from attackers.
 
+**Note / trap:**
+- `DEBUG=True` on a public URL exposes full code/tracebacks — set it False via env in production.
+
 ### SECRET_KEY
 
 Random string used to sign cookies, sessions, CSRF tokens. **Must be unique per environment** and **never committed to Git**. Compromise allows session forgery.
 
+**Note / trap:**
+- `SECRET_KEY` in GitHub enables session hijack — rotate the key and load it from the environment.
+
 ### ALLOWED_HOSTS
 
 List of domain names your Django app will serve. Prevents **HTTP Host header attacks**. Example after deploying to Render: `ALLOWED_HOSTS = ["myportal.onrender.com"]`.
+
+**Note / trap:**
+- `ALLOWED_HOSTS = ['*']` is a lazy fix that invites Host-header attacks — list exact domains.
 
 ### Static vs Media Files
 
@@ -70,12 +85,19 @@ List of domain names your Django app will serve. Prevents **HTTP Host header att
 
 **`collectstatic`** — gathers all static files into **`STATIC_ROOT`** folder for production server.
 
+**Note / trap:**
+- Skipping `collectstatic` → broken admin/CSS in production. Run it in the build step.
+
 ### Environment Variables
 
 **Environment variables** — key-value config outside code (database password, secret key).  
 **Course standard:** create a `.env` file and call **`load_dotenv()`** from `python-dotenv` at the top of `settings.py`, then read with **`os.environ.get(...)`**. Without `load_dotenv()`, Django will not see values sitting only in a `.env` file.  
 **Alternate:** `django-environ` — do not mix both in one beginner batch.  
 File **`.env`** is local only; list it in **`.gitignore`**. Commit **`.env.example`**.
+
+**Note / trap:**
+- Never commit `.env` — credential leak; gitignore it and rotate passwords if leaked.
+- `.env` on disk without `load_dotenv()` → vars ignored (wrong DB/secret). Call `load_dotenv(BASE_DIR / ".env")` in settings.
 
 ---
 
@@ -161,6 +183,9 @@ Static files → WhiteNoise or platform static handler
 ```
 
 **Gunicorn** — production WSGI HTTP server; **`runserver`** is not for production.
+
+**Note / trap:**
+- Using `runserver` in production → crashes and insecure defaults. Use Gunicorn (or similar) behind a platform/proxy.
 
 **Try these (2 programs):**
 
@@ -426,22 +451,6 @@ Learners complete `docs/DEPLOY_CHECKLIST.md`:
 9. Superuser created on production (secure channel)
 10. Backup strategy for MySQL
 11. `.env` not in Git; `.env.example` committed
-
----
-
-## Common Mistakes
-
-| Mistake | Risk | Fix |
-|---------|------|-----|
-| `DEBUG=True` on public URL | Full code exposure | Env var False |
-| SECRET_KEY in GitHub | Session hijack | Rotate key; use env |
-| `ALLOWED_HOSTS = ['*']` lazy fix | Host header attacks | List exact domains |
-| Skipped collectstatic | Broken admin CSS | Run in build step |
-| Committed `.env` | Credential leak | gitignore + rotate passwords |
-| `.env` on disk but no `load_dotenv()` | Vars ignored; wrong DB/secret | Call `load_dotenv(BASE_DIR / ".env")` in settings |
-| Using runserver in production | Crashes, insecure | Gunicorn + platform |
-| `\|safe` on user HTML | XSS | Escape or bleach library |
-| Raw SQL f-string search | SQLi | ORM filter |
 
 ---
 

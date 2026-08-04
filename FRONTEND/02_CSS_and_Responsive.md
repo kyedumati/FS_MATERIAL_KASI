@@ -126,6 +126,10 @@ input:focus { outline: 2px solid #2563eb; }
 
 **Specificity (lite):** inline > `#id` > `.class` > element.
 
+**Note / trap:**
+- Overusing `!important` — fix specificity instead (class vs id vs element).
+- No focus/hover states — add `:hover` and `:focus-visible` for links, buttons, and inputs.
+
 **Try these (2 programs):**
 
 **Program 1 — Class button**
@@ -180,6 +184,9 @@ margin → border → padding → content
 ```
 
 DevTools → Computed → box diagram.
+
+**Note / trap:**
+- No `box-sizing: border-box` — add a global border-box rule so padding/border stay inside the set width.
 
 **Try these (2 programs):**
 
@@ -289,6 +296,10 @@ p { font-size: 1rem; }
 | `gap` | Space between children |
 | `flex-wrap` | Wrap to next line |
 
+**Note / trap:**
+- Flex without wrap — add `flex-wrap: wrap` so cards/nav items can drop to the next line.
+- Tables for layout — use Flexbox for rows and grids of cards.
+
 **Try these (2 programs):**
 
 **Program 1 — Header row**
@@ -338,6 +349,10 @@ p { font-size: 1rem; }
 
 img { max-width: 100%; height: auto; display: block; }
 ```
+
+**Note / trap:**
+- Fixed widths on mobile — prefer `%`, flex, and `max-width` so layouts shrink.
+- Missing viewport meta — required from the HTML module for mobile-first CSS to behave.
 
 **Try these (2 programs):**
 
@@ -428,20 +443,6 @@ Style with Flexbox header, flex-wrap card grid, responsive nav column→row at 7
 5. Media query at 768px: horizontal nav, optional hero two-column
 6. Test at 375px in DevTools — fix horizontal scroll
 7. Lighthouse contrast check on buttons
-
----
-
-## Common Mistakes
-
-| Mistake | Fix |
-|---------|-----|
-| No `box-sizing: border-box` | Global border-box rule |
-| Fixed widths on mobile | %, flex, max-width |
-| Flex without wrap | `flex-wrap: wrap` |
-| Missing viewport meta | From HTML module |
-| Tables for layout | Flexbox |
-| Overusing `!important` | Fix specificity |
-| No focus/hover states | `:hover`, `:focus-visible` |
 
 ---
 

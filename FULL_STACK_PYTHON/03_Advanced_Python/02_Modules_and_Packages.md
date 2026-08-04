@@ -75,6 +75,9 @@ from os import path as osp           # alias for one imported name
 
 **Avoid:** `from math import *` — pollutes the namespace; readers cannot see where a name came from.
 
+**Note / trap:**
+- Prefer `from package import name` over `from package import *` — star imports pollute the namespace and hide where names come from.
+
 **Try these (2 programs):**
 
 **Program 1 — `import` vs `from … import`**
@@ -114,6 +117,10 @@ Python looks in:
 import sys
 print(sys.path)  # debugging import errors
 ```
+
+**Note / trap:**
+- Wrong working directory → `ModuleNotFoundError` — run from the project root or fix `PYTHONPATH`.
+- Typo in module name → `ModuleNotFoundError` — match the filename exactly (case-sensitive on Linux).
 
 **Try these (2 programs):**
 
@@ -205,6 +212,10 @@ my_project/
         └── strings.py
 ```
 
+**Note / trap:**
+- Circular imports → `ImportError` / partial init — restructure; move shared code to a third module.
+- Missing `__init__.py` (older Python) → package not recognized — add `__init__.py` in each package folder.
+
 **Try these (2 programs):**
 
 **Program 1 — `format_inr` package (illustrative layout)**
@@ -253,6 +264,10 @@ pip install requests
 pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
+
+**Note / trap:**
+- Committing `venv/` → huge repo and OS-specific paths — add `venv/` to `.gitignore`.
+- `pip install` globally → version conflicts — always use a venv per project.
 
 **Try these (2 programs):**
 
@@ -430,20 +445,6 @@ from ksr_tools import is_email, format_inr
 print(is_email("student@ksr.com"))
 print(format_inr(125000.5))
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Circular imports | ImportError / partial init | Restructure; move shared code to third module |
-| Wrong working directory | Module not found | Run from project root or fix `PYTHONPATH` |
-| Committing `venv/` | Huge repo, OS-specific paths | Add `venv/` to `.gitignore` |
-| `pip install` globally | Version conflicts | Always use venv per project |
-| Typo in module name | `ModuleNotFoundError` | Match filename exactly (case-sensitive on Linux) |
-| `from package import *` | Namespace pollution | Import explicit names |
-| Missing `__init__.py` (older Python) | Package not recognized | Add `__init__.py` in each package folder |
 
 ---
 

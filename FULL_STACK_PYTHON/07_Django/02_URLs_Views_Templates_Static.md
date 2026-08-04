@@ -74,6 +74,9 @@ Production-style pages use **`render()`** to separate HTML into template files.
 
 Instead of copying `<nav>` on every page, create **`base.html`** with common layout. Child templates **`{% extend %}`** base and fill **`{% block content %}`**. This is **DRY** (Don't Repeat Yourself).
 
+**Note / trap:**
+- Wrong `{% extends %}` path → template error. Use a path relative to `DIRS` / `APP_DIRS` (e.g. `"base.html"` or `"blog/post_list.html"`).
+
 ### Static Files in Development
 
 Django serves static files in **`DEBUG=True`** mode when configured. In templates:
@@ -85,6 +88,9 @@ Django serves static files in **`DEBUG=True`** mode when configured. In template
 
 **`{% load static %}`** — loads template tag library for static URLs.  
 **`{% static 'path' %}`** — generates correct URL to CSS/JS file.
+
+**Note / trap:**
+- Forgot `{% load static %}` at the top → empty/broken CSS URL. Load static before using `{% static %}`.
 
 ---
 
@@ -106,6 +112,10 @@ blog/urls.py  (app)
 **`include()`** — delegates URL patterns to app's urls module — keeps apps portable.
 
 **`name='post_list'`** — URL **name** for reverse lookup (links without hardcoding paths).
+
+**Note / trap:**
+- Trailing-slash mismatch → 404 or redirect loop. Stay consistent with Django `APPEND_SLASH`.
+- Hardcoding `/blog/` in `href` breaks when the URL prefix changes — use `{% url 'post_list' %}`.
 
 **Try these (2 programs):**
 
@@ -170,6 +180,9 @@ def about(request):
 | `{{ value\|filter }}` | Format | `{{ created\|date:"d M Y" }}` |
 | `{% url 'name' %}` | Named URL | `{% url 'post_list' %}` |
 
+**Note / trap:**
+- URL name typo in `{% url %}` → `NoReverseMatch`. Match `name=` in `urls.py` exactly.
+
 **Try these (2 programs):**
 
 **Program 1 — Context variable**
@@ -201,6 +214,9 @@ STATICFILES_DIRS = [BASE_DIR / "static"]  # project-level static folder
 ```
 
 App-level static: `blog/static/blog/css/blog.css` (namespaced by app folder).
+
+**Note / trap:**
+- Static in the wrong folder → 404 on CSS. Use project `static/css/` or app `static/<app>/…` as configured.
 
 ---
 
@@ -255,6 +271,9 @@ urlpatterns = [
     path("about/", views.about, name="about"),
 ]
 ```
+
+**Note / trap:**
+- View not imported in `urls.py` → `AttributeError`. Use `from . import views` before referencing `views.post_list`.
 
 ### Step 3 — Project URLs
 
@@ -330,6 +349,9 @@ TEMPLATES = [
 ]
 ```
 
+**Note / trap:**
+- `TemplateDoesNotExist` usually means a wrong path — check `app/templates/app/file.html` and that `DIRS` / `APP_DIRS` are set.
+
 ### Step 6 — Static CSS
 
 ```css
@@ -369,21 +391,6 @@ urlpatterns = [
 ```
 
 Add `path("tasks/", include("tasks.urls"))` to project urls.
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Template not found | `TemplateDoesNotExist` | Check path `app/templates/app/file.html` |
-| Forgot `{% load static %}` | Empty/broken CSS URL | Load static at top of template |
-| Wrong `{% extends %}` path | Template error | Use path relative to DIRS/APP_DIRS |
-| URL name typo in `{% url %}` | `NoReverseMatch` | Match `name=` in urls.py exactly |
-| Missing trailing slash mismatch | 404 or redirect loop | Django `APPEND_SLASH` — be consistent |
-| View not imported in urls.py | AttributeError | `from . import views` |
-| Hardcoded `/blog/` in href | Breaks if URL prefix changes | Use `{% url 'post_list' %}` |
-| Static in wrong folder | 404 on CSS | Use `static/css/` at project or app static |
 
 ---
 

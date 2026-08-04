@@ -208,6 +208,11 @@ erDiagram
 
 One customer → many orders; one order → many line items; each line item points to a product.
 
+**Note / trap:**
+- VARCHAR/FLOAT for money — use `DECIMAL(10,2)` instead.
+- No FOREIGN KEY — define FK in DDL.
+- No UNIQUE on email — add a UNIQUE constraint.
+
 **Try these (2 programs):**
 
 **Program 1 — Courses table for LMS**
@@ -256,6 +261,9 @@ UPDATE employees SET salary = salary * 1.10 WHERE dept_id = 1;
 DELETE FROM students WHERE email = 'rahul@campus.in';  -- always use WHERE!
 ```
 
+**Note / trap:**
+- `DELETE FROM students` without WHERE — always use WHERE; test with SELECT first.
+
 **Try these (2 programs):**
 
 **Program 1 — Seed canteen products (INR)**
@@ -295,6 +303,9 @@ WHERE e.salary > 70000 ORDER BY e.salary DESC;
 
 SELECT name, price FROM products WHERE price BETWEEN 40 AND 150;
 ```
+
+**Note / trap:**
+- `SELECT *` in APIs — name columns explicitly.
 
 **Try these (2 programs):**
 
@@ -383,6 +394,9 @@ INNER JOIN products p ON oi.product_id = p.product_id;
 
 **Go deeper:** [`MYSQL/07_Joins.md`](../../MYSQL/07_Joins.md) · Lab kit: [02_mysql_library_seed](../15_Lab_Assets/02_mysql_library_seed/)
 
+**Note / trap:**
+- JOIN without ON → Cartesian product — always write an explicit ON.
+
 **Try these (2 programs):**
 
 **Program 1 — Employees with department names**
@@ -418,6 +432,9 @@ ORDER BY c.name;
 | **3NF** | No transitive dependency | dept_head in student row | Split `departments` |
 
 **Go deeper:** [`MYSQL/06_Modeling_Databases.md`](../../MYSQL/06_Modeling_Databases.md)
+
+**Note / trap:**
+- Comma-separated values in one column — use a junction table (1NF).
 
 **Try these (2 programs):**
 
@@ -456,20 +473,6 @@ SELECT 'Move dept_head to departments table (3NF)' AS fix_note;
 4. DQL drills: Engineering employees; products under ₹100; students sorted by name
 5. JOIN lab: INNER (employees + departments); LEFT (customers + orders, include zero-order customer)
 6. Normalize `bad_orders(order_id, customer_name, customer_city, product1, product2)` → sketch `customers`, `orders`, `order_items`, `products`
-
----
-
-## Common Mistakes
-
-| Mistake | Fix |
-|---------|-----|
-| `DELETE FROM students` without WHERE | Always WHERE; test with SELECT first |
-| Comma-separated values in one column | Junction table (1NF) |
-| JOIN without ON | Explicit ON — else Cartesian product |
-| VARCHAR/FLOAT for money | DECIMAL(10,2) |
-| No FOREIGN KEY | Define FK in DDL |
-| SELECT * in APIs | Name columns explicitly |
-| No UNIQUE on email | UNIQUE constraint |
 
 ---
 

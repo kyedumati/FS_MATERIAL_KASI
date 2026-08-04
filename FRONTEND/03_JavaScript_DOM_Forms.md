@@ -76,6 +76,9 @@ flowchart LR
 console.log("CampusCart JS loaded");
 ```
 
+**Note / trap:**
+- Script without `defer` / wrong placement — put the script at the end of `body` or use `defer` so the DOM exists first.
+
 **Try these (2 programs):**
 
 **Program 1 — Deferred script log**
@@ -123,6 +126,10 @@ cartCount = cartCount + 1;
 |---------|-----------|-----|
 | `const` | No | Default choice |
 | `let` | Yes | Counters, loops |
+
+**Note / trap:**
+- Using `var` — prefer `const`/`let` to avoid function-scope and hoisting bugs.
+- `=` instead of `===` — use strict equality when comparing values.
 
 **Try these (2 programs):**
 
@@ -201,6 +208,10 @@ document.querySelectorAll(".product-card").forEach((card) => {
 ```
 
 Prefer `classList` over inline `style`.
+
+**Note / trap:**
+- Element null — verify the selector and `console.log` the element before calling methods on it.
+- `innerHTML` with user input — XSS risk; prefer `textContent` for untrusted strings.
 
 **Try these (2 programs):**
 
@@ -327,6 +338,10 @@ form.addEventListener("submit", (event) => {
 });
 ```
 
+**Note / trap:**
+- No `preventDefault` on submit — the page reloads and your JS state is lost.
+- Client validation only — duplicate the same rules later in Django; never trust the browser alone.
+
 **Try these (2 programs):**
 
 **Program 1 — preventDefault gate**
@@ -398,7 +413,8 @@ async function createOrder(data) {
 
 **React preview:** Same fetch inside `useEffect(() => { loadProducts(); }, []);`
 
----
+**Note / trap:**
+- Missing `await` on `json()` — follow the async/await pattern: `const data = await response.json()`.
 
 **Try these (2 programs):**
 
@@ -446,21 +462,6 @@ previewOrderPayload();
 4. Registration form with preventDefault + inline errors
 5. fetch button loads JSON into `<ul id="product-list">`
 6. Add cart counter with `let cartCount` on product cards
-
----
-
-## Common Mistakes
-
-| Mistake | Fix |
-|---------|-----|
-| Script without defer / wrong placement | End of body or defer |
-| Element null | Verify selector; log element |
-| No preventDefault on submit | Page reloads, JS lost |
-| Client validation only | Duplicate rules in Django |
-| innerHTML with user input | XSS — use textContent |
-| Missing await on json() | async/await pattern |
-| Using var | const/let |
-| `=` instead of `===` | Strict equality |
 
 ---
 

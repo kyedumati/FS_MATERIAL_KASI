@@ -80,6 +80,11 @@ print(expenses[1:3])     # [1200, 89] — index 1 up to (not including) 3
 print(len(products))     # 3 — number of items
 ```
 
+**Note / trap:**
+- Wrong: Indexing past the end (`lst[10]` on a short list) → `IndexError`.
+- Prefer: Check `len(lst)` first.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Cart first, last, length**
@@ -112,6 +117,11 @@ cart.extend(["Belt", "Socks"])  # add multiple items
 cart.insert(1, "T-Shirt")       # insert at index 1
 print(cart)                     # ['Shirt', 'T-Shirt', 'Jeans', 'Belt', 'Socks']
 ```
+
+**Note / trap:**
+- Wrong: Using `append` with a list when you mean `extend` (`lst.append([4, 5])` → one nested element).
+- Prefer: `extend([4, 5])` to add multiple items.
+
 
 **Try these (2 programs):**
 
@@ -150,6 +160,11 @@ print(cancelled, orders)        # ORD-103 ['ORD-101', 'ORD-102']
 orders.clear()                  # []
 ```
 
+**Note / trap:**
+- Wrong: `remove(x)` when `x` is not in the list → `ValueError`.
+- Prefer: `if x in lst: lst.remove(x)`.
+
+
 **Try these (2 programs):**
 
 **Program 1 — remove first matching order**
@@ -187,6 +202,11 @@ print(top_sorted)               # [95, 88, 72]
 print(scores)                   # [88, 72, 95] — unchanged
 ```
 
+**Note / trap:**
+- Wrong: Confusing `sort()` with `sorted()` — unexpected in-place change.
+- Prefer: `sort()` changes the original; `sorted()` returns a new list.
+
+
 **Try these (2 programs):**
 
 **Program 1 — count and index**
@@ -220,6 +240,11 @@ for i in range(len(student_names)):
 for name, mark in zip(student_names, student_marks):
     print(f"{name}: {mark}%")
 ```
+
+**Note / trap:**
+- Wrong: Modifying a list while looping over it — skipped items or infinite loops.
+- Prefer: Loop over a copy: `for x in lst[:]`.
+
 
 **Try these (2 programs):**
 
@@ -337,6 +362,11 @@ copy2 = list(original)
 copy3 = original[:]
 ```
 
+**Note / trap:**
+- Wrong: Relying on a shallow copy of a *nested* list (inner lists still shared); using `is` to compare list *content* (`[1, 2] is [1, 2]` is False).
+- Prefer: `copy.deepcopy()` for deep copy (advanced); use `==` for value equality, `is` only for the same object.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Alias bug**
@@ -357,20 +387,6 @@ b.append(3)
 print(a)  # [1, 2]
 print(b)  # [1, 2, 3]
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | What goes wrong | Fix |
-|---------|-----------------|-----|
-| Using `append` with a list when you mean `extend` | `lst.append([4,5])` → nested single element | Use `extend([4, 5])` |
-| Index out of range | `lst[10]` on short list → `IndexError` | Check `len(lst)` first |
-| Modifying list while looping over it | Skipped items, infinite loops | Loop over a **copy**: `for x in lst[:]:` |
-| `remove(x)` when `x` not in list | `ValueError` | Use `if x in lst: lst.remove(x)` |
-| Confusing `sort()` vs `sorted()` | Unexpected in-place change | `sort()` changes original; `sorted()` returns new list |
-| Shallow copy of nested list | Inner lists still shared | Use `copy.deepcopy()` for deep copy (advanced) |
-| Using `==` to compare lists with same content vs identity | `[1,2] is [1,2]` is **False** | Use `==` for value equality, `is` only for same object |
 
 ---
 

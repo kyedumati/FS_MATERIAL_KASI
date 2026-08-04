@@ -66,6 +66,9 @@ Example: `<a href="/home">Home</a>`
 - `<meta charset="UTF-8">` — supports ₹, Hindi, emoji
 - `<meta viewport>` — required for mobile
 
+**Note / trap:**
+- Missing `<!DOCTYPE html>` — always put it as the first line so the browser stays in HTML5 mode.
+
 **Try these (2 programs):**
 
 **Program 1 — Hello CampusCart page**
@@ -144,6 +147,9 @@ flowchart TB
 
 Prefer these tags over a pile of anonymous `<div>`s when the meaning is clear.
 
+**Note / trap:**
+- `<div>` everywhere — prefer semantic tags (`header`, `nav`, `main`, `section`, `footer`) when the meaning is clear.
+
 **Try these (2 programs):**
 
 **Program 1 — Portfolio landmarks**
@@ -210,6 +216,10 @@ Prefer these tags over a pile of anonymous `<div>`s when the meaning is clear.
 | Absolute | `https://cdn.example.com/logo.png` | CDN |
 | Root-relative | `/assets/logo.png` | Django static |
 
+**Note / trap:**
+- Missing `alt` — use descriptive alt text (or `alt=""` only for decorative images).
+- Broken relative paths — check folder structure (`images/`, `./about.html`) before blaming the tag.
+
 **Try these (2 programs):**
 
 **Program 1 — Nav + mailto**
@@ -260,6 +270,9 @@ Prefer these tags over a pile of anonymous `<div>`s when the meaning is clear.
 ```
 
 Use tables for **tabular data**, not page layout.
+
+**Note / trap:**
+- Tables for layout — use CSS Flexbox later; keep tables for real tabular data only.
 
 **Try these (2 programs):**
 
@@ -347,6 +360,10 @@ Use tables for **tabular data**, not page layout.
 
 Django adds `{% csrf_token %}` to POST forms later.
 
+**Note / trap:**
+- Input without `name` — the server receives nothing for that field.
+- Password via GET — use POST so credentials are not stuck in the URL.
+
 **Try these (2 programs):**
 
 **Program 1 — Canteen search (GET)**
@@ -396,7 +413,8 @@ Django adds `{% csrf_token %}` to POST forms later.
 - Use `<button>` for actions, not styled `<div>`
 - Tab through form with keyboard
 
----
+**Note / trap:**
+- Multiple `<h1>` tags — use one `h1`; sections use `h2` (and below).
 
 **Try these (2 programs):**
 
@@ -441,21 +459,6 @@ Django adds `{% csrf_token %}` to POST forms later.
 4. Build POST registration form with `required` on key fields
 5. Lighthouse accessibility audit — fix missing labels/alt
 6. View Page Source — compare file vs rendered output
-
----
-
-## Common Mistakes
-
-| Mistake | Fix |
-|---------|-----|
-| Missing `<!DOCTYPE html>` | Always first line |
-| Multiple `<h1>` tags | One h1; sections use h2 |
-| `<div>` everywhere | Use semantic tags |
-| Input without `name` | Server receives nothing |
-| Password via GET | Use POST |
-| Missing `alt` | Descriptive alt text |
-| Broken relative paths | Check folder structure |
-| Tables for layout | Use CSS Flexbox later |
 
 ---
 

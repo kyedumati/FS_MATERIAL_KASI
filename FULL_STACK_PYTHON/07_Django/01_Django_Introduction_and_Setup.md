@@ -81,6 +81,10 @@ A **virtual environment** is an isolated folder containing its own Python and in
 - **Activate** — tell your terminal to use that environment's Python/pip
 - **`pip`** — package installer for Python (`pip install django`)
 
+**Note / trap:**
+- Forgot to activate venv → `ModuleNotFoundError: django`. Run `source venv/bin/activate` (Windows: `venv\Scripts\activate`) before pip/manage.py.
+- Do not commit `venv/` — add it to `.gitignore` or the repo balloons.
+
 ### Project vs App
 
 - **Project** — entire website configuration (`settings.py`, root `urls.py`, `manage.py`). Example: `campus_portal` (Student Portal theme).
@@ -109,6 +113,9 @@ Django does not ship MySQL driver inside the box. You install **`mysqlclient`** 
 - **`django-admin startproject config .`** — project config package named `config`, dot places `manage.py` at root
 - **Environment variables** for secrets (intro today; full module in Security & Deployment)
 - **One app per domain feature** — `blog`, `inventory` for CampusCart, not one giant `models.py`
+
+**Note / trap:**
+- `startproject` without a trailing `.` nests an extra folder. Prefer `django-admin startproject config .` (or move files if you already nested).
 
 **Try these (2 programs):**
 
@@ -140,6 +147,9 @@ django-admin --version
 | Database | Local MySQL | Managed MySQL (RDS, PlanetScale, etc.) |
 | Secret key | Can be default for learning | Must be unique, secret |
 
+**Note / trap:**
+- Never share or commit a real `SECRET_KEY` — use environment variables (Security & Deployment module). A leaked key is a production security risk.
+
 **Try these (2 programs):**
 
 **Program 1 — Dev settings reminder**
@@ -166,6 +176,9 @@ print("Dev mode: DEBUG =", DEBUG)
 ### 3. INSTALLED_APPS
 
 Every Django **app** you create must be listed in `INSTALLED_APPS` (or use auto-discovery patterns in advanced setups). Built-in apps include **`django.contrib.admin`**, **`auth`**, **`sessions`**, **`messages`**, **`staticfiles`**.
+
+**Note / trap:**
+- App missing from `INSTALLED_APPS` → models/admin ignored. Add the app string (e.g. `"blog"`) after `startapp`.
 
 **Try these (2 programs):**
 
@@ -299,6 +312,10 @@ import pymysql
 pymysql.install_as_MySQLdb()
 ```
 
+**Note / trap:**
+- Wrong MySQL credentials → `Access denied for user`. Match Workbench user/password and `HOST`.
+- `localhost` can hit socket issues on Mac — prefer `HOST: "127.0.0.1"`.
+
 ### Step 5 — Migrate and Run Server
 
 ```bash
@@ -314,20 +331,6 @@ python manage.py runserver
 1. Open folder `django_labs` (not single file)
 2. Select interpreter: `./venv/bin/python`
 3. Optional: `.vscode/settings.json` → `"python.terminal.activateEnvironment": true`
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Forgot to activate venv | `ModuleNotFoundError: django` | `source venv/bin/activate` before commands |
-| App not in `INSTALLED_APPS` | Models/admin ignored | Add app string to list |
-| Wrong MySQL credentials | `Access denied for user` | Match Workbench user; check `HOST` |
-| Used `localhost` socket issues on Mac | Connection refused | Use `127.0.0.1` |
-| Ran `startproject` without trailing `.` | Nested extra folder | Use `startproject config .` or move files |
-| Committed `venv/` to Git | Huge repo | Add `venv/` to `.gitignore` |
-| Shared `SECRET_KEY` publicly | Security risk in production | Env vars in deployment module |
 
 ---
 

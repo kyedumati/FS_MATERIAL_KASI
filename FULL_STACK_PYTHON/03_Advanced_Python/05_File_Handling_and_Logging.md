@@ -70,6 +70,10 @@ The **`with`** statement is the polite borrower — Python **closes** the file e
 
 Always specify `encoding="utf-8"` for text on cross-platform projects.
 
+**Note / trap:**
+- `w` mode by mistake deletes existing data — confirm the mode; back up files first.
+- Ignoring encoding → `UnicodeDecodeError` on Windows — always use `encoding="utf-8"`.
+
 **Try these (2 programs):**
 
 **Program 1 — Write / read / truncate demo**
@@ -114,6 +118,9 @@ with open("notes.txt", "w", encoding="utf-8") as f:
 # file automatically closed here
 ```
 
+**Note / trap:**
+- Forgetting to close a file → resource leak — use `with`.
+
 **Try these (2 programs):**
 
 **Program 1 — Rewrite with `with open`**
@@ -157,6 +164,9 @@ with open("scratch.txt", "r", encoding="utf-8") as f:
 | `readline()` | One line | Line protocols |
 | `readlines()` | List of lines | Medium files |
 | `for line in f` | Iterator | **Large files** |
+
+**Note / trap:**
+- Reading a huge file with `read()` → `MemoryError` — iterate line by line instead.
 
 **Try these (2 programs):**
 
@@ -209,6 +219,9 @@ with open("students.csv", newline="", encoding="utf-8") as f:
     for row in reader:
         print(row["name"], row["marks"])
 ```
+
+**Note / trap:**
+- CSV without `newline=""` → extra blank lines — pass `newline=""` on open.
 
 **Try these (2 programs):**
 
@@ -272,6 +285,10 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 logging.info("Server started")
 logging.error("DB connection failed")
 ```
+
+**Note / trap:**
+- Configuring logging in a library at import time → noise — configure logging in `main` only.
+- Using `print` in production → no levels/timestamps — use `logging`.
 
 **Try these (2 programs):**
 
@@ -447,20 +464,6 @@ fh = logging.FileHandler("debug.log", encoding="utf-8"); fh.setLevel(logging.DEB
 logger.addHandler(ch); logger.addHandler(fh)
 logger.info("User login success — console + file")
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Forgetting to close file | Resource leak | Use `with` |
-| `w` mode by mistake | Deletes existing data | Confirm mode; backup files |
-| Ignoring encoding | `UnicodeDecodeError` on Windows | `encoding="utf-8"` |
-| Reading huge file with `read()` | MemoryError | Iterate line by line |
-| CSV without `newline=""` | Extra blank lines | Pass `newline=""` on open |
-| Logging in library at import | Noise | Configure logging in `main` only |
-| Using print in production | No levels/timestamps | Use `logging` |
 
 ---
 

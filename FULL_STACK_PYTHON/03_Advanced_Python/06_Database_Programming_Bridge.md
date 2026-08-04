@@ -177,6 +177,11 @@ config = {
 
 **Production:** store credentials in environment variables, not source code.
 
+**Note / trap:**
+- Leaving connections open → server exhaustion — close in `finally` (or use a context manager).
+- Hard-coded passwords → security leak — use environment variables.
+- No exception handling → cryptic crash — catch `mysql.connector.Error`.
+
 **Try these (2 programs):**
 
 **Program 1 — Connect, `SELECT DATABASE()`, close**
@@ -241,6 +246,10 @@ sql = f"SELECT * FROM students WHERE roll = {roll}"
 
 Both `mysql-connector-python` and `PyMySQL` use `%s` placeholders (not `?` like sqlite).
 
+**Note / trap:**
+- String concatenation in SQL → SQL injection — use parameterized queries.
+- Wrong placeholder (`?`) → driver error — use `%s` for MySQL connectors.
+
 **Try these (2 programs):**
 
 **Program 1 — Parameterized INSERT**
@@ -296,6 +305,10 @@ print("Lesson: f-string injection broke row filtering — always use %s.")
 | Read | SELECT | `execute` + `fetchone`/`fetchall` |
 | Update | UPDATE | `execute` + `commit` |
 | Delete | DELETE | `execute` + `commit` |
+
+**Note / trap:**
+- Forgetting `commit()` → changes not saved — commit after DML.
+- `SELECT *` in production APIs → over-fetching — name columns explicitly.
 
 **Try these (2 programs):**
 
@@ -516,20 +529,6 @@ def list_students():
     conn.close()
     return rows
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| String concatenation in SQL | SQL injection | Parameterized queries |
-| Forgetting `commit()` | Changes not saved | commit after DML |
-| Leaving connections open | Server exhaustion | close in `finally` |
-| Wrong placeholder (`?`) | Driver error | Use `%s` for MySQL connectors |
-| Hard-coded passwords | Security leak | Environment variables |
-| No exception handling | Cryptic crash | catch `mysql.connector.Error` |
-| `SELECT *` in production APIs | Over-fetching | Name columns explicitly |
 
 ---
 

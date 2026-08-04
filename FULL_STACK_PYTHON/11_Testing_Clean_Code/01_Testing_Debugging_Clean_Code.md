@@ -114,6 +114,9 @@ if __name__ == "__main__":
 | ERROR | Failure needing attention |
 | CRITICAL | System down |
 
+**Note / trap:**
+- `logger.debug` with INFO level → missing logs — set the level correctly or use INFO.
+
 **Try these (2 programs):**
 
 **Program 1 — Basic logging**
@@ -149,6 +152,12 @@ print(apply_discount(100, 10))  # 90.0
 | Assertions | many assertX methods | plain `assert` |
 | Running | `python -m unittest` | `pytest` |
 | Industry | stdlib, Django default | Very popular in startups |
+
+**Note / trap:**
+- Testing print output only → fragile tests — assert return values.
+- No test for edge cases → production crash on empty list — test `[]`, zero, negative.
+- Wrong test file discovery → 0 tests collected — name files `test_*.py` (add `__init__.py` if needed).
+- Mutating shared test data → order-dependent failures — use fresh fixtures per test.
 
 **Try these (2 programs):**
 
@@ -192,6 +201,10 @@ if __name__ == "__main__":
 
 **Better:** `validate_email()`, `calculate_gst()`, `format_inr()` — each tested separately.
 
+**Note / trap:**
+- Giant functions → untestable — extract helpers.
+- Over-DRY too early → confusing abstractions — follow the rule of three.
+
 **Try these (2 programs):**
 
 **Program 1 — Extract helper**
@@ -220,6 +233,9 @@ Good: `Fix negative price validation in ProductSerializer`
 Bad: `changes`, `final`, `final2`, `done`
 
 ---
+
+**Note / trap:**
+- Commit everything Friday → unreviewable PR — prefer small daily commits.
 
 **Try these (2 programs):**
 
@@ -339,21 +355,6 @@ print(average_marks([80, 90, 100]))
 ```
 
 Set breakpoint before return; inspect `total`, `len(marks)`; fix to `total / len(marks)`.
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Testing print output only | Fragile tests | Assert return values |
-| No test for edge cases | Production crash on empty list | Test `[]`, zero, negative |
-| Giant functions | Untestable | Extract helpers |
-| Over-DRY too early | Confusing abstractions | Rule of three |
-| Commit everything Friday | Unreviewable PR | Small daily commits |
-| `logger.debug` with INFO level | Missing logs | Set level or use INFO |
-| Wrong test file discovery | 0 tests collected | Name `test_*.py`, `__init__.py` if needed |
-| Mutating shared test data | Order-dependent failures | Fresh fixtures per test |
 
 ---
 

@@ -87,6 +87,13 @@ Most Indian product and service teams say they are **Agile**.
 
 **Avoid:** Photo unless employer asks, full address, hobbies essay, lie about experience.
 
+**Note / trap:**
+- 3-page resume → rejected by HR — keep one page PDF.
+- No project links → "maybe fake" — put GitHub URLs on the resume.
+- Generic summary → lost in the pile — target Python full stack.
+- Lying skills → fails technical — honest list + learning.
+- Switcher hides past → confusing story — brief positive framing.
+
 **Try these (2 programs):**
 
 **Program 1 — Rewrite a weak bullet**
@@ -133,6 +140,9 @@ Python · Django · MySQL · REST · DRF · Git · HTML · CSS · JavaScript · 
 - **Featured:** GitHub repo links, demo video if any
 - **Skills:** Endorsements from batchmates
 - **Open to work:** Configure visibility (recruiter-only option exists)
+
+**Note / trap:**
+- Only Naukri mass apply → low response — use LinkedIn + referrals too.
 
 **Try these (2 programs):**
 
@@ -193,6 +203,9 @@ Python Full Stack Developer | Django · MySQL · React | Open to internships —
 | 3 | SQL + React + API | Whiteboard CRUD flow |
 | 4 | HR + salary + STAR | Full 45-min mock with peer |
 
+**Note / trap:**
+- Ignoring aptitude → fail OA — practise 30 minutes daily.
+
 **Try these (2 programs):**
 
 **Program 1 — Week plan**
@@ -252,6 +265,9 @@ Result: Repo clean; checklist green for deploy lab
 Track: Applied → OA → Technical → HR → Offer/Rejected.
 
 ---
+
+**Note / trap:**
+- No follow-up → missed opportunity — set a tracker reminder for 7 days.
 
 **Try these (2 programs):**
 
@@ -324,21 +340,6 @@ Open to junior developer roles — connect via LinkedIn.
 |---------|------|------|--------|-------|
 | TechSoft Pune | Jr Python Dev | 2026-08-01 | Applied | Referral from alumni |
 | CloudNine BLR | Django Intern | 2026-08-02 | OA scheduled | Revise SQL JOINs |
-
----
-
-## Common Mistakes
-
-| Mistake | Impact | Fix |
-|---------|--------|-----|
-| 3-page resume | Rejected by HR | One page PDF |
-| No project links | "Maybe fake" | GitHub URLs on resume |
-| Generic summary | Lost in pile | Target Python full stack |
-| Lying skills | Fails technical | Honest list + learning |
-| Only Naukri mass apply | Low response | LinkedIn + referrals |
-| Ignoring aptitude | Fail OA | Daily 30 min practice |
-| Switcher hides past | Confusing story | Brief positive framing |
-| No follow-up | Missed opportunity | Tracker reminder 7 days |
 
 ---
 

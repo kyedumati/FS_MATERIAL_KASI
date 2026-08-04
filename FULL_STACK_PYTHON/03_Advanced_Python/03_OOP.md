@@ -96,6 +96,10 @@ s1.display()
 - `self` refers to the **current** object (like `this` in Java).
 - `__init__` runs automatically after object creation — you rarely call it by name.
 
+**Note / trap:**
+- Forgetting `self` in methods → `TypeError` on call — the first parameter must be `self`.
+- Over-engineering OOP (5 classes for hello world) — use functions until complexity grows.
+
 **Try these (2 programs):**
 
 **Program 1 — `Book` with `info()`**
@@ -145,6 +149,10 @@ class Employee:
         self.emp_id = emp_id    # instance attribute — unique per object
         self.name = name
 ```
+
+**Note / trap:**
+- Mutable class attribute → shared state across objects — initialize lists in `__init__`.
+- Confusing class vs instance → wrong shared data — access class attributes via `ClassName.attr`.
 
 **Try these (2 programs):**
 
@@ -198,6 +206,9 @@ print(s1.college, s2.college)  # both reflect the new class value
 | `__name` | name mangled | Harder accidental access |
 
 Use `@property` for controlled read access (stretch).
+
+**Note / trap:**
+- `__private` is not true security — still accessible via name mangling. Use encapsulation for clarity, not security.
 
 **Try these (2 programs):**
 
@@ -265,6 +276,9 @@ class Employee(Person):
         super().__init__(name)   # call parent constructor
         self.emp_id = emp_id
 ```
+
+**Note / trap:**
+- Not calling `super().__init__` → parent attributes missing — always init the parent in the child.
 
 **Try these (2 programs):**
 
@@ -502,19 +516,6 @@ class Order:
     def get_count(cls):
         return cls.order_count
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Forgetting `self` in methods | TypeError on call | First param must be `self` |
-| Mutable class attribute | Shared state across objects | Initialize lists in `__init__` |
-| Not calling `super().__init__` | Parent attributes missing | Always init parent in child |
-| Confusing class vs instance | Wrong shared data | Access class attr via `ClassName.attr` |
-| Over-engineering OOP | 5 classes for hello world | Use functions until complexity grows |
-| `__private` as true security | Still accessible via mangling | Use encapsulation for clarity, not security |
 
 ---
 

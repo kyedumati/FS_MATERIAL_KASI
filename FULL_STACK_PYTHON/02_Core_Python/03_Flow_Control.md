@@ -180,6 +180,13 @@ else:
 
 Note: `or` combines invalid range checks.
 
+**Note / trap:**
+- Wrong: Missing colon (`if x > 5`), inconsistent indentation, or putting `elif` after `else`.
+- Prefer: `if x > 5:` with 4 spaces; order is if → elif → else (else last).
+- Wrong: Leaving an empty block under `if`/`else`.
+- Prefer: Use `pass` as a placeholder when needed.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Pass / Fail with range check**
@@ -223,6 +230,11 @@ else:
     print("Invalid credentials. Contact HR.")
 ```
 
+**Note / trap:**
+- Wrong: Using `=` when you meant to compare — logic always wrong or SyntaxError.
+- Prefer: `==` to compare, `=` to assign.
+
+
 **Try these (2 programs):**
 
 **Program 1 — Simple login check**
@@ -263,6 +275,11 @@ for i in range(1, 11):
     print(f"{n} x {i} = {n * i}")
 ```
 
+**Note / trap:**
+- Wrong: Off-by-one with `range` (loop one short or one long).
+- Prefer: Remember the stop value is exclusive (`range(1, 11)` → 1…10).
+
+
 **Try these (2 programs):**
 
 **Program 1 — Table of 7**
@@ -300,6 +317,11 @@ else:
     # while-else: runs if loop ended without break
     print("Card blocked. Visit branch.")
 ```
+
+**Note / trap:**
+- Wrong: Infinite `while` — the condition never moves toward exit.
+- Prefer: Ensure a variable in the condition changes (counter, flag, or `break`).
+
 
 **Try these (2 programs):**
 
@@ -458,6 +480,11 @@ while True:
         print("Invalid choice. Try again.")
 ```
 
+**Note / trap:**
+- Wrong: Comparing menu `input()` to an int (`choice == 1`) when choice is still a string.
+- Prefer: Compare strings (`choice == "1"`) or convert deliberately with `int(choice)`.
+
+
 **Try these (2 programs):**
 
 **Program 1 — ATM deposit / withdraw demo**
@@ -556,21 +583,6 @@ for choice, value in actions:
         print("Exit")
         break
 ```
-
----
-
-## Common Mistakes and How to Fix Them
-
-| Mistake                    | Symptom             | Fix                                                      |
-| -------------------------- | ------------------- | -------------------------------------------------------- |
-| Missing colon              | `SyntaxError`       | `if x > 5:` not `if x > 5`                               |
-| Wrong indentation          | `IndentationError`  | Use 4 spaces consistently; VS Code auto-indent           |
-| `=` vs `==`                | Logic always wrong  | `==` compare, `=` assign                                 |
-| Infinite while             | Program never stops | Ensure variable in condition changes toward exit         |
-| Off-by-one range           | Loop one short/long | Remember stop is exclusive                               |
-| elif after else            | SyntaxError         | Order: if → elif → else (else last)                      |
-| Empty block                | SyntaxError         | Use `pass` placeholder if needed                         |
-| Not converting menu choice | Wrong branch        | Compare strings: `choice == "1"` not `1` if input is str |
 
 ---
 

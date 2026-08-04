@@ -96,6 +96,11 @@ Different ports = different **origins**. Browsers block random cross-origin requ
 | On value change | `[productId]` | Refetch when id changes |
 | Cleanup | return function | Cancel fetch, clear timer |
 
+**Note / trap:**
+- `useEffect` without deps — fetch every render; add `[]` or the correct dependency list.
+- No loading state — blank screen confusion; show loading/error UI.
+- `useEffect` async directly — warning patterns; use an inner async function instead.
+
 **Try these (2 programs):**
 
 **Program 1 — Fetch once on mount**
@@ -149,6 +154,9 @@ export default function LoaderDemo() {
 </BrowserRouter>
 ```
 
+**Note / trap:**
+- Router outside `BrowserRouter` — hook/context errors; wrap the app once.
+
 **Try these (2 programs):**
 
 **Program 1 — Basic routes**
@@ -190,6 +198,10 @@ export default function ProductDetail() {
 
 Centralize fetch logic in `src/api/products.js` — easier to change base URL and test.
 
+**Note / trap:**
+- Wrong API URL in prod — 404 on deployed site; set `VITE_` env at build time.
+- Forgot trailing slash for Django — 404 on `/products` vs `/products/`; match DRF URLs.
+
 **Try these (2 programs):**
 
 **Program 1 — api.js helper**
@@ -223,7 +235,8 @@ export async function createProduct(payload) {
 
 Django response includes `Access-Control-Allow-Origin: http://localhost:5173` so browser permits JavaScript to read response.
 
----
+**Note / trap:**
+- Missing CORS config — browser CORS error while Postman still works; install and configure `django-cors-headers`.
 
 **Try these (2 programs):**
 
@@ -366,6 +379,9 @@ Restart Django server after change.
 
 One test: render component showing "Loading products..."; assert text with `screen.getByText`. Run: `npm test`
 
+**Note / trap:**
+- Test fetch without mock — flaky tests; mock the API module in tests.
+
 ### Step 8 — Build overview
 
 ```bash
@@ -374,21 +390,6 @@ npm run preview  # local preview of production build
 ```
 
 Deploy `dist/` to Netlify; set production `VITE_API_URL` to hosted Django URL in Netlify env settings.
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Missing CORS config | Browser CORS error, Postman works | django-cors-headers |
-| useEffect without deps | Fetch every render | Add `[]` or correct deps |
-| Wrong API URL in prod | 404 on deployed site | VITE_ env at build time |
-| Forgot trailing slash Django | 404 on `/products` vs `/products/` | Match DRF URLs |
-| No loading state | Blank screen confusion | Show loading/error UI |
-| useEffect async directly | Warning patterns | Inner async function |
-| Router outside BrowserRouter | Hook/context errors | Wrap app once |
-| Test fetch without mock | Flaky tests | Mock API module in tests |
 
 ---
 

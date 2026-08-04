@@ -38,15 +38,24 @@ Browsers submit **HTML forms** with **GET** (read/search) or **POST** (create/up
 **`forms.Form`** — generic form not tied to one model (contact us, search).  
 **`forms.ModelForm`** — auto-generates fields from a **model** (add Task, create Post).
 
+**Note / trap:**
+- Use POST for create/update/delete — GET puts data in the URL and is unsafe for mutations.
+
 ### Validation
 
 **Field validation** — type, max length, required.  
 **Form `clean()`** — cross-field rules (password match, date range).  
 Errors display in template with **`{{ form.errors }}`** or per-field **`{{ form.title.errors }}`**.
 
+**Note / trap:**
+- Always branch on `form.is_valid()` before save — skipping it can persist invalid data.
+
 ### CSRF (Cross-Site Request Forgery) — Intro
 
 **CSRF** attack tricks logged-in user's browser to POST to your site without consent. Django embeds **`{% csrf_token %}`** hidden field; middleware validates token. Always include in POST forms.
+
+**Note / trap:**
+- Missing `{% csrf_token %}` inside `<form method="post">` → 403 Forbidden CSRF.
 
 ### Sessions
 
@@ -57,6 +66,9 @@ request.session["cart_count"] = 3
 count = request.session.get("cart_count", 0)
 ```
 
+**Note / trap:**
+- Session not persisting (e.g. cart resets) — set `request.session.modified = True` when you mutate nested session data.
+
 ### Authentication (`django.contrib.auth`)
 
 Django ships **User** model: username, password (hashed), email, flags **`is_staff`**, **`is_superuser`**.  
@@ -65,6 +77,9 @@ Django ships **User** model: username, password (hashed), email, flags **`is_sta
 **`logout(request)`** — clears session auth.
 
 **`@login_required`** — decorator redirecting unauthenticated users to **`LOGIN_URL`**.
+
+**Note / trap:**
+- Never store passwords in plain text — use `UserCreationForm` / `set_password` so Django hashes them.
 
 ### Permissions Overview
 
@@ -93,6 +108,9 @@ sequenceDiagram
 ```
 
 If you return the success HTML directly on POST, refresh can **create the same task again**.
+
+**Note / trap:**
+- No redirect after POST → duplicate submit on refresh. Use redirect (PRG).
 
 **Try these (2 programs):**
 
@@ -133,6 +151,9 @@ LOGIN_REDIRECT_URL = "task_dashboard"
 LOGOUT_REDIRECT_URL = "home"
 ```
 
+**Note / trap:**
+- `@login_required` without a valid `LOGIN_URL` → 404 on redirect. Set `LOGIN_URL` in settings to a named route that exists.
+
 **Try these (2 programs):**
 
 **Program 1 — Settings redirects**
@@ -163,6 +184,9 @@ class Task(models.Model):
 ```
 
 Filter tasks: **`Task.objects.filter(owner=request.user)`**.
+
+**Note / trap:**
+- Showing all users' tasks is a privacy bug — always filter by `owner=request.user` (or equivalent).
 
 **Try these (2 programs):**
 
@@ -410,21 +434,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 def staff_report(request):
     return render(request, "reports/staff.html", {})
 ```
-
----
-
-## Common Mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Missing `{% csrf_token %}` | 403 Forbidden CSRF | Add token inside `<form method="post">` |
-| Used GET for create/delete | Data in URL; unsafe | POST for mutations |
-| Forgot `form.is_valid()` check | Invalid data saved | Always branch on is_valid |
-| `@login_required` without LOGIN_URL | 404 on redirect | Set LOGIN_URL in settings |
-| Stored password plain text | Security disaster | Use UserCreationForm / set_password |
-| Session not persisting | Cart resets | `request.session.modified = True` if needed |
-| Show all users' tasks | Privacy bug | Filter by `owner=request.user` |
-| No redirect after POST | Duplicate submit | Use redirect (PRG) |
 
 ---
 
