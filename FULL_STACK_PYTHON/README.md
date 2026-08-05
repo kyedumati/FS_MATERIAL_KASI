@@ -14,25 +14,32 @@
 
 ## Start here
 
-1. [**One Material / Sharing Guide**](00_Course_Guide/07_Student_and_Trainer_Sharing_Guide.md) — teach & share the same pack  
-2. [**Session Calendar (authority)**](00_Course_Guide/11_Session_Calendar_100.md) — 100 sessions, one focus each  
-3. [Master Course Guide](00_Course_Guide/00_Master_Course_Guide.md) — capstone, portfolio, placement, rubrics  
-4. [Tested Toolchain](00_Course_Guide/10_Tested_Toolchain.md) · [External Dependencies](00_Course_Guide/09_External_Dependencies.md) · [**Lab Assets**](15_Lab_Assets/) · [**Biweekly Assessments**](16_Assessments/) · [Writing Standard](00_Course_Guide/12_Module_Writing_Standard.md)  
-5. [Course Contents (syllabus map)](../COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md)  
-6. Printables: progress tracker, capstone one-pager, MySQL checklist, deliverables, a11y checklist  
-7. Teach in **Session Calendar order** (module files below support those sessions)  
-8. Optional: [Professional Python Deep Dive](03_Advanced_Python/07_Professional_Python_Deep_Dive.md)  
-9. Trainers only: [14_Trainer_Only/](14_Trainer_Only/) — **never share with learners**
+1. [**Session Calendar (authority)**](00_Course_Guide/11_Session_Calendar_100.md) — 100 sessions, one focus each  
+2. [**Course Guide**](00_Course_Guide/README.md) — slim: calendar, MySQL checklist, deliverables, capstone, toolchain  
+3. [**Lab Assets**](15_Lab_Assets/) · [**Biweekly Assessments**](16_Assessments/) · [Toolchain](00_Course_Guide/10_Tested_Toolchain.md)  
+4. [Course Contents (syllabus map)](../COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md)  
+5. Teach in **Session Calendar order** (module files below support those sessions)  
+6. Optional: [Professional Python Deep Dive](03_Advanced_Python/07_Professional_Python_Deep_Dive.md)  
+7. Trainers only: [14_Trainer_Only/](14_Trainer_Only/) — sharing guide, master guide, lesson plan, keys — **never share with learners**
+
+### Daily class shape (75 min)
+
+| Minutes | Block |
+|--------:|-------|
+| 5 | Classroom Ticket |
+| 25 | Type-along demo |
+| 35 | Lab |
+| 10 | Exit + homework |
 
 ### Share with students (from **repo root**)
 
 ```bash
-# cwd must be PFS_MATERIAL_KASI/ (repo root), not FULL_STACK_PYTHON/
+# cwd must be repo root (FS_MATERIAL_KASI/), not FULL_STACK_PYTHON/
 ./scripts/pack_student_share.sh          # → dist/FULL_STACK_PYTHON_STUDENT/
 ./scripts/build.sh fullstack             # → PDF/FULL_STACK_PYTHON/
 ```
 
-Also share is **built into** the student pack: it nests `FRONTEND/` (with React) and `MYSQL/` beside `FULL_STACK_PYTHON/`.
+Pack nests `FRONTEND/` (with React) and `MYSQL/` beside `FULL_STACK_PYTHON/`. Details: [Sharing Guide](14_Trainer_Only/07_Student_and_Trainer_Sharing_Guide.md) *(trainer)*.
 
 ---
 
@@ -82,7 +89,7 @@ Also share is **built into** the student pack: it nests `FRONTEND/` (with React)
 
 ## What each module contains
 
-Every teaching module follows the [Writing Standard](00_Course_Guide/12_Module_Writing_Standard.md):
+Every teaching module follows the [Writing Standard](14_Trainer_Only/10_Module_Writing_Standard.md) *(trainer)*:
 
 - Learning outcomes + **Classroom Ticket** (lab kit first)  
 - What / Why before syntax  

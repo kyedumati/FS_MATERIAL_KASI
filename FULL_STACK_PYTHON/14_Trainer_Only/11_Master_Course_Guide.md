@@ -7,9 +7,9 @@
 **Live contact:** 20 × 5 × 1.25h = **125 hours** (100 sessions)  
 **Homework:** ~45–90 min most days → total engagement well above brochure **150+ hours**  
 
-> **Schedule authority:** [11_Session_Calendar_100.md](11_Session_Calendar_100.md) — one session, one focus. Module “Duration” lines must follow that calendar.  
+> **Schedule authority:** [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md) — one session, one focus. Module “Duration” lines must follow that calendar.  
 > Live class is **1h 15m only**. Do not use old 4-hour agendas.  
-> External deps: [09_External_Dependencies.md](09_External_Dependencies.md) · Toolchain: [10_Tested_Toolchain.md](10_Tested_Toolchain.md) · Labs: [../15_Lab_Assets/](../15_Lab_Assets/) · Biweekly tests: [../16_Assessments/](../16_Assessments/)
+> External deps: [09_External_Dependencies.md](09_External_Dependencies.md) · Toolchain: [10_Tested_Toolchain.md](../00_Course_Guide/10_Tested_Toolchain.md) · Labs: [../15_Lab_Assets/](../15_Lab_Assets/) · Biweekly tests: [../16_Assessments/](../16_Assessments/)
 
 ---
 
@@ -79,7 +79,7 @@ flowchart TD
 | 13 | `03_Advanced_Python/04_Exception_Handling.md` | Advanced | try/except | Custom errors | Robust CLI | Safe file reader |
 | 14 | `03_Advanced_Python/05_File_Handling_and_Logging.md` | Advanced | open modes | Logging levels | CSV/JSON files | Expense file logger |
 | 15 | `04_Git_GitHub/01_Git_and_GitHub.md` | Tools | Basic commands | Branching | Daily commits | Portfolio repos |
-| 16 | `05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` + [Required MySQL labs](04_Required_MySQL_Labs_Checklist.md) / [`MYSQL/`](../../MYSQL/) | Data | SQL CRUD, JOIN | Normalization | Workbench labs | Library schema |
+| 16 | `05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` + [Required MySQL labs](../00_Course_Guide/04_Required_MySQL_Labs_Checklist.md) / [`MYSQL/`](../../MYSQL/) | Data | SQL CRUD, JOIN | Normalization | Workbench labs | Library schema |
 | 17 | `03_Advanced_Python/06_Database_Programming_Bridge.md` | Advanced | Connector flow | SQL from Python | CRUD script | Student DB script |
 | 18 | [`FRONTEND/01_HTML.md`](../../FRONTEND/01_HTML.md) | FE | Tags, forms | Semantic HTML | Pages | Profile page |
 | 19 | [`FRONTEND/02_CSS_and_Responsive.md`](../../FRONTEND/02_CSS_and_Responsive.md) | FE | Box model, Flex | Responsive | Layouts | Landing page |
@@ -114,12 +114,12 @@ flowchart TD
 
 ## 2. Week-by-Week Training Plan
 
-**Schedule authority:** [11_Session_Calendar_100.md](11_Session_Calendar_100.md) (Sessions **01–100**).  
+**Schedule authority:** [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md) (Sessions **01–100**).  
 **Assumptions:** **20 weeks** × **1h 15m/day** × 5 days = **6.25 live hours/week** (**125 live hours**).
 
 ### Daily timebox (every live class — **75 minutes**)
 
-**Authority:** same shape as [11_Session_Calendar_100.md](11_Session_Calendar_100.md).
+**Authority:** same shape as [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md).
 
 | Minutes | Block | Purpose |
 |--------:|-------|---------|
@@ -339,7 +339,7 @@ Required for grading:
 
 ## 6. Learner Progress Tracker
 
-Copy one row set per student (or use [02_Learner_Progress_Tracker.md](02_Learner_Progress_Tracker.md)).
+Copy one row set per student (or use [05_Learner_Progress_Tracker.md](05_Learner_Progress_Tracker.md)).
 
 | Week | Attendance | Lab % | Assignment | GitHub push | Quiz score | Confidence (1–5) | Notes |
 |------|------------|-------|------------|-------------|------------|------------------|-------|

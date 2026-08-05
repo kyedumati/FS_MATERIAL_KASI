@@ -12,7 +12,7 @@ Shared, non-Python topics live at **repo root** so Java FS can reuse them later.
 
 ## Contract
 
-1. **Schedule** for the Python batch stays in [11_Session_Calendar_100.md](11_Session_Calendar_100.md) — including days that open `FRONTEND/`, `FRONTEND/REACT/`, `MYSQL/`.  
+1. **Schedule** for the Python batch stays in [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md) — including days that open `FRONTEND/`, `FRONTEND/REACT/`, `MYSQL/`.  
 2. **Edit shared topics once** in `MYSQL/` / `FRONTEND/` — do not copy into `FULL_STACK_PYTHON/`.  
 3. Student packs must include those siblings (see pack script).  
 4. Pointers only: `FULL_STACK_PYTHON/06_Frontend/README.md` and `10_React/README.md`.

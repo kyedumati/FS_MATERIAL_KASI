@@ -15,8 +15,9 @@ Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
 |----------|------|
 | Syllabus map | [COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md](COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md) |
 | Course folder | [FULL_STACK_PYTHON/](FULL_STACK_PYTHON/) |
-| One-material sharing guide | [FULL_STACK_PYTHON/00_Course_Guide/07_Student_and_Trainer_Sharing_Guide.md](FULL_STACK_PYTHON/00_Course_Guide/07_Student_and_Trainer_Sharing_Guide.md) |
-| Master guide | [FULL_STACK_PYTHON/00_Course_Guide/00_Master_Course_Guide.md](FULL_STACK_PYTHON/00_Course_Guide/00_Master_Course_Guide.md) |
+| Session calendar | [FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md](FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md) |
+| Slim course guide | [FULL_STACK_PYTHON/00_Course_Guide/](FULL_STACK_PYTHON/00_Course_Guide/) |
+| Trainer ops / sharing | [FULL_STACK_PYTHON/14_Trainer_Only/](FULL_STACK_PYTHON/14_Trainer_Only/) |
 | Student pack | `./scripts/pack_student_share.sh` → `dist/FULL_STACK_PYTHON_STUDENT/` |
 | Student PDFs | `./scripts/build.sh fullstack` → `PDF/FULL_STACK_PYTHON/` |
 

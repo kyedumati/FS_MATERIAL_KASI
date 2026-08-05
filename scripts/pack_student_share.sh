@@ -38,10 +38,6 @@ rsync -a \
   --exclude '14_Trainer_Only/' \
   --exclude '**/solution/' \
   --exclude '*_KEY.md' \
-  --exclude '00_Course_Guide/07_Student_and_Trainer_Sharing_Guide.md' \
-  --exclude '00_Course_Guide/08_PDF_Python_Enrichment_Map.md' \
-  --exclude '00_Course_Guide/01_Daily_Lesson_Plan_Template.md' \
-  --exclude '00_Course_Guide/12_Module_Writing_Standard.md' \
   --exclude '.DS_Store' \
   --exclude '**/.DS_Store' \
   "$PROG_SRC/" "$PROG_DEST/"
@@ -74,8 +70,9 @@ This folder mirrors the repo layout used by trainers.
 3. Type examples; use `labs/` or `15_Lab_Assets/` starters.  
 4. Every even week, complete the matching paper in [`FULL_STACK_PYTHON/16_Assessments/`](FULL_STACK_PYTHON/16_Assessments/README.md).  
 5. Submit projects with [`FULL_STACK_PYTHON/00_Course_Guide/05_Standard_Project_Deliverables.md`](FULL_STACK_PYTHON/00_Course_Guide/05_Standard_Project_Deliverables.md).  
+6. Capstone MVP: [`FULL_STACK_PYTHON/00_Course_Guide/03_Capstone_CampusCart_One_Pager.md`](FULL_STACK_PYTHON/00_Course_Guide/03_Capstone_CampusCart_One_Pager.md).  
 
-Interview **answers**, assessment **keys** (`*_KEY.md`), and `solution/` folders are removed from this pack.
+Interview **answers**, assessment **keys** (`*_KEY.md`), `14_Trainer_Only/`, and `solution/` folders are removed from this pack.
 EOF
 
 cat > "$DEST/README.md" << 'EOF'
@@ -103,12 +100,6 @@ if p.exists():
     t = p.read_text(encoding="utf-8")
     t = re.sub(r"\n\*\*Trainers:\*\*.*\n", "\n", t)
     p.write_text(t, encoding="utf-8")
-mg = root / "00_Course_Guide/00_Master_Course_Guide.md"
-if mg.exists():
-    t = mg.read_text(encoding="utf-8")
-    t = t.replace("Trainer codes; learners type along", "Live coding demo — type along")
-    t = t.replace("Do not invent “modules 08–12.”", "Labs `06`–`07` are part of the Django path.")
-    mg.write_text(t, encoding="utf-8")
 PY
 
 echo "Student pack ready: $DEST"

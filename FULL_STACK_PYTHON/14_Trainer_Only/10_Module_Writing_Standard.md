@@ -28,7 +28,7 @@
 
 **Do not add:** Discussion Questions (separate), Trainer Tips, Trainer Demo Plan, or Real-World Use Cases tables.
 
-**Delivery timing** lives once in the [Session Calendar](11_Session_Calendar_100.md) and [Daily Lesson Plan Template](01_Daily_Lesson_Plan_Template.md) — not repeated in every module.
+**Delivery timing** lives once in the [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) and [Daily Lesson Plan Template](04_Daily_Lesson_Plan_Template.md) — not repeated in every module.
 
 ---
 
@@ -112,7 +112,7 @@ Mini-Project **is** the homework when present — do not also add a separate Ass
 |-------|---------------------|
 | Audience labels (fresher / switcher / beginner) | Avoid in modules; one unified learner voice |
 | Full Prerequisites list | Session Calendar; Previous/Next in header |
-| Absolute week numbers / old hour clocks | [11_Session_Calendar_100.md](11_Session_Calendar_100.md) |
+| Absolute week numbers / old hour clocks | [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md) |
 | Memorize table at the top | Revision Map before Assessment |
 | Trainer Demo Plan | Calendar + Daily Lesson Plan Template |
 

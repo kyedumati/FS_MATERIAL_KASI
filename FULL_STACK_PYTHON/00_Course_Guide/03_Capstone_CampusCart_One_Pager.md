@@ -1,6 +1,6 @@
 # Capstone One-Pager — CampusCart
 
-**Full roadmap:** see [00_Master_Course_Guide.md](00_Master_Course_Guide.md) §3.
+**MVP checklist** for CampusCart (learners).
 
 ## Title
 

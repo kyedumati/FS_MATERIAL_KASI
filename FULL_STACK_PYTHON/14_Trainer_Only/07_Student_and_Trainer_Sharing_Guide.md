@@ -15,9 +15,9 @@ Teach the **Python program** from `FULL_STACK_PYTHON/` and open shared topics fr
 | **Student (notes + homework)** | Same module file / PDF built from it | Legacy Python PDF set |
 | **Trainer (private)** | Plus `14_Trainer_Only/` | Never share answer keys |
 
-**MySQL depth** stays in `MYSQL/` because the Full Stack course already points there via the [Required MySQL labs checklist](04_Required_MySQL_Labs_Checklist.md). That is one planned dependency, not a second Python curriculum. See also [09_External_Dependencies.md](09_External_Dependencies.md).
+**MySQL depth** stays in `MYSQL/` because the Full Stack course already points there via the [Required MySQL labs checklist](../00_Course_Guide/04_Required_MySQL_Labs_Checklist.md). That is one planned dependency, not a second Python curriculum. See also [09_External_Dependencies.md](09_External_Dependencies.md).
 
-**Schedule authority:** [11_Session_Calendar_100.md](11_Session_Calendar_100.md) — **20 weeks / 100 sessions** (1h 15m each).
+**Schedule authority:** [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md) — **20 weeks / 100 sessions** (1h 15m each).
 
 ---
 
@@ -28,7 +28,7 @@ Teach the **Python program** from `FULL_STACK_PYTHON/` and open shared topics fr
 Share a **student pack** (everything except trainer-only):
 
 ```bash
-# From repo root: PFS_MATERIAL_KASI/
+# From repo root
 ./scripts/pack_student_share.sh
 ```
 
@@ -58,22 +58,21 @@ Share **those** PDFs — not any old Python-only PDF folder.
 - Read outcomes + beginner explanation.  
 - Type the code.  
 - Basic → Intermediate → Interview exercises.  
-- Mini-project with [standard deliverables](05_Standard_Project_Deliverables.md).  
+- Mini-project with [standard deliverables](../00_Course_Guide/05_Standard_Project_Deliverables.md).  
 - GitHub push.  
 
 ## What trainers use beyond the shared pack
 
 - **Session Calendar** + module **Classroom Ticket** / lab kit for live class.
-- Optional blank: [Daily Lesson Plan Template](01_Daily_Lesson_Plan_Template.md).
+- Optional blank: [Daily Lesson Plan Template](04_Daily_Lesson_Plan_Template.md).
 - **Student pack / Full Stack PDFs:** assessment answer lines removed automatically.
-- `14_Trainer_Only/` only on your machine / private Drive.
+- This folder (`14_Trainer_Only/`) only on your machine / private Drive.
 
 ## What is excluded from the student pack
 
 Automatically removed or not copied:
 
-- Entire folder `14_Trainer_Only/`
-- `07_Student_and_Trainer_Sharing_Guide.md`, `08_PDF_Python_Enrichment_Map.md`, `01_Daily_Lesson_Plan_Template.md`, `12_Module_Writing_Standard.md`
+- Entire folder `14_Trainer_Only/` (sharing guide, lesson plan, writing standard, master guide, keys, …)
 - Lab `**/solution/` folders under `15_Lab_Assets/`
 - Practice assessment `**Answer:**` / `**Model answer:**` lines (and inline answer keys)
 - Trainer-only phrasing cleaned by `scripts/strip_trainer_sections.py`
@@ -82,7 +81,7 @@ Rebuild after edits (repo root): `./scripts/pack_student_share.sh`
 
 ## Graded tests
 
-Module assessments in the **trainer** tree may keep answers for prep. The **student pack strips those answers**. For scored tests, use [Trainer answer-key index](../14_Trainer_Only/01_Sample_Answer_Keys_Index.md) / [Assessment Answer Policy](../14_Trainer_Only/03_Assessment_Answer_Policy.md) and issue a fresh sheet without answers.
+Module assessments in the **trainer** tree may keep answers for prep. The **student pack strips those answers**. For scored tests, use [Trainer answer-key index](01_Sample_Answer_Keys_Index.md) / [Assessment Answer Policy](03_Assessment_Answer_Policy.md) and issue a fresh sheet without answers.
 
 ---
 

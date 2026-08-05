@@ -31,7 +31,7 @@ Module “Duration” lines and classroom pacing must follow it — not the othe
 | 35 | Lab (starter/broken) |
 | 10 | Exit + homework |
 
-Printable blank: [01_Daily_Lesson_Plan_Template.md](01_Daily_Lesson_Plan_Template.md).
+Printable blank (trainers): [`14_Trainer_Only/04_Daily_Lesson_Plan_Template.md`](../14_Trainer_Only/04_Daily_Lesson_Plan_Template.md).
 
 ---
 
@@ -103,7 +103,7 @@ Printable blank: [01_Daily_Lesson_Plan_Template.md](01_Daily_Lesson_Plan_Templat
 
 ## Phase C — MySQL & Python DB (Sessions 46–55)
 
-*External dependency: repo `MYSQL/` — see [09_External_Dependencies.md](09_External_Dependencies.md).*
+*External dependency: repo `MYSQL/` (and `FRONTEND/` / `FRONTEND/REACT/` on later weeks).*
 
 | S# | Wk | Focus | Module / lab | Homework |
 |---:|---:|-------|--------------|---------|
