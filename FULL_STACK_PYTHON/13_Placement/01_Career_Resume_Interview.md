@@ -87,7 +87,7 @@ Most Indian product and service teams say they are **Agile**.
 
 **Avoid:** Photo unless employer asks, full address, hobbies essay, lie about experience.
 
-**Note / trap:**
+**Note:**
 - 3-page resume → rejected by HR — keep one page PDF.
 - No project links → "maybe fake" — put GitHub URLs on the resume.
 - Generic summary → lost in the pile — target Python full stack.
@@ -141,7 +141,7 @@ Python · Django · MySQL · REST · DRF · Git · HTML · CSS · JavaScript · 
 - **Skills:** Endorsements from batchmates
 - **Open to work:** Configure visibility (recruiter-only option exists)
 
-**Note / trap:**
+**Note:**
 - Only Naukri mass apply → low response — use LinkedIn + referrals too.
 
 **Try these (2 programs):**
@@ -203,7 +203,7 @@ Python Full Stack Developer | Django · MySQL · React | Open to internships —
 | 3 | SQL + React + API | Whiteboard CRUD flow |
 | 4 | HR + salary + STAR | Full 45-min mock with peer |
 
-**Note / trap:**
+**Note:**
 - Ignoring aptitude → fail OA — practise 30 minutes daily.
 
 **Try these (2 programs):**
@@ -266,7 +266,7 @@ Track: Applied → OA → Technical → HR → Offer/Rejected.
 
 ---
 
-**Note / trap:**
+**Note:**
 - No follow-up → missed opportunity — set a tracker reminder for 7 days.
 
 **Try these (2 programs):**

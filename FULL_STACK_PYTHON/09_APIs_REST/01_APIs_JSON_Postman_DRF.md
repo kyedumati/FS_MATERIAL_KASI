@@ -73,7 +73,7 @@ Not every API is pure REST, but Indian job interviews expect REST vocabulary.
 | PATCH | Partial update | `/api/products/3/` | Yes (partial) |
 | DELETE | Remove | `/api/products/3/` | Usually no |
 
-**Note / trap:**
+**Note:**
 - GET conventionally has no body — putting a body on GET confuses proxies and clients.
 
 ### Status Codes (memorize these)
@@ -134,7 +134,7 @@ print(json.dumps(product, indent=2))
 4. Header: `Content-Type: application/json` for POST/PUT
 5. Save examples for regression testing
 
-**Note / trap:**
+**Note:**
 - POST without a JSON `Content-Type` header → 415 or empty data. Set it in Postman.
 - Bad JSON (e.g. Decimal as a bare number in invalid payloads) → parse errors; send valid JSON — DRF often accepts string decimals like `"45.00"`.
 
@@ -217,7 +217,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-**Note / trap:**
+**Note:**
 - Forgot `rest_framework` in `INSTALLED_APPS` → import/config errors. Add it after install.
 
 ### Step 2 — Product model
@@ -318,7 +318,7 @@ urlpatterns = [
 | PATCH | `/api/products/1/` | partial_update |
 | DELETE | `/api/products/1/` | destroy |
 
-**Note / trap:**
+**Note:**
 - Wrong trailing slash → 404 on Django. Match `APPEND_SLASH` / router URLs (usually with a trailing `/`).
 
 Optional DRF browsable API: open `http://127.0.0.1:8000/api/products/` in the browser while `DEBUG=True`.
@@ -390,7 +390,7 @@ print(resp.status_code)      # 201
 print(resp.json())
 ```
 
-**Note / trap:**
+**Note:**
 - `requests` to the wrong port → connection refused (Django usually `8000`, Flask `5000`).
 - List endpoints return an **array** — treating it as a dict → `KeyError` on `['id']`.
 - Ignore status codes at your peril — check `resp.ok` (or equivalent) so failures are not silent.

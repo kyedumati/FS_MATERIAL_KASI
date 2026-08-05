@@ -114,7 +114,7 @@ git status                    # clean — snapshot is in Repository
 | `git push origin main` | Upload commits |
 | `git pull origin main` | Download + merge remote |
 
-**Note / trap:**
+**Note:**
 - Never pulling before push → rejected push / conflicts — make `git pull --rebase` a habit.
 - Committing broken code to `main` → team blocked — use branches for features.
 - Force push to shared `main` destroys teammates' work — avoid `--force` unless solo and sure.
@@ -160,7 +160,7 @@ Update README with setup steps
 
 Use imperative mood; first line ≤ 50 chars; optional body after blank line.
 
-**Note / trap:**
+**Note:**
 - Vague messages ("update", "fix") → useless history — write descriptive imperative messages.
 
 **Try these (2 programs):**
@@ -217,7 +217,7 @@ credentials.json
 config.local.json
 ```
 
-**Note / trap:**
+**Note:**
 - Committing `venv/` or `.env` → huge repo / leaked secrets — add `.gitignore` before the first push.
 
 **Try these (2 programs):**
@@ -272,7 +272,7 @@ Python 3.11, MySQL, Django
 Your Name — LinkedIn — Hyderabad
 ```
 
-**Note / trap:**
+**Note:**
 - No README → recruiter skips the repo — add setup steps and screenshots.
 - Empty GitHub profile looks inactive — pin 3–6 best repos.
 

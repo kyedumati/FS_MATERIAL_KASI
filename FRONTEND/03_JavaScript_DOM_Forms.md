@@ -76,7 +76,7 @@ flowchart LR
 console.log("CampusCart JS loaded");
 ```
 
-**Note / trap:**
+**Note:**
 - Script without `defer` / wrong placement — put the script at the end of `body` or use `defer` so the DOM exists first.
 
 **Try these (2 programs):**
@@ -127,7 +127,7 @@ cartCount = cartCount + 1;
 | `const` | No | Default choice |
 | `let` | Yes | Counters, loops |
 
-**Note / trap:**
+**Note:**
 - Using `var` — prefer `const`/`let` to avoid function-scope and hoisting bugs.
 - `=` instead of `===` — use strict equality when comparing values.
 
@@ -209,7 +209,7 @@ document.querySelectorAll(".product-card").forEach((card) => {
 
 Prefer `classList` over inline `style`.
 
-**Note / trap:**
+**Note:**
 - Element null — verify the selector and `console.log` the element before calling methods on it.
 - `innerHTML` with user input — XSS risk; prefer `textContent` for untrusted strings.
 
@@ -338,7 +338,7 @@ form.addEventListener("submit", (event) => {
 });
 ```
 
-**Note / trap:**
+**Note:**
 - No `preventDefault` on submit — the page reloads and your JS state is lost.
 - Client validation only — duplicate the same rules later in Django; never trust the browser alone.
 
@@ -413,7 +413,7 @@ async function createOrder(data) {
 
 **React preview:** Same fetch inside `useEffect(() => { loadProducts(); }, []);`
 
-**Note / trap:**
+**Note:**
 - Missing `await` on `json()` — follow the async/await pattern: `const data = await response.json()`.
 
 **Try these (2 programs):**

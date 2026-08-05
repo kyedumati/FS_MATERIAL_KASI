@@ -175,7 +175,7 @@ print(multi)
 print(newline)
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Comparing or adding strings to numbers (`"42" + 1`); using `is` for string *content* (`a is "hi"`).
 - Prefer: Convert (`int("42") + 1`); use `==` for value compare.
 
@@ -218,7 +218,7 @@ Alternative with split (cleaner):
 username, domain = email.split("@")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Indexing past the end (`s[100]` on a short string); expecting `s[0:3]` to be 4 characters; confusing negative-step slices like `s[::-1]`.
 - Prefer: Check `len(s)` first; remember stop is exclusive (3 chars); draw an index diagram for reverse slices.
 
@@ -253,7 +253,7 @@ print(status)          # approved
 print(id(status))      # different id than before
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Calling `s.upper()` and expecting `s` to change (`print(s)` still old).
 - Prefer: Assign the result: `s = s.upper()`.
 
@@ -297,7 +297,7 @@ else:
 - `strip()` removes accidental spaces from copy-paste
 - `lower()` avoids case mismatch
 
-**Note / trap:**
+**Note:**
 - Wrong: Skipping `.strip()` on input — `" admin "` fails a login compare.
 - Prefer: `.strip()` (and usually `.lower()`) on user-entered text.
 
@@ -341,7 +341,7 @@ roll, name, py, sql, html = parts
 print(f"Roll {roll}: {name} — Python {py}")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Splitting with the wrong delimiter (`"a,b,c".split(", ")` vs `split(",")`).
 - Prefer: Match the exact separator in the data.
 

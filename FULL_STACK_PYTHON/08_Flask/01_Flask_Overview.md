@@ -58,7 +58,7 @@ pip install flask
 pip freeze > requirements.txt
 ```
 
-**Note / trap:**
+**Note:**
 - Running without an activated venv → wrong Flask version / permission errors. Always activate venv first.
 - `debug=True` is for local learning only — never ship it in production (use Gunicorn + env config later).
 
@@ -102,7 +102,7 @@ print(app.name)  # usually __main__ when run as script
 
 A **route** connects a URL path to a Python function. The function's return value becomes the HTTP response body.
 
-**Note / trap:**
+**Note:**
 - Route typo → 404. Check the URL, trailing slash, and method (GET vs POST).
 
 **Try these (2 programs):**
@@ -187,7 +187,7 @@ if __name__ == "__main__":
 
 Flask uses **Jinja2** (same family as Django templates). Files live in `templates/`. Use `{{ variable }}` and `{% for %}` loops.
 
-**Note / trap:**
+**Note:**
 - Folder must be named exactly `templates` next to the app — a typo → `TemplateNotFound`.
 
 **Try these (2 programs):**
@@ -224,7 +224,7 @@ def home():
 
 Mobile apps and React frontends consume **JSON**, not HTML. Use `jsonify()` to return Python dicts as JSON with correct `Content-Type`.
 
-**Note / trap:**
+**Note:**
 - POST without `Content-Type: application/json` → `request.get_json()` returns `None`. Send the JSON header in Postman/curl.
 
 ---
@@ -368,7 +368,7 @@ curl -X POST http://127.0.0.1:5000/api/notes \
 curl http://127.0.0.1:5000/api/notes
 ```
 
-**Note / trap:**
+**Note:**
 - In-memory notes vanish on restart — fine for learning; use a DB for real apps.
 - Modifying a list while iterating can skip items — prefer a list comprehension or `pop` by index carefully (as in `delete_note` above).
 

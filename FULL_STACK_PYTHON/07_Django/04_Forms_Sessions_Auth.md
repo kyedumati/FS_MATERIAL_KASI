@@ -38,7 +38,7 @@ Browsers submit **HTML forms** with **GET** (read/search) or **POST** (create/up
 **`forms.Form`** — generic form not tied to one model (contact us, search).  
 **`forms.ModelForm`** — auto-generates fields from a **model** (add Task, create Post).
 
-**Note / trap:**
+**Note:**
 - Use POST for create/update/delete — GET puts data in the URL and is unsafe for mutations.
 
 ### Validation
@@ -47,14 +47,14 @@ Browsers submit **HTML forms** with **GET** (read/search) or **POST** (create/up
 **Form `clean()`** — cross-field rules (password match, date range).  
 Errors display in template with **`{{ form.errors }}`** or per-field **`{{ form.title.errors }}`**.
 
-**Note / trap:**
+**Note:**
 - Always branch on `form.is_valid()` before save — skipping it can persist invalid data.
 
 ### CSRF (Cross-Site Request Forgery) — Intro
 
 **CSRF** attack tricks logged-in user's browser to POST to your site without consent. Django embeds **`{% csrf_token %}`** hidden field; middleware validates token. Always include in POST forms.
 
-**Note / trap:**
+**Note:**
 - Missing `{% csrf_token %}` inside `<form method="post">` → 403 Forbidden CSRF.
 
 ### Sessions
@@ -66,7 +66,7 @@ request.session["cart_count"] = 3
 count = request.session.get("cart_count", 0)
 ```
 
-**Note / trap:**
+**Note:**
 - Session not persisting (e.g. cart resets) — set `request.session.modified = True` when you mutate nested session data.
 
 ### Authentication (`django.contrib.auth`)
@@ -78,7 +78,7 @@ Django ships **User** model: username, password (hashed), email, flags **`is_sta
 
 **`@login_required`** — decorator redirecting unauthenticated users to **`LOGIN_URL`**.
 
-**Note / trap:**
+**Note:**
 - Never store passwords in plain text — use `UserCreationForm` / `set_password` so Django hashes them.
 
 ### Permissions Overview
@@ -109,7 +109,7 @@ sequenceDiagram
 
 If you return the success HTML directly on POST, refresh can **create the same task again**.
 
-**Note / trap:**
+**Note:**
 - No redirect after POST → duplicate submit on refresh. Use redirect (PRG).
 
 **Try these (2 programs):**
@@ -151,7 +151,7 @@ LOGIN_REDIRECT_URL = "task_dashboard"
 LOGOUT_REDIRECT_URL = "home"
 ```
 
-**Note / trap:**
+**Note:**
 - `@login_required` without a valid `LOGIN_URL` → 404 on redirect. Set `LOGIN_URL` in settings to a named route that exists.
 
 **Try these (2 programs):**
@@ -185,7 +185,7 @@ class Task(models.Model):
 
 Filter tasks: **`Task.objects.filter(owner=request.user)`**.
 
-**Note / trap:**
+**Note:**
 - Showing all users' tasks is a privacy bug — always filter by `owner=request.user` (or equivalent).
 
 **Try these (2 programs):**

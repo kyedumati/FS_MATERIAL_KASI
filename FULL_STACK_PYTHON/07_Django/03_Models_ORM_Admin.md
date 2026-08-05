@@ -61,7 +61,7 @@ Creates table `blog_post` (app label + model name lowercase).
 | **`default`** | Value when not provided |
 | **`auto_now_add`** | Set once on create (timestamp) |
 
-**Note / trap:**
+**Note:**
 - Prefer `blank=True` only for optional text fields — avoid `null=True` on `CharField` unless you truly need SQL NULL (NULL vs empty-string confusion).
 
 ### Relationships Overview
@@ -94,14 +94,14 @@ erDiagram
 
 **`on_delete=models.CASCADE`** — if parent Author deleted, delete their posts too (common default for learning; discuss PROTECT in production).
 
-**Note / trap:**
+**Note:**
 - `ForeignKey` without `on_delete` → model error. Always set `on_delete` (e.g. `CASCADE`, `PROTECT`).
 
 ### Django Admin
 
 Built-in **staff interface** at `/admin/` for non-developers to manage data. Register models in **`admin.py`**. Requires **superuser** account.
 
-**Note / trap:**
+**Note:**
 - Forgot to register in `admin.py` → model missing from `/admin/`. Add `@admin.register(...)` or `admin.site.register(...)`.
 
 ---
@@ -116,7 +116,7 @@ Change models.py → makemigrations → migrate → MySQL schema updated
 
 Never edit applied migration files manually as a beginner — create new migration instead.
 
-**Note / trap:**
+**Note:**
 - Forgot `makemigrations` after editing `models.py` → no schema change. Run `makemigrations` then `migrate`.
 - Editing an applied migration by hand often causes conflicts — regenerate in lab or ask the trainer.
 
@@ -145,7 +145,7 @@ Then migrate.
 
 **QuerySet** — lazy collection of objects from database. `.filter(published=True)` returns QuerySet; DB hit may defer until iteration.
 
-**Note / trap:**
+**Note:**
 - `Post.objects.get()` with 0 or 2+ rows → `DoesNotExist` / `MultipleObjectsReturned`. Prefer `filter().first()` or handle the exception.
 - N+1 queries in a template (looping related objects) slow the page — use `select_related('author')` when you know you'll need the FK (interview teaser).
 

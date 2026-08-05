@@ -164,7 +164,7 @@ Check your laptop specs (Settings → About):
 - **RAM:** Short-term memory while programs run (8 GB minimum recommended)
 - **Storage:** Long-term space for files (SSD preferred)
 
-**Note / trap:**
+**Note:**
 - Wrong: Skipping OS / hardware basics and jumping straight to Python.
 - Prefer: One day on CPU, RAM, storage, and files — it saves weeks of confusion later.
 
@@ -214,7 +214,7 @@ cd C:\Users\YourName\ksr_python_fullstack
 dir
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Saving course files randomly on the Desktop; using spaces in folder names (`my project`).
 - Prefer: One root folder (`ksr_python_fullstack`) and `snake_case` / `kebab-case` names (`my_project`).
 
@@ -247,7 +247,7 @@ ls
 3. **File → Open Folder** → select `ksr_python_fullstack`
 4. Create a file: `notes/day01_foundations.txt`
 
-**Note / trap:**
+**Note:**
 - Wrong: Opening a single file in VS Code, then wondering why paths and terminals feel broken.
 - Prefer: Always **File → Open Folder** on the project root.
 
@@ -298,7 +298,7 @@ pwd                              # confirm path → .../01_Foundations
 ls                               # list contents (may be empty)
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Avoiding the terminal because it looks like “hacking” movies.
 - Prefer: Run only the commands shown in class — `ls` / `cd` are safe navigation tools.
 
@@ -367,7 +367,7 @@ END
 
 You will write the Python version in Module 03 (Flow Control). Today, focus on *logic*, not syntax.
 
-**Note / trap:**
+**Note:**
 - Wrong: Mixing up *algorithm* (English steps) with *code* (Python syntax).
 - Prefer: Write steps in plain English / pseudocode first; code comes later.
 
@@ -427,7 +427,7 @@ Browser                    Server (Django)              Database (MySQL)
    |<-- 200 dashboard HTML -----|                            |
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Treating client and server as the same kind of “computer” with no distinction.
 - Prefer: Client = *your* browser; server = the company’s remote machine.
 

@@ -90,7 +90,7 @@ print(employee.get("email", "N/A"))   # N/A — default provided
 # print(employee["email"])          # KeyError
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Using a list as a key → `TypeError: unhashable type: 'list'`; `d["missing"]` without a check → `KeyError`; duplicate keys in a literal (last value wins silently).
 - Prefer: String or tuple keys; `.get()` or `if key in d`; avoid duplicate keys (`{"a": 1, "a": 2}` → `a` is 2).
 
@@ -237,7 +237,7 @@ sale_prices = {k: round(v * 0.9, 2) for k, v in prices.items()}
 print(sale_prices)
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Modifying a dict while iterating — RuntimeError or skipped keys.
 - Prefer: Iterate over a copy: `list(d.items())`.
 
@@ -285,7 +285,7 @@ print(employee["skills"][0])          # Python
 employee["address"]["pincode"] = "600002"
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Shared nested dict reference — changing a shallow copy affects the original.
 - Prefer: `copy.deepcopy()` for nested structures.
 
@@ -378,7 +378,7 @@ user_backup["role"] = "admin"
 print(user["role"])                   # staff — original unchanged
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Using `in` as if it checks values (`"aisha" in d` checks **keys** only).
 - Prefer: `if "aisha" in d.values():` when you mean values.
 
@@ -417,7 +417,7 @@ parsed = json.loads(json_text)
 print(parsed["name"])                 # Mouse
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Assuming JSON allows a tuple — JSON has no tuple type.
 - Prefer: Convert tuples to lists before `json.dumps`.
 

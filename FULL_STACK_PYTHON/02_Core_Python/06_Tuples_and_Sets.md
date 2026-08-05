@@ -89,7 +89,7 @@ print(employee[1:3])        # ('Ananya Sharma', 'Engineering')
 # employee[0] = "EMP-999"   # TypeError: 'tuple' object does not support item assignment
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Writing `(42)` and thinking it is a 1-tuple — it is just an int.
 - Prefer: Always use a trailing comma for a 1-tuple: `(42,)`.
 
@@ -159,7 +159,7 @@ a, b = b, a
 print(a, b)                 # 20 10
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Unpacking the wrong number of variables → `ValueError: too many/few values`.
 - Prefer: Match variable count to tuple length.
 
@@ -281,7 +281,7 @@ print("Python" in skills)       # True
 print("Java" in skills)         # False
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Using `{}` for an empty set (that creates an empty **dict**); putting lists inside sets (`TypeError: unhashable`); expecting a fixed set order.
 - Prefer: `set()` for empty; use a tuple (or frozenset) instead of a list; use a list when order matters.
 
@@ -358,7 +358,7 @@ removed = cart_categories.pop()                 # removes arbitrary element
 print(cart_categories)
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: `remove` on a missing set item → `KeyError`.
 - Prefer: Use `discard` when the item might be absent.
 
@@ -397,7 +397,7 @@ print(unique_emails)
 # ['dev@example.com', 'aisha@example.com', 'meera@example.com']
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Treating `set([1, 2, 2])` as a sorted unique list — a set is unordered.
 - Prefer: `sorted(set(...))` when you need sorted unique output.
 

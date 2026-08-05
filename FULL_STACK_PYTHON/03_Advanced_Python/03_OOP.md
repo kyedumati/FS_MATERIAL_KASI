@@ -96,7 +96,7 @@ s1.display()
 - `self` refers to the **current** object (like `this` in Java).
 - `__init__` runs automatically after object creation — you rarely call it by name.
 
-**Note / trap:**
+**Note:**
 - Forgetting `self` in methods → `TypeError` on call — the first parameter must be `self`.
 - Over-engineering OOP (5 classes for hello world) — use functions until complexity grows.
 
@@ -150,7 +150,7 @@ class Employee:
         self.name = name
 ```
 
-**Note / trap:**
+**Note:**
 - Mutable class attribute → shared state across objects — initialize lists in `__init__`.
 - Confusing class vs instance → wrong shared data — access class attributes via `ClassName.attr`.
 
@@ -207,7 +207,7 @@ print(s1.college, s2.college)  # both reflect the new class value
 
 Use `@property` for controlled read access (stretch).
 
-**Note / trap:**
+**Note:**
 - `__private` is not true security — still accessible via name mangling. Use encapsulation for clarity, not security.
 
 **Try these (2 programs):**
@@ -277,7 +277,7 @@ class Employee(Person):
         self.emp_id = emp_id
 ```
 
-**Note / trap:**
+**Note:**
 - Not calling `super().__init__` → parent attributes missing — always init the parent in the child.
 
 **Try these (2 programs):**

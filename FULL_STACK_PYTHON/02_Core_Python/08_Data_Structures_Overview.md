@@ -157,7 +157,7 @@ names = ["Aisha", "Dev", "Meera"]
 API_VERSION = ("v2",)
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Using a list for many `in` checks (O(n) each time); a dict when an order-only list suffices; a tuple for data you must update.
 - Prefer: Set for membership; a simple list when you only need order; list or dict when data must change.
 
@@ -204,7 +204,7 @@ go_back()                             # Back from: cart → Now at: products
 go_back()                             # Back from: products → Now at: home
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Stack pop from the front — wrong end; not LIFO.
 - Prefer: `pop()` from the end.
 
@@ -267,7 +267,7 @@ fast_queue.append("T-201")
 fast_queue.popleft()                  # O(1) — good for interviews to name
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Queue pop from the end — that is LIFO, not FIFO.
 - Prefer: `pop(0)` (or `deque.popleft()`).
 
@@ -331,7 +331,7 @@ for i in range(len(marks)):
 # Doubling list size ≈ 4× work — avoid in hot paths
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Ignoring nested-loop cost (hidden O(n²)); memorizing Big-O with no job context.
 - Prefer: Know your loop depth; tie complexity to cart, lookup, and dedupe examples in interviews.
 

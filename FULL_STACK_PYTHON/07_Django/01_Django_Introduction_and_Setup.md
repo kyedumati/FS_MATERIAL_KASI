@@ -81,7 +81,7 @@ A **virtual environment** is an isolated folder containing its own Python and in
 - **Activate** — tell your terminal to use that environment's Python/pip
 - **`pip`** — package installer for Python (`pip install django`)
 
-**Note / trap:**
+**Note:**
 - Forgot to activate venv → `ModuleNotFoundError: django`. Run `source venv/bin/activate` (Windows: `venv\Scripts\activate`) before pip/manage.py.
 - Do not commit `venv/` — add it to `.gitignore` or the repo balloons.
 
@@ -114,7 +114,7 @@ Django does not ship MySQL driver inside the box. You install **`mysqlclient`** 
 - **Environment variables** for secrets (intro today; full module in Security & Deployment)
 - **One app per domain feature** — `blog`, `inventory` for CampusCart, not one giant `models.py`
 
-**Note / trap:**
+**Note:**
 - `startproject` without a trailing `.` nests an extra folder. Prefer `django-admin startproject config .` (or move files if you already nested).
 
 **Try these (2 programs):**
@@ -147,7 +147,7 @@ django-admin --version
 | Database | Local MySQL | Managed MySQL (RDS, PlanetScale, etc.) |
 | Secret key | Can be default for learning | Must be unique, secret |
 
-**Note / trap:**
+**Note:**
 - Never share or commit a real `SECRET_KEY` — use environment variables (Security & Deployment module). A leaked key is a production security risk.
 
 **Try these (2 programs):**
@@ -177,7 +177,7 @@ print("Dev mode: DEBUG =", DEBUG)
 
 Every Django **app** you create must be listed in `INSTALLED_APPS` (or use auto-discovery patterns in advanced setups). Built-in apps include **`django.contrib.admin`**, **`auth`**, **`sessions`**, **`messages`**, **`staticfiles`**.
 
-**Note / trap:**
+**Note:**
 - App missing from `INSTALLED_APPS` → models/admin ignored. Add the app string (e.g. `"blog"`) after `startapp`.
 
 **Try these (2 programs):**
@@ -312,7 +312,7 @@ import pymysql
 pymysql.install_as_MySQLdb()
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong MySQL credentials → `Access denied for user`. Match Workbench user/password and `HOST`.
 - `localhost` can hit socket issues on Mac — prefer `HOST: "127.0.0.1"`.
 

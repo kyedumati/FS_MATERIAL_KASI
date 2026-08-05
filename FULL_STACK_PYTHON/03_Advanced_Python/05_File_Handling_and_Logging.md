@@ -70,7 +70,7 @@ The **`with`** statement is the polite borrower — Python **closes** the file e
 
 Always specify `encoding="utf-8"` for text on cross-platform projects.
 
-**Note / trap:**
+**Note:**
 - `w` mode by mistake deletes existing data — confirm the mode; back up files first.
 - Ignoring encoding → `UnicodeDecodeError` on Windows — always use `encoding="utf-8"`.
 
@@ -118,7 +118,7 @@ with open("notes.txt", "w", encoding="utf-8") as f:
 # file automatically closed here
 ```
 
-**Note / trap:**
+**Note:**
 - Forgetting to close a file → resource leak — use `with`.
 
 **Try these (2 programs):**
@@ -165,7 +165,7 @@ with open("scratch.txt", "r", encoding="utf-8") as f:
 | `readlines()` | List of lines | Medium files |
 | `for line in f` | Iterator | **Large files** |
 
-**Note / trap:**
+**Note:**
 - Reading a huge file with `read()` → `MemoryError` — iterate line by line instead.
 
 **Try these (2 programs):**
@@ -220,7 +220,7 @@ with open("students.csv", newline="", encoding="utf-8") as f:
         print(row["name"], row["marks"])
 ```
 
-**Note / trap:**
+**Note:**
 - CSV without `newline=""` → extra blank lines — pass `newline=""` on open.
 
 **Try these (2 programs):**
@@ -286,7 +286,7 @@ logging.info("Server started")
 logging.error("DB connection failed")
 ```
 
-**Note / trap:**
+**Note:**
 - Configuring logging in a library at import time → noise — configure logging in `main` only.
 - Using `print` in production → no levels/timestamps — use `logging`.
 

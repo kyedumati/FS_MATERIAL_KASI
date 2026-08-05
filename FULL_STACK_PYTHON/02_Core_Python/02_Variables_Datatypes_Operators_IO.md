@@ -153,7 +153,7 @@ print("Name:", name)
 print(f"Average marks: {average:.2f}")     # 2 decimal places
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Typo in a name (`salary = 100` then `print(salery)`) → `NameError`.
 - Prefer: Spell names consistently; copy-paste the identifier when unsure.
 
@@ -193,7 +193,7 @@ print(type(employee_id))     # <class 'str'>
 print(manager_id is None)    # True — preferred None check
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Checking None with `if x == None`.
 - Prefer: `if x is None`.
 
@@ -243,7 +243,7 @@ total = food + travel
 print(f"Today's spend: ₹{total:.2f}")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Expecting `5 / 2` to be `2` (it is `2.5` in Python 3); showing raw `0.1 + 0.2` floats in money UIs.
 - Prefer: Use `//` for integer division; round for display (`f"{x:.2f}"`).
 
@@ -303,7 +303,7 @@ discount = has_coupon or is_member  # True
 | F | T | F | T |
 | F | F | F | F |
 
-**Note / trap:**
+**Note:**
 - Wrong: Using `=` inside a condition (`if x = 5`) — assignment, not comparison.
 - Prefer: `==` for comparison.
 
@@ -422,7 +422,7 @@ else:
     print("Invalid roll — digits only")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Treating `input()` as a number (`input("N: ") + 1`) or casting `int("12.5")` directly.
 - Prefer: `int(input(...))` / `float(input(...))`; for `"12.5"` use `float` first (then `int` if needed).
 
@@ -466,7 +466,7 @@ print(f"{'Item':<15}{'Amount':>10}")
 print(f"{'Food':<15}{450.5:>10.2f}")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Concatenating str + int (`"Age: " + 22`) → `TypeError`.
 - Prefer: `f"Age: {22}"` or `str(22)`.
 

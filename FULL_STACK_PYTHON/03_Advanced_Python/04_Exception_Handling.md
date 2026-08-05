@@ -68,7 +68,7 @@ except ZeroDivisionError:
     print("Cannot divide by zero.")
 ```
 
-**Note / trap:**
+**Note:**
 - Bare `except:` catches `KeyboardInterrupt` and hides bugs — catch specific exceptions.
 - Swallowing exceptions with empty `except: pass` — log and handle, or re-raise.
 - Using exceptions for flow control is slow and unreadable — use if/else for expected cases.
@@ -116,7 +116,7 @@ except (FileNotFoundError, ValueError) as e:
     print("Error:", e)
 ```
 
-**Note / trap:**
+**Note:**
 - Over-broad `except Exception` masks real bugs — catch narrow types first.
 
 **Try these (2 programs):**
@@ -168,7 +168,7 @@ finally:
     # if f was opened, close here in real code — prefer `with`
 ```
 
-**Note / trap:**
+**Note:**
 - `return` inside `finally` can suppress exceptions — keep `finally` for cleanup only.
 
 **Try these (2 programs):**
@@ -260,7 +260,7 @@ class InvalidAccountError(Exception):
         super().__init__(f"{message}: {account_id}")
 ```
 
-**Note / trap:**
+**Note:**
 - Custom exception not inheriting `Exception` → not caught as expected — always inherit `Exception`.
 
 **Try these (2 programs):**

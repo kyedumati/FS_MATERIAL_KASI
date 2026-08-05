@@ -18,10 +18,13 @@ By the end of this session, learners will be able to:
 3. Write one-line functions using `lambda` where appropriate.
 4. Use `map`, `filter`, and `functools.reduce` (and know when a comprehension is clearer).
 5. Build and apply simple decorators (timing, login check).
-6. Compare generators (`yield`) vs lists for memory efficiency.
-7. Refactor repetitive scripts into reusable utility functions.
+6. Write generator functions with `yield`, use `next()`, and explain exhaustion vs lists.
+7. Write generator expressions and stream in-memory rows one at a time (CSV files come in Files week).
+8. Refactor repetitive scripts into reusable utility functions.
 
 ---
+
+
 
 ## Classroom Ticket
 
@@ -29,7 +32,7 @@ Open the lab kit **before** long notes. Read the ticket → code in `starter/` o
 
 - **[Refactor ATM into functions](../15_Lab_Assets/13_function_refactor/)** (S28)
 - **[Login-gate decorator](../15_Lab_Assets/14_decorator_login_gate/)** (S30)
-- **[Ship `ksr_utils` toolkit](../15_Lab_Assets/30_ksr_utils_toolkit/)** (homework — **no generators**)
+- **[Ship](../15_Lab_Assets/30_ksr_utils_toolkit/)** `ksr_utils` **[toolkit](../15_Lab_Assets/30_ksr_utils_toolkit/)** (homework — **no generators**)
 - **[Stream CSV with yield](../15_Lab_Assets/15_generator_csv_stream/)** (S31 — after functions homework)
 
 Finish the ticket in class; compare with the official solution only when your trainer says so.
@@ -44,11 +47,13 @@ In other languages the same idea may be called a *method*, *procedure*, or *subr
 
 ### Why do we need functions?
 
-| Without functions | With functions |
-|-------------------|----------------|
-| Same validation copied in 5 places | One `is_valid_email()` reused everywhere |
-| Bug fixed in one place, missed in others | Fix once — every call benefits |
-| 400-line script hard to read | Named steps: `load()`, `process()`, `save()` |
+
+| Without functions                        | With functions                               |
+| ---------------------------------------- | -------------------------------------------- |
+| Same validation copied in 5 places       | One `is_valid_email()` reused everywhere     |
+| Bug fixed in one place, missed in others | Fix once — every call benefits               |
+| 400-line script hard to read             | Named steps: `load()`, `process()`, `save()` |
+
 
 **Main advantage: code reusability** — write once, call many times. Secondary wins: clearer names, easier testing, and smaller pieces you can put in modules later.
 
@@ -69,13 +74,17 @@ Recipe placeholders vs the ingredients you actually put in the bowl.
 ### Scope, decorators, generators (big picture first)
 
 - **Scope** — a variable created inside one “room” (function) is not automatically visible in another. Rooms = local / enclosing / global / built-in (LEGB).
-- **`map` / `filter` / `reduce`** — apply a function across a list (transform, keep matches, or fold to one value); often paired with `lambda`.
+- `map` **/** `filter` **/** `reduce` — apply a function across a list (transform, keep matches, or fold to one value); often paired with `lambda`.
 - **Decorator** — wrap an existing function (security guard outside a shop) without rewriting the shop’s interior.
 - **Generator** — hand out values **one at a time** (waiter brings dishes) instead of loading a giant list into memory (whole buffet on the table).
 
 ---
 
+
+
 ## Important Concepts
+
+
 
 ### 1. Creating a user-defined function (`def` and `return`)
 
@@ -84,7 +93,7 @@ Recipe placeholders vs the ingredients you actually put in the bowl.
 
 Two keywords matter:
 
-1. `def` — **mandatory** — starts the definition  
+1. `def` — **mandatory** — starts the definition
 2. `return` — **optional** — sends a result back to the caller (if omitted, Python returns `None`)
 
 ```python
@@ -135,8 +144,7 @@ print(even_odd(10))  # Even
 print(even_odd(15))  # Odd
 ```
 
-**Note / trap:**
-- If you forget `return`, the function silently returns `None` — always return an explicit value when the caller needs a result.
+
 
 ### 2. Types of arguments (what / why, then syntax)
 
@@ -158,6 +166,8 @@ print(sub(100, 200))  # -100
 print(sub(200, 100))  # 100
 ```
 
+
+
 #### 2b. Keyword arguments
 
 **What:** Pass by **parameter name**: `wish(name="Ravi", msg="Hi")`.  
@@ -173,6 +183,8 @@ wish(msg="Good Morning", name="Ravi")  # same result
 # wish(name="Ravi", "Good Morning")  # SyntaxError
 ```
 
+
+
 #### 2c. Default arguments
 
 **What:** A parameter already has a value if the caller skips it.  
@@ -187,9 +199,7 @@ wish("Ravi")
 wish()  # uses "Guest"
 ```
 
-**Note / trap:**
-- Never use a mutable default like `def f(x=[])` — the same list is reused across calls. Use `None` and create the list inside the function.
-- Put required parameters **before** defaults; `*args` cannot appear before a required positional parameter (SyntaxError).
+
 
 #### 2d. Variable-length arguments (`*args`, `**kwargs`)
 
@@ -215,13 +225,15 @@ print(build_profile("Arjun", "Python", "SQL", city="Hyderabad"))
 
 **Quick reference (after you understand the why):**
 
-| Type | Syntax | Use when |
-|------|--------|----------|
-| Positional | `f(a, b)` | Few args; order is obvious |
-| Keyword | `f(b=5, a=2)` | Clarity / optional skip of order |
-| Default | `def f(a, b=10)` | Sensible optional value |
-| `*args` | `def f(*args)` | Unknown count of positional values |
-| `**kwargs` | `def f(**kwargs)` | Unknown named options |
+
+| Type       | Syntax            | Use when                           |
+| ---------- | ----------------- | ---------------------------------- |
+| Positional | `f(a, b)`         | Few args; order is obvious         |
+| Keyword    | `f(b=5, a=2)`     | Clarity / optional skip of order   |
+| Default    | `def f(a, b=10)`  | Sensible optional value            |
+| `*args`    | `def f(*args)`    | Unknown count of positional values |
+| `**kwargs` | `def f(**kwargs)` | Unknown named options              |
+
 
 **Try these (2 programs):**
 
@@ -235,7 +247,7 @@ greet("Priya")
 greet(name="Ravi", msg="Good Evening")
 ```
 
-**Program 2 — `*args` with tax**
+**Program 2 —** `*args` **with tax**
 
 ```python
 def total(*amounts, tax_rate=0.05):
@@ -244,6 +256,8 @@ def total(*amounts, tax_rate=0.05):
 
 print(total(100, 200, 50))  # 367.5
 ```
+
+
 
 ### 3. Scope — local vs global (and LEGB)
 
@@ -265,12 +279,9 @@ def calculate_total(amount):
 
 Use `global x` only when you must **reassign** a global name. Prefer passing values in and returning results — globals make bugs hard to find in real projects.
 
-**Note / trap:**
-- Using `global` everywhere creates hard-to-debug shared state. Pass values as parameters and return results instead.
-
 **Try these (2 programs):**
 
-**Program 1 — Fix counter with return (prefer this over `global`)**
+**Program 1 — Fix counter with return (prefer this over** `global`**)**
 
 ```python
 count = 0
@@ -300,9 +311,11 @@ print(c())  # 1
 print(c())  # 2
 ```
 
+
+
 ### 4. Lambda (anonymous) functions
 
-**What:** A tiny function **without a `def` name**, written as `lambda args: expression`.  
+**What:** A tiny function **without a** `def` **name**, written as `lambda args: expression`.  
 **Why:** Instant one-off use — especially as the `key=` for `sorted`, or with `map`/`filter`.  
 **When not to:** Multi-step logic, docstrings, or anything you will reuse and test — use `def`.
 
@@ -315,9 +328,6 @@ print(sorted(names, key=lambda x: len(x)))
 ```
 
 Lambda **returns** the expression result automatically — no `return` keyword.
-
-**Note / trap:**
-- Overusing lambda makes code hard to read. Prefer `def` for multi-step or reusable logic.
 
 **Try these (2 programs):**
 
@@ -336,16 +346,20 @@ print(sorted(marks, key=lambda row: row[1], reverse=True))
 # [('B', 95), ('A', 88), ('C', 70)]
 ```
 
+
+
 ### 5. `map`, `filter`, and `reduce`
 
 **What:** Built-in helpers that apply a function across an iterable.  
 **Why:** Short pipelines for “transform every item”, “keep matching items”, or “fold many values into one” — often with `lambda` or a small `def`.
 
-| Tool | Idea | Campus example |
-|------|------|----------------|
-| `map(fn, data)` | Transform each item | Prices → prices with GST |
-| `filter(fn, data)` | Keep items where `fn` is true | Marks ≥ 75 only |
-| `reduce(fn, data[, start])` | Combine into one value | Sum / max of expenses |
+
+| Tool                        | Idea                          | Campus example           |
+| --------------------------- | ----------------------------- | ------------------------ |
+| `map(fn, data)`             | Transform each item           | Prices → prices with GST |
+| `filter(fn, data)`          | Keep items where `fn` is true | Marks ≥ 75 only          |
+| `reduce(fn, data[, start])` | Combine into one value        | Sum / max of expenses    |
+
 
 `map` and `filter` return **lazy iterators** in Python 3 — wrap with `list(...)` when you need a list. Prefer a **list comprehension** when it reads clearer; still learn these for interviews and older codebases.
 
@@ -377,13 +391,9 @@ passed = [m for m in marks if m >= 75]
 - `reduce` lives in `functools` (not a built-in). The function takes **(accumulator, next_item)**.
 - Do not force `reduce` for a simple sum — `sum(prices)` is better. Use `reduce` when the fold is custom (e.g. merge dicts, running max with a twist).
 
-**Note / trap:**
-- Forgetting `list(map(...))` / `list(filter(...))` leaves you with a lazy map/filter object — convert when you need a list or length.
-- Prefer `sum` / `max` / a comprehension over `reduce` for simple folds.
-
 **Try these (2 programs):**
 
-**Program 1 — `map` + `filter` on canteen prices**
+**Program 1 —** `map` **+** `filter` **on canteen prices**
 
 ```python
 prices = [40, 25, 60, 15, 120]
@@ -393,7 +403,7 @@ print(with_gst)
 print(big)
 ```
 
-**Program 2 — `reduce` for bill total (and contrast with `sum`)**
+**Program 2 —** `reduce` **for bill total (and contrast with** `sum`**)**
 
 ```python
 from functools import reduce
@@ -404,12 +414,14 @@ print(total)       # 125
 print(sum(bill))   # same — prefer sum for plain addition
 ```
 
+
+
 ### 6. Decorators
 
 **What:** A function that takes another function and returns a **wrapped** version (extra behaviour before/after).  
 **Why:** Cross-cutting concerns — timing, login checks, retries — without copy-pasting into every function.
 
-**Visual — `@timer` wraps your function like gift wrap:**
+**Visual —** `@timer` **wraps your function like gift wrap:**
 
 ```mermaid
 flowchart LR
@@ -418,6 +430,8 @@ flowchart LR
   Inner --> Wrap
   Wrap --> Out[return result + print time]
 ```
+
+
 
 ```python
 def timer(func):
@@ -435,12 +449,9 @@ def slow_task():
 
 `@timer` above `def slow_task` means: `slow_task = timer(slow_task)`.
 
-**Note / trap:**
-- Without `functools.wraps`, the wrapper steals the function’s `__name__` (debugging/docs look wrong). Prefer `@wraps(func)` on the inner wrapper.
-
 **Try these (2 programs):**
 
-**Program 1 — `@shout` decorator**
+**Program 1 —** `@shout` **decorator**
 
 ```python
 def shout(func):
@@ -455,7 +466,7 @@ def greet(name):
 print(greet("Priya"))  # HELLO, PRIYA
 ```
 
-**Program 2 — `@require_login` gate**
+**Program 2 —** `@require_login` **gate**
 
 ```python
 current_user = None
@@ -477,20 +488,21 @@ current_user = "Ravi"
 print(view_dashboard())   # Welcome, Ravi
 ```
 
+
+
 ### 7. Generators vs lists
 
 **What:** A generator produces values lazily with `yield` (or a generator expression).  
 **Why:** A list of 10 million rows needs huge RAM; a generator holds **one** value at a time — ideal for files, streams, and large reports.
 
-| | List | Generator |
-|---|------|-----------|
-| Memory | Stores all items | One item at a time |
-| Syntax | `[x*2 for x in range(n)]` | `(x*2 for x in range(n))` or `yield` |
-| Reusable | Yes | Exhausted after one full pass |
-| Best for | Small/medium data | Large files, streams |
 
-**Note / trap:**
-- Do not index a generator like a list (`gen[0]` fails). Use `next(gen)` or a `for` loop.
+|          | List                      | Generator                            |
+| -------- | ------------------------- | ------------------------------------ |
+| Memory   | Stores all items          | One item at a time                   |
+| Syntax   | `[x*2 for x in range(n)]` | `(x*2 for x in range(n))` or `yield` |
+| Reusable | Yes                       | Exhausted after one full pass        |
+| Best for | Small/medium data         | Large files, streams                 |
+
 
 **Try these (2 programs):**
 
@@ -521,7 +533,11 @@ print(list(even_stream(10)))  # [0, 2, 4, 6, 8, 10]
 
 ---
 
+
+
 ## Step-by-Step Annotated Python 3 Code
+
+
 
 ### Example 1 — Basic function with default and return
 
@@ -548,6 +564,8 @@ print(calculate_bill(120))           # uses default rate
 print(calculate_bill(units=200, rate_per_unit=10))
 ```
 
+
+
 ### Example 2 — *args and **kwargs
 
 ```python
@@ -566,6 +584,8 @@ print(p)
 # {'name': 'Arjun', 'skills': ['Python', 'SQL'], 'city': 'Hyderabad', 'experience': 2}
 ```
 
+
+
 ### Example 3 — Scope demonstration
 
 ```python
@@ -579,6 +599,8 @@ def increment():
 print(increment())  # 1
 print(increment())  # 2
 ```
+
+
 
 ### Example 4 — Lambda with sorted
 
@@ -595,6 +617,8 @@ for s in ranked:
     print(s["name"], s["score"])
 ```
 
+
+
 ### Example 5 — `map` / `filter` / `reduce`
 
 ```python
@@ -608,6 +632,8 @@ print(graded)
 print(toppers)   # [91]
 print(highest)   # 91
 ```
+
+
 
 ### Example 6 — Timing decorator
 
@@ -628,6 +654,8 @@ def fetch_data():
     return ["row1", "row2"]
 ```
 
+
+
 ### Example 7 — Login decorator
 
 ```python
@@ -646,6 +674,8 @@ def view_salary():
     print(f"Salary slip for {logged_in_user}")
 ```
 
+
+
 ### Example 8 — Generator vs list
 
 ```python
@@ -659,164 +689,89 @@ for val in squares_gen(5):
 
 ---
 
+
+
+## Common Mistakes
+
+
+| Mistake                           | Problem                          | Fix                                  |
+| --------------------------------- | -------------------------------- | ------------------------------------ |
+| Mutable default arg `def f(x=[])` | Same list reused across calls    | Use `None` and create list inside    |
+| Forgetting `return`               | Function returns `None` silently | Always return explicit value         |
+| Using `global` everywhere         | Hard-to-debug shared state       | Pass values as parameters            |
+| Overusing lambda                  | Unreadable code                  | Use `def` for multi-step logic       |
+| Forcing `reduce` for simple sum   | Harder to read than `sum(x)`     | Prefer `sum` / `max` / comprehension |
+| Forgetting `list(map(...))`       | Surprised by a map object        | Convert when you need a list         |
+| Calling generator like list       | `gen[0]` fails                   | Use `next(gen)` or loop              |
+| Decorator without `@wraps`        | Lost function name in debugging  | `from functools import wraps`        |
+| `*args` before required param     | SyntaxError                      | Required params come first           |
+
+
+**Classic mutable default bug:**
+
+```python
+# BAD
+def add_item(item, bucket=[]):
+    bucket.append(item)
+    return bucket
+
+# GOOD
+def add_item(item, bucket=None):
+    if bucket is None:
+        bucket = []
+    bucket.append(item)
+    return bucket
+```
+
+---
+
+
+
 ## Practice Exercises
+
+
 
 ### Basic
 
 1. Write `celsius_to_fahrenheit(c)` returning `F = C * 9/5 + 32`.
-   **Model answer:**
-   ```python
-   def celsius_to_fahrenheit(c):
-       return c * 9 / 5 + 32
-
-   print(celsius_to_fahrenheit(37))  # 98.6
-   ```
-
+  **Model answer:**
 2. Write `full_name(first, last, middle="")` returning formatted name.
-   **Model answer:**
-   ```python
-   def full_name(first, last, middle=""):
-       if middle:
-           return f"{first} {middle} {last}"
-       return f"{first} {last}"
-
-   print(full_name("Priya", "Sharma"))
-   print(full_name("Ravi", "Kumar", "S"))
-   ```
-
+  **Model answer:**
 3. Write `sum_all(*numbers)` returning sum of any count of numbers.
-   **Model answer:**
-   ```python
-   def sum_all(*numbers):
-       return sum(numbers)
-
-   print(sum_all(10, 20, 30))  # 60
-   ```
-
+  **Model answer:**
 4. Predict output of scope quiz (trainer provides 3 snippets).
-   **Model answer:**
+  **Model answer:**
    Use LEGB: a name resolves Local → Enclosing → Global → Built-in. Assigning inside a function creates a local unless you use `global`/`nonlocal`. Typical quiz: reading a global works; assigning without `global` raises `UnboundLocalError` if the name is also assigned later in the same function.
-
 5. Use `map` to add 5% GST to `[100, 200, 50]` and `filter` to keep totals ≥ 150.
-   **Model answer:**
-   ```python
-   prices = [100, 200, 50]
-   with_gst = list(map(lambda p: round(p * 1.05, 2), prices))
-   big = list(filter(lambda p: p >= 150, with_gst))
-   print(with_gst)  # [105.0, 210.0, 52.5]
-   print(big)       # [210.0]
-   ```
+  **Model answer:**
+
+
 
 ### Intermediate
 
 1. Refactor ATM menu into functions: `show_menu()`, `deposit()`, `withdraw()`.
-   **Model answer:**
-   ```python
-   balance = 10000.0
-
-   def show_menu():
-       print("1.Deposit 2.Withdraw 3.Balance 4.Exit")
-
-   def deposit(amount):
-       global balance
-       if amount > 0:
-           balance += amount
-
-   def withdraw(amount):
-       global balance
-       if 0 < amount <= balance:
-           balance -= amount
-       else:
-           print("Insufficient funds or invalid amount")
-
-   while True:
-       show_menu()
-       choice = input("Choice: ")
-       if choice == "1":
-           deposit(float(input("Amount: ")))
-       elif choice == "2":
-           withdraw(float(input("Amount: ")))
-       elif choice == "3":
-           print(balance)
-       elif choice == "4":
-           break
-   ```
-
+  **Model answer:**
 2. Create `@log_calls` decorator printing function name and arguments.
-   **Model answer:**
-   ```python
-   from functools import wraps
-
-   def log_calls(func):
-       @wraps(func)
-       def wrapper(*args, **kwargs):
-           print(f"Calling {func.__name__} args={args} kwargs={kwargs}")
-           return func(*args, **kwargs)
-       return wrapper
-
-   @log_calls
-   def greet(name):
-       return f"Hi {name}"
-
-   greet("Ravi")
-   ```
-
+  **Model answer:**
 3. Write generator `fibonacci(n)` yielding first `n` Fibonacci numbers.
-   **Model answer:**
-   ```python
-   def fibonacci(n):
-       a, b = 0, 1
-       for _ in range(n):
-           yield a
-           a, b = b, a + b
-
-   print(list(fibonacci(7)))  # [0, 1, 1, 2, 3, 5, 8]
-   ```
-
+  **Model answer:**
 4. Use `functools.reduce` to find the longest name in `["Ravi", "Ananya", "Om"]`.
-   **Model answer:**
-   ```python
-   from functools import reduce
+  **Model answer:**
 
-   names = ["Ravi", "Ananya", "Om"]
-   longest = reduce(lambda a, b: a if len(a) >= len(b) else b, names)
-   print(longest)  # Ananya
-   ```
+
 
 ### Interview-style
 
 1. Write decorator that retries a function up to 3 times on exception.
-   **Model answer:**
-   ```python
-   from functools import wraps
-
-   def retry(times=3):
-       def decorator(func):
-           @wraps(func)
-           def wrapper(*args, **kwargs):
-               last = None
-               for attempt in range(1, times + 1):
-                   try:
-                       return func(*args, **kwargs)
-                   except Exception as e:
-                       last = e
-                       print(f"Attempt {attempt} failed: {e}")
-               raise last
-           return wrapper
-       return decorator
-
-   @retry(3)
-   def flaky():
-       raise ValueError("boom")
-   ```
-
+  **Model answer:**
 2. When choose generator over list for 10 million records?
-   **Model answer:**
+  **Model answer:**
    Prefer a generator when you process records one at a time and do not need random access or the full collection in memory. A list of 10 million rows can exhaust RAM; `yield` streams values lazily and keeps peak memory low.
-
 3. `map`/`filter` vs list comprehension — when prefer each?
-   **Model answer:**
+  **Model answer:**
    Prefer a comprehension when the transform/condition is short and readability matters (most campus code). Prefer `map`/`filter` when you already have a named function to reuse, or when matching interview/library style. Always know both.
+
+
 
 ## Mini-Project: Reusable Utility Library
 
@@ -825,26 +780,32 @@ for val in squares_gen(5):
 **Also use:** [14_decorator_login_gate](../15_Lab_Assets/14_decorator_login_gate/), [16_venv_package_bootstrap](../15_Lab_Assets/16_venv_package_bootstrap/)  
 **Generators (S31+ only):** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) — not part of this homework
 
-**Homework scope:** functions + lambda/`map`/`filter` + decorators. **No `yield` / generators.**
+**Homework scope:** functions + lambda/`map`/`filter` + decorators. **No** `yield` **/ generators.**
 
 ### What to build
 
-| File | Functions | Notes |
-|------|-----------|-------|
-| `validators.py` | `is_email`, `is_phone_in`, `is_positive` | Pure functions; no `print` |
+
+| File            | Functions                                     | Notes                                                           |
+| --------------- | --------------------------------------------- | --------------------------------------------------------------- |
+| `validators.py` | `is_email`, `is_phone_in`, `is_positive`      | Pure functions; no `print`                                      |
 | `formatters.py` | `format_inr`, `format_date(day, month, year)` | ₹ formatting; zero-padded DD-MM-YYYY (no `datetime` module yet) |
-| `transforms.py` | `with_gst`, `keep_high` | Use **`map`** and **`filter`** (wrap with `list(...)`) |
-| `decorators.py` | `timing`, `require_token` | Wrapper functions; `*args` / `**kwargs` |
-| `__init__.py` | re-exports | Clean imports: `from ksr_utils import format_inr` |
-| `demo.py` | smoke test | Prints + one timed call + GST/filter demo |
+| `transforms.py` | `with_gst`, `keep_high`                       | Use `map` and `filter` (wrap with `list(...)`)                  |
+| `decorators.py` | `timing`, `require_token`                     | Wrapper functions; `*args` / `**kwargs`                         |
+| `__init__.py`   | re-exports                                    | Clean imports: `from ksr_utils import format_inr`               |
+| `demo.py`       | smoke test                                    | Prints + one timed call + GST/filter demo                       |
+
+
+
 
 ### Stretch
 
 - Add `is_strong_password(s)` (length ≥ 8, has digit).  
 - Add `@retry(times=3)` decorator for flaky calls.  
-- **After S31:** finish `generators.py` (`read_rows` must **`yield`**).  
+- **After S31:** finish `generators.py` (`read_rows` must `yield`).  
 - **Later (Files week):** `yield` rows from a CSV with `csv.DictReader`.  
 - Add `README.md` with install/run and 3 import examples.
+
+
 
 ### Done when
 
@@ -855,23 +816,31 @@ for val in squares_gen(5):
 
 ---
 
+
+
 ## Revision Map — Memorize / Understand / Practise / Build
 
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Function basics | `def`, `return`, parameter vs argument | Why functions reduce duplication | Write 5 utility functions | String/date helper module |
-| Parameters | Default args, `*args`, `**kwargs` | Positional vs keyword binding | Variadic function drills | Flexible logger wrapper |
-| Scope | `global`, LEGB | Why globals are risky | Scope prediction exercises | Refactor global-heavy script |
-| Lambda | Syntax `lambda x: x*2` | When **not** to use lambda | Sort with `key=` | Mini map/filter demos |
-| map/filter/reduce | `map`, `filter`, `functools.reduce` | Lazy iterators; when comprehension is clearer | GST map + pass filter | Bill fold with reduce |
-| Decorators | `@decorator` syntax | Wrapper + closure idea | Timing + auth decorators | Login-gated CLI menu |
-| Generators (S31+) | `yield`, `next()` | Lazy evaluation vs eager list | File line reader | Optional `generators.py` stretch |
+
+| Topic             | Memorize                               | Understand                                    | Practise                   | Build                            |
+| ----------------- | -------------------------------------- | --------------------------------------------- | -------------------------- | -------------------------------- |
+| Function basics   | `def`, `return`, parameter vs argument | Why functions reduce duplication              | Write 5 utility functions  | String/date helper module        |
+| Parameters        | Default args, `*args`, `**kwargs`      | Positional vs keyword binding                 | Variadic function drills   | Flexible logger wrapper          |
+| Scope             | `global`, LEGB                         | Why globals are risky                         | Scope prediction exercises | Refactor global-heavy script     |
+| Lambda            | Syntax `lambda x: x*2`                 | When **not** to use lambda                    | Sort with `key=`           | Mini map/filter demos            |
+| map/filter/reduce | `map`, `filter`, `functools.reduce`    | Lazy iterators; when comprehension is clearer | GST map + pass filter      | Bill fold with reduce            |
+| Decorators        | `@decorator` syntax                    | Wrapper + closure idea                        | Timing + auth decorators   | Login-gated CLI menu             |
+| Generators (S31+) | `yield`, `next()`                      | Lazy evaluation vs eager list                 | File line reader           | Optional `generators.py` stretch |
+
 
 **Label legend:** **Memorize** = recall in interviews · **Understand** = explain in English · **Practise** = daily labs · **Build** = portfolio artefacts
 
 ---
 
+
+
 ## Interview & Discussion Q&A
+
+
 
 ### Discuss in class
 
@@ -886,7 +855,7 @@ for val in squares_gen(5):
 
 ### Interview answers
 
-**Q1. What is the difference between `*args` and `**kwargs`?**  
+**Q1. What is the difference between** `*args` **and** `**kwargs`**?**  
 **A:** `*args` collects extra positional arguments into a tuple; `**kwargs` collects extra keyword arguments into a dictionary. They make functions flexible when the number of inputs varies.
 
 **Q2. Explain decorators in simple terms.**  
@@ -898,7 +867,7 @@ for val in squares_gen(5):
 **Q4. What is a lambda function? When not to use it?**  
 **A:** Lambda is an anonymous single-expression function. Avoid it for complex logic, multiple statements, or when readability suffers — use `def` instead.
 
-**Q5. What are `map`, `filter`, and `reduce`?**  
+**Q5. What are** `map`**,** `filter`**, and** `reduce`**?**  
 **A:** `map` applies a function to every item; `filter` keeps items where the function is true; `reduce` (from `functools`) folds items into one value. In Python 3, `map`/`filter` are lazy — use `list(...)` when you need a concrete list. Prefer comprehensions/`sum` when clearer.
 
 **Q6. What is variable scope? Explain LEGB.**  

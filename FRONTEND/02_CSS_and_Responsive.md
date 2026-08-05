@@ -126,7 +126,7 @@ input:focus { outline: 2px solid #2563eb; }
 
 **Specificity (lite):** inline > `#id` > `.class` > element.
 
-**Note / trap:**
+**Note:**
 - Overusing `!important` — fix specificity instead (class vs id vs element).
 - No focus/hover states — add `:hover` and `:focus-visible` for links, buttons, and inputs.
 
@@ -185,7 +185,7 @@ margin → border → padding → content
 
 DevTools → Computed → box diagram.
 
-**Note / trap:**
+**Note:**
 - No `box-sizing: border-box` — add a global border-box rule so padding/border stay inside the set width.
 
 **Try these (2 programs):**
@@ -296,7 +296,7 @@ p { font-size: 1rem; }
 | `gap` | Space between children |
 | `flex-wrap` | Wrap to next line |
 
-**Note / trap:**
+**Note:**
 - Flex without wrap — add `flex-wrap: wrap` so cards/nav items can drop to the next line.
 - Tables for layout — use Flexbox for rows and grids of cards.
 
@@ -350,7 +350,7 @@ p { font-size: 1rem; }
 img { max-width: 100%; height: auto; display: block; }
 ```
 
-**Note / trap:**
+**Note:**
 - Fixed widths on mobile — prefer `%`, flex, and `max-width` so layouts shrink.
 - Missing viewport meta — required from the HTML module for mobile-first CSS to behave.
 

@@ -78,7 +78,7 @@ Both end the same way for your React/Flask app: **JSON in, JSON out**.
 2. **Predict** new sample (`predict` or `predict_proba`)
 3. **Serve** result via web endpoint
 
-**Note / trap:**
+**Note:**
 - Expecting ML magic on 6 samples → wrong predictions — explain toy-model limits.
 - Training on every request → slow server — train once, load the model at startup.
 
@@ -128,7 +128,7 @@ return resp.json()
 
 Course may use mock URL in lab if no paid API key — pattern matters.
 
-**Note / trap:**
+**Note:**
 - Blocking call without timeout → hung request — use `timeout=30` on requests.
 
 **Try these (2 programs):**
@@ -162,7 +162,7 @@ print(mock_analyze("Good filter coffee in Hyderabad"))
 3. Display result or error message
 4. Disable double-submit
 
-**Note / trap:**
+**Note:**
 - No input validation → crash or abuse — add length limits and strip text.
 - CORS again on AI Flask → browser block — reuse the same cors-headers pattern.
 
@@ -216,7 +216,7 @@ export default function Analyzer() {
 
 ---
 
-**Note / trap:**
+**Note:**
 - API key in GitHub → key revoked / security incident — use `.env` + gitignore.
 - Overclaiming on resume → interview embarrassment — say "integrated API," not "built GPT."
 

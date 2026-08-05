@@ -44,14 +44,14 @@ Attacker site triggers browser to POST to **your** site while user is logged in.
 
 Attacker injects **JavaScript** via stored or reflected user input (comment field). Django templates **auto-escape** HTML in `{{ variable }}`. Danger: marking untrusted data **`safe`** or using `|safe` filter without sanitization.
 
-**Note / trap:**
+**Note:**
 - `|safe` on user HTML enables XSS — escape by default, or sanitize with a library like bleach.
 
 ### SQL Injection
 
 Attacker manipulates input to alter SQL queries. Django **ORM** and **parameterized queries** prevent classic injection. **Never** build SQL with f-strings from user input.
 
-**Note / trap:**
+**Note:**
 - Raw SQL built with an f-string from user input → SQL injection. Prefer ORM `.filter(...)`.
 
 ### DEBUG Setting
@@ -59,21 +59,21 @@ Attacker manipulates input to alter SQL queries. Django **ORM** and **parameteri
 **`DEBUG=True`** (development): detailed error pages with code snippets — helpful locally.  
 **`DEBUG=False`** (production): generic error pages — hides internals from attackers.
 
-**Note / trap:**
+**Note:**
 - `DEBUG=True` on a public URL exposes full code/tracebacks — set it False via env in production.
 
 ### SECRET_KEY
 
 Random string used to sign cookies, sessions, CSRF tokens. **Must be unique per environment** and **never committed to Git**. Compromise allows session forgery.
 
-**Note / trap:**
+**Note:**
 - `SECRET_KEY` in GitHub enables session hijack — rotate the key and load it from the environment.
 
 ### ALLOWED_HOSTS
 
 List of domain names your Django app will serve. Prevents **HTTP Host header attacks**. Example after deploying to Render: `ALLOWED_HOSTS = ["myportal.onrender.com"]`.
 
-**Note / trap:**
+**Note:**
 - `ALLOWED_HOSTS = ['*']` is a lazy fix that invites Host-header attacks — list exact domains.
 
 ### Static vs Media Files
@@ -85,7 +85,7 @@ List of domain names your Django app will serve. Prevents **HTTP Host header att
 
 **`collectstatic`** — gathers all static files into **`STATIC_ROOT`** folder for production server.
 
-**Note / trap:**
+**Note:**
 - Skipping `collectstatic` → broken admin/CSS in production. Run it in the build step.
 
 ### Environment Variables
@@ -95,7 +95,7 @@ List of domain names your Django app will serve. Prevents **HTTP Host header att
 **Alternate:** `django-environ` — do not mix both in one beginner batch.  
 File **`.env`** is local only; list it in **`.gitignore`**. Commit **`.env.example`**.
 
-**Note / trap:**
+**Note:**
 - Never commit `.env` — credential leak; gitignore it and rotate passwords if leaked.
 - `.env` on disk without `load_dotenv()` → vars ignored (wrong DB/secret). Call `load_dotenv(BASE_DIR / ".env")` in settings.
 
@@ -184,7 +184,7 @@ Static files → WhiteNoise or platform static handler
 
 **Gunicorn** — production WSGI HTTP server; **`runserver`** is not for production.
 
-**Note / trap:**
+**Note:**
 - Using `runserver` in production → crashes and insecure defaults. Use Gunicorn (or similar) behind a platform/proxy.
 
 **Try these (2 programs):**

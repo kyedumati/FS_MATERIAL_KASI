@@ -80,7 +80,7 @@ print(expenses[1:3])     # [1200, 89] — index 1 up to (not including) 3
 print(len(products))     # 3 — number of items
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Indexing past the end (`lst[10]` on a short list) → `IndexError`.
 - Prefer: Check `len(lst)` first.
 
@@ -118,7 +118,7 @@ cart.insert(1, "T-Shirt")       # insert at index 1
 print(cart)                     # ['Shirt', 'T-Shirt', 'Jeans', 'Belt', 'Socks']
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Using `append` with a list when you mean `extend` (`lst.append([4, 5])` → one nested element).
 - Prefer: `extend([4, 5])` to add multiple items.
 
@@ -160,7 +160,7 @@ print(cancelled, orders)        # ORD-103 ['ORD-101', 'ORD-102']
 orders.clear()                  # []
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: `remove(x)` when `x` is not in the list → `ValueError`.
 - Prefer: `if x in lst: lst.remove(x)`.
 
@@ -202,7 +202,7 @@ print(top_sorted)               # [95, 88, 72]
 print(scores)                   # [88, 72, 95] — unchanged
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Confusing `sort()` with `sorted()` — unexpected in-place change.
 - Prefer: `sort()` changes the original; `sorted()` returns a new list.
 
@@ -241,7 +241,7 @@ for name, mark in zip(student_names, student_marks):
     print(f"{name}: {mark}%")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Modifying a list while looping over it — skipped items or infinite loops.
 - Prefer: Loop over a copy: `for x in lst[:]`.
 
@@ -362,7 +362,7 @@ copy2 = list(original)
 copy3 = original[:]
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Relying on a shallow copy of a *nested* list (inner lists still shared); using `is` to compare list *content* (`[1, 2] is [1, 2]` is False).
 - Prefer: `copy.deepcopy()` for deep copy (advanced); use `==` for value equality, `is` only for the same object.
 

@@ -168,7 +168,7 @@ cd ~/ksr_python_fullstack/projects
 python3 env_check.py
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Using Python 2 style (`print "hi"`) or a terminal where `python` is not found / PATH missing.
 - Prefer: Install Python 3, use `python3` on Mac/Linux, and tick “Add to PATH” on Windows.
 - Wrong: VS Code running a different interpreter than the one you installed.
@@ -254,7 +254,7 @@ python3 hello.py
 - `print(...)` is a **function** that displays text on screen
 - Text in quotes is a **string literal**
 
-**Note / trap:**
+**Note:**
 - Wrong: Running without saving (tab still shows a dot) — you see old output; or `print(Hello)` without quotes.
 - Prefer: Save (`Ctrl+S` / `Cmd+S`) before run; strings need `'...'` or `"..."`.
 
@@ -344,7 +344,7 @@ Check keywords in REPL:
 # Long list including: False, None, True, and, as, assert, break, class, ...
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Using a keyword as a variable name (`if = 10`) → `SyntaxError`.
 - Prefer: Rename (`is_valid`, `if_flag`).
 
@@ -389,7 +389,7 @@ FullName = "Ananya"      # PascalCase reserved mostly for classes
 employee id = "E1"       # SyntaxError — space not allowed
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: CamelCase everywhere for variables (`FullName`) — works but un-Pythonic.
 - Prefer: `snake_case` for variables and functions.
 
@@ -467,7 +467,7 @@ print("Expense Tracker v0.1")
 print("Module: Setup — no amounts yet")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Running a script from the wrong folder → `FileNotFoundError`.
 - Prefer: `cd` to the folder that contains the script, or use a full path.
 

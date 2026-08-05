@@ -51,7 +51,7 @@ Product UIs and many admin dashboards use React (or similar) because:
 - **State:** When data changes, UI updates automatically
 - **Pairs with Django:** Django/DRF backend + React frontend is a common junior stack
 
-**Note / trap:**
+**Note:**
 - Comparing React to Django MVC literally causes confusion — React is the view layer only.
 
 ### SPA (Single Page Application)
@@ -89,7 +89,7 @@ function Welcome() { return <h1>Hello, KSR Batch!</h1>; }
 export default Welcome;
 ```
 
-**Note / trap:**
+**Note:**
 - Import path wrong on Linux deploy — module not found; match case exactly (`ProductCard.jsx`).
 
 **Try these (2 programs):**
@@ -126,7 +126,7 @@ export default function App() {
 
 Return **one parent** (or fragment); use `className`; JS in `{ }`; self-close tags.
 
-**Note / trap:**
+**Note:**
 - `class` instead of `className` — console warning; use `className` in JSX.
 
 **Try these (2 programs):**
@@ -211,7 +211,7 @@ const [count, setCount] = useState(0);
 return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
 ```
 
-**Note / trap:**
+**Note:**
 - Mutating state directly — UI does not update; use the setter: `setProducts([...products, newItem])`.
 
 **Try these (2 programs):**
@@ -257,7 +257,7 @@ export default function StockToggle() {
 
 Use stable unique `key` (prefer id over index when list changes).
 
-**Note / trap:**
+**Note:**
 - Missing `key` in `.map()` — console warning; add unique `key={item.id}`.
 - Index as `key` when reordering — wrong row updates; prefer a stable id.
 
@@ -306,7 +306,7 @@ function ProductList({ items }) {
 
 Input `value` + `onChange` tied to state — single source of truth.
 
-**Note / trap:**
+**Note:**
 - Forgot `e.preventDefault()` on form — page reloads; call it in the submit handler.
 - Uncontrolled + controlled mix — cursor jump bugs; always set `value` + `onChange`.
 

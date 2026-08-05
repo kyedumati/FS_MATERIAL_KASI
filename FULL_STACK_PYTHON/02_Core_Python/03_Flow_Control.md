@@ -180,7 +180,7 @@ else:
 
 Note: `or` combines invalid range checks.
 
-**Note / trap:**
+**Note:**
 - Wrong: Missing colon (`if x > 5`), inconsistent indentation, or putting `elif` after `else`.
 - Prefer: `if x > 5:` with 4 spaces; order is if → elif → else (else last).
 - Wrong: Leaving an empty block under `if`/`else`.
@@ -230,7 +230,7 @@ else:
     print("Invalid credentials. Contact HR.")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Using `=` when you meant to compare — logic always wrong or SyntaxError.
 - Prefer: `==` to compare, `=` to assign.
 
@@ -275,7 +275,7 @@ for i in range(1, 11):
     print(f"{n} x {i} = {n * i}")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Off-by-one with `range` (loop one short or one long).
 - Prefer: Remember the stop value is exclusive (`range(1, 11)` → 1…10).
 
@@ -318,7 +318,7 @@ else:
     print("Card blocked. Visit branch.")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Infinite `while` — the condition never moves toward exit.
 - Prefer: Ensure a variable in the condition changes (counter, flag, or `break`).
 
@@ -480,7 +480,7 @@ while True:
         print("Invalid choice. Try again.")
 ```
 
-**Note / trap:**
+**Note:**
 - Wrong: Comparing menu `input()` to an int (`choice == 1`) when choice is still a string.
 - Prefer: Compare strings (`choice == "1"`) or convert deliberately with `int(choice)`.
 

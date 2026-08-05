@@ -96,7 +96,7 @@ Different ports = different **origins**. Browsers block random cross-origin requ
 | On value change | `[productId]` | Refetch when id changes |
 | Cleanup | return function | Cancel fetch, clear timer |
 
-**Note / trap:**
+**Note:**
 - `useEffect` without deps — fetch every render; add `[]` or the correct dependency list.
 - No loading state — blank screen confusion; show loading/error UI.
 - `useEffect` async directly — warning patterns; use an inner async function instead.
@@ -154,7 +154,7 @@ export default function LoaderDemo() {
 </BrowserRouter>
 ```
 
-**Note / trap:**
+**Note:**
 - Router outside `BrowserRouter` — hook/context errors; wrap the app once.
 
 **Try these (2 programs):**
@@ -198,7 +198,7 @@ export default function ProductDetail() {
 
 Centralize fetch logic in `src/api/products.js` — easier to change base URL and test.
 
-**Note / trap:**
+**Note:**
 - Wrong API URL in prod — 404 on deployed site; set `VITE_` env at build time.
 - Forgot trailing slash for Django — 404 on `/products` vs `/products/`; match DRF URLs.
 
@@ -235,7 +235,7 @@ export async function createProduct(payload) {
 
 Django response includes `Access-Control-Allow-Origin: http://localhost:5173` so browser permits JavaScript to read response.
 
-**Note / trap:**
+**Note:**
 - Missing CORS config — browser CORS error while Postman still works; install and configure `django-cors-headers`.
 
 **Try these (2 programs):**
@@ -379,7 +379,7 @@ Restart Django server after change.
 
 One test: render component showing "Loading products..."; assert text with `screen.getByText`. Run: `npm test`
 
-**Note / trap:**
+**Note:**
 - Test fetch without mock — flaky tests; mock the API module in tests.
 
 ### Step 8 — Build overview

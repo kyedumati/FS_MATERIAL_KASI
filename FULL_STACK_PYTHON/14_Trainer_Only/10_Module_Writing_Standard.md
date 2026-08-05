@@ -14,7 +14,7 @@
 | 2 | Learning Outcomes | What they can do after the module |
 | 3 | **Classroom Ticket** | Lab kit first |
 | 4 | Start with **What / Why** (no “Beginner-Friendly” label) | What + Why |
-| 5 | Important Concepts (+ **Try these** after each topic) | What/Why → syntax → **Note / trap** → ≥2 programs per topic |
+| 5 | Important Concepts (+ **Try these** after each topic) | What/Why → syntax → **Note** → ≥2 programs per topic |
 | 6 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
 | 7 | Practice Exercises | Basic → Intermediate → Interview; each item has **Model answer:** (stripped in student pack). **Before** Mini-Project |
 | 8 | Mini-Project | Lab kit link + What to build + Stretch + **Done when**. This **is** the homework |
@@ -22,7 +22,7 @@
 | 10 | Assignment | **Only if** there is no Mini-Project |
 | 11 | **Interview & Discussion Q&A** | Discuss in class + interview answers |
 
-**Do not add** a standalone `## Common Mistakes` section. Put traps next to the sub-topic as **Note:** / **Trap:** bullets (see below).
+**Do not add** a standalone `## Common Mistakes` section. Put traps next to the sub-topic as **Note:** bullets (see below).
 
 **Graded tests** live only in [`16_Assessments/`](../16_Assessments/) (one paper every 2 weeks). Do **not** put `## Assessment` or `## Biweekly Assessment` inside modules — trainers assign papers from the calendar + assessments README.
 
@@ -40,7 +40,7 @@
 | 2 | **Why do we need …?** | Pain without it vs win with it |
 | 3 | **Kinds / cases** (if any) | Built-in vs user-defined, modes, arg types, … |
 | 4 | **How (syntax + small demo)** | Minimal modern Python 3 |
-| 5 | **Note / trap** (inline) | 1–3 bullets right after syntax or before Try these — interview traps for **this** topic only |
+| 5 | **Note** (inline) | 1–3 bullets right after syntax or before Try these — interview traps for **this** topic only |
 | 6 | **Table only after prose** | Tables summarise |
 
 **Forbidden cold open:** parameter table / mode matrix / bare `def` with no What/Why.
@@ -50,7 +50,7 @@
 After teaching a concept (syntax + short demo), add a short note block — not a module-end dump:
 
 ```markdown
-**Note / trap:**
+**Note:**
 - Wrong: …
 - Prefer: …
 ```
@@ -151,7 +151,7 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 - [ ] Ticket / lab starter+solution stay within calendar teaching order (no forward concepts)  
 - [ ] What/Why before first big table (no “Beginner-Friendly” heading)  
 - [ ] **Try these (2 programs)** after each topic / Step  
-- [ ] **Note / trap** next to each major sub-topic (no standalone Common Mistakes)  
+- [ ] **Note** next to each major sub-topic (no standalone Common Mistakes)  
 - [ ] Practice Exercises include **Model answer:** under each item (trainer copy)  
 - [ ] Practice appears **before** Mini-Project  
 - [ ] Mini-Project: lab kit + Done when (+ Stretch)  

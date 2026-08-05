@@ -177,7 +177,7 @@ config = {
 
 **Production:** store credentials in environment variables, not source code.
 
-**Note / trap:**
+**Note:**
 - Leaving connections open → server exhaustion — close in `finally` (or use a context manager).
 - Hard-coded passwords → security leak — use environment variables.
 - No exception handling → cryptic crash — catch `mysql.connector.Error`.
@@ -246,7 +246,7 @@ sql = f"SELECT * FROM students WHERE roll = {roll}"
 
 Both `mysql-connector-python` and `PyMySQL` use `%s` placeholders (not `?` like sqlite).
 
-**Note / trap:**
+**Note:**
 - String concatenation in SQL → SQL injection — use parameterized queries.
 - Wrong placeholder (`?`) → driver error — use `%s` for MySQL connectors.
 
@@ -306,7 +306,7 @@ print("Lesson: f-string injection broke row filtering — always use %s.")
 | Update | UPDATE | `execute` + `commit` |
 | Delete | DELETE | `execute` + `commit` |
 
-**Note / trap:**
+**Note:**
 - Forgetting `commit()` → changes not saved — commit after DML.
 - `SELECT *` in production APIs → over-fetching — name columns explicitly.
 

@@ -66,7 +66,7 @@ Example: `<a href="/home">Home</a>`
 - `<meta charset="UTF-8">` — supports ₹, Hindi, emoji
 - `<meta viewport>` — required for mobile
 
-**Note / trap:**
+**Note:**
 - Missing `<!DOCTYPE html>` — always put it as the first line so the browser stays in HTML5 mode.
 
 **Try these (2 programs):**
@@ -147,7 +147,7 @@ flowchart TB
 
 Prefer these tags over a pile of anonymous `<div>`s when the meaning is clear.
 
-**Note / trap:**
+**Note:**
 - `<div>` everywhere — prefer semantic tags (`header`, `nav`, `main`, `section`, `footer`) when the meaning is clear.
 
 **Try these (2 programs):**
@@ -216,7 +216,7 @@ Prefer these tags over a pile of anonymous `<div>`s when the meaning is clear.
 | Absolute | `https://cdn.example.com/logo.png` | CDN |
 | Root-relative | `/assets/logo.png` | Django static |
 
-**Note / trap:**
+**Note:**
 - Missing `alt` — use descriptive alt text (or `alt=""` only for decorative images).
 - Broken relative paths — check folder structure (`images/`, `./about.html`) before blaming the tag.
 
@@ -271,7 +271,7 @@ Prefer these tags over a pile of anonymous `<div>`s when the meaning is clear.
 
 Use tables for **tabular data**, not page layout.
 
-**Note / trap:**
+**Note:**
 - Tables for layout — use CSS Flexbox later; keep tables for real tabular data only.
 
 **Try these (2 programs):**
@@ -360,7 +360,7 @@ Use tables for **tabular data**, not page layout.
 
 Django adds `{% csrf_token %}` to POST forms later.
 
-**Note / trap:**
+**Note:**
 - Input without `name` — the server receives nothing for that field.
 - Password via GET — use POST so credentials are not stuck in the URL.
 
@@ -413,7 +413,7 @@ Django adds `{% csrf_token %}` to POST forms later.
 - Use `<button>` for actions, not styled `<div>`
 - Tab through form with keyboard
 
-**Note / trap:**
+**Note:**
 - Multiple `<h1>` tags — use one `h1`; sections use `h2` (and below).
 
 **Try these (2 programs):**

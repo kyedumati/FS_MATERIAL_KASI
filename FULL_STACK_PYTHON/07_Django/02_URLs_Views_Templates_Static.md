@@ -74,7 +74,7 @@ Production-style pages use **`render()`** to separate HTML into template files.
 
 Instead of copying `<nav>` on every page, create **`base.html`** with common layout. Child templates **`{% extend %}`** base and fill **`{% block content %}`**. This is **DRY** (Don't Repeat Yourself).
 
-**Note / trap:**
+**Note:**
 - Wrong `{% extends %}` path → template error. Use a path relative to `DIRS` / `APP_DIRS` (e.g. `"base.html"` or `"blog/post_list.html"`).
 
 ### Static Files in Development
@@ -89,7 +89,7 @@ Django serves static files in **`DEBUG=True`** mode when configured. In template
 **`{% load static %}`** — loads template tag library for static URLs.  
 **`{% static 'path' %}`** — generates correct URL to CSS/JS file.
 
-**Note / trap:**
+**Note:**
 - Forgot `{% load static %}` at the top → empty/broken CSS URL. Load static before using `{% static %}`.
 
 ---
@@ -113,7 +113,7 @@ blog/urls.py  (app)
 
 **`name='post_list'`** — URL **name** for reverse lookup (links without hardcoding paths).
 
-**Note / trap:**
+**Note:**
 - Trailing-slash mismatch → 404 or redirect loop. Stay consistent with Django `APPEND_SLASH`.
 - Hardcoding `/blog/` in `href` breaks when the URL prefix changes — use `{% url 'post_list' %}`.
 
@@ -180,7 +180,7 @@ def about(request):
 | `{{ value\|filter }}` | Format | `{{ created\|date:"d M Y" }}` |
 | `{% url 'name' %}` | Named URL | `{% url 'post_list' %}` |
 
-**Note / trap:**
+**Note:**
 - URL name typo in `{% url %}` → `NoReverseMatch`. Match `name=` in `urls.py` exactly.
 
 **Try these (2 programs):**
@@ -215,7 +215,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]  # project-level static folder
 
 App-level static: `blog/static/blog/css/blog.css` (namespaced by app folder).
 
-**Note / trap:**
+**Note:**
 - Static in the wrong folder → 404 on CSS. Use project `static/css/` or app `static/<app>/…` as configured.
 
 ---
@@ -272,7 +272,7 @@ urlpatterns = [
 ]
 ```
 
-**Note / trap:**
+**Note:**
 - View not imported in `urls.py` → `AttributeError`. Use `from . import views` before referencing `views.post_list`.
 
 ### Step 3 — Project URLs
@@ -349,7 +349,7 @@ TEMPLATES = [
 ]
 ```
 
-**Note / trap:**
+**Note:**
 - `TemplateDoesNotExist` usually means a wrong path — check `app/templates/app/file.html` and that `DIRS` / `APP_DIRS` are set.
 
 ### Step 6 — Static CSS
