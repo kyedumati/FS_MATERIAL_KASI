@@ -490,23 +490,69 @@ print(view_dashboard())   # Welcome, Ravi
 
 
 
-### 7. Generators vs lists
+### 7. Generators (S31 focus)
 
-**What:** A generator produces values lazily with `yield` (or a generator expression).  
-**Why:** A list of 10 million rows needs huge RAM; a generator holds **one** value at a time — ideal for files, streams, and large reports.
+**Calendar:** Session 31 — Generators vs lists.  
+**Lab kit:** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) (in-memory `yield` now; real CSV after Files week).
+
+#### 7a. List vs generator (What / Why + table)
+
+**What:** A **generator** is an iterator that produces values **lazily** — one at a time — using `yield` inside a function, or a **generator expression** `(… for … in …)`.
+
+**Why:** A list of lakhs of rows holds everything in RAM at once. A generator holds **only the current value** (plus a little state). Use it for streams, large reports, and “process then forget” pipelines.
+
+Kitchen analogy: a list is the whole buffet on the table; a generator is a waiter who brings **one dish at a time**.
 
 
-|          | List                      | Generator                            |
-| -------- | ------------------------- | ------------------------------------ |
-| Memory   | Stores all items          | One item at a time                   |
-| Syntax   | `[x*2 for x in range(n)]` | `(x*2 for x in range(n))` or `yield` |
-| Reusable | Yes                       | Exhausted after one full pass        |
-| Best for | Small/medium data         | Large files, streams                 |
+|            | List / list comprehension   | Generator / `yield`                  |
+| ---------- | --------------------------- | ------------------------------------ |
+| When built | Immediately (eager)         | On demand (lazy)                     |
+| Memory     | All items                   | One item at a time                   |
+| Syntax     | `[x*2 for x in range(n)]`   | `(x*2 for x in range(n))` or `yield` |
+| Reusable   | Yes — walk it many times    | **Exhausted** after one full pass    |
+| Indexing   | `data[0]` works             | `gen[0]` fails — use `next` / `for`  |
+| Best for   | Small/medium data you reuse | Large streams, one-pass processing   |
 
 
-**Try these (2 programs):**
+```python
+# Eager — builds the whole list in memory first
+squares_list = [x * x for x in range(5)]
+print(squares_list)  # [0, 1, 4, 9, 16]
 
-**Program 1 — Countdown generator**
+# Lazy — nothing computed until you iterate
+squares_gen = (x * x for x in range(5))
+print(squares_gen)          # <generator object ...>
+print(list(squares_gen))    # [0, 1, 4, 9, 16] — now exhausted
+```
+
+**Note:**
+
+- Calling a generator function does **not** run the body yet — it returns a generator object. Values appear only when you iterate or call `next()`.
+
+
+
+#### 7b. `yield` vs `return`
+
+
+|                    | `return`              | `yield`                                 |
+| ------------------ | --------------------- | --------------------------------------- |
+| Ends the function? | Yes (exits)           | Pauses — resumes on next request        |
+| Gives back         | One value (or `None`) | One value **per pause**; many over time |
+| After call         | Function is done      | Generator object keeps state            |
+
+
+```python
+def one_square(n):
+    return n * n          # function ends here
+
+def squares(n):
+    for x in range(n):
+        yield x * x       # pause; resume for next x
+```
+
+
+
+#### 7c. `next()`, loops, and exhaustion
 
 ```python
 def countdown(n):
@@ -514,8 +560,42 @@ def countdown(n):
         yield n
         n -= 1
 
-for value in countdown(5):
-    print(value, end=" ")  # 5 4 3 2 1
+g = countdown(3)
+print(next(g))  # 3
+print(next(g))  # 2
+print(next(g))  # 1
+# print(next(g))  # StopIteration — generator is exhausted
+
+# Prefer a for-loop in real code (handles StopIteration for you)
+for value in countdown(3):
+    print(value, end=" ")  # 3 2 1
+print()
+
+# One full pass — then empty
+g2 = countdown(2)
+print(list(g2))  # [2, 1]
+print(list(g2))  # []  — already exhausted; create a new generator if you need another pass
+```
+
+**Note:**
+
+- Do not index a generator like a list (`gen[0]` fails). Use `next(gen)` or a `for` loop.
+- After one full `for` / `list(gen)`, the generator is empty. Call the function again to get a fresh generator.
+
+**Try these (2 programs):**
+
+**Program 1 — Countdown with** `next`
+
+```python
+def countdown(n):
+    while n >= 1:
+        yield n
+        n -= 1
+
+g = countdown(5)
+print(next(g), next(g), next(g))  # 5 4 3
+for value in g:
+    print(value, end=" ")  # 2 1 — remaining values only
 print()
 ```
 
@@ -530,6 +610,84 @@ def even_stream(limit):
 
 print(list(even_stream(10)))  # [0, 2, 4, 6, 8, 10]
 ```
+
+
+
+#### 7d. Generator expressions + when to use which
+
+Same idea as a list comprehension, but with **parentheses** — lazy, not a list.
+
+```python
+marks = [45, 78, 92, 33, 88]
+# List — all at once
+passed_list = [m for m in marks if m >= 40]
+# Generator — one at a time
+passed_gen = (m for m in marks if m >= 40)
+
+print(sum(passed_gen))   # 303 — consumes the generator
+# print(sum(passed_gen))  # 0 — already exhausted
+```
+
+**When to use which:**
+
+- Need the full collection, reuse, or indexing → **list** comprehension.
+- One-pass filter/transform (especially large) → **generator** expression or `yield` function.
+
+**Try these (2 programs):**
+
+**Program 1 — GST with a generator expression**
+
+```python
+prices = [40, 25, 60, 15, 120]
+with_gst = (round(p * 1.05, 2) for p in prices)
+for p in with_gst:
+    print(p)
+```
+
+**Program 2 — First failing mark (stop early)**
+
+```python
+marks = [80, 72, 35, 90, 28]
+
+def failing(marks, cutoff=40):
+    for m in marks:
+        if m < cutoff:
+            yield m
+
+first = next(failing(marks), None)  # default None if none fail
+print(first)  # 35 — did not need to scan the whole list into memory first
+```
+
+
+
+#### 7e. Row-stream lab pattern + Done when
+
+In class / homework for S31: yield **dict rows from an in-memory list**. Opening CSV files comes in **Files week** (Stretch on the same lab kit).
+
+```python
+SAMPLE_ROWS = [
+    {"name": "Anita", "city": "Hyderabad"},
+    {"name": "Ravi", "city": "Chennai"},
+    {"name": "Priya", "city": "Bengaluru"},
+]
+
+def iter_rows(rows):
+    for row in rows:
+        yield row
+
+for i, row in enumerate(iter_rows(SAMPLE_ROWS)):
+    print(row)
+    if i >= 1:
+        break  # stop early — remaining rows never forced into a big result list
+```
+
+**Lab Done when (S31):** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/)
+
+- [ ] `iter_rows` uses `yield` (not `return` of a full list)
+- [ ] Printing a few rows works without building an extra result list first
+- [ ] You can explain: call → generator object → `next` / `for` → exhaustion
+
+**Stretch after Files week:** `yield` from `csv.DictReader` on `seed/large_sample.csv`.
 
 ---
 
@@ -676,51 +834,48 @@ def view_salary():
 
 
 
-### Example 8 — Generator vs list
+### Example 8 — Generator vs list (memory idea)
 
 ```python
+def squares_list(n):
+    result = []
+    for x in range(n):
+        result.append(x * x)
+    return result  # whole list exists at once
+
 def squares_gen(n):
     for x in range(n):
-        yield x * x   # one value at a time — memory friendly
+        yield x * x   # one value at a time
 
-for val in squares_gen(5):
-    print(val, end=" ")   # 0 1 4 9 16
+print(squares_list(5))           # [0, 1, 4, 9, 16]
+print(list(squares_gen(5)))      # same values, different delivery
+
+g = squares_gen(3)
+print(next(g))  # 0
+print(next(g))  # 1
+print(next(g))  # 4
 ```
 
----
 
 
-
-## Common Mistakes
-
-
-| Mistake                           | Problem                          | Fix                                  |
-| --------------------------------- | -------------------------------- | ------------------------------------ |
-| Mutable default arg `def f(x=[])` | Same list reused across calls    | Use `None` and create list inside    |
-| Forgetting `return`               | Function returns `None` silently | Always return explicit value         |
-| Using `global` everywhere         | Hard-to-debug shared state       | Pass values as parameters            |
-| Overusing lambda                  | Unreadable code                  | Use `def` for multi-step logic       |
-| Forcing `reduce` for simple sum   | Harder to read than `sum(x)`     | Prefer `sum` / `max` / comprehension |
-| Forgetting `list(map(...))`       | Surprised by a map object        | Convert when you need a list         |
-| Calling generator like list       | `gen[0]` fails                   | Use `next(gen)` or loop              |
-| Decorator without `@wraps`        | Lost function name in debugging  | `from functools import wraps`        |
-| `*args` before required param     | SyntaxError                      | Required params come first           |
-
-
-**Classic mutable default bug:**
+### Example 9 — Generator expression + row stream
 
 ```python
-# BAD
-def add_item(item, bucket=[]):
-    bucket.append(item)
-    return bucket
+names = ["Ravi", "Ananya", "Om", "Priya"]
+long_names = (n for n in names if len(n) >= 5)
+print(list(long_names))  # ['Ananya', 'Priya']
 
-# GOOD
-def add_item(item, bucket=None):
-    if bucket is None:
-        bucket = []
-    bucket.append(item)
-    return bucket
+rows = [
+    {"sku": "TEA", "qty": 2},
+    {"sku": "SAMOSA", "qty": 1},
+]
+
+def read_rows(rows):
+    for row in rows:
+        yield row
+
+for row in read_rows(rows):
+    print(row["sku"], row["qty"])
 ```
 
 ---
@@ -729,49 +884,222 @@ def add_item(item, bucket=None):
 
 ## Practice Exercises
 
-
-
 ### Basic
 
 1. Write `celsius_to_fahrenheit(c)` returning `F = C * 9/5 + 32`.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   def celsius_to_fahrenheit(c):
+       return c * 9 / 5 + 32
+
+   print(celsius_to_fahrenheit(37))  # 98.6
+   ```
+
 2. Write `full_name(first, last, middle="")` returning formatted name.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   def full_name(first, last, middle=""):
+       if middle:
+           return f"{first} {middle} {last}"
+       return f"{first} {last}"
+
+   print(full_name("Priya", "Sharma"))
+   print(full_name("Ravi", "Kumar", "S"))
+   ```
+
 3. Write `sum_all(*numbers)` returning sum of any count of numbers.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   def sum_all(*numbers):
+       return sum(numbers)
+
+   print(sum_all(10, 20, 30))  # 60
+   ```
+
 4. Predict output of scope quiz (trainer provides 3 snippets).
-  **Model answer:**
+   **Model answer:**
    Use LEGB: a name resolves Local → Enclosing → Global → Built-in. Assigning inside a function creates a local unless you use `global`/`nonlocal`. Typical quiz: reading a global works; assigning without `global` raises `UnboundLocalError` if the name is also assigned later in the same function.
+
 5. Use `map` to add 5% GST to `[100, 200, 50]` and `filter` to keep totals ≥ 150.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   prices = [100, 200, 50]
+   with_gst = list(map(lambda p: round(p * 1.05, 2), prices))
+   big = list(filter(lambda p: p >= 150, with_gst))
+   print(with_gst)  # [105.0, 210.0, 52.5]
+   print(big)       # [210.0]
+   ```
 
+6. Write generator `countdown(n)` that yields `n … 1`. Print with a `for` loop.
+   **Model answer:**
+   ```python
+   def countdown(n):
+       while n >= 1:
+           yield n
+           n -= 1
 
+   for v in countdown(4):
+       print(v, end=" ")  # 4 3 2 1
+   print()
+   ```
+
+7. Using `next` twice on `countdown(5)`, what prints? Then finish with `list` on the same generator object.
+   **Model answer:**
+   ```python
+   def countdown(n):
+       while n >= 1:
+           yield n
+           n -= 1
+
+   g = countdown(5)
+   print(next(g), next(g))  # 5 4
+   print(list(g))           # [3, 2, 1] — remaining only
+   ```
 
 ### Intermediate
 
 1. Refactor ATM menu into functions: `show_menu()`, `deposit()`, `withdraw()`.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   balance = 10000.0
+
+   def show_menu():
+       print("1.Deposit 2.Withdraw 3.Balance 4.Exit")
+
+   def deposit(amount):
+       global balance
+       if amount > 0:
+           balance += amount
+
+   def withdraw(amount):
+       global balance
+       if 0 < amount <= balance:
+           balance -= amount
+       else:
+           print("Insufficient funds or invalid amount")
+
+   while True:
+       show_menu()
+       choice = input("Choice: ")
+       if choice == "1":
+           deposit(float(input("Amount: ")))
+       elif choice == "2":
+           withdraw(float(input("Amount: ")))
+       elif choice == "3":
+           print(balance)
+       elif choice == "4":
+           break
+   ```
+
 2. Create `@log_calls` decorator printing function name and arguments.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   from functools import wraps
+
+   def log_calls(func):
+       @wraps(func)
+       def wrapper(*args, **kwargs):
+           print(f"Calling {func.__name__} args={args} kwargs={kwargs}")
+           return func(*args, **kwargs)
+       return wrapper
+
+   @log_calls
+   def greet(name):
+       return f"Hi {name}"
+
+   greet("Ravi")
+   ```
+
 3. Write generator `fibonacci(n)` yielding first `n` Fibonacci numbers.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   def fibonacci(n):
+       a, b = 0, 1
+       for _ in range(n):
+           yield a
+           a, b = b, a + b
+
+   print(list(fibonacci(7)))  # [0, 1, 1, 2, 3, 5, 8]
+   ```
+
 4. Use `functools.reduce` to find the longest name in `["Ravi", "Ananya", "Om"]`.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   from functools import reduce
 
+   names = ["Ravi", "Ananya", "Om"]
+   longest = reduce(lambda a, b: a if len(a) >= len(b) else b, names)
+   print(longest)  # Ananya
+   ```
 
+5. Write a generator expression for squares of even numbers from `0` to `10` (inclusive). Convert to list once to print.
+   **Model answer:**
+   ```python
+   evens_sq = (n * n for n in range(0, 11, 2))
+   print(list(evens_sq))  # [0, 4, 16, 36, 64, 100]
+   ```
+
+6. Implement `iter_rows(rows)` with `yield` over an in-memory list of dicts; print only the first two rows (lab pattern).
+   **Model answer:**
+   ```python
+   rows = [
+       {"name": "Anita", "city": "Hyderabad"},
+       {"name": "Ravi", "city": "Chennai"},
+       {"name": "Priya", "city": "Bengaluru"},
+   ]
+
+   def iter_rows(rows):
+       for row in rows:
+           yield row
+
+   for i, row in enumerate(iter_rows(rows)):
+       print(row)
+       if i >= 1:
+           break
+   ```
 
 ### Interview-style
 
 1. Write decorator that retries a function up to 3 times on exception.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   from functools import wraps
+
+   def retry(times=3):
+       def decorator(func):
+           @wraps(func)
+           def wrapper(*args, **kwargs):
+               last = None
+               for attempt in range(1, times + 1):
+                   try:
+                       return func(*args, **kwargs)
+                   except Exception as e:
+                       last = e
+                       print(f"Attempt {attempt} failed: {e}")
+               raise last
+           return wrapper
+       return decorator
+
+   @retry(3)
+   def flaky():
+       raise ValueError("boom")
+   ```
+
 2. When choose generator over list for 10 million records?
-  **Model answer:**
+   **Model answer:**
    Prefer a generator when you process records one at a time and do not need random access or the full collection in memory. A list of 10 million rows can exhaust RAM; `yield` streams values lazily and keeps peak memory low.
+
 3. `map`/`filter` vs list comprehension — when prefer each?
-  **Model answer:**
+   **Model answer:**
    Prefer a comprehension when the transform/condition is short and readability matters (most campus code). Prefer `map`/`filter` when you already have a named function to reuse, or when matching interview/library style. Always know both.
 
+4. What is generator exhaustion? How do you iterate again?
+   **Model answer:**
+   After one full pass (`for`, `list(gen)`, or enough `next` calls), the generator raises `StopIteration` and yields nothing more. To iterate again, call the generator function (or rebuild the generator expression) to create a **new** generator object.
 
+5. Generator expression vs list comprehension — one concrete difference besides syntax?
+   **Model answer:**
+   List comprehension is eager and reusable; a generator expression is lazy, memory-light, and single-pass. Example: `sum(x*x for x in range(1_000_000))` never builds a million-element list.
 
 ## Mini-Project: Reusable Utility Library
 
@@ -829,7 +1157,7 @@ def add_item(item, bucket=None):
 | Lambda            | Syntax `lambda x: x*2`                 | When **not** to use lambda                    | Sort with `key=`           | Mini map/filter demos            |
 | map/filter/reduce | `map`, `filter`, `functools.reduce`    | Lazy iterators; when comprehension is clearer | GST map + pass filter      | Bill fold with reduce            |
 | Decorators        | `@decorator` syntax                    | Wrapper + closure idea                        | Timing + auth decorators   | Login-gated CLI menu             |
-| Generators (S31+) | `yield`, `next()`                      | Lazy evaluation vs eager list                 | File line reader           | Optional `generators.py` stretch |
+| Generators (S31) | `yield`, `next()`, gen expression `(…)` | Lazy vs eager; exhaustion | Countdown, fibonacci, `iter_rows` | Yield lab + optional `generators.py` |
 
 
 **Label legend:** **Memorize** = recall in interviews · **Understand** = explain in English · **Practise** = daily labs · **Build** = portfolio artefacts
@@ -846,10 +1174,11 @@ def add_item(item, bucket=None):
 
 1. Why are functions the building blocks of clean Python code?
 2. Can a function return multiple values? How?
-3. What happens when you call a generator function?
-4. When would you use `map`/`filter` instead of a list comprehension?
-5. Why might a login decorator be useful in Django views?
-6. How does `@timing_decorator` relate to production monitoring?
+3. What happens when you call a generator function? What is exhaustion?
+4. Generator expression vs list comprehension — when prefer each?
+5. When would you use `map`/`filter` instead of a list comprehension?
+6. Why might a login decorator be useful in Django views?
+7. How does `@timing_decorator` relate to production monitoring?
 
 *No memorized script — push for plain-English answers, then continue to interview Qs below.*
 
@@ -862,7 +1191,10 @@ def add_item(item, bucket=None):
 **A:** A decorator wraps a function to extend its behavior (logging, timing, auth) without modifying the original function body. Syntax `@dec` applies `func = dec(func)`.
 
 **Q3. Generator vs list comprehension?**  
-**A:** List comprehension builds the entire list in memory immediately. A generator produces items lazily on demand, which saves memory for large or infinite sequences.
+**A:** List comprehension builds the entire list in memory immediately and is reusable. A generator produces items lazily on demand, which saves memory for large or infinite sequences, but is exhausted after one full pass.
+
+**Q3b. What happens when you call a generator function?**  
+**A:** The body does not run yet — you get a generator object. Values appear when you iterate (`for`) or call `next()`. After all values are taken, further `next` raises `StopIteration` (exhaustion); call the function again for a fresh generator.
 
 **Q4. What is a lambda function? When not to use it?**  
 **A:** Lambda is an anonymous single-expression function. Avoid it for complex logic, multiple statements, or when readability suffers — use `def` instead.
