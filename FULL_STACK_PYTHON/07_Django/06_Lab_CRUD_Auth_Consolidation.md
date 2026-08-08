@@ -1,6 +1,5 @@
 # Lab Day: Django CRUD + Auth Consolidation
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
 **Phase:** Backend — Django  
 **Prerequisites:** Django modules `01`–`05` started (at least through auth forms)  
 **Goal:** Every learner finishes an **independent**, login-protected CRUD feature they can demo
@@ -14,7 +13,7 @@
 
 - Complete end-to-end Django flow without trainer typing the solution first
 - Fix common auth and form bugs independently
-- Push a working CRUD+auth app with the [standard deliverables bundle](../00_Course_Guide/05_Standard_Project_Deliverables.md)
+- Push a working CRUD+auth app with the [standard deliverables bundle](../Standard_Project_Deliverables.md)
 
 ---
 

@@ -1,7 +1,5 @@
 # Module: Flask Overview — Micro Web Framework & Notes API
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** Lab Deploy Capstone Debug
 **Next module:** APIs JSON Postman DRF
 
@@ -493,17 +491,13 @@ curl http://127.0.0.1:5000/api/notes
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. If your company already uses Django for the main site, why might a team still add a Flask microservice?
 2. Is in-memory storage ever acceptable in production? When?
 3. how is a Flask route similar to a function you call in Excel VBA or SAP script — input URL, output response?
 4. Should Flask replace Django in our course capstone? Why or why not?
 5. What breaks if two users POST notes at the same time with in-memory list? (Intro to concurrency — no deep dive required.)
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is Flask?**  
 **A:** Lightweight Python WSGI web framework for building web apps and APIs with minimal boilerplate.

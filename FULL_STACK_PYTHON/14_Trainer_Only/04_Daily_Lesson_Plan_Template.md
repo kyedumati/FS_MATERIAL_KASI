@@ -2,7 +2,7 @@
 
 **Batch:** _____________ **Week:** ___ **Day:** ___ **Date:** _____________  
 **Calendar S#:** _____ **Module file:** _______________________________________________  
-**Live class:** **1 hour 15 minutes** (see [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md))
+**Live class:** **1 hour 15 minutes** (see [Session Calendar](../Session_Calendar_100.md))
 
 ---
 

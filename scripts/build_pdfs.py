@@ -117,7 +117,8 @@ _NOTE_START = re.compile(r"<p><strong>Note:</strong>", re.IGNORECASE)
 _EG_START = re.compile(r"<p><strong>Eg", re.IGNORECASE)
 _OUTPUT_START = re.compile(r"<p><strong>Output", re.IGNORECASE)
 _CALLOUT_BOUNDARY = re.compile(
-    r"^<h[1-6]>|^<div class=\"callout|^<div class=\"table-wrap",
+    r"^<h[1-6]>|^<div class=\"callout|^<div class=\"table-wrap|^<hr\s*/?>|"
+    r"^<p><strong>(?:Try these|Program\s+\d+)",
     re.IGNORECASE,
 )
 
@@ -153,6 +154,15 @@ def _mark_output_pre(blocks: list[str]) -> list[str]:
     return styled
 
 
+def _is_callout_stop(block: str) -> bool:
+    return bool(
+        _CALLOUT_BOUNDARY.search(block)
+        or _NOTE_START.search(block)
+        or _OUTPUT_START.search(block)
+        or _EG_START.search(block)
+    )
+
+
 def style_callouts(html: str) -> str:
     """Wrap Note, Example, and Output sections in styled callout boxes."""
     blocks = _split_html_blocks(html)
@@ -163,8 +173,19 @@ def style_callouts(html: str) -> str:
         block = blocks[i]
 
         if _NOTE_START.search(block):
-            styled.append(f'<div class="callout callout-note">{block}</div>')
+            chunk = [block]
             i += 1
+            # Pull following list/paragraph body into the yellow box
+            while i < len(blocks):
+                nxt = blocks[i]
+                if _is_callout_stop(nxt):
+                    break
+                if nxt.startswith(("<ul", "<ol", "<p", "<blockquote")):
+                    chunk.append(nxt)
+                    i += 1
+                    continue
+                break
+            styled.append(f'<div class="callout callout-note">{"".join(chunk)}</div>')
             continue
 
         if _OUTPUT_START.search(block):
@@ -182,12 +203,7 @@ def style_callouts(html: str) -> str:
             i += 1
             while i < len(blocks):
                 nxt = blocks[i]
-                if (
-                    _CALLOUT_BOUNDARY.search(nxt)
-                    or _NOTE_START.search(nxt)
-                    or _OUTPUT_START.search(nxt)
-                    or _EG_START.search(nxt)
-                ):
+                if _is_callout_stop(nxt):
                     break
                 chunk.append(nxt)
                 i += 1
@@ -202,7 +218,56 @@ def style_callouts(html: str) -> str:
     return "".join(styled)
 
 
+_PROGRAM_TITLE = re.compile(
+    r"^<p><strong>Program\s+\d+\s*[—\-–:].*?</strong>\s*</p>$",
+    re.IGNORECASE | re.DOTALL,
+)
+_TRY_THESE = re.compile(
+    r"^<p><strong>Try these.*?</strong>\s*</p>$",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def keep_program_blocks(html: str) -> str:
+    """Keep 'Program N' / 'Try these' titles with the following code block."""
+    blocks = _split_html_blocks(html)
+    out: list[str] = []
+    i = 0
+    while i < len(blocks):
+        block = blocks[i]
+        if _PROGRAM_TITLE.match(block.strip()) or _TRY_THESE.match(block.strip()):
+            chunk = [f'<div class="pdf-keep">{block}</div>']
+            i += 1
+            # Pull in following pre / short paragraph + pre
+            while i < len(blocks) and (
+                blocks[i].startswith("<pre")
+                or (
+                    blocks[i].startswith("<p")
+                    and i + 1 < len(blocks)
+                    and blocks[i + 1].startswith("<pre")
+                    and len(blocks[i]) < 400
+                )
+            ):
+                chunk.append(blocks[i])
+                i += 1
+                if chunk[-1].startswith("<pre"):
+                    break
+            out.append(f'<div class="pdf-program">{"".join(chunk)}</div>')
+            continue
+        out.append(block)
+        i += 1
+    return "".join(out)
+
+
 _H1_PATTERN = re.compile(r"^\s*<h1>(.*?)</h1>\s*", re.DOTALL | re.IGNORECASE)
+
+# Leading module meta lines: Phase / Previous / Next / Module / Schedule / …
+_META_P_START = re.compile(
+    r"^<p><strong>(?:Phase|Previous(?: module)?|Next(?: module)?|Module|"
+    r"Schedule|SQL material|Python connectivity|Checklist|Lab kit|"
+    r"Previous|Next)[^<]*</strong>",
+    re.IGNORECASE,
+)
 
 
 def peel_first_h1(html: str) -> tuple[str, str | None]:
@@ -215,8 +280,33 @@ def peel_first_h1(html: str) -> tuple[str, str | None]:
     return html[match.end() :], h1_title
 
 
+def wrap_leading_meta(html: str) -> str:
+    """Group opening Phase/Previous/Next paragraphs into a readable meta card."""
+    blocks = _split_html_blocks(html)
+    if not blocks:
+        return html
+    meta: list[str] = []
+    i = 0
+    while i < len(blocks):
+        block = blocks[i]
+        if block.startswith("<p") and _META_P_START.search(block):
+            meta.append(block)
+            i += 1
+            continue
+        # Allow a bare <hr> between meta and body without keeping it
+        if meta and re.match(r"^<hr\s*/?>$", block, re.IGNORECASE):
+            i += 1
+            break
+        break
+    if not meta:
+        return html
+    rest = "".join(blocks[i:])
+    return f'<div class="pdf-meta">{"".join(meta)}</div>{rest}'
+
+
 def wrap_document(title: str, body_html: str, css: str) -> str:
     body_html, h1_title = peel_first_h1(body_html)
+    body_html = wrap_leading_meta(body_html)
     display_title = h1_title or title
     safe_title = html_module.escape(display_title)
     return f"""<!DOCTYPE html>
@@ -232,7 +322,6 @@ def wrap_document(title: str, body_html: str, css: str) -> str:
   <main class="pdf-body">
 {body_html}
   </main>
-  <footer class="pdf-page-footer">{safe_title}</footer>
 </body>
 </html>"""
 
@@ -281,8 +370,8 @@ def convert_file(
     md_text = md_path.read_text(encoding="utf-8")
     if strip_trainer:
         md_text = strip_trainer_sections(md_text)
-    body_html = style_callouts(
-        wrap_tables(highlight_code_blocks(md_to_html(md_text)))
+    body_html = keep_program_blocks(
+        style_callouts(wrap_tables(highlight_code_blocks(md_to_html(md_text))))
     )
     title = md_path.stem.replace("_", " ")
     document = wrap_document(title, body_html, css)

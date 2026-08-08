@@ -1,7 +1,5 @@
 # Module: JavaScript, DOM, and Forms
 
-**Duration:** See [Session Calendar](../FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Shared topic** (Python FS + Java FS).
 
 **Previous:** [CSS and Responsive](02_CSS_and_Responsive.md)
@@ -616,17 +614,13 @@ previewOrderPayload();
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Can JS connect to MySQL directly from browser? Why not?
 2. How debug wrong fetch URL?
 3. addEventListener like Python event-driven thinking?
 4. Full page reload vs fetch — when each?
 5. What changes when logic moves to React?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is the DOM?**  
 **A:** Browser's tree representation of HTML; JS reads/modifies elements dynamically.

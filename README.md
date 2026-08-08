@@ -15,9 +15,9 @@ Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
 |----------|------|
 | Syllabus map | [COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md](COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md) |
 | Course folder | [FULL_STACK_PYTHON/](FULL_STACK_PYTHON/) |
-| Session calendar | [FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md](FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md) |
-| Slim course guide | [FULL_STACK_PYTHON/00_Course_Guide/](FULL_STACK_PYTHON/00_Course_Guide/) |
-| Trainer ops / sharing | [FULL_STACK_PYTHON/14_Trainer_Only/](FULL_STACK_PYTHON/14_Trainer_Only/) |
+| Session calendar | [FULL_STACK_PYTHON/Session_Calendar_100.md](FULL_STACK_PYTHON/Session_Calendar_100.md) |
+| Toolchain / deliverables / capstone | [Tested_Toolchain.md](FULL_STACK_PYTHON/Tested_Toolchain.md) · [Standard_Project_Deliverables.md](FULL_STACK_PYTHON/Standard_Project_Deliverables.md) · [Capstone_CampusCart_One_Pager.md](FULL_STACK_PYTHON/Capstone_CampusCart_One_Pager.md) |
+| Trainer ops (private) | [FULL_STACK_PYTHON/14_Trainer_Only/](FULL_STACK_PYTHON/14_Trainer_Only/) |
 | Student pack | `./scripts/pack_student_share.sh` → `dist/FULL_STACK_PYTHON_STUDENT/` |
 | Student PDFs | `./scripts/build.sh fullstack` → `PDF/FULL_STACK_PYTHON/` |
 
@@ -77,7 +77,7 @@ Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
 - Teach **only** from `FULL_STACK_PYTHON/` (same files students get).
 - Share: `./scripts/pack_student_share.sh` or `./scripts/build.sh fullstack`.
 - Keep `14_Trainer_Only/` private.
-- SQL depth: Required MySQL labs checklist → `MYSQL/` (planned dependency, not a second Python course).
+- SQL depth: Required MySQL labs are listed in the MySQL bridge module → open `MYSQL/` (planned dependency, not a second Python course).
 
 **For MySQL-only batches**
 - Follow numbered order in `MYSQL/`; use `10_Practice_Exercises.md` for homework.

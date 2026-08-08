@@ -73,11 +73,11 @@ If `mysqlclient` fails: `pip install PyMySQL` and add `import PyMySQL; PyMySQL.i
 | Vite CORS to Django | `django-cors-headers` + `CORS_ALLOWED_ORIGINS` |
 | WhiteNoise 404 static | `collectstatic` + middleware order after SecurityMiddleware |
 
-## Trainer day-0 checklist
+## Day-0 checklist
 
-- [ ] Every learner pastes version outputs in a shared sheet  
-- [ ] One sample Django+MySQL project migrates on a learner laptop  
+- [ ] Paste version outputs (`python3`, `git`, `mysql`, `node`) in the shared sheet  
+- [ ] One sample Django+MySQL project migrates on your laptop  
 - [ ] One Vite app starts with `npm run dev`  
 - [ ] GitHub account + SSH/HTTPS push works  
 
-Lab assets assume this toolchain: [../15_Lab_Assets/](../15_Lab_Assets/).
+Lab assets assume this toolchain: [`15_Lab_Assets/`](15_Lab_Assets/).

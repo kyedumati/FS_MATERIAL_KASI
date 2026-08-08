@@ -1,7 +1,5 @@
 # Module: Security and Deployment
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Theme apps:** Blog · Task Manager · Booking · Student Portal · CampusCart E-commerce
 
 **Previous module:** Forms Sessions Auth
@@ -551,17 +549,13 @@ Learners complete `docs/DEPLOY_CHECKLIST.md`:
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. If Django auto-escapes templates, can XSS still happen? How?
 2. Why is committing `.env` worse than committing a wrong password in chat?
 3. Free tier PaaS for India students — cost vs learning trade-offs?
 4. Should CampusCart handle payments on first deploy? What goes first?
 5. who owns security in a team — developer, DevOps, or both?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is CSRF and how does Django prevent it?**  
 **A:** Forged cross-site POST using victim session; Django CSRF middleware validates token in forms/ajax.

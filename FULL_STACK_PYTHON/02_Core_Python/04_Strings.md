@@ -1,6 +1,6 @@
 # Module: Strings
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) — live classes are **1h 15m** each (+ homework). | **Phase:** Core Python  
+**Phase:** Core Python  
 
 **Previous module:** Flow Control
 **Next module:** Lists
@@ -179,7 +179,6 @@ print(newline)
 - Wrong: Comparing or adding strings to numbers (`"42" + 1`); using `is` for string *content* (`a is "hi"`).
 - Prefer: Convert (`int("42") + 1`); use `==` for value compare.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Multi-line portal banner**
@@ -222,7 +221,6 @@ username, domain = email.split("@")
 - Wrong: Indexing past the end (`s[100]` on a short string); expecting `s[0:3]` to be 4 characters; confusing negative-step slices like `s[::-1]`.
 - Prefer: Check `len(s)` first; remember stop is exclusive (3 chars); draw an index diagram for reverse slices.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Split email at @**
@@ -256,7 +254,6 @@ print(id(status))      # different id than before
 **Note:**
 - Wrong: Calling `s.upper()` and expecting `s` to change (`print(s)` still old).
 - Prefer: Assign the result: `s = s.upper()`.
-
 
 **Try these (2 programs):**
 
@@ -301,7 +298,6 @@ else:
 - Wrong: Skipping `.strip()` on input — `" admin "` fails a login compare.
 - Prefer: `.strip()` (and usually `.lower()`) on user-entered text.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Normalize login email**
@@ -344,7 +340,6 @@ print(f"Roll {roll}: {name} — Python {py}")
 **Note:**
 - Wrong: Splitting with the wrong delimiter (`"a,b,c".split(", ")` vs `split(",")`).
 - Prefer: Match the exact separator in the data.
-
 
 **Try these (2 programs):**
 
@@ -733,17 +728,13 @@ Average: 85.00
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why might HR store employee names as strings even if name looks numeric?
 2. Is `"admin@company.com" == "Admin@company.com"` True? Should login be case-sensitive?
 3. When is splitting better than slicing for parsing?
 4. WhatsApp message vs Python string — both text; what extra does Python string give?
 5. GDPR/privacy: why mask phone numbers in logs?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Is Python string mutable?**  
 **A:** No. str is immutable; methods like replace return new strings; assignment rebinds variable name.

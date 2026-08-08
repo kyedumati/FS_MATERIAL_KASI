@@ -22,6 +22,6 @@ Not owned by `FULL_STACK_PYTHON/`.
 
 **Python FS schedule:** Week 18 / S86–90 — details in [REACT/README.md](REACT/README.md)
 
-**Calendar:** [`FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md`](../FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md)
+**Calendar:** [`FULL_STACK_PYTHON/Session_Calendar_100.md`](../FULL_STACK_PYTHON/Session_Calendar_100.md)
 
 **Sibling shared topic:** [`MYSQL/`](../MYSQL/)

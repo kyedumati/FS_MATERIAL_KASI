@@ -1,7 +1,5 @@
 # Module: CSS and Responsive Design
 
-**Duration:** See [Session Calendar](../FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Shared topic** (Python FS + Java FS).
 
 **Previous:** [HTML](01_HTML.md)
@@ -597,17 +595,13 @@ Style with Flexbox header, flex-wrap card grid, responsive nav column→row at 7
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why separate CSS from HTML?
 2. Mobile-first vs desktop-first for Indian users?
 3. When is inline CSS acceptable? (email templates — rare)
 4. How will React handle these styles?
 5. CSS vs Bootstrap — when build custom?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. CSS and HTML relationship?**  
 **A:** HTML structure; CSS visual presentation — layout, colors, typography.

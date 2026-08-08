@@ -1,7 +1,5 @@
 # Module: Forms, Sessions, and Authentication
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Theme apps:** Blog · Task Manager · Booking · Student Portal · CampusCart E-commerce
 
 **Previous module:** Models ORM Admin
@@ -567,17 +565,13 @@ def staff_report(request):
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why validate on server if JavaScript validates in browser?
 2. Should logout be GET or POST? Why do some sites use POST logout?
 3. Sessions stored where — client, server, or both?
 4. How Student Portal might use roles (student vs faculty)?
 5. compare Django auth to JWT APIs in React apps.
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Form vs ModelForm?**  
 **A:** Form is generic with manual fields; ModelForm auto-builds from model metadata for create/update views.

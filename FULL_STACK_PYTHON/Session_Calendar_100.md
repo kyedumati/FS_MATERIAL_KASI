@@ -1,13 +1,12 @@
-# Session Calendar (Authority) — 20 Weeks × 100 Live Sessions
+# Session Calendar — 20 Weeks × 100 Live Sessions
 
-**This file is the schedule source of truth.**  
-Module “Duration” lines and classroom pacing must follow it — not the other way around.
+**Schedule source of truth.** Teach and share the same modules listed here. Classroom pacing follows this calendar.
 
 | Setting | Value |
 |---------|--------|
 | Live class | **1 hour 15 minutes** |
 | Days | Mon–Fri (5 sessions / week) |
-| Duration | **20 weeks** |
+| Length | **20 weeks** |
 | Total live sessions | **100** |
 | Live hours | 100 × 1.25h = **125 hours** |
 | Homework | ~45–90 min after most sessions |
@@ -16,11 +15,11 @@ Module “Duration” lines and classroom pacing must follow it — not the othe
 
 **Rule:** One live session = **one primary focus** (one demo + one mini-lab). Do not schedule two full modules in one 75-minute class.
 
-**Engagement rule:** Start from a lab ticket (`FULL_STACK_PYTHON/15_Lab_Assets/`, or `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for What/Why as needed.
+**Engagement rule:** Start from a lab ticket (`15_Lab_Assets/`, or `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for What/Why as needed.
 
-**Biweekly Assessment:** After every even week (Weeks 2, 4, … 20), assign the matching paper from [`16_Assessments/`](../16_Assessments/README.md) (BW01–BW10) as homework or Friday wrap-up. Do **not** embed assessment sections in modules — Interview Q&A stays in modules; graded papers live only under `16_Assessments/`.
+**Biweekly Assessment:** After every even week (Weeks 2, 4, … 20), assign the matching paper from [`16_Assessments/`](16_Assessments/README.md) (BW01–BW10) as homework or Friday wrap-up. Graded papers live only under `16_Assessments/` — not inside modules.
 
-**Shared topics (outside this folder):** `MYSQL/` · `FRONTEND/` (includes `FRONTEND/REACT/`) — scheduled here, authored at repo root.
+**Shared topics (repo root):** `MYSQL/` · `FRONTEND/` (includes `FRONTEND/REACT/`) — scheduled here, authored outside this folder.
 
 **Default 75-minute shape** (do not paste into every module):
 
@@ -30,8 +29,6 @@ Module “Duration” lines and classroom pacing must follow it — not the othe
 | 25 | Type-along demo |
 | 35 | Lab (starter/broken) |
 | 10 | Exit + homework |
-
-Printable blank (trainers): [`14_Trainer_Only/04_Daily_Lesson_Plan_Template.md`](../14_Trainer_Only/04_Daily_Lesson_Plan_Template.md).
 
 ---
 
@@ -151,7 +148,7 @@ Printable blank (trainers): [`14_Trainer_Only/04_Daily_Lesson_Plan_Template.md`]
 | 77 | 16 | **Lab 06** demos | same | Deliverables bundle |
 | 78 | 16 | **Lab 07** deploy debug | `07_Django/07_…` | check --deploy green |
 | 79 | 16 | **Lab 07** PaaS attempt | same | README env table |
-| 80 | 16 | Capstone M0–M1 shell | Capstone guide | Auth shell push |
+| 80 | 16 | Capstone M0–M1 shell | `Capstone_CampusCart_One_Pager.md` | Auth shell push |
 
 ## Phase F — APIs, React, Quality, Capstone (Sessions 81–100)
 
@@ -169,9 +166,9 @@ Printable blank (trainers): [`14_Trainer_Only/04_Daily_Lesson_Plan_Template.md`]
 | 90 | 18 | Fetch Django API + CORS | same | Product list UI |
 | 91 | 19 | Debugging + logging habits | `11_Testing_Clean_Code/01_…` | Debugger lab |
 | 92 | 19 | unittest/pytest basics | same | 3 tests |
-| 93 | 19 | Capstone M2–M3 features | Capstone | Orders flow |
-| 94 | 19 | Capstone polish + a11y pass | Checklists | Screenshots |
-| 95 | 19 | Deploy capstone / Lab 07 catch-up | Capstone | Live or staging URL |
+| 93 | 19 | Capstone M2–M3 features | Capstone one-pager | Orders flow |
+| 94 | 19 | Capstone polish + a11y pass | Deliverables + one-pager | Screenshots |
+| 95 | 19 | Deploy capstone / Lab 07 catch-up | Capstone one-pager | Live or staging URL |
 | 96 | 20 | Resume + LinkedIn + GitHub pins | `13_Placement/01_…` | Resume v1 |
 | 97 | 20 | Mock interview (Python+SQL) | same | Feedback notes |
 | 98 | 20 | Mock interview (Django+projects) | same | STAR stories |
@@ -184,6 +181,6 @@ Printable blank (trainers): [`14_Trainer_Only/04_Daily_Lesson_Plan_Template.md`]
 
 ---
 
-## Trainer rule
+## If the batch falls behind
 
-If you fall behind, **slip React/DRF sessions**, not Django Lab 06/07 or SQL joins. Those are placement-critical.
+**Slip React/DRF sessions**, not Django Lab 06/07 or SQL joins. Those are placement-critical.

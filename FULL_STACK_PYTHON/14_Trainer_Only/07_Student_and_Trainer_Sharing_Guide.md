@@ -15,9 +15,9 @@ Teach the **Python program** from `FULL_STACK_PYTHON/` and open shared topics fr
 | **Student (notes + homework)** | Same module file / PDF built from it | Legacy Python PDF set |
 | **Trainer (private)** | Plus `14_Trainer_Only/` | Never share answer keys |
 
-**MySQL depth** stays in `MYSQL/` because the Full Stack course already points there via the [Required MySQL labs checklist](../00_Course_Guide/04_Required_MySQL_Labs_Checklist.md). That is one planned dependency, not a second Python curriculum. See also [09_External_Dependencies.md](09_External_Dependencies.md).
+**MySQL depth** stays in `MYSQL/` because the Full Stack MySQL bridge module lists the **required labs** there. That is one planned dependency, not a second Python curriculum. See also [09_External_Dependencies.md](09_External_Dependencies.md).
 
-**Schedule authority:** [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md) — **20 weeks / 100 sessions** (1h 15m each).
+**Schedule authority:** [Session_Calendar_100.md](../Session_Calendar_100.md) — **20 weeks / 100 sessions** (1h 15m each).
 
 ---
 
@@ -58,7 +58,7 @@ Share **those** PDFs — not any old Python-only PDF folder.
 - Read outcomes + beginner explanation.  
 - Type the code.  
 - Basic → Intermediate → Interview exercises.  
-- Mini-project with [standard deliverables](../00_Course_Guide/05_Standard_Project_Deliverables.md).  
+- Mini-project with [standard deliverables](../Standard_Project_Deliverables.md).  
 - GitHub push.  
 
 ## What trainers use beyond the shared pack

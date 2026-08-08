@@ -1,6 +1,6 @@
 # Module: React Hooks, Routing, API Integration & Deploy
 
-**Duration:** See [Session Calendar](../../FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md) — live classes are **1h 15m** each (+ homework). | **Phase:** Frontend — React Advanced Lite  
+**Phase:** Frontend — React Advanced Lite  
 
 **Shared topic** (Python FS + Java FS).
 
@@ -528,17 +528,13 @@ Deploy `dist/` to Netlify; set production `VITE_API_URL` to hosted Django URL in
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why does Postman work when browser fetch fails (same API)?
 2. Should API URL be hardcoded in 10 components? Better pattern?
 3. how is React Router like tabs in Excel but with URLs?
 4. What changes when app goes from HTTP localhost to HTTPS production?
 5. Is testing frontend worth it early in your career? What to test first?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is useEffect?**  
 **A:** React hook for side effects after render — data fetching, subscriptions, DOM sync — with optional dependency control.

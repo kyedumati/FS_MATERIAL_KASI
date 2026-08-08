@@ -14,12 +14,14 @@ PDFs are written to:
 
 ```
 PDF/FULL_STACK_PYTHON/
-├── 00_Course_Guide/
+├── Session_Calendar_100.pdf
+├── Capstone_CampusCart_One_Pager.pdf
+├── Standard_Project_Deliverables.pdf
+├── Tested_Toolchain.pdf
 ├── 01_Foundations/
 ├── 02_Core_Python/
 └── ...
 ```
-
 (`14_Trainer_Only` is excluded automatically.)
 
 Student markdown pack (no PDFs required):

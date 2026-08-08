@@ -1,7 +1,5 @@
 # Module: Models, ORM, and Django Admin
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Theme apps:** Blog · Task Manager · Booking · Student Portal · CampusCart E-commerce
 
 **Previous module:** URLs Views Templates Static
@@ -516,17 +514,13 @@ class Product(models.Model):
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. If ORM generates SQL anyway, why not write SQL directly?
 2. Who uses Django admin in a real company — developers or operations staff?
 3. CASCADE delete: safe for financial records? Alternatives?
 4. How would CampusCart link `Order` to `Product` — FK or M2M?
 5. compare Django models to JPA entities / Hibernate.
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is Django ORM?**  
 **A:** API mapping Python classes to SQL tables; CRUD via QuerySets without writing most SQL manually.

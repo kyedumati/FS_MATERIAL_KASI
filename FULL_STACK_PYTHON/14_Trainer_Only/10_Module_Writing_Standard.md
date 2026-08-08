@@ -10,7 +10,7 @@
 
 | # | Section | Notes |
 |---|---------|--------|
-| 1 | Title + Duration (Session Calendar) + Previous/Next | No Audience / Program spam |
+| 1 | Title + Phase + Previous/Next | No Audience / Program / Duration — timing lives in Session Calendar only |
 | 2 | Learning Outcomes | What they can do after the module |
 | 3 | **Classroom Ticket** | Lab kit first |
 | 4 | Start with **What / Why** (no “Beginner-Friendly” label) | What + Why |
@@ -20,7 +20,7 @@
 | 8 | Mini-Project | Lab kit link + What to build + Stretch + **Done when**. This **is** the homework |
 | 9 | **Revision Map — Memorize / Understand / Practise / Build** | Near the end, not the open |
 | 10 | Assignment | **Only if** there is no Mini-Project |
-| 11 | **Interview & Discussion Q&A** | Discuss in class + interview answers |
+| 11 | **Interview & Discussion Q&A** | Shared with students (Q + A). Hand out after concepts + mini-project |
 
 **Do not add** a standalone `## Common Mistakes` section. Put traps next to the sub-topic as **Note:** bullets (see below).
 
@@ -28,7 +28,7 @@
 
 **Do not add:** Discussion Questions (separate), Trainer Tips, Trainer Demo Plan, or Real-World Use Cases tables.
 
-**Delivery timing** lives once in the [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) and [Daily Lesson Plan Template](04_Daily_Lesson_Plan_Template.md) — not repeated in every module.
+**Delivery timing** lives once in the [Session Calendar](../Session_Calendar_100.md) and [Daily Lesson Plan Template](04_Daily_Lesson_Plan_Template.md) — not repeated in every module.
 
 ---
 
@@ -106,13 +106,37 @@ Mini-Project **is** the homework when present — do not also add a separate Ass
 
 ---
 
+## Interview & Discussion Q&A shape
+
+One shared section (no separate Discuss / Interview-answers headings):
+
+```markdown
+## Interview & Discussion Q&A
+
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
+
+1. Open discussion prompt…
+2. …
+
+**Q1. …?**  
+**A:** …
+
+**Q2. …?**  
+**A:** …
+```
+
+- Hand out **after** teaching concepts + mini-project.
+- **Q + A stay in the student pack** (not stripped). Practice `**Model answer:**` still strips.
+
+---
+
 ## Do **not** repeat on every module
 
 | Noise | Put it here instead |
 |-------|---------------------|
 | Audience labels (fresher / switcher / beginner) | Avoid in modules; one unified learner voice |
 | Full Prerequisites list | Session Calendar; Previous/Next in header |
-| Absolute week numbers / old hour clocks | [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md) |
+| Absolute week numbers / old hour clocks | [Session_Calendar_100.md](../Session_Calendar_100.md) |
 | Memorize table at the top | Revision Map before Assessment |
 | Trainer Demo Plan | Calendar + Daily Lesson Plan Template |
 
@@ -157,6 +181,7 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 - [ ] Mini-Project: lab kit + Done when (+ Stretch)  
 - [ ] Revision Map near the end  
 - [ ] No Biweekly/Assessment MCQ block in the module (use `16_Assessments/`)  
-- [ ] No Demo Plan / Tips / Discussion / Real-World appendix  
+- [ ] Interview & Discussion Q&A: shared Q + A (not stripped); hand out after concepts + mini-project  
+- [ ] No Demo Plan / Tips / separate Discussion appendix / Real-World appendix  
 - [ ] No fresher / switcher / beginner audience splits in learner text  
-- [ ] Student pack strips interview answers / `solution/` / `*_KEY.md`
+- [ ] Student pack strips Practice `**Model answer:**` / `solution/` / `*_KEY.md` (not Interview Q&A)

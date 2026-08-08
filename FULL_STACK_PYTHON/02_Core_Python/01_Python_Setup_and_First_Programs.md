@@ -1,7 +1,5 @@
 # Module: Python Setup and First Programs
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** Computer and Programming Foundations
 **Next module:** Variables Datatypes Operators IO
 
@@ -174,7 +172,6 @@ python3 env_check.py
 - Wrong: VS Code running a different interpreter than the one you installed.
 - Prefer: Pick the correct Interpreter from the status bar.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Print version and ready line**
@@ -257,7 +254,6 @@ python3 hello.py
 **Note:**
 - Wrong: Running without saving (tab still shows a dot) — you see old output; or `print(Hello)` without quotes.
 - Prefer: Save (`Ctrl+S` / `Cmd+S`) before run; strings need `'...'` or `"..."`.
-
 
 **Try these (2 programs):**
 
@@ -348,7 +344,6 @@ Check keywords in REPL:
 - Wrong: Using a keyword as a variable name (`if = 10`) → `SyntaxError`.
 - Prefer: Rename (`is_valid`, `if_flag`).
 
-
 **Try these (2 programs):**
 
 **Program 1 — Count Python keywords**
@@ -392,7 +387,6 @@ employee id = "E1"       # SyntaxError — space not allowed
 **Note:**
 - Wrong: CamelCase everywhere for variables (`FullName`) — works but un-Pythonic.
 - Prefer: `snake_case` for variables and functions.
-
 
 **Try these (2 programs):**
 
@@ -470,7 +464,6 @@ print("Module: Setup — no amounts yet")
 **Note:**
 - Wrong: Running a script from the wrong folder → `FileNotFoundError`.
 - Prefer: `cd` to the folder that contains the script, or use a full path.
-
 
 **Try these (2 programs):**
 
@@ -639,17 +632,13 @@ print("Pay at counter")
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why did Python become popular for beginners but also for companies like Instagram?
 2. If indentation replaces braces, what could go wrong when copy-pasting code from the web?
 3. what feels easier in Python compared to anything you tried before?
 4. Should every `.py` file start with `import` statements? When is bare `print` enough?
 5. How is selecting "Python interpreter" in VS Code similar to choosing which translator reads your book?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is Python? What is it used for?**  
 **A:** High-level, interpreted language known for readability; used in web (Django/Flask), automation, data science, scripting, and APIs.

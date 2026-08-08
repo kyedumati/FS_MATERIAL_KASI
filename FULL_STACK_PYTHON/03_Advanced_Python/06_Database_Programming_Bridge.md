@@ -2,8 +2,6 @@
 
 **Phase:** Advanced Python
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** MySQL for Full Stack Developers
 **Next module:** [HTML (shared FRONTEND)](../../FRONTEND/01_HTML.md)
 
@@ -673,17 +671,13 @@ def list_students():
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why not store all app data in JSON files on server?
 2. What happens if two users update same row simultaneously?
 3. Why Django discourages raw SQL for most app code?
 4. Where should DB passwords live in deployed apps?
 5. Difference between connector and ORM?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Why connect Python to MySQL?**  
 **A:** Web and enterprise apps need centralized, concurrent, relational storage with SQL querying; Python handles app logic, MySQL stores durable structured data.

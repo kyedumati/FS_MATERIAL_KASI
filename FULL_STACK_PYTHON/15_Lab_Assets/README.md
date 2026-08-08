@@ -65,4 +65,4 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 
 ## Map to modules
 
-Each teaching module has a **Classroom Ticket** section linking here. Session order stays in [11_Session_Calendar_100.md](../00_Course_Guide/11_Session_Calendar_100.md).
+Each teaching module has a **Classroom Ticket** section linking here. Session order stays in [Session_Calendar_100.md](../Session_Calendar_100.md).

@@ -1,6 +1,5 @@
 # Module: AI Integration Lite — APIs, ML Demo & Simple UI Patterns
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
 **Status:** **Optional enrichment.** Do this only after you have: (1) a deployed or Lab-07-verified Django project, (2) Required MySQL labs comfortable for CRUD+JOIN, and (3) a GitHub portfolio with standard deliverables.  
 **Previous module:** Testing, Debugging & Clean Code *(or Placement if AI is deferred)*  
 **Next module:** Career, Resume & Interview Prep
@@ -430,17 +429,13 @@ Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analy
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Should every app add AI because it is trending?
 2. What user consent might you need before sending reviews to cloud AI?
 3. how is calling ML API like using payment gateway SDK?
 4. Why is toy sentiment model still useful in training if not production accurate?
 5. How would you explain your mini-project in 30 seconds to interviewer?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Have you worked with AI/ML in projects?**  
 **A:** Integrated sentiment analysis via Flask API using scikit-learn model and React UI; understand calling external model APIs with env-based keys.

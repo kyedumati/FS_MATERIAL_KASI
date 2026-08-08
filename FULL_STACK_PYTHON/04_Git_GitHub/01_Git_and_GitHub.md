@@ -2,8 +2,6 @@
 
 **Phase:** Tools & Portfolio
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) — live classes are **1h 15m** each (+ homework).
-
 **Previous module:** File Handling and Logging
 **Next module:** MySQL for Full Stack Developers
 
@@ -543,17 +541,13 @@ git commit -m "Resolve README merge conflict"
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why should secrets never be committed even to private repos?
 2. How does Git help when your code "was working yesterday"?
 3. What will a TCS/Infosys interviewer infer from empty GitHub?
 4. Fork vs clone — when use each?
 5. How often should you commit on a solo learning project?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is Git?**  
 **A:** Distributed version control system tracking file changes over time with commits, branches, and merges.

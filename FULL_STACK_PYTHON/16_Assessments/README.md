@@ -2,7 +2,7 @@
 
 **Purpose:** One graded check every **2 weeks** covering topics taught in that window — instead of an Assessment section inside every module.
 
-**Source of truth:** this folder + [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md).  
+**Source of truth:** this folder + [Session Calendar](../Session_Calendar_100.md).  
 Trainers assign papers from here; modules do **not** contain Biweekly Assessment sections.
 
 **How trainers run it**

@@ -1,8 +1,6 @@
 # Tuples and Sets in Python 3
 
 **Module:** Core Python · Collections  
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** Lists
 **Next module:** Dictionaries
 
@@ -93,7 +91,6 @@ print(employee[1:3])        # ('Ananya Sharma', 'Engineering')
 - Wrong: Writing `(42)` and thinking it is a 1-tuple — it is just an int.
 - Prefer: Always use a trailing comma for a 1-tuple: `(42,)`.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Employee tuple by index**
@@ -162,7 +159,6 @@ print(a, b)                 # 20 10
 **Note:**
 - Wrong: Unpacking the wrong number of variables → `ValueError: too many/few values`.
 - Prefer: Match variable count to tuple length.
-
 
 **Try these (2 programs):**
 
@@ -285,7 +281,6 @@ print("Java" in skills)         # False
 - Wrong: Using `{}` for an empty set (that creates an empty **dict**); putting lists inside sets (`TypeError: unhashable`); expecting a fixed set order.
 - Prefer: `set()` for empty; use a tuple (or frozenset) instead of a list; use a list when order matters.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Unique IDs with set**
@@ -362,7 +357,6 @@ print(cart_categories)
 - Wrong: `remove` on a missing set item → `KeyError`.
 - Prefer: Use `discard` when the item might be absent.
 
-
 **Try these (2 programs):**
 
 **Program 1 — add and discard**
@@ -400,7 +394,6 @@ print(unique_emails)
 **Note:**
 - Wrong: Treating `set([1, 2, 2])` as a sorted unique list — a set is unordered.
 - Prefer: `sorted(set(...))` when you need sorted unique output.
-
 
 **Try these (2 programs):**
 
@@ -626,17 +619,13 @@ Clean list: ['101', '102', '103', '104']
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. If tuples are immutable, why can a tuple containing a list be "changed"? (Mutable element inside — discuss carefully.)
 2. When would you store employee data as tuple vs dict vs list of lists?
 3. Why are sets unordered? Does it matter for "unique product tags"?
 4. Real apps: where might you use set intersection for recommendations ("customers who bought X also bought Y")?
 5. Is `bool` a subclass of `int` affecting `(True, False)` as tuple? (Optional deep dive.)
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 1. **List vs tuple?**  
    **A:** List mutable, tuple immutable; tuple slightly faster, can be dict key if all elements hashable.

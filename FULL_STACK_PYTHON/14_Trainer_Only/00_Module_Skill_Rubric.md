@@ -6,7 +6,7 @@ Use on exit tickets, labs, and mini-projects.
 |-------|----------|-------------|--------------------|
 | **Not started** | No runnable attempt | Cannot describe topic | Missing repo |
 | **Guided** | Completes with trainer/peer help | Repeats phrases from notes | Incomplete deliverables |
-| **Independent** | Completes from checklist/notes alone | Explains in own words | Full [standard bundle](../00_Course_Guide/05_Standard_Project_Deliverables.md) |
+| **Independent** | Completes from checklist/notes alone | Explains in own words | Full [standard bundle](../Standard_Project_Deliverables.md) |
 | **Interview-ready** | Handles a small twist/bug | Ties to real app + answers follow-ups | Demo video + clean README |
 
 ## Dimension weights (weekly quiz day)

@@ -1,8 +1,6 @@
 # Data Structures Overview — Lists, Tuples, Sets, Dicts
 
 **Module:** Core Python · Collections capstone  
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** Dictionaries
 **Next module:** Functions Decorators Generators
 
@@ -161,7 +159,6 @@ API_VERSION = ("v2",)
 - Wrong: Using a list for many `in` checks (O(n) each time); a dict when an order-only list suffices; a tuple for data you must update.
 - Prefer: Set for membership; a simple list when you only need order; list or dict when data must change.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Banned users as a set**
@@ -207,7 +204,6 @@ go_back()                             # Back from: products → Now at: home
 **Note:**
 - Wrong: Stack pop from the front — wrong end; not LIFO.
 - Prefer: `pop()` from the end.
-
 
 **Try these (2 programs):**
 
@@ -271,7 +267,6 @@ fast_queue.popleft()                  # O(1) — good for interviews to name
 - Wrong: Queue pop from the end — that is LIFO, not FIFO.
 - Prefer: `pop(0)` (or `deque.popleft()`).
 
-
 **Try these (2 programs):**
 
 **Program 1 — Ticket queue with list**
@@ -334,7 +329,6 @@ for i in range(len(marks)):
 **Note:**
 - Wrong: Ignoring nested-loop cost (hidden O(n²)); memorizing Big-O with no job context.
 - Prefer: Know your loop depth; tie complexity to cart, lookup, and dedupe examples in interviews.
-
 
 **Try these (2 programs):**
 
@@ -662,17 +656,13 @@ Learners extend `choose_structure` with 5 custom scenarios from their domain (HR
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Django returns a QuerySet — is it a list? (Lazy; converts to list when needed — bridge to ORM.)
 2. JSON from React frontend — which Python type on arrival? (dict / list via `json.loads`.)
 3. When would you convert list → set → list deliberately?
 4. Is O(1) always faster than O(n) for tiny n? (Constant overhead — intuition only.)
 5. Real product: where would you use a queue in an e-commerce site? (Order processing, email jobs.)
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 1. **Difference list vs tuple?**  
    **A:** Mutability; tuple hashable if elements hashable.

@@ -1,8 +1,10 @@
 # Assessment & Practice Answer Keys (Trainer Only)
 
-Teaching modules contain `**Answer:**` / `**Model answer:**` under **Practice Exercises** and `### Interview answers` in the **teaching copy** (`FULL_STACK_PYTHON/`, `FRONTEND/`) for live discussion.
+Teaching modules contain `**Answer:**` / `**Model answer:**` under **Practice Exercises** in the **teaching copy** (`FULL_STACK_PYTHON/`, `FRONTEND/`) for live drills.
 
-The **student pack** strips those automatically via `scripts/strip_trainer_sections.py`. Discuss-in-class questions and Practice **prompts** remain; model solutions do not ship to students.
+**Interview & Discussion Q&A** (questions **and** model answers) is **shared** with students — material is handed out after concepts and the mini-project, so keys in that section stay in the student pack.
+
+The **student pack** strips Practice `**Model answer:**` blocks automatically via `scripts/strip_trainer_sections.py`. Practice **prompts** remain; Practice model solutions do not ship to students.
 
 ## Graded tests (biweekly)
 
@@ -19,6 +21,6 @@ rg -n "\*\*(Answer|Model answer|Model):\*\*" FULL_STACK_PYTHON/02_Core_Python/03
   > FULL_STACK_PYTHON/14_Trainer_Only/keys/flow_control_answers.txt
 ```
 
-Student pack also strips `### Interview answers` and prose/code that follows `**Model answer:**`.
+Student pack strips prose/code that follows `**Model answer:**` under Practice Exercises. It does **not** strip Interview & Discussion Q&A answers.
 
 Create `keys/` as needed per batch; do not commit real exam papers with cohort names if your policy forbids it.

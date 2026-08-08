@@ -1,6 +1,5 @@
 # Lab Day: Deploy + Capstone Debug
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
 **Phase:** Backend — Django  
 **Prerequisites:** Django `05_Security_and_Deployment.md`; a CRUD+auth app from Lab `06` or CampusCart MVP slice  
 **Goal:** Production-like config verified + at least one **live or staging URL** (or documented blocked-by-platform note with local `check --deploy` green)
@@ -32,7 +31,6 @@ Finish the ticket in class; compare with the official solution only when your tr
 ### Done when
 
 All boxes below must be checked before you submit the deploy tag.
-
 
 - [ ] `.env` gitignored; `.env.example` committed
 - [ ] `load_dotenv(BASE_DIR / ".env")` present in settings

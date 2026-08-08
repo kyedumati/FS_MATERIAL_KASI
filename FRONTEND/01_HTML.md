@@ -1,7 +1,5 @@
 # Module: HTML Fundamentals for Full Stack Developers
 
-**Duration:** See [Session Calendar](../FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Shared topic** (Python FS + Java FS).
 
 **Previous (Python FS):** [Database Programming Bridge](../FULL_STACK_PYTHON/03_Advanced_Python/06_Database_Programming_Bridge.md)
@@ -611,17 +609,13 @@ Semantic structure; all images have alt; all inputs labeled; internal nav works;
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Is HTML a programming language? Why or why not?
 2. Why shouldn't login forms use GET?
 3. How do semantic tags help screen reader users?
 4. HTML like a Word document outline?
 5. What will React change about how we write HTML?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is HTML?**  
 **A:** HyperText Markup Language — standard for structuring web content in browsers.

@@ -1,7 +1,5 @@
 # Module: Django Introduction and Setup
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Theme apps this phase:** Blog · Task Manager · Booking · Student Portal · CampusCart E-commerce
 
 **Previous module:** [JavaScript DOM Forms](../../FRONTEND/03_JavaScript_DOM_Forms.md)  
@@ -444,17 +442,13 @@ Build project **`student_portal`** with apps `core` (home placeholder) and `acco
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Is Django a programming language? How is it different from Python?
 2. Why might a startup choose Django over building everything from scratch in plain Python?
 3. Coming from Java: what is the Spring Boot equivalent idea in Django?
 4. Should every mini-feature be a separate app, or one big app? Where do you draw the line?
 5. Why does Django create admin/auth tables before we write any model?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is Django?**  
 **A:** High-level Python web framework with ORM, admin, auth, templating, and security helpers for building database-driven web apps quickly.

@@ -1,7 +1,5 @@
 # Module: Testing, Debugging & Clean Code
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** [React Hooks / API Deploy](../../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md)  
 **Next module:** Career Resume Interview
 
@@ -473,17 +471,13 @@ Set breakpoint before return; inspect `total`, `len(marks)`; fix to `total / len
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. When is print debugging acceptable on job?
 2. Can you have too many tests? What is pragmatic for a course project?
 3. how is code review similar to audit checklist in finance?
 4. DRY vs "copy code twice before abstracting" — tradeoff?
 5. Why do Indian companies ask for GitHub with commits not one zip upload?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is unit testing?**  
 **A:** Testing individual functions/units in isolation with known inputs and expected outputs.

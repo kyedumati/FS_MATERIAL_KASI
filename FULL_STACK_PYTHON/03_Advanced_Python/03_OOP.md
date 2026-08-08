@@ -2,8 +2,6 @@
 
 **Phase:** Advanced Python
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** Modules and Packages
 **Next module:** Exception Handling
 
@@ -707,17 +705,13 @@ class BankAccount:
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why does Python pass `self` explicitly unlike Java's implicit `this`?
 2. When should you use inheritance vs composition ("has-a" vs "is-a")?
 3. How will `Student` class map to a MySQL table in Django ORM?
 4. Is `__balance` truly private in Python?
 5. Why might a class variable for `tax_rate` be useful?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is OOP? Pillars?**  
 **A:** Programming paradigm based on objects. Pillars: encapsulation (bundle + hide), inheritance (reuse via IS-A), polymorphism (same interface, different behavior), abstraction (show essentials).

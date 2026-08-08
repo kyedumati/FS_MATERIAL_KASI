@@ -2,8 +2,6 @@
 
 **Phase:** Advanced Python
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** OOP
 **Next module:** File Handling and Logging
 
@@ -645,17 +643,13 @@ abc ValueError age must be an integer
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Should you use exceptions for normal control flow (e.g., end of loop)?
 2. How does Django return HTTP 404 vs 500 related to exceptions?
 3. Why log before re-raising?
 4. Difference between error and exception in everyday language vs Python?
 5. How would you handle errors in a payment API integration?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. try/except/else/finally execution order?**  
 **A:** Run try; on exception matching except, run that handler (skip else); else runs only if no exception; finally always runs (cleanup).

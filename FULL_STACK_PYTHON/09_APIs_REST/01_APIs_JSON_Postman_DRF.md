@@ -1,6 +1,6 @@
 # Module: APIs, JSON, Postman & Django REST Framework
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) — live classes are **1h 15m** each (+ homework). | **Phase:** APIs & REST  
+**Phase:** APIs & REST  
 
 **Previous module:** Flask Overview  
 **Next module:** [React Fundamentals](../../FRONTEND/REACT/01_React_Fundamentals.md)
@@ -473,7 +473,7 @@ const products = await res.json();
 ## Mini-Project: Product Catalog API + Client Script
 
 **Lab kit (build here):** [15_Lab_Assets/04_drf_products/](../15_Lab_Assets/04_drf_products/)  
-**Deliverables:** follow [`05_Standard_Project_Deliverables.md`](../00_Course_Guide/05_Standard_Project_Deliverables.md)
+**Deliverables:** follow [`Standard_Project_Deliverables.md`](../Standard_Project_Deliverables.md)
 
 ### What to build
 
@@ -512,17 +512,13 @@ const products = await res.json();
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why do companies expose APIs instead of giving database passwords to mobile teams?
 2. Is `/api/getAllProducts` RESTful? What would be better?
 3. how is an API similar to a bank's phone banking menu (press 1 for balance)?
 4. When should API return 400 vs 422? (Simplified: DRF often uses 400 for validation.)
 5. How does Postman help when you do not yet have a React UI?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is a REST API?**  
 **A:** HTTP-based interface exposing resources as URLs, using standard methods and status codes, typically JSON payloads, stateless communication.

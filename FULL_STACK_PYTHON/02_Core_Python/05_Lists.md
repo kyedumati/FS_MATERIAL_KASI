@@ -1,8 +1,6 @@
 # Lists in Python 3
 
 **Module:** Core Python · Collections  
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** Strings
 **Next module:** Tuples and Sets
 
@@ -84,7 +82,6 @@ print(len(products))     # 3 — number of items
 - Wrong: Indexing past the end (`lst[10]` on a short list) → `IndexError`.
 - Prefer: Check `len(lst)` first.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Cart first, last, length**
@@ -121,7 +118,6 @@ print(cart)                     # ['Shirt', 'T-Shirt', 'Jeans', 'Belt', 'Socks']
 **Note:**
 - Wrong: Using `append` with a list when you mean `extend` (`lst.append([4, 5])` → one nested element).
 - Prefer: `extend([4, 5])` to add multiple items.
-
 
 **Try these (2 programs):**
 
@@ -164,7 +160,6 @@ orders.clear()                  # []
 - Wrong: `remove(x)` when `x` is not in the list → `ValueError`.
 - Prefer: `if x in lst: lst.remove(x)`.
 
-
 **Try these (2 programs):**
 
 **Program 1 — remove first matching order**
@@ -206,7 +201,6 @@ print(scores)                   # [88, 72, 95] — unchanged
 - Wrong: Confusing `sort()` with `sorted()` — unexpected in-place change.
 - Prefer: `sort()` changes the original; `sorted()` returns a new list.
 
-
 **Try these (2 programs):**
 
 **Program 1 — count and index**
@@ -244,7 +238,6 @@ for name, mark in zip(student_names, student_marks):
 **Note:**
 - Wrong: Modifying a list while looping over it — skipped items or infinite loops.
 - Prefer: Loop over a copy: `for x in lst[:]`.
-
 
 **Try these (2 programs):**
 
@@ -365,7 +358,6 @@ copy3 = original[:]
 **Note:**
 - Wrong: Relying on a shallow copy of a *nested* list (inner lists still shared); using `is` to compare list *content* (`[1, 2] is [1, 2]` is False).
 - Prefer: `copy.deepcopy()` for deep copy (advanced); use `==` for value equality, `is` only for the same object.
-
 
 **Try these (2 programs):**
 
@@ -587,17 +579,13 @@ while True:
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why does Python use index `0` for the first element? How is that different from "row 1" in Excel?
 2. When would you use a list of strings vs a list of dictionaries for employee data? (Preview of dict module.)
 3. Is `[1, 2, 3] + [4, 5]` the same as extending? What does each return?
 4. Why might modifying a list while iterating over it cause bugs?
 5. In an e-commerce app, what part of the order would be a list vs a single value?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 1. **Is Python list thread-safe?**  
    **A:** Not for concurrent writes; for entry-level interviews: lists are fine in single-threaded scripts; web apps use DB/ORM.

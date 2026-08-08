@@ -2,7 +2,7 @@
 
 **Audience:** Freshers & career switchers | **Stack:** Python 3, MySQL 8+, Django 5.x, HTML/CSS/JS, React, GitHub, VS Code  
 **Duration (default plan):** **20 weeks × 1 hour 15 minutes/day** (Mon–Fri live) = **100 sessions / ~125 live hours** + homework  
-**Schedule authority:** `FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md`  
+**Schedule authority:** `FULL_STACK_PYTHON/Session_Calendar_100.md`  
 **Practice DB:** `training_db` | **IDE:** VS Code | **VCS:** Git + GitHub  
 **Legend:** **Must** = job-ready path | *Optional* = deepen if hours allow / advanced batch
 
@@ -96,8 +96,7 @@
 
 ### 6. Database (MySQL) (**Must**)
 
-- Full-stack bridge: `FULL_STACK_PYTHON/05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md`
-- **Required labs checklist:** `FULL_STACK_PYTHON/00_Course_Guide/04_Required_MySQL_Labs_Checklist.md` (points into `MYSQL/` — mandatory for placement)
+- Full-stack bridge + **required MySQL labs table**: `FULL_STACK_PYTHON/05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` (points into `MYSQL/` — mandatory for placement)
 - DDL, DML, DQL, TCL, JOINS, normalization overview
 - Python–MySQL connectivity (Advanced Python bridge module)
 

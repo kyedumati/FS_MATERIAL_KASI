@@ -2,8 +2,6 @@
 
 **Phase:** Advanced Python
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** Exception Handling
 **Next module:** Git and GitHub
 
@@ -607,17 +605,13 @@ logger.info("User login success — console + file")
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why is append mode safer than read-modify-write for log files?
 2. How does Django store uploaded files differently from this module?
 3. What sensitive data should never go in log files (GDPR/India DPDP awareness)?
 4. CSV vs JSON for config — trade-offs?
 5. How would you rotate log files when they grow too large? (mention `RotatingFileHandler`)
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Difference between `read()` and iterating file object?**  
 **A:** `read()` loads entire file into memory. Iteration reads one line at a time — constant memory for large files.

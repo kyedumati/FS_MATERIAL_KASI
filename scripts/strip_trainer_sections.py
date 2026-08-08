@@ -39,7 +39,6 @@ TRAINER_H3 = re.compile(
     r"|.*Trainer Demo.*"
     r"|.*trainer observes.*"
     r"|Trainer checklist.*"
-    r"|Interview answers"
     r").*?\n"
     r"(?:.*?\n)*?"
     r"(?=^#{1,3} |\Z)",
@@ -102,6 +101,16 @@ INLINE_PHRASES = [
     (re.compile(r"\*\*Trainer note:\*\*[^\n]*", re.I), ""),
 ]
 
+# Module headers: Duration is course-wide ops; keep Phase if it shared the line
+DURATION_WITH_PHASE = re.compile(
+    r"^\*\*Duration:\*\*[^\n]*?\|\s*\*\*Phase:\*\*\s*([^\n]+)\n",
+    re.MULTILINE,
+)
+DURATION_LINE = re.compile(
+    r"^\*\*Duration:\*\*[^\n]*\n(?:\n)?",
+    re.MULTILINE,
+)
+
 
 def strip_trainer_sections(md_text: str) -> str:
     cleaned = TRAINER_H2.sub("", md_text)
@@ -113,6 +122,8 @@ def strip_trainer_sections(md_text: str) -> str:
     cleaned = BLOCK_TRAINER_NOTE.sub("", cleaned)
     cleaned = HINT_SHEET.sub("", cleaned)
     cleaned = TITLE_TRAINER_READY.sub("", cleaned)
+    cleaned = DURATION_WITH_PHASE.sub(r"**Phase:** \1\n", cleaned)
+    cleaned = DURATION_LINE.sub("", cleaned)
     for pattern, repl in INLINE_PHRASES:
         cleaned = pattern.sub(repl, cleaned)
     cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)

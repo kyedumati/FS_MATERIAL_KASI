@@ -1,7 +1,5 @@
 # Module: URLs, Views, Templates, and Static Files
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Theme apps:** Blog · Task Manager · Booking · Student Portal · CampusCart E-commerce
 
 **Previous module:** Django Introduction and Setup
@@ -512,17 +510,13 @@ Add `path("tasks/", include("tasks.urls"))` to project urls.
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why separate HTML (template) from Python (view)?
 2. When is `HttpResponse` enough without `render()`?
 3. How does `{% url %}` help when marketing changes `/blog/` to `/articles/`?
 4. compare Django templates to JSP/Thymeleaf.
 5. Should large JavaScript frameworks replace Django templates for every page?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Explain Django request-response cycle.**  
 **A:** URLconf matches URL → view executes → returns HttpResponse or rendered template → middleware may process response → browser receives HTML.

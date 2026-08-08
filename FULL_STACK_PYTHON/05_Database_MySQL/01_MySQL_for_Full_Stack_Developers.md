@@ -1,9 +1,8 @@
 # Module: MySQL for Full Stack Developers
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) — **Weeks 10–11 / Sessions 46–55** (1h 15m live).
-
 **SQL material (source of truth):** repo folder [`MYSQL/`](../../MYSQL/) — open those files on lab days.  
-**Checklist:** [`04_Required_MySQL_Labs_Checklist.md`](../00_Course_Guide/04_Required_MySQL_Labs_Checklist.md)
+**Schedule:** [Session Calendar](../Session_Calendar_100.md) — Weeks 10–11 / Sessions 46–55.  
+**Python connectivity:** [`../03_Advanced_Python/06_Database_Programming_Bridge.md`](../03_Advanced_Python/06_Database_Programming_Bridge.md)
 
 > **Note:** This FS module is the **bridge** (ER, normalization, Django context). Placement-ready SQL depth is taught from **`MYSQL/`** during **Weeks 10–11** (setup → CRUD → joins → transactions → practice). Do not treat SQL as optional.
 
@@ -22,7 +21,7 @@ By the end of this module, learners will be able to:
 - Use INNER JOIN and LEFT JOIN to combine related tables
 - Apply 1NF, 2NF, and 3NF at a practical level when designing schemas
 - Design a normalized schema for Library or CampusCart mini-project
-- Follow the **`MYSQL/`** file order on the Required labs checklist
+- Complete the **Required MySQL labs** below before Django models / capstone schema
 
 ---
 
@@ -31,29 +30,34 @@ By the end of this module, learners will be able to:
 Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
 
 - **[Librarian needs join report](../15_Lab_Assets/02_mysql_library_seed/)**
-- **Required SQL notes:** start at [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md) and follow the checklist session by session
+- **Required SQL notes:** start at [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md) and follow the required labs table session by session
 
 Finish the ticket in class; compare with the official solution only when your trainer says so.
 
 ## Prerequisites
 
 - MySQL installed — [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md)
-- Required labs checklist: [04_Required_MySQL_Labs_Checklist.md](../00_Course_Guide/04_Required_MySQL_Labs_Checklist.md)
 
-### Teach from `MYSQL/` (map)
+### Required MySQL labs (Weeks 10–11)
 
-| When | Open this file |
-|------|----------------|
-| S46 | `MYSQL/00_…`, `MYSQL/01_…` |
-| S47–48 | `MYSQL/02_…` |
-| S49 | `MYSQL/03_…` |
-| S50 | This bridge module (ER / CampusCart) |
-| S51 | `MYSQL/06_…` |
-| S52–53 | `MYSQL/07_…` |
-| S54 | `MYSQL/09_…` + `MYSQL/10_…` practice |
-| S55 | Python bridge module |
+SQL is a **core placement skill**. Deep notes live in [`MYSQL/`](../../MYSQL/); the labs below are **mandatory** for every batch. Aim for independent CRUD + JOINs before Django ORM / capstone DB design.
 
----
+| Done | When | Lab file | You must be able to |
+|:----:|------|----------|---------------------|
+| ☐ | W10 / S46 | [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md) | Install/connect; create `training_db` |
+| ☐ | W10 / S46–47 | [`MYSQL/01_Introduction_to_Databases.md`](../../MYSQL/01_Introduction_to_Databases.md) | Explain table/row/DBMS vs Excel |
+| ☐ | W10 / S47–48 | [`MYSQL/02_Introduction_to_SQL_Basic_Concepts.md`](../../MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | DDL + DML CRUD + constraints |
+| ☐ | W10 / S49 | [`MYSQL/03_Querying_with_SQL.md`](../../MYSQL/03_Querying_with_SQL.md) | WHERE, LIKE, ORDER BY, LIMIT |
+| ☐ | W10 / S50 | This bridge module | ER sketch for Library / CampusCart |
+| ☐ | W11 / S51 | [`MYSQL/06_Modeling_Databases.md`](../../MYSQL/06_Modeling_Databases.md) | PK/FK, 1:N |
+| ☐ | W11 / S52–53 | [`MYSQL/07_Joins.md`](../../MYSQL/07_Joins.md) | INNER + LEFT JOIN multi-table reports |
+| ☐ | W11 / S54 | [`MYSQL/09_Transactions_and_Indexes.md`](../../MYSQL/09_Transactions_and_Indexes.md) | COMMIT/ROLLBACK; when index helps |
+| ☐ | W11 | [`MYSQL/10_Practice_Exercises.md`](../../MYSQL/10_Practice_Exercises.md) | Complete exercises for ch. 02, 03, 07 |
+| ☐ | W11 / S55 | [Python bridge](../03_Advanced_Python/06_Database_Programming_Bridge.md) | Parameterized INSERT/SELECT/UPDATE/DELETE from Python |
+
+**Strongly recommended before placement mocks:** [`MYSQL/04`](../../MYSQL/04_Aggregations_and_Group_By.md) · [`MYSQL/05`](../../MYSQL/05_Common_Concepts.md) · [`MYSQL/08`](../../MYSQL/08_Views_and_Subqueries.md) · one project from [`MYSQL/12`](../../MYSQL/12_Real_Time_Projects.md). Window functions ([`MYSQL/11`](../../MYSQL/11_Window_Functions_and_CTEs.md)) only if the required set is solid.
+
+**Exit ticket (without notes):** CREATE with PK+FK · INSERT/UPDATE/DELETE · SELECT + WHERE/ORDER BY · INNER JOIN + explain LEFT JOIN · why parameterized queries from Python.
 
 A **full-stack application** has three layers: **frontend** (browser), **backend** (Python/Django), and **database** (MySQL). When a student registers on CampusCart, React sends data to Django, Django validates it, and SQL **INSERT**s a row into `users`.
 
@@ -578,7 +582,7 @@ SELECT 'Move dept_head to departments table (3NF)' AS fix_note;
 ## Mini-Project: Schema Design (Library or CampusCart)
 
 **Lab kit (build here):** [15_Lab_Assets/02_mysql_library_seed/](../15_Lab_Assets/02_mysql_library_seed/)  
-**SQL depth (SoT):** Weeks 10–11 · follow [`MYSQL/`](../../MYSQL/) + [Required MySQL Labs Checklist](../00_Course_Guide/04_Required_MySQL_Labs_Checklist.md)
+**SQL depth (SoT):** Weeks 10–11 · follow [`MYSQL/`](../../MYSQL/) + the **Required MySQL labs** table in this module
 
 **Option A — Library:** members, books, copies, loans, fines  
 **Option B — CampusCart:** users, vendors, products, orders, order_items
@@ -649,17 +653,13 @@ WHERE o.order_date >= '2026-07-01';
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why can't we store app data in a Python list after restart?
 2. When does LEFT JOIN show NULL? Ecommerce example?
 3. Is normalization always good? When might startups denormalize?
 4. How does Django ORM relate to today's SQL?
 5. foreign key ≈ hyperlink between spreadsheets?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is a relational database?**  
 **A:** Data in tables with rows/columns linked by keys; MySQL is open-source RDBMS for Python/Django backends.

@@ -1,6 +1,6 @@
 # Module: Flow Control
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) — live classes are **1h 15m** each (+ homework). | **Phase:** Core Python  
+**Phase:** Core Python  
 
 **Previous module:** Variables Datatypes Operators IO
 **Next module:** Strings
@@ -186,7 +186,6 @@ Note: `or` combines invalid range checks.
 - Wrong: Leaving an empty block under `if`/`else`.
 - Prefer: Use `pass` as a placeholder when needed.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Pass / Fail with range check**
@@ -234,7 +233,6 @@ else:
 - Wrong: Using `=` when you meant to compare — logic always wrong or SyntaxError.
 - Prefer: `==` to compare, `=` to assign.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Simple login check**
@@ -279,7 +277,6 @@ for i in range(1, 11):
 - Wrong: Off-by-one with `range` (loop one short or one long).
 - Prefer: Remember the stop value is exclusive (`range(1, 11)` → 1…10).
 
-
 **Try these (2 programs):**
 
 **Program 1 — Table of 7**
@@ -321,7 +318,6 @@ else:
 **Note:**
 - Wrong: Infinite `while` — the condition never moves toward exit.
 - Prefer: Ensure a variable in the condition changes (counter, flag, or `break`).
-
 
 **Try these (2 programs):**
 
@@ -483,7 +479,6 @@ while True:
 **Note:**
 - Wrong: Comparing menu `input()` to an int (`choice == 1`) when choice is still a string.
 - Prefer: Compare strings (`choice == "1"`) or convert deliberately with `int(choice)`.
-
 
 **Try these (2 programs):**
 
@@ -797,17 +792,13 @@ for choice, value in actions:
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why is menu-driven design still used in training if real apps have GUIs?
 2. Could you use `for` instead of `while` for ATM menu? What would be awkward?
 3. How does nested if map to HR approval workflows (employee → manager → HR)?
 4. What real-world system might run an infinite loop intentionally?
 5. How would you add "confirm before withdraw" using flow control only?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Explain if/elif/else execution order.**  
 **A:** Python tests top to bottom; first true branch runs; rest skipped; else runs if none true.

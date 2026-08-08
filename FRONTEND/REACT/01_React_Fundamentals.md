@@ -1,6 +1,6 @@
 # Module: React Fundamentals — Components, State & Forms
 
-**Duration:** See [Session Calendar](../../FULL_STACK_PYTHON/00_Course_Guide/11_Session_Calendar_100.md) — live classes are **1h 15m** each (+ homework). | **Phase:** Frontend — React  
+**Phase:** Frontend — React  
 
 **Shared topic** (Python FS + Java FS).
 
@@ -34,7 +34,7 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 ## Prerequisites
 
-- Node.js **20 LTS** (or 22 LTS) and npm — see [Tested Toolchain](../../FULL_STACK_PYTHON/00_Course_Guide/10_Tested_Toolchain.md)
+- Node.js **20 LTS** (or 22 LTS) and npm — see [Tested Toolchain](../../FULL_STACK_PYTHON/Tested_Toolchain.md)
 - HTML/CSS/JS and JSON/REST from prior modules
 
 ---
@@ -594,17 +594,13 @@ export default ProductForm;
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why might a company keep Django templates for admin but React for customer app?
 2. Is React a language? What is it really?
 3. how is a component like a reusable PowerPoint slide layout?
 4. When is plain JavaScript enough without React?
 5. Why Indian salaries for "React + Python" roles are common in job portals?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. What is React?**  
 **A:** JavaScript library for building UI with reusable components and efficient updates via virtual DOM diffing.

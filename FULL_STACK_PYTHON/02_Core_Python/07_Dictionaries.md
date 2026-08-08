@@ -1,8 +1,6 @@
 # Dictionaries in Python 3
 
 **Module:** Core Python · Collections  
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Previous module:** Tuples and Sets
 **Next module:** Data Structures Overview
 
@@ -93,7 +91,6 @@ print(employee.get("email", "N/A"))   # N/A — default provided
 **Note:**
 - Wrong: Using a list as a key → `TypeError: unhashable type: 'list'`; `d["missing"]` without a check → `KeyError`; duplicate keys in a literal (last value wins silently).
 - Prefer: String or tuple keys; `.get()` or `if key in d`; avoid duplicate keys (`{"a": 1, "a": 2}` → `a` is 2).
-
 
 **Try these (2 programs):**
 
@@ -241,7 +238,6 @@ print(sale_prices)
 - Wrong: Modifying a dict while iterating — RuntimeError or skipped keys.
 - Prefer: Iterate over a copy: `list(d.items())`.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Word frequency with .get**
@@ -288,7 +284,6 @@ employee["address"]["pincode"] = "600002"
 **Note:**
 - Wrong: Shared nested dict reference — changing a shallow copy affects the original.
 - Prefer: `copy.deepcopy()` for nested structures.
-
 
 **Try these (2 programs):**
 
@@ -382,7 +377,6 @@ print(user["role"])                   # staff — original unchanged
 - Wrong: Using `in` as if it checks values (`"aisha" in d` checks **keys** only).
 - Prefer: `if "aisha" in d.values():` when you mean values.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Key membership check**
@@ -420,7 +414,6 @@ print(parsed["name"])                 # Mouse
 **Note:**
 - Wrong: Assuming JSON allows a tuple — JSON has no tuple type.
 - Prefer: Convert tuples to lists before `json.dumps`.
-
 
 **Try these (2 programs):**
 
@@ -650,17 +643,13 @@ def list_contacts():
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why are dict lookups often preferred over scanning a list for a matching ID?
 2. How is a Python dict similar to a MySQL row + column names?
 3. What happens if two API clients send the same JSON key twice?
 4. When would nested dict become hard to maintain? (Preview: classes/ORM.)
 5. Can dict values be lists? Give an order example.
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 1. **Dict vs list for lookup by ID?**  
    **A:** Dict O(1) average vs list O(n) scan.

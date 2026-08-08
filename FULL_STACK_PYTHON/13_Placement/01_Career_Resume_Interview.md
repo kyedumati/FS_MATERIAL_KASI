@@ -1,6 +1,6 @@
 # Module: Career, Resume & Interview Preparation — Placement Track
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) — live classes are **1h 15m** each (+ homework). | **Phase:** Placement & Career Readiness  
+**Phase:** Placement & Career Readiness  
 
 **Next step:** Capstone completion, mock drives, job applications
 
@@ -430,17 +430,13 @@ Deliverable folder `placement_kit/`:
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Is one perfect project better than five half-done repos?
 2. How to answer "expected CTC" as an entry-level candidate in Hyderabad vs Tier-2 city?
 3. prior experience in another fields: how to handle "why leave previous field?"
 4. What is imposter syndrome and normal response?
 5. Referrals — how to ask politely without being pushy?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Tell me about yourself.**  
 **A:** Structured 90-sec: background, training/stack, flagship project, role goal.

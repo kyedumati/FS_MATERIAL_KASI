@@ -1,6 +1,6 @@
 # Module: Variables, Datatypes, Operators, and I/O
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) — live classes are **1h 15m** each (+ homework). | **Phase:** Core Python  
+**Phase:** Core Python  
 
 **Previous module:** Python Setup and First Programs
 **Next module:** Flow Control
@@ -157,7 +157,6 @@ print(f"Average marks: {average:.2f}")     # 2 decimal places
 - Wrong: Typo in a name (`salary = 100` then `print(salery)`) → `NameError`.
 - Prefer: Spell names consistently; copy-paste the identifier when unsure.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Ravi marks average**
@@ -196,7 +195,6 @@ print(manager_id is None)    # True — preferred None check
 **Note:**
 - Wrong: Checking None with `if x == None`.
 - Prefer: `if x is None`.
-
 
 **Try these (2 programs):**
 
@@ -246,7 +244,6 @@ print(f"Today's spend: ₹{total:.2f}")
 **Note:**
 - Wrong: Expecting `5 / 2` to be `2` (it is `2.5` in Python 3); showing raw `0.1 + 0.2` floats in money UIs.
 - Prefer: Use `//` for integer division; round for display (`f"{x:.2f}"`).
-
 
 **Try these (2 programs):**
 
@@ -306,7 +303,6 @@ discount = has_coupon or is_member  # True
 **Note:**
 - Wrong: Using `=` inside a condition (`if x = 5`) — assignment, not comparison.
 - Prefer: `==` for comparison.
-
 
 **Try these (2 programs):**
 
@@ -426,7 +422,6 @@ else:
 - Wrong: Treating `input()` as a number (`input("N: ") + 1`) or casting `int("12.5")` directly.
 - Prefer: `int(input(...))` / `float(input(...))`; for `"12.5"` use `float` first (then `int` if needed).
 
-
 **Try these (2 programs):**
 
 **Program 1 — Category and amount entry**
@@ -469,7 +464,6 @@ print(f"{'Food':<15}{450.5:>10.2f}")
 **Note:**
 - Wrong: Concatenating str + int (`"Age: " + 22`) → `TypeError`.
 - Prefer: `f"Age: {22}"` or `str(22)`.
-
 
 **Try these (2 programs):**
 
@@ -711,17 +705,13 @@ Day total: ₹210.00
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Should employee ID be stored as `int` or `str`? When does leading zero matter?
 2. Why do banking apps show ₹ symbols in UI but store numbers as float/decimal in backend?
 3. What happens if a user presses Enter without typing anything in `input()`?
 4. Is `not in` the opposite of `in`? Give example with email domain check.
 5. where have you used variables in Excel formulas — same idea?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Name Python's basic data types.**  
 **A:** int, float, str, bool, NoneType; plus list, dict, tuple, set at collection level.

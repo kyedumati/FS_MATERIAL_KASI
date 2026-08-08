@@ -1,7 +1,5 @@
 # Module: Computer and Programming Foundations
 
-**Duration:** See [Session Calendar](../00_Course_Guide/11_Session_Calendar_100.md) (1h 15m live sessions).
-
 **Next module:** Python Setup and First Programs
 
 ---
@@ -168,7 +166,6 @@ Check your laptop specs (Settings → About):
 - Wrong: Skipping OS / hardware basics and jumping straight to Python.
 - Prefer: One day on CPU, RAM, storage, and files — it saves weeks of confusion later.
 
-
 **Try these (2 programs):**
 
 **Program 1 — Specs checklist note**
@@ -218,7 +215,6 @@ dir
 - Wrong: Saving course files randomly on the Desktop; using spaces in folder names (`my project`).
 - Prefer: One root folder (`ksr_python_fullstack`) and `snake_case` / `kebab-case` names (`my_project`).
 
-
 **Try these (2 programs):**
 
 **Program 1 — Full course tree (macOS/Linux)**
@@ -250,7 +246,6 @@ ls
 **Note:**
 - Wrong: Opening a single file in VS Code, then wondering why paths and terminals feel broken.
 - Prefer: Always **File → Open Folder** on the project root.
-
 
 **Try these (2 programs):**
 
@@ -301,7 +296,6 @@ ls                               # list contents (may be empty)
 **Note:**
 - Wrong: Avoiding the terminal because it looks like “hacking” movies.
 - Prefer: Run only the commands shown in class — `ls` / `cd` are safe navigation tools.
-
 
 **Try these (2 programs):**
 
@@ -371,7 +365,6 @@ You will write the Python version in Module 03 (Flow Control). Today, focus on *
 - Wrong: Mixing up *algorithm* (English steps) with *code* (Python syntax).
 - Prefer: Write steps in plain English / pseudocode first; code comes later.
 
-
 **Try these (2 programs):**
 
 **Program 1 — ATM withdraw algorithm**
@@ -430,7 +423,6 @@ Browser                    Server (Django)              Database (MySQL)
 **Note:**
 - Wrong: Treating client and server as the same kind of “computer” with no distinction.
 - Prefer: Client = *your* browser; server = the company’s remote machine.
-
 
 **Try these (2 programs):**
 
@@ -637,17 +629,13 @@ First portfolio app: Student marks + attendance mini site
 
 ## Interview & Discussion Q&A
 
-### Discuss in class
+Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. If the internet stops working, can a client still show pages already loaded? Why or why not?
 2. Is WhatsApp on your phone the client, the server, or both? Explain.
 3. Why might a company in Bangalore hire separate frontend and backend teams?
 4. What could go wrong if two developers save files in different folder structures?
 5. Looking at retail or banking backgrounds, which developer role feels closest to your past work — and why?
-
-*No memorized script — push for plain-English answers, then continue to interview Qs below.*
-
-### Interview answers
 
 **Q1. Explain what happens when you type a URL and press Enter.**  
 **A:** Browser (client) sends HTTP request to server at that URL; server processes and returns HTML/resources; browser renders the page. DNS first resolves domain name to server IP.

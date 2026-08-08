@@ -14,13 +14,13 @@
 
 ## Start here
 
-1. [**Session Calendar (authority)**](00_Course_Guide/11_Session_Calendar_100.md) — 100 sessions, one focus each  
-2. [**Course Guide**](00_Course_Guide/README.md) — slim: calendar, MySQL checklist, deliverables, capstone, toolchain  
-3. [**Lab Assets**](15_Lab_Assets/) · [**Biweekly Assessments**](16_Assessments/) · [Toolchain](00_Course_Guide/10_Tested_Toolchain.md)  
+1. [**Session Calendar**](Session_Calendar_100.md) — 100 sessions, one focus each  
+2. [**Tested Toolchain**](Tested_Toolchain.md) · [**Project deliverables**](Standard_Project_Deliverables.md) · [**Capstone one-pager**](Capstone_CampusCart_One_Pager.md)  
+3. [**Lab Assets**](15_Lab_Assets/) · [**Biweekly Assessments**](16_Assessments/)  
 4. [Course Contents (syllabus map)](../COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md)  
-5. Teach in **Session Calendar order** (module files below support those sessions)  
+5. Teach and share the **same** module files in Session Calendar order  
 6. Optional: [Professional Python Deep Dive](03_Advanced_Python/07_Professional_Python_Deep_Dive.md)  
-7. Trainers only: [14_Trainer_Only/](14_Trainer_Only/) — sharing guide, master guide, lesson plan, keys — **never share with learners**
+7. Private only: [14_Trainer_Only/](14_Trainer_Only/) — keys, rubrics, lesson-plan blank — **never share**
 
 ### Daily class shape (75 min)
 
@@ -45,7 +45,7 @@ Pack nests `FRONTEND/` (with React) and `MYSQL/` beside `FULL_STACK_PYTHON/`. De
 
 ## Teaching order
 
-**Schedule authority:** always [`00_Course_Guide/11_Session_Calendar_100.md`](00_Course_Guide/11_Session_Calendar_100.md) (order below matches it).
+**Schedule authority:** always [`Session_Calendar_100.md`](Session_Calendar_100.md) (order below matches it).
 
 | Order | Path | Topic |
 |------:|------|-------|
@@ -64,7 +64,7 @@ Pack nests `FRONTEND/` (with React) and `MYSQL/` beside `FULL_STACK_PYTHON/`. De
 | 13 | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Exception handling |
 | 14 | [03_Advanced_Python/05_File_Handling_and_Logging.md](03_Advanced_Python/05_File_Handling_and_Logging.md) | Files & logging |
 | 15 | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub |
-| 16 | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + [Required labs](00_Course_Guide/04_Required_MySQL_Labs_Checklist.md) / [`MYSQL/`](../MYSQL/) |
+| 16 | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs in-module / [`MYSQL/`](../MYSQL/) |
 | 17 | [03_Advanced_Python/06_Database_Programming_Bridge.md](03_Advanced_Python/06_Database_Programming_Bridge.md) | Python ↔ MySQL |
 | 15A | [03_Advanced_Python/07_Professional_Python_Deep_Dive.md](03_Advanced_Python/07_Professional_Python_Deep_Dive.md) | Optional enrichment (not on critical path) |
 | 18 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
@@ -101,7 +101,7 @@ Every teaching module follows the [Writing Standard](14_Trainer_Only/10_Module_W
 - Interview & Discussion Q&A  
 - Graded checks: [`16_Assessments/`](16_Assessments/) (biweekly) — not an Assessment block in every module  
 
-**SQL depth** lives in repo **`MYSQL/`** (required checklist) — not duplicated here.
+**SQL depth** lives in repo **`MYSQL/`** (required labs listed in the MySQL bridge module) — not duplicated here.
 
 > Mermaid diagrams render on GitHub, many Markdown previewers, and Cursor. In plain text viewers you still see the diagram source as a readable sketch.
 

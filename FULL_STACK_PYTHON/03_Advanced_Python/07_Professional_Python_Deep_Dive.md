@@ -3,7 +3,6 @@
 > **Not a standard teaching module.** Skip for Django path. Use after S45, Saturday enrichment, or interview prep only.  
 > Does **not** follow full Classroom Ticket / Try these / Assessment shape — see [Writing Standard](../14_Trainer_Only/10_Module_Writing_Standard.md) for required modules.
 
-**Duration:** Optional — Session Calendar lists this as enrichment, not a numbered live focus.  
 **Previous:** [File Handling & Logging](05_File_Handling_and_Logging.md) (finish core Advanced first)  
 **Next:** Continue calendar — [Git & GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) or MySQL phase as scheduled
 
