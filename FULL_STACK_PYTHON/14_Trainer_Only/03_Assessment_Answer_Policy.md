@@ -10,7 +10,9 @@ The **student pack** strips Practice `**Model answer:**` blocks automatically vi
 
 1. Use papers under [`../16_Assessments/`](../16_Assessments/) — not Practice items as scored exams.  
 2. Keep `*_KEY.md` private (excluded from student pack).  
-3. Do not reuse unchanged Practice Model answers as the biweekly key.
+3. Do not reuse unchanged Practice Model answers as the biweekly key.  
+4. Assign the paper as homework after the even week (or Friday wrap-up). Students get `BW##_….md` only.  
+5. Mark with the matching `*_KEY.md`; spot-review weak MCQ topics next session.
 
 ## Quick extract
 

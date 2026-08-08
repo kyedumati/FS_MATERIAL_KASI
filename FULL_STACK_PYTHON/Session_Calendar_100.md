@@ -1,6 +1,6 @@
 # Session Calendar — 20 Weeks × 100 Live Sessions
 
-**Schedule source of truth.** Teach and share the same modules listed here. Classroom pacing follows this calendar.
+**Schedule source of truth.** Follow the modules listed here in order. Classroom pacing follows this calendar.
 
 | Setting | Value |
 |---------|--------|
@@ -13,20 +13,20 @@
 
 **Compressed option:** 16 weeks is *not* recommended for this syllabus at 75 minutes/day. Use only with Saturday labs or fewer React/DRF outcomes.
 
-**Rule:** One live session = **one primary focus** (one demo + one mini-lab). Do not schedule two full modules in one 75-minute class.
+**Rule:** One live session = **one primary focus** (one concept block + one mini-lab). Do not schedule two full modules in one 75-minute class.
 
 **Engagement rule:** Start from a lab ticket (`15_Lab_Assets/`, or `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for What/Why as needed.
 
-**Biweekly Assessment:** After every even week (Weeks 2, 4, … 20), assign the matching paper from [`16_Assessments/`](16_Assessments/README.md) (BW01–BW10) as homework or Friday wrap-up. Graded papers live only under `16_Assessments/` — not inside modules.
+**Biweekly Assessment:** After every even week (Weeks 2, 4, … 20), complete the matching paper from [`16_Assessments/`](16_Assessments/README.md) (BW01–BW10) as homework or Friday wrap-up. Graded papers live only under `16_Assessments/` — not inside modules.
 
 **Shared topics (repo root):** `MYSQL/` · `FRONTEND/` (includes `FRONTEND/REACT/`) — scheduled here, authored outside this folder.
 
-**Default 75-minute shape** (do not paste into every module):
+**Typical class shape** (timing lives here — not repeated in every module):
 
 | Minutes | Block |
 |--------:|-------|
 | 5 | Classroom Ticket |
-| 25 | Type-along demo |
+| 25 | Concept demo / notes |
 | 35 | Lab (starter/broken) |
 | 10 | Exit + homework |
 
@@ -37,7 +37,7 @@
 | Column | Meaning |
 |--------|---------|
 | **S#** | Global session number (01–100) |
-| **Focus** | What the trainer demos and learners practice *in class* |
+| **Focus** | What you practice *in class* |
 | **Module file** | Notes to open |
 | **Homework** | Must finish before next session |
 

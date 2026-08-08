@@ -73,14 +73,17 @@ Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
 
 ## How to Use This Material
 
-**For Full Stack trainers (recommended)**
-- Teach **only** from `FULL_STACK_PYTHON/` (same files students get).
-- Share: `./scripts/pack_student_share.sh` or `./scripts/build.sh fullstack`.
-- Keep `14_Trainer_Only/` private.
-- SQL depth: Required MySQL labs are listed in the MySQL bridge module → open `MYSQL/` (planned dependency, not a second Python course).
+**Python Full Stack path**
+- Start at [`FULL_STACK_PYTHON/`](FULL_STACK_PYTHON/) → [Session Calendar](FULL_STACK_PYTHON/Session_Calendar_100.md).
+- Open the linked modules and lab kits in calendar order (same files for class and homework).
+- Shared topics: [`FRONTEND/`](FRONTEND/) (HTML/CSS/JS + React) · [`MYSQL/`](MYSQL/) (labs listed from the MySQL bridge module).
 
-**For MySQL-only batches**
+**MySQL-only path**
 - Follow numbered order in `MYSQL/`; use `10_Practice_Exercises.md` for homework.
+
+**Maintainers (pack / PDF)**
+- Student pack: `./scripts/pack_student_share.sh` · PDFs: `./scripts/build.sh fullstack`.
+- Private ops: [`FULL_STACK_PYTHON/14_Trainer_Only/`](FULL_STACK_PYTHON/14_Trainer_Only/) (keys, rubrics, sharing guide) — not in the student pack.
 
 ---
 
@@ -100,7 +103,7 @@ PFS_MATERIAL_KASI/
 
 ---
 
-## PDF Workflow (for trainers)
+## PDF Workflow
 
 **Source of truth:** edit and commit `.md` files only.  
 **For students:** generate PDFs and share the `PDF/` folder.

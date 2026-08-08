@@ -403,7 +403,7 @@ Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analy
 
 ### Stretch
 
-- Swap mock chatbot to real free-tier API with trainer approval.
+- Swap mock chatbot to real free-tier API only if your batch allows external API keys.
 - Add sample Indian-English reviews (dosa, thali, filter coffee).
 
 ### Done when

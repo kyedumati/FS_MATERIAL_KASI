@@ -11,7 +11,7 @@
 
 ## Learning Outcomes
 
-- Complete end-to-end Django flow without trainer typing the solution first
+- Complete end-to-end Django flow independently
 - Fix common auth and form bugs independently
 - Push a working CRUD+auth app with the [standard deliverables bundle](../Standard_Project_Deliverables.md)
 
@@ -50,19 +50,6 @@ All boxes below must be checked before demo day.
 
 ---
 
-## Session plan (trainer) — 1h 15m × 2–3 days + homework
-
-| Session | Focus (75 min) |
-|---------|----------------|
-| Lab day 1 | Warm-up flowchart (5) → pick Track A/B/C (10) → independent build (55) → homework assign (5) |
-| Lab day 2 | Continue build (50) → peer “break my auth” (15) → exit ticket (10) |
-| Lab day 3 (optional) | Finish checklist → 3 volunteer demos → skill-level rating |
-
-**Homework each day:** keep coding toward must-pass checklist; push GitHub before next class.  
-**Feature freeze:** start of last session — demo what works.
-
----
-
 ## Common stuck points
 
 | Symptom | Hint |
@@ -80,7 +67,7 @@ All boxes below must be checked before demo day.
 | Level | Evidence |
 |-------|----------|
 | Not started | No runnable app |
-| Guided | Works only after trainer pair-programming |
+| Guided | Works only with help |
 | Independent | Completes must-pass checklist alone |
 | Interview-ready | Explains owner filtering, CSRF, and session in plain English |
 

@@ -514,7 +514,7 @@ Learners complete `docs/DEPLOY_CHECKLIST.md`:
 2. Add WhiteNoise + STATIC_ROOT; successful collectstatic
 3. Complete DEPLOY_CHECKLIST.md
 4. Gunicorn smoke test locally
-5. Optional: trainer deploys one batch repo to Render for class URL
+5. Optional: deploy one repo to Render for a shared class URL
 
 ### Stretch
 

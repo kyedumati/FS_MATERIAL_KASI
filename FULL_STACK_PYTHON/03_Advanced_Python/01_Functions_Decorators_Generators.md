@@ -33,9 +33,9 @@ Open the lab kit **before** long notes. Read the ticket → code in `starter/` o
 
 Finish the ticket in class; compare with the official solution only when your trainer says so.
 
-### Motivation — Feel the pain of copy-paste (≈5 min)
+### Motivation — Feel the pain of copy-paste
 
-**Do this live before defining “function.”** Open a fresh file and type (or project) the script below. Do **not** mention `def` yet.
+Look at this ATM-style script. The same `amount <= 0` check appears in every action:
 
 ```python
 balance = 1000.0
@@ -68,11 +68,11 @@ else:
     print("Deposited. Balance:", balance)
 ```
 
-**Ask the class (30–60 sec each):**
+Problems with this style:
 
-1. How many times did we write the same `amount <= 0` check?
-2. If the message must change to `"Amount must be positive"`, how many places do we edit?
-3. What happens when we miss one place?
+1. The same validation is written **three times**.
+2. Changing the message to `"Amount must be positive"` means editing **every** copy.
+3. Miss one copy → one path keeps the old behaviour (a silent bug).
 
 **Visual — same logic, three copies (the bug factory):**
 
@@ -88,7 +88,7 @@ flowchart TB
   Bug -.->|easy to miss| Missed["D2 still old — silent bug"]
 ```
 
-Then rewrite **once** and call it twice:
+Write the check **once**, then reuse it:
 
 ```python
 def is_positive(amount):
@@ -1034,9 +1034,38 @@ for row in read_rows(rows):
   **Model answer:**
 3. Write `sum_all(*numbers)` returning sum of any count of numbers.
   **Model answer:**
-4. Predict output of scope quiz (trainer provides 3 snippets).
+4. Predict the output of these three scope snippets (use LEGB: Local → Enclosing → Global → Built-in):
+
+```python
+# Snippet A
+x = 10
+def show():
+    print(x)
+show()
+```
+
+```python
+# Snippet B
+x = 10
+def bump():
+    x = x + 1
+    print(x)
+bump()
+```
+
+```python
+# Snippet C
+x = 10
+def bump():
+    global x
+    x = x + 1
+    print(x)
+bump()
+print(x)
+```
+
   **Model answer:**
-   Use LEGB: a name resolves Local → Enclosing → Global → Built-in. Assigning inside a function creates a local unless you use `global`/`nonlocal`. Typical quiz: reading a global works; assigning without `global` raises `UnboundLocalError` if the name is also assigned later in the same function.
+   A prints `10` (reads global). B raises `UnboundLocalError` (assignment makes `x` local, so the read on the right fails). C prints `11` then `11` (`global` reassigns the module name).
 5. Use `map` to add 5% GST to `[100, 200, 50]` and `filter` to keep totals ≥ 150.
   **Model answer:**
 6. Write generator `countdown(n)` that yields `n … 1`. Print with a `for` loop.

@@ -435,7 +435,7 @@ const products = await res.json();
    **Model answer:**
    Add `category = models.CharField(max_length=50, blank=True)` + migrate; include `"category"` in serializer fields; `PATCH /api/products/1/` with `{"category": "peripherals"}` and confirm partial update.
 
-2. Filter: `GET /api/products/?search=mouse` using DRF `SearchFilter` (trainer hint provided).
+2. Filter: `GET /api/products/?search=mouse` using DRF `SearchFilter`.
    **Model answer:**
    ```python
    from rest_framework import filters

@@ -3,14 +3,13 @@
 **Purpose:** One graded check every **2 weeks** covering topics taught in that window — instead of an Assessment section inside every module.
 
 **Source of truth:** this folder + [Session Calendar](../Session_Calendar_100.md).  
-Trainers assign papers from here; modules do **not** contain Biweekly Assessment sections.
+Papers live only here; modules do **not** contain Biweekly Assessment sections.
 
-**How trainers run it**
+**How papers work**
 
-1. Assign the paper as **homework** after the even week (or use Friday exit + finish at home).
-2. Students get `BW##_….md` only (no `*_KEY.md`).
-3. Mark with the matching `*_KEY.md` (trainer tree / private folder).
-4. Review weak MCQ topics for 10 minutes next Monday.
+1. After every even week (Weeks 2, 4, … 20), complete the matching `BW##_….md` paper (homework or Friday wrap-up).
+2. You receive the paper only — not `*_KEY.md`.
+3. Marking uses the matching key (kept private).
 
 **Cadence**
 

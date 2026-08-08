@@ -10,7 +10,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
     README.md     # ticket (start here)
     starter/      # incomplete — learners extend
     broken/       # intentional bugs — debug lab
-    solution/     # trainer reference (stripped from student pack)
+    solution/     # reference answers (not in the student pack)
     seed/         # sample CSV/JSON/SQL when needed
 ```
 
@@ -52,12 +52,12 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 | HTML / CSS / JS labs | [`FRONTEND/labs/`](../../FRONTEND/labs/) |
 | React labs | [`FRONTEND/REACT/labs/`](../../FRONTEND/REACT/labs/) |
 
-## Classroom use
+## How to use a kit
 
-1. Copy **starter** or **broken** into the learner workspace (or open in place).
-2. Read the kit `README.md` ticket first — skip long theory until the demo needs it.
-3. Demo 10–15 minutes, then learners code (pair or solo).
-4. Reveal **solution** only after the exit ticket.
+1. Open the kit folder (or copy `starter/` / `broken/` into your workspace).
+2. Read the kit `README.md` ticket first — code before long theory.
+3. Work the ticket solo or in pairs.
+4. Compare with `solution/` only after you finish (or when told in class).
 
 ## Student pack policy
 

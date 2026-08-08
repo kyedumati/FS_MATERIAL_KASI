@@ -43,17 +43,7 @@ All boxes below must be checked before you submit the deploy tag.
 
 ---
 
-## Session plan (trainer) — 1h 15m × 2–3 days + homework
-
-| Session | Focus (75 min) |
-|---------|----------------|
-| Lab day 1 | Recap secrets/DEBUG/hosts (15) → wire `load_dotenv` + `STORAGES` (55) → homework: run `check --deploy` |
-| Lab day 2 | Fix `check --deploy` warnings (30) → collectstatic/Gunicorn or PaaS start (40) → blockers board (5) |
-| Lab day 3 (optional) | Deploy attempt / capstone bug bash → README env table → skill-level rating |
-
-**Grade the process** (env hygiene + `check --deploy`), not only a public URL.
-
----
+Success is judged on **env hygiene + `check --deploy`**, not only a public URL.
 
 ## Debug playbook
 
@@ -72,7 +62,7 @@ All boxes below must be checked before you submit the deploy tag.
 | Level | Evidence |
 |-------|----------|
 | Not started | No check --deploy attempt |
-| Guided | Passes checks only with trainer |
+| Guided | Passes checks only with help |
 | Independent | check --deploy clean + collectstatic + README env table |
 | Interview-ready | Explains why DEBUG=False and env secrets matter in interviews |
 

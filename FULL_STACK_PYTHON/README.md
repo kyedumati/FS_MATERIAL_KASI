@@ -1,6 +1,6 @@
 # Python Full Stack Development — Training Material
 
-> **One material policy for the Python program.** Teach Python/Django from this folder.  
+> **One material policy for the Python program.** Python/Django notes live in this folder.  
 > **Shared topics** (also for Java FS later): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/`](../MYSQL/).  
 > Pointers only: `06_Frontend/`, `10_React/`. Legacy `PDF/PYTHON/` removed.
 
@@ -18,28 +18,17 @@
 2. [**Tested Toolchain**](Tested_Toolchain.md) · [**Project deliverables**](Standard_Project_Deliverables.md) · [**Capstone one-pager**](Capstone_CampusCart_One_Pager.md)  
 3. [**Lab Assets**](15_Lab_Assets/) · [**Biweekly Assessments**](16_Assessments/)  
 4. [Course Contents (syllabus map)](../COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md)  
-5. Teach and share the **same** module files in Session Calendar order  
+5. Open the **same** module files in Session Calendar order  
 6. Optional: [Professional Python Deep Dive](03_Advanced_Python/07_Professional_Python_Deep_Dive.md)  
-7. Private only: [14_Trainer_Only/](14_Trainer_Only/) — keys, rubrics, lesson-plan blank — **never share**
 
-### Daily class shape (75 min)
+### Typical class shape (75 min)
 
 | Minutes | Block |
 |--------:|-------|
 | 5 | Classroom Ticket |
-| 25 | Type-along demo |
+| 25 | Concept demo / notes |
 | 35 | Lab |
 | 10 | Exit + homework |
-
-### Share with students (from **repo root**)
-
-```bash
-# cwd must be repo root (FS_MATERIAL_KASI/), not FULL_STACK_PYTHON/
-./scripts/pack_student_share.sh          # → dist/FULL_STACK_PYTHON_STUDENT/
-./scripts/build.sh fullstack             # → PDF/FULL_STACK_PYTHON/
-```
-
-Pack nests `FRONTEND/` (with React) and `MYSQL/` beside `FULL_STACK_PYTHON/`. Details: [Sharing Guide](14_Trainer_Only/07_Student_and_Trainer_Sharing_Guide.md) *(trainer)*.
 
 ---
 
@@ -89,13 +78,13 @@ Pack nests `FRONTEND/` (with React) and `MYSQL/` beside `FULL_STACK_PYTHON/`. De
 
 ## What each module contains
 
-Every teaching module follows the [Writing Standard](14_Trainer_Only/10_Module_Writing_Standard.md) *(trainer)*:
+Every teaching module follows the same shape:
 
 - Learning outcomes + **Classroom Ticket** (lab kit first)  
 - What / Why before syntax  
 - Important concepts with **Try these (2 programs)** + runnable code (Core / Advanced Python; expanding elsewhere)  
 - Step-by-step annotated code  
-- Common mistakes + Practice exercises  
+- Practice exercises  
 - **Mini-project** with lab kit, Stretch, and **Done when** (when present)  
 - **Revision Map** (Memorize / Understand / Practise / Build)  
 - Interview & Discussion Q&A  
@@ -118,3 +107,16 @@ Every teaching module follows the [Writing Standard](14_Trainer_Only/10_Module_W
 | Thin Django calendar | 5 teach modules + **2 lab days** (`06`–`07`) | Career-switcher consolidation time |
 
 Brochure modules **preserved:** Core Python, Advanced Python (incl. decorators/generators, logging, DB programming), MySQL DDL/DML/DQL/TCL/JOINS, Django full path, Flask, Frontend, React, AI Integration, Agile/resume/live project.
+
+---
+
+## Maintainers
+
+Student pack / PDFs (from **repo root**, not this folder):
+
+```bash
+./scripts/pack_student_share.sh   # → dist/FULL_STACK_PYTHON_STUDENT/
+./scripts/build.sh fullstack      # → PDF/FULL_STACK_PYTHON/
+```
+
+Private ops (keys, rubrics, sharing guide): [`14_Trainer_Only/`](14_Trainer_Only/).

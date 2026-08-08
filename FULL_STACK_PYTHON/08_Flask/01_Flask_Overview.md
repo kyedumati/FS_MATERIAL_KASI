@@ -294,7 +294,7 @@ def greet(name):
 
 Visit `/user/Priya` → `Hello, Priya!`
 
-Steps 3–5 (templates, JSON, Notes API) are included in full below — type along; no separate handout.
+Steps 3–5 (templates, JSON, Notes API) are included in full below — follow them in order on your machine.
 
 ### Step 3 — Complete Notes API (in-memory)
 

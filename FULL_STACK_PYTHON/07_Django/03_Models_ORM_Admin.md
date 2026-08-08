@@ -116,7 +116,7 @@ Never edit applied migration files manually as a beginner — create new migrati
 
 **Note:**
 - Forgot `makemigrations` after editing `models.py` → no schema change. Run `makemigrations` then `migrate`.
-- Editing an applied migration by hand often causes conflicts — regenerate in lab or ask the trainer.
+- Editing an applied migration by hand often causes conflicts — regenerate in lab or ask in class.
 
 **Try these (2 programs):**
 

@@ -611,7 +611,7 @@ First portfolio app: Student marks + attendance mini site
 - [ ] Folder tree `notes/`, `projects/`, `labs/` exists and opens in VS Code
 - [ ] `notes/day01_foundations.md` and `notes/my_roadmap.md` are filled in your words
 - [ ] Terminal shows correct `pwd` / `ls` for the course root
-- [ ] Lab kit ticket steps completed (or trainer signed off)
+- [ ] Lab kit ticket steps completed
 
 ---
 
