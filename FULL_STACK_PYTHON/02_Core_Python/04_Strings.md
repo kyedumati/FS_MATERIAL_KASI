@@ -489,7 +489,7 @@ print(slug)   # python-full-stack---july-2026-batch
 **Program 1 — URL slug from title**
 
 ```python
-title = " Django REST API "
+title = " Python Training Notes "
 slug = title.strip().lower().replace(" ", "-")
 print(slug)
 ```

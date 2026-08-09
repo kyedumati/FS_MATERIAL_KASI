@@ -1,6 +1,6 @@
 # Optional Enrichment: Professional Python Design Choices
 
-> **Not a standard teaching module.** Skip for Django path. Use after S45, Saturday enrichment, or interview prep only.  
+> **Not a standard teaching module.** Optional enrichment — use after core Advanced Python, Saturday labs, or interview prep only.  
 > Does **not** follow full Classroom Ticket / Try these shape — optional enrichment, not on the critical path.
 
 **Previous:** [File Handling & Logging](05_File_Handling_and_Logging.md) (finish core Advanced first)  

@@ -33,7 +33,7 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 **Why companies in India hire Python developers:**
 
-- **Web backends:** Django, Flask (Instagram, Zomato-scale apps use Python stacks)
+- **Web backends & APIs:** server-side apps and services (Instagram, Zomato-scale stacks often use Python)
 - **Automation & scripting:** Reports, file processing, testing
 - **Data & AI:** pandas, machine learning libraries
 - **Full stack:** Python API + React frontend is a common startup stack
@@ -583,7 +583,7 @@ print("Pay at counter")
 
 3. Compare one advantage and one limitation of Python vs Java for enterprise backends.
 
-   **Model answer:** **Advantage:** Python usually has faster development and clearer syntax for APIs, scripting, and data work (Django/Flask). **Limitation:** raw CPU-heavy workloads and some large enterprise ecosystems still lean on Java’s performance, strict typing culture, and long-standing tooling — Python can be slower for tight loops unless you use libraries (NumPy) or other services.
+   **Model answer:** **Advantage:** Python usually has faster development and clearer syntax for APIs, scripting, and data work. **Limitation:** raw CPU-heavy workloads and some large enterprise ecosystems still lean on Java’s performance, strict typing culture, and long-standing tooling — Python can be slower for tight loops unless you use libraries (NumPy) or other services.
 
 4. What happens if you name a variable `True`? (Try in REPL.)
 
@@ -641,7 +641,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 5. How is selecting "Python interpreter" in VS Code similar to choosing which translator reads your book?
 
 **Q1. What is Python? What is it used for?**  
-**A:** High-level, interpreted language known for readability; used in web (Django/Flask), automation, data science, scripting, and APIs.
+**A:** High-level, interpreted language known for readability; used in web backends, APIs, automation, data science, and scripting.
 
 **Q2. Difference between interpreted and compiled languages?**  
 **A:** Interpreted (Python) runs via interpreter line-by-line; compiled (C) translates to machine code first. Java is hybrid: compile to bytecode, run on JVM.
@@ -653,7 +653,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** `python3 filename.py` (or `python filename.py` on Windows) from directory containing file or with full path.
 
 **Q5. Why is Python popular for startups in India?**  
-**A:** Fast development, rich libraries, Django for full web apps, easier hiring/training, good for MVP and APIs.
+**A:** Fast development, rich libraries, easier hiring/training, and a strong fit for MVPs, automation, and APIs.
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Phase:** Advanced Python
 
-**Previous module:** Modules and Packages
+**Previous module:** Modules and Packages  
 **Next module:** Exception Handling
 
 ---
@@ -11,14 +11,18 @@
 
 By the end of this session, learners will be able to:
 
-1. Define classes and create objects with attributes and methods.
-2. Use `__init__` constructor to initialize object state.
-3. Explain encapsulation, inheritance, and polymorphism with Python examples.
-4. Differentiate class variables vs instance variables.
-5. Use `super()` to extend parent class behavior.
-6. Model real entities (Employee, Student, BankAccount) for Django models later.
+1. Explain why classes beat loose dicts + free functions for real entities (Student, Order, BankAccount).
+2. Define classes with `__init__`, `self`, instance methods, and create objects.
+3. Differentiate instance, class, and local variables — and avoid the mutable class-attribute trap.
+4. Choose instance methods, `@classmethod`, and `@staticmethod` for the right job.
+5. Encapsulate state with naming conventions and `@property` (controlled read access).
+6. Use HAS-A (composition) and IS-A (inheritance) appropriately; call parent behaviour with `super()`.
+7. Apply polymorphism via method overriding and duck typing.
+8. Override `__str__` for readable object printing when debugging or logging.
 
 ---
+
+
 
 ## Classroom Ticket
 
@@ -28,10 +32,110 @@ Open the lab kit **before** long notes. Read the ticket → code in `starter/` o
 
 Finish the ticket in class; compare with the official solution only when your trainer says so.
 
-**Object-Oriented Programming (OOP)** models software around **things** (objects) in the real world — a `Student`, a `BankAccount`, an `Order`.
+---
 
-- A **class** is the blueprint (like an Aadhaar form template).
-- An **object** is one filled form — a specific student with name "Rahul" and roll 101.
+
+
+## Motivation — Feel the pain of dicts + free functions
+
+Look at this student tracker. Data lives in a dict; behaviour lives in separate functions:
+
+```python
+s1 = {"roll": 101, "name": "Anita", "marks": [72, 68, 81]}
+s2 = {"roll": 102, "name": "Vikram", "marks": [40, 35, 48]}
+
+def average(student):
+    marks = student["marks"]
+    return sum(marks) / len(marks)
+
+def grade(student):
+    avg = average(student)
+    if avg >= 85:
+        return "A"
+    if avg >= 70:
+        return "B"
+    if avg >= 50:
+        return "C"
+    return "Fail"
+
+def display(student):
+    print(f"{student['roll']}: {student['name']} — {grade(student)}")
+
+display(s1)
+display(s2)
+
+# Easy mistakes in a busy script:
+s1["marks"] = -10          # nonsense value, no guard
+del s2["name"]             # KeyError waiting to happen
+print(average({"marks": []}))  # ZeroDivisionError — not really a student
+```
+
+Problems with this style:
+
+1. Anyone can corrupt the dict (`marks = -10`, delete `name`).
+2. Related data and behaviour are **scattered** — easy to pass the wrong shape.
+3. Adding `college`, `email`, or `is_pass()` means hunting every function that touches a student.
+4. As the program grows, the same broken pattern repeats for Order, Account, Product — harder to test and reuse.
+
+**Visual — data here, logic there (easy to break):**
+
+```mermaid
+flowchart LR
+  D["dicts s1, s2"] -.-> F1["average()"]
+  D -.-> F2["grade()"]
+  D -.-> F3["display()"]
+  Bug["Wrong keys / bad values"] --> D
+```
+
+
+
+Bundle **data + behaviour** into one unit — a **class**. Each filled form is an **object**:
+
+```python
+class Student:
+    def __init__(self, roll, name, marks):
+        self.roll = roll
+        self.name = name
+        self.marks = list(marks)
+
+    def average(self):
+        return sum(self.marks) / len(self.marks)
+
+    def grade(self):
+        avg = self.average()
+        if avg >= 85:
+            return "A"
+        if avg >= 70:
+            return "B"
+        if avg >= 50:
+            return "C"
+        return "Fail"
+
+    def display(self):
+        print(f"{self.roll}: {self.name} — {self.grade()}")
+
+s1 = Student(101, "Anita", [72, 68, 81])
+s1.display()
+```
+
+That shift — from “bags of data + floating functions” to “objects that know how to behave” — is **Object-Oriented Programming (OOP)**.
+
+---
+
+
+
+## What is OOP? / Why do we need it?
+
+**Object-Oriented Programming** models software around **things** in the domain — a `Student`, a `BankAccount`, an `Order`.
+
+
+| Idea          | Meaning                                              |
+| ------------- | ---------------------------------------------------- |
+| **Class**     | Blueprint (like an Aadhaar form template)            |
+| **Object**    | One filled form — Rahul, roll 101                    |
+| **Attribute** | Data on the object (`name`, `balance`)               |
+| **Method**    | Behaviour on the object (`deposit()`, `get_grade()`) |
+
 
 **Visual — one blueprint, many filled forms:**
 
@@ -43,40 +147,33 @@ flowchart LR
   C --> O3["OBJECT<br/>Asha, 103"]
 ```
 
-Each object stores **data** (attributes) and **behaviors** (methods). Instead of passing a student dict everywhere, you pass one `Student` object: `student.get_grade()`.
 
-**Encapsulation** means bundling data + methods and controlling access (don't let anyone set balance to -5000 directly).
 
-**Inheritance** lets a new class reuse an existing class — `SavingsAccount` extends `BankAccount`.
+Classic pillars (you will practise each below):
 
-**Visual — IS-A inheritance (child gets parent features):**
 
-```mermaid
-classDiagram
-  class BankAccount {
-    +balance
-    +deposit()
-    +withdraw()
-  }
-  class SavingsAccount {
-    +interest_rate
-    +add_interest()
-  }
-  BankAccount <|-- SavingsAccount
-```
+| Pillar            | Plain English                          | Python taste                                      |
+| ----------------- | -------------------------------------- | ------------------------------------------------- |
+| **Encapsulation** | Bundle data + methods; control access  | `_balance`, `@property`, validate in methods      |
+| **Abstraction**   | Show essentials; hide messy internals  | Call `withdraw()` — you need not know the formula |
+| **Inheritance**   | Child reuses/extends parent (**IS-A**) | `SavingsAccount(BankAccount)`                     |
+| **Polymorphism**  | Same call, different behaviour         | `shape.area()` on Circle vs Square                |
 
-**Polymorphism** means "many forms" — calling `withdraw()` works on different account types but each may calculate fees differently.
 
-This is the same thinking Django uses for **Models** (each model class = database table).
+**Composition (HAS-A)** is equally important in real code: an `Employee` **has a** `Laptop`; they are not the same kind of thing. Prefer HAS-A when you only need to *use* another object.
 
 ---
 
+
+
 ## Important Concepts
 
-### 1. Class, object, `__init__` — what / why, then syntax
 
-**What:** A **class** is the blueprint; an **object** is one concrete instance. `__init__` runs when you create an object and sets its starting data.  
-**Why:** Real systems (Student, Order, BankAccount) are easier as objects than as loose dicts passed everywhere — and Django Models follow the same idea.
+
+### 1. Class, object, `self`, `__init__`
+
+**What:** A **class** is the blueprint; i.e its a combination of data members and behaviour, an **object** is an instance of a class i.e it is one concrete copy. `__init__` runs when you create an object and sets starting data. `self` is the current object (like `this` in Java — but Python makes you write it).  
+**Why:** Real systems are easier as objects than as loose dicts passed through many free functions.
 
 ```python
 class Student:
@@ -91,16 +188,29 @@ s1 = Student(101, "Anita")            # object creation
 s1.display()
 ```
 
-- `self` refers to the **current** object (like `this` in Java).
+- `s1` is a **reference** to the object in memory — you use it to call methods and read attributes.
 - `__init__` runs automatically after object creation — you rarely call it by name.
+- If you omit `__init__`, Python still creates the object (empty shell); you add attributes later (usually not ideal).
+
+**Difference between Method and Constructor:**
+
+
+|                      | Method                    | Constructor (`__init__`)             |
+| -------------------- | ------------------------- | ------------------------------------ |
+| Name                 | Any valid name            | Always `__init__`                    |
+| When it runs         | When you call it          | Automatically on `ClassName(...)`    |
+| How often per object | As many times as you call | Once (at creation)                   |
+| Typical job          | Business logic            | Declare and initialize instance data |
+
 
 **Note:**
+
 - Forgetting `self` in methods → `TypeError` on call — the first parameter must be `self`.
 - Over-engineering OOP (5 classes for hello world) — use functions until complexity grows.
 
 **Try these (2 programs):**
 
-**Program 1 — `Book` with `info()`**
+**Program 1 —** `Book` **with** `info()`
 
 ```python
 class Book:
@@ -114,11 +224,11 @@ class Book:
 
 b1 = Book("Atomic Habits", "James Clear", 499)
 b2 = Book("Wings of Fire", "A.P.J. Abdul Kalam", 350)
-b1.info()  # Atomic Habits by James Clear — ₹499
+b1.info()
 b2.info()
 ```
 
-**Program 2 — `Student.is_pass`**
+**Program 2 —** `Student.is_pass`
 
 ```python
 class Student:
@@ -134,10 +244,17 @@ print(s.is_pass(35))  # False
 print(s.is_pass(72))  # True
 ```
 
-### 2. Class vs instance attributes
 
-**What:** Class attributes are shared by all objects; instance attributes belong to one object.  
-**Why:** Company name can be shared; employee id must not be.
+
+### 2. Three kinds of variables (instance / class / local)
+
+**What:**  
+
+- **Instance** — unique per object (`self.emp_id`)  
+- **Class** (sometimes called “static” in older notes) — one copy shared by all objects (`Employee.company`)  
+- **Local** — temporary names inside a method; die when the method ends
+
+**Why:** Company name can be shared; employee id must not. Temporary totals should not leak as attributes.
 
 ```python
 class Employee:
@@ -146,35 +263,34 @@ class Employee:
     def __init__(self, emp_id, name):
         self.emp_id = emp_id    # instance attribute — unique per object
         self.name = name
+
+    def label(self):
+        title = "Staff"         # local variable — method only
+        return f"{title}: {self.name} @ {Employee.company}"
 ```
 
-**Note:**
-- Mutable class attribute → shared state across objects — initialize lists in `__init__`.
-- Confusing class vs instance → wrong shared data — access class attributes via `ClassName.attr`.
-
-**Try these (2 programs):**
-
-**Program 1 — Instance vs class attribute shadowing**
+**Instance vs class — the shadowing trap:**
 
 ```python
-class Employee:
-    company = "KSR Datavizon"
-
-    def __init__(self, emp_id, name):
-        self.emp_id = emp_id
-        self.name = name
-
 e1 = Employee(1, "Ravi")
 e2 = Employee(2, "Meera")
-e1.company = "Acme"  # creates instance attribute on e1 only
+e1.company = "Acme"   # creates an *instance* attribute on e1 only
 
 print(e1.company)         # Acme
 print(e2.company)         # KSR Datavizon
 print(Employee.company)   # KSR Datavizon
-# e1 got its own company; e2 still reads the class attribute
 ```
 
-**Program 2 — Shared class attribute on `Student`**
+To change the shared value for everyone, assign via the class: `Employee.company = "..."`.
+
+**Note:**
+
+- Mutable class attribute → shared state across objects — initialize lists/dicts in `__init__`, not at class level.
+- Prefer `ClassName.attr` when you mean the shared value (clearer than `self.attr` for class data).
+
+**Try these (2 programs):**
+
+**Program 1 — Shared class attribute on** `Student`
 
 ```python
 class Student:
@@ -186,31 +302,154 @@ class Student:
 
 s1 = Student(1, "Anita")
 s2 = Student(2, "Vikram")
-print(s1.college, s2.college)  # KSR College KSR College
+print(s1.college, s2.college)
 
 Student.college = "KSR Institute of Technology"
 print(s1.college, s2.college)  # both reflect the new class value
 ```
 
-### 3. Encapsulation conventions
+**Program 2 — Mutable class attribute trap (spot the bug)**
 
-**What:** Naming that signals “please don’t touch this from outside.”  
-**Why:** Protect balances, passwords, and internal state from accidental misuse.
+```python
+class Batch:
+    # WRONG if you meant "each batch has its own list":
+    # students = []
 
-| Syntax | Meaning | Access |
-|--------|---------|--------|
-| `name` | public | Normal use |
-| `_name` | protected (convention) | Internal use |
-| `__name` | name mangled | Harder accidental access |
+    def __init__(self, name):
+        self.name = name
+        self.students = []   # CORRECT — per object
 
-Use `@property` for controlled read access (stretch).
+b1 = Batch("Python FS Morning")
+b2 = Batch("Python FS Evening")
+b1.students.append("Arjun")
+print(b2.students)  # [] — each batch has its own list
+```
+
+
+
+### 3. Three kinds of methods (instance / class / static)
+
+**What:**  
+
+- **Instance method** — first arg `self`; uses object data  
+- **Class method** — `@classmethod`, first arg `cls`; works with class-level data or alternate constructors  
+- **Static method** — `@staticmethod`; utility namespaced on the class (no `self` / `cls`)
+
+**Why:** Not every helper needs an instance. Object counters and “build from CSV row” fit class methods; pure converters fit static methods.
+
+```python
+class Order:
+    order_count = 0
+
+    def __init__(self, product, qty):
+        self.product = product
+        self.qty = qty
+        Order.order_count += 1
+
+    def line_total(self, price):          # instance method
+        return self.qty * price
+
+    @classmethod
+    def get_count(cls):                   # class method
+        return cls.order_count
+
+    @classmethod
+    def from_pair(cls, product, qty):     # alternate constructor
+        return cls(product, qty)
+
+    @staticmethod
+    def gst_amount(amount, rate=0.18):    # static utility
+        return amount * rate
+
+o = Order.from_pair("Notebook", 3)
+print(o.line_total(40))
+print(Order.get_count())
+print(Order.gst_amount(100))
+```
 
 **Note:**
-- `__private` is not true security — still accessible via name mangling. Use encapsulation for clarity, not security.
+
+- In day-to-day apps you mostly write **instance** methods. Use `@classmethod` / `@staticmethod` when the intent is clear — not for decoration.
+- Interview tip: `@classmethod` gets the class (`cls`); `@staticmethod` is a plain function living on the class.
 
 **Try these (2 programs):**
 
-**Program 1 — `UPIWallet` with private balance**
+**Program 1 — Track how many objects were created**
+
+```python
+class Ticket:
+    count = 0
+
+    def __init__(self, seat):
+        self.seat = seat
+        Ticket.count += 1
+
+    @classmethod
+    def how_many(cls):
+        return cls.count
+
+Ticket("A1")
+Ticket("A2")
+print(Ticket.how_many())  # 2
+```
+
+**Program 2 — Static helper on a math namespace**
+
+```python
+class FareMath:
+    @staticmethod
+    def with_gst(amount, rate=0.05):
+        return amount * (1 + rate)
+
+print(FareMath.with_gst(1000))  # 1050.0
+```
+
+
+
+### 4. Encapsulation and `@property`
+
+**What:** Naming and accessors that signal “please don’t poke internals from outside.”  
+**Why:** Protect balances, passwords, and invariants (no negative balance by accident).
+
+
+| Syntax   | Meaning                | Access                   |
+| -------- | ---------------------- | ------------------------ |
+| `name`   | public                 | Normal use               |
+| `_name`  | protected (convention) | Internal / subclass use  |
+| `__name` | name-mangled           | Harder accidental access |
+
+
+`__balance` is **not** real security — still reachable as `obj._ClassName__balance`. Use encapsulation for **clarity and safety in honest code**, not cryptography.
+
+Prefer validating inside methods. For read-only or computed views, use `@property`:
+
+```python
+class BankAccount:
+    def __init__(self, holder, balance=0):
+        self.holder = holder
+        self._balance = float(balance)
+
+    @property
+    def balance(self):
+        return self._balance
+
+    def deposit(self, amount):
+        if amount <= 0:
+            print("Invalid deposit amount")
+            return
+        self._balance += amount
+```
+
+Callers write `acct.balance` (looks like an attribute, runs a method). Your Classroom Ticket may use `__balance` + `get_balance()` — same idea, different style.
+
+**Note:**
+
+- Leading with `__` everywhere is noisy. Start with public + validated methods; add `_` / `__` / `@property` when the API needs it.
+- Java-style `getX`/`setX` pairs work, but idiomatic Python often prefers `@property` / `@x.setter`.
+
+**Try these (2 programs):**
+
+**Program 1 —** `UPIWallet` **with private balance**
 
 ```python
 class UPIWallet:
@@ -242,45 +481,99 @@ wallet.debit(1000)  # rejected
 print("Balance:", wallet.get_balance())  # 600
 ```
 
-**Program 2 — Name mangling demo**
+**Program 2 —** `@property` **read-only view**
 
 ```python
-class UPIWallet:
-    def __init__(self, balance=0):
-        self.__balance = balance
+class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius
 
-    def get_balance(self):
-        return self.__balance
+    @property
+    def celsius(self):
+        return self._celsius
 
-wallet = UPIWallet(500)
-print("Has __balance attr?", hasattr(wallet, "__balance"))  # False — name mangled
-print("Via getter:", wallet.get_balance())  # 500
-# Advanced peek (not recommended): wallet._UPIWallet__balance
-# Later (Exceptions week): catching AttributeError if you force-access wrongly
+    @property
+    def fahrenheit(self):
+        return self._celsius * 9 / 5 + 32
+
+t = Temperature(37)
+print(t.celsius, t.fahrenheit)
+# t.celsius = 40  # AttributeError if no setter — intentional
 ```
 
-### 4. Inheritance and `super()`
 
-**What:** A child class reuses and extends a parent (`SavingsAccount` **is a** `BankAccount`).  
-**Why:** Share common behaviour once; override only what differs.
+
+### 5. HAS-A (composition) then IS-A (inheritance) + `super()`
+
+**What:**  
+
+- **HAS-A / composition:** Class A *uses* an instance of B (`Car` has an `Engine`; `Employee` has a `Laptop`).  
+- **IS-A / inheritance:** Class C *is a specialised* B (`SavingsAccount` is a `BankAccount`).
+
+**Why:** Share behaviour once. Extend only when the child truly is that kind of thing. If you only need to *use* another object, prefer composition.
+
+**Rule of thumb:**
+
+
+| Need                          | Choose                |
+| ----------------------------- | --------------------- |
+| Extend / specialise behaviour | **IS-A** inheritance  |
+| Reuse by collaborating        | **HAS-A** composition |
+
 
 ```python
+class Laptop:
+    def __init__(self, model):
+        self.model = model
+
+    def spec(self):
+        return f"Laptop: {self.model}"
+
 class Person:
     def __init__(self, name):
         self.name = name
 
-class Employee(Person):
-    def __init__(self, name, emp_id):
-        super().__init__(name)   # call parent constructor
+class Employee(Person):                    # IS-A Person
+    def __init__(self, name, emp_id, laptop):
+        super().__init__(name)             # init parent part
         self.emp_id = emp_id
+        self.laptop = laptop               # HAS-A Laptop
+
+    def info(self):
+        return f"{self.name} ({self.emp_id}) — {self.laptop.spec()}"
+
+e = Employee("Priya", 501, Laptop("Dell Latitude"))
+print(e.info())
 ```
 
+**Visual — IS-A inheritance (child gets parent features):**
+
+```mermaid
+classDiagram
+  class BankAccount {
+    +balance
+    +deposit()
+    +withdraw()
+  }
+  class SavingsAccount {
+    +interest_rate
+    +add_interest()
+  }
+  BankAccount <|-- SavingsAccount
+```
+
+
+
+Always call `super().__init__(...)` in the child when the parent owns required attributes — otherwise parent fields are missing.
+
 **Note:**
-- Not calling `super().__init__` → parent attributes missing — always init the parent in the child.
+
+- Not calling `super().__init__` → parent attributes missing.
+- Deep inheritance trees get brittle — prefer composition when unsure. Richer design patterns live in optional [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md).
 
 **Try these (2 programs):**
 
-**Program 1 — `SavingsAccount` with interest**
+**Program 1 —** `SavingsAccount` **with interest**
 
 ```python
 class BankAccount:
@@ -305,15 +598,99 @@ class SavingsAccount(BankAccount):
         print(f"Interest ₹{interest:.2f} added. Balance: ₹{self.get_balance():.2f}")
 
 acct = SavingsAccount("Priya", 10000, 0.05)
-acct.apply_interest()  # Interest ₹500.00 added. Balance: ₹10500.00
+acct.apply_interest()
 ```
 
-**Program 2 — `TeachingAssistant` with `super()`**
+**Program 2 — Composition only (Order HAS-A notifier)**
+
+```python
+class SmsNotifier:
+    def send(self, message):
+        print(f"SMS: {message}")
+
+class OrderService:
+    def __init__(self, notifier):
+        self.notifier = notifier   # HAS-A
+
+    def place(self, order_id):
+        self.notifier.send(f"Order {order_id} placed")
+
+OrderService(SmsNotifier()).place("ORD-101")
+```
+
+
+
+### 6. Inheritance shapes (map) + method overriding
+
+**What:** Common tree shapes — and **overriding**: child redefines a parent method when behaviour must differ.  
+**Why:** So you recognise diagrams in interviews and know when to call `super()` from the override.
+
+
+| Shape            | Idea                       | Example                                                       |
+| ---------------- | -------------------------- | ------------------------------------------------------------- |
+| **Single**       | One parent → one child     | `Employee(Person)`                                            |
+| **Multilevel**   | Chain                      | `CC(C)`, `C(P)`                                               |
+| **Hierarchical** | One parent → many children | `Car(Vehicle)`, `Bike(Vehicle)`                               |
+| **Multiple**     | Many parents → one child   | `class C(A, B)` — supported; prefer composition when possible |
+
+
+```python
+class Vehicle:
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+
+    def info(self):
+        return f"{self.brand} ({self.year})"
+
+class Car(Vehicle):
+    def __init__(self, brand, year, doors):
+        super().__init__(brand, year)
+        self.doors = doors
+
+    def info(self):   # override
+        return f"Car: {super().info()}, doors={self.doors}"
+
+class Bike(Vehicle):
+    def info(self):   # override
+        return f"Bike: {super().info()}"
+
+for v in [Car("Hyundai", 2022, 4), Bike("Royal Enfield", 2021)]:
+    print(v.info())
+```
+
+**Multiple inheritance note:** If both parents define the same method, Python uses **MRO** (Method Resolution Order) — roughly “child first, then left-to-right parents.” Inspect with `ClassName.mro()`. You do not need the C3 algorithm for this course; know that order matters: `class C(A, B)` vs `class C(B, A)`.
+
+**Try these (2 programs):**
+
+**Program 1 — Multilevel**
+
+```python
+class Person:
+    def role(self):
+        return "Person"
+
+class Employee(Person):
+    def role(self):
+        return "Employee"
+
+class Manager(Employee):
+    def role(self):
+        return "Manager"
+
+print(Manager().role())  # Manager
+print(isinstance(Manager(), Person))  # True
+```
+
+**Program 2 — Override +** `super()`
 
 ```python
 class Person:
     def __init__(self, name):
         self.name = name
+
+    def label(self):
+        return self.name
 
 class TeachingAssistant(Person):
     def __init__(self, name, subject):
@@ -321,38 +698,21 @@ class TeachingAssistant(Person):
         self.subject = subject
 
     def label(self):
-        return f"{self.name} — {self.subject} lab TA"
+        return f"{super().label()} — {self.subject} lab TA"
 
-ta = TeachingAssistant("Anita", "DSA")
-print(ta.label())  # Anita — DSA lab TA
+print(TeachingAssistant("Anita", "DSA").label())
 ```
 
-### 5. Polymorphism (duck typing)
 
-**What:** Same call works on different types if they share the needed behaviour (`speak()`).  
-**Why:** Write one helper that works for many objects without giant `if type == ...` chains.
 
-```python
-class Dog:
-    def speak(self):
-        return "Woof"
+### 7. Polymorphism (override → duck typing → “no overloading”)
 
-class Cat:
-    def speak(self):
-        return "Meow"
+**What:** “Many forms” — the same operation name behaves differently depending on the object.  
+**Why:** Write one loop/helper without giant `if type == ...` chains.
 
-def animal_sound(animal):
-    print(animal.speak())   # works for any object with speak()
+**Path A — Override polymorphism (shared hierarchy):** same method name on parent/children (see Vehicles above).
 
-animal_sound(Dog())
-animal_sound(Cat())
-```
-
-Python doesn't require a shared parent interface — if it has the method, it works.
-
-**Try these (2 programs):**
-
-**Program 1 — Payment polymorphism**
+**Path B — Duck typing:** no shared parent required — if it has `pay()`, it works:
 
 ```python
 class UPI:
@@ -363,6 +723,44 @@ class Card:
     def pay(self, amount):
         print(f"Paid ₹{amount} via Card")
 
+def checkout(method, amount):
+    method.pay(amount)
+
+checkout(UPI(), 250)
+checkout(Card(), 999)
+```
+
+Python: *if it walks like a duck and quacks like a duck…*
+
+**Path C — “Overloading” in Python:** Java-style method/constructor overloading (same name, different signatures) is **not** supported. The last definition wins. Use defaults or `*args` instead:
+
+```python
+class Adder:
+    def add(self, *nums):
+        return sum(nums)
+
+print(Adder().add(1, 2))
+print(Adder().add(1, 2, 3, 4))
+```
+
+**Stretch — operator overloading:** customise `+` via `__add__` (optional demo, not core):
+
+```python
+class BookStack:
+    def __init__(self, pages):
+        self.pages = pages
+
+    def __add__(self, other):
+        return BookStack(self.pages + other.pages)
+
+print((BookStack(100) + BookStack(200)).pages)  # 300
+```
+
+**Try these (2 programs):**
+
+**Program 1 — Payment duck typing**
+
+```python
 class Cash:
     def pay(self, amount):
         print(f"Paid ₹{amount} in Cash")
@@ -370,12 +768,10 @@ class Cash:
 def checkout(method, amount):
     method.pay(amount)
 
-checkout(UPI(), 250)
-checkout(Card(), 999)
 checkout(Cash(), 50)
 ```
 
-**Program 2 — Shape areas without `isinstance`**
+**Program 2 — Shape areas without** `isinstance`
 
 ```python
 import math
@@ -394,22 +790,78 @@ class Square:
     def area(self):
         return self.side ** 2
 
-shapes = [Circle(3), Square(4), Circle(1)]
-for shape in shapes:
+for shape in [Circle(3), Square(4), Circle(1)]:
     print(f"{shape.__class__.__name__} area: {shape.area():.2f}")
 ```
 
----
 
-## Step-by-Step Annotated Python 3 Code
 
-### Example 1 — BankAccount with encapsulation
+### 8. Readable objects with `__str__`
+
+**What:** `__str__` controls what you see when you `print(obj)` or convert it with `str(obj)`.  
+**Why:** Default object text (`<__main__.Student object at 0x...>`) is useless when debugging; a clear string saves time.
+
+```python
+class Student:
+    def __init__(self, roll, name):
+        self.roll = roll
+        self.name = name
+
+    def __str__(self):
+        return f"Student({self.roll}, {self.name})"
+
+print(Student(101, "Anita"))  # Student(101, Anita)
+```
+
+Without `__str__`, you get the default memory-address style string.
+
+**Note:** `__repr__` is the unambiguous/debug form (`repr(obj)`). Prefer implementing `__str__` first; dig into `__repr__` in [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md) if needed.
+
+**Try these (2 programs):**
+
+**Program 1 — Readable account**
 
 ```python
 class BankAccount:
     def __init__(self, holder, balance=0):
         self.holder = holder
-        self.__balance = balance   # "private" by convention
+        self._balance = balance
+
+    def __str__(self):
+        return f"{self.holder}'s account — ₹{self._balance:.2f}"
+
+print(BankAccount("Priya", 1000))
+```
+
+**Program 2 — Product label**
+
+```python
+class Product:
+    def __init__(self, sku, price):
+        self.sku = sku
+        self.price = price
+
+    def __str__(self):
+        return f"{self.sku} @ ₹{self.price}"
+
+print(Product("NB-A4", 40))
+```
+
+---
+
+
+
+## Step-by-Step Annotated Python 3 Code
+
+
+
+### Example 1 — BankAccount with encapsulation (lab-shaped)
+
+```python
+class BankAccount:
+    def __init__(self, holder, balance=0):
+        self.holder = holder
+        self.__balance = balance
 
     def deposit(self, amount):
         if amount <= 0:
@@ -435,6 +887,8 @@ print("Balance:", acct.get_balance())
 # acct.__balance  # AttributeError — name mangling
 ```
 
+
+
 ### Example 2 — Class vs instance attribute trap
 
 ```python
@@ -449,13 +903,15 @@ b1 = Batch("Python FS Morning")
 b2 = Batch("Python FS Evening")
 
 b1.students.append("Arjun")
-print(b2.students)   # [] — correct (each batch has own list)
+print(b2.students)   # [] — correct
 
 # WRONG pattern (class-level mutable):
 # students = []  at class level → all batches share same list!
 ```
 
-### Example 3 — Inheritance hierarchy
+
+
+### Example 3 — Inheritance + override + polymorphism
 
 ```python
 class Vehicle:
@@ -471,9 +927,8 @@ class Car(Vehicle):
         super().__init__(brand, year)
         self.doors = doors
 
-    def info(self):   # override (polymorphism)
-        base = super().info()
-        return f"Car: {base}, doors={self.doors}"
+    def info(self):
+        return f"Car: {super().info()}, doors={self.doors}"
 
 class Bike(Vehicle):
     def info(self):
@@ -484,170 +939,132 @@ for v in vehicles:
     print(v.info())
 ```
 
-### Example 4 — Employee management
+
+
+### Example 4 — Employee / Manager (class attr + override)
 
 ```python
 class Employee:
     tax_rate = 0.10
+
     def __init__(self, emp_id, name, basic_salary):
-        self.emp_id, self.name, self.basic_salary = emp_id, name, basic_salary
+        self.emp_id = emp_id
+        self.name = name
+        self.basic_salary = basic_salary
+
     def net_salary(self):
         return self.basic_salary * (1 - Employee.tax_rate)
+
+    def __str__(self):
+        return f"{self.name} net ₹{self.net_salary():.2f}"
 
 class Manager(Employee):
     def __init__(self, emp_id, name, basic_salary, bonus=5000):
         super().__init__(emp_id, name, basic_salary)
         self.bonus = bonus
+
     def net_salary(self):
         return super().net_salary() + self.bonus
+
+print(Employee(1, "Ravi", 30000))
+print(Manager(2, "Meera", 30000, bonus=8000))
 ```
 
-### Example 5 — Static and class methods (preview)
+
+
+### Example 5 — HAS-A + IS-A together
 
 ```python
-class Order:
-    order_count = 0
-    def __init__(self, product, qty):
-        self.product, self.qty = product, qty
-        Order.order_count += 1
-    @classmethod
-    def get_count(cls):
-        return cls.order_count
+class Car:
+    def __init__(self, name, model):
+        self.name = name
+        self.model = model
+
+    def getinfo(self):
+        return f"{self.name} {self.model}"
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Employee(Person):
+    def __init__(self, name, emp_id, car):
+        super().__init__(name)
+        self.emp_id = emp_id
+        self.car = car
+
+    def __str__(self):
+        return f"{self.name} ({self.emp_id}) drives {self.car.getinfo()}"
+
+print(Employee("Anita", 101, Car("Innova", "Crysta")))
 ```
 
 ---
 
+
+
 ## Practice Exercises
+
+
 
 ### Basic
 
-1. Create `Book` class with `title`, `author`, `price`, method `display()`.
-   **Model answer:**
-   ```python
-   class Book:
-       def __init__(self, title, author, price):
-           self.title = title
-           self.author = author
-           self.price = price
+1. Create `Product` with `sku`, `price`, and `__str__`.
+  **Model answer:**
+2. Create two `Product` objects and print them.
+  **Model answer:**
+3. Add `apply_discount(percent)` returning the discounted price (do not mutate unless you choose to).
+  **Model answer:**
 
-       def display(self):
-           print(f"{self.title} by {self.author} — ₹{self.price}")
-   ```
 
-2. Create two `Book` objects and print details.
-   **Model answer:**
-   ```python
-   b1 = Book("Clean Code", "Robert Martin", 499)
-   b2 = Book("Fluent Python", "Luciano Ramalho", 899)
-   b1.display()
-   b2.display()
-   ```
-
-3. Add method `apply_discount(percent)` returning new price.
-   **Model answer:**
-   ```python
-   class Book:
-       def __init__(self, title, author, price):
-           self.title, self.author, self.price = title, author, price
-
-       def apply_discount(self, percent):
-           return self.price * (1 - percent / 100)
-
-   print(Book("X", "Y", 1000).apply_discount(10))  # 900.0
-   ```
 
 ### Intermediate
 
-1. `Rectangle` class with `area()` and `perimeter()`; `Square` inherits from `Rectangle`.
-   **Model answer:**
-   ```python
-   class Rectangle:
-       def __init__(self, w, h):
-           self.w, self.h = w, h
+1. `Rectangle` with `area()` / `perimeter()`; `Square` inherits from `Rectangle`.
+  **Model answer:**
+2. `Student` with a list of marks; `average()` and `grade()`; keep marks as an **instance** list.
+  **Model answer:**
+3. Polymorphism with a shared `Shape` base and `Circle` / `Rectangle` subclasses (`area()`).
+  **Model answer:**
+4. Add `@property` `balance` on a tiny wallet that only allows deposit through a method.
+  **Model answer:**
 
-       def area(self):
-           return self.w * self.h
 
-       def perimeter(self):
-           return 2 * (self.w + self.h)
-
-   class Square(Rectangle):
-       def __init__(self, side):
-           super().__init__(side, side)
-   ```
-
-2. `Student` class with list of marks; methods `average()` and `grade()`.
-   **Model answer:**
-   ```python
-   class Student:
-       def __init__(self, name, marks):
-           self.name, self.marks = name, marks
-
-       def average(self):
-           return sum(self.marks) / len(self.marks)
-
-       def grade(self):
-           avg = self.average()
-           if avg >= 85:
-               return "A"
-           if avg >= 70:
-               return "B"
-           if avg >= 50:
-               return "C"
-           return "Fail"
-   ```
-
-3. Demonstrate polymorphism with `Shape` base and `Circle`, `Rectangle` subclasses.
-   **Model answer:**
-   ```python
-   import math
-
-   class Shape:
-       def area(self):
-           raise NotImplementedError
-
-   class Circle(Shape):
-       def __init__(self, r):
-           self.r = r
-       def area(self):
-           return math.pi * self.r ** 2
-
-   class Rectangle(Shape):
-       def __init__(self, w, h):
-           self.w, self.h = w, h
-       def area(self):
-           return self.w * self.h
-
-   for shape in [Circle(2), Rectangle(3, 4)]:
-       print(shape.area())
-   ```
 
 ### Interview-style
 
 1. Difference between `@staticmethod` and `@classmethod`?
-   **Model answer:**
-   `@staticmethod` is a plain function living on the class; it gets no automatic first argument. `@classmethod` receives the class as `cls` and is used for alternate constructors or class-level helpers that must know which class was called.
-
+  **Model answer:**  
+   `@staticmethod` is a plain function living on the class (no automatic first argument). `@classmethod` receives the class as `cls` and is used for alternate constructors or class-level helpers.
 2. Is Python fully object-oriented? Discuss.
-   **Model answer:**
-   Nearly everything is an object (ints, functions, classes), and OOP features (classes, inheritance, polymorphism) are first-class. It is multi-paradigm: you can also write procedural or functional style without forcing classes everywhere.
+  **Model answer:**  
+   Nearly everything is an object, and OOP features are first-class. It is multi-paradigm: procedural and functional styles are fine when classes add no value.
+3. Why override `__str__`? What do you see if you skip it?
+  **Model answer:**  
+   `__str__` returns a human-readable description used by `print` and `str()`. Without it, Python shows a default like `<__main__.Student object at 0x...>`, which is hard to debug.
+4. When inheritance vs composition?
+  **Model answer:**  
+   Inheritance when the child **is a** specialised parent. Composition when an object **has a** collaborator it uses. Prefer composition when unsure.
 
-3. How does OOP relate to Django models?
-   **Model answer:**
-   Each Django model is a class inheriting `models.Model`; fields are class attributes and the ORM maps instances to table rows. Inheritance, methods, and encapsulation on models mirror the OOP you use in plain Python.
+---
+
+
 
 ## Mini-Project: BankAccount OOP CLI
 
-**Title:** Encapsulated savings account demo  
+**Title:** Encapsulated account demo  
 **Lab kit (build here):** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
 
 ### What to build
 
-| Piece | Detail |
-|-------|--------|
+
+| Piece         | Detail                                                                       |
+| ------------- | ---------------------------------------------------------------------------- |
 | `BankAccount` | `__balance` (or `_balance` + property); `deposit`, `withdraw`, `get_balance` |
-| Rules | Reject amount ≤ 0; reject withdraw over balance |
-| CLI menu | 1 Deposit · 2 Withdraw · 3 Balance · 4 Exit |
+| Rules         | Reject amount ≤ 0; reject withdraw over balance                              |
+| CLI menu      | 1 Deposit · 2 Withdraw · 3 Balance · 4 Exit                                  |
+| Nice to have  | `__str__` for a one-line status print                                        |
+
 
 **Starter idea:**
 
@@ -674,13 +1091,20 @@ class BankAccount:
 
     def get_balance(self):
         return self.__balance
+
+    def __str__(self):
+        return f"{self.owner}: ₹{self.__balance:.2f}"
 ```
+
+
 
 ### Stretch
 
-- Add `SavingsAccount(BankAccount)` with `apply_interest(rate)`.  
+- Add `SavingsAccount(BankAccount)` with `apply_interest(rate)` **or** a `CurrentAccount` with a different minimum-balance rule.  
 - Log each successful deposit/withdraw as a list of tuples `(action, amount, balance)`.  
 - **Later (Exceptions week):** switch validation to `raise ValueError` and catch it in the menu loop.
+
+
 
 ### Done when
 
@@ -691,17 +1115,28 @@ class BankAccount:
 
 ---
 
+
+
 ## Revision Map — Memorize / Understand / Practise / Build
 
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Class & object | `class`, `self`, `__init__` | Blueprint vs instance | Create 3 simple classes | Entity models |
-| Attributes | Instance vs class attrs | Shared vs per-object data | Spot class attr bugs | Config + instance mix |
-| Methods | Instance method signature | `self` is the object | Method calling drills | Service class methods |
-| Encapsulation | `_protected`, `__private` convention | Public interface idea | Property getters | Validated attributes |
-| Inheritance | `class Child(Parent)` | IS-A relationship | 2-level hierarchy | Vehicle / Employee tree |
-| Polymorphism | Same method, different behavior | Duck typing in Python | Override methods | Payment processors |
-| super() | `super().__init__(...)` | Cooperative inheritance | Parent + child init | Extended Employee class |
+
+| Topic          | Memorize                                  | Understand                      | Practise                    | Build                  |
+| -------------- | ----------------------------------------- | ------------------------------- | --------------------------- | ---------------------- |
+| Class & object | `class`, `self`, `__init__`               | Blueprint vs instance           | 3 simple classes            | Entity models          |
+| Variables      | Instance / class / local                  | Shared vs per-object; shadowing | Spot class-attr bugs        | Config + instance mix  |
+| Methods        | Instance / `classmethod` / `staticmethod` | When each fits                  | Object counter + GST helper | Service class methods  |
+| Encapsulation  | `_`, `__`, `@property`                    | Convention ≠ security           | Wallet with property        | Validated attributes   |
+| HAS-A vs IS-A  | Composition vs inheritance                | Prefer HAS-A when unsure        | Employee + Laptop           | Order + notifier       |
+| Inheritance    | `class Child(Parent)`, `super()`          | Override + init chain           | Vehicle / Employee tree     | SavingsAccount         |
+| Polymorphism   | Override + duck typing                    | No Java-style overload          | Payment / shapes            | Checkout helper        |
+| `__str__`      | `__str__`                                 | Readable vs default object text | Printable entities          | Status / label methods |
+
+
+**Label legend:** **Memorize** = recall in interviews · **Understand** = explain in English · **Practise** = daily labs · **Build** = portfolio artefacts
+
+---
+
+
 
 ## Interview & Discussion Q&A
 
@@ -709,24 +1144,29 @@ Shared with students after concepts and the mini-project. Use for review and int
 
 1. Why does Python pass `self` explicitly unlike Java's implicit `this`?
 2. When should you use inheritance vs composition ("has-a" vs "is-a")?
-3. How will `Student` class map to a MySQL table in Django ORM?
+3. What does `__str__` change when you `print` an object?
 4. Is `__balance` truly private in Python?
 5. Why might a class variable for `tax_rate` be useful?
+6. What is MRO in one sentence?
+7. Why doesn't Python support method overloading like Java?
 
 **Q1. What is OOP? Pillars?**  
-**A:** Programming paradigm based on objects. Pillars: encapsulation (bundle + hide), inheritance (reuse via IS-A), polymorphism (same interface, different behavior), abstraction (show essentials).
+**A:** Programming around objects. Pillars: encapsulation (bundle + hide), inheritance (reuse via IS-A), polymorphism (same interface, different behaviour), abstraction (show essentials). Composition (HAS-A) is the practical partner to inheritance.
 
-**Q2. `self` in Python?**  
+**Q2.** `self` **in Python?**  
 **A:** Reference to the current instance. Must be first parameter of instance methods; passed implicitly on call `obj.method()`.
 
 **Q3. Difference class method vs static method?**  
-**A:** Class method receives `cls`, can access/modify class state; static method no implicit first arg, utility function namespaced in class.
+**A:** Class method receives `cls`, can access/modify class state or act as alternate constructor; static method has no implicit first arg — a utility namespaced on the class.
 
 **Q4. Multiple inheritance in Python?**  
-**A:** Supported (`class C(A, B)`); MRO (Method Resolution Order) determines lookup. Prefer composition when possible.
+**A:** Supported (`class C(A, B)`); MRO decides lookup order. Prefer composition when possible.
 
-**Q5. How OOP helps Django?**  
-**A:** Each model is a class mapping to DB table; instances are rows; methods add business logic; inheritance for abstract base models.
+**Q5.** `__str__` **vs default object print?**  
+**A:** Default print shows class name and memory address. Override `__str__` to return a clear, human-readable summary for logs and debugging.
+
+**Q6.** `@property` **vs public attribute?**  
+**A:** `@property` lets you expose a clean attribute-like API while running validation or computing a value — callers write `obj.balance` instead of `obj.get_balance()`.
 
 ---
 

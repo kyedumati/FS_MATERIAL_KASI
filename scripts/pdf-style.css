@@ -124,8 +124,8 @@ li {
 }
 
 /* Prefer keeping a heading with the first block after it */
-h2 + p, h2 + ul, h2 + ol, h2 + pre, h2 + table, h2 + .table-wrap, h2 + .callout,
-h3 + p, h3 + ul, h3 + ol, h3 + pre, h3 + table, h3 + .table-wrap, h3 + .callout {
+h2 + p, h2 + ul, h2 + ol, h2 + pre, h2 + table, h2 + .table-wrap, h2 + .callout, h2 + .mermaid-diagram,
+h3 + p, h3 + ul, h3 + ol, h3 + pre, h3 + table, h3 + .table-wrap, h3 + .callout, h3 + .mermaid-diagram {
   page-break-before: avoid;
   break-before: avoid-page;
 }
@@ -149,6 +149,31 @@ code {
   color: #1e293b;
   padding: 0.05em 0.28em;
   border-radius: 3px;
+}
+
+/* Mermaid diagrams — pre-rendered SVG (see build_pdfs.replace_mermaid_fences) */
+.mermaid-diagram {
+  margin: 0.9em 0 1.1em;
+  padding: 8pt 10pt;
+  text-align: center;
+  background: #f8fbfd;
+  border: 1px solid #d7e3ec;
+  border-radius: 6px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  overflow: hidden;
+}
+
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+pre.mermaid-source {
+  border-left-color: #94a3b8;
+  font-size: 8.5pt;
+  color: #475569;
 }
 
 pre {

@@ -2,12 +2,16 @@
 
 This folder is **auto-generated**. Do not edit files here.
 
+**Requirements:** Python (`markdown`, `pygments`), Google Chrome, and **Node.js (`npx`)** so Mermaid diagrams render as SVG (not raw ```mermaid code).
+
 ## Primary Full Stack course (teach + share same content)
 
 From the repo root:
 
 ```bash
 ./scripts/build.sh fullstack
+# rebuild one module after Mermaid/CSS changes:
+python3 scripts/build_pdfs.py --force --file FULL_STACK_PYTHON/03_Advanced_Python/01_Functions_Decorators_Generators.md
 ```
 
 PDFs are written to:

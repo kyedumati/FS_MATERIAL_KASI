@@ -14,7 +14,7 @@ By the end of this session, learners will be able to:
 2. Use `.get()`, `.keys()`, `.values()`, `.items()` safely and idiomatically.
 3. Build and traverse **nested dictionaries** (employee profile, product catalog, order JSON).
 4. Iterate dictionaries with `for` loops without losing track of keys and values.
-5. Relate Python dicts to **JSON-like** structures used in APIs, Django, and front-end apps.
+5. Relate Python dicts to **JSON-like** structures used in APIs and front-end apps.
 
 ---
 
@@ -41,7 +41,7 @@ A **dictionary** is like a real dictionary or phone contacts app:
 | `"price"` | `1499.00` | E-commerce product |
 | `"items"` | `[{"sku": "P1", "qty": 2}]` | Order JSON from API |
 
-When you fetch data from a REST API or Django view, you almost always handle **dicts** (and lists of dicts).
+When you fetch data from a REST API, you almost always handle **dicts** (and lists of dicts).
 
 ---
 
@@ -648,7 +648,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 1. Why are dict lookups often preferred over scanning a list for a matching ID?
 2. How is a Python dict similar to a MySQL row + column names?
 3. What happens if two API clients send the same JSON key twice?
-4. When would nested dict become hard to maintain? (Preview: classes/ORM.)
+4. When would nested dict become hard to maintain? (Preview: classes and methods.)
 5. Can dict values be lists? Give an order example.
 
 1. **Dict vs list for lookup by ID?**  

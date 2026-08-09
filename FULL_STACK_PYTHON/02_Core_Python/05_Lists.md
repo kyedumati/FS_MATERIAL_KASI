@@ -573,7 +573,7 @@ while True:
 | **Memorize** | List syntax `[]`, indexing `lst[0]`, negative index `lst[-1]`, slicing `lst[1:4]`, `append`, `extend`, `pop`, `len()` |
 | **Understand** | Lists are **ordered** and **mutable**; methods vs operators; shallow copy vs reassignment; when nested lists represent tables |
 | **Practise** | CRUD on student marks; filter expenses above ₹500; remove duplicate product IDs with a loop |
-| **Build** | **Student Marks Manager** — add marks, show average, list toppers; foundation for later Django querysets |
+| **Build** | **Student Marks Manager** — add marks, show average, list toppers |
 
 ---
 
@@ -588,7 +588,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 5. In an e-commerce app, what part of the order would be a list vs a single value?
 
 1. **Is Python list thread-safe?**  
-   **A:** Not for concurrent writes; for entry-level interviews: lists are fine in single-threaded scripts; web apps use DB/ORM.
+   **A:** Not for concurrent writes; for entry-level interviews: lists are fine in single-threaded scripts; multi-user apps usually store shared data in a database.
 
 2. **List vs array (NumPy)?**  
    **A:** Lists hold mixed types; NumPy arrays are homogeneous and faster for numeric work.

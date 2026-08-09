@@ -16,6 +16,12 @@ if ! python3 -c "import markdown, pygments" 2>/dev/null; then
   python3 -m pip install -r requirements.txt
 fi
 
+# Mermaid diagrams in PDF need Node (npx) + Chrome (already required for print).
+if ! command -v npx >/dev/null 2>&1; then
+  echo "warning: npx not found — Mermaid blocks will appear as code in PDFs." >&2
+  echo "         Install Node.js to render diagrams: https://nodejs.org/" >&2
+fi
+
 ARGS=()
 FORCE=false
 

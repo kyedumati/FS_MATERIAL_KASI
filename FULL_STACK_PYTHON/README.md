@@ -92,7 +92,7 @@ Every teaching module follows the same shape:
 
 **SQL depth** lives in repo **`MYSQL/`** (required labs listed in the MySQL bridge module) — not duplicated here.
 
-> Mermaid diagrams render on GitHub, many Markdown previewers, and Cursor. In plain text viewers you still see the diagram source as a readable sketch.
+> Mermaid diagrams render on GitHub, many Markdown previewers, and Cursor. PDF builds pre-render them to SVG (`./scripts/build.sh fullstack` needs Node/`npx` + Chrome). In plain text viewers you still see the diagram source as a readable sketch.
 
 ---
 

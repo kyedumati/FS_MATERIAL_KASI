@@ -33,9 +33,9 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 Programs often need to **remember data after they close** — student records, expense rows, settings. **Files** on disk hold that data. **Logging** writes timestamped messages about what the program did (or failed to do) so you can debug later.
 
-### Why learn this before Django?
+### Why learn files and logging?
 
-Django and APIs still sit on files (logs, media, CSV import/export, `settings`-style JSON). If you only know `print()`, you will be blind on a server where nobody watches the console.
+Programs still sit on files (logs, media, CSV import/export, config JSON). If you only know `print()`, you will be blind on a server where nobody watches the console.
 
 Opening a file is like borrowing a library book:
 
@@ -608,7 +608,7 @@ logger.info("User login success — console + file")
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why is append mode safer than read-modify-write for log files?
-2. How does Django store uploaded files differently from this module?
+2. Binary vs text mode — when does each matter?
 3. What sensitive data should never go in log files (GDPR/India DPDP awareness)?
 4. CSV vs JSON for config — trade-offs?
 5. How would you rotate log files when they grow too large? (mention `RotatingFileHandler`)

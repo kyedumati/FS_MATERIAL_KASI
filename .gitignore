@@ -10,6 +10,9 @@ dist/
 .pdf_pages_review/
 .pdf_check/
 
+# Mermaid → SVG cache used by scripts/build_pdfs.py
+.cache/
+
 # OS / editor noise
 .DS_Store
 **/.DS_Store

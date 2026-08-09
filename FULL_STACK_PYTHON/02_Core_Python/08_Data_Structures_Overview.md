@@ -46,7 +46,7 @@ Need ordered, changeable list? → list
 | **Set** | `{101, 102, 105}` | Unique IDs only; fast "is member?" |
 | **Dict** | `{101: "Ananya", 102: "Dev"}` | Lookup name by ID instantly |
 
-You will use **all four** in full-stack work: Django views, JSON APIs, cart logic, and interview screens.
+You will use **all four** in full-stack work: scripts, JSON APIs, cart logic, and interview screens.
 
 ---
 
@@ -658,9 +658,9 @@ Learners extend `choose_structure` with 5 custom scenarios from their domain (HR
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
-1. Django returns a QuerySet — is it a list? (Lazy; converts to list when needed — bridge to ORM.)
-2. JSON from React frontend — which Python type on arrival? (dict / list via `json.loads`.)
-3. When would you convert list → set → list deliberately?
+1. JSON from an API — which Python type on arrival? (dict / list via `json.loads`.)
+2. When would you convert list → set → list deliberately?
+3. Which structure fits “lookup student name by roll number” best, and why?
 4. Is O(1) always faster than O(n) for tiny n? (Constant overhead — intuition only.)
 5. Real product: where would you use a queue in an e-commerce site? (Order processing, email jobs.)
 

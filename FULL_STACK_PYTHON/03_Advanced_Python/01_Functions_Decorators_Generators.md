@@ -181,7 +181,7 @@ Recipe placeholders vs the ingredients you actually put in the bowl.
 ```mermaid
 flowchart LR
   Def["def wish(name):<br/>← parameter (placeholder)"]
-  Call["wish(\"Priya\")<br/>← argument (real value)"]
+  Call["wish('Priya')<br/>← argument (real value)"]
   Call -->|fills| Def
 ```
 
@@ -318,17 +318,17 @@ wish()  # uses "Guest"
 #### 2d. Variable-length arguments (`*args`, `**kwargs`)
 
 **What:** Accept **any number** of positional (`*args` → tuple) or keyword (`**kwargs` → dict) values.  
-**Why:** Helpers like `sum_all(...)`, flexible loggers, wrappers, and Django/DRF-style call forwarding.  
+**Why:** Helpers like `sum_all(...)`, flexible loggers, and wrappers that forward arguments.  
 **Rule (definition order):** required positional → `*args` → keyword-only → `**kwargs`.
 
 **Visual — packing extras into a bag:**
 
 ```mermaid
 flowchart LR
-  Call["build_profile(\"Arjun\", \"Python\", \"SQL\", city=\"Hyd\")"]
-  Call --> Name["name = \"Arjun\""]
-  Call --> Args["*skills → (\"Python\", \"SQL\")"]
-  Call --> Kw["**meta → {city: \"Hyd\"}"]
+  Call["build_profile('Arjun', 'Python', 'SQL', city='Hyd')"]
+  Call --> Name["name = 'Arjun'"]
+  Call --> Args["*skills → ('Python', 'SQL')"]
+  Call --> Kw["**meta → {city: 'Hyd'}"]
 ```
 
 ```python
@@ -1167,7 +1167,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 3. What happens when you call a generator function? What is exhaustion?
 4. Generator expression vs list comprehension — when prefer each?
 5. When would you use `map`/`filter` instead of a list comprehension?
-6. Why might a login decorator be useful in Django views?
+6. Why might a login-check decorator be useful before a sensitive function runs?
 7. How does `@timing_decorator` relate to production monitoring?
 
 **Q1. What is the difference between** `*args` **and** `**kwargs`**?**  

@@ -4,8 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html as html_module
+import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -22,6 +25,9 @@ DEFAULT_COURSES = ("MYSQL",)
 NESTED_COURSES = ("FULL_STACK_PYTHON",)  # recursive md tree; excludes trainer-only
 TRAINER_ONLY_DIR_NAME = "14_Trainer_Only"
 STYLE_PATH = Path(__file__).resolve().parent / "pdf-style.css"
+MERMAID_CACHE_DIR = ROOT / ".cache" / "mermaid"
+MERMAID_CLI = ("npx", "-y", "@mermaid-js/mermaid-cli@11.4.2")
+MERMAID_FENCE = re.compile(r"```mermaid[ \t]*\n(.*?)```", re.DOTALL)
 CHROME_PATHS = (
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     "/Applications/Chromium.app/Contents/MacOS/Chromium",
@@ -40,6 +46,99 @@ def find_chrome() -> Path:
     raise FileNotFoundError(
         "Google Chrome not found. Install Chrome or set CHROME_PATH to your browser."
     )
+
+
+def _mermaid_available() -> bool:
+    return shutil.which("npx") is not None
+
+
+def render_mermaid_svg(source: str, chrome: Path, cache_dir: Path) -> str:
+    """Render one Mermaid diagram to SVG via mermaid-cli + system Chrome."""
+    digest = hashlib.sha256(source.encode("utf-8")).hexdigest()[:20]
+    svg_path = cache_dir / f"{digest}.svg"
+    if svg_path.exists() and svg_path.stat().st_size > 0:
+        return svg_path.read_text(encoding="utf-8")
+
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="mmd_") as tmp:
+        tmp_path = Path(tmp)
+        mmd_path = tmp_path / "diagram.mmd"
+        out_svg = tmp_path / "diagram.svg"
+        puppeteer_cfg = tmp_path / "puppeteer.json"
+        mmd_path.write_text(source.strip() + "\n", encoding="utf-8")
+        puppeteer_cfg.write_text(
+            json.dumps(
+                {
+                    "executablePath": str(chrome),
+                    "args": ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"],
+                }
+            ),
+            encoding="utf-8",
+        )
+        cmd = [
+            *MERMAID_CLI,
+            "-i",
+            str(mmd_path),
+            "-o",
+            str(out_svg),
+            "-b",
+            "transparent",
+            "-p",
+            str(puppeteer_cfg),
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        if result.returncode != 0 or not out_svg.exists():
+            err = (result.stderr or result.stdout or "").strip()
+            # Keep the actionable parse line; drop Puppeteer stack noise.
+            err_lines = [ln for ln in err.splitlines() if ln.strip()][:8]
+            raise RuntimeError("mermaid-cli failed: " + " | ".join(err_lines))
+        svg = out_svg.read_text(encoding="utf-8")
+        # Drop XML declaration so the SVG embeds cleanly in HTML body.
+        svg = re.sub(r"<\?xml[^>]*\?>\s*", "", svg, count=1)
+        svg_path.write_text(svg, encoding="utf-8")
+        return svg
+
+
+def sanitize_mermaid_source(source: str) -> str:
+    """Normalize labels so mermaid-cli accepts diagrams that preview OK in editors."""
+    # Markdown authors often write wish(\"Priya\"); Mermaid wants wish('Priya').
+    source = source.replace('\\"', "'")
+    return source
+
+
+def replace_mermaid_fences(md_text: str, chrome: Path) -> str:
+    """Turn ```mermaid fences into inline SVG figures before Markdown→HTML."""
+    if "```mermaid" not in md_text:
+        return md_text
+    if not _mermaid_available():
+        print(
+            "  warning: npx not found — Mermaid diagrams stay as code in PDF. "
+            "Install Node.js to render them.",
+            file=sys.stderr,
+        )
+        return md_text
+
+    rendered = 0
+    failed = 0
+
+    def repl(match: re.Match[str]) -> str:
+        nonlocal rendered, failed
+        source = sanitize_mermaid_source(match.group(1).strip())
+        if not source:
+            return match.group(0)
+        try:
+            svg = render_mermaid_svg(source, chrome, MERMAID_CACHE_DIR)
+            rendered += 1
+            return f'\n\n<div class="mermaid-diagram" role="img">{svg}</div>\n\n'
+        except Exception as exc:  # noqa: BLE001 — keep PDF build going
+            failed += 1
+            print(f"  warning: Mermaid render failed ({exc})", file=sys.stderr)
+            return match.group(0)
+
+    out = MERMAID_FENCE.sub(repl, md_text)
+    if rendered or failed:
+        print(f"  mermaid: {rendered} diagram(s) rendered" + (f", {failed} failed" if failed else ""))
+    return out
 
 
 def md_to_html(md_text: str) -> str:
@@ -61,6 +160,13 @@ def highlight_code_blocks(html: str) -> str:
         # Markdown escapes <, >, & in fenced code; unescape before Pygments
         # so operators like >>> are not double-encoded as &amp;gt;&gt;&gt;.
         code = html_module.unescape(match.group(2))
+        # Leftover mermaid fences (render failed / no npx) — keep readable, not "highlighted"
+        if lang.lower() == "mermaid":
+            escaped = html_module.escape(code)
+            return (
+                '<pre class="mermaid-source"><code class="language-mermaid">'
+                f"{escaped}</code></pre>"
+            )
         lexer = TextLexer()
         if lang:
             try:
@@ -105,11 +211,13 @@ _BLOCK_PATTERN = re.compile(
     r"<h[1-6]>.*?</h[1-6]>"
     r'|<p>.*?</p>'
     r"|<pre><code[^>]*>.*?</code></pre>"
+    r'|<pre class="mermaid-source">.*?</pre>'
     r"|<blockquote>.*?</blockquote>"
     r"|<ul>.*?</ul>"
     r"|<ol>.*?</ol>"
     r"|<hr\s*/?>"
-    r'|<div class="table-wrap[^"]*">.*?</div>',
+    r'|<div class="table-wrap[^"]*">.*?</div>'
+    r'|<div class="mermaid-diagram"[^>]*>.*?</div>',
     re.DOTALL | re.IGNORECASE,
 )
 
@@ -370,6 +478,7 @@ def convert_file(
     md_text = md_path.read_text(encoding="utf-8")
     if strip_trainer:
         md_text = strip_trainer_sections(md_text)
+    md_text = replace_mermaid_fences(md_text, chrome)
     body_html = keep_program_blocks(
         style_callouts(wrap_tables(highlight_code_blocks(md_to_html(md_text))))
     )

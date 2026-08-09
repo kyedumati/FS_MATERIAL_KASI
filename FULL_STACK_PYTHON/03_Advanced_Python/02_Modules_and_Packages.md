@@ -16,7 +16,7 @@ By the end of these sessions, learners will be able to:
 3. Use common standard-library modules: `math`, `datetime`, `random`, `json`, `os`.
 4. Create a multi-file package with `__init__.py` and relative imports.
 5. Set up a virtual environment (`venv`) and install packages with `pip`.
-6. Structure a small project ready for GitHub and future Django apps.
+6. Structure a small multi-file project ready for GitHub.
 
 ---
 
@@ -49,9 +49,9 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 ### Why do we need them?
 
-Without modules, one script becomes thousands of lines — hard to read, hard to reuse, impossible to share. Real products (Django, any team codebase) split work across many files. `import` lets you use that work without copy-paste.
+Without modules, one script becomes thousands of lines — hard to read, hard to reuse, impossible to share. Real team codebases split work across many files. `import` lets you use that work without copy-paste.
 
-**Virtual environment (**`venv`**)** is a private Python sandbox per project so Project A (Django 5) and Project B (Django 4) do not fight on the same machine. Required on shared lab PCs and for clean deploy.
+**Virtual environment (**`venv`**)** is a private Python sandbox per project so Project A (library set X) and Project B (library set Y) do not fight on the same machine. Required on shared lab PCs and for clean deploy.
 
 When you write `import math`, Python loads the standard-library `math` module and exposes its tools. When you `pip install requests`, that package lands in `site-packages` for the active environment.
 
@@ -212,7 +212,7 @@ python greetings.py
 ### 4. Package structure
 
 **What:** A folder of modules you own (e.g. `ksr_utils/` / `campus_utils/`).  
-**Why:** Capstone and Django apps both expect this layout.
+**Why:** Capstone and multi-file apps both expect this layout.
 
 ```
 my_project/
@@ -333,7 +333,7 @@ def check(user):
 ### 6. pip and venv workflow
 
 **What:** A **venv** is a project-private copy of Python + installed libraries. **pip** installs packages from PyPI into the *active* environment.  
-**Why:** Shared lab PCs and two projects on one laptop need isolation — otherwise Django versions collide.
+**Why:** Shared lab PCs and two projects on one laptop need isolation — otherwise package versions collide.
 
 ```bash
 python -m venv venv
@@ -520,7 +520,7 @@ print("Files here:", os.listdir("."))
 data_path = os.path.join("data", "students.csv")
 print("Data path:", data_path)
 
-# Environment variable (used in Django settings later)
+# Environment variable (common for config / secrets)
 db_host = os.environ.get("DB_HOST", "localhost")
 print("DB host:", db_host)
 ```
@@ -619,9 +619,9 @@ print(format_inr(125000.5))
 2. What is `if __name__ == "__main__":` used for?
   **Model answer:**
    It runs a block only when the file is executed as a script, not when imported. Put demos/CLI entry points there so importing the module does not side-effect.
-3. How does Python find modules when you `import django`?
-  **Model answer:**
-   Python searches `sys.path` in order: the script directory, `PYTHONPATH`, site-packages (where pip installs Django), then standard library locations. The first matching package wins.
+3. How does Python find modules when you `import requests`?
+   **Model answer:**
+   Python searches `sys.path` in order: the script directory, `PYTHONPATH`, site-packages (where pip installs packages), then standard library locations. The first matching package wins.
 4. Absolute vs relative import — when use each?
   **Model answer:**
    Absolute (`from campus_utils.formatters import format_inr`) from entry scripts and for clarity. Relative (`from .formatters import format_inr`) inside package files / `__init__.py` so the package stays movable. Relative imports fail in a loose script run as `python formatters.py`.
@@ -680,7 +680,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 1. Why is `import json` preferred over writing your own JSON parser?
 2. When would you use `os.path.join` instead of string concatenation?
 3. What goes into `requirements.txt` and what should never go there?
-4. How is a Django "app" similar to a Python package?
+4. How is a multi-file package folder similar to a reusable app unit in a larger project?
 5. Why do we add `venv/` to `.gitignore` but commit `requirements.txt`?
 6. What is `if __name__ == "__main__":` for?
 7. Difference between `json.load` and `json.loads`?

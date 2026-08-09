@@ -646,7 +646,7 @@ abc ValueError age must be an integer
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Should you use exceptions for normal control flow (e.g., end of loop)?
-2. How does Django return HTTP 404 vs 500 related to exceptions?
+2. When would you catch a broad `Exception` vs a specific type like `ValueError`?
 3. Why log before re-raising?
 4. Difference between error and exception in everyday language vs Python?
 5. How would you handle errors in a payment API integration?

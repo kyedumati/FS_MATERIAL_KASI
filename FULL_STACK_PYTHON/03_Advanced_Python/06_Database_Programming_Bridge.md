@@ -40,7 +40,7 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 So far you saved data in **files** (CSV, JSON). That works for one user on one machine. A **web application** (CampusCart, bank portal) has **many users at once** — students ordering lunch, admins updating stock. Shared data must live in a **database server** (MySQL).
 
-**Python’s job:** business logic — validate input, talk to MySQL, return results to Django/React later.
+**Python’s job:** business logic — validate input, talk to MySQL, return results to the rest of the app (CLI, API, or UI) later.
 
 ### Why not only files?
 
@@ -67,10 +67,10 @@ So far you saved data in **files** (CSV, JSON). That works for one user on one m
 ### 1. Architecture
 
 **What:** Who talks to whom.  
-**Why:** Separates app logic from storage — same pattern Django ORM uses under the hood.
+**Why:** Separates app logic from storage — the same layering most apps use (script/API → connector → database).
 
 ```
-[Python Script / Django App]
+[Python Script / App]
         ↓ mysql-connector / PyMySQL
 [MySQL Server — training_db]
         ↓
@@ -100,19 +100,19 @@ Mermaid (paste into a Markdown previewer):
 print("See docstring above for labelled arrows.")
 ```
 
-**Program 2 — Why ORM still talks to a DB server**
+**Program 2 — Why a connector still talks to a DB server**
 
 ```python
-def why_django_still_needs_mysql():
+def why_apps_still_need_mysql():
     """
-    Django ORM hides SQL, but your app still sends queries
+    Higher-level libraries may hide SQL, but your app still sends queries
     to a MySQL (or other) database server over a connection.
-    Models map to tables; the DB stores and indexes the data.
+    Tables store and index the data.
     Same idea as mysql.connector — only the API layer changes.
     """
-    return why_django_still_needs_mysql.__doc__
+    return why_apps_still_need_mysql.__doc__
 
-print(why_django_still_needs_mysql())
+print(why_apps_still_need_mysql())
 ```
 
 ### 2. Setup (lab standard)
@@ -624,9 +624,9 @@ def list_students():
    **Model answer:**
    `commit` permanently saves the current transaction’s changes. `rollback` undoes uncommitted changes after an error so the database stays consistent.
 
-3. How does Django ORM relate to raw SQL?
+3. What is an ORM, and how does it relate to the raw SQL you write here?
    **Model answer:**
-   The ORM builds parameterized SQL from model queries (`filter`, `create`, etc.). You can still drop to raw SQL with `cursor.execute` or `Model.objects.raw` when the ORM is awkward, but prefer the ORM for safety and portability.
+   An ORM (Object-Relational Mapper) lets you work with tables via Python classes/objects and builds SQL for you. Under the hood it still uses a connection and SQL — the same server you reach with `mysql.connector`. Prefer parameterized SQL (or a trusted ORM) over string-built queries.
 
 ## Mini-Project: Student Database Manager (Python + MySQL)
 
@@ -675,7 +675,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 
 1. Why not store all app data in JSON files on server?
 2. What happens if two users update same row simultaneously?
-3. Why Django discourages raw SQL for most app code?
+3. Why do many teams prefer an ORM (or helpers) over hand-written SQL for everyday CRUD?
 4. Where should DB passwords live in deployed apps?
 5. Difference between connector and ORM?
 
@@ -691,8 +691,8 @@ Shared with students after concepts and the mini-project. Use for review and int
 **Q4. commit vs rollback?**  
 **A:** commit makes transaction changes permanent; rollback undoes changes since last commit on error.
 
-**Q5. Django ORM vs raw SQL?**  
-**A:** ORM maps Python classes to tables, abstracts SQL, reduces boilerplate and some injection risk; raw SQL for complex reports or performance tuning.
+**Q5. ORM vs raw SQL?**  
+**A:** An ORM maps Python classes/objects to tables and generates SQL, which reduces boilerplate and some injection risk; raw SQL is still useful for complex reports or performance tuning.
 
 ---
 
