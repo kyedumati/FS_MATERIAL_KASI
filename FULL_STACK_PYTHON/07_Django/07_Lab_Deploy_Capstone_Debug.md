@@ -45,6 +45,10 @@ All boxes below must be checked before you submit the deploy tag.
 
 Success is judged on **env hygiene + `check --deploy`**, not only a public URL.
 
+**Where used?** Staging/live CampusCart or student portal demos — same checklist recruiters expect on GitHub READMEs.
+
+**Common Error:** Deploying with `DEBUG=True` or empty `ALLOWED_HOSTS` → `DisallowedHost` or leaked tracebacks. Set env on the platform first.
+
 ## Debug playbook
 
 | Problem | First checks |

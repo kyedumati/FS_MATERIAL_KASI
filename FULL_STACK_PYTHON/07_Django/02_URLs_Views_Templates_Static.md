@@ -37,6 +37,13 @@ Finish the ticket in class; compare with the official solution only when your tr
 4. View returns **HttpResponse** (plain text/HTML) or calls **`render()`** with a **template**
 5. **Template** is HTML with placeholders filled using **context** data
 
+**Where used?**
+- Campus portal — home, about, announcements pages with shared `base.html`
+- Ecommerce — product list / detail templates + CSS for CampusCart
+- Blog / Task Manager — multi-page nav via `{% url %}` and `{% extends %}`
+- Admin-facing staff sites — same URL → view → template pattern
+- Capstone — reusable layout so every page shares navbar/footer
+
 **Visual — follow one request like a story:**
 
 ```mermaid
@@ -50,6 +57,11 @@ sequenceDiagram
   View->>Tpl: render with context posts
   Tpl-->>User: HTML page with post titles
 ```
+
+**Quick Revision:**
+- Request hits `urls.py` → view runs → `render(template, context)` → HTML
+- Context dict keys become `{{ variables }}` in the template
+- Static CSS/JS via `{% static %}` — not from the database
 
 **URL (Uniform Resource Locator)** — address of a page.  
 **View** — Python function that decides what to send back.  
@@ -66,6 +78,14 @@ def home(request):
     return HttpResponse("<h1>Welcome</h1>")  # quick test only
 ```
 
+**Expected Output:** (browser at `/` when wired in `urls.py`)
+
+```
+Welcome
+```
+
+**Remember:** Prefer `render(request, "…html", context)` for real pages — `HttpResponse` HTML is only for smoke tests.
+
 Production-style pages use **`render()`** to separate HTML into template files.
 
 ### Template Inheritance
@@ -74,6 +94,8 @@ Instead of copying `<nav>` on every page, create **`base.html`** with common lay
 
 **Note:**
 - Wrong `{% extends %}` path → template error. Use a path relative to `DIRS` / `APP_DIRS` (e.g. `"base.html"` or `"blog/post_list.html"`).
+
+**Common Error:** Writing `{% extend "base.html" %}` (missing **s**) → template syntax error. The tag is `{% extends %}`.
 
 ### Static Files in Development
 

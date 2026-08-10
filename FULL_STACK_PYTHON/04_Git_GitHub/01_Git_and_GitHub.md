@@ -39,6 +39,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 **GitHub** is a **cloud hosting service** for Git repositories — like Google Drive for code, plus tools for collaboration, CI, and portfolios.
 
+**Icons:** Laptop · Order · Employee · Bank · Payroll
+
+**Where used?**
+- College apps — version student portal / CampusCart code across lab days
+- Ecommerce — team feature branches for cart, checkout, product pages
+- Banking / payroll — audit trail of who changed what (commit history)
+- Freelancer / internship — GitHub portfolio recruiters open before calls
+- Hospital / CRM — shared repos so teammates do not overwrite each other
+
 **Workflow in one line:**
 
 1. Edit files in your project folder.
@@ -69,6 +78,11 @@ flowchart LR
   G -->|git pull / clone| W
 ```
 
+**Quick Revision:**
+- Edit → `git add` (stage) → `git commit` (local snapshot) → `git push` (GitHub)
+- `git pull` / `clone` brings remote history back to your working folder
+- Staging = packing list; commit = sealed box; GitHub = warehouse copy
+
 **Try these (2 programs):**
 
 **Program 1 — Trace one file through the three areas**
@@ -82,6 +96,15 @@ git add NOTES.txt
 git status                    # Staging Area: ready to commit
 git commit -m "Add NOTES about canteen tracker"
 git status                    # clean — snapshot is in Repository
+```
+
+**Expected Output:** (abbreviated)
+
+```
+# after first status — Untracked files: NOTES.txt
+# after git add — Changes to be committed: new file: NOTES.txt
+# after commit — [main …] Add NOTES about canteen tracker
+# final status — nothing to commit, working tree clean
 ```
 
 **Program 2 — Label the packing line**
@@ -135,6 +158,16 @@ git add main.py
 git commit -m "Add stub main.py"
 git log --oneline
 ```
+
+**Expected Output:** (hashes differ)
+
+```
+abc1234 Add stub main.py
+def5678 Add Python gitignore
+ghi9012 Initial commit: README
+```
+
+**Remember:** Commit messages use **imperative** mood (`Add`, `Fix`, `Update`) — like giving an order to the codebase.
 
 **Program 2 — Status and diff before commit**
 
@@ -246,6 +279,8 @@ echo "fake" > venv/pyvenv.cfg
 git status
 # Expect: .env and venv/ NOT listed (ignored)
 ```
+
+**Common Error:** Committing `.env` or `venv/` → leaked secrets / huge repo. Confirm they appear under *ignored* in `git status`, not under *untracked*.
 
 ### 5. README structure for portfolio
 
@@ -373,6 +408,13 @@ gitGraph
   checkout main
   merge feature_logging id: "merge logging"
 ```
+
+**Quick Revision:**
+- Build features on `feature/...` branches; keep `main` demo-ready
+- Merge when the feature works; delete the branch after merge
+- Conflicts = same lines edited two ways — edit file, `git add`, finish commit
+
+**Interview:** Git ≠ GitHub — Git is local version control; GitHub hosts remotes + PRs/issues for teams and portfolios.
 
 Work on `feature/...` without breaking `main`, then merge when ready.
 

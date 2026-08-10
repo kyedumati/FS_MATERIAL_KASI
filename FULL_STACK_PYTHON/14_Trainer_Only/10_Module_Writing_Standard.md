@@ -26,7 +26,7 @@
 
 **Graded tests** live only in [`16_Assessments/`](../16_Assessments/) (one paper every 2 weeks). Do **not** put `## Assessment` or `## Biweekly Assessment` inside modules — trainers assign papers from the calendar + assessments README.
 
-**Do not add:** Discussion Questions (separate), Trainer Tips, Trainer Demo Plan, or Real-World Use Cases tables.
+**Do not add:** Discussion Questions (separate), Trainer Tips, Trainer Demo Plan, or large Real-World Use Cases **tables**. Prefer a short `**Where used?**` callout instead (see PDF markers above).
 
 **Delivery timing** lives once in the [Session Calendar](../Session_Calendar_100.md) and [Daily Lesson Plan Template](04_Daily_Lesson_Plan_Template.md) — not repeated in every module.
 
@@ -87,6 +87,35 @@ print(...)
 - India-relevant examples OK (INR, student marks, ATM, names like Priya/Ravi).
 - Point to a lab kit when the exercise matches a ticket.
 - **Practice Exercises:** every numbered item must include `**Model answer:**` (prose and/or a fenced code block). Student pack strips these via `strip_trainer_sections.py`.
+- After a program that prints, prefer an **Expected Output:** fence so PDF learners can self-check:
+
+```markdown
+**Expected Output:**
+
+```
+Priya
+```
+```
+
+---
+
+## PDF callout markers (styled by `scripts/build_pdfs.py`)
+
+Use these exact bold labels (standalone paragraphs). They render as coloured boxes in student PDFs:
+
+| Marker | Use for |
+|--------|---------|
+| `**Expected Output:**` + fence | Self-check prints after demos |
+| `**Remember:**` | One-liner to keep (`self` = current object) |
+| `**Interview:**` | Short interview cue |
+| `**Common Error:**` | Classic trap (mutable class list, etc.) |
+| `**Where used?**` | 3–5 real domains (Banking, Ecommerce, …) — **not** a big Use Cases table |
+| `**Icons:** Bank · UPI · Employee · Laptop · Order` | Optional chip strip (also Hospital · Payroll · CRM) |
+| `**Quick Revision:**` | 2–4 bullets **immediately after** a Mermaid diagram (paired beside it in PDF) |
+
+**Program titles** must be one bold line: `**Program 1 — Book with info()**` (do not split around inline code).
+
+Core/Advanced Python: avoid Django/framework forward-selling; introduce frameworks in their own phase modules.
 
 ---
 

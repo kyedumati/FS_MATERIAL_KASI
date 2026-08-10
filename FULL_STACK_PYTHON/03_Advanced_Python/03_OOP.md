@@ -9,7 +9,7 @@
 
 ## Learning Outcomes
 
-By the end of this session, learners will be able to:
+By the end of these sessions (**S36–S39**), learners will be able to:
 
 1. Explain why classes beat loose dicts + free functions for real entities (Student, Order, BankAccount).
 2. Define classes with `__init__`, `self`, instance methods, and create objects.
@@ -28,7 +28,7 @@ By the end of this session, learners will be able to:
 
 Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
 
-- **[BankAccount with protected balance](../15_Lab_Assets/17_bank_account_oop/)**
+- **[BankAccount with protected balance](../15_Lab_Assets/17_bank_account_oop/)** (**S37** focus; finish / push by **S39**)
 
 Finish the ticket in class; compare with the official solution only when your trainer says so.
 
@@ -128,13 +128,21 @@ That shift — from “bags of data + floating functions” to “objects that k
 
 **Object-Oriented Programming** models software around **things** in the domain — a `Student`, a `BankAccount`, an `Order`.
 
+**Icons:** Bank · UPI · Employee · Laptop · Order
+
+**Where used?**
+- Banking (accounts, UPI wallets)
+- Ecommerce (orders, products)
+- Hospital (patients, appointments)
+- Payroll (employees, salary)
+- CRM (customers, tickets)
 
 | Idea          | Meaning                                              |
 | ------------- | ---------------------------------------------------- |
-| **Class**     | Blueprint (like an Aadhaar form template)            |
-| **Object**    | One filled form — Rahul, roll 101                    |
+| **`class`**   | Blueprint (like an Aadhaar form template)            |
+| **`object`**  | One filled form — Rahul, roll 101                    |
 | **Attribute** | Data on the object (`name`, `balance`)               |
-| **Method**    | Behaviour on the object (`deposit()`, `get_grade()`) |
+| **`method`**  | Behaviour on the object (`deposit()`, `get_grade()`) |
 
 
 **Visual — one blueprint, many filled forms:**
@@ -152,12 +160,12 @@ flowchart LR
 Classic pillars (you will practise each below):
 
 
-| Pillar            | Plain English                          | Python taste                                      |
-| ----------------- | -------------------------------------- | ------------------------------------------------- |
-| **Encapsulation** | Bundle data + methods; control access  | `_balance`, `@property`, validate in methods      |
-| **Abstraction**   | Show essentials; hide messy internals  | Call `withdraw()` — you need not know the formula |
-| **Inheritance**   | Child reuses/extends parent (**IS-A**) | `SavingsAccount(BankAccount)`                     |
-| **Polymorphism**  | Same call, different behaviour         | `shape.area()` on Circle vs Square                |
+| Pillar            | Plain English                          | Python taste                                                                        |
+| ----------------- | -------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Encapsulation** | Bundle data + methods; control access  | `_balance`, `@property`, validate in methods                                        |
+| **Abstraction**   | Show essentials; hide messy internals  | Practised when callers use `deposit()` / `withdraw()` without knowing balance rules |
+| **`inheritance`** | Child reuses/extends parent (**IS-A**) | `SavingsAccount(BankAccount)`                                                       |
+| **Polymorphism**  | Same call, different behaviour         | `shape.area()` on Circle vs Square                                                  |
 
 
 **Composition (HAS-A)** is equally important in real code: an `Employee` **has a** `Laptop`; they are not the same kind of thing. Prefer HAS-A when you only need to *use* another object.
@@ -172,7 +180,7 @@ Classic pillars (you will practise each below):
 
 ### 1. Class, object, `self`, `__init__`
 
-**What:** A **class** is the blueprint; i.e its a combination of data members and behaviour, an **object** is an instance of a class i.e it is one concrete copy. `__init__` runs when you create an object and sets starting data. `self` is the current object (like `this` in Java — but Python makes you write it).  
+**What:** A **class** is the blueprint (data + behaviour together). An **object** is one concrete instance of that class. `__init__` runs when you create an object and sets starting data. `self` is the current object (like `this` in Java — but Python makes you write it).  
 **Why:** Real systems are easier as objects than as loose dicts passed through many free functions.
 
 ```python
@@ -188,9 +196,17 @@ s1 = Student(101, "Anita")            # object creation
 s1.display()
 ```
 
-- `s1` is a **reference** to the object in memory — you use it to call methods and read attributes.
+**Expected Output:**
+
+```
+101: Anita
+```
+
+- `s1` is a **reference** to the `object` in memory — you use it to call methods and read attributes.
 - `__init__` runs automatically after object creation — you rarely call it by name.
-- If you omit `__init__`, Python still creates the object (empty shell); you add attributes later (usually not ideal).
+- If you omit `__init__`, Python still creates the `object` (empty shell); you add attributes later (usually not ideal).
+
+**Remember:** `self` = the **current object** (passed automatically on `s1.display()`).
 
 **Difference between Method and Constructor:**
 
@@ -210,7 +226,7 @@ s1.display()
 
 **Try these (2 programs):**
 
-**Program 1 —** `Book` **with** `info()`
+**Program 1 — Book with info()**
 
 ```python
 class Book:
@@ -228,7 +244,14 @@ b1.info()
 b2.info()
 ```
 
-**Program 2 —** `Student.is_pass`
+**Expected Output:**
+
+```
+Atomic Habits by James Clear — ₹499
+Wings of Fire by A.P.J. Abdul Kalam — ₹350
+```
+
+**Program 2 — Student.is_pass**
 
 ```python
 class Student:
@@ -244,7 +267,12 @@ print(s.is_pass(35))  # False
 print(s.is_pass(72))  # True
 ```
 
+**Expected Output:**
 
+```
+False
+True
+```
 
 ### 2. Three kinds of variables (instance / class / local)
 
@@ -288,9 +316,11 @@ To change the shared value for everyone, assign via the class: `Employee.company
 - Mutable class attribute → shared state across objects — initialize lists/dicts in `__init__`, not at class level.
 - Prefer `ClassName.attr` when you mean the shared value (clearer than `self.attr` for class data).
 
+**Common Error:** putting `students = []` at **class** level — every batch shares one list. Always create the list in `__init__`.
+
 **Try these (2 programs):**
 
-**Program 1 — Shared class attribute on** `Student`
+**Program 1 — Shared class attribute on Student**
 
 ```python
 class Student:
@@ -367,6 +397,16 @@ print(Order.get_count())
 print(Order.gst_amount(100))
 ```
 
+**Expected Output:**
+
+```
+120
+1
+18.0
+```
+
+**Interview:** `@classmethod` gets `cls` (class-level / alternate constructors). `@staticmethod` is a plain utility on the class — no `self` / `cls`.
+
 **Note:**
 
 - In day-to-day apps you mostly write **instance** methods. Use `@classmethod` / `@staticmethod` when the intent is clear — not for decoration.
@@ -408,6 +448,10 @@ print(FareMath.with_gst(1000))  # 1050.0
 
 ### 4. Encapsulation and `@property`
 
+**Icons:** Bank · UPI
+
+**Where used?** Banking balances, UPI wallets, passwords, inventory stock — anything that must not be set to nonsense values from outside.
+
 **What:** Naming and accessors that signal “please don’t poke internals from outside.”  
 **Why:** Protect balances, passwords, and invariants (no negative balance by accident).
 
@@ -440,7 +484,9 @@ class BankAccount:
         self._balance += amount
 ```
 
-Callers write `acct.balance` (looks like an attribute, runs a method). Your Classroom Ticket may use `__balance` + `get_balance()` — same idea, different style.
+Callers write `acct.balance` (looks like an attribute, runs a method).
+
+**Lab vs note style (S37):** the Classroom Ticket uses `__balance` + `get_balance()` — same idea as protecting internals. `@property` is the more idiomatic Python style; both are acceptable in this course.
 
 **Note:**
 
@@ -449,7 +495,7 @@ Callers write `acct.balance` (looks like an attribute, runs a method). Your Clas
 
 **Try these (2 programs):**
 
-**Program 1 —** `UPIWallet` **with private balance**
+**Program 1 — UPIWallet with private balance**
 
 ```python
 class UPIWallet:
@@ -481,7 +527,14 @@ wallet.debit(1000)  # rejected
 print("Balance:", wallet.get_balance())  # 600
 ```
 
-**Program 2 —** `@property` **read-only view**
+**Expected Output:**
+
+```
+Insufficient balance
+Balance: 600
+```
+
+**Program 2 — @property read-only view**
 
 ```python
 class Temperature:
@@ -504,6 +557,10 @@ print(t.celsius, t.fahrenheit)
 
 
 ### 5. HAS-A (composition) then IS-A (inheritance) + `super()`
+
+**Icons:** Employee · Laptop · Bank
+
+**Where used?** Payroll (`Employee` **is a** `Person`, **has a** `Laptop`); banking (`SavingsAccount` **is a** `BankAccount`).
 
 **What:**  
 
@@ -557,12 +614,15 @@ classDiagram
   }
   class SavingsAccount {
     +interest_rate
-    +add_interest()
+    +apply_interest()
   }
   BankAccount <|-- SavingsAccount
 ```
 
-
+**Quick Revision:**
+- Child **is a** parent → use `inheritance`
+- Child only **uses** another type → HAS-A (composition)
+- Always call `super().__init__(...)` when the parent owns required fields
 
 Always call `super().__init__(...)` in the child when the parent owns required attributes — otherwise parent fields are missing.
 
@@ -573,7 +633,7 @@ Always call `super().__init__(...)` in the child when the parent owns required a
 
 **Try these (2 programs):**
 
-**Program 1 —** `SavingsAccount` **with interest**
+**Program 1 — SavingsAccount with interest**
 
 ```python
 class BankAccount:
@@ -601,6 +661,12 @@ acct = SavingsAccount("Priya", 10000, 0.05)
 acct.apply_interest()
 ```
 
+**Expected Output:**
+
+```
+Interest ₹500.00 added. Balance: ₹10500.00
+```
+
 **Program 2 — Composition only (Order HAS-A notifier)**
 
 ```python
@@ -618,7 +684,13 @@ class OrderService:
 OrderService(SmsNotifier()).place("ORD-101")
 ```
 
+**Expected Output:**
 
+```
+SMS: Order ORD-101 placed
+```
+
+**Icons:** Order
 
 ### 6. Inheritance shapes (map) + method overriding
 
@@ -682,7 +754,7 @@ print(Manager().role())  # Manager
 print(isinstance(Manager(), Person))  # True
 ```
 
-**Program 2 — Override +** `super()`
+**Program 2 — Override + super()**
 
 ```python
 class Person:
@@ -758,9 +830,17 @@ print((BookStack(100) + BookStack(200)).pages)  # 300
 
 **Try these (2 programs):**
 
-**Program 1 — Payment duck typing**
+**Program 1 — Several pay methods, one checkout loop**
 
 ```python
+class UPI:
+    def pay(self, amount):
+        print(f"Paid ₹{amount} via UPI")
+
+class Card:
+    def pay(self, amount):
+        print(f"Paid ₹{amount} via Card")
+
 class Cash:
     def pay(self, amount):
         print(f"Paid ₹{amount} in Cash")
@@ -768,10 +848,19 @@ class Cash:
 def checkout(method, amount):
     method.pay(amount)
 
-checkout(Cash(), 50)
+for method in [UPI(), Card(), Cash()]:
+    checkout(method, 100)
 ```
 
-**Program 2 — Shape areas without** `isinstance`
+**Expected Output:**
+
+```
+Paid ₹100 via UPI
+Paid ₹100 via Card
+Paid ₹100 in Cash
+```
+
+**Program 2 — Shape areas without isinstance**
 
 ```python
 import math
@@ -794,7 +883,13 @@ for shape in [Circle(3), Square(4), Circle(1)]:
     print(f"{shape.__class__.__name__} area: {shape.area():.2f}")
 ```
 
+**Expected Output:**
 
+```
+Circle area: 28.27
+Square area: 16.00
+Circle area: 3.14
+```
 
 ### 8. Readable objects with `__str__`
 
@@ -811,6 +906,12 @@ class Student:
         return f"Student({self.roll}, {self.name})"
 
 print(Student(101, "Anita"))  # Student(101, Anita)
+```
+
+**Expected Output:**
+
+```
+Student(101, Anita)
 ```
 
 Without `__str__`, you get the default memory-address style string.
@@ -853,7 +954,7 @@ print(Product("NB-A4", 40))
 
 ## Step-by-Step Annotated Python 3 Code
 
-
+Examples below **deepen** lab-shaped and combined patterns. For the mutable class-attr trap and Vehicle override loop, reuse Concept 2 and Concept 6 — no need to re-type them here.
 
 ### Example 1 — BankAccount with encapsulation (lab-shaped)
 
@@ -871,6 +972,9 @@ class BankAccount:
         print(f"Deposited ₹{amount}. New balance: ₹{self.__balance}")
 
     def withdraw(self, amount):
+        if amount <= 0:
+            print("Invalid withdraw amount")
+            return
         if amount > self.__balance:
             print("Insufficient funds")
             return
@@ -889,59 +993,7 @@ print("Balance:", acct.get_balance())
 
 
 
-### Example 2 — Class vs instance attribute trap
-
-```python
-class Batch:
-    institute = "KSR"           # shared
-
-    def __init__(self, name):
-        self.name = name
-        self.students = []      # MUST be instance list
-
-b1 = Batch("Python FS Morning")
-b2 = Batch("Python FS Evening")
-
-b1.students.append("Arjun")
-print(b2.students)   # [] — correct
-
-# WRONG pattern (class-level mutable):
-# students = []  at class level → all batches share same list!
-```
-
-
-
-### Example 3 — Inheritance + override + polymorphism
-
-```python
-class Vehicle:
-    def __init__(self, brand, year):
-        self.brand = brand
-        self.year = year
-
-    def info(self):
-        return f"{self.brand} ({self.year})"
-
-class Car(Vehicle):
-    def __init__(self, brand, year, doors):
-        super().__init__(brand, year)
-        self.doors = doors
-
-    def info(self):
-        return f"Car: {super().info()}, doors={self.doors}"
-
-class Bike(Vehicle):
-    def info(self):
-        return f"Bike: {super().info()}"
-
-vehicles = [Car("Hyundai", 2022, 4), Bike("Royal Enfield", 2021)]
-for v in vehicles:
-    print(v.info())
-```
-
-
-
-### Example 4 — Employee / Manager (class attr + override)
+### Example 2 — Employee / Manager (class attr + override)
 
 ```python
 class Employee:
@@ -972,7 +1024,7 @@ print(Manager(2, "Meera", 30000, bonus=8000))
 
 
 
-### Example 5 — HAS-A + IS-A together
+### Example 3 — HAS-A + IS-A together
 
 ```python
 class Car:
@@ -1005,31 +1057,134 @@ print(Employee("Anita", 101, Car("Innova", "Crysta")))
 
 ## Practice Exercises
 
-
-
 ### Basic
 
 1. Create `Product` with `sku`, `price`, and `__str__`.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   class Product:
+       def __init__(self, sku, price):
+           self.sku = sku
+           self.price = price
+
+       def __str__(self):
+           return f"{self.sku} @ ₹{self.price}"
+   ```
+
 2. Create two `Product` objects and print them.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   print(Product("PEN-01", 10))
+   print(Product("NB-A4", 40))
+   ```
+
+   **Expected Output:**
+   ```
+   PEN-01 @ ₹10
+   NB-A4 @ ₹40
+   ```
+
 3. Add `apply_discount(percent)` returning the discounted price (do not mutate unless you choose to).
-  **Model answer:**
+   **Model answer:**
+   ```python
+   class Product:
+       def __init__(self, sku, price):
+           self.sku, self.price = sku, price
 
+       def apply_discount(self, percent):
+           return self.price * (1 - percent / 100)
 
+   print(Product("X", 1000).apply_discount(10))  # 900.0
+   ```
 
 ### Intermediate
 
 1. `Rectangle` with `area()` / `perimeter()`; `Square` inherits from `Rectangle`.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   class Rectangle:
+       def __init__(self, w, h):
+           self.w, self.h = w, h
+
+       def area(self):
+           return self.w * self.h
+
+       def perimeter(self):
+           return 2 * (self.w + self.h)
+
+   class Square(Rectangle):
+       def __init__(self, side):
+           super().__init__(side, side)
+   ```
+
 2. `Student` with a list of marks; `average()` and `grade()`; keep marks as an **instance** list.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   class Student:
+       def __init__(self, name, marks):
+           self.name = name
+           self.marks = list(marks)
+
+       def average(self):
+           return sum(self.marks) / len(self.marks)
+
+       def grade(self):
+           avg = self.average()
+           if avg >= 85:
+               return "A"
+           if avg >= 70:
+               return "B"
+           if avg >= 50:
+               return "C"
+           return "Fail"
+   ```
+
 3. Polymorphism with a shared `Shape` base and `Circle` / `Rectangle` subclasses (`area()`).
-  **Model answer:**
+   **Model answer:**
+   ```python
+   import math
+
+   class Shape:
+       def area(self):
+           raise NotImplementedError
+
+   class Circle(Shape):
+       def __init__(self, r):
+           self.r = r
+
+       def area(self):
+           return math.pi * self.r ** 2
+
+   class Rectangle(Shape):
+       def __init__(self, w, h):
+           self.w, self.h = w, h
+
+       def area(self):
+           return self.w * self.h
+
+   for shape in [Circle(2), Rectangle(3, 4)]:
+       print(shape.area())
+   ```
+
 4. Add `@property` `balance` on a tiny wallet that only allows deposit through a method.
-  **Model answer:**
+   **Model answer:**
+   ```python
+   class Wallet:
+       def __init__(self, opening=0):
+           self._balance = opening
 
+       @property
+       def balance(self):
+           return self._balance
 
+       def deposit(self, amount):
+           if amount > 0:
+               self._balance += amount
+
+   w = Wallet(100)
+   w.deposit(50)
+   print(w.balance)  # 150
+   ```
 
 ### Interview-style
 
@@ -1120,16 +1275,16 @@ class BankAccount:
 ## Revision Map — Memorize / Understand / Practise / Build
 
 
-| Topic          | Memorize                                  | Understand                      | Practise                    | Build                  |
-| -------------- | ----------------------------------------- | ------------------------------- | --------------------------- | ---------------------- |
-| Class & object | `class`, `self`, `__init__`               | Blueprint vs instance           | 3 simple classes            | Entity models          |
-| Variables      | Instance / class / local                  | Shared vs per-object; shadowing | Spot class-attr bugs        | Config + instance mix  |
-| Methods        | Instance / `classmethod` / `staticmethod` | When each fits                  | Object counter + GST helper | Service class methods  |
-| Encapsulation  | `_`, `__`, `@property`                    | Convention ≠ security           | Wallet with property        | Validated attributes   |
-| HAS-A vs IS-A  | Composition vs inheritance                | Prefer HAS-A when unsure        | Employee + Laptop           | Order + notifier       |
-| Inheritance    | `class Child(Parent)`, `super()`          | Override + init chain           | Vehicle / Employee tree     | SavingsAccount         |
-| Polymorphism   | Override + duck typing                    | No Java-style overload          | Payment / shapes            | Checkout helper        |
-| `__str__`      | `__str__`                                 | Readable vs default object text | Printable entities          | Status / label methods |
+| Topic          | Memorize                                  | Understand                      | Practise                    | Build                   |
+| -------------- | ----------------------------------------- | ------------------------------- | --------------------------- | ----------------------- |
+| Class & object | `class`, `self`, `__init__`               | Blueprint vs instance           | 3 simple classes            | Student / Book entities |
+| Variables      | Instance / class / local                  | Shared vs per-object; shadowing | Spot class-attr bugs        | Config + instance mix   |
+| Methods        | Instance / `classmethod` / `staticmethod` | When each fits                  | Object counter + GST helper | Service class methods   |
+| Encapsulation  | `_`, `__`, `@property`                    | Convention ≠ security           | Wallet with property        | Validated attributes    |
+| HAS-A vs IS-A  | Composition vs inheritance                | Prefer HAS-A when unsure        | Employee + Laptop           | Order + notifier        |
+| Inheritance    | `class Child(Parent)`, `super()`          | Override + init chain           | Vehicle / Employee tree     | SavingsAccount          |
+| Polymorphism   | Override + duck typing                    | No Java-style overload          | Payment / shapes            | Checkout helper         |
+| `__str__`      | `__str__`                                 | Readable vs default object text | Printable entities          | Status / label methods  |
 
 
 **Label legend:** **Memorize** = recall in interviews · **Understand** = explain in English · **Practise** = daily labs · **Build** = portfolio artefacts

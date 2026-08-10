@@ -2,7 +2,8 @@
 
 @page {
   size: A4;
-  margin: 16mm 14mm 18mm 14mm;
+  /* Slightly tighter to cut blank bands; leave room for side notes */
+  margin: 14mm 12mm 15mm 12mm;
 }
 
 *, *::before, *::after {
@@ -26,8 +27,8 @@ html, body {
 
 body {
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11pt;
-  line-height: 1.65;
+  font-size: 10.5pt;
+  line-height: 1.5;
   color: #1c2430;
   background: #fff;
 }
@@ -88,8 +89,8 @@ h1 {
 h2 {
   font-size: 13.5pt;
   color: #0f5f73;
-  margin: 1.35em 0 0.45em;
-  padding-bottom: 0.2em;
+  margin: 1.05em 0 0.35em;
+  padding-bottom: 0.15em;
   border-bottom: 1px solid #d5e4ec;
   page-break-after: avoid;
   break-after: avoid-page;
@@ -98,7 +99,7 @@ h2 {
 h3 {
   font-size: 12pt;
   color: #156577;
-  margin: 1.1em 0 0.4em;
+  margin: 0.85em 0 0.3em;
   page-break-after: avoid;
   break-after: avoid-page;
 }
@@ -112,7 +113,7 @@ h4, h5, h6 {
 }
 
 p {
-  margin: 0.55em 0;
+  margin: 0.4em 0;
   orphans: 3;
   widows: 3;
 }
@@ -151,23 +152,50 @@ code {
   border-radius: 3px;
 }
 
-/* Mermaid diagrams — pre-rendered SVG (see build_pdfs.replace_mermaid_fences) */
+/* Mermaid diagrams — compact; avoid orphan blank pages from break-inside:avoid */
 .mermaid-diagram {
-  margin: 0.9em 0 1.1em;
-  padding: 8pt 10pt;
+  margin: 0.35em 0 0.45em;
+  padding: 4pt 6pt;
   text-align: center;
   background: #f8fbfd;
   border: 1px solid #d7e3ec;
-  border-radius: 6px;
-  page-break-inside: avoid;
-  break-inside: avoid;
+  border-radius: 5px;
+  /* Allow page flow — large avoid-blocks caused empty half-pages */
+  page-break-inside: auto;
+  break-inside: auto;
   overflow: hidden;
 }
 
 .mermaid-diagram svg {
   max-width: 100%;
+  max-height: 240px;
+  width: auto;
   height: auto;
   display: inline-block;
+}
+
+/* Diagram + Quick Revision side-by-side when authors wrap both */
+.diagram-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10pt;
+  align-items: flex-start;
+  margin: 0.4em 0 0.6em;
+  page-break-inside: auto;
+  break-inside: auto;
+}
+
+.diagram-row .mermaid-diagram {
+  flex: 1 1 52%;
+  min-width: 180px;
+  margin: 0;
+}
+
+.diagram-row .callout-revision,
+.diagram-row .callout-where {
+  flex: 1 1 38%;
+  min-width: 140px;
+  margin: 0;
 }
 
 pre.mermaid-source {
@@ -284,11 +312,12 @@ li::marker {
   color: #1f7a8c;
 }
 
-/* Keep Try-these / Program titles with their code */
+/* Keep Program titles with the start of their code — but allow the block to split
+   across pages (avoid creates large blank bottoms when the demo is tall). */
 .pdf-keep {
   page-break-after: avoid;
   break-after: avoid-page;
-  margin: 0.7em 0 0.25em;
+  margin: 0.45em 0 0.2em;
 }
 
 .pdf-keep p {
@@ -298,13 +327,16 @@ li::marker {
 }
 
 .pdf-program {
-  page-break-inside: avoid;
-  break-inside: avoid-page;
-  margin: 0.5em 0 0.9em;
+  page-break-inside: auto;
+  break-inside: auto;
+  margin: 0.35em 0 0.65em;
 }
 
 .pdf-program pre {
   margin-top: 0.35em;
+  /* Code may span pages; title still sticks via .pdf-keep */
+  page-break-inside: auto;
+  break-inside: auto;
 }
 
 /* Callouts — allow page breaks so tall notes don't clip */
@@ -390,3 +422,143 @@ pre.output-block {
 .highlight .n, .highlight .nf { color: #6d28d9; }
 .highlight .mi, .highlight .mf { color: #1d4ed8; }
 .highlight .o { color: #b91c3c; }
+
+/* --- Keyword colours (class / object / inheritance) --- */
+.kw-class,
+code.kw-class {
+  color: #1d4ed8 !important;
+  background: #eff6ff;
+  font-weight: 650;
+}
+
+.kw-object,
+code.kw-object {
+  color: #15803d !important;
+  background: #f0fdf4;
+  font-weight: 650;
+}
+
+.kw-inheritance,
+code.kw-inheritance {
+  color: #7e22ce !important;
+  background: #faf5ff;
+  font-weight: 650;
+}
+
+.kw-method,
+code.kw-method {
+  color: #c2410c !important;
+  background: #fff7ed;
+  font-weight: 650;
+}
+
+/* --- Topic icons (Bank, UPI, Employee, Laptop, Order) --- */
+.icon-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6pt 10pt;
+  margin: 0.35em 0 0.55em;
+  padding: 6pt 8pt;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  page-break-inside: auto;
+  break-inside: auto;
+  font-size: 9.5pt;
+  color: #334155;
+}
+
+.icon-strip .ico {
+  display: inline-flex;
+  align-items: center;
+  gap: 4pt;
+  padding: 2pt 7pt;
+  background: #fff;
+  border: 1px solid #dbe3ea;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.icon-strip .ico::before {
+  font-size: 11pt;
+  line-height: 1;
+}
+
+.ico-bank::before { content: "🏦"; }
+.ico-upi::before { content: "📱"; }
+.ico-employee::before { content: "👤"; }
+.ico-laptop::before { content: "💻"; }
+.ico-order::before { content: "📦"; }
+.ico-hospital::before { content: "🏥"; }
+.ico-payroll::before { content: "💰"; }
+.ico-crm::before { content: "🗂️"; }
+
+/* --- Margin-style notes (Remember / Interview / Common Error) --- */
+.callout-remember {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-left: 4px solid #2563eb;
+}
+
+.callout-remember > p > strong:first-child {
+  color: #1d4ed8;
+}
+
+.callout-interview {
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-left: 4px solid #7e22ce;
+}
+
+.callout-interview > p > strong:first-child {
+  color: #6b21a8;
+}
+
+.callout-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #dc2626;
+}
+
+.callout-error > p > strong:first-child {
+  color: #b91c1c;
+}
+
+.callout-where {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-left: 4px solid #059669;
+}
+
+.callout-where > p > strong:first-child {
+  color: #047857;
+}
+
+.callout-revision {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-left: 4px solid #ea580c;
+}
+
+.callout-revision > p > strong:first-child {
+  color: #c2410c;
+}
+
+/* Compact callouts — less whitespace */
+.callout {
+  margin: 0.45em 0 0.65em;
+  padding: 0.5em 0.7em;
+}
+
+hr {
+  margin: 0.75em 0;
+}
+
+.pdf-program {
+  margin: 0.35em 0 0.65em;
+}
+
+/* Keep Expected Output with preceding code when possible */
+.pdf-program + .callout-output {
+  margin-top: -0.15em;
+}

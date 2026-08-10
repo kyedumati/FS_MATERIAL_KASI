@@ -33,6 +33,13 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 Browsers submit **HTML forms** with **GET** (read/search) or **POST** (create/update/delete). Django **forms** validate and clean data before saving to database — never trust raw **`request.POST`** alone.
 
+**Where used?**
+- Campus portal — register / login / profile forms
+- Ecommerce — add-to-cart session count; checkout ModelForms
+- Task Manager / Blog — create/edit forms with owner = `request.user`
+- Admin workflows — staff still use `/admin/`; users use your forms
+- Capstone — CSRF-protected POST + `@login_required` CRUD
+
 **`forms.Form`** — generic form not tied to one model (contact us, search).  
 **`forms.ModelForm`** — auto-generates fields from a **model** (add Task, create Post).
 
@@ -62,6 +69,12 @@ Errors display in template with **`{{ form.errors }}`** or per-field **`{{ form.
 ```python
 request.session["cart_count"] = 3
 count = request.session.get("cart_count", 0)
+```
+
+**Expected Output:** (in shell / view after set)
+
+```
+3
 ```
 
 **Note:**
@@ -105,10 +118,17 @@ sequenceDiagram
   Note over U: Refresh only repeats GET — no duplicate Task
 ```
 
+**Quick Revision:**
+- Success POST → **302 redirect** → GET list (PRG) — refresh won't re-create
+- Validate with `form.is_valid()` before save
+- Auth = session user + `@login_required` for private CRUD
+
 If you return the success HTML directly on POST, refresh can **create the same task again**.
 
 **Note:**
 - No redirect after POST → duplicate submit on refresh. Use redirect (PRG).
+
+**Common Error:** Missing `{% csrf_token %}` in POST forms → **403 Forbidden**. Put the token inside every `<form method="post">`.
 
 **Try these (2 programs):**
 

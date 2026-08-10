@@ -223,7 +223,24 @@ _BLOCK_PATTERN = re.compile(
 
 _NOTE_START = re.compile(r"<p><strong>Note:</strong>", re.IGNORECASE)
 _EG_START = re.compile(r"<p><strong>Eg", re.IGNORECASE)
-_OUTPUT_START = re.compile(r"<p><strong>Output", re.IGNORECASE)
+_OUTPUT_START = re.compile(
+    r"<p><strong>(?:Expected\s+)?Output(?:\s*:)?</strong>",
+    re.IGNORECASE,
+)
+_REMEMBER_START = re.compile(r"<p><strong>Remember(?:\s*:)?</strong>", re.IGNORECASE)
+_INTERVIEW_START = re.compile(r"<p><strong>Interview(?:\s*:)?</strong>", re.IGNORECASE)
+_COMMON_ERROR_START = re.compile(
+    r"<p><strong>Common\s+Error(?:\s*:)?</strong>",
+    re.IGNORECASE,
+)
+_WHERE_START = re.compile(
+    r"<p><strong>(?:Where\s+used\??|When\s+will\s+I\s+use\s+this\??)(?:\s*:)?</strong>",
+    re.IGNORECASE,
+)
+_REVISION_START = re.compile(
+    r"<p><strong>Quick\s+Revision(?:\s*:)?</strong>",
+    re.IGNORECASE,
+)
 _CALLOUT_BOUNDARY = re.compile(
     r"^<h[1-6]>|^<div class=\"callout|^<div class=\"table-wrap|^<hr\s*/?>|"
     r"^<p><strong>(?:Try these|Program\s+\d+)",
@@ -268,11 +285,32 @@ def _is_callout_stop(block: str) -> bool:
         or _NOTE_START.search(block)
         or _OUTPUT_START.search(block)
         or _EG_START.search(block)
+        or _REMEMBER_START.search(block)
+        or _INTERVIEW_START.search(block)
+        or _COMMON_ERROR_START.search(block)
+        or _WHERE_START.search(block)
+        or _REVISION_START.search(block)
     )
 
 
+def _consume_soft_callout(blocks: list[str], i: int) -> tuple[list[str], int]:
+    """Pull following short paragraphs/lists into a callout body."""
+    chunk = [blocks[i]]
+    i += 1
+    while i < len(blocks):
+        nxt = blocks[i]
+        if _is_callout_stop(nxt):
+            break
+        if nxt.startswith(("<ul", "<ol", "<p", "<blockquote")):
+            chunk.append(nxt)
+            i += 1
+            continue
+        break
+    return chunk, i
+
+
 def style_callouts(html: str) -> str:
-    """Wrap Note, Example, and Output sections in styled callout boxes."""
+    """Wrap Note, Example, Output, margin notes, Where used, Quick Revision."""
     blocks = _split_html_blocks(html)
     styled: list[str] = []
     i = 0
@@ -281,27 +319,26 @@ def style_callouts(html: str) -> str:
         block = blocks[i]
 
         if _NOTE_START.search(block):
-            chunk = [block]
-            i += 1
-            # Pull following list/paragraph body into the yellow box
-            while i < len(blocks):
-                nxt = blocks[i]
-                if _is_callout_stop(nxt):
-                    break
-                if nxt.startswith(("<ul", "<ol", "<p", "<blockquote")):
-                    chunk.append(nxt)
-                    i += 1
-                    continue
-                break
+            chunk, i = _consume_soft_callout(blocks, i)
             styled.append(f'<div class="callout callout-note">{"".join(chunk)}</div>')
             continue
 
         if _OUTPUT_START.search(block):
             chunk = [block]
             i += 1
-            while i < len(blocks) and blocks[i].startswith("<pre"):
+            while i < len(blocks) and (
+                blocks[i].startswith("<pre")
+                or (
+                    blocks[i].startswith("<p")
+                    and not _is_callout_stop(blocks[i])
+                    and len(blocks[i]) < 500
+                )
+            ):
                 chunk.append(blocks[i])
                 i += 1
+                if chunk[-1].startswith("<pre"):
+                    # Allow one more short <p> after pre? stop after pre
+                    break
             inner = "".join(_mark_output_pre(chunk))
             styled.append(f'<div class="callout callout-output">{inner}</div>')
             continue
@@ -320,11 +357,167 @@ def style_callouts(html: str) -> str:
             )
             continue
 
+        if _REMEMBER_START.search(block):
+            chunk, i = _consume_soft_callout(blocks, i)
+            styled.append(
+                f'<div class="callout callout-remember">{"".join(chunk)}</div>'
+            )
+            continue
+
+        if _INTERVIEW_START.search(block):
+            chunk, i = _consume_soft_callout(blocks, i)
+            styled.append(
+                f'<div class="callout callout-interview">{"".join(chunk)}</div>'
+            )
+            continue
+
+        if _COMMON_ERROR_START.search(block):
+            chunk, i = _consume_soft_callout(blocks, i)
+            styled.append(f'<div class="callout callout-error">{"".join(chunk)}</div>')
+            continue
+
+        if _WHERE_START.search(block):
+            chunk, i = _consume_soft_callout(blocks, i)
+            styled.append(f'<div class="callout callout-where">{"".join(chunk)}</div>')
+            continue
+
+        if _REVISION_START.search(block):
+            chunk, i = _consume_soft_callout(blocks, i)
+            styled.append(
+                f'<div class="callout callout-revision">{"".join(chunk)}</div>'
+            )
+            continue
+
         styled.append(block)
         i += 1
 
     return "".join(styled)
 
+
+_KEYWORD_CODE = re.compile(
+    r"<code>(class|object|objects|inheritance|method|methods)</code>",
+    re.IGNORECASE,
+)
+_KEYWORD_CLASS = {
+    "class": "kw-class",
+    "object": "kw-object",
+    "objects": "kw-object",
+    "inheritance": "kw-inheritance",
+    "method": "kw-method",
+    "methods": "kw-method",
+}
+
+
+def color_keywords(html: str) -> str:
+    """Colour key OOP terms in inline <code>…</code> (not inside highlighted pre)."""
+
+    def repl(match: re.Match[str]) -> str:
+        word = match.group(1)
+        css = _KEYWORD_CLASS.get(word.lower(), "")
+        if not css:
+            return match.group(0)
+        return f'<code class="{css}">{word}</code>'
+
+    # Only transform bare <code>word</code>, not <code class="language-…">
+    parts: list[str] = []
+    pos = 0
+    for m in re.finditer(r"<pre\b.*?</pre>", html, flags=re.DOTALL | re.IGNORECASE):
+        parts.append(_KEYWORD_CODE.sub(repl, html[pos : m.start()]))
+        parts.append(m.group(0))
+        pos = m.end()
+    parts.append(_KEYWORD_CODE.sub(repl, html[pos:]))
+    return "".join(parts)
+
+
+_ICON_LINE = re.compile(
+    r"<p><strong>Icons?:</strong>\s*(.*?)</p>",
+    re.IGNORECASE | re.DOTALL,
+)
+_ICON_CLASS = {
+    "bank": "ico-bank",
+    "upi": "ico-upi",
+    "employee": "ico-employee",
+    "laptop": "ico-laptop",
+    "order": "ico-order",
+    "hospital": "ico-hospital",
+    "payroll": "ico-payroll",
+    "crm": "ico-crm",
+}
+
+
+def style_icon_strips(html: str) -> str:
+    """Turn **Icons:** Bank · UPI · … into a visual icon strip."""
+
+    def repl(match: re.Match[str]) -> str:
+        raw = re.sub(r"<[^>]+>", "", match.group(1))
+        tokens = re.split(r"\s*[·|,/]\s*|\s{2,}", raw.strip())
+        chips: list[str] = []
+        for tok in tokens:
+            label = tok.strip()
+            if not label:
+                continue
+            key = label.lower().split()[0]
+            css = _ICON_CLASS.get(key, "ico-order")
+            safe = html_module.escape(label)
+            chips.append(f'<span class="ico {css}">{safe}</span>')
+        if not chips:
+            return match.group(0)
+        return f'<p class="icon-strip">{"".join(chips)}</p>'
+
+    return _ICON_LINE.sub(repl, html)
+
+
+def _find_matching_div_end(html: str, open_end: int) -> int:
+    """Return index just past the ``</div>`` that closes the div ending at open_end.
+
+    Mermaid SVGs (and some callouts) can contain nested ``<div>`` tags, so a naive
+    ``.*?``  ``</div>`` regex can span from the first diagram to a later callout and
+    wrap half the document in a flex row (huge blank / side-by-side layout bugs).
+    """
+    i = open_end
+    depth = 1
+    open_re = re.compile(r"<div\b", re.IGNORECASE)
+    close_re = re.compile(r"</div\s*>", re.IGNORECASE)
+    while i < len(html) and depth:
+        m_open = open_re.search(html, i)
+        m_close = close_re.search(html, i)
+        if not m_close:
+            return len(html)
+        if m_open and m_open.start() < m_close.start():
+            depth += 1
+            i = m_open.end()
+            continue
+        depth -= 1
+        i = m_close.end()
+    return i
+
+
+def pair_diagram_revision(html: str) -> str:
+    """Place a Mermaid diagram beside the following Quick Revision callout only."""
+    start_re = re.compile(r'<div class="mermaid-diagram"[^>]*>')
+    out: list[str] = []
+    pos = 0
+    while True:
+        m = start_re.search(html, pos)
+        if not m:
+            out.append(html[pos:])
+            break
+        out.append(html[pos : m.start()])
+        end = _find_matching_div_end(html, m.end())
+        mermaid_block = html[m.start() : end]
+        ws_match = re.match(r"\s*", html[end:])
+        ws = ws_match.group(0) if ws_match else ""
+        after = end + len(ws)
+        if html.startswith('<div class="callout callout-revision">', after):
+            rev_open_end = html.find(">", after) + 1
+            rev_end = _find_matching_div_end(html, rev_open_end)
+            revision = html[after:rev_end]
+            out.append(f'<div class="diagram-row">{mermaid_block}{ws}{revision}</div>')
+            pos = rev_end
+        else:
+            out.append(mermaid_block)
+            pos = end
+    return "".join(out)
 
 _PROGRAM_TITLE = re.compile(
     r"^<p><strong>Program\s+\d+\s*[—\-–:].*?</strong>\s*</p>$",
@@ -337,29 +530,28 @@ _TRY_THESE = re.compile(
 
 
 def keep_program_blocks(html: str) -> str:
-    """Keep 'Program N' / 'Try these' titles with the following code block."""
+    """Keep 'Program N' titles near their code; do not glue 'Try these' to a tall demo.
+
+    Gluing a section heading + full program into one unbreakable block caused large
+    blank bottoms in Chrome PDF (title stayed with a demo that did not fit).
+    """
     blocks = _split_html_blocks(html)
     out: list[str] = []
     i = 0
     while i < len(blocks):
         block = blocks[i]
-        if _PROGRAM_TITLE.match(block.strip()) or _TRY_THESE.match(block.strip()):
+        # Section cue only — never pull following Program/code into one box
+        if _TRY_THESE.match(block.strip()):
+            out.append(f'<div class="pdf-keep">{block}</div>')
+            i += 1
+            continue
+        if _PROGRAM_TITLE.match(block.strip()):
             chunk = [f'<div class="pdf-keep">{block}</div>']
             i += 1
-            # Pull in following pre / short paragraph + pre
-            while i < len(blocks) and (
-                blocks[i].startswith("<pre")
-                or (
-                    blocks[i].startswith("<p")
-                    and i + 1 < len(blocks)
-                    and blocks[i + 1].startswith("<pre")
-                    and len(blocks[i]) < 400
-                )
-            ):
+            # Pull only the immediate code fence (not another Program title)
+            if i < len(blocks) and blocks[i].startswith("<pre"):
                 chunk.append(blocks[i])
                 i += 1
-                if chunk[-1].startswith("<pre"):
-                    break
             out.append(f'<div class="pdf-program">{"".join(chunk)}</div>')
             continue
         out.append(block)
@@ -479,8 +671,16 @@ def convert_file(
     if strip_trainer:
         md_text = strip_trainer_sections(md_text)
     md_text = replace_mermaid_fences(md_text, chrome)
-    body_html = keep_program_blocks(
-        style_callouts(wrap_tables(highlight_code_blocks(md_to_html(md_text))))
+    body_html = pair_diagram_revision(
+        style_icon_strips(
+            color_keywords(
+                keep_program_blocks(
+                    style_callouts(
+                        wrap_tables(highlight_code_blocks(md_to_html(md_text)))
+                    )
+                )
+            )
+        )
     )
     title = md_path.stem.replace("_", " ")
     document = wrap_document(title, body_html, css)

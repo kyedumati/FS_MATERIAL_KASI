@@ -31,6 +31,10 @@ Finish the ticket in class; compare with the official solution only when your tr
 **Track B — Mini Blog:** Post model (`title`, `body`, `author`). List/detail/create/edit; edit only if author.  
 **Track C — CampusCart seed:** Product list + “save favorite” for logged-in user (simpler than full cart).
 
+**Where used?** Campus portal tasks/blog, CampusCart favorites, and any login-protected CRUD you will demo in placement.
+
+**Remember:** Filter querysets by `owner=request.user` (or author) — otherwise every user sees everyone’s data.
+
 ---
 
 ## Must-pass checklist (exit criteria)

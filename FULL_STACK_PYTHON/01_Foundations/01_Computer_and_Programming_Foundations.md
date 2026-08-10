@@ -30,6 +30,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 A **computer** is a machine that takes **input**, processes it using rules, and gives **output**. When you open a student portal on your phone, you type a roll number (input), the server checks the database (processing), and shows your marks (output).
 
+**Icons:** Laptop · Order · Bank · Employee · Payroll
+
+**Where used?**
+- College apps — student portal login, marks screens, lab machines
+- Ecommerce — CampusCart checkout flow (browser client → server → DB)
+- Banking / UPI — ATM withdrawal algorithm; app request → bank server
+- Payroll / HR — employee tools that run on company laptops
+- Hospital / CRM — appointment desks using folders, terminals, and web portals
+
 Think of it like a kitchen:
 
 ```
@@ -108,6 +117,13 @@ Most apps you use daily follow a **client–server** model:
 - **Response:** JSON or HTML page with the profile
 
 When you open `https://example.com/login`, your browser (client) sends a request; the server checks credentials and sends back the dashboard page.
+
+**Quick Revision:**
+- **Client** asks; **server** answers (HTTP request → response)
+- Browser / phone app = client; Django/Python on cloud = server
+- Full stack = UI + API/server + database, not only one layer
+
+**Interview:** "What happens when you type a URL?" → DNS finds the server IP → browser sends HTTP request → server returns HTML/JSON → browser renders.
 
 ### Developer roles in India (entry-level view)
 
@@ -226,6 +242,15 @@ pwd
 ls
 ```
 
+**Expected Output:** (paths vary by user)
+
+```
+/Users/you/ksr_python_fullstack
+labs
+notes
+projects
+```
+
 **Program 2 — Nested lab folder**
 
 ```bash
@@ -293,6 +318,16 @@ pwd                              # confirm path → .../01_Foundations
 ls                               # list contents (may be empty)
 ```
 
+**Expected Output:**
+
+```
+/Users/priya/ksr_python_fullstack/01_Foundations
+```
+
+(`ls` may print nothing if the folder is empty.)
+
+**Remember:** `pwd` = “where am I?” — run it after every `cd` until paths feel natural.
+
 **Note:**
 - Wrong: Avoiding the terminal because it looks like “hacking” movies.
 - Prefer: Run only the commands shown in class — `ls` / `cd` are safe navigation tools.
@@ -320,6 +355,8 @@ cd ..
 pwd
 ls
 ```
+
+**Common Error:** Typing `cd ksr_python_fullstack` from the wrong folder → `No such file or directory`. Use `cd ~` first, or the full path `~/ksr_python_fullstack`.
 
 ### Step 5: Algorithm vs code — student login example
 

@@ -33,6 +33,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 A **string** (`str`) is a sequence of characters — letters, digits, symbols, spaces — used for names, emails, addresses, JSON text, and HTML.
 
+**Icons:** Bank · UPI · Employee · Order · Hospital
+
+**Where used?**
+- Banking / UPI — mask account/phone digits, parse UPI IDs
+- College apps — roll numbers, email normalize for login
+- Ecommerce — product titles, URL slugs, invoice lines
+- Payroll — offer-letter templates, employee name formatting
+- Hospital / CRM — patient phone masking, ticket subject cleanup
+
 ### Why do we need strings?
 
 Almost every app stores **text**: student name, email, phone, product title, error message. Before lists and databases, you must clean and slice text (today’s Classroom Ticket: email/phone cleaner).
@@ -232,12 +241,26 @@ print("username:", email[:at])
 print("domain:", email[at + 1 :])
 ```
 
+**Expected Output:**
+
+```
+username: ravi.kumar
+domain: ksr.in
+```
+
 **Program 2 — Index and slice Priya**
 
 ```python
 name = "Priya"
 print(name[0], name[-1])
 print(name[1:4])  # riy
+```
+
+**Expected Output:**
+
+```
+P a
+riy
 ```
 
 ### Step 3: Immutability demo
@@ -265,6 +288,15 @@ msg2 = msg.replace("pending", "paid")
 print(msg)
 print(msg2)
 ```
+
+**Expected Output:**
+
+```
+pending
+paid
+```
+
+**Remember:** Strings are **immutable** — `replace` / `upper` return a *new* string; rebind if you want to keep the change (`s = s.upper()`).
 
 **Program 2 — Immutability note (assignment commented)**
 
@@ -308,6 +340,15 @@ normalized = raw.strip().lower()
 print(normalized == "priya@ksr.in")
 print(normalized)
 ```
+
+**Expected Output:**
+
+```
+True
+priya@ksr.in
+```
+
+**Common Error:** Comparing login email without `.strip().lower()` — `" Admin@KSR.IN "` fails even when the account exists.
 
 **Program 2 — Title-case a name**
 
@@ -379,12 +420,25 @@ masked = phone[:2] + "*" * 6 + phone[-2:]
 print(masked)  # 98******10
 ```
 
+**Expected Output:**
+
+```
+98******10
+```
+
 **Program 2 — Count and replace fail**
 
 ```python
 text = "fail retry fail ok"
 print(text.count("fail"))
 print(text.replace("fail", "warn"))
+```
+
+**Expected Output:**
+
+```
+2
+warn retry warn ok
 ```
 
 ### Step 7: startswith, endswith, in — file and email checks
@@ -523,6 +577,12 @@ name = "Ananya Sharma"
 vowels = "aeiouAEIOU"
 count = sum(1 for ch in name if ch in vowels)
 print(count)
+```
+
+**Expected Output:**
+
+```
+5
 ```
 
 **Program 2 — Count digits in messy phone**

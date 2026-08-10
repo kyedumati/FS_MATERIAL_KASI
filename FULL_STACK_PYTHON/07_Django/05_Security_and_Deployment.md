@@ -34,6 +34,13 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 **Security** means protecting user data, passwords, and your server from attackers. Django includes many **defaults** (CSRF middleware, template auto-escaping, ORM parameterization) — but misconfiguration (`DEBUG=True` online, weak `SECRET_KEY`, missing HTTPS) causes real breaches.
 
+**Where used?**
+- Campus portal / Blog — public deploy must hide stack traces (`DEBUG=False`)
+- Ecommerce — CSRF on checkout forms; never commit CampusCart `.env`
+- Admin — only staff on production; rotate leaked `SECRET_KEY`
+- Capstone demo — Render/Railway/PythonAnywhere with env vars + `collectstatic`
+- Interviews — explain why `DEBUG=True` online is a resume red flag
+
 ### CSRF (Cross-Site Request Forgery)
 
 Attacker site triggers browser to POST to **your** site while user is logged in. Django requires CSRF token in forms — validates request came from your pages.
@@ -200,6 +207,12 @@ gunicorn config.wsgi:application --bind 127.0.0.1:8000
 python manage.py collectstatic --noinput
 ```
 
+**Expected Output:** (counts vary)
+
+```
+X static files copied to '.../staticfiles'.
+```
+
 ### 4. Platform Overviews (India-Friendly Free Tiers)
 
 **Visual — from laptop to live URL:**
@@ -212,6 +225,11 @@ flowchart LR
   Env --> Mig[migrate + collectstatic]
   Mig --> Live[https://your-app...]
 ```
+
+**Quick Revision:**
+- Push code → set env on PaaS → migrate + collectstatic → live URL
+- Secrets live in platform env, never in Git
+- `check --deploy` before you call it production-ready
 
 | Platform | Pros | Notes |
 |----------|------|-------|
@@ -376,6 +394,18 @@ export DJANGO_DEBUG=False
 export ALLOWED_HOSTS=your-app.example.com
 python manage.py check --deploy
 ```
+
+**Expected Output:** (goal)
+
+```
+System check identified no issues (0 silenced).
+```
+
+(Warnings about `SECURE_*` / HTTPS are normal locally — fix or understand each before public deploy.)
+
+**Remember:** `DEBUG=True` on a public URL leaks code and secrets in error pages — always drive production via env (`DJANGO_DEBUG=False`).
+
+**Common Error:** Committing `.env` with `SECRET_KEY` / DB password → rotate keys immediately and add `.env` to `.gitignore`.
 
 Fix every warning/error before going live. Add this to the learner deploy checklist.
 

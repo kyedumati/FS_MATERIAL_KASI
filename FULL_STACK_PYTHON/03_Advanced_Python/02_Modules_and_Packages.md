@@ -51,9 +51,18 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 Without modules, one script becomes thousands of lines — hard to read, hard to reuse, impossible to share. Real team codebases split work across many files. `import` lets you use that work without copy-paste.
 
-**Virtual environment (**`venv`**)** is a private Python sandbox per project so Project A (library set X) and Project B (library set Y) do not fight on the same machine. Required on shared lab PCs and for clean deploy.
+**Virtual environment (`venv`)** is a private Python sandbox per project so Project A (library set X) and Project B (library set Y) do not fight on the same machine. Required on shared lab PCs and for clean deploy.
 
 When you write `import math`, Python loads the standard-library `math` module and exposes its tools. When you `pip install requests`, that package lands in `site-packages` for the active environment.
+
+**Icons:** Laptop · Order · CRM · Payroll
+
+**Where used?**
+- Shared lab PCs — each project gets its own `venv` so library versions do not collide
+- Team repos — `campus_utils` / `ksr_utils` packages imported by many scripts
+- Capstone apps — split `main.py`, helpers, and `data/` instead of one giant file
+- API clients — `pip install requests` (or similar) inside an activated venv
+- Config / reports — `json`, `datetime`, `os` from the standard library with no extra install
 
 ---
 
@@ -81,9 +90,11 @@ from os import path as osp           # alias for one imported name
 
 - Avoid `from math import *` — star imports pollute the namespace and hide where names came from. Prefer `import math` or `from math import sqrt`.
 
+**Remember:** Prefer `import math` or named imports — `from math import *` hides where names came from and invites clashes.
+
 **Try these (2 programs):**
 
-**Program 1 —** `import` **vs** `from … import`
+**Program 1 — `import` vs `from … import`**
 
 ```python
 import math
@@ -93,6 +104,15 @@ print(math.sqrt(81))    # 9.0
 from math import ceil, sqrt
 print(ceil(4.2))        # 5 — no prefix
 print(sqrt(81))         # 9.0
+```
+
+**Expected Output:**
+
+```
+5
+9.0
+5
+9.0
 ```
 
 **Program 2 — Attendance date header**
@@ -128,7 +148,7 @@ print(sys.path)  # debugging import errors
 
 **Try these (2 programs):**
 
-**Program 1 — Inspect** `sys.path`
+**Program 1 — Inspect `sys.path`**
 
 ```python
 import sys
@@ -180,6 +200,8 @@ When you `import greetings` from `main.py`, `__name__` inside `greetings` is `"g
 **Note:**
 
 - Top-level `print` / `input` outside the guard runs on every import — keep importable modules quiet; put demos under `if __name__ == "__main__":`.
+
+**Common Error:** Leaving `print` / `input` at module top level — every `import` triggers side effects. Guard demos with `if __name__ == "__main__":`.
 
 **Try these (2 programs):**
 
@@ -234,7 +256,7 @@ my_project/
 
 **Try these (2 programs):**
 
-**Program 1 —** `format_inr` **package (illustrative layout)**
+**Program 1 — `format_inr` package (illustrative layout)**
 
 ```python
 # Folder layout:
@@ -252,7 +274,13 @@ from campus_utils.formatters import format_inr
 print(format_inr(1250))  # ₹1,250.00
 ```
 
-**Program 2 — Re-export from** `__init__.py`
+**Expected Output:**
+
+```
+₹1,250.00
+```
+
+**Program 2 — Re-export from `__init__.py`**
 
 ```python
 # --- campus_utils/formatters.py ---
@@ -268,6 +296,12 @@ __all__ = ["format_inr"]
 from campus_utils import format_inr  # short import via package init
 
 print(format_inr(1250))  # ₹1,250.00
+```
+
+**Expected Output:**
+
+```
+₹1,250.00
 ```
 
 ### 5. Relative vs absolute imports
@@ -299,7 +333,7 @@ from campus_utils import format_inr
 
 **Try these (2 programs):**
 
-**Program 1 — Relative re-export in** `__init__.py`
+**Program 1 — Relative re-export in `__init__.py`**
 
 ```python
 # campus_utils/formatters.py
@@ -354,9 +388,11 @@ deactivate                        # leave the sandbox
 - Committing `venv/` → huge repo and OS-specific paths — add `venv/` to `.gitignore`; commit `requirements.txt` instead.
 - `pip install` globally (no venv) → version conflicts — always use a venv per project.
 
+**Interview:** A module is one `.py` file; a package is a folder of modules (usually with `__init__.py`). `venv` isolates each project's pip installs.
+
 **Try these (2 programs):**
 
-**Program 1 — Prove** `requests` **is installed (inside activated venv)**
+**Program 1 — Prove `requests` is installed (inside activated venv)**
 
 ```python
 # First (in terminal):
@@ -370,7 +406,7 @@ import requests
 print("requests version:", requests.__version__)
 ```
 
-**Program 2 — GET via** `requests` **(run inside venv; needs network)**
+**Program 2 — GET via `requests` (run inside venv; needs network)**
 
 ```python
 import requests
@@ -424,6 +460,13 @@ print("JSON string:", text)
 
 data = json.loads(text)
 print("City:", data["city"])  # Pune
+```
+
+**Expected Output:**
+
+```
+JSON string: {"city": "Pune", "batch": "PFS-01"}
+City: Pune
 ```
 
 ---
@@ -583,6 +626,13 @@ print(is_email("student@ksr.com"))
 print(format_inr(125000.5))
 ```
 
+**Expected Output:**
+
+```
+True
+₹125,000.50
+```
+
 ---
 
 ## Practice Exercises
@@ -591,25 +641,91 @@ print(format_inr(125000.5))
 
 1. Use `math` to compute EMI: `emi = P * r * (1+r)**n / ((1+r)**n - 1)`.
   **Model answer:**
+
+```python
+P, annual_rate, years = 500000, 0.10, 5
+r = annual_rate / 12
+n = years * 12
+emi = P * r * (1 + r) ** n / ((1 + r) ** n - 1)
+print(round(emi, 2))
+```
+
 2. Print today's date in `DD/MM/YYYY` using `datetime`.
   **Model answer:**
+
+```python
+from datetime import date
+print(date.today().strftime("%d/%m/%Y"))
+```
+
 3. Generate a list of 6 unique lottery numbers (1–49) using `random`.
   **Model answer:**
+
+```python
+import random
+print(sorted(random.sample(range(1, 50), 6)))
+```
+
 4. Round-trip a dictionary with `json.dumps` / `json.loads` (no file).
   **Model answer:**
+
+```python
+import json
+d = {"city": "Hyderabad", "batch": "PFS-01"}
+text = json.dumps(d)
+print(json.loads(text)["city"])
+```
+
 5. Save and load a dictionary to `config.json` using `json.dump` / `json.load`.
   **Model answer:**
+
+```python
+import json
+cfg = {"theme": "light"}
+with open("config.json", "w", encoding="utf-8") as f:
+    json.dump(cfg, f)
+with open("config.json", "r", encoding="utf-8") as f:
+    print(json.load(f))
+```
 
 ### Intermediate
 
 1. Create module `date_utils.py` with `days_until(date_str)` and a `__main__` demo.
   **Model answer:**
+
+```python
+# date_utils.py
+from datetime import datetime, date
+
+def days_until(date_str):
+    target = datetime.strptime(date_str, "%d-%m-%Y").date()
+    return (target - date.today()).days
+
+if __name__ == "__main__":
+    print(days_until("31-12-2026"))
+```
+
 2. Build package `inventory/` with `products.py` and `stock.py` (functions + dicts — no classes yet).
   **Model answer:**
+  `inventory/__init__.py` (can re-export), `products.py` with `make_product(sku, name, price)`, `stock.py` with `add_stock(db, sku, qty)` using a dict as the store.
+
 3. Write script listing all `.py` files in current directory using `os`.
   **Model answer:**
+
+```python
+import os
+print([f for f in os.listdir(".") if f.endswith(".py")])
+```
+
 4. Create venv, install `python-dotenv`, freeze to `requirements.txt`.
   **Model answer:**
+
+```bash
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install python-dotenv
+pip freeze > requirements.txt
+```
 
 ### Interview-style
 

@@ -61,6 +61,15 @@ SQL is a **core placement skill**. Deep notes live in [`MYSQL/`](../../MYSQL/); 
 
 A **full-stack application** has three layers: **frontend** (browser), **backend** (Python/Django), and **database** (MySQL). When a student registers on CampusCart, React sends data to Django, Django validates it, and SQL **INSERT**s a row into `users`.
 
+**Icons:** Order · Employee · Bank · Payroll · Laptop
+
+**Where used?**
+- Ecommerce — CampusCart customers, products, orders, order_items
+- College apps — students, courses, enrollments in LMS / portals
+- Payroll / HR — departments and employees tables
+- Banking — accounts and transactions (PK/FK integrity matters)
+- Hospital / CRM — patients, appointments, tickets stored as related rows
+
 **Visual — three layers talking:**
 
 ```mermaid
@@ -79,6 +88,11 @@ flowchart TB
   DB -->|rows| BE
   BE -->|HTML or JSON| FE
 ```
+
+**Quick Revision:**
+- Browser → Django/Python → MySQL (and back)
+- Frontend never talks SQL directly — backend issues INSERT/SELECT
+- Same pattern for React SPA or server-rendered HTML
 
 **MySQL** stores data in **tables** linked by **relationships**. A **primary key (PK)** uniquely identifies each row. A **foreign key (FK)** references a PK in another table — how "order belongs to customer" is enforced.
 
@@ -118,6 +132,16 @@ This module teaches **full-stack essentials**. For aggregations, subqueries, win
 SELECT 'Ecommerce domain for CampusCart' AS note;
 ```
 
+**Expected Output:**
+
+```
++----------------------------------+
+| note                             |
++----------------------------------+
+| Ecommerce domain for CampusCart  |
++----------------------------------+
+```
+
 **Program 2 — List tables you will need**
 
 ```sql
@@ -126,6 +150,18 @@ SELECT 'Ecommerce domain for CampusCart' AS note;
 SELECT 'students' AS table_name
 UNION ALL SELECT 'courses'
 UNION ALL SELECT 'enrollments';
+```
+
+**Expected Output:**
+
+```
++------------+
+| table_name |
++------------+
+| students   |
+| courses    |
+| enrollments|
++------------+
 ```
 
 ### 2. DDL — creating structure
@@ -210,7 +246,16 @@ erDiagram
   }
 ```
 
+**Quick Revision:**
+- Customer **1 → many** Orders; Order **1 → many** Order_items
+- Order_item needs **both** `order_id` (FK) and `product_id` (FK)
+- JOINs exist because related data lives in separate tables
+
 One customer → many orders; one order → many line items; each line item points to a product.
+
+**Remember:** Money columns use `DECIMAL(10,2)` — not `FLOAT` / `VARCHAR`.
+
+**Common Error:** Forgetting `FOREIGN KEY` / UNIQUE on email → orphan orders and duplicate logins. Define constraints in DDL.
 
 **Note:**
 - VARCHAR/FLOAT for money — use `DECIMAL(10,2)` instead.

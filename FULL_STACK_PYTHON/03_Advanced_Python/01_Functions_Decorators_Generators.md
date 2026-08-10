@@ -88,6 +88,11 @@ flowchart TB
   Bug -.->|easy to miss| Missed["D2 still old — silent bug"]
 ```
 
+**Quick Revision:**
+- Copy-paste the same check → bug factory when rules change
+- One missed copy keeps the old behaviour silently
+- Fix: write the rule once in a function, call it everywhere
+
 Write the check **once**, then reuse it:
 
 ```python
@@ -119,6 +124,11 @@ flowchart LR
   C3 --> Same
 ```
 
+**Quick Revision:**
+- `def` names the reusable unit
+- Many call sites → one definition
+- Change the function once → all callers update
+
 That named unit is a **function**. Your Classroom Ticket ([Refactor ATM into functions](../15_Lab_Assets/13_function_refactor/)) is the same idea at ATM scale.
 
 ### What is a function?
@@ -136,6 +146,11 @@ flowchart LR
   R --> H3["friend visits"]
 ```
 
+**Quick Revision:**
+- Recipe once = function once
+- Hunger / call sites can differ; the steps stay the same
+- Name the function after the job (`make_maggi`, not `f1`)
+
 In other languages the same idea may be called a *method*, *procedure*, or *subroutine*. In Python we mostly say **function** (and later **method** when it lives on a class).
 
 ### Why do we need functions?
@@ -147,6 +162,15 @@ In other languages the same idea may be called a *method*, *procedure*, or *subr
 | 400-line script hard to read             | Named steps: `load()`, `process()`, `save()` |
 
 **Main advantage: code reusability** — write once, call many times. Secondary wins: clearer names, easier testing, and smaller pieces you can put in modules later.
+
+**Icons:** Bank · UPI · Order · Payroll · Laptop
+
+**Where used?**
+- Banking / UPI — validate amount once, reuse in deposit / withdraw / transfer
+- Ecommerce — GST map, cart totals, login-gated checkout helpers
+- Payroll — bill / salary calculators with defaults and `*args` for allowances
+- Reporting — generators stream large attendance or expense rows without loading everything
+- Toolkits — shared `ksr_utils` validators and formatters imported across scripts
 
 ### Two kinds of functions in Python
 
@@ -167,6 +191,11 @@ flowchart TB
   UserDef --> Use
 ```
 
+**Quick Revision:**
+- Built-ins come with Python (`print`, `len`, `sum`)
+- User-defined = you write with `def` for your project
+- Same call style either way: `name(...)`
+
 You already *use* built-ins. This module teaches you to *create* user-defined ones, then stretch into decorators and generators.
 
 ### Parameter vs argument (words interviewers mix up)
@@ -184,6 +213,11 @@ flowchart LR
   Call["wish('Priya')<br/>← argument (real value)"]
   Call -->|fills| Def
 ```
+
+**Quick Revision:**
+- Parameter = name in `def`
+- Argument = value at the call site
+- Interviewers mix the words — keep the distinction clear
 
 ### 1. Creating a user-defined function (`def` and `return`)
 
@@ -207,6 +241,11 @@ sequenceDiagram
   Main->>Main: result = that value
 ```
 
+**Quick Revision:**
+- Call runs the body; `return` sends a value back
+- No `return` → caller gets `None`
+- Capture the result: `result = greet("Priya")`
+
 ```python
 def wish():
     """Print a greeting. No inputs, no return value."""
@@ -227,11 +266,19 @@ result = greet("Priya")   # "Priya" is the argument
 print(result)             # Hello, Priya!
 ```
 
+**Expected Output:**
+
+```
+Hello, Priya!
+```
+
 **Rules people often forget:**
 
 - `return` exits the function immediately (code after it does not run).
 - No `return` → the call evaluates to `None` (easy to miss when you `print(f())`).
 - Python can return **multiple values** as a tuple: `return sum, diff` then `x, y = sum_sub(10, 5)`.
+
+**Remember:** No `return` → the call evaluates to `None`. Printing `print(f())` when you meant to return a value is a classic silent bug.
 
 **Try these (2 programs):**
 
@@ -243,6 +290,14 @@ def celsius_to_fahrenheit(c):
 
 for temp in (0, 37, 100):
     print(f"{temp}°C → {celsius_to_fahrenheit(temp)}°F")
+```
+
+**Expected Output:**
+
+```
+0°C → 32.0°F
+37°C → 98.6°F
+100°C → 212.0°F
 ```
 
 **Program 2 — Even or Odd**
@@ -271,6 +326,11 @@ flowchart TB
   F --> Def["Default: f(1) → b stays 10"]
   F --> Var["Variable: f(1, 2, 3, x=9)<br/>*args / **kwargs catch extras"]
 ```
+
+**Quick Revision:**
+- Positional = by order; keyword = by name
+- Defaults make optional params
+- `*args` / `**kwargs` catch extras (tuple / dict)
 
 #### 2a. Positional arguments
 
@@ -331,6 +391,11 @@ flowchart LR
   Call --> Kw["**meta → {city: 'Hyd'}"]
 ```
 
+**Quick Revision:**
+- Required params first, then `*args`, then `**kwargs`
+- `*args` is a tuple of leftover positionals
+- `**kwargs` is a dict of leftover keywords
+
 ```python
 def sum_all(*numbers):
     total = 0
@@ -369,7 +434,14 @@ greet("Priya")
 greet(name="Ravi", msg="Good Evening")
 ```
 
-**Program 2 —** `*args` **with tax**
+**Expected Output:**
+
+```
+Hello Priya, Good Morning
+Hello Ravi, Good Evening
+```
+
+**Program 2 — `*args` with tax**
 
 ```python
 def total(*amounts, tax_rate=0.05):
@@ -404,6 +476,11 @@ flowchart TD
   B -->|No| Err[NameError]
 ```
 
+**Quick Revision:**
+- LEGB: Local → Enclosing → Global → Built-in
+- Reading a global is fine; reassigning needs `global`
+- Prefer pass-in / return-out over `global`
+
 ```python
 tax_rate = 0.18  # global
 
@@ -414,9 +491,11 @@ def calculate_total(amount):
 
 Use `global x` only when you must **reassign** a global name. Prefer passing values in and returning results — globals make bugs hard to find in real projects.
 
+**Common Error:** Assigning to a name inside a function makes it local for the whole function — `x = x + 1` without `global` raises `UnboundLocalError`.
+
 **Try these (2 programs):**
 
-**Program 1 — Fix counter with return (prefer this over** `global`**)**
+**Program 1 — Fix counter with return (prefer this over `global`)**
 
 ```python
 count = 0
@@ -496,6 +575,11 @@ flowchart LR
   Reduce --> Out3["single value"]
 ```
 
+**Quick Revision:**
+- `map` transforms each item
+- `filter` keeps matching items
+- `reduce` folds many → one (prefer `sum` for plain totals)
+
 | Tool                        | Idea                          | Campus example           |
 | --------------------------- | ----------------------------- | ------------------------ |
 | `map(fn, data)`             | Transform each item           | Prices → prices with GST |
@@ -534,7 +618,7 @@ passed = [m for m in marks if m >= 75]
 
 **Try these (2 programs):**
 
-**Program 1 —** `map` **+** `filter` **on canteen prices**
+**Program 1 — `map` + `filter` on canteen prices**
 
 ```python
 prices = [40, 25, 60, 15, 120]
@@ -544,7 +628,14 @@ print(with_gst)
 print(big)
 ```
 
-**Program 2 —** `reduce` **for bill total (and contrast with** `sum`**)**
+**Expected Output:**
+
+```
+[42.0, 26.25, 63.0, 15.75, 126.0]
+[63.0, 126.0]
+```
+
+**Program 2 — `reduce` for bill total (and contrast with `sum`)**
 
 ```python
 from functools import reduce
@@ -560,7 +651,7 @@ print(sum(bill))   # same — prefer sum for plain addition
 **What:** A function that takes another function and returns a **wrapped** version (extra behaviour before/after).  
 **Why:** Cross-cutting concerns — timing, login checks, retries — without copy-pasting into every function.
 
-**Visual —** `@timer` **wraps your function like gift wrap:**
+**Visual — `@timer` wraps your function like gift wrap:**
 
 ```mermaid
 flowchart LR
@@ -569,6 +660,11 @@ flowchart LR
   Inner --> Wrap
   Wrap --> Out[return result + print time]
 ```
+
+**Quick Revision:**
+- `@timer` means `greet = timer(greet)`
+- Wrapper runs before/after the original
+- Great for login checks, timing, retries — without copy-paste
 
 ```python
 def timer(func):
@@ -586,9 +682,11 @@ def slow_task():
 
 `@timer` above `def slow_task` means: `slow_task = timer(slow_task)`.
 
+**Interview:** A decorator is a function that takes a function and returns a wrapped function. `@dec` is sugar for `func = dec(func)`.
+
 **Try these (2 programs):**
 
-**Program 1 —** `@shout` **decorator**
+**Program 1 — `@shout` decorator**
 
 ```python
 def shout(func):
@@ -603,7 +701,13 @@ def greet(name):
 print(greet("Priya"))  # HELLO, PRIYA
 ```
 
-**Program 2 —** `@require_login` **gate**
+**Expected Output:**
+
+```
+HELLO, PRIYA
+```
+
+**Program 2 — `@require_login` gate**
 
 ```python
 current_user = None
@@ -623,6 +727,14 @@ def view_dashboard():
 print(view_dashboard())   # Access denied
 current_user = "Ravi"
 print(view_dashboard())   # Welcome, Ravi
+```
+
+**Expected Output:**
+
+```
+Access denied — please log in
+None
+Welcome, Ravi
 ```
 
 ### 7. Generators (S31 focus)
@@ -652,6 +764,11 @@ flowchart TB
     Only --> Wait
   end
 ```
+
+**Quick Revision:**
+- List = whole buffet in RAM (eager)
+- Generator = waiter brings one dish (lazy)
+- Use generators for large one-pass streams
 
 |            | List / list comprehension   | Generator / `yield`                  |
 | ---------- | --------------------------- | ------------------------------------ |
@@ -700,6 +817,11 @@ sequenceDiagram
   Note over Gen: state remembered between yields
 ```
 
+**Quick Revision:**
+- `return` exits; `yield` pauses and resumes
+- Generator keeps state between yields
+- Calling the function returns a generator object — body waits for `next` / `for`
+
 ```python
 def one_square(n):
     return n * n          # function ends here
@@ -721,6 +843,11 @@ flowchart LR
   N3 --> Empty["exhausted<br/>next → StopIteration"]
   Empty -.->|need again| New["call countdown(3) again"]
 ```
+
+**Quick Revision:**
+- One full pass → generator is empty
+- Extra `next` → `StopIteration`
+- Need another pass? Call the generator function again
 
 ```python
 def countdown(n):
@@ -752,7 +879,7 @@ print(list(g2))  # []  — already exhausted; create a new generator if you need
 
 **Try these (2 programs):**
 
-**Program 1 — Countdown with** `next`
+**Program 1 — Countdown with `next`**
 
 ```python
 def countdown(n):
@@ -765,6 +892,13 @@ print(next(g), next(g), next(g))  # 5 4 3
 for value in g:
     print(value, end=" ")  # 2 1 — remaining values only
 print()
+```
+
+**Expected Output:**
+
+```
+5 4 3
+2 1 
 ```
 
 **Program 2 — Even number stream**
@@ -808,6 +942,16 @@ prices = [40, 25, 60, 15, 120]
 with_gst = (round(p * 1.05, 2) for p in prices)
 for p in with_gst:
     print(p)
+```
+
+**Expected Output:**
+
+```
+42.0
+26.25
+63.0
+15.75
+126.0
 ```
 
 **Program 2 — First failing mark (stop early)**
@@ -1030,10 +1174,30 @@ for row in read_rows(rows):
 
 1. Write `celsius_to_fahrenheit(c)` returning `F = C * 9/5 + 32`.
   **Model answer:**
+
+```python
+def celsius_to_fahrenheit(c):
+    return c * 9 / 5 + 32
+```
+
 2. Write `full_name(first, last, middle="")` returning formatted name.
   **Model answer:**
+
+```python
+def full_name(first, last, middle=""):
+    if middle:
+        return f"{first} {middle} {last}"
+    return f"{first} {last}"
+```
+
 3. Write `sum_all(*numbers)` returning sum of any count of numbers.
   **Model answer:**
+
+```python
+def sum_all(*numbers):
+    return sum(numbers)
+```
+
 4. Predict the output of these three scope snippets (use LEGB: Local → Enclosing → Global → Built-in):
 
 ```python
@@ -1068,30 +1232,124 @@ print(x)
    A prints `10` (reads global). B raises `UnboundLocalError` (assignment makes `x` local, so the read on the right fails). C prints `11` then `11` (`global` reassigns the module name).
 5. Use `map` to add 5% GST to `[100, 200, 50]` and `filter` to keep totals ≥ 150.
   **Model answer:**
+
+```python
+prices = [100, 200, 50]
+with_gst = list(map(lambda p: round(p * 1.05, 2), prices))
+big = list(filter(lambda p: p >= 150, with_gst))
+# with_gst → [105.0, 210.0, 52.5]; big → [210.0]
+```
+
 6. Write generator `countdown(n)` that yields `n … 1`. Print with a `for` loop.
   **Model answer:**
+
+```python
+def countdown(n):
+    while n >= 1:
+        yield n
+        n -= 1
+
+for v in countdown(5):
+    print(v)
+```
+
 7. Using `next` twice on `countdown(5)`, what prints? Then finish with `list` on the same generator object.
   **Model answer:**
+  `next` twice → `5` then `4`. `list(g)` on the same object → `[3, 2, 1]` (remaining only).
 
 ### Intermediate
 
 1. Refactor ATM menu into functions: `show_menu()`, `deposit()`, `withdraw()`.
   **Model answer:**
+  Split validation into helpers; each action calls `is_positive(amount)` and updates `balance`. See lab kit `13_function_refactor`.
+
+```python
+def show_menu():
+    print("1 Deposit  2 Withdraw  3 Quit")
+
+def deposit(balance, amount):
+    return balance + amount
+
+def withdraw(balance, amount):
+    if amount > balance:
+        raise ValueError("Insufficient funds")
+    return balance - amount
+```
+
 2. Create `@log_calls` decorator printing function name and arguments.
   **Model answer:**
+
+```python
+def log_calls(func):
+    def wrapper(*args, **kwargs):
+        print(f"CALL {func.__name__} args={args} kwargs={kwargs}")
+        return func(*args, **kwargs)
+    return wrapper
+```
+
 3. Write generator `fibonacci(n)` yielding first `n` Fibonacci numbers.
   **Model answer:**
+
+```python
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+```
+
 4. Use `functools.reduce` to find the longest name in `["Ravi", "Ananya", "Om"]`.
   **Model answer:**
+
+```python
+from functools import reduce
+names = ["Ravi", "Ananya", "Om"]
+longest = reduce(lambda a, b: a if len(a) >= len(b) else b, names)
+# "Ananya"
+```
+
 5. Write a generator expression for squares of even numbers from `0` to `10` (inclusive). Convert to list once to print.
   **Model answer:**
+
+```python
+print(list(x * x for x in range(0, 11, 2)))
+# [0, 4, 16, 36, 64, 100]
+```
+
 6. Implement `iter_rows(rows)` with `yield` over an in-memory list of dicts; print only the first two rows (lab pattern).
   **Model answer:**
+
+```python
+def iter_rows(rows):
+    for row in rows:
+        yield row
+
+for i, row in enumerate(iter_rows(SAMPLE_ROWS)):
+    print(row)
+    if i >= 1:
+        break
+```
 
 ### Interview-style
 
 1. Write decorator that retries a function up to 3 times on exception.
   **Model answer:**
+
+```python
+def retry(times=3):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            last = None
+            for _ in range(times):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    last = e
+            raise last
+        return wrapper
+    return decorator
+```
+
 2. When choose generator over list for 10 million records?
   **Model answer:**
    Prefer a generator when you process records one at a time and do not need random access or the full collection in memory. A list of 10 million rows can exhaust RAM; `yield` streams values lazily and keeps peak memory low.

@@ -28,6 +28,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 Python gives you four built-in **containers** for grouping data. Choosing the wrong one makes code slower, bug-prier, or harder to read — like using a shopping bag when you need a labelled filing cabinet.
 
+**Icons:** Order · Employee · Bank · UPI · Laptop
+
+**Where used?**
+- Ecommerce — cart (list), SKU lookup (dict), unique tags (set), GPS drop (tuple)
+- Banking / UPI — transaction history list, account dict by ID
+- Payroll — employee-by-id dict, unique active-ID set
+- College apps — undo stack for form edits, ticket queues
+- Hospital / CRM — support ticket FIFO queue, banned-user set
+
 **Quick decision guide:**
 
 ```
@@ -121,6 +130,17 @@ for scenario, structure in scenarios.items():
     print(f"{scenario} → {structure}")
 ```
 
+**Expected Output:**
+
+```
+cart items → list
+GPS point → tuple
+unique tags → set
+employee-by-id → dict
+```
+
+**Interview:** Start answers with the decision guide — key→value? dict · unique? set · fixed row? tuple · ordered mutable? list.
+
 **Program 2 — Tiny canteen examples**
 
 ```python
@@ -168,12 +188,24 @@ banned_users = {1001, 1002, 1003}
 print(1002 in banned_users)
 ```
 
+**Expected Output:**
+
+```
+True
+```
+
 **Program 2 — Immutable API version tuple**
 
 ```python
 API_VERSION = ("v2",)
 # API_VERSION.append("v3")  # AttributeError — tuples have no append
 print(API_VERSION)
+```
+
+**Expected Output:**
+
+```
+('v2',)
 ```
 
 ### Step 3 — Stack using list (LIFO)
@@ -218,6 +250,14 @@ history.pop()
 print(history)  # ['home']
 ```
 
+**Expected Output:**
+
+```
+['home']
+```
+
+**Remember:** Stack = **LIFO** — push/pop from the **same end** (`append` / `pop()`). Queue = **FIFO** — enqueue at end, dequeue from front (`pop(0)` or `deque.popleft()`).
+
 **Program 2 — Form undo stack**
 
 ```python
@@ -228,6 +268,13 @@ current = undo.pop()
 previous = undo.pop() if undo else ""
 print("undid to:", previous)
 print("was:", current)
+```
+
+**Expected Output:**
+
+```
+undid to: Priya
+was: Priya Nair
 ```
 
 ### Step 4 — Queue using list (FIFO)
@@ -279,6 +326,14 @@ queue.pop(0)
 queue.pop(0)
 print("Next:", queue[0] if queue else "empty")
 ```
+
+**Expected Output:**
+
+```
+Next: T-3
+```
+
+**Common Error:** Using `pop()` (no index) for a queue — that removes the **last** item (LIFO), not the first customer in line.
 
 **Program 2 — Ticket queue with deque**
 
@@ -446,6 +501,12 @@ revenue = sum(item["qty"] * item["price"] for order in orders for item in order[
 print(f"₹{revenue}")
 ```
 
+**Expected Output:**
+
+```
+₹959
+```
+
 ### Step 8 — Expense report: pick the right tool
 
 ```python
@@ -500,6 +561,15 @@ for e in expenses:
 print(totals)
 print(set(totals))
 ```
+
+**Expected Output:**
+
+```
+{'Food': 770, 'Travel': 1200}
+{'Food', 'Travel'}
+```
+
+*(Set print order may vary — membership/`set(totals)` keys are what matter.)*
 
 ---
 

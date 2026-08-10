@@ -60,6 +60,15 @@ So far you saved data in **files** (CSV, JSON). That works for one user on one m
 
 **SQL injection:** attacker types malicious SQL into a form. **Never** build SQL with f-strings from user input. Always use **parameterized queries** (template + separate values).
 
+**Icons:** Bank · Order · Hospital · CRM · Payroll
+
+**Where used?**
+- College / fee apps — `students` table shared by many users
+- Library systems — parameterized search by author or title
+- Banking / UPI-style backends — balances must survive concurrent writes
+- CRM / hospital records — structured queries, not one CSV per clerk
+- Any multi-user app — connect → cursor → execute → commit → close
+
 ---
 
 ## Important Concepts
@@ -98,6 +107,12 @@ Mermaid (paste into a Markdown previewer):
 """
 
 print("See docstring above for labelled arrows.")
+```
+
+**Expected Output:**
+
+```
+See docstring above for labelled arrows.
 ```
 
 **Program 2 — Why a connector still talks to a DB server**
@@ -141,6 +156,13 @@ print("mysql.connector version:", mysql.connector.__version__)
 print("Import OK — connector installed in this venv")
 ```
 
+**Expected Output:**
+
+```
+mysql.connector version: <installed version>
+Import OK — connector installed in this venv
+```
+
 **Program 2 — Compare connectors (document choice)**
 
 ```python
@@ -161,6 +183,16 @@ def note_choice():
 note_choice()
 ```
 
+**Expected Output:**
+
+```
+Using: mysql-connector-python
+
+    Lab standard: mysql-connector-python (Oracle connector).
+    Alternate: PyMySQL (pure Python). Both use %s placeholders.
+    Pick ONE for the rest of this module — do not mix in one project.
+```
+
 ### 3. Connection parameters
 
 ```python
@@ -179,6 +211,8 @@ config = {
 - Leaving connections open → server exhaustion — close in `finally` (or use a context manager).
 - Hard-coded passwords → security leak — use environment variables.
 - No exception handling → cryptic crash — catch `mysql.connector.Error`.
+
+**Remember:** Lifecycle = connect → cursor → execute → (`commit` for writes) → close. Skip `commit` and INSERT/UPDATE vanish.
 
 **Try these (2 programs):**
 
@@ -248,6 +282,8 @@ Both `mysql-connector-python` and `PyMySQL` use `%s` placeholders (not `?` like 
 - String concatenation in SQL → SQL injection — use parameterized queries.
 - Wrong placeholder (`?`) → driver error — use `%s` for MySQL connectors.
 
+**Common Error:** Building SQL with f-strings from user input (`f"... {roll}"`) — that is the classic injection hole. Always `execute(sql, (value,))`.
+
 **Try these (2 programs):**
 
 **Program 1 — Parameterized INSERT**
@@ -295,6 +331,14 @@ print("Unsafe f-string expands to:", unsafe_sql)
 print("Lesson: f-string injection broke row filtering — always use %s.")
 ```
 
+**Expected Output:**
+
+```
+Safe pattern uses %s + tuple: SELECT * FROM students WHERE roll = %s
+Unsafe f-string expands to: SELECT * FROM students WHERE roll = 1 OR 1=1
+Lesson: f-string injection broke row filtering — always use %s.
+```
+
 ### 5. CRUD mapping
 
 | Operation | SQL | Python method |
@@ -307,6 +351,8 @@ print("Lesson: f-string injection broke row filtering — always use %s.")
 **Note:**
 - Forgetting `commit()` → changes not saved — commit after DML.
 - `SELECT *` in production APIs → over-fetching — name columns explicitly.
+
+**Interview:** Parameterized queries send SQL template and values separately so user input cannot change the query structure — the #1 SQL-injection defence in Python + MySQL.
 
 **Try these (2 programs):**
 

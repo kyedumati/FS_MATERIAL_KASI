@@ -34,6 +34,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 An **API (Application Programming Interface)** is a agreed way for programs to talk to each other. Your React app does not read the database directly — it calls the Django **API**, which returns **JSON** data.
 
+**Icons:** Order · Laptop · Employee · Bank · Payroll
+
+**Where used?**
+- Ecommerce — React / mobile apps call `/api/products/` for CampusCart
+- College apps — student portal SPA fetching enrollments as JSON
+- Banking / UPI — apps talk to bank APIs, never the DB directly
+- Payroll — HR mobile clients consume employee/leave REST endpoints
+- Postman / QA — manual API checks before frontend is ready
+
 **Restaurant analogy:** You (client) read the menu (API docs), tell the waiter your order (HTTP request), kitchen prepares food (server logic), waiter brings plate (JSON response). You never enter the kitchen.
 
 **Visual — React asking Django for products:**
@@ -51,6 +60,11 @@ sequenceDiagram
   API->>DB: INSERT
   API-->>App: JSON object 201 Created
 ```
+
+**Quick Revision:**
+- Client → DRF → MySQL → JSON back (never React → DB direct)
+- GET list → **200**; POST create → **201**
+- Same contract for Postman, React, or mobile
 
 ### What is REST?
 
@@ -117,6 +131,13 @@ print(text)
 print(parsed["price"])  # 45000
 ```
 
+**Expected Output:**
+
+```
+{"name": "Laptop", "price": 45000, "city": "Bengaluru"}
+45000
+```
+
 **Program 2 — Pretty print product**
 
 ```python
@@ -125,6 +146,22 @@ import json
 product = {"name": "Masala Dosa", "price_inr": 60, "in_stock": True}
 print(json.dumps(product, indent=2))
 ```
+
+**Expected Output:**
+
+```
+{
+  "name": "Masala Dosa",
+  "price_inr": 60,
+  "in_stock": true
+}
+```
+
+**Remember:** `json.dumps` → Python dict to string; `json.loads` → string to dict. APIs exchange the string form over HTTP.
+
+**Common Error:** Forgetting `Content-Type: application/json` on POST in Postman → empty body / 415. Set the header (or Body → raw → JSON).
+
+**Interview:** REST maps CRUD to HTTP — GET read, POST create, PUT/PATCH update, DELETE remove — plus status codes (200/201/400/401/404/500).
 
 ### Postman workflow
 

@@ -31,6 +31,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 **Flask** is a lightweight Python **web framework**. You write a small Python file, map URLs to functions, and return HTML or JSON. Unlike Django, Flask does not ship with admin, ORM, or auth — you add what you need.
 
+**Icons:** Order · Laptop · Employee · Bank · Payroll
+
+**Where used?**
+- Ecommerce — tiny Notes / product JSON APIs for hackathons and microservices
+- College apps — quick campus tools without full Django admin
+- Startups — Flask/FastAPI-style API roles next to React
+- Banking / payroll — internal microservices that only need a few routes
+- Prototypes — prove an endpoint before wiring Django/DRF
+
 **Analogy:** Django is a furnished apartment (kitchen, bed, wardrobe included). Flask is an empty studio — you bring furniture as required. For a 2-day hackathon API, Flask is faster to start. For a full HR portal with login and admin, Django wins.
 
 ### Flask vs Django (India job context)
@@ -88,6 +97,14 @@ if __name__ == "__main__":
     app.run(debug=True)
 ```
 
+**Expected Output:** (terminal after `python app.py`)
+
+```
+ * Running on http://127.0.0.1:5000
+```
+
+Open `/` in the browser → page heading **Campus Notes — Hyderabad**.
+
 **Program 2 — Confirm app name**
 
 ```python
@@ -95,6 +112,14 @@ from flask import Flask
 app = Flask(__name__)
 print(app.name)  # usually __main__ when run as script
 ```
+
+**Expected Output:**
+
+```
+__main__
+```
+
+**Remember:** Activate the venv before `pip install flask` / `python app.py` — otherwise you hit the wrong interpreter.
 
 ### 2. Routes and view functions
 
@@ -137,6 +162,16 @@ if __name__ == "__main__":
     app.run(debug=True)
 # Visit /user/Priya
 ```
+
+**Expected Output:** (browser at `/user/Priya`)
+
+```
+Namaste, Priya!
+```
+
+**Common Error:** Hitting `/user/Priya/` when the route is `/user/<name>` (or the reverse) → 404. Match the trailing slash to the `@app.route`.
+
+**Interview:** Flask vs Django — Flask = micro framework (add pieces); Django = batteries included (admin, ORM, auth). Job posts often list both.
 
 ### 3. HTTP methods
 

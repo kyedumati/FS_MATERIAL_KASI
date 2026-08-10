@@ -30,6 +30,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 A **tuple** is like a printed receipt or Aadhaar-linked record: once created, you should **not change** the fields. You can **read** them, pass them around, and unpack them into variables.
 
+**Icons:** Employee · Order · Bank · Payroll · Laptop
+
+**Where used?**
+- Payroll — fixed employee row `(emp_id, name, dept)` snapshots
+- Ecommerce — product catalog rows, shipping status tuples
+- Banking — immutable transaction snapshots (date, type, ₹ amount)
+- College apps — GPS campus coords, exam slot `(date, room)`
+- Hospital / CRM — appointment keys, unique tag sets for departments
+
 **Use tuples when:**
 
 - Data should not change accidentally (database row snapshot, GPS point `(lat, lon)`).
@@ -100,6 +109,12 @@ emp = ("EMP-204", "Priya Nair", "HR")
 print(emp[0], emp[1], emp[2])
 ```
 
+**Expected Output:**
+
+```
+EMP-204 Priya Nair HR
+```
+
 **Program 2 — One-element tuple vs int**
 
 ```python
@@ -107,6 +122,14 @@ one = (100,)
 not_tuple = (100)
 print(type(one), type(not_tuple))
 ```
+
+**Expected Output:**
+
+```
+<class 'tuple'> <class 'int'>
+```
+
+**Common Error:** Writing `(100)` thinking it is a 1-tuple — parentheses alone do not make a tuple. Need the comma: `(100,)`.
 
 #### Step 2 — Tuple methods (only two!)
 
@@ -169,12 +192,24 @@ date, category, amount = ("31-07-2026", "Food", 450.0)
 print(f"{date} | {category} | ₹{amount}")
 ```
 
+**Expected Output:**
+
+```
+31-07-2026 | Food | ₹450.0
+```
+
 **Program 2 — Swap with unpacking**
 
 ```python
 a, b = "Ravi", "Priya"
 a, b = b, a
 print(a, b)
+```
+
+**Expected Output:**
+
+```
+Priya Ravi
 ```
 
 #### Step 4 — Tuples as function return values
@@ -202,6 +237,12 @@ def minmax(nums):
 
 lo, hi = minmax([45, 90, 70])
 print(lo, hi)
+```
+
+**Expected Output:**
+
+```
+45 90
 ```
 
 **Program 2 — split_name returns a tuple**
@@ -291,12 +332,27 @@ unique = set(ids)
 print(len(unique))
 ```
 
+**Expected Output:**
+
+```
+4
+```
+
+**Remember:** Sets drop duplicates and are **unordered** — never rely on print order for set contents in exams or production logs.
+
 **Program 2 — Membership in skill set**
 
 ```python
 skills = {"Python", "SQL", "Git"}
 print("Python" in skills)
 print("Java" in skills)
+```
+
+**Expected Output:**
+
+```
+True
+False
 ```
 
 #### Step 7 — Set operations (teams and products)
@@ -403,6 +459,12 @@ print(unique_emails)
 emails = ["ravi@ksr.in", "priya@ksr.in", "ravi@ksr.in"]
 unique = list(dict.fromkeys(emails))
 print(unique)
+```
+
+**Expected Output:**
+
+```
+['ravi@ksr.in', 'priya@ksr.in']
 ```
 
 **Program 2 — Deduplicate with set (order may differ)**

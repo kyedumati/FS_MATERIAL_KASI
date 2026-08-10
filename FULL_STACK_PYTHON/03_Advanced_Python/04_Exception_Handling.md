@@ -47,6 +47,15 @@ Think of an ATM: wrong PIN should not “explode” the machine — it shows “
 
 **Custom exceptions** name business failures clearly: `InsufficientBalanceError`, `SeatAlreadyBookedError` — better for readers and APIs than a bare `Exception`.
 
+**Icons:** Bank · UPI · Order · Hospital · Payroll
+
+**Where used?**
+- UPI / banking — wrong PIN, insufficient balance, invalid amount
+- Forms & CLI — bad age, non-numeric input, missing required fields
+- File / CSV jobs — missing file, bad row converted with `int(...)`
+- Booking / orders — seat capacity, discount out of range
+- Payments — domain errors (`PaymentError`) callers can catch separately
+
 ---
 
 ## Important Concepts
@@ -71,6 +80,8 @@ except ZeroDivisionError:
 - Swallowing exceptions with empty `except: pass` — log and handle, or re-raise.
 - Using exceptions for flow control is slow and unreadable — use if/else for expected cases.
 
+**Common Error:** Bare `except:` (or empty `except: pass`) hides real bugs and can block Ctrl+C. Catch specific types and log or re-raise.
+
 **Try these (2 programs):**
 
 **Program 1 — UPI PIN with retry**
@@ -88,6 +99,13 @@ for attempt in attempts:
         print("PIN must be digits only")
 ```
 
+**Expected Output:**
+
+```
+PIN must be digits only
+PIN accepted: 1234
+```
+
 **Program 2 — Split bill safely**
 
 ```python
@@ -99,6 +117,13 @@ for friends in (4, 0):
         print(f"Each pays ₹{share:.2f}")
     except ZeroDivisionError:
         print("Cannot split among 0 friends")
+```
+
+**Expected Output:**
+
+```
+Each pays ₹125.00
+Cannot split among 0 friends
 ```
 
 ### 2. Catching multiple exceptions
@@ -148,6 +173,14 @@ for data in samples:
         print("Bad age data:", type(e).__name__, e)
 ```
 
+**Expected Output:**
+
+```
+Age: 21
+Bad age data: ValueError invalid literal for int() with base 10: 'twenty'
+Bad age data: KeyError 'age'
+```
+
 ### 3. else and finally
 
 **What:** Success path (`else`) vs guaranteed cleanup (`finally`).  
@@ -169,6 +202,8 @@ finally:
 **Note:**
 - `return` inside `finally` can suppress exceptions — keep `finally` for cleanup only.
 
+**Remember:** `else` runs only when `try` succeeded; `finally` always runs (cleanup / close).
+
 **Try these (2 programs):**
 
 **Program 1 — `else` and `finally` on age input**
@@ -186,6 +221,15 @@ for raw in ("abc", "20"):
         print("Attempt finished")
 ```
 
+**Expected Output:**
+
+```
+Invalid age: 'abc'
+Attempt finished
+Welcome to the form
+Attempt finished
+```
+
 **Program 2 — `finally` runs even after `return`**
 
 ```python
@@ -197,6 +241,14 @@ def demo():
         print("finally still runs before the return completes")
 
 print("Result:", demo())
+```
+
+**Expected Output:**
+
+```
+In try — about to return
+finally still runs before the return completes
+Result: success
 ```
 
 ### 4. raise — intentional errors
@@ -230,6 +282,14 @@ for p in (120, -5, 15):
         print("Error:", e)
 ```
 
+**Expected Output:**
+
+```
+Error: Discount must be 0–100, got 120
+Error: Discount must be 0–100, got -5
+Discount set to 15%
+```
+
 **Program 2 — `book_seat` capacity check**
 
 ```python
@@ -260,6 +320,8 @@ class InvalidAccountError(Exception):
 
 **Note:**
 - Custom exception not inheriting `Exception` → not caught as expected — always inherit `Exception`.
+
+**Interview:** Custom exceptions name domain failures (`UnderAgeError`, `InsufficientBalanceError`) so callers can catch them without treating every `Exception` the same.
 
 **Try these (2 programs):**
 
@@ -338,6 +400,14 @@ try:
     print(10 / 0)
 except ZeroDivisionError as e:
     print("ZeroDivisionError:", e)
+```
+
+**Expected Output:**
+
+```
+IndexError: list index out of range
+KeyError: 'b'
+ZeroDivisionError: division by zero
 ```
 
 **Program 2 — Name that error quiz**

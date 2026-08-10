@@ -33,6 +33,13 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 A **model** is a Python class describing **database table structure**. Each **attribute** on the class becomes a **column**. Django **ORM** (Object-Relational Mapper) translates Python operations to SQL.
 
+**Where used?**
+- Campus portal — Student / Course models synced to MySQL
+- Ecommerce — Product, Order models + Django admin for staff
+- Blog — Post / Author / Tag with FK and M2M
+- Task Manager — Task rows owned by User (FK later with auth)
+- Capstone — replace hardcoded template lists with ORM queries
+
 **ORM** — you work with Python objects; Django generates SQL like `SELECT * FROM blog_post WHERE ...`.
 
 **Migration** — a version file describing schema changes (add column, new table). **`makemigrations`** creates the file; **`migrate`** applies it to MySQL.
@@ -90,6 +97,11 @@ erDiagram
   }
 ```
 
+**Quick Revision:**
+- Author **1 → many** Posts (ForeignKey); Post **many ↔ many** Tags (M2M)
+- ORM = Python objects; migrations keep MySQL schema in sync
+- Admin is the staff UI once models are registered
+
 **`on_delete=models.CASCADE`** — if parent Author deleted, delete their posts too (common default for learning; discuss PROTECT in production).
 
 **Note:**
@@ -128,6 +140,16 @@ python manage.py migrate
 python manage.py showmigrations blog
 ```
 
+**Expected Output:** (abbreviated)
+
+```
+Migrations for 'blog':
+  blog/migrations/0001_initial.py
+    - Create model Post
+Applying blog.0001_initial... OK
+ [X] 0001_initial
+```
+
 **Program 2 — Read the migration file tip**
 
 ```markdown
@@ -157,6 +179,14 @@ from blog.models import Post
 Post.objects.create(title="Idli Special", body="₹40 at canteen", published=True)
 print(list(Post.objects.filter(published=True).values_list("title", flat=True)))
 ```
+
+**Expected Output:**
+
+```
+['Idli Special']
+```
+
+**Remember:** Change `models.py` → `makemigrations` → `migrate` — skipping either leaves MySQL out of sync.
 
 **Program 2 — Order and limit**
 

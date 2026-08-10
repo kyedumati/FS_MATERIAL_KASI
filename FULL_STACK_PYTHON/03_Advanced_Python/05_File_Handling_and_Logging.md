@@ -49,6 +49,15 @@ The **`with`** statement is the polite borrower — Python **closes** the file e
 
 **CSV** = Excel-friendly tables. **JSON** = language of APIs and config. Prefer them over inventing your own text format.
 
+**Icons:** Order · Laptop · Payroll · CRM · Bank
+
+**Where used?**
+- Expense / payroll exports — append CSV rows, then summarise by category
+- Attendance & logs — append-only text files that survive process restarts
+- Config — `prefs.json` / `config.json` loaded at startup
+- Server debugging — `logging` to `app.log` when nobody watches the console
+- Large reports — iterate line-by-line or `csv.DictReader` instead of loading everything
+
 ---
 
 ## Important Concepts
@@ -72,6 +81,8 @@ Always specify `encoding="utf-8"` for text on cross-platform projects.
 - `w` mode by mistake deletes existing data — confirm the mode; back up files first.
 - Ignoring encoding → `UnicodeDecodeError` on Windows — always use `encoding="utf-8"`.
 
+**Common Error:** Opening with `"w"` when you meant `"a"` — `w` truncates the file to empty before you write.
+
 **Try these (2 programs):**
 
 **Program 1 — Write / read / truncate demo**
@@ -90,6 +101,13 @@ with open("notes.txt", "r", encoding="utf-8") as f:
     print("After truncate write:", repr(f.read()))
 ```
 
+**Expected Output:**
+
+```
+After first write: 'First draft\n'
+After truncate write: 'Second draft — first line is gone\n'
+```
+
 **Program 2 — Append attendance lines**
 
 ```python
@@ -103,6 +121,15 @@ with open("attendance.txt", "a", encoding="utf-8") as f:
 
 with open("attendance.txt", "r", encoding="utf-8") as f:
     print(f.read())  # all four lines remain
+```
+
+**Expected Output:**
+
+```
+Anita present
+Ravi present
+Meera present
+Vikram present
 ```
 
 ### 2. with statement (context manager)
@@ -119,6 +146,8 @@ with open("notes.txt", "w", encoding="utf-8") as f:
 **Note:**
 - Forgetting to close a file → resource leak — use `with`.
 
+**Remember:** Prefer `with open(...) as f:` — the file closes even if an exception fires inside the block.
+
 **Try these (2 programs):**
 
 **Program 1 — Rewrite with `with open`**
@@ -134,6 +163,12 @@ with open("batch.txt", "w", encoding="utf-8") as f:
 
 with open("batch.txt", "r", encoding="utf-8") as f:
     print(f.read().strip())
+```
+
+**Expected Output:**
+
+```
+PFS Hyderabad
 ```
 
 **Program 2 — File still closes after exception**
@@ -185,6 +220,16 @@ with open("routes.txt", "w", encoding="utf-8") as f:
 with open("routes.txt", "r", encoding="utf-8") as f:
     for line in f:
         print(line.strip())
+```
+
+**Expected Output:**
+
+```
+Miyapur
+JNTU College
+KPHB Colony
+Kukatpally
+Balanagar
 ```
 
 **Program 2 — Why loop beats `read()` for huge logs**
@@ -246,6 +291,12 @@ with open("fees.csv", newline="", encoding="utf-8") as f:
 print("Total fees:", total)  # 42000
 ```
 
+**Expected Output:**
+
+```
+Total fees: 42000
+```
+
 **Program 2 — Canteen menu CSV export**
 
 ```python
@@ -265,6 +316,14 @@ with open("canteen.csv", "w", newline="", encoding="utf-8") as f:
 with open("canteen.csv", newline="", encoding="utf-8") as f:
     for row in csv.DictReader(f):
         print(f"{row['item']}: ₹{row['price']}")
+```
+
+**Expected Output:**
+
+```
+Samosa: ₹20
+Idli: ₹30
+Filter Coffee: ₹25
 ```
 
 ### 5. Logging levels (low → high severity)
@@ -288,6 +347,8 @@ logging.error("DB connection failed")
 - Configuring logging in a library at import time → noise — configure logging in `main` only.
 - Using `print` in production → no levels/timestamps — use `logging`.
 
+**Interview:** `print` is for quick demos; `logging` gives levels, timestamps, and file/console handlers you can filter in production.
+
 **Try these (2 programs):**
 
 **Program 1 — INFO vs DEBUG filter**
@@ -300,6 +361,13 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logging.debug("Parsed raw row — this will NOT appear at INFO level")
 logging.info("Expense added: ₹120 Tea")
 logging.error("Failed to parse amount: 'abc'")
+```
+
+**Expected Output:**
+
+```
+INFO Expense added: ₹120 Tea
+ERROR Failed to parse amount: 'abc'
 ```
 
 **Program 2 — Console + `app.log` handlers**

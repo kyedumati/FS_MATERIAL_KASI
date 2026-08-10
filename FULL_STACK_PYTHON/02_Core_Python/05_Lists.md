@@ -32,6 +32,15 @@ Think of a **list** like a numbered shopping cart or a attendance register:
 - You can **change** items later — swap a wrong name, add a new expense, remove a cancelled order.
 - Every item has a **position number** starting from `0` (index).
 
+**Icons:** Order · Employee · Bank · Payroll · Laptop
+
+**Where used?**
+- Ecommerce — cart items, order line rows
+- College apps — marks per subject, attendance registers
+- Payroll — employee name rosters, salary line items
+- Banking — recent transactions (ordered history)
+- Hospital / CRM — appointment queues, task lists
+
 **Real-life parallels:**
 
 | Situation | List in code |
@@ -91,11 +100,23 @@ cart = ["Notebook", "Pen", "USB"]
 print(cart[0], cart[-1], len(cart))
 ```
 
+**Expected Output:**
+
+```
+Notebook USB 3
+```
+
 **Program 2 — Middle two expenses**
 
 ```python
 expenses = [450, 1200, 89, 2500]
 print(expenses[1:3])  # [1200, 89]
+```
+
+**Expected Output:**
+
+```
+[1200, 89]
 ```
 
 ### Step 2 — Update list items (CRUD: Update)
@@ -139,6 +160,14 @@ cart.insert(0, "PROMO-Mug")
 print(cart)
 ```
 
+**Expected Output:**
+
+```
+['PROMO-Mug', 'Notebook', 'Pen', 'USB']
+```
+
+**Common Error:** `cart.append(["Pen", "USB"])` nests a list inside the cart. Use `extend([...])` to add multiple items flat.
+
 ### Step 3 — Delete items (CRUD: Delete)
 
 ```python
@@ -170,6 +199,12 @@ orders.remove("ORD-2")
 print(orders)
 ```
 
+**Expected Output:**
+
+```
+['ORD-1', 'ORD-2']
+```
+
 **Program 2 — pop last task**
 
 ```python
@@ -177,6 +212,13 @@ tasks = ["Login page", "API", "Deploy"]
 cancelled = tasks.pop()
 print(cancelled)
 print(tasks)
+```
+
+**Expected Output:**
+
+```
+Deploy
+['Login page', 'API']
 ```
 
 ### Step 4 — Useful list methods
@@ -303,6 +345,14 @@ for name, qty, price in order:
 print(f"Total: ₹{total}")
 ```
 
+**Expected Output:**
+
+```
+Chai: ₹40
+Samosa: ₹75
+Total: ₹115
+```
+
 ### Step 7 — Introduction to list comprehensions
 
 ```python
@@ -369,6 +419,14 @@ b = a
 b.append(3)
 print(a)  # [1, 2, 3] — same list
 ```
+
+**Expected Output:**
+
+```
+[1, 2, 3]
+```
+
+**Remember:** `b = a` does **not** copy the list — both names point to the same object. Use `.copy()` / `list(a)` / `a[:]` when you need a separate list.
 
 **Program 2 — Fix with copy**
 

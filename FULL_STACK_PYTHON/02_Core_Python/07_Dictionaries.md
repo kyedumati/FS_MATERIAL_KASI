@@ -32,6 +32,15 @@ A **dictionary** is like a real dictionary or phone contacts app:
 - Keys must be **unique** — one phone number cannot map to two different people in the same dict.
 - Values can be anything: string, number, list, or even another dictionary.
 
+**Icons:** Employee · Order · Bank · Payroll · CRM
+
+**Where used?**
+- Payroll / Employee portal — `{emp_id: profile}` lookups
+- Ecommerce — product by SKU, order JSON with nested items
+- Banking — account record fields, UPI txn metadata
+- College apps — student dict (`roll`, `marks`, `grade`)
+- Hospital / CRM — contact book, ticket fields from APIs
+
 **Examples from daily work:**
 
 | Key | Value | Scenario |
@@ -102,11 +111,26 @@ print(student["name"])
 print(student.get("phone", "N/A"))
 ```
 
+**Expected Output:**
+
+```
+Priya
+N/A
+```
+
+**Remember:** Prefer `.get("key", default)` when a field might be missing — brackets `d["key"]` raise `KeyError`.
+
 **Program 2 — Product via dict()**
 
 ```python
 product = dict(sku="P10", name="Chai Mug", price=299)
 print(product["price"])
+```
+
+**Expected Output:**
+
+```
+299
 ```
 
 ### Step 2 — Update and add (CRUD: Update)
@@ -176,6 +200,13 @@ print(amount)
 print(expense)
 ```
 
+**Expected Output:**
+
+```
+450
+{'date': '01-08-2026', 'category': 'Food'}
+```
+
 **Program 2 — del then clear**
 
 ```python
@@ -183,6 +214,12 @@ expense = {"date": "01-08-2026", "category": "Food", "amount": 450}
 del expense["category"]
 expense.clear()
 print(expense)
+```
+
+**Expected Output:**
+
+```
+{}
 ```
 
 ### Step 4 — Keys, values, items
@@ -206,6 +243,13 @@ for key, value in product.items():
 marks = {"Python": 88, "SQL": 76}
 for subject, score in marks.items():
     print(f"{subject}: {score}")
+```
+
+**Expected Output:**
+
+```
+Python: 88
+SQL: 76
 ```
 
 **Program 2 — keys and values lists**
@@ -250,12 +294,24 @@ for word in words:
 print(frequency)
 ```
 
+**Expected Output:**
+
+```
+{'good': 2, 'fast': 2, 'ok': 1}
+```
+
 **Program 2 — 10% off dict comprehension**
 
 ```python
 prices = {"mouse": 799, "hub": 599}
 discounted = {k: round(v * 0.9, 2) for k, v in prices.items()}
 print(discounted)
+```
+
+**Expected Output:**
+
+```
+{'mouse': 719.1, 'hub': 539.1}
 ```
 
 ### Step 6 — Nested dictionaries
@@ -385,6 +441,14 @@ print(user["role"])                   # staff — original unchanged
 contact = {"name": "Ravi", "phone": "9876543210"}
 print("Found" if "email" in contact else "Missing")
 ```
+
+**Expected Output:**
+
+```
+Missing
+```
+
+**Common Error:** `"Ravi" in contact` checks **keys**, not values — that expression is `False` even though `"Ravi"` is stored as a value.
 
 **Program 2 — Shallow copy independence**
 

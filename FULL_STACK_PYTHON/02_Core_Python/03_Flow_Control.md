@@ -33,6 +33,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 Programs rarely run in one straight line. A **student portal** must check login, an **ATM** repeats until user exits, and a **task manager** loops through tasks.
 
+**Icons:** Bank · UPI · Employee · Order · Payroll
+
+**Where used?**
+- Banking / ATM — PIN retries, withdraw only if balance allows
+- College apps — pass/fail grades, marks menus
+- Ecommerce — cart checkout loops, stock checks
+- Payroll — overtime flags, salary slab branches
+- Hospital / CRM — ticket priority menus, appointment status
+
 **Flow control** lets you:
 
 - **Decide** — run code only when a condition is true (`if`)
@@ -74,6 +83,12 @@ flowchart TD
   F -->|Yes| G[Grade C]
   F -->|No| H[Grade Fail]
 ```
+
+**Quick Revision:**
+- Checks run **top → bottom**; first `True` branch wins
+- Later `elif`s are skipped once one branch runs
+- `else` is the safety net when nothing above matched
+- Same idea as ATM: check invalid amount → insufficient → then withdraw
 
 Only **one** box on the right runs — the first `True` condition wins; `else` is the last safety net.
 
@@ -200,6 +215,12 @@ else:
     print("Fail")
 ```
 
+**Expected Output:**
+
+```
+Pass
+```
+
 **Program 2 — Minor / Adult / Senior**
 
 ```python
@@ -210,6 +231,12 @@ elif age < 60:
     print("Adult")
 else:
     print("Senior")
+```
+
+**Expected Output:**
+
+```
+Senior
 ```
 
 ### Step 2: Employee login (simplified)
@@ -248,6 +275,12 @@ else:
     print("Invalid")
 ```
 
+**Expected Output:**
+
+```
+Welcome
+```
+
 **Program 2 — Separate username and PIN checks**
 
 ```python
@@ -262,6 +295,14 @@ elif entered_pin != pin:
 else:
     print("Welcome")
 ```
+
+**Expected Output:**
+
+```
+PIN failed
+```
+
+**Common Error:** Using `=` inside `if` (`if x = 5`) — that is assignment, not comparison. Use `==`.
 
 ### Step 3: for loop — multiplication table
 
@@ -293,6 +334,14 @@ for n in range(2, 21, 2):
     print(n, end=" ")
 print()
 ```
+
+**Expected Output:**
+
+```
+2 4 6 8 10 12 14 16 18 20 
+```
+
+**Remember:** `range` stop is **exclusive** — `range(1, 11)` gives 1…10, not 11.
 
 ### Step 4: while loop — PIN retries (max 3)
 
@@ -335,6 +384,12 @@ while i < 3:
         break
 else:
     print("Card blocked")
+```
+
+**Expected Output:**
+
+```
+Access granted
 ```
 
 **Program 2 — Accept positive amount**
@@ -416,6 +471,12 @@ if marks >= 35:
         print("Pass")
 else:
     print("Fail")
+```
+
+**Expected Output:**
+
+```
+Distinction
 ```
 
 **Program 2 — Nested withdraw check**

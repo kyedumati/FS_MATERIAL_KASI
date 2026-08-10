@@ -35,6 +35,15 @@ In Indian IT interviews and on the job, you will:
 - Submit PRs (pull requests) reviewed by seniors
 - Be asked "did you test?" in standup
 
+**Icons:** Laptop · Order · Employee · Bank · Payroll
+
+**Where used?**
+- Ecommerce — discount / GST helpers must not ship wrong ₹ amounts
+- College apps — marks averages and login validators covered by unit tests
+- Banking / payroll — money math needs tests before production merges
+- Service companies — PR reviews expect tests + clear function names
+- Capstone — prove CRUD edge cases (empty list, bad percent) before demo
+
 **Testing** proves your code works before manager finds bugs. **Clean code** helps teammates read your work at 6 PM before release.
 
 ### Debugging vs guessing
@@ -91,6 +100,13 @@ if __name__ == "__main__":
     print(format_inr(90))
 ```
 
+**Expected Output:**
+
+```
+₹1,250.00
+₹90.00
+```
+
 **Program 2 — Debug checklist**
 
 ```markdown
@@ -128,6 +144,14 @@ logging.warning("Price missing — using 0")
 logging.error("Cannot connect to MySQL")
 ```
 
+**Expected Output:**
+
+```
+INFO: Starting CampusCart discount calc
+WARNING: Price missing — using 0
+ERROR: Cannot connect to MySQL
+```
+
 **Program 2 — Function with log**
 
 ```python
@@ -141,6 +165,19 @@ def apply_discount(price, percent):
 
 print(apply_discount(100, 10))  # 90.0
 ```
+
+**Expected Output:**
+
+```
+DEBUG:root:price=100 percent=10
+90.0
+```
+
+**Remember:** Prefer asserting **return values** in tests — capturing `print` output is brittle.
+
+**Common Error:** Naming the file `discount_test.py` instead of `test_discount.py` → pytest collects **0** tests.
+
+**Interview:** unittest (stdlib, class-based) vs pytest (simple `assert`, popular in startups) — both prove functions; pick one and run it in CI.
 
 ### unittest vs pytest
 

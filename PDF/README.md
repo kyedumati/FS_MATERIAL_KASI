@@ -4,6 +4,19 @@ This folder is **auto-generated**. Do not edit files here.
 
 **Requirements:** Python (`markdown`, `pygments`), Google Chrome, and **Node.js (`npx`)** so Mermaid diagrams render as SVG (not raw ```mermaid code).
 
+## PDF visual conventions (in Markdown)
+
+Authors can use these markers — `scripts/build_pdfs.py` styles them automatically:
+
+| Marker | Renders as |
+|--------|------------|
+| `**Expected Output:**` + fence | Green output callout |
+| `**Remember:**` / `**Interview:**` / `**Common Error:**` | Margin-style callouts |
+| `**Where used?**` / `**When will I use this?**` | Green “real world” box |
+| `**Quick Revision:**` (right after a Mermaid diagram) | Paired beside the diagram |
+| `**Icons:** Bank · UPI · Employee · Laptop · Order` | Icon chip strip |
+| Inline `` `class` `` / `` `object` `` / `` `inheritance` `` | Blue / green / purple keywords |
+
 ## Primary Full Stack course (teach + share same content)
 
 From the repo root:

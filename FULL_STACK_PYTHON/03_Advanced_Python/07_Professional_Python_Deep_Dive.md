@@ -17,6 +17,14 @@ By the end, learners can:
 - Write focused custom exceptions and preserve useful error context.
 - Explain a package entry point using `if __name__ == "__main__"`.
 
+**Icons:** Order · Bank · Laptop
+
+**Where used?**
+- Order / notification flows — swap Email vs SMS without rewriting the service
+- Inventory — reject oversell with a clear custom exception
+- Payment demos — shared `pay()` contract via an abstract base class
+- Library APIs — `__str__` for humans, `__repr__` for debugging dumps
+
 ## Classroom Ticket (optional)
 
 Reuse kits you already know — this file is a **code-review / refactor** session:
@@ -48,6 +56,8 @@ print(add_skill("SQL"))     # ['SQL'], not ['Python', 'SQL']
 
 **Interview explanation:** Default argument values are evaluated once when the function is defined. A mutable default can therefore leak state into later calls.
 
+**Remember:** Mutable defaults (`skills=[]`) are shared across calls — use `None` and create a fresh list inside.
+
 **Try these (2 programs):**
 
 **Program 1 — Prove the bug**
@@ -61,6 +71,13 @@ print(add_skill("Python"))
 print(add_skill("SQL"))  # leaks prior call
 ```
 
+**Expected Output:**
+
+```
+['Python']
+['Python', 'SQL']
+```
+
 **Program 2 — Fix with None**
 
 ```python
@@ -72,6 +89,13 @@ def add_skill(skill, skills=None):
 
 print(add_skill("Python"))
 print(add_skill("SQL"))
+```
+
+**Expected Output:**
+
+```
+['Python']
+['SQL']
 ```
 
 ## 2. Composition before inheritance
@@ -96,6 +120,8 @@ service.place_order("ORD-101")
 
 `OrderService` is not an `EmailNotifier`; it uses one. This design is easier to change later—for example, to SMS or WhatsApp notifications.
 
+**Common Error:** Forcing inheritance when the relationship is only HAS-A — you end up with a rigid tree that is hard to swap (Email → SMS). Prefer composition.
+
 **Try these (2 programs):**
 
 **Program 1 — SMS notifier composition**
@@ -113,6 +139,12 @@ class OrderService:
         self.notifier.send(f"Order {order_id} placed")
 
 OrderService(SmsNotifier()).place_order("ORD-202")
+```
+
+**Expected Output:**
+
+```
+SMS: Order ORD-202 placed
 ```
 
 **Program 2 — Swap notifier at runtime**
@@ -174,6 +206,13 @@ class Product:
 p = Product("P1", "Mouse", 799)
 print(str(p))
 print(repr(p))
+```
+
+**Expected Output:**
+
+```
+Mouse (₹799)
+Product('P1', 'Mouse', 799)
 ```
 
 ## 5. Custom exceptions with context

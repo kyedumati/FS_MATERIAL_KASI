@@ -42,6 +42,13 @@ Finish tickets in class; compare with the official solution only when your train
 
 **Web framework** means: you build **web applications** (sites/apps accessed through a browser or mobile app via HTTP), not desktop `.exe` apps.
 
+**Where used?**
+- Campus / student portal — login, marks, announcements (MTV + admin)
+- Ecommerce — CampusCart catalog, orders, staff admin for products
+- Blog / Task Manager / Booking — course theme apps on the same Django project
+- IT services — internal HR / inventory portals with built-in admin
+- Capstone — full CRUD + auth stack recruiters expect on GitHub
+
 **Why Django in India?** Startups (Swiggy-era stacks), IT services (maintenance portals), ed-tech (student portals), and product companies hire **Python Django developers** for rapid MVP delivery, built-in admin, and strong ORM (Object-Relational Mapping — Python classes instead of raw SQL for most CRUD).
 
 ### MTV Pattern (Model–Template–View)
@@ -67,6 +74,11 @@ flowchart LR
   V -->|context dict| T[Template<br/>HTML]
   T -->|HTML response| B
 ```
+
+**Quick Revision:**
+- URL → View → Model (optional) → Template → HTML response
+- MTV ≈ MVC with Django naming (Template ≈ View, View ≈ Controller)
+- Admin + ORM are why Indian portals pick Django for fast CRUD
 
 Think: **URL** picks the door, **View** is the worker, **Model** is the filing cabinet, **Template** is the printed page.
 
@@ -126,6 +138,12 @@ pip install "django>=5.0,<6"
 django-admin --version
 ```
 
+**Expected Output:** (version numbers vary)
+
+```
+5.x.x
+```
+
 **Program 2 — Project name note**
 
 ```markdown
@@ -158,6 +176,12 @@ DEBUG = True
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 # SECRET_KEY stays in .env later — Module 05
 print("Dev mode: DEBUG =", DEBUG)
+```
+
+**Expected Output:**
+
+```
+Dev mode: DEBUG = True
 ```
 
 **Program 2 — Production checklist stub**
@@ -201,6 +225,14 @@ INSTALLED_APPS = [
 python manage.py check
 python manage.py showmigrations
 ```
+
+**Expected Output:** (abbreviated)
+
+```
+System check identified no issues (0 silenced).
+```
+
+**Common Error:** Forgetting to activate `venv` → `ModuleNotFoundError: No module named 'django'`. Activate first, then `manage.py`.
 
 ### 4. First Migrations
 
@@ -323,6 +355,16 @@ python manage.py migrate
 python manage.py runserver
 # Visit http://127.0.0.1:8000/ — Django rocket welcome page
 ```
+
+**Expected Output:** (abbreviated)
+
+```
+Applying auth.0001_initial... OK
+...
+Starting development server at http://127.0.0.1:8000/
+```
+
+**Remember:** `migrate` before celebrating `runserver` — auth/admin tables must exist in MySQL.
 
 ### Step 6 — VS Code Workspace Tips
 

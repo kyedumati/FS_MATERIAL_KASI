@@ -44,6 +44,15 @@ Most **junior Python full-stack** roles want you to:
 - Send user text or data, display AI response in UI
 - Handle errors, loading states, API keys safely
 
+**Icons:** Order · Laptop · Employee · Bank · Payroll
+
+**Where used?**
+- Ecommerce — canteen review sentiment / spam filter behind a Flask route
+- College apps — simple chatbot FAQ endpoint on the student portal
+- CRM / support — summarize tickets via remote model API
+- Banking — fraud/risk scores consumed as JSON (you wire the call, not train GPT)
+- Resume — one honest “AI-integrated demo” after Django deploy is solid
+
 Employers do **not** expect you to publish research papers or build GPT from scratch. This module matches **brochure "AI Integration Lite"** — practical wiring.
 
 ### Two patterns we teach
@@ -66,6 +75,11 @@ Both end the same way for your React/Flask app: **JSON in, JSON out**.
      v
   JSON { "label": "positive", "score": 0.92 }
 ```
+
+**Quick Revision:**
+- UI form → Python endpoint → local sklearn **or** remote API → JSON
+- Junior role = **wire** AI, not invent a foundation model
+- Same JSON-in / JSON-out pattern as any other REST feature
 
 ---
 
@@ -97,6 +111,18 @@ X = vec.fit_transform(texts)
 model = MultinomialNB().fit(X, labels)
 print(model.predict(vec.transform(["amazing thali"])))
 ```
+
+**Expected Output:** (label may be `1` = positive on this toy set)
+
+```
+[1]
+```
+
+**Remember:** Toy models on 4–6 samples are for demos — say so in interviews; production needs more data and evaluation.
+
+**Common Error:** Hardcoding `API_KEY = "sk-..."` in source → leaked key on GitHub. Always `os.environ.get(...)`.
+
+**Interview:** "Did you train GPT?" → No — "I called a hosted model API / tiny sklearn classifier from Flask/Django and returned JSON to the UI."
 
 **Program 2 — Train/predict note**
 

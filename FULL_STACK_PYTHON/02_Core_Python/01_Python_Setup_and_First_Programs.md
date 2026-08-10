@@ -31,6 +31,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 **Python** is a programming language created by Guido van Rossum (first released 1991). It reads almost like English, which helps learners learn faster than lower-level languages.
 
+**Icons:** Bank · Order · Laptop · Payroll
+
+**Where used?**
+- Banking / UPI scripts — small tools that print balances, receipts, or job status
+- College apps — student portal banners, marks entry CLIs
+- Ecommerce — canteen/order labels and first checkout demos
+- Payroll — employee welcome scripts and HR training labs
+- Hospital / CRM — appointment or ticket “hello” scripts before real CRUD
+
 **Why companies in India hire Python developers:**
 
 - **Web backends & APIs:** server-side apps and services (Instagram, Zomato-scale stacks often use Python)
@@ -218,6 +227,13 @@ print("Hello, Ravi")
 print(450 + 120)  # ₹570 for two canteen items
 ```
 
+**Expected Output:**
+
+```
+Hello, Ravi
+570
+```
+
 **Program 2 — Name, batch, Python OK**
 
 ```python
@@ -262,6 +278,13 @@ python3 hello.py
 ```python
 print("Priya")
 print("Become a full-stack Python developer")
+```
+
+**Expected Output:**
+
+```
+Priya
+Become a full-stack Python developer
 ```
 
 **Program 2 — Same with author and date comments**
@@ -311,6 +334,16 @@ print("  Welcome, customer")
 print("=" * 24)
 ```
 
+**Expected Output:**
+
+```
+========================
+    KSR BANK ATM
+========================
+  Welcome, customer
+========================
+```
+
 **Program 2 — Student marks portal banner**
 
 ```python
@@ -354,6 +387,15 @@ import keyword
 print(len(keyword.kwlist))
 print(keyword.kwlist[:5])  # first five as a peek
 ```
+
+**Expected Output:**
+
+```
+35
+['False', 'None', 'True', 'and', 'as']
+```
+
+**Remember:** Keyword count can grow slightly across Python versions — always print `keyword.kwlist` on *your* machine in lab.
 
 **Program 2 — Invalid vs valid names (commented)**
 
@@ -401,6 +443,14 @@ print(roll_number)
 print(is_pass)
 ```
 
+**Expected Output:**
+
+```
+Priya
+2026001
+True
+```
+
 **Program 2 — Rename poor expense names**
 
 ```python
@@ -410,6 +460,8 @@ category_name = "food"
 amount_inr = 250
 print(f"{category_name}: ₹{amount_inr}")
 ```
+
+**Common Error:** Putting a space in a name (`employee id = 101`) → `SyntaxError`. Use `employee_id`.
 
 ### Step 7: Simple formatted greeting (preview of f-strings)
 
@@ -434,6 +486,12 @@ print(f"Hello, {trainer_name}! You are teaching {batch_name}.")
 ```python
 name = "Ravi"
 print(f"Hello, {name} — welcome to KSR")
+```
+
+**Expected Output:**
+
+```
+Hello, Ravi — welcome to KSR
 ```
 
 **Program 2 — Name and city f-string**

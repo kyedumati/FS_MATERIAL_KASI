@@ -46,6 +46,15 @@ After 16 weeks of Python full stack, **technical skill alone does not guarantee 
 - Technical rounds (Python, Django, SQL, React basics)
 - HR/manager (communication, salary, notice period)
 
+**Icons:** Laptop · Employee · Order · Bank · Payroll
+
+**Where used?**
+- Job hunt — Naukri / LinkedIn / company careers for junior Python roles
+- Portfolio — GitHub pins + README for CampusCart / student CRUD
+- Interviews — Agile vocabulary, STAR stories, SQL + Django basics
+- Service / product teams — standup, sprint, PR review language on day one
+- Switchers — frame prior domain + new stack projects honestly
+
 This module turns you from "course completed" to **hire-ready candidate**.
 
 ### Agile/Scrum in 5 minutes (interview vocabulary)
@@ -87,6 +96,12 @@ Most Indian product and service teams say they are **Agile**.
 
 **Avoid:** Photo unless employer asks, full address, hobbies essay, lie about experience.
 
+**Remember:** One-page PDF with GitHub links beats a three-page essay without demos.
+
+**Common Error:** Listing “expert Django” with no repo → fails the first live coding / project walkthrough. Honest skills + working links win.
+
+**Interview:** Use STAR (Situation, Task, Action, Result) for “Tell me about a project” — e.g. CampusCart CRUD under a weekly sprint demo.
+
 **Note:**
 - 3-page resume → rejected by HR — keep one page PDF.
 - No project links → "maybe fake" — put GitHub URLs on the resume.
@@ -103,6 +118,12 @@ Most Indian product and service teams say they are **Agile**.
 Worked on Django project
 
 # Strong
+Built Django Task Manager with login, owner-filtered CRUD, and MySQL — deployed checklist with DEBUG=False
+```
+
+**Expected Output:** (resume bullet you can paste)
+
+```
 Built Django Task Manager with login, owner-filtered CRUD, and MySQL — deployed checklist with DEBUG=False
 ```
 

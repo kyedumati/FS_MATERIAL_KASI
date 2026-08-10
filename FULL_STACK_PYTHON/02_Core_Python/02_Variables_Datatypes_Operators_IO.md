@@ -34,6 +34,15 @@ Finish the ticket in class; compare with the official solution only when your tr
 
 A **variable** is a name that points to a value stored in memory. Think of it as a labelled box: the label is `student_name`, the contents are `"Ravi Kumar"`.
 
+**Icons:** Bank · UPI · Employee · Payroll · Order
+
+**Where used?**
+- Banking / UPI — balance, transfer amount, PIN flags
+- College apps — roll, marks, fees as `int` / `float`
+- Payroll — basic salary, HRA, CTC in lakhs
+- Ecommerce — cart line price × qty, GST totals
+- Hospital / CRM — patient age, ticket amount, `is_active` flags
+
 ```python
 student_name = "Ravi Kumar"   # str
 roll_number = 101             # int
@@ -170,6 +179,12 @@ average = (python_marks + sql_marks) / 2
 print(f"{name} ({roll}) average: {average:.2f}")
 ```
 
+**Expected Output:**
+
+```
+Ravi (2026002) average: 77.50
+```
+
 **Program 2 — Daily expense total**
 
 ```python
@@ -177,6 +192,12 @@ food = 185.50
 travel = 60.0
 total = food + travel
 print(f"Today's total: ₹{total:.2f}")
+```
+
+**Expected Output:**
+
+```
+Today's total: ₹245.50
 ```
 
 ### Step 2: Datatypes and None
@@ -217,6 +238,15 @@ is_remote = True
 print(manager_id is None)
 print(is_remote is True)
 ```
+
+**Expected Output:**
+
+```
+True
+True
+```
+
+**Remember:** Check missing values with `x is None` (identity), not `x == None`.
 
 ### Step 3: Arithmetic operators
 
@@ -260,6 +290,18 @@ print(a % b)
 print(a ** b)
 ```
 
+**Expected Output:**
+
+```
+29
+21
+100
+6.25
+6
+1
+390625
+```
+
 **Program 2 — Split ₹999 among 3 friends**
 
 ```python
@@ -268,6 +310,14 @@ friends = 3
 print(bill / friends)   # exact share
 print(bill // friends)  # whole rupees each
 print(bill % friends)   # leftover as remainder
+```
+
+**Expected Output:**
+
+```
+333.0
+333
+0
 ```
 
 ### Step 4: Comparison and logical operators
@@ -352,6 +402,12 @@ balance -= 2000
 print(f"Final balance: ₹{balance}")
 ```
 
+**Expected Output:**
+
+```
+Final balance: ₹7500
+```
+
 **Program 2 — Month total with +=**
 
 ```python
@@ -361,6 +417,8 @@ month_total += 85.5
 month_total += 40
 print(f"Month total: ₹{month_total}")
 ```
+
+**Common Error:** Writing `input("Amount: ") + 100` without casting — `input()` is always `str`, so you get `TypeError` (or string concat). Convert with `float(...)` / `int(...)` first.
 
 ### Step 6: Membership and identity
 
@@ -522,6 +580,12 @@ price = 499.0
 qty = 2
 line_total = price * qty * 1.18
 print(f"Line total with GST: ₹{line_total:.2f}")
+```
+
+**Expected Output:**
+
+```
+Line total with GST: ₹1177.64
 ```
 
 ---
