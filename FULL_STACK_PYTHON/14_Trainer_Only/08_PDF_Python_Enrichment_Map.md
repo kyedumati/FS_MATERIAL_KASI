@@ -16,7 +16,7 @@ All Python teaching lives in **`FULL_STACK_PYTHON/`**. SQL depth lives in **`MYS
 | List / Tuple / Set / Dict | `02_Core_Python/05`–`07` (+ `08` DS overview) |
 | Functions | `03_Advanced_Python/01_…` |
 | Modules / Packages | `03_Advanced_Python/02_…` |
-| OOP | `03_Advanced_Python/03_…` + optional `07_Professional_Python_Deep_Dive.md` |
+| OOP | `03_Advanced_Python/03_OOP.md` + Parts 1–3 + optional `07_Professional_Python_Deep_Dive.md` |
 | Exceptions | `03_Advanced_Python/04_…` |
 | Files · Logging | `03_Advanced_Python/05_…` |
 | Database programming | `03_Advanced_Python/06_…` + Required MySQL labs (`MYSQL/`) |

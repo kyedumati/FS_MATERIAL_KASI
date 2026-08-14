@@ -2,7 +2,7 @@
 
 **Phase:** Advanced Python
 
-**Previous module:** OOP
+**Previous module:** [OOP Part 3 — Polymorphism & Project](03_OOP_Part3_Polymorphism_Project.md)
 **Next module:** File Handling and Logging
 
 ---

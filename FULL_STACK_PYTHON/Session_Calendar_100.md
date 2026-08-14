@@ -87,10 +87,10 @@
 | 33 | 7 | Modules & imports | `03_Advanced_Python/02_…` | Import drills |
 | 34 | 7 | Packages, venv, pip | same | venv checklist |
 | 35 | 7 | Stdlib: json/os/datetime lab | same | JSON file tool |
-| 36 | 8 | Class / object / `__init__` | `03_Advanced_Python/03_…` | Student class |
-| 37 | 8 | Encapsulation + methods | same | BankAccount |
-| 38 | 8 | Inheritance + `super()` | same | Employee hierarchy |
-| 39 | 8 | Polymorphism lab | same | Push OOP app |
+| 36 | 8 | Class / object / `__init__` | `03_Advanced_Python/03_OOP_Part1_…` | Student class |
+| 37 | 8 | Encapsulation + methods | same (Part 1) | BankAccount |
+| 38 | 8 | Inheritance + `super()` | `03_Advanced_Python/03_OOP_Part2_…` | Employee hierarchy |
+| 39 | 8 | Polymorphism lab | `03_Advanced_Python/03_OOP_Part3_…` | Push OOP app |
 | 40 | 8 | Exceptions try/except/finally | `03_Advanced_Python/04_…` | Safe input lab |
 | 41 | 9 | Custom exceptions | same | Domain errors |
 | 42 | 9 | Files + `with` + CSV/JSON | `03_Advanced_Python/05_…` | CSV append |

@@ -3,7 +3,7 @@
 **Phase:** Advanced Python
 
 **Previous module:** Functions, Decorators & Generators  
-**Next module:** OOP
+**Next module:** [OOP (Part 1 — Classes & Encapsulation)](03_OOP_Part1_Classes_Encapsulation.md)
 
 ---
 

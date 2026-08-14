@@ -49,7 +49,7 @@
 | 9 | [02_Core_Python/08_Data_Structures_Overview.md](02_Core_Python/08_Data_Structures_Overview.md) | Data structures overview |
 | 10 | [03_Advanced_Python/01_Functions_Decorators_Generators.md](03_Advanced_Python/01_Functions_Decorators_Generators.md) | Functions, decorators, generators |
 | 11 | [03_Advanced_Python/02_Modules_and_Packages.md](03_Advanced_Python/02_Modules_and_Packages.md) | Modules & packages |
-| 12 | [03_Advanced_Python/03_OOP.md](03_Advanced_Python/03_OOP.md) | OOP |
+| 12 | [03_Advanced_Python/03_OOP.md](03_Advanced_Python/03_OOP.md) | OOP (index) → [Part 1](03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md) · [Part 2](03_Advanced_Python/03_OOP_Part2_Inheritance.md) · [Part 3](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) |
 | 13 | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Exception handling |
 | 14 | [03_Advanced_Python/05_File_Handling_and_Logging.md](03_Advanced_Python/05_File_Handling_and_Logging.md) | Files & logging |
 | 15 | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub |

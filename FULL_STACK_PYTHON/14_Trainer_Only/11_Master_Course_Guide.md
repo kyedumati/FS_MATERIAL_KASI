@@ -75,7 +75,7 @@ flowchart TD
 | 09 | `02_Core_Python/08_Data_Structures_Overview.md` | Core | Stack/queue idea | Complexity lite | Interview DS Qs | Mini DS demos |
 | 10 | `03_Advanced_Python/01_Functions_Decorators_Generators.md` | Advanced | `def`, `*args` | Decorator idea | Refactor scripts | Utility library |
 | 11 | `03_Advanced_Python/02_Modules_and_Packages.md` | Advanced | `import` | Package layout | Reuse code | Package demo |
-| 12 | `03_Advanced_Python/03_OOP.md` | Advanced | class/object | Inheritance | Model entities | Employee classes |
+| 12 | `03_Advanced_Python/03_OOP.md` (+ Parts 1–3) | Advanced | class/object | Inheritance | Model entities | Employee classes |
 | 13 | `03_Advanced_Python/04_Exception_Handling.md` | Advanced | try/except | Custom errors | Robust CLI | Safe file reader |
 | 14 | `03_Advanced_Python/05_File_Handling_and_Logging.md` | Advanced | open modes | Logging levels | CSV/JSON files | Expense file logger |
 | 15 | `04_Git_GitHub/01_Git_and_GitHub.md` | Tools | Basic commands | Branching | Daily commits | Portfolio repos |
