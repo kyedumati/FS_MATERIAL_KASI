@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Optional AI review scorer stub](../15_Lab_Assets/29_ai_review_stub/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Prerequisites
 
 - **Optional stretch module** — only after Flask/Django API + a simple frontend form/`fetch`
@@ -75,11 +67,6 @@ Both end the same way for your React/Flask app: **JSON in, JSON out**.
      v
   JSON { "label": "positive", "score": 0.92 }
 ```
-
-**Quick Revision:**
-- UI form → Python endpoint → local sklearn **or** remote API → JSON
-- Junior role = **wire** AI, not invent a foundation model
-- Same JSON-in / JSON-out pattern as any other REST feature
 
 ---
 
@@ -357,36 +344,44 @@ Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analy
 
 1. Hit `/api/health` and document response.
    **Model answer:**
-   ```bash
-   curl -s http://127.0.0.1:5000/api/health
-   ```
+
+```bash
+curl -s http://127.0.0.1:5000/api/health
+```
+
    Expect JSON like `{"status": "ok"}` (or similar). Paste status code + body into your lab notes.
 
 2. Send 3 analyze requests — one positive, one negative, one empty (400).
    **Model answer:**
-   ```bash
-   curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":"great product"}'
-   curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":"terrible service"}'
-   curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":""}'
-   ```
+
+```bash
+curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":"great product"}'
+curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":"terrible service"}'
+curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":""}'
+```
+
    Empty text should return **400** with an error message.
 
 3. Add `.env.example` with `MODEL_API_KEY=your_key_here`.
    **Model answer:**
-   ```bash
-   echo 'MODEL_API_KEY=your_key_here' > .env.example
-   ```
+
+```bash
+echo 'MODEL_API_KEY=your_key_here' > .env.example
+```
+
    Commit `.env.example` only — never the real `.env`.
 
 ### Intermediate
 
 1. Add `score` using `predict_proba` in Flask response.
    **Model answer:**
-   ```python
-   proba = model.predict_proba([text])[0]
-   label = model.classes_[proba.argmax()]
-   return jsonify({"label": str(label), "score": float(proba.max())})
-   ```
+
+```python
+proba = model.predict_proba([text])[0]
+label = model.classes_[proba.argmax()]
+return jsonify({"label": str(label), "score": float(proba.max())})
+```
+
 
 2. Chat UI with message history displayed as list.
    **Model answer:**
@@ -394,10 +389,12 @@ Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analy
 
 3. Log analyze requests at INFO without logging full text (privacy).
    **Model answer:**
-   ```python
-   logger.info("analyze request len=%s", len(text))
-   # do NOT log: logger.info(text)
-   ```
+
+```python
+logger.info("analyze request len=%s", len(text))
+# do NOT log: logger.info(text)
+```
+
 
 ### Interview-style
 
@@ -413,7 +410,7 @@ Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analy
    **Model answer:**
    Privacy/compliance risk: personal or confidential text may be stored or used by the vendor. Minimize data sent, get consent where required, and avoid PII in prompts when possible.
 
-## Mini-Project: Review Analyzer Widget
+## Mini-Project (Assignment): Review Analyzer Widget
 
 **Lab kit (build here):** [15_Lab_Assets/29_ai_review_stub/](../15_Lab_Assets/29_ai_review_stub/)
 
@@ -439,19 +436,6 @@ Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analy
 - [ ] UI shows loading + result
 - [ ] No API keys committed; ethics note in README
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| AI via API | Client sends text → model returns label/score | Separation of ML and app | curl to endpoint | Predict route |
-| scikit-learn lite | `fit`, `predict` | Train small tabular model | Iris or sentiment demo | Pickle model optional |
-| HTTP to model | POST JSON, GET health | Same as any REST API | Mock response | Wrapper endpoint |
-| UI pattern | Form + loading + result | Async UX | Text area submit | Analyzer page |
-| Env secrets | `os.environ`, `.env` gitignore | Never commit keys | .env.example | Config module |
-| Scope for juniors | Integrate, not research | Use existing models | Brochure alignment | Capstone widget |
-| Ethics lite | Bias, privacy mention | Responsible use | Discussion | README disclaimer |
 
 ## Interview & Discussion Q&A
 

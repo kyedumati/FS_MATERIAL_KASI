@@ -18,14 +18,6 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Pick structure + undo stack](../15_Lab_Assets/12_structure_chooser/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 Python gives you four built-in **containers** for grouping data. Choosing the wrong one makes code slower, bug-prier, or harder to read — like using a shopping bag when you need a labelled filing cabinet.
 
 **Icons:** Order · Employee · Bank · UPI · Laptop
@@ -623,31 +615,33 @@ print(set(totals))
 
    **Model answer:**
 
-   ```python
-   rows = [["Ananya", 88], ["Dev", 72], ["Meera", 95]]
-   students = [{"name": name, "marks": marks} for name, marks in rows]
-   print(students)
-   ```
+```python
+rows = [["Ananya", 88], ["Dev", 72], ["Meera", 95]]
+students = [{"name": name, "marks": marks} for name, marks in rows]
+print(students)
+```
+
 
 6. Write `is_balanced_parens(s)` using stack for `"((()))"` and `"(()"` (strings module tie-in).
 
    **Model answer:**
 
-   ```python
-   def is_balanced_parens(s):
-       stack = []
-       for ch in s:
-           if ch == "(":
-               stack.append(ch)
-           elif ch == ")":
-               if not stack:
-                   return False
-               stack.pop()
-       return len(stack) == 0
+```python
+def is_balanced_parens(s):
+    stack = []
+    for ch in s:
+        if ch == "(":
+            stack.append(ch)
+        elif ch == ")":
+            if not stack:
+                return False
+            stack.pop()
+    return len(stack) == 0
 
-   print(is_balanced_parens("((()))"))  # True
-   print(is_balanced_parens("(()"))     # False
-   ```
+print(is_balanced_parens("((()))"))  # True
+print(is_balanced_parens("(()"))     # False
+```
+
 
 ### Interview-style
 
@@ -665,7 +659,7 @@ print(set(totals))
 
 ---
 
-## Mini-Project: Collection Toolkit Demo
+## Mini-Project (Assignment): Collection Toolkit Demo
 
 **Title:** Stack, queue, and structure chooser in one file  
 **Lab kit (build here):** [15_Lab_Assets/12_structure_chooser/](../15_Lab_Assets/12_structure_chooser/)
@@ -713,16 +707,6 @@ Learners extend `choose_structure` with 5 custom scenarios from their domain (HR
 - [ ] `demo_stack` and `demo_queue` run from `__main__`  
 - [ ] `choose_structure` covers at least 4 built-ins + 5 custom scenarios  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Label | What to focus on |
-|-------|------------------|
-| **Memorize** | When to use list/tuple/set/dict; stack=`append`/`pop()`; queue=`append`/`pop(0)`; `in list` vs `in set` vs `in dict` |
-| **Understand** | Ordered vs unordered; mutable vs immutable; key-value vs sequence; LIFO vs FIFO |
-| **Practise** | Pick structure for 10 scenarios; implement stack of browser pages; queue of support tickets |
-| **Build** | **Mini DS demos** notebook — one file with stack, queue, and structure chooser comments |
 
 ## Interview & Discussion Q&A
 

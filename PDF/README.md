@@ -13,7 +13,7 @@ Authors can use these markers — `scripts/build_pdfs.py` styles them automatica
 | `**Expected Output:**` + fence | Green output callout |
 | `**Remember:**` / `**Interview:**` / `**Common Error:**` | Margin-style callouts |
 | `**Where used?**` / `**When will I use this?**` | Green “real world” box |
-| `**Quick Revision:**` (right after a Mermaid diagram) | Paired beside the diagram |
+| `**Key takeaways:**` (right after a Mermaid diagram) | Paired beside the diagram; use sparingly (major ideas only) |
 | `**Icons:** Bank · UPI · Employee · Laptop · Order` | Icon chip strip |
 | Inline `` `class` `` / `` `object` `` / `` `inheritance` `` | Blue / green / purple keywords |
 

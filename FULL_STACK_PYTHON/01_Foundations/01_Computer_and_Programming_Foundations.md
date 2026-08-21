@@ -18,14 +18,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Messy Desktop → clean KSR_Python workspace](../15_Lab_Assets/27_terminal_workspace/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is a computer?
 
 A **computer** is a machine that takes **input**, processes it using rules, and gives **output**. When you open a student portal on your phone, you type a roll number (input), the server checks the database (processing), and shows your marks (output).
@@ -117,11 +109,6 @@ Most apps you use daily follow a **client–server** model:
 - **Response:** JSON or HTML page with the profile
 
 When you open `https://example.com/login`, your browser (client) sends a request; the server checks credentials and sends back the dashboard page.
-
-**Quick Revision:**
-- **Client** asks; **server** answers (HTTP request → response)
-- Browser / phone app = client; Django/Python on cloud = server
-- Full stack = UI + API/server + database, not only one layer
 
 **Interview:** "What happens when you type a URL?" → DNS finds the server IP → browser sends HTTP request → server returns HTML/JSON → browser renders.
 
@@ -592,16 +579,17 @@ First portfolio app: Student marks + attendance mini site
 
    **Model answer:**
 
-   ```
-   tasks = empty list
-   LOOP forever
-     show menu: 1 Add  2 List  3 Complete  4 Exit
-     read choice
-     IF choice == 1: read title; append to tasks as incomplete
-     IF choice == 2: print each task with status
-     IF choice == 3: read task number; mark that task complete
-     IF choice == 4: stop
-   ```
+```
+tasks = empty list
+LOOP forever
+  show menu: 1 Add  2 List  3 Complete  4 Exit
+  read choice
+  IF choice == 1: read title; append to tasks as incomplete
+  IF choice == 2: print each task with status
+  IF choice == 3: read task number; mark that task complete
+  IF choice == 4: stop
+```
+
 
 ### Interview-Oriented
 
@@ -623,7 +611,7 @@ First portfolio app: Student marks + attendance mini site
 
 ---
 
-## Mini-Project: Personal Developer Workspace Setup
+## Mini-Project (Assignment): Personal Developer Workspace Setup
 
 **Lab kit (build here):** [15_Lab_Assets/27_terminal_workspace/](../15_Lab_Assets/27_terminal_workspace/)
 
@@ -650,19 +638,6 @@ First portfolio app: Student marks + attendance mini site
 - [ ] Terminal shows correct `pwd` / `ls` for the course root
 - [ ] Lab kit ticket steps completed
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Hardware vs software | CPU, RAM, storage names | How they work together | Identify on your laptop specs | — |
-| Operating system (OS) | Windows / macOS / Linux names | OS manages files and programs | Open terminal, list files | — |
-| Files and folders | File extension examples (`.py`, `.txt`) | Path, folder hierarchy | Create project folder structure | Project folder for course |
-| Programming vs algorithm | Definition of algorithm | Steps vs code | Write 5-step algorithm for ATM | ATM algorithm on paper |
-| Client–server model | Client, server, request, response | Browser talks to server | Trace login flow on any website | Simple diagram |
-| Developer roles (India) | Role names: FE, BE, FS, QA, DevOps | What each role builds | Research 2 job posts on Naukri | Career roadmap note |
-| VS Code + terminal | `cd`, `ls`/`dir`, `mkdir`, `python --version` | IDE vs text editor | Open folder, save file, run terminal | VS Code workspace ready |
 
 ## Interview & Discussion Q&A
 

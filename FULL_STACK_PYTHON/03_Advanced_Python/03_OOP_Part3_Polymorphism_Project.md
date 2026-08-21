@@ -21,15 +21,10 @@ By the end of **S39**, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Finish and push **[BankAccount with protected balance](../15_Lab_Assets/17_bank_account_oop/)** — compare with solution only when your trainer says so.
-
-Stretch (if time): `SavingsAccount` from Part 2 / lab kit solution.
-
-**Teaching note:** Ship with **`print` + `return`** validation. Do **not** require `raise` / `try` / `except` yet — that is the next module ([Exception Handling](04_Exception_Handling.md)).
+**Teaching note:** Ship with `print` **+** `return` validation. Do **not** require `raise` / `try` / `except` yet — that is the next module ([Exception Handling](04_Exception_Handling.md)).
 
 ---
+
 
 ## Motivation — Feel the pain of `if payment_type == ...`
 
@@ -76,7 +71,9 @@ flowchart TB
   end
 ```
 
-**Quick Revision:**
+
+**Key takeaways:**
+
 - Giant `if type == ...` trees grow brittle
 - Same method name on different objects = polymorphism
 - Add a new class with `pay()` — old checkout loop still works
@@ -111,7 +108,9 @@ Paid ₹999 via Card
 
 ---
 
+
 ## Important Concepts
+
 
 ### 1. Polymorphism (override → duck typing → “no overloading”)
 
@@ -119,8 +118,8 @@ Paid ₹999 via Card
 
 **Where used?** Payment methods, shapes/areas, notification channels, account types printing a statement — one loop, many behaviours.
 
-**What:** “Many forms” — the same operation name behaves differently depending on the object.  
-**Why:** Write one loop/helper without giant `if type == ...` chains.
+**Definition:** “Many forms” — the same operation name behaves differently depending on the object.  
+**Purpose:** Write one loop/helper without giant `if type == ...` chains.
 
 **Path A — Override polymorphism (shared hierarchy):** same method name on parent/children (see Vehicle / Car / Bike in [Part 2](03_OOP_Part2_Inheritance.md)).
 
@@ -248,7 +247,9 @@ flowchart LR
   Loop --> C["TypeC.action"]
 ```
 
-**Quick Revision:**
+
+**Key takeaways:**
+
 - Override poly = shared parent + redefined methods
 - Duck typing = shared method name is enough
 - No Java-style overload — last `def` wins; use defaults / `*args`
@@ -333,14 +334,15 @@ Circle area: 3.14
 
 ---
 
+
 ### 2. Readable objects with `__str__`
 
 **Icons:** Bank · Order · Employee · CRM
 
 **Where used?** Debugging accounts, logging orders, printing employee cards, showing cart lines in a CLI.
 
-**What:** `__str__` controls what you see when you `print(obj)` or convert it with `str(obj)`.  
-**Why:** Default object text (`<__main__.Student object at 0x...>`) is useless when debugging; a clear string saves time.
+**Definition:** `__str__` controls what you see when you `print(obj)` or convert it with `str(obj)`.  
+**Purpose:** Default object text (`<__main__.Student object at 0x...>`) is useless when debugging; a clear string saves time.
 
 ```python
 class Student:
@@ -384,7 +386,9 @@ sequenceDiagram
   Obj-->>Main: "Student(101, Anita)"
 ```
 
-**Quick Revision:**
+
+**Key takeaways:**
+
 - `print(obj)` → `obj.__str__()` if defined
 - Default = class name + memory address (hard to debug)
 - Keep `__str__` short and human-readable
@@ -442,7 +446,9 @@ NB-A4 @ ₹40 | PEN-01 @ ₹10
 
 ---
 
+
 ## Step-by-Step Annotated Python 3 Code
+
 
 ### Example 1 — Payment checkout (duck typing + totals)
 
@@ -487,6 +493,7 @@ Successful payments: 2/3
 ```
 
 ---
+
 
 ### Example 2 — Hierarchical accounts printing statements (`__str__` + override)
 
@@ -533,6 +540,7 @@ Savings | Priya: ₹10500.00 | rate=5%
 ```
 
 ---
+
 
 ### Example 3 — Mini CLI core (no menu yet) for the lab class
 
@@ -582,12 +590,14 @@ balance: 1100.0
 
 ---
 
-## Mini-Project: BankAccount OOP CLI
+
+## Mini-Project (Assignment): BankAccount OOP CLI
 
 **Title:** Encapsulated account demo  
 **Lab kit (build here):** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
 
 ### What to build
+
 
 | Piece         | Detail                                                                       |
 | ------------- | ---------------------------------------------------------------------------- |
@@ -595,6 +605,7 @@ balance: 1100.0
 | Rules         | Reject amount ≤ 0; reject withdraw over balance                              |
 | CLI menu      | 1 Deposit · 2 Withdraw · 3 Balance · 4 Exit                                  |
 | Nice to have  | `__str__` for a one-line status print                                        |
+
 
 **Starter idea (class):**
 
@@ -681,11 +692,13 @@ Choose: 4
 Bye
 ```
 
+
 ### Stretch
 
 - Add `SavingsAccount(BankAccount)` with `apply_interest(rate)` **or** a `CurrentAccount` with a different minimum-balance / overdraft rule.
 - Log each successful deposit/withdraw as a list of tuples `(action, amount, balance)`.
 - **Later (Exceptions week):** switch validation to `raise ValueError` and catch it in the menu loop.
+
 
 ### Done when
 
@@ -696,88 +709,98 @@ Bye
 
 ---
 
+
 ## Practice Exercises
+
 
 ### Advanced / interview-style coding
 
 1. Write three notifier classes (`Sms`, `Email`, `Push`) each with `send(msg)`. Write `notify_all(notifiers, msg)` that loops once.
-   **Model answer:**
-   ```python
-   class Sms:
-       def send(self, msg):
-           print("SMS:", msg)
+  **Model answer:**
 
-   class Email:
-       def send(self, msg):
-           print("EMAIL:", msg)
+```python
+class Sms:
+    def send(self, msg):
+        print("SMS:", msg)
 
-   class Push:
-       def send(self, msg):
-           print("PUSH:", msg)
+class Email:
+    def send(self, msg):
+        print("EMAIL:", msg)
 
-   def notify_all(notifiers, msg):
-       for n in notifiers:
-           n.send(msg)
+class Push:
+    def send(self, msg):
+        print("PUSH:", msg)
 
-   notify_all([Sms(), Email(), Push()], "Order shipped")
-   ```
+def notify_all(notifiers, msg):
+    for n in notifiers:
+        n.send(msg)
 
-2. Add `__str__` to `Employee(emp_id, name)` and print a list of employees joined by commas.
-   **Model answer:**
-   ```python
-   class Employee:
-       def __init__(self, emp_id, name):
-           self.emp_id = emp_id
-           self.name = name
+notify_all([Sms(), Email(), Push()], "Order shipped")
+```
 
-       def __str__(self):
-           return f"{self.name}#{self.emp_id}"
+**Expected Output:**
 
-   team = [Employee(1, "Ravi"), Employee(2, "Meera")]
-   print(", ".join(str(e) for e in team))
-   ```
+```
+SMS: Order shipped
+EMAIL: Order shipped
+PUSH: Order shipped
+```
 
-3. Show that “overloading” fails: define `show` twice on a class and explain what happens.
-   **Model answer:**
-   ```python
-   class Demo:
-       def show(self):
-           print("one")
+1. Add `__str__` to `Employee(emp_id, name)` and print a list of employees joined by commas.
+  **Model answer:**
 
-       def show(self, x):   # replaces previous show
-           print("two", x)
+```python
+class Employee:
+    def __init__(self, emp_id, name):
+        self.emp_id = emp_id
+        self.name = name
 
-   # Demo().show()  → TypeError (missing x)
-   Demo().show(5)
-   ```
+    def __str__(self):
+        return f"{self.name}#{self.emp_id}"
 
-4. Difference between `@staticmethod` and `@classmethod`? (review from Part 1)
-   **Model answer:**  
+team = [Employee(1, "Ravi"), Employee(2, "Meera")]
+print(", ".join(str(e) for e in team))
+```
+
+**Expected Output:**
+
+```
+Ravi#1, Meera#2
+```
+
+1. Show that “overloading” fails: define `show` twice on a class and explain what happens.
+  **Model answer:**
+
+```python
+class Demo:
+    def show(self):
+        print("one")
+
+    def show(self, x):   # replaces previous show
+        print("two", x)
+
+# Demo().show()  → TypeError (missing x)
+Demo().show(5)
+```
+
+**Expected Output:**
+
+```
+two 5
+```
+
+1. Difference between `@staticmethod` and `@classmethod`? (review from Part 1)
+  **Model answer:**  
    `@staticmethod` is a plain function living on the class (no automatic first argument). `@classmethod` receives the class as `cls` and is used for alternate constructors or class-level helpers.
-
-5. When inheritance vs composition?
-   **Model answer:**  
+2. When inheritance vs composition?
+  **Model answer:**  
    Inheritance when the child **is a** specialised parent. Composition when an object **has a** collaborator it uses. Prefer composition when unsure.
-
-6. Why override `__str__`? What do you see if you skip it?
-   **Model answer:**  
+3. Why override `__str__`? What do you see if you skip it?
+  **Model answer:**  
    `__str__` returns a human-readable description used by `print` and `str()`. Without it, Python shows a default like `<__main__.Student object at 0x...>`, which is hard to debug.
 
 ---
 
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Polymorphism | Override + duck typing | No Java-style overload | Payment / shapes / notifiers | Checkout helper |
-| `__str__` | `__str__` | Readable vs default object text | Printable entities | Status / label methods |
-| Mini-project | deposit / withdraw rules | Encapsulation in a CLI | Lab kit ticket | Pushed BankAccount app |
-
-**Earlier parts (skim):** [Part 1](03_OOP_Part1_Classes_Encapsulation.md) class/vars/methods/encapsulation · [Part 2](03_OOP_Part2_Inheritance.md) HAS-A / IS-A / `super()`
-
-**Label legend:** **Memorize** = recall in interviews · **Understand** = explain in English · **Practise** = daily labs · **Build** = portfolio artefacts
-
----
 
 ## Interview & Discussion Q&A
 
@@ -786,7 +809,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **Q1. What is OOP? Pillars?**  
 **A:** Programming around objects. Pillars: encapsulation (bundle + hide), inheritance (reuse via IS-A), polymorphism (same interface, different behaviour), abstraction (show essentials). Composition (HAS-A) is the practical partner to inheritance.
 
-**Q2. What is `self` in Python?**  
+**Q2. What is** `self` **in Python?**  
 **A:** Reference to the current instance. Must be first parameter of instance methods; passed implicitly on call `obj.method()`.
 
 **Q3. Difference class method vs static method?**  
@@ -795,25 +818,26 @@ Shared with students after concepts and the mini-project. Use for review and int
 **Q4. Multiple inheritance in Python?**  
 **A:** Supported (`class C(A, B)`); MRO decides lookup order. Prefer composition when possible.
 
-**Q5. `__str__` vs default object print?**  
+**Q5.** `__str__` **vs default object print?**  
 **A:** Default print shows class name and memory address. Override `__str__` to return a clear, human-readable summary for logs and debugging.
 
-**Q6. `@property` vs public attribute?**  
+**Q6.** `@property` **vs public attribute?**  
 **A:** `@property` lets you expose a clean attribute-like API while running validation or computing a value — callers write `obj.balance` instead of `obj.get_balance()`.
 
 **Q7. Why doesn’t Python support method overloading like Java?**  
 **A:** A class body is executed top to bottom; a second `def add(...)` simply replaces the first. Use default arguments or `*args` / `**kwargs` for flexible signatures.
 
-**Q8. Is `__balance` truly private?**  
+**Q8. Is** `__balance` **truly private?**  
 **A:** No. Name mangling renames it to `_ClassName__balance`. It prevents *accidental* access, not determined access. Real security is auth, permissions, and server-side checks.
 
-**Q9. Why might a class variable for `tax_rate` be useful?**  
+**Q9. Why might a class variable for** `tax_rate` **be useful?**  
 **A:** One shared rate for all employees; change `Employee.tax_rate` once and every instance’s net-pay logic can pick it up (unless shadowed).
 
 **Q10. Polymorphism in one sentence?**  
 **A:** Same operation name, different behaviour depending on the object — so one loop can handle many types.
 
 ---
+
 
 ## Next
 

@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Later: tasks model path — preview ownership](../15_Lab_Assets/03_django_auth_tasks/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is a Model?
 
 A **model** is a Python class describing **database table structure**. Each **attribute** on the class becomes a **column**. Django **ORM** (Object-Relational Mapper) translates Python operations to SQL.
@@ -97,7 +89,7 @@ erDiagram
   }
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Author **1 → many** Posts (ForeignKey); Post **many ↔ many** Tags (M2M)
 - ORM = Python objects; migrations keep MySQL schema in sync
 - Admin is the staff UI once models are registered
@@ -432,9 +424,11 @@ class Product(models.Model):
 
 1. Add `updated_at = models.DateTimeField(auto_now=True)` to Post; migrate
    **Model answer:**
-   ```python
-   updated_at = models.DateTimeField(auto_now=True)
-   ```
+
+```python
+updated_at = models.DateTimeField(auto_now=True)
+```
+
    ```bash
    python manage.py makemigrations && python manage.py migrate
    ```
@@ -445,45 +439,53 @@ class Product(models.Model):
 
 3. Task model: filter `done=False` in dashboard view
    **Model answer:**
-   ```python
-   tasks = Task.objects.filter(done=False).order_by("-created_at")
-   return render(request, "tasks/dashboard.html", {"tasks": tasks})
-   ```
+
+```python
+tasks = Task.objects.filter(done=False).order_by("-created_at")
+return render(request, "tasks/dashboard.html", {"tasks": tasks})
+```
+
 
 ### Intermediate
 
 1. **Booking:** `Room` model (name, capacity, available) + admin list_filter on available
    **Model answer:**
-   ```python
-   class Room(models.Model):
-       name = models.CharField(max_length=100)
-       capacity = models.PositiveIntegerField()
-       available = models.BooleanField(default=True)
 
-   @admin.register(Room)
-   class RoomAdmin(admin.ModelAdmin):
-       list_filter = ("available",)
-   ```
+```python
+class Room(models.Model):
+    name = models.CharField(max_length=100)
+    capacity = models.PositiveIntegerField()
+    available = models.BooleanField(default=True)
+
+@admin.register(Room)
+class RoomAdmin(admin.ModelAdmin):
+    list_filter = ("available",)
+```
+
 
 2. **Student Portal:** `Student` FK to `Department` model
    **Model answer:**
-   ```python
-   class Department(models.Model):
-       name = models.CharField(max_length=100)
 
-   class Student(models.Model):
-       name = models.CharField(max_length=100)
-       department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="students")
-   ```
+```python
+class Department(models.Model):
+    name = models.CharField(max_length=100)
+
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="students")
+```
+
 
 3. Shell: count posts per author using `author.posts.count()`
    **Model answer:**
-   ```python
-   from django.contrib.auth import get_user_model
-   User = get_user_model()
-   for u in User.objects.all():
-       print(u.username, u.posts.count())
-   ```
+
+```python
+from django.contrib.auth import get_user_model
+User = get_user_model()
+for u in User.objects.all():
+    print(u.username, u.posts.count())
+```
+
    (Assumes `Post.author` FK with `related_name="posts"`.)
 
 ### Interview Prep
@@ -500,7 +502,7 @@ class Product(models.Model):
    **Model answer:**
    Prefer ORM for CRUD, safety, and portability. Use raw SQL for complex reports, vendor-specific features, or performance-critical queries the ORM expresses poorly — still parameterize inputs.
 
-## Mini-Project / Activity
+## Mini-Project / Activity (Assignment)
 
 **Activity: "Admin-Driven Blog" (60 min)**  
 **Lab kit (preview ownership):** [15_Lab_Assets/03_django_auth_tasks/](../15_Lab_Assets/03_django_auth_tasks/)
@@ -524,23 +526,6 @@ class Product(models.Model):
 - [ ] Admin `list_display` + search works
 - [ ] New admin post appears after browser refresh
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| `models.Model` | Class = table | Fields = columns | 3 models | Blog Post |
-| Field types | CharField, TextField, IntegerField, DateTimeField | max_length, null, blank | Field choice drills | Product price |
-| Migrations | makemigrations → migrate | Schema version control | Alter model twice | Migration files |
-| ORM create | `Model.objects.create()` | SQL abstracted | 20 inserts | Seed data |
-| ORM read | `.all()`, `.filter()`, `.get()` | QuerySet lazy eval | Filter exercises | Published posts |
-| ORM update/delete | `.save()`, `.delete()` | Instance vs queryset | Update status | Mark task done |
-| Admin | `admin.site.register` | Staff UI for CRUD | Register all models | list_display |
-| ForeignKey | `on_delete=models.CASCADE` | Many-to-one | Author → Posts | Student → Dept |
-| ManyToMany | `ManyToManyField` | Tags, categories | Optional tags on Post | Course enrollments |
-
----
 
 ## Interview & Discussion Q&A
 

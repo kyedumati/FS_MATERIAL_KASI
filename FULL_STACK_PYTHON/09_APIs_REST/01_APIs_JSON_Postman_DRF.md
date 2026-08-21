@@ -21,15 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Product JSON API for mobile](../15_Lab_Assets/04_drf_products/)**
-- **[Validate inputs; never string-build SQL](../15_Lab_Assets/20_sql_injection_demo/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is an API?
 
 An **API (Application Programming Interface)** is a agreed way for programs to talk to each other. Your React app does not read the database directly — it calls the Django **API**, which returns **JSON** data.
@@ -61,7 +52,7 @@ sequenceDiagram
   API-->>App: JSON object 201 Created
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Client → DRF → MySQL → JSON back (never React → DB direct)
 - GET list → **200**; POST create → **201**
 - Same contract for Postman, React, or mobile
@@ -453,14 +444,16 @@ const products = await res.json();
 
 2. Write Python script printing only in-stock product names.
    **Model answer:**
-   ```python
-   import requests
 
-   products = requests.get("http://127.0.0.1:8000/api/products/").json()
-   for p in products:
-       if p.get("in_stock") or p.get("stock", 0) > 0:
-           print(p["name"])
-   ```
+```python
+import requests
+
+products = requests.get("http://127.0.0.1:8000/api/products/").json()
+for p in products:
+    if p.get("in_stock") or p.get("stock", 0) > 0:
+        print(p["name"])
+```
+
 
 3. Match status codes to scenarios (wrong id, successful create, server crash).
    **Model answer:**
@@ -474,24 +467,28 @@ const products = await res.json();
 
 2. Filter: `GET /api/products/?search=mouse` using DRF `SearchFilter`.
    **Model answer:**
-   ```python
-   from rest_framework import filters
 
-   class ProductViewSet(viewsets.ModelViewSet):
-       queryset = Product.objects.all()
-       serializer_class = ProductSerializer
-       filter_backends = [filters.SearchFilter]
-       search_fields = ["name", "category"]
-   ```
+```python
+from rest_framework import filters
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name", "category"]
+```
+
 
 3. Return custom 400 when price is negative (serializer validation).
    **Model answer:**
-   ```python
-   def validate_price(self, value):
-       if value < 0:
-           raise serializers.ValidationError("price must be >= 0")
-       return value
-   ```
+
+```python
+def validate_price(self, value):
+    if value < 0:
+        raise serializers.ValidationError("price must be >= 0")
+    return value
+```
+
 
 ### Interview-style
 
@@ -507,7 +504,7 @@ const products = await res.json();
    **Model answer:**
    Mobile apps need structured data to render their own UI. JSON is compact and language-neutral; HTML is meant for browsers, not for native clients to parse as data.
 
-## Mini-Project: Product Catalog API + Client Script
+## Mini-Project (Assignment): Product Catalog API + Client Script
 
 **Lab kit (build here):** [15_Lab_Assets/04_drf_products/](../15_Lab_Assets/04_drf_products/)  
 **Deliverables:** follow [`Standard_Project_Deliverables.md`](../Standard_Project_Deliverables.md)
@@ -532,20 +529,6 @@ const products = await res.json();
 - [ ] Client script prints product list
 - [ ] README shows sample JSON for create/list/error
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| API / REST | Resources, stateless, JSON | Client–server contract | Draw request flow | Product API |
-| HTTP methods | GET read, POST create, PUT/PATCH update, DELETE remove | Idempotency idea | Match method to action | CRUD mapping table |
-| Status codes | 200, 201, 400, 401, 404, 500 | What client should do | Postman status column | Error responses |
-| JSON in Python | `json.loads`, `json.dumps` | dict ↔ string | Parse sample payloads | Fixture files |
-| Postman | Method, URL, Headers, Body | Bearer token header | 10 requests collection | Product CRUD tests |
-| DRF Serializer | `ModelSerializer`, fields | Validation layer | Serializer for Product | Nested fields lite |
-| ViewSet + Router | `ModelViewSet`, `DefaultRouter` | Less boilerplate than FBV | Register routes | `/api/products/` |
-| Client consume | `requests.get`, `fetch()` | Async in browser | Script + console | List products in JS |
 
 ## Interview & Discussion Q&A
 

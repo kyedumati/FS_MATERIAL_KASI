@@ -174,7 +174,7 @@ code {
   display: inline-block;
 }
 
-/* Diagram + Quick Revision side-by-side when authors wrap both */
+/* Diagram + Key takeaways side-by-side when authors wrap both */
 .diagram-row {
   display: flex;
   flex-wrap: wrap;

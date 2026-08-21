@@ -19,14 +19,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Prove folders + first script location](../15_Lab_Assets/27_terminal_workspace/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### Why Python?
 
 **Python** is a programming language created by Guido van Rossum (first released 1991). It reads almost like English, which helps learners learn faster than lower-level languages.
@@ -558,10 +550,11 @@ print("Pay at counter")
 
    **Model answer:**
 
-   ```python
-   print("Priya Sharma")
-   print("Hyderabad")
-   ```
+```python
+print("Priya Sharma")
+print("Hyderabad")
+```
+
 
    Run: `python3 hello.py`
 
@@ -582,10 +575,11 @@ print("Pay at counter")
 
    **Model answer:**
 
-   ```python
-   import keyword
-   print(keyword.kwlist[:10])
-   ```
+```python
+import keyword
+print(keyword.kwlist[:10])
+```
+
 
    Example first ten: `False`, `None`, `True`, `and`, `as`, `assert`, `async`, `await`, `break`, `class` (exact order can vary slightly by version — print the list on your machine).
 
@@ -595,13 +589,14 @@ print("Pay at counter")
 
    **Model answer:**
 
-   ```python
-   print("==============================")
-   print("  Employee Portal Training")
-   print("  KSR Full Stack Python")
-   print("  Welcome, learners!")
-   print("==============================")
-   ```
+```python
+print("==============================")
+print("  Employee Portal Training")
+print("  KSR Full Stack Python")
+print("  Welcome, learners!")
+print("==============================")
+```
+
 
 2. Fix this code (find 3 errors):
 
@@ -649,7 +644,7 @@ print("Pay at counter")
 
 ---
 
-## Mini-Project: Environment & Greeting Pack
+## Mini-Project (Assignment): Environment & Greeting Pack
 
 **Title:** Prove your workspace + first greeting scripts  
 **Lab kit (build here):** [15_Lab_Assets/27_terminal_workspace/](../15_Lab_Assets/27_terminal_workspace/)
@@ -673,20 +668,6 @@ print("Pay at counter")
 - [ ] `env_check.py`, `hello.py`, and `my_intro.py` all run without errors  
 - [ ] Comparison notes file exists with at least 5 rows  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Why Python | Use cases: web, data, automation | Interpreted, readable syntax | Read 2 job posts mentioning Python | — |
-| Install Python 3 | `python3 --version` or `python --version` | PATH, interpreter | Install + verify | Environment checklist |
-| VS Code setup | Select interpreter, run file | Extension vs built-in | Run hello.py 5 times | hello.py + notes |
-| REPL vs script | `>>>` prompt vs `.py` file | Interactive vs batch | Both modes daily | Two versions of same print |
-| Keywords | `if`, `else`, `for`, `while`, `def`, `class`, `import`, `True`, `False`, `None` | Reserved words — cannot be variable names | Flash cards | — |
-| Identifiers | Rules: letter/_ start, no spaces | snake_case convention | Name 5 good/bad identifiers | Rename bad names in samples |
-| First programs | `print()`, `#` comment | Statement vs expression lite | Hello, multi-line print | Greeting script |
-| vs Java/C | No semicolon; no main required | Indentation matters in Python | Side-by-side slide | Comparison table in notes |
 
 ## Interview & Discussion Q&A
 

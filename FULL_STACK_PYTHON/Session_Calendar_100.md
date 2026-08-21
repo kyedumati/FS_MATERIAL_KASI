@@ -15,7 +15,7 @@
 
 **Rule:** One live session = **one primary focus** (one concept block + one mini-lab). Do not schedule two full modules in one 75-minute class.
 
-**Engagement rule:** Start from a lab ticket (`15_Lab_Assets/`, or `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for What/Why as needed.
+**Engagement rule:** Start from a lab ticket (`15_Lab_Assets/`, or `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for Definition/Purpose as needed.
 
 **Biweekly Assessment:** After every even week (Weeks 2, 4, … 20), complete the matching paper from [`16_Assessments/`](16_Assessments/README.md) (BW01–BW10) as homework or Friday wrap-up. Graded papers live only under `16_Assessments/` — not inside modules.
 
@@ -25,7 +25,7 @@
 
 | Minutes | Block |
 |--------:|-------|
-| 5 | Classroom Ticket |
+| 5 | Open lab kit |
 | 25 | Concept demo / notes |
 | 35 | Lab (starter/broken) |
 | 10 | Exit + homework |

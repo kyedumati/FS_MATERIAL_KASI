@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Tasks must be private per user](../15_Lab_Assets/03_django_auth_tasks/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### Why Forms in Django?
 
 Browsers submit **HTML forms** with **GET** (read/search) or **POST** (create/update/delete). Django **forms** validate and clean data before saving to database — never trust raw **`request.POST`** alone.
@@ -118,7 +110,7 @@ sequenceDiagram
   Note over U: Refresh only repeats GET — no duplicate Task
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Success POST → **302 redirect** → GET list (PRG) — refresh won't re-create
 - Validate with `form.is_valid()` before save
 - Auth = session user + `@login_required` for private CRUD
@@ -461,73 +453,85 @@ def staff_report(request):
 
 1. Add email field to registration with custom UserCreationForm subclass
    **Model answer:**
-   ```python
-   from django.contrib.auth.forms import UserCreationForm
-   from django.contrib.auth import get_user_model
 
-   class RegisterForm(UserCreationForm):
-       class Meta:
-           model = get_user_model()
-           fields = ("username", "email", "password1", "password2")
-   ```
+```python
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model = get_user_model()
+        fields = ("username", "email", "password1", "password2")
+```
+
 
 2. Display logged-in username in `base.html` navbar
    **Model answer:**
-   ```html
-   {% if user.is_authenticated %}
-     <span>{{ user.username }}</span>
-   {% else %}
-     <a href="{% url 'login' %}">Login</a>
-   {% endif %}
-   ```
+
+```html
+{% if user.is_authenticated %}
+  <span>{{ user.username }}</span>
+{% else %}
+  <a href="{% url 'login' %}">Login</a>
+{% endif %}
+```
+
 
 3. Contact form: show success message after valid POST (context flag)
    **Model answer:**
-   ```python
-   if request.method == "POST":
-       form = ContactForm(request.POST)
-       if form.is_valid():
-           # process...
-           return render(request, "contact.html", {"form": ContactForm(), "success": True})
-   else:
-       form = ContactForm()
-   return render(request, "contact.html", {"form": form})
-   ```
+
+```python
+if request.method == "POST":
+    form = ContactForm(request.POST)
+    if form.is_valid():
+        # process...
+        return render(request, "contact.html", {"form": ContactForm(), "success": True})
+else:
+    form = ContactForm()
+return render(request, "contact.html", {"form": form})
+```
+
 
 ### Intermediate
 
 1. **Blog:** ModelForm to create Post; only logged-in users; set author automatically
    **Model answer:**
-   ```python
-   @login_required
-   def post_create(request):
-       form = PostForm(request.POST or None)
-       if request.method == "POST" and form.is_valid():
-           post = form.save(commit=False)
-           post.author = request.user
-           post.save()
-           return redirect("post_list")
-       return render(request, "blog/post_form.html", {"form": form})
-   ```
+
+```python
+@login_required
+def post_create(request):
+    form = PostForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
+        return redirect("post_list")
+    return render(request, "blog/post_form.html", {"form": form})
+```
+
 
 2. **Booking:** Session holds selected room id until confirm page
    **Model answer:**
-   ```python
-   request.session["room_id"] = room.id  # on select
-   room_id = request.session.get("room_id")  # on confirm
-   ```
+
+```python
+request.session["room_id"] = room.id  # on select
+room_id = request.session.get("room_id")  # on confirm
+```
+
 
 3. Delete task view with POST-only + ownership check
    **Model answer:**
-   ```python
-   @login_required
-   def task_delete(request, pk):
-       task = get_object_or_404(Task, pk=pk, owner=request.user)
-       if request.method == "POST":
-           task.delete()
-           return redirect("dashboard")
-       return HttpResponseNotAllowed(["POST"])
-   ```
+
+```python
+@login_required
+def task_delete(request, pk):
+    task = get_object_or_404(Task, pk=pk, owner=request.user)
+    if request.method == "POST":
+        task.delete()
+        return redirect("dashboard")
+    return HttpResponseNotAllowed(["POST"])
+```
+
 
 ### Interview Prep
 
@@ -543,7 +547,7 @@ def staff_report(request):
    **Model answer:**
    A cookie is data stored in the browser. Django’s session stores server-side data keyed by a session id cookie, so sensitive values stay on the server while the browser only holds the opaque key.
 
-## Mini-Project / Activity
+## Mini-Project / Activity (Assignment)
 
 **Mini-Project: "Task Manager with Auth" (2 hours)**  
 **Lab kit (build here):** [15_Lab_Assets/03_django_auth_tasks/](../15_Lab_Assets/03_django_auth_tasks/)
@@ -567,21 +571,6 @@ def staff_report(request):
 - [ ] User A cannot see User B's tasks
 - [ ] Task create uses ModelForm + CSRF + PRG redirect
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| forms.Form | Declarative fields | Server validation | 3 custom forms | Contact form |
-| ModelForm | `class Meta: model=` | Maps model ↔ form | CRUD forms | Task form |
-| POST handling | `if request.method == "POST"` | Mutations via POST | 10 POST views | Add task |
-| CSRF | `{% csrf_token %}` | Token per session | Never skip token | All forms |
-| Sessions | `request.session['key']` | Server-side store | Set/get/delete | Cart count |
-| auth User | Built-in User model | Password hashing | Register/login | Student account |
-| login/logout | `authenticate`, `login`, `logout` | Session cookie | Full auth flow | Portal login |
-| login_required | Decorator on view | Redirect anonymous | Protect 3 views | Task dashboard |
-| Permissions | `is_staff`, `has_perm` | RBAC overview | Admin vs user | Staff-only view |
 
 ## Interview & Discussion Q&A
 

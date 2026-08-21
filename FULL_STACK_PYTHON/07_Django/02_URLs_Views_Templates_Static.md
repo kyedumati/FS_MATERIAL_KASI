@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Home + About with base.html](../15_Lab_Assets/24_django_url_views_stub/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What Happens When User Opens a Page?
 
 1. Browser sends **HTTP request** to URL like `http://127.0.0.1:8000/blog/`
@@ -58,7 +50,7 @@ sequenceDiagram
   Tpl-->>User: HTML page with post titles
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Request hits `urls.py` → view runs → `render(template, context)` → HTML
 - Context dict keys become `{{ variables }}` in the template
 - Static CSS/JS via `{% static %}` — not from the database
@@ -420,35 +412,41 @@ Add `path("tasks/", include("tasks.urls"))` to project urls.
 
 1. Add `/blog/contact/` view returning rendered template with your email
    **Model answer:**
-   ```python
-   # blog/views.py
-   from django.shortcuts import render
 
-   def contact(request):
-       return render(request, "blog/contact.html", {"email": "you@ksr.com"})
-   ```
+```python
+# blog/views.py
+from django.shortcuts import render
+
+def contact(request):
+    return render(request, "blog/contact.html", {"email": "you@ksr.com"})
+```
+
    Wire `path("contact/", views.contact, name="contact")` under the blog urls include.
 
 2. Add footer block in `base.html` using `{% block footer %}`
    **Model answer:**
-   ```html
-   <footer>
-     {% block footer %}
-     <p>&copy; KSR Trainings</p>
-     {% endblock %}
-   </footer>
-   ```
+
+```html
+<footer>
+  {% block footer %}
+  <p>&copy; KSR Trainings</p>
+  {% endblock %}
+</footer>
+```
+
 
 3. Style navbar with flexbox in `site.css`
    **Model answer:**
-   ```css
-   .navbar {
-     display: flex;
-     gap: 1rem;
-     align-items: center;
-     justify-content: space-between;
-   }
-   ```
+
+```css
+.navbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+```
+
    Load via `{% static 'css/site.css' %}` in `base.html`.
 
 ### Intermediate
@@ -459,22 +457,26 @@ Add `path("tasks/", include("tasks.urls"))` to project urls.
 
 2. Pass `request.method` to template and display in debug line (remove before submit)
    **Model answer:**
-   ```python
-   return render(request, "page.html", {"method": request.method})
-   ```
+
+```python
+return render(request, "page.html", {"method": request.method})
+```
+
    ```html
    <p class="debug">Method: {{ method }}</p>
    ```
 
 3. Create `CampusCart` home with static product cards (hardcoded list in context)
    **Model answer:**
-   ```python
-   products = [
-       {"name": "Samosa", "price": 20},
-       {"name": "Tea", "price": 15},
-   ]
-   return render(request, "cart/home.html", {"products": products})
-   ```
+
+```python
+products = [
+    {"name": "Samosa", "price": 20},
+    {"name": "Tea", "price": 15},
+]
+return render(request, "cart/home.html", {"products": products})
+```
+
    Loop with `{% for p in products %}` and show name/price cards.
 
 ### Interview Prep
@@ -491,7 +493,7 @@ Add `path("tasks/", include("tasks.urls"))` to project urls.
    **Model answer:**
    Inheritance lets one `base.html` own navbar/footer while child templates fill `{% block content %}`. One design change updates every page instead of editing duplicated HTML.
 
-## Mini-Project / Activity
+## Mini-Project / Activity (Assignment)
 
 **Mini-Project: "Blog + Tasks Shell" (90 min)**  
 **Lab kit (build here):** [15_Lab_Assets/24_django_url_views_stub/](../15_Lab_Assets/24_django_url_views_stub/)
@@ -515,20 +517,6 @@ Add `path("tasks/", include("tasks.urls"))` to project urls.
 - [ ] CSS visible on all pages via `{% static %}`
 - [ ] Navbar uses `{% url %}` names (not hardcoded paths only)
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| `path()` | `path('route/', view)` | URL → view mapping | 5 routes per app | Blog URLs |
-| FBV | `def view(request):` | Request in, response out | Return HttpResponse | Home + about |
-| `render()` | `render(request, 'tpl.html', context)` | Template + context | 10 render calls | Task list page |
-| Template inheritance | `extends`, `block` | DRY layout | base + child | Site chrome |
-| Context | `{'key': value}` | View → template data | Pass lists/dicts | Posts list |
-| Static files | `STATIC_URL`, `{% static %}` | CSS/JS not in DB | Link stylesheet | Navbar CSS |
-| URL names | `name='home'` | Reverse URL lookup | `{% url 'home' %}` | Nav links |
-| include() | `include('app.urls')` | App-level routing | Wire blog urls | Project urls.py |
 
 ## Interview & Discussion Q&A
 

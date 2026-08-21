@@ -23,15 +23,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Show API products in a card grid](labs/05_react_product_list/)**
-- **[Fix CORS/fetch bugs](labs/28_cors_fetch_debug/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Prerequisites
 
 - React Fundamentals completed
@@ -399,38 +390,42 @@ Deploy `dist/` to Netlify; set production `VITE_API_URL` to hosted Django URL in
 
 1. Add Home page with link to products and course name.
    **Model answer:**
-   ```jsx
-   import { Link } from "react-router-dom";
 
-   export default function Home() {
-     return (
-       <main>
-         <h1>Python Full Stack</h1>
-         <Link to="/products">View products</Link>
-       </main>
-     );
-   }
-   ```
+```jsx
+import { Link } from "react-router-dom";
+
+export default function Home() {
+  return (
+    <main>
+      <h1>Python Full Stack</h1>
+      <Link to="/products">View products</Link>
+    </main>
+  );
+}
+```
+
 
 2. ProductDetail shows name, price, stock from API by id.
    **Model answer:**
-   ```jsx
-   const { id } = useParams();
-   const [product, setProduct] = useState(null);
-   useEffect(() => {
-     fetch(`/api/products/${id}/`)
-       .then((r) => r.json())
-       .then(setProduct);
-   }, [id]);
-   if (!product) return <p>Loading…</p>;
-   return (
-     <div>
-       <h1>{product.name}</h1>
-       <p>₹{product.price}</p>
-       <p>Stock: {product.stock}</p>
-     </div>
-   );
-   ```
+
+```jsx
+const { id } = useParams();
+const [product, setProduct] = useState(null);
+useEffect(() => {
+  fetch(`/api/products/${id}/`)
+    .then((r) => r.json())
+    .then(setProduct);
+}, [id]);
+if (!product) return <p>Loading…</p>;
+return (
+  <div>
+    <h1>{product.name}</h1>
+    <p>₹{product.price}</p>
+    <p>Stock: {product.stock}</p>
+  </div>
+);
+```
+
 
 3. Document CORS error screenshot + fix in README.
    **Model answer:**
@@ -440,17 +435,19 @@ Deploy `dist/` to Netlify; set production `VITE_API_URL` to hosted Django URL in
 
 1. Create form page `POST` new product then navigate to list.
    **Model answer:**
-   ```jsx
-   async function onSubmit(e) {
-     e.preventDefault();
-     await fetch("/api/products/", {
-       method: "POST",
-       headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({ name, price, stock }),
-     });
-     navigate("/products");
-   }
-   ```
+
+```jsx
+async function onSubmit(e) {
+  e.preventDefault();
+  await fetch("/api/products/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, price, stock }),
+  });
+  navigate("/products");
+}
+```
+
 
 2. Refetch list when navigating back using location key or manual refresh button.
    **Model answer:**
@@ -458,15 +455,17 @@ Deploy `dist/` to Netlify; set production `VITE_API_URL` to hosted Django URL in
 
 3. Add Vitest test for error message component.
    **Model answer:**
-   ```jsx
-   import { render, screen } from "@testing-library/react";
-   import { ErrorMessage } from "./ErrorMessage";
 
-   test("shows message", () => {
-     render(<ErrorMessage text="Network failed" />);
-     expect(screen.getByText("Network failed")).toBeInTheDocument();
-   });
-   ```
+```jsx
+import { render, screen } from "@testing-library/react";
+import { ErrorMessage } from "./ErrorMessage";
+
+test("shows message", () => {
+  render(<ErrorMessage text="Network failed" />);
+  expect(screen.getByText("Network failed")).toBeInTheDocument();
+});
+```
+
 
 ### Interview-style
 
@@ -482,7 +481,7 @@ Deploy `dist/` to Netlify; set production `VITE_API_URL` to hosted Django URL in
    **Model answer:**
    `dev` starts a local dev server with hot reload. `build` produces optimized static files in `dist/`/`build/` for production hosting.
 
-## Mini-Project: Full-Stack Product Browser
+## Mini-Project (Assignment): Full-Stack Product Browser
 
 **Lab kits:** [05_react_product_list](labs/05_react_product_list/) · [28_cors_fetch_debug](labs/28_cors_fetch_debug/) · [04_drf_products](../../FULL_STACK_PYTHON/15_Lab_Assets/04_drf_products/)
 
@@ -509,22 +508,6 @@ Deploy `dist/` to Netlify; set production `VITE_API_URL` to hosted Django URL in
 - [ ] Add + delete work against the API
 - [ ] README documents both `runserver` and `npm run dev`
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| useEffect | `useEffect(fn, [deps])` | Side effects after render | Log on mount | Load products |
-| Dependencies | `[]` once, `[id]` on change | Infinite loop causes | Fix missing deps | Refetch on route param |
-| React Router | `BrowserRouter`, `Route`, `Link` | SPA navigation | 3 pages | Home, List, Detail |
-| fetch API | async/await pattern | Promises, JSON parse | GET/POST products | Full CRUD UI |
-| CORS | Browser security policy | Backend must allow origin | See error live | cors headers config |
-| Env vars | `VITE_API_URL` | Dev vs prod base URL | .env file | Config module |
-| Build | `npm run build` → `dist/` | Static assets | Local preview | Deploy checklist |
-| Testing lite | `render`, `screen`, `expect` | Test behavior not impl | One component test | Button test |
-
----
 
 ## Interview & Discussion Q&A
 

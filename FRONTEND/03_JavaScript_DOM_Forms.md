@@ -22,14 +22,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Validate contact form in the page](labs/23_js_form_validation/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 **JavaScript** makes pages **interactive**. HTML = skeleton; CSS = skin; JS = muscles — clicks, validation, fetching data from Django API without full reload.
 
 CampusCart "Add to cart" flow:
@@ -469,84 +461,100 @@ previewOrderPayload();
 
 1. `const` course name + `let` module number; log both.
    **Model answer:**
-   ```javascript
-   const courseName = "Python Full Stack";
-   let moduleNumber = 3;
-   console.log(courseName, moduleNumber);
-   ```
+
+```javascript
+const courseName = "Python Full Stack";
+let moduleNumber = 3;
+console.log(courseName, moduleNumber);
+```
+
 
 2. `celsiusToFahrenheit(c)` function.
    **Model answer:**
-   ```javascript
-   function celsiusToFahrenheit(c) {
-     return c * 9 / 5 + 32;
-   }
-   console.log(celsiusToFahrenheit(37));
-   ```
+
+```javascript
+function celsiusToFahrenheit(c) {
+  return c * 9 / 5 + 32;
+}
+console.log(celsiusToFahrenheit(37));
+```
+
 
 3. Button increments `#count` span.
    **Model answer:**
-   ```javascript
-   let count = 0;
-   document.querySelector("#inc").addEventListener("click", () => {
-     count += 1;
-     document.querySelector("#count").textContent = count;
-   });
-   ```
+
+```javascript
+let count = 0;
+document.querySelector("#inc").addEventListener("click", () => {
+  count += 1;
+  document.querySelector("#count").textContent = count;
+});
+```
+
 
 4. Loop `.item` paragraphs — change color.
    **Model answer:**
-   ```javascript
-   document.querySelectorAll(".item").forEach((el) => {
-     el.style.color = "#0b6e4f";
-   });
-   ```
+
+```javascript
+document.querySelectorAll(".item").forEach((el) => {
+  el.style.color = "#0b6e4f";
+});
+```
+
 
 ### Intermediate
 
 1. Password strength on input (length + digit).
    **Model answer:**
-   ```javascript
-   const input = document.querySelector("#password");
-   const hint = document.querySelector("#strength");
-   input.addEventListener("input", () => {
-     const v = input.value;
-     const ok = v.length >= 8 && /\d/.test(v);
-     hint.textContent = ok ? "Strong enough" : "Need 8+ chars and a digit";
-   });
-   ```
+
+```javascript
+const input = document.querySelector("#password");
+const hint = document.querySelector("#strength");
+input.addEventListener("input", () => {
+  const v = input.value;
+  const ok = v.length >= 8 && /\d/.test(v);
+  hint.textContent = ok ? "Strong enough" : "Need 8+ chars and a digit";
+});
+```
+
 
 2. FAQ toggle with classList.
    **Model answer:**
-   ```javascript
-   document.querySelectorAll(".faq-q").forEach((btn) => {
-     btn.addEventListener("click", () => {
-       btn.parentElement.classList.toggle("open");
-     });
-   });
-   ```
+
+```javascript
+document.querySelectorAll(".faq-q").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.parentElement.classList.toggle("open");
+  });
+});
+```
+
 
 3. fetch `/posts/1` from jsonplaceholder — show title.
    **Model answer:**
-   ```javascript
-   fetch("https://jsonplaceholder.typicode.com/posts/1")
-     .then((r) => r.json())
-     .then((data) => {
-       document.querySelector("#title").textContent = data.title;
-     })
-     .catch((err) => console.error(err));
-   ```
+
+```javascript
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+  .then((r) => r.json())
+  .then((data) => {
+    document.querySelector("#title").textContent = data.title;
+  })
+  .catch((err) => console.error(err));
+```
+
 
 4. Disable submit until terms checkbox checked.
    **Model answer:**
-   ```javascript
-   const box = document.querySelector("#terms");
-   const btn = document.querySelector("#submit");
-   btn.disabled = true;
-   box.addEventListener("change", () => {
-     btn.disabled = !box.checked;
-   });
-   ```
+
+```javascript
+const box = document.querySelector("#terms");
+const btn = document.querySelector("#submit");
+btn.disabled = true;
+box.addEventListener("change", () => {
+  btn.disabled = !box.checked;
+});
+```
+
 
 ### Interview-style
 
@@ -570,7 +578,7 @@ previewOrderPayload();
    **Model answer:**
    You declare UI from state/props; React diffs and updates the DOM for you. Instead of `querySelector` + `textContent`, you set state and re-render components.
 
-## Mini-Project: Interactive Registration + API Preview
+## Mini-Project (Assignment): Interactive Registration + API Preview
 
 **Lab kit (build here):** [labs/23_js_form_validation/](labs/23_js_form_validation/)
 
@@ -596,21 +604,6 @@ previewOrderPayload();
 - [ ] Valid submit logs payload to console
 - [ ] At least one `fetch` demo loads JSON into the DOM
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| JS role | Behavior layer | HTML/CSS/JS split | console.log | Interactive page |
-| let / const | Block scope | const binding | Swap var → const | Clean variables |
-| Functions | params, return | Reuse logic | Tiny functions | Validators |
-| DOM query | querySelector(All) | Tree of nodes | Select elements | Dynamic text |
-| DOM update | textContent, classList | Reflow lite | Toggle visibility | Cart counter |
-| Events | addEventListener | Event object | click, submit | Button actions |
-| Form validation | preventDefault | Client vs server | Email/password | Registration |
-| fetch API | async/await overview | JSON response | Public API | Product list |
-| Full-stack bridge | Django JSON API | React useEffect | response.json() | API preview |
 
 ## Interview & Discussion Q&A
 

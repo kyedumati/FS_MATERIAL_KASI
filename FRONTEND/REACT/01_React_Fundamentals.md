@@ -24,14 +24,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Product cards from API data shape](labs/05_react_product_list/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Prerequisites
 
 - Node.js **20 LTS** (or 22 LTS) and npm — see [Tested Toolchain](../../FULL_STACK_PYTHON/Tested_Toolchain.md)
@@ -56,15 +48,15 @@ Product UIs and many admin dashboards use React (or similar) because:
 
 ### SPA (Single Page Application)
 
-**What:** The browser loads the app once; JavaScript swaps views without full page reloads.  
-**Why:** Feels faster after first load — important on mobile networks.
+**Definition:** The browser loads the app once; JavaScript swaps views without full page reloads.  
+**Purpose:** Feels faster after first load — important on mobile networks.
 
 Traditional sites reload full HTML on each click.
 
 ### Vite — what / why
 
-**What:** A fast modern build tool for React.  
-**Why:** Quicker local feedback than older Create React App starters.
+**Definition:** A fast modern build tool for React.  
+**Purpose:** Quicker local feedback than older Create React App starters.
 
 ```bash
 npm create vite@latest product-ui -- --template react
@@ -81,8 +73,8 @@ Open URL shown (usually `http://localhost:5173`).
 
 ### 1. Functional component — what / why, then syntax
 
-**What:** A JavaScript function that returns UI (JSX).  
-**Why:** Small, reusable screen pieces instead of one giant HTML file.
+**Definition:** A JavaScript function that returns UI (JSX).  
+**Purpose:** Small, reusable screen pieces instead of one giant HTML file.
 
 ```jsx
 function Welcome() { return <h1>Hello, KSR Batch!</h1>; }
@@ -121,8 +113,8 @@ export default function App() {
 
 ### 2. JSX rules — what / why
 
-**What:** HTML-like syntax inside JavaScript.  
-**Why:** Keep markup next to the component logic.
+**Definition:** HTML-like syntax inside JavaScript.  
+**Purpose:** Keep markup next to the component logic.
 
 Return **one parent** (or fragment); use `className`; JS in `{ }`; self-close tags.
 
@@ -154,8 +146,8 @@ function Badge() {
 
 ### 3. Props — what / why, then syntax
 
-**What:** Read-only inputs passed from parent to child.  
-**Why:** One `ProductCard` design, many products.
+**Definition:** Read-only inputs passed from parent to child.  
+**Purpose:** One `ProductCard` design, many products.
 
 ```jsx
 function ProductCard({ name, price }) {
@@ -203,8 +195,8 @@ function StoreBanner({ city = "Hyderabad" }) {
 
 ### 4. State with `useState` — what / why
 
-**What:** Data that belongs to a component and can change over time.  
-**Why:** Clicks and typing must re-render the UI without rewriting the page.
+**Definition:** Data that belongs to a component and can change over time.  
+**Purpose:** Clicks and typing must re-render the UI without rewriting the page.
 
 ```jsx
 const [count, setCount] = useState(0);
@@ -248,8 +240,8 @@ export default function StockToggle() {
 
 ### 5. Lists and keys — what / why
 
-**What:** Render many items with `.map()`; each needs a stable `key`.  
-**Why:** React must track which row changed when the list updates.
+**Definition:** Render many items with `.map()`; each needs a stable `key`.  
+**Purpose:** React must track which row changed when the list updates.
 
 ```jsx
 {products.map(p => <ProductCard key={p.id} name={p.name} price={p.price} />)}
@@ -301,8 +293,8 @@ function ProductList({ items }) {
 
 ### 6. Controlled form — what / why
 
-**What:** Input `value` + `onChange` tied to React state.  
-**Why:** One source of truth for validation and submit (same idea as Django forms, in the browser).
+**Definition:** Input `value` + `onChange` tied to React state.  
+**Purpose:** One source of truth for validation and submit (same idea as Django forms, in the browser).
 
 Input `value` + `onChange` tied to state — single source of truth.
 
@@ -480,60 +472,72 @@ export default ProductForm;
 
 1. Add `Footer` component with batch name and year.
    **Model answer:**
-   ```jsx
-   function Footer() {
-     return <footer>KSR Python Full Stack — 2026</footer>;
-   }
-   // render <Footer /> inside App
-   ```
+
+```jsx
+function Footer() {
+  return <footer>KSR Python Full Stack — 2026</footer>;
+}
+// render <Footer /> inside App
+```
+
 
 2. Button toggles dark/light class on `app` div (useState boolean).
    **Model answer:**
-   ```jsx
-   const [dark, setDark] = useState(false);
-   return (
-     <div className={dark ? "app dark" : "app"}>
-       <button onClick={() => setDark((d) => !d)}>Toggle theme</button>
-     </div>
-   );
-   ```
+
+```jsx
+const [dark, setDark] = useState(false);
+return (
+  <div className={dark ? "app dark" : "app"}>
+    <button onClick={() => setDark((d) => !d)}>Toggle theme</button>
+  </div>
+);
+```
+
 
 3. Display product count above grid.
    **Model answer:**
-   ```jsx
-   <p>{products.length} products</p>
-   <div className="grid">{/* cards */}</div>
-   ```
+
+```jsx
+<p>{products.length} products</p>
+<div className="grid">{/* cards */}</div>
+```
+
 
 ### Intermediate
 
 1. Add delete button on each card (filter state by id).
    **Model answer:**
-   ```jsx
-   function remove(id) {
-     setProducts((prev) => prev.filter((p) => p.id !== id));
-   }
-   // <button onClick={() => remove(product.id)}>Delete</button>
-   ```
+
+```jsx
+function remove(id) {
+  setProducts((prev) => prev.filter((p) => p.id !== id));
+}
+// <button onClick={() => remove(product.id)}>Delete</button>
+```
+
 
 2. Search box filters list by name (case-insensitive).
    **Model answer:**
-   ```jsx
-   const [q, setQ] = useState("");
-   const visible = products.filter((p) =>
-     p.name.toLowerCase().includes(q.toLowerCase())
-   );
-   ```
+
+```jsx
+const [q, setQ] = useState("");
+const visible = products.filter((p) =>
+  p.name.toLowerCase().includes(q.toLowerCase())
+);
+```
+
 
 3. Show average price of all products.
    **Model answer:**
-   ```jsx
-   const avg =
-     products.length === 0
-       ? 0
-       : products.reduce((sum, p) => sum + p.price, 0) / products.length;
-   return <p>Average ₹{avg.toFixed(2)}</p>;
-   ```
+
+```jsx
+const avg =
+  products.length === 0
+    ? 0
+    : products.reduce((sum, p) => sum + p.price, 0) / products.length;
+return <p>Average ₹{avg.toFixed(2)}</p>;
+```
+
 
 ### Interview-style
 
@@ -549,7 +553,7 @@ export default ProductForm;
    **Model answer:**
    Direct mutation (e.g. `arr.push`) may not trigger a re-render and breaks React’s change detection. Always create a new value with `setState` / updater functions.
 
-## Mini-Project: Local Product Catalog UI
+## Mini-Project (Assignment): Local Product Catalog UI
 
 **Lab kit (build here):** [labs/05_react_product_list/](labs/05_react_product_list/)
 
@@ -575,22 +579,6 @@ export default ProductForm;
 - [ ] Empty state shows when list is empty
 - [ ] README documents `npm run dev`
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Why React | Component reuse, virtual DOM idea | SPA vs multi-page | Compare to plain JS | — |
-| Vite setup | `npm create vite@latest` | Dev server vs build | Create 2 projects | `product-ui` |
-| Components | Function returning JSX | One component = one UI piece | Split UI into files | Header, Card, List |
-| JSX rules | One parent, className, {} for JS | JSX is syntax sugar | Fix JSX errors | — |
-| Props | Read-only inputs to child | Data flow parent → child | Pass title, price | ProductCard |
-| useState | `[value, setValue] = useState(init)` | Re-render on state change | Counter, toggle | Form fields |
-| Events | `onClick`, `onChange`, `onSubmit` | Handler functions | Button + input | Add to cart UI |
-| Lists/keys | `map` + unique `key` | Reconciliation idea lite | Product list | Mapped cards |
-| Forms | Controlled inputs | value + onChange | Registration form | Product form |
-| Styling | import `./App.css` | Scoped vs global | Flex layout | Card grid |
 
 ## Interview & Discussion Q&A
 

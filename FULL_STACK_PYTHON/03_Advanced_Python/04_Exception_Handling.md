@@ -20,14 +20,6 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Safe age input + custom error](../15_Lab_Assets/18_safe_input_exceptions/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is an exception?
 
 When Python hits a problem it cannot solve — dividing by zero, opening a missing file, converting `"abc"` to `int` — it **raises an exception** and, if nobody handles it, **stops** with a traceback.
@@ -62,8 +54,8 @@ Think of an ATM: wrong PIN should not “explode” the machine — it shows “
 
 ### 1. Basic try/except — what / why, then syntax
 
-**What:** Catch errors by type and recover.  
-**Why:** User input and files fail often; crash-only programs are not shippable.
+**Definition:** Catch errors by type and recover.  
+**Purpose:** User input and files fail often; crash-only programs are not shippable.
 
 ```python
 try:
@@ -128,8 +120,8 @@ Cannot split among 0 friends
 
 ### 2. Catching multiple exceptions
 
-**What:** One handler for several related error types.  
-**Why:** Same recovery path (e.g. “bad data file”) without duplicate blocks.
+**Definition:** One handler for several related error types.  
+**Purpose:** Same recovery path (e.g. “bad data file”) without duplicate blocks.
 
 ```python
 try:
@@ -183,8 +175,8 @@ Bad age data: KeyError 'age'
 
 ### 3. else and finally
 
-**What:** Success path (`else`) vs guaranteed cleanup (`finally`).  
-**Why:** Keep “happy path” separate from error handling; always release resources.
+**Definition:** Success path (`else`) vs guaranteed cleanup (`finally`).  
+**Purpose:** Keep “happy path” separate from error handling; always release resources.
 
 ```python
 try:
@@ -253,8 +245,8 @@ Result: success
 
 ### 4. raise — intentional errors
 
-**What:** You create an error on purpose when input or state is invalid.  
-**Why:** Fail fast with a clear message instead of continuing with bad data.
+**Definition:** You create an error on purpose when input or state is invalid.  
+**Purpose:** Fail fast with a clear message instead of continuing with bad data.
 
 ```python
 def withdraw(balance, amount):
@@ -574,77 +566,89 @@ except InsufficientBalanceError as e:
 
 1. Handle `ZeroDivisionError` in calculator.
    **Model answer:**
-   ```python
-   a = float(input("a: "))
-   b = float(input("b: "))
-   try:
-       print(a / b)
-   except ZeroDivisionError:
-       print("Cannot divide by zero")
-   ```
+
+```python
+a = float(input("a: "))
+b = float(input("b: "))
+try:
+    print(a / b)
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+```
+
 
 2. Catch `ValueError` when converting user input to float.
    **Model answer:**
-   ```python
-   raw = input("Enter a number: ")
-   try:
-       value = float(raw)
-       print("OK:", value)
-   except ValueError:
-       print("Not a valid number")
-   ```
+
+```python
+raw = input("Enter a number: ")
+try:
+    value = float(raw)
+    print("OK:", value)
+except ValueError:
+    print("Not a valid number")
+```
+
 
 3. Use `try/except` when accessing dict key — prefer `.get()` too.
    **Model answer:**
-   ```python
-   data = {"name": "Priya"}
-   try:
-       print(data["email"])
-   except KeyError:
-       print("email missing")
 
-   print(data.get("email", "email missing"))  # preferred
-   ```
+```python
+data = {"name": "Priya"}
+try:
+    print(data["email"])
+except KeyError:
+    print("email missing")
+
+print(data.get("email", "email missing"))  # preferred
+```
+
 
 ### Intermediate
 
 1. Write `safe_divide(a, b)` returning `None` on error instead of crashing.
    **Model answer:**
-   ```python
-   def safe_divide(a, b):
-       try:
-           return a / b
-       except (ZeroDivisionError, TypeError):
-           return None
-   ```
+
+```python
+def safe_divide(a, b):
+    try:
+        return a / b
+    except (ZeroDivisionError, TypeError):
+        return None
+```
+
 
 2. Create `InvalidEmailError` and validator function.
    **Model answer:**
-   ```python
-   class InvalidEmailError(ValueError):
-       pass
 
-   def validate_email(email):
-       if "@" not in email or "." not in email.split("@")[-1]:
-           raise InvalidEmailError(f"Invalid email: {email}")
-       return email
-   ```
+```python
+class InvalidEmailError(ValueError):
+    pass
+
+def validate_email(email):
+    if "@" not in email or "." not in email.split("@")[-1]:
+        raise InvalidEmailError(f"Invalid email: {email}")
+    return email
+```
+
 
 3. Refactor file reader to use `try/except/else/finally`.
    **Model answer:**
-   ```python
-   path = "notes.txt"
-   f = None
-   try:
-       f = open(path, encoding="utf-8")
-   except FileNotFoundError:
-       print("File missing")
-   else:
-       print(f.read())
-   finally:
-       if f is not None:
-           f.close()
-   ```
+
+```python
+path = "notes.txt"
+f = None
+try:
+    f = open(path, encoding="utf-8")
+except FileNotFoundError:
+    print("File missing")
+else:
+    print(f.read())
+finally:
+    if f is not None:
+        f.close()
+```
+
 
 ### Interview-style
 
@@ -660,7 +664,7 @@ except InsufficientBalanceError as e:
    **Model answer:**
    An exception raised in `finally` replaces any pending exception from the `try`/`except` block. The original error is lost unless you explicitly chain or log it before the `finally` raises.
 
-## Mini-Project: Safe Age Input CLI
+## Mini-Project (Assignment): Safe Age Input CLI
 
 **Title:** Never crash on bad age  
 **Lab kit (build here):** [15_Lab_Assets/18_safe_input_exceptions/](../15_Lab_Assets/18_safe_input_exceptions/)
@@ -696,20 +700,6 @@ abc ValueError age must be an integer
 - [ ] Non-numeric input raises / is caught as `ValueError` (no crash)  
 - [ ] Repo pushed with a short README of sample outputs  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| try/except | Syntax blocks | Flow when error occurs | Fix 5 broken scripts | Safe input reader |
-| Exception types | Common 6–8 names | When each is raised | Match except to error | Typed handlers |
-| else/finally | When each runs | Cleanup vs success path | Predict output quizzes | Resource cleanup |
-| raise | `raise ValueError("msg")` | Fail fast principle | Validation guards | Custom error triggers |
-| Custom exceptions | `class MyError(Exception)` | Domain-specific errors | Payment errors | App error hierarchy |
-| Best practices | Don't bare `except:` | Log and re-raise patterns | Code review exercise | Robust file reader |
-
----
 
 ## Interview & Discussion Q&A
 

@@ -65,4 +65,4 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 
 ## Map to modules
 
-Each teaching module has a **Classroom Ticket** section linking here. Session order stays in [Session_Calendar_100.md](../Session_Calendar_100.md).
+Lab kits live under this folder. Session order stays in [Session_Calendar_100.md](../Session_Calendar_100.md). Modules link kits from **Mini-Project** (and practice) — there is no separate Classroom Ticket section.

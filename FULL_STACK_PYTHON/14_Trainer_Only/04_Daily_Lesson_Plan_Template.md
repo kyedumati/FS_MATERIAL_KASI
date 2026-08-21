@@ -19,7 +19,7 @@
 
 | Minutes | Block | Do |
 |--------:|-------|----|
-| 5 | Ticket | Read Classroom Ticket; open `starter/` or `broken/` |
+| 5 | Open lab | Open calendar lab kit `starter/` or `broken/` |
 | 25 | Demo | Type-along today’s calendar **Focus** |
 | 35 | Lab | Learners code the kit |
 | 10 | Exit | One check + homework from calendar |

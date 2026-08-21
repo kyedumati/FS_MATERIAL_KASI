@@ -20,15 +20,6 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Library join report seed](../15_Lab_Assets/02_mysql_library_seed/)**
-- **[Parameterized queries vs injection](../15_Lab_Assets/20_sql_injection_demo/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Prerequisites
 
 - Local or lab MySQL with a practice database (e.g. `training_db`)
@@ -75,8 +66,8 @@ So far you saved data in **files** (CSV, JSON). That works for one user on one m
 
 ### 1. Architecture
 
-**What:** Who talks to whom.  
-**Why:** Separates app logic from storage — the same layering most apps use (script/API → connector → database).
+**Definition:** Who talks to whom.  
+**Purpose:** Separates app logic from storage — the same layering most apps use (script/API → connector → database).
 
 ```
 [Python Script / App]
@@ -582,83 +573,95 @@ def list_students():
 
 1. Connect and print MySQL server version.
    **Model answer:**
-   ```python
-   import mysql.connector
 
-   conn = mysql.connector.connect(host="localhost", user="root", password="secret")
-   cur = conn.cursor()
-   cur.execute("SELECT VERSION()")
-   print(cur.fetchone()[0])
-   cur.close()
-   conn.close()
-   ```
+```python
+import mysql.connector
+
+conn = mysql.connector.connect(host="localhost", user="root", password="secret")
+cur = conn.cursor()
+cur.execute("SELECT VERSION()")
+print(cur.fetchone()[0])
+cur.close()
+conn.close()
+```
+
 
 2. Insert 3 students with parameterized INSERT.
    **Model answer:**
-   ```python
-   sql = "INSERT INTO students (name, marks) VALUES (%s, %s)"
-   rows = [("Priya", 88), ("Ravi", 76), ("Anita", 91)]
-   cur.executemany(sql, rows)
-   conn.commit()
-   ```
+
+```python
+sql = "INSERT INTO students (name, marks) VALUES (%s, %s)"
+rows = [("Priya", 88), ("Ravi", 76), ("Anita", 91)]
+cur.executemany(sql, rows)
+conn.commit()
+```
+
 
 3. SELECT all students with marks > 75.
    **Model answer:**
-   ```python
-   cur.execute("SELECT name, marks FROM students WHERE marks > %s", (75,))
-   for row in cur.fetchall():
-       print(row)
-   ```
+
+```python
+cur.execute("SELECT name, marks FROM students WHERE marks > %s", (75,))
+for row in cur.fetchall():
+    print(row)
+```
+
 
 ### Intermediate
 
 1. Function `get_student(roll)` returning dict or None.
    **Model answer:**
-   ```python
-   def get_student(conn, roll):
-       cur = conn.cursor(dictionary=True)
-       cur.execute("SELECT * FROM students WHERE roll = %s", (roll,))
-       row = cur.fetchone()
-       cur.close()
-       return row  # dict or None
-   ```
+
+```python
+def get_student(conn, roll):
+    cur = conn.cursor(dictionary=True)
+    cur.execute("SELECT * FROM students WHERE roll = %s", (roll,))
+    row = cur.fetchone()
+    cur.close()
+    return row  # dict or None
+```
+
 
 2. Function `update_marks(roll, new_marks)`.
    **Model answer:**
-   ```python
-   def update_marks(conn, roll, new_marks):
-       cur = conn.cursor()
-       cur.execute("UPDATE students SET marks = %s WHERE roll = %s", (new_marks, roll))
-       conn.commit()
-       affected = cur.rowcount
-       cur.close()
-       return affected
-   ```
+
+```python
+def update_marks(conn, roll, new_marks):
+    cur = conn.cursor()
+    cur.execute("UPDATE students SET marks = %s WHERE roll = %s", (new_marks, roll))
+    conn.commit()
+    affected = cur.rowcount
+    cur.close()
+    return affected
+```
+
 
 3. Menu CLI: 1-Add 2-List 3-Update 4-Delete 5-Exit.
    **Model answer:**
-   ```python
-   while True:
-       print("1.Add 2.List 3.Update 4.Delete 5.Exit")
-       choice = input("> ")
-       if choice == "1":
-           name, marks = input("name: "), float(input("marks: "))
-           cur.execute("INSERT INTO students (name, marks) VALUES (%s, %s)", (name, marks))
-           conn.commit()
-       elif choice == "2":
-           cur.execute("SELECT * FROM students")
-           print(cur.fetchall())
-       elif choice == "3":
-           roll, marks = int(input("roll: ")), float(input("marks: "))
-           cur.execute("UPDATE students SET marks=%s WHERE roll=%s", (marks, roll))
-           conn.commit()
-       elif choice == "4":
-           roll = int(input("roll: "))
-           cur.execute("DELETE FROM students WHERE roll=%s", (roll,))
-           conn.commit()
-       elif choice == "5":
-           break
-   ```
+
+```python
+while True:
+    print("1.Add 2.List 3.Update 4.Delete 5.Exit")
+    choice = input("> ")
+    if choice == "1":
+        name, marks = input("name: "), float(input("marks: "))
+        cur.execute("INSERT INTO students (name, marks) VALUES (%s, %s)", (name, marks))
+        conn.commit()
+    elif choice == "2":
+        cur.execute("SELECT * FROM students")
+        print(cur.fetchall())
+    elif choice == "3":
+        roll, marks = int(input("roll: ")), float(input("marks: "))
+        cur.execute("UPDATE students SET marks=%s WHERE roll=%s", (marks, roll))
+        conn.commit()
+    elif choice == "4":
+        roll = int(input("roll: "))
+        cur.execute("DELETE FROM students WHERE roll=%s", (roll,))
+        conn.commit()
+    elif choice == "5":
+        break
+```
+
 
 ### Interview-style
 
@@ -674,7 +677,7 @@ def list_students():
    **Model answer:**
    An ORM (Object-Relational Mapper) lets you work with tables via Python classes/objects and builds SQL for you. Under the hood it still uses a connection and SQL — the same server you reach with `mysql.connector`. Prefer parameterized SQL (or a trusted ORM) over string-built queries.
 
-## Mini-Project: Student Database Manager (Python + MySQL)
+## Mini-Project (Assignment): Student Database Manager (Python + MySQL)
 
 **Title:** student_db_cli  
 **Lab kits:** [02_mysql_library_seed](../15_Lab_Assets/02_mysql_library_seed/) (SQL practice) · [20_sql_injection_demo](../15_Lab_Assets/20_sql_injection_demo/) (parameter discipline)
@@ -702,18 +705,6 @@ def list_students():
 - [ ] README lists create-database + run steps for a teammate  
 - [ ] Pushed to GitHub without passwords in source
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Why DB | Apps need persistent shared data | File vs DB limits | Compare CSV vs MySQL | Architecture diagram |
-| Connector | connect, cursor, commit | Connection lifecycle | Connect test script | Reusable db module |
-| CRUD SQL | INSERT/SELECT/UPDATE/DELETE | Parameter placeholders | 4 operation drills | Student CRUD CLI |
-| Parameters | `%s` tuple params | SQL injection risk | Attack demo | All queries parameterized |
-| Transactions | commit vs rollback | ACID intro | Failed insert rollback | Transfer funds demo |
-| Cleanup | close cursor/connection | Connection pooling idea | finally block pattern | Context-style helper |
 
 ## Interview & Discussion Q&A
 

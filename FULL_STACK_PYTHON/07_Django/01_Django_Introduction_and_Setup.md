@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-**Today (S63–64):** Get `runserver` + MySQL settings working — no URL kit yet.
-
-**Next sessions (S65–67):** Open [Two pages with one base template](../15_Lab_Assets/24_django_url_views_stub/) after the project exists.
-
-Finish tickets in class; compare with the official solution only when your trainer says so.
-
 ## Prerequisites
 
 - MySQL 8+ available locally or on the lab server
@@ -75,7 +67,7 @@ flowchart LR
   T -->|HTML response| B
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - URL → View → Model (optional) → Template → HTML response
 - MTV ≈ MVC with Django naming (Template ≈ View, View ≈ Controller)
 - Admin + ORM are why Indian portals pick Django for fast CRUD
@@ -380,10 +372,12 @@ Starting development server at http://127.0.0.1:8000/
 
 1. Print Django version: `python -m django --version`
    **Model answer:**
-   ```bash
-   python -m django --version
-   # example output: 5.x.x
-   ```
+
+```bash
+python -m django --version
+# example output: 5.x.x
+```
+
 
 2. List files created by `startproject` and explain each in one line
    **Model answer:**
@@ -391,25 +385,31 @@ Starting development server at http://127.0.0.1:8000/
 
 3. Change runserver port: `python manage.py runserver 8080`
    **Model answer:**
-   ```bash
-   python manage.py runserver 8080
-   ```
+
+```bash
+python manage.py runserver 8080
+```
+
    App is then at `http://127.0.0.1:8080/`.
 
 4. Create second app `tasks` for Task Manager theme; register in settings
    **Model answer:**
-   ```bash
-   python manage.py startapp tasks
-   ```
+
+```bash
+python manage.py startapp tasks
+```
+
    Add `"tasks"` to `INSTALLED_APPS` in `settings.py`.
 
 ### Intermediate
 
 1. Create MySQL database `booking_db` and second Django project `booking_portal` with MySQL config
    **Model answer:**
-   ```sql
-   CREATE DATABASE booking_db CHARACTER SET utf8mb4;
-   ```
+
+```sql
+CREATE DATABASE booking_db CHARACTER SET utf8mb4;
+```
+
    ```bash
    django-admin startproject booking_portal
    ```
@@ -421,9 +421,11 @@ Starting development server at http://127.0.0.1:8000/
 
 3. Run `migrate` and verify tables in MySQL Workbench (`auth_user`, etc.)
    **Model answer:**
-   ```bash
-   python manage.py migrate
-   ```
+
+```bash
+python manage.py migrate
+```
+
    In Workbench, refresh the schema and confirm tables like `auth_user`, `django_migrations`, `django_session` exist.
 
 ### Interview Prep
@@ -440,7 +442,7 @@ Starting development server at http://127.0.0.1:8000/
    **Model answer:**
    `django-admin` is the global CLI (create projects). `manage.py` is project-local and sets `DJANGO_SETTINGS_MODULE` for that project, so day-to-day commands use `python manage.py …`.
 
-## Mini-Project / Activity
+## Mini-Project / Activity (Assignment)
 
 **Activity: "Portal Bootstrap" (45 min)**  
 **Lab kit (preview for next sessions):** [15_Lab_Assets/24_django_url_views_stub/](../15_Lab_Assets/24_django_url_views_stub/)
@@ -466,21 +468,6 @@ Build project **`student_portal`** with apps `core` (home placeholder) and `acco
 - [ ] `requirements.txt` + README with activate/run steps
 - [ ] Apps `core` and `accounts` exist and `core` is in `INSTALLED_APPS`
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| What is Django | Full-stack web framework, batteries included | MTV vs MVC mapping | Read Django job posts | — |
-| Virtual environment | `python3 -m venv venv`, `source venv/bin/activate` | Isolation per project | Create venv daily | Project folder layout |
-| Install Django | `pip install django`, `django-admin --version` | pip inside venv only | Reinstall in fresh venv | requirements.txt |
-| startproject | `django-admin startproject config .` | Project vs app | Create 2 projects | `campus_portal` project |
-| startapp | `python manage.py startapp blog` | App = feature module | One app per theme | `blog` app |
-| runserver | `python manage.py runserver` | Dev server ≠ production | Start/stop 10 times | Local URL bookmark |
-| settings.py | `INSTALLED_APPS`, `DATABASES`, `DEBUG` | Central configuration | Locate each setting | MySQL block |
-| MySQL setup | `ENGINE`, `NAME`, `USER`, `PASSWORD`, `HOST` | mysqlclient / PyMySQL driver | Connect + migrate | Student DB name |
-| manage.py | `migrate`, `makemigrations`, `createsuperuser` | CLI entry to Django | Run each once | Migration log |
 
 ## Interview & Discussion Q&A
 

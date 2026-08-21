@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Accessible profile + contact form](labs/21_html_profile_form/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 **HTML** describes the **structure and meaning** of a web page — not Python, not CSS. The browser renders HTML; **CSS** styles it (next module); **JavaScript** makes it interactive.
 
 Full-stack flow: `Browser (HTML/CSS/JS) → Django/Python → MySQL`
@@ -466,40 +458,46 @@ Django adds `{% csrf_token %}` to POST forms later.
 
 1. Page with h1, two h2 sections, three paragraphs.
    **Model answer:**
-   ```html
-   <h1>My Learning Journal</h1>
-   <h2>Week 1</h2>
-   <p>Installed tools and wrote Hello World.</p>
-   <h2>Week 2</h2>
-   <p>Practised semantic HTML.</p>
-   <p>Built a small profile page.</p>
-   ```
+
+```html
+<h1>My Learning Journal</h1>
+<h2>Week 1</h2>
+<p>Installed tools and wrote Hello World.</p>
+<h2>Week 2</h2>
+<p>Practised semantic HTML.</p>
+<p>Built a small profile page.</p>
+```
+
 
 2. Nav with 4 relative links; ordered list of 5 goals.
    **Model answer:**
-   ```html
-   <nav>
-     <a href="index.html">Home</a>
-     <a href="about.html">About</a>
-     <a href="projects.html">Projects</a>
-     <a href="contact.html">Contact</a>
-   </nav>
-   <ol>
-     <li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li><li>Django</li>
-   </ol>
-   ```
+
+```html
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<ol>
+  <li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li><li>Django</li>
+</ol>
+```
+
 
 3. Image with alt; contact form (name, email, textarea).
    **Model answer:**
-   ```html
-   <img src="photo.jpg" alt="Portrait of Priya at desk">
-   <form action="#" method="post">
-     <label>Name <input name="name" required></label>
-     <label>Email <input type="email" name="email" required></label>
-     <label>Message <textarea name="message"></textarea></label>
-     <button type="submit">Send</button>
-   </form>
-   ```
+
+```html
+<img src="photo.jpg" alt="Portrait of Priya at desk">
+<form action="#" method="post">
+  <label>Name <input name="name" required></label>
+  <label>Email <input type="email" name="email" required></label>
+  <label>Message <textarea name="message"></textarea></label>
+  <button type="submit">Send</button>
+</form>
+```
+
 
 ### Intermediate
 
@@ -509,42 +507,48 @@ Django adds `{% csrf_token %}` to POST forms later.
 
 2. Product catalog table (5 products: name/price/stock).
    **Model answer:**
-   ```html
-   <table>
-     <thead><tr><th>Name</th><th>Price</th><th>Stock</th></tr></thead>
-     <tbody>
-       <tr><td>Samosa</td><td>20</td><td>50</td></tr>
-       <tr><td>Tea</td><td>15</td><td>100</td></tr>
-       <!-- three more rows -->
-     </tbody>
-   </table>
-   ```
+
+```html
+<table>
+  <thead><tr><th>Name</th><th>Price</th><th>Stock</th></tr></thead>
+  <tbody>
+    <tr><td>Samosa</td><td>20</td><td>50</td></tr>
+    <tr><td>Tea</td><td>15</td><td>100</td></tr>
+    <!-- three more rows -->
+  </tbody>
+</table>
+```
+
 
 3. Login form POST with action `#`; FAQ with `<details>`/`<summary>`.
    **Model answer:**
-   ```html
-   <form action="#" method="post">
-     <input type="text" name="username" required>
-     <input type="password" name="password" required>
-     <button type="submit">Login</button>
-   </form>
-   <details>
-     <summary>What is HTML?</summary>
-     <p>Markup language for web page structure.</p>
-   </details>
-   ```
+
+```html
+<form action="#" method="post">
+  <input type="text" name="username" required>
+  <input type="password" name="password" required>
+  <button type="submit">Login</button>
+</form>
+<details>
+  <summary>What is HTML?</summary>
+  <p>Markup language for web page structure.</p>
+</details>
+```
+
 
 4. Add `lang`, viewport meta, title on every page.
    **Model answer:**
-   ```html
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Page Title</title>
-   </head>
-   ```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Title</title>
+</head>
+```
+
 
 ### Interview-style
 
@@ -568,7 +572,7 @@ Django adds `{% csrf_token %}` to POST forms later.
    **Model answer:**
    Static structure becomes Django templates with `{% extends %}`, `{{ variables }}`, and `{% for %}` loops. Forms get `{% csrf_token %}` and template tags for URLs/static files.
 
-## Mini-Project: Portfolio or Course Landing Page
+## Mini-Project (Assignment): Portfolio or Course Landing Page
 
 **Lab kit (build here):** [labs/21_html_profile_form/](labs/21_html_profile_form/)
 
@@ -592,20 +596,6 @@ Semantic structure; all images have alt; all inputs labeled; internal nav works;
 - [ ] Every input has a matching `<label for>`
 - [ ] Every meaningful image has `alt` text
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| HTML role | Markup not programming | Structure vs style vs behavior | View page source | First `.html` file |
-| Document skeleton | doctype, html, head, body | Metadata vs visible | Template copy | Reusable starter |
-| Semantic tags | header, nav, main, footer | SEO/a11y meaning | Replace div soup | Portfolio layout |
-| Links & paths | `<a href>`, relative/absolute | Same-site vs external | Link drills | Nav bar |
-| Images | `<img src alt>` | alt for accessibility | Broken image debug | Product card |
-| Tables | thead, tbody, th, td | Tabular data | 3 layouts | Fee schedule |
-| Forms | method get/post | Client → server | Registration form | Login form |
-| Accessibility | label for, alt, h1–h6 | Screen readers | Lighthouse peek | A11y checklist |
 
 ## Interview & Discussion Q&A
 

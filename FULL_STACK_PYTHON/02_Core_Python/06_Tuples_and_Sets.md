@@ -18,14 +18,6 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Clean duplicate IDs / emails with sets](../15_Lab_Assets/31_email_id_dedup/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### Tuples — the sealed envelope
 
 A **tuple** is like a printed receipt or Aadhaar-linked record: once created, you should **not change** the fields. You can **read** them, pass them around, and unpack them into variables.
@@ -513,37 +505,40 @@ print({"electronics", "sale"} - {"sale", "gift"})
 
    **Model answer:**
 
-   ```python
-   expense = ("2026-08-04", "Food", 450.0)
-   date, category, amount = expense
-   print(date)
-   print(category)
-   print(amount)
-   ```
+```python
+expense = ("2026-08-04", "Food", 450.0)
+date, category, amount = expense
+print(date)
+print(category)
+print(amount)
+```
+
 
 2. Create a set from `[1, 2, 2, 3, 3, 3]`. Print length before and after.
 
    **Model answer:**
 
-   ```python
-   nums = [1, 2, 2, 3, 3, 3]
-   print(len(nums))       # 6
-   unique = set(nums)
-   print(len(unique))     # 3 → {1, 2, 3}
-   print(unique)
-   ```
+```python
+nums = [1, 2, 2, 3, 3, 3]
+print(len(nums))       # 6
+unique = set(nums)
+print(len(unique))     # 3 → {1, 2, 3}
+print(unique)
+```
+
 
 3. Given `t = (10, 20, 30, 40)`, print first and last using unpacking with `*`.
 
    **Model answer:**
 
-   ```python
-   t = (10, 20, 30, 40)
-   first, *middle, last = t
-   print(first)   # 10
-   print(last)    # 40
-   print(middle)  # [20, 30]
-   ```
+```python
+t = (10, 20, 30, 40)
+first, *middle, last = t
+print(first)   # 10
+print(last)    # 40
+print(middle)  # [20, 30]
+```
+
 
 ### Intermediate
 
@@ -551,41 +546,44 @@ print({"electronics", "sale"} - {"sale", "gift"})
 
    **Model answer:**
 
-   ```python
-   batch_2024 = ["A", "B", "C", "D"]
-   batch_2025 = ["C", "D", "E", "F"]
-   both = set(batch_2024) & set(batch_2025)
-   print(both)  # {'C', 'D'}
-   ```
+```python
+batch_2024 = ["A", "B", "C", "D"]
+batch_2025 = ["C", "D", "E", "F"]
+both = set(batch_2024) & set(batch_2025)
+print(both)  # {'C', 'D'}
+```
+
 
 5. Write a function `split_name(full_name)` returning `(first, last)` for `"Ananya Sharma"`.
 
    **Model answer:**
 
-   ```python
-   def split_name(full_name):
-       parts = full_name.strip().split()
-       first = parts[0]
-       last = parts[-1] if len(parts) > 1 else ""
-       return first, last
+```python
+def split_name(full_name):
+    parts = full_name.strip().split()
+    first = parts[0]
+    last = parts[-1] if len(parts) > 1 else ""
+    return first, last
 
-   print(split_name("Ananya Sharma"))  # ('Ananya', 'Sharma')
-   ```
+print(split_name("Ananya Sharma"))  # ('Ananya', 'Sharma')
+```
+
 
 6. Remove duplicates from `product_ids = [101, 102, 101, 103, 102]` preserving first-seen order.
 
    **Model answer:**
 
-   ```python
-   product_ids = [101, 102, 101, 103, 102]
-   seen = set()
-   ordered = []
-   for pid in product_ids:
-       if pid not in seen:
-           seen.add(pid)
-           ordered.append(pid)
-   print(ordered)  # [101, 102, 103]
-   ```
+```python
+product_ids = [101, 102, 101, 103, 102]
+seen = set()
+ordered = []
+for pid in product_ids:
+    if pid not in seen:
+        seen.add(pid)
+        ordered.append(pid)
+print(ordered)  # [101, 102, 103]
+```
+
 
 ### Interview-style
 
@@ -610,17 +608,18 @@ print({"electronics", "sale"} - {"sale", "gift"})
 
    **Model answer:**
 
-   ```python
-   def min_max(values):
-       return min(values), max(values)
+```python
+def min_max(values):
+    return min(values), max(values)
 
-   lo, hi = min_max([55, 78, 92, 67, 88])
-   print(lo, hi)  # 55 92
-   ```
+lo, hi = min_max([55, 78, 92, 67, 88])
+print(lo, hi)  # 55 92
+```
+
 
 ---
 
-## Mini-Project: Email / Product ID Dedup Tool
+## Mini-Project (Assignment): Email / Product ID Dedup Tool
 
 **Title:** Clean duplicate IDs before DB import  
 **Lab kit (build here):** [15_Lab_Assets/31_email_id_dedup/](../15_Lab_Assets/31_email_id_dedup/)  
@@ -668,16 +667,6 @@ Clean list: ['101', '102', '103', '104']
 - [ ] Comma-separated input prints original vs unique counts  
 - [ ] Order-preserving dedupe matches the sample  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Label | What to focus on |
-|-------|------------------|
-| **Memorize** | Tuple syntax `()`, set syntax `{}` or `set()`, unpacking `a, b = (1, 2)`, `|`, `&`, `-`, `^` for sets |
-| **Understand** | Immutable vs mutable; hashable types in sets; sets are **unordered**; tuples as fixed records |
-| **Practise** | Unpack employee data; find common skills between two teams; remove duplicate product IDs |
-| **Build** | **Dedup Tool** — clean duplicate emails from a CSV-like list before "import" |
 
 ## Interview & Discussion Q&A
 

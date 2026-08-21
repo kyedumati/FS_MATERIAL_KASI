@@ -20,20 +20,6 @@ By the end of these sessions, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-| Focus | In class                                            | Lab / homework                                                                                 |
-| ----- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Day 1 | Import forms, `sys.path`, local modules, `__name__` | Import drills + start [16_venv_package_bootstrap](../15_Lab_Assets/16_venv_package_bootstrap/) |
-| Day 2 | Packages, relative imports, venv + pip              | Finish `campus_utils` + activate venv                                                          |
-| Day 3 | Stdlib lab (`json` / `os` / `datetime`)             | JSON file tool + push Mini-Project                                                             |
-
-**Lab kit:** [Ship campus_utils package + venv](../15_Lab_Assets/16_venv_package_bootstrap/)
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is a module? What is a package?
 
 - A **module** is one Python file (`.py`) that holds related names: variables, functions, classes.  
@@ -70,8 +56,8 @@ When you write `import math`, Python loads the standard-library `math` module an
 
 ### 1. Import forms
 
-**What:** Ways to bring another file’s names into the current file.  
-**Why:** Reuse without duplication; keep call sites readable.
+**Definition:** Ways to bring another file’s names into the current file.  
+**Purpose:** Reuse without duplication; keep call sites readable.
 
 ```python
 import math                          # whole module — use math.sqrt
@@ -126,8 +112,8 @@ print(f"Hyderabad Attendance — {today.strftime('%d-%m-%Y')}")
 
 ### 2. Module search path
 
-**What:** The ordered list of folders Python checks when you `import`.  
-**Why:** Explains `ModuleNotFoundError` and why `venv` / project layout matter.
+**Definition:** The ordered list of folders Python checks when you `import`.  
+**Purpose:** Explains `ModuleNotFoundError` and why `venv` / project layout matter.
 
 Python looks in:
 
@@ -183,8 +169,8 @@ print(namaste("Priya"))  # Namaste, Priya!
 
 ### 3. `if __name__ == "__main__":`
 
-**What:** A guard that runs a block **only when this file is executed as a script**, not when another file imports it.  
-**Why:** Put demos / CLI entry points here so `import greetings` does not print or run side effects.
+**Definition:** A guard that runs a block **only when this file is executed as a script**, not when another file imports it.  
+**Purpose:** Put demos / CLI entry points here so `import greetings` does not print or run side effects.
 
 ```python
 # greetings.py
@@ -233,8 +219,8 @@ python greetings.py
 
 ### 4. Package structure
 
-**What:** A folder of modules you own (e.g. `ksr_utils/` / `campus_utils/`).  
-**Why:** Capstone and multi-file apps both expect this layout.
+**Definition:** A folder of modules you own (e.g. `ksr_utils/` / `campus_utils/`).  
+**Purpose:** Capstone and multi-file apps both expect this layout.
 
 ```
 my_project/
@@ -306,12 +292,12 @@ print(format_inr(1250))  # ₹1,250.00
 
 ### 5. Relative vs absolute imports
 
-**What:**  
+**Definition:**  
 
 - **Absolute** — full path from the top package: `from campus_utils.formatters import format_inr`  
 - **Relative** — path relative to the **current** package file: `from .formatters import format_inr` (`.` = this package)
 
-**Why:** Inside a package, relative imports stay correct if you rename the top folder later; absolute imports are clearer from `main.py` outside the package.
+**Purpose:** Inside a package, relative imports stay correct if you rename the top folder later; absolute imports are clearer from `main.py` outside the package.
 
 ```python
 # campus_utils/__init__.py  (inside the package — relative OK)
@@ -366,8 +352,8 @@ def check(user):
 
 ### 6. pip and venv workflow
 
-**What:** A **venv** is a project-private copy of Python + installed libraries. **pip** installs packages from PyPI into the *active* environment.  
-**Why:** Shared lab PCs and two projects on one laptop need isolation — otherwise package versions collide.
+**Definition:** A **venv** is a project-private copy of Python + installed libraries. **pip** installs packages from PyPI into the *active* environment.  
+**Purpose:** Shared lab PCs and two projects on one laptop need isolation — otherwise package versions collide.
 
 ```bash
 python -m venv venv
@@ -421,8 +407,8 @@ If the lab PC has no internet, stop after Program 1 — that alone proves the ve
 
 ### 7. Standard library highlights
 
-**What:** Modules that ship with Python — no `pip` needed.  
-**Why:** Prefer these before adding third-party packages for simple tasks.
+**Definition:** Modules that ship with Python — no `pip` needed.  
+**Purpose:** Prefer these before adding third-party packages for simple tasks.
 
 | Module     | Purpose           | Common functions                                              |
 | ---------- | ----------------- | ------------------------------------------------------------- |
@@ -742,7 +728,7 @@ pip freeze > requirements.txt
   **Model answer:**
    Absolute (`from campus_utils.formatters import format_inr`) from entry scripts and for clarity. Relative (`from .formatters import format_inr`) inside package files / `__init__.py` so the package stays movable. Relative imports fail in a loose script run as `python formatters.py`.
 
-## Mini-Project: Project Bootstrap Template
+## Mini-Project (Assignment): Project Bootstrap Template
 
 **Title:** `py_starter` — Reusable Project Skeleton  
 **Lab kit (build here):** [15_Lab_Assets/16_venv_package_bootstrap/](../15_Lab_Assets/16_venv_package_bootstrap/)  
@@ -771,23 +757,6 @@ pip freeze > requirements.txt
 - [ ] README shows how a teammate recreates the env from `requirements.txt`  
 - [ ] Project pushed to GitHub (no `venv/` committed)
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic            | Memorize                            | Understand                      | Practise                   | Build                         |
-| ---------------- | ----------------------------------- | ------------------------------- | -------------------------- | ----------------------------- |
-| Imports          | `import x`, `from x import y`, `as` | Module search path (`sys.path`) | Import drills              | Clean project layout          |
-| `__name__`       | `if __name__ == "__main__":`        | Script vs import                | Quiet module + demo guard  | CLI entry in `main.py`        |
-| Packages         | `__init__.py` purpose               | Package vs module               | Create nested package      | `campus_utils` / `ksr_utils`  |
-| Relative imports | `from .mod import name`             | Absolute vs relative            | Re-export in `__init__.py` | Movable package layout        |
-| Stdlib           | Key functions per module            | When to use stdlib vs pip       | 5 stdlib mini scripts      | JSON file tool                |
-| venv             | `python -m venv venv`               | Isolated dependencies           | Create/activate venv       | Project with requirements.txt |
-| pip              | `pip install`, `pip freeze`         | Version pinning basics          | Install requests           | Share env with team           |
-
-**Label legend:** **Memorize** = recall in interviews · **Understand** = explain in English · **Practise** = daily labs · **Build** = portfolio artefacts
-
----
 
 ## Interview & Discussion Q&A
 

@@ -21,15 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Canteen calculator with GST](../15_Lab_Assets/06_cli_calculator/)**
-- **[Marks entry casting crashes](../15_Lab_Assets/07_casting_bugs/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is a variable?
 
 A **variable** is a name that points to a value stored in memory. Think of it as a labelled box: the label is `student_name`, the contents are `"Ravi Kumar"`.
@@ -598,45 +589,49 @@ Line total with GST: ₹1177.64
 
    **Model answer:**
 
-   ```python
-   name = "Ananya"
-   age = 21
-   course = "Full Stack Python"
-   fees = 45000.0
-   print(f"{name}, age {age}, enrolled in {course}. Fees: ₹{fees}")
-   ```
+```python
+name = "Ananya"
+age = 21
+course = "Full Stack Python"
+fees = 45000.0
+print(f"{name}, age {age}, enrolled in {course}. Fees: ₹{fees}")
+```
+
 
 2. Convert `"100"` and `"3.14"` to int and float; print types.
 
    **Model answer:**
 
-   ```python
-   n = int("100")
-   x = float("3.14")
-   print(n, type(n))
-   print(x, type(x))
-   ```
+```python
+n = int("100")
+x = float("3.14")
+print(n, type(n))
+print(x, type(x))
+```
+
 
 3. Evaluate: `10 + 5 * 2`, `20 // 3`, `20 % 3`, `2 ** 4`.
 
    **Model answer:**
 
-   ```python
-   print(10 + 5 * 2)  # 20 — multiply first
-   print(20 // 3)     # 6 — floor division
-   print(20 % 3)      # 2 — remainder
-   print(2 ** 4)      # 16 — power
-   ```
+```python
+print(10 + 5 * 2)  # 20 — multiply first
+print(20 // 3)     # 6 — floor division
+print(20 % 3)      # 2 — remainder
+print(2 ** 4)      # 16 — power
+```
+
 
 4. Ask user for name and city; print greeting.
 
    **Model answer:**
 
-   ```python
-   name = input("Name: ")
-   city = input("City: ")
-   print(f"Namaste, {name} from {city}!")
-   ```
+```python
+name = input("Name: ")
+city = input("City: ")
+print(f"Namaste, {name} from {city}!")
+```
+
 
 ### Intermediate
 
@@ -644,12 +639,13 @@ Line total with GST: ₹1177.64
 
    **Model answer:**
 
-   ```python
-   basic = float(input("Basic salary: "))
-   hra = float(input("HRA: "))
-   total = basic + hra
-   print(f"Total compensation: ₹{total:.2f}")
-   ```
+```python
+basic = float(input("Basic salary: "))
+hra = float(input("HRA: "))
+total = basic + hra
+print(f"Total compensation: ₹{total:.2f}")
+```
+
 
 2. Check if email contains `@` and `.com` using `in` and `and`.
 
@@ -666,29 +662,31 @@ Line total with GST: ₹1177.64
 
    **Model answer:**
 
-   ```python
-   total = 0
-   total += 120   # chai + snack
-   total += 450   # lunch
-   total += 80    # metro
-   print(f"Running total: ₹{total}")
-   ```
+```python
+total = 0
+total += 120   # chai + snack
+total += 450   # lunch
+total += 80    # metro
+print(f"Running total: ₹{total}")
+```
+
 
 4. Format a receipt table (3 items, amounts, grand total) with aligned f-strings.
 
    **Model answer:**
 
-   ```python
-   item1, amt1 = "Samosa", 40.0
-   item2, amt2 = "Thali", 180.0
-   item3, amt3 = "Lassi", 60.0
-   grand = amt1 + amt2 + amt3
-   print(f"{'Item':<12}{'Amount':>8}")
-   print(f"{item1:<12}{amt1:>8.2f}")
-   print(f"{item2:<12}{amt2:>8.2f}")
-   print(f"{item3:<12}{amt3:>8.2f}")
-   print(f"{'TOTAL':<12}{grand:>8.2f}")
-   ```
+```python
+item1, amt1 = "Samosa", 40.0
+item2, amt2 = "Thali", 180.0
+item3, amt3 = "Lassi", 60.0
+grand = amt1 + amt2 + amt3
+print(f"{'Item':<12}{'Amount':>8}")
+print(f"{item1:<12}{amt1:>8.2f}")
+print(f"{item2:<12}{amt2:>8.2f}")
+print(f"{item3:<12}{amt3:>8.2f}")
+print(f"{'TOTAL':<12}{grand:>8.2f}")
+```
+
 
 ### Interview-Oriented
 
@@ -710,7 +708,7 @@ Line total with GST: ₹1177.64
 
 ---
 
-## Mini-Project: CLI Canteen Calculator
+## Mini-Project (Assignment): CLI Canteen Calculator
 
 **Title:** One-session calculator with GST + validation  
 **Lab kit (build here):** [15_Lab_Assets/06_cli_calculator/](../15_Lab_Assets/06_cli_calculator/)  
@@ -748,24 +746,6 @@ Day total: ₹210.00
 - [ ] Amount/`qty` `<= 0` prints an error and is not added  
 - [ ] Output uses `₹` and two decimal places  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Variables | Assignment `=` | Name binds to object | 20 assignment drills | — |
-| Datatypes | int, float, str, bool, None | Dynamic typing | `type()` checks | — |
-| Type conversion | `int()`, `float()`, `str()` | Invalid conversion errors | Cast user input | Safe parsing |
-| Arithmetic ops | `+ - * / // % **` | `/` vs `//`, `%` modulo | Calculator lines | CLI calculator |
-| Comparison | `== != < > <= >=` | Boolean result | Compare marks | Pass/fail logic prep |
-| Logical | `and or not` | Truth tables | Combine conditions | Login validation prep |
-| Assignment ops | `+=`, `-=` | Shorthand update | Loop counters later | Balance updates |
-| Membership | `in`, `not in` | Works on strings/lists later | `"@" in email` | Email check |
-| Identity | `is`, `is not` | `None` checks | `x is None` | Optional fields |
-| I/O | `input()`, f-strings | input returns str always | Forms in CLI | Employee data entry |
-
----
 
 ## Interview & Discussion Q&A
 

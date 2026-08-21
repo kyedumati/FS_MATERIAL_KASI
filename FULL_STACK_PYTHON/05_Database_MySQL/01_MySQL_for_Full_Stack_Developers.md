@@ -25,15 +25,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Librarian needs join report](../15_Lab_Assets/02_mysql_library_seed/)**
-- **Required SQL notes:** start at [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md) and follow the required labs table session by session
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Prerequisites
 
 - MySQL installed — [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md)
@@ -89,7 +80,7 @@ flowchart TB
   BE -->|HTML or JSON| FE
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Browser → Django/Python → MySQL (and back)
 - Frontend never talks SQL directly — backend issues INSERT/SELECT
 - Same pattern for React SPA or server-rendered HTML
@@ -246,7 +237,7 @@ erDiagram
   }
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Customer **1 → many** Orders; Order **1 → many** Order_items
 - Order_item needs **both** `order_id` (FK) and `product_id` (FK)
 - JOINs exist because related data lives in separate tables
@@ -531,65 +522,77 @@ SELECT 'Move dept_head to departments table (3NF)' AS fix_note;
 
 1. CREATE TABLE `courses` (course_id, title, credits); INSERT 5 rows; SELECT credits > 3.
    **Model answer:**
-   ```sql
-   CREATE TABLE courses (
-     course_id INT PRIMARY KEY AUTO_INCREMENT,
-     title VARCHAR(100) NOT NULL,
-     credits INT NOT NULL
-   );
-   INSERT INTO courses (title, credits) VALUES
-     ('Python', 4), ('MySQL', 3), ('Django', 4), ('React', 3), ('APIs', 2);
-   SELECT * FROM courses WHERE credits > 3;
-   ```
+
+```sql
+CREATE TABLE courses (
+  course_id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL,
+  credits INT NOT NULL
+);
+INSERT INTO courses (title, credits) VALUES
+  ('Python', 4), ('MySQL', 3), ('Django', 4), ('React', 3), ('APIs', 2);
+SELECT * FROM courses WHERE credits > 3;
+```
+
 
 2. UPDATE one title; DELETE one row by id.
    **Model answer:**
-   ```sql
-   UPDATE courses SET title = 'Advanced Python' WHERE course_id = 1;
-   DELETE FROM courses WHERE course_id = 5;
-   ```
+
+```sql
+UPDATE courses SET title = 'Advanced Python' WHERE course_id = 1;
+DELETE FROM courses WHERE course_id = 5;
+```
+
 
 3. List all departments alphabetically.
    **Model answer:**
-   ```sql
-   SELECT * FROM departments ORDER BY dept_name ASC;
-   ```
+
+```sql
+SELECT * FROM departments ORDER BY dept_name ASC;
+```
+
 
 ### Intermediate
 
 1. Add `enrollments(student_id, course_id)`; INNER JOIN students + enrollments + courses.
    **Model answer:**
-   ```sql
-   CREATE TABLE enrollments (
-     student_id INT,
-     course_id INT,
-     PRIMARY KEY (student_id, course_id),
-     FOREIGN KEY (student_id) REFERENCES students(student_id),
-     FOREIGN KEY (course_id) REFERENCES courses(course_id)
-   );
-   SELECT s.name, c.title
-   FROM students s
-   INNER JOIN enrollments e ON s.student_id = e.student_id
-   INNER JOIN courses c ON c.course_id = e.course_id;
-   ```
+
+```sql
+CREATE TABLE enrollments (
+  student_id INT,
+  course_id INT,
+  PRIMARY KEY (student_id, course_id),
+  FOREIGN KEY (student_id) REFERENCES students(student_id),
+  FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+SELECT s.name, c.title
+FROM students s
+INNER JOIN enrollments e ON s.student_id = e.student_id
+INNER JOIN courses c ON c.course_id = e.course_id;
+```
+
 
 2. LEFT JOIN — students with no enrollments.
    **Model answer:**
-   ```sql
-   SELECT s.student_id, s.name
-   FROM students s
-   LEFT JOIN enrollments e ON s.student_id = e.student_id
-   WHERE e.student_id IS NULL;
-   ```
+
+```sql
+SELECT s.student_id, s.name
+FROM students s
+LEFT JOIN enrollments e ON s.student_id = e.student_id
+WHERE e.student_id IS NULL;
+```
+
 
 3. Employee report: dept_name, count, avg salary → see `MYSQL/04_Aggregations_and_Group_By.md`.
    **Model answer:**
-   ```sql
-   SELECT d.dept_name, COUNT(e.emp_id) AS emp_count, AVG(e.salary) AS avg_salary
-   FROM departments d
-   LEFT JOIN employees e ON d.dept_id = e.dept_id
-   GROUP BY d.dept_name;
-   ```
+
+```sql
+SELECT d.dept_name, COUNT(e.emp_id) AS emp_count, AVG(e.salary) AS avg_salary
+FROM departments d
+LEFT JOIN employees e ON d.dept_id = e.dept_id
+GROUP BY d.dept_name;
+```
+
 
 4. Fix denormalized `bad_library` table into 3NF.
    **Model answer:**
@@ -599,14 +602,16 @@ SELECT 'Move dept_head to departments table (3NF)' AS fix_note;
 
 1. INNER vs LEFT JOIN — write SQL showing NULL side.
    **Model answer:**
-   ```sql
-   -- INNER: only matching rows
-   SELECT * FROM students s INNER JOIN enrollments e ON s.student_id = e.student_id;
-   -- LEFT: keep all students; unmatched enrollment columns are NULL
-   SELECT s.name, e.course_id
-   FROM students s
-   LEFT JOIN enrollments e ON s.student_id = e.student_id;
-   ```
+
+```sql
+-- INNER: only matching rows
+SELECT * FROM students s INNER JOIN enrollments e ON s.student_id = e.student_id;
+-- LEFT: keep all students; unmatched enrollment columns are NULL
+SELECT s.name, e.course_id
+FROM students s
+LEFT JOIN enrollments e ON s.student_id = e.student_id;
+```
+
 
 2. When use TRANSACTION? (checkout, money transfer)
    **Model answer:**
@@ -624,7 +629,7 @@ SELECT 'Move dept_head to departments table (3NF)' AS fix_note;
    **Model answer:**
    FLOAT is binary approximate and can produce rounding errors in money. DECIMAL stores exact base-10 values, so totals and invoices stay accurate.
 
-## Mini-Project: Schema Design (Library or CampusCart)
+## Mini-Project (Assignment): Schema Design (Library or CampusCart)
 
 **Lab kit (build here):** [15_Lab_Assets/02_mysql_library_seed/](../15_Lab_Assets/02_mysql_library_seed/)  
 **SQL depth (SoT):** Weeks 10–11 · follow [`MYSQL/`](../../MYSQL/) + the **Required MySQL labs** table in this module
@@ -678,23 +683,6 @@ WHERE o.order_date >= '2026-07-01';
 
 **Python bridge:** `03_Advanced_Python/06_Database_Programming_Bridge.md` → **Next:** Django ORM maps to these tables.
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| DB vocabulary | Table, row, PK, FK | Relational model | Label ER diagram | Schema sketch |
-| DDL | CREATE, ALTER, DROP | Structure vs data | Create 3 tables | CampusCart DDL |
-| DML | INSERT, UPDATE, DELETE | Rows change data | Insert drills | Seed sample data |
-| DQL | SELECT, WHERE, ORDER BY | Read-only queries | Filter exercises | Report queries |
-| TCL | COMMIT, ROLLBACK | Transaction idea | Rollback demo | See `MYSQL/09` |
-| INNER JOIN | ON syntax | Matching rows only | Join queries | Order + customer |
-| LEFT JOIN | Preserve left table | Optional relationships | NULL handling | Customers w/o orders |
-| Normalization | 1NF → 3NF rules | Remove duplication | Fix bad table | Library schema |
-| Deep practice | `MYSQL/` folder map | Bridge vs depth | One module/week | Capstone prep |
-
----
 
 ## Interview & Discussion Q&A
 

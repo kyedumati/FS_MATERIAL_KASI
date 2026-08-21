@@ -1,7 +1,7 @@
 # Optional Enrichment: Professional Python Design Choices
 
 > **Not a standard teaching module.** Optional enrichment — use after core Advanced Python, Saturday labs, or interview prep only.  
-> Does **not** follow full Classroom Ticket / Try these shape — optional enrichment, not on the critical path.
+> Does **not** follow full Try these shape — optional enrichment, not on the critical path.
 
 **Previous:** [File Handling & Logging](05_File_Handling_and_Logging.md) (finish core Advanced first)  
 **Next:** Continue calendar — [Git & GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) or MySQL phase as scheduled
@@ -24,14 +24,6 @@ By the end, learners can:
 - Inventory — reject oversell with a clear custom exception
 - Payment demos — shared `pay()` contract via an abstract base class
 - Library APIs — `__str__` for humans, `__repr__` for debugging dumps
-
-## Classroom Ticket (optional)
-
-Reuse kits you already know — this file is a **code-review / refactor** session:
-
-- [17_bank_account_oop](../15_Lab_Assets/17_bank_account_oop/)
-- [18_safe_input_exceptions](../15_Lab_Assets/18_safe_input_exceptions/)
-- [30_ksr_utils_toolkit](../15_Lab_Assets/30_ksr_utils_toolkit/)
 
 ## 1. Function design: avoid the mutable default trap
 
@@ -233,7 +225,7 @@ except InsufficientStockError as e:
     print(e)
 ```
 
-## Mini-Project: Stock reserve + notify
+## Mini-Project (Assignment): Stock reserve + notify
 
 **Business request:** A shop needs to reserve stock and notify a customer after an order is accepted.
 
@@ -256,15 +248,6 @@ except InsufficientStockError as e:
 
 - Add a `PaymentGateway` abstract base class and a `DemoGateway` implementation.
 - Write two unit tests for `reserve` (kit [26_unittest_utils](../15_Lab_Assets/26_unittest_utils/) ideas).
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Label | Focus |
-|-------|--------|
-| **Memorize** | Mutable default trap; `ABC` + `@abstractmethod`; `__str__` vs `__repr__` |
-| **Understand** | Composition HAS-A vs inheritance IS-A |
-| **Practise** | Refactor a long if/elif notifier into composition |
-| **Build** | Stock reserve mini-project above |
 
 ## How to run this session
 

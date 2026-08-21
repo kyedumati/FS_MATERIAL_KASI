@@ -23,12 +23,6 @@ By the end of **S38**, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Continue or review **[BankAccount OOP](../15_Lab_Assets/17_bank_account_oop/)** — stretch toward `SavingsAccount` after inheritance (lab kit already shows a small stretch class).
-
-Optional drill: Employee / Manager hierarchy (see Step-by-Step below).
-
 **Teaching note:** Still **no** `try` / `except` / `raise` — Exception Handling comes after OOP Part 3. Validation stays `print` + `return`.
 
 **Teach order today:** Inheritance basics → **types of inheritance (with diagrams)** → overriding → then HAS-A / composition as the alternative.
@@ -92,7 +86,9 @@ flowchart TB
   Fix -.->|easy to miss| SA1
 ```
 
-**Quick Revision:**
+
+**Key takeaways:**
+
 - Same deposit rules in two classes = bug factory
 - Inheritance = child **reuses** parent and adds only what is new
 - Syntax taste: `class SavingsAccount(BankAccount):`
@@ -121,17 +117,19 @@ class SavingsAccount(BankAccount):
 
 **Where used?** `SavingsAccount` is a `BankAccount`; `Manager` is an `Employee`; `Car` is a `Vehicle`.
 
-**What:** **Inheritance** lets a **child class** reuse and extend a **parent class**.  
+**Definition:** **Inheritance** lets a **child class** reuse and extend a **parent class**.  
 In plain English: the child **IS-A** specialised kind of the parent.
 
-**Why:** Write shared behaviour once on the parent; children only add / change what is special.
+**Purpose:** Write shared behaviour once on the parent; children only add / change what is special.
 
-| Word | Meaning |
-| ---- | ------- |
-| **Parent** (base / super class) | The general class — `BankAccount`, `Person` |
+
+| Word                            | Meaning                                              |
+| ------------------------------- | ---------------------------------------------------- |
+| **Parent** (base / super class) | The general class — `BankAccount`, `Person`          |
 | **Child** (derived / sub class) | The specialised class — `SavingsAccount`, `Employee` |
-| **IS-A** | `SavingsAccount` **is a** `BankAccount` |
-| `super()` | Call the parent’s method / `__init__` from the child |
+| **IS-A**                        | `SavingsAccount` **is a** `BankAccount`              |
+| `super()`                       | Call the parent’s method / `__init__` from the child |
+
 
 ```python
 class Person:
@@ -178,7 +176,9 @@ classDiagram
   Person <|-- Employee
 ```
 
-**Quick Revision:**
+
+**Key takeaways:**
+
 - `class Child(Parent):` = inheritance
 - Child **IS-A** Parent
 - Call `super().__init__(...)` when the parent owns required fields
@@ -277,15 +277,17 @@ Ravi — Python lab TA
 
 **Where used?** Interviews always ask these shapes; real apps use single / hierarchical most often.
 
-**What:** How many parents / children you wire — the **shape** of the tree.  
-**Why:** So you can read diagrams, name the type in interviews, and pick a shallow design.
+**Definition:** How many parents / children you wire — the **shape** of the tree.  
+**Purpose:** So you can read diagrams, name the type in interviews, and pick a shallow design.
 
-| Type | Idea | Syntax taste |
-| ---- | ---- | ------------ |
-| **Single** | One parent → one child | `class B(A)` |
-| **Multilevel** | Chain: grandparent → parent → child | `class C(B)` and `class B(A)` |
-| **Hierarchical** | One parent → many children | `class Car(Vehicle)`, `class Bike(Vehicle)` |
-| **Multiple** | Many parents → one child | `class C(A, B)` — supported; prefer composition when unsure |
+
+| Type             | Idea                                | Syntax taste                                                |
+| ---------------- | ----------------------------------- | ----------------------------------------------------------- |
+| **Single**       | One parent → one child              | `class B(A)`                                                |
+| **Multilevel**   | Chain: grandparent → parent → child | `class C(B)` and `class B(A)`                               |
+| **Hierarchical** | One parent → many children          | `class Car(Vehicle)`, `class Bike(Vehicle)`                 |
+| **Multiple**     | Many parents → one child            | `class C(A, B)` — supported; prefer composition when unsure |
+
 
 ---
 
@@ -301,28 +303,9 @@ classDiagram
   Person <|-- Employee
 ```
 
-```python
-class Person:
-    def __init__(self, name):
-        self.name = name
-
-
-class Employee(Person):          # single inheritance
-    def __init__(self, name, emp_id):
-        super().__init__(name)
-        self.emp_id = emp_id
-
-
-print(Employee("Ravi", 101).name, Employee("Ravi", 101).emp_id)
-```
-
-**Expected Output:**
-
-```
-Ravi 101
-```
-
-**Quick Revision:** One arrow up to one parent = **single**.
+**Key takeaways:**
+- One arrow up to one parent = **single**
+- Everyday default shape
 
 ---
 
@@ -339,6 +322,10 @@ classDiagram
   Person <|-- Employee
   Employee <|-- Manager
 ```
+
+**Key takeaways:**
+- A **chain** of IS-A links = **multilevel**
+- Keep chains short (2–3 levels)
 
 ```python
 class Person:
@@ -370,8 +357,6 @@ Manager is Person? True
 MRO: ['Manager', 'Employee', 'Person', 'object']
 ```
 
-**Quick Revision:** A **chain** of IS-A links = **multilevel**. Keep chains short (2–3 levels).
-
 ---
 
 #### 2c. Hierarchical inheritance
@@ -387,6 +372,10 @@ classDiagram
   Vehicle <|-- Car
   Vehicle <|-- Bike
 ```
+
+**Key takeaways:**
+- One parent, many children = **hierarchical**
+- Great setup for polymorphism later (Part 3)
 
 ```python
 class Vehicle:
@@ -418,8 +407,6 @@ Car: Hyundai | Hyundai starting…
 Bike: Royal Enfield | Royal Enfield starting…
 ```
 
-**Quick Revision:** One parent, many children = **hierarchical** (family tree under one root).
-
 ---
 
 #### 2d. Multiple inheritance
@@ -435,6 +422,11 @@ classDiagram
   Father <|-- Child
   Mother <|-- Child
 ```
+
+**Key takeaways:**
+- Many parents → one child = **multiple**
+- Method name clash → MRO decides (left parent first)
+- Prefer HAS-A / composition when you only need to *use* two helpers
 
 ```python
 class Father:
@@ -468,11 +460,6 @@ Which skills() wins alone? ['driving']
 ```
 
 **Multiple inheritance note:** If both parents define the same method, Python uses **MRO** (Method Resolution Order) — roughly “child first, then left-to-right parents.” Inspect with `ClassName.mro()`. You do not need the C3 algorithm for this course; know that order matters: `class C(A, B)` vs `class C(B, A)`.
-
-**Quick Revision:**
-- Many parents → one child = **multiple**
-- Method name clash → MRO decides
-- Prefer **HAS-A / composition** when you only need to *use* two helpers (next section)
 
 **Common Error:** using multiple inheritance just to “mix features” when `self.engine = Engine()` would be clearer.
 
@@ -553,8 +540,8 @@ Meera (900) — team of 6
 
 ### 3. Method overriding
 
-**What:** The child defines a method with the **same name** as the parent, with a new body.  
-**Why:** Specialise behaviour while keeping the same call site (`obj.info()`, `obj.net_salary()`).
+**Definition:** The child defines a method with the **same name** as the parent, with a new body.  
+**Purpose:** Specialise behaviour while keeping the same call site (`obj.info()`, `obj.net_salary()`).
 
 ```python
 class Vehicle:
@@ -599,7 +586,9 @@ flowchart LR
   Call --> BikeInfo["Bike.info"]
 ```
 
-**Quick Revision:**
+
+**Key takeaways:**
+
 - Override = same method name in child, new body
 - Call `super().method()` when you still want parent behaviour plus extras
 - Hierarchical + override = natural setup for Part 3 polymorphism
@@ -680,15 +669,17 @@ ElectricCar starting silently
 
 Teach this **after** inheritance types: first learn IS-A trees, then learn when a tree is the wrong tool.
 
-**What:** **Composition / HAS-A** = class A *stores and uses* an instance of B (`self.laptop = Laptop(...)`).  
-**Why:** You need collaboration, not specialisation. A car is **not** an engine; an employee is **not** a laptop.
+**Definition:** **Composition / HAS-A** = class A *stores and uses* an instance of B (`self.laptop = Laptop(...)`).  
+**Purpose:** You need collaboration, not specialisation. A car is **not** an engine; an employee is **not** a laptop.
 
 **Rule of thumb (decide after you can sketch inheritance types):**
 
-| Need | Choose |
-| ---- | ------ |
-| Child **is a** specialised parent | **IS-A** inheritance |
+
+| Need                                       | Choose                |
+| ------------------------------------------ | --------------------- |
+| Child **is a** specialised parent          | **IS-A** inheritance  |
 | Object only **uses** / owns another object | **HAS-A** composition |
+
 
 ```python
 class Laptop:
@@ -752,7 +743,9 @@ classDiagram
   Employee --> Laptop : has-a
 ```
 
-**Quick Revision:**
+
+**Key takeaways:**
+
 - Inheritance = IS-A
 - Composition = HAS-A (`self.other = Other(...)`)
 - `isinstance(e, Laptop)` is False — laptop is owned, not inherited
@@ -831,8 +824,8 @@ Tata: 1200cc engine running
 
 ### 5. `isinstance` and when *not* to switch on types
 
-**What:** `isinstance(obj, Class)` asks “is this object this type (or a subclass)?”  
-**Why:** Useful for guards — dangerous as a giant `if/elif` tree that recreates the problem polymorphism solves (Part 3).
+**Definition:** `isinstance(obj, Class)` asks “is this object this type (or a subclass)?”  
+**Purpose:** Useful for guards — dangerous as a giant `if/elif` tree that recreates the problem polymorphism solves (Part 3).
 
 ```python
 class Animal:
@@ -1109,137 +1102,155 @@ Vikram (102) drives Nexon EV
 
 1. `Rectangle` with `area()` / `perimeter()`; `Square` inherits from `Rectangle` and only needs `side` (**single**).
    **Model answer:**
-   ```python
-   class Rectangle:
-       def __init__(self, w, h):
-           self.w, self.h = w, h
 
-       def area(self):
-           return self.w * self.h
+```python
+class Rectangle:
+    def __init__(self, w, h):
+        self.w, self.h = w, h
 
-       def perimeter(self):
-           return 2 * (self.w + self.h)
+    def area(self):
+        return self.w * self.h
 
-   class Square(Rectangle):
-       def __init__(self, side):
-           super().__init__(side, side)
+    def perimeter(self):
+        return 2 * (self.w + self.h)
 
-   sq = Square(4)
-   print(sq.area(), sq.perimeter())  # 16 16
-   ```
+class Square(Rectangle):
+    def __init__(self, side):
+        super().__init__(side, side)
+
+sq = Square(4)
+print(sq.area(), sq.perimeter())  # 16 16
+```
+
+
+   **Expected Output:**
+
+```
+16 16
+```
+
 
 2. **Multilevel:** `Person` → `Employee` → `Developer` with `language` and a `label()` override that uses `super()`.
    **Model answer:**
-   ```python
-   class Person:
-       def __init__(self, name):
-           self.name = name
 
-       def label(self):
-           return self.name
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
 
-   class Employee(Person):
-       def __init__(self, name, emp_id):
-           super().__init__(name)
-           self.emp_id = emp_id
+    def label(self):
+        return self.name
 
-       def label(self):
-           return f"{super().label()} ({self.emp_id})"
+class Employee(Person):
+    def __init__(self, name, emp_id):
+        super().__init__(name)
+        self.emp_id = emp_id
 
-   class Developer(Employee):
-       def __init__(self, name, emp_id, language):
-           super().__init__(name, emp_id)
-           self.language = language
+    def label(self):
+        return f"{super().label()} ({self.emp_id})"
 
-       def label(self):
-           return f"{super().label()} — {self.language}"
+class Developer(Employee):
+    def __init__(self, name, emp_id, language):
+        super().__init__(name, emp_id)
+        self.language = language
 
-   print(Developer("Anita", 11, "Python").label())
-   ```
+    def label(self):
+        return f"{super().label()} — {self.language}"
+
+print(Developer("Anita", 11, "Python").label())
+```
+
 
    **Expected Output:**
-   ```
-   Anita (11) — Python
-   ```
+
+```
+Anita (11) — Python
+```
+
 
 3. Sketch (on paper or Mermaid) **hierarchical** inheritance for `Shape` → `Circle` / `Rectangle`. Then implement `area()`.
    **Model answer:**
-   ```python
-   import math
 
-   class Shape:
-       def area(self):
-           return 0.0
+```python
+import math
 
-   class Circle(Shape):
-       def __init__(self, r):
-           self.r = r
+class Shape:
+    def area(self):
+        return 0.0
 
-       def area(self):
-           return math.pi * self.r ** 2
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
 
-   class Rectangle(Shape):
-       def __init__(self, w, h):
-           self.w, self.h = w, h
+    def area(self):
+        return math.pi * self.r ** 2
 
-       def area(self):
-           return self.w * self.h
+class Rectangle(Shape):
+    def __init__(self, w, h):
+        self.w, self.h = w, h
 
-   for s in [Circle(2), Rectangle(3, 4)]:
-       print(round(s.area(), 2))
-   ```
+    def area(self):
+        return self.w * self.h
+
+for s in [Circle(2), Rectangle(3, 4)]:
+    print(round(s.area(), 2))
+```
+
+
+   **Expected Output:**
+
+```
+12.57
+12
+```
+
 
 4. **Composition:** `Library` HAS-A list of `Book` objects; implement `add(book)` and `count()`.
    **Model answer:**
-   ```python
-   class Book:
-       def __init__(self, title):
-           self.title = title
 
-   class Library:
-       def __init__(self, name):
-           self.name = name
-           self.books = []
+```python
+class Book:
+    def __init__(self, title):
+        self.title = title
 
-       def add(self, book):
-           self.books.append(book)
+class Library:
+    def __init__(self, name):
+        self.name = name
+        self.books = []
 
-       def count(self):
-           return len(self.books)
+    def add(self, book):
+        self.books.append(book)
 
-   lib = Library("KSR Central")
-   lib.add(Book("Clean Code"))
-   lib.add(Book("Fluent Python"))
-   print(lib.name, lib.count())  # KSR Central 2
-   ```
+    def count(self):
+        return len(self.books)
+
+lib = Library("KSR Central")
+lib.add(Book("Clean Code"))
+lib.add(Book("Fluent Python"))
+print(lib.name, lib.count())  # KSR Central 2
+```
+
+
+   **Expected Output:**
+
+```
+KSR Central 2
+```
+
 
 5. Extend lab kit: add `SavingsAccount(BankAccount)` with `add_interest(rate=0.04)` that deposits `balance * rate`.
    **Model answer:**
-   ```python
-   class SavingsAccount(BankAccount):
-       def add_interest(self, rate=0.04):
-           self.deposit(self.get_balance() * rate)
-   ```
+
+```python
+class SavingsAccount(BankAccount):
+    def add_interest(self, rate=0.04):
+        self.deposit(self.get_balance() * rate)
+```
+
 
 6. Explain in 3–4 lines (no code): when would you **not** make `Car` inherit from `Engine`?
    **Model answer:**  
    A car **has an** engine; it is not a kind of engine. Inheritance would expose engine internals as if they were car behaviour and break IS-A thinking. Use composition: `self.engine = Engine(...)`.
-
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Inheritance basics | `class Child(Parent)`, `super()`, IS-A | Parent owns shared fields | SavingsAccount | Employee card |
-| Types | Single / multilevel / hierarchical / multiple | Sketch each shape | Manager chain; Car/Bike | Account hierarchy |
-| Overriding | Same name, new body | When to call `super()` | payslip / info | Fleet loop |
-| HAS-A | `self.x = Other()` | Prefer when not IS-A | Order + notifier | Car has Engine |
-| isinstance | `isinstance(obj, Cls)` | Prefer poly over type-switch | Guards only | Validate helpers |
-
-**Label legend:** **Memorize** = recall in interviews · **Understand** = explain in English · **Practise** = daily labs · **Build** = portfolio artefacts
-
----
 
 ## Interview bite (Part 2)
 

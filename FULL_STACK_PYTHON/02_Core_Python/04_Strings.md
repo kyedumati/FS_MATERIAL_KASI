@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Clean email/phone + mask for display](../15_Lab_Assets/09_string_parser/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is a string?
 
 A **string** (`str`) is a sequence of characters — letters, digits, symbols, spaces — used for names, emails, addresses, JSON text, and HTML.
@@ -44,7 +36,7 @@ A **string** (`str`) is a sequence of characters — letters, digits, symbols, s
 
 ### Why do we need strings?
 
-Almost every app stores **text**: student name, email, phone, product title, error message. Before lists and databases, you must clean and slice text (today’s Classroom Ticket: email/phone cleaner).
+Almost every app stores **text**: student name, email, phone, product title, error message. Before lists and databases, you must clean and slice text (today’s lab kit: email/phone cleaner).
 
 | Without string skills | With string skills |
 |----------------------|--------------------|
@@ -65,8 +57,8 @@ Python has **no separate `char` type** — even `'A'` is a string of length 1.
 
 ### Indexing — what / why, then syntax
 
-**What:** Each character has a position number starting at `0`.  
-**Why:** Extract initials, domain from email, last 4 digits of a phone.
+**Definition:** Each character has a position number starting at `0`.  
+**Purpose:** Extract initials, domain from email, last 4 digits of a phone.
 
 Indices start at **0** for the first character.
 
@@ -84,8 +76,8 @@ print(lang[-1])   # n (last char)
 
 ### Slicing — what / why, then syntax
 
-**What:** Take a contiguous piece of the string with `string[start:stop:step]`.  
-**Why:** Pull username from email, reverse a string for drills, skip characters.
+**Definition:** Take a contiguous piece of the string with `string[start:stop:step]`.  
+**Purpose:** Pull username from email, reverse a string for drills, skip characters.
 
 Syntax: `string[start:stop:step]`
 
@@ -102,8 +94,8 @@ print(email[::2])      # every 2nd char — rai.kmr@cmpyom
 
 ### Immutability — what / why
 
-**What:** You cannot change a character inside an existing string object.  
-**Why:** Predict bugs like `name[0] = "A"` (fails); use reassignment / new strings instead (`name = name.upper()`).
+**Definition:** You cannot change a character inside an existing string object.  
+**Purpose:** Predict bugs like `name[0] = "A"` (fails); use reassignment / new strings instead (`name = name.upper()`).
 
 **Immutable** means: once created, the string object cannot change. Methods return **new** strings.
 
@@ -603,41 +595,45 @@ print(digits)
 
    **Model answer:**
 
-   ```python
-   s = "Full Stack Python"
-   print(s[0])      # F
-   print(s[-1])     # n
-   print(len(s))    # 17
-   ```
+```python
+s = "Full Stack Python"
+print(s[0])      # F
+print(s[-1])     # n
+print(len(s))    # 17
+```
+
 
 2. Slice to extract `"Stack"` from the string above.
 
    **Model answer:**
 
-   ```python
-   s = "Full Stack Python"
-   print(s[5:10])  # Stack
-   ```
+```python
+s = "Full Stack Python"
+print(s[5:10])  # Stack
+```
+
 
 3. Convert `"  hello world  "` to `"HELLO WORLD"` using methods only.
 
    **Model answer:**
 
-   ```python
-   raw = "  hello world  "
-   clean = raw.strip().upper()
-   print(clean)  # HELLO WORLD
-   ```
+```python
+raw = "  hello world  "
+clean = raw.strip().upper()
+print(clean)  # HELLO WORLD
+```
+
 
 4. Split `"apple,banana,mango"` by comma; print each fruit on new line with for.
 
    **Model answer:**
 
-   ```python
-   fruits = "apple,banana,mango".split(",")
-   for fruit in fruits:
-       print(fruit)
-   ```
+```python
+fruits = "apple,banana,mango".split(",")
+for fruit in fruits:
+    print(fruit)
+```
+
 
 ### Intermediate
 
@@ -645,53 +641,57 @@ print(digits)
 
    **Model answer:**
 
-   ```python
-   email = input("Email: ").strip()
-   username, domain = email.split("@", 1)
-   print(f"Username: {username}")
-   print(f"Domain: {domain}")
-   ```
+```python
+email = input("Email: ").strip()
+username, domain = email.split("@", 1)
+print(f"Username: {username}")
+print(f"Domain: {domain}")
+```
+
 
 2. Mask Aadhaar-style number: show only last 4 digits (`XXXX-XXXX-1234`).
 
    **Model answer:**
 
-   ```python
-   aadhaar = input("12-digit Aadhaar: ").strip().replace(" ", "").replace("-", "")
-   last4 = aadhaar[-4:]
-   print(f"XXXX-XXXX-{last4}")
-   ```
+```python
+aadhaar = input("12-digit Aadhaar: ").strip().replace(" ", "").replace("-", "")
+last4 = aadhaar[-4:]
+print(f"XXXX-XXXX-{last4}")
+```
+
 
 3. Check password length >= 8 and contains at least one digit (loop + `in`).
 
    **Model answer:**
 
-   ```python
-   password = input("Password: ")
-   has_digit = False
-   for ch in password:
-       if ch in "0123456789":
-           has_digit = True
-           break
-   if len(password) >= 8 and has_digit:
-       print("Password OK")
-   else:
-       print("Need length >= 8 and at least one digit")
-   ```
+```python
+password = input("Password: ")
+has_digit = False
+for ch in password:
+    if ch in "0123456789":
+        has_digit = True
+        break
+if len(password) >= 8 and has_digit:
+    print("Password OK")
+else:
+    print("Need length >= 8 and at least one digit")
+```
+
 
 4. Reverse a string using slicing `[::-1]` and using a loop (two ways).
 
    **Model answer:**
 
-   ```python
-   s = "Namaste"
-   print(s[::-1])  # slicing
+```python
+s = "Namaste"
+print(s[::-1])  # slicing
 
-   reversed_s = ""
-   for ch in s:
-       reversed_s = ch + reversed_s
-   print(reversed_s)  # loop
-   ```
+reversed_s = ""
+for ch in s:
+    reversed_s = ch + reversed_s
+print(reversed_s)  # loop
+```
+
 
 ### Interview-Oriented
 
@@ -727,7 +727,7 @@ print(digits)
 
 ---
 
-## Mini-Project: Text Utilities CLI (Employee / Student Data)
+## Mini-Project (Assignment): Text Utilities CLI (Employee / Student Data)
 
 **Title:** Menu-driven text cleaner for registration fields  
 **Lab kit (build here):** [15_Lab_Assets/09_string_parser/](../15_Lab_Assets/09_string_parser/)
@@ -770,21 +770,6 @@ Average: 85.00
 - [ ] Menu options 1–5 work and exit on `0`  
 - [ ] Marks parse prints roll, name, and average  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| String literals | `'`, `"`, `'''` | Escape sequences | Multi-line bios | — |
-| Indexing | `[0]`, `[-1]` | Zero-based index | Extract chars | Initials generator |
-| Slicing | `[start:stop:step]` | stop exclusive | Substrings | Domain from email |
-| Immutability | str cannot change in place | New object created | Predict outputs | Why reassignment |
-| Case methods | upper, lower, title, capitalize | Locale vs ASCII | Normalize input | Login case-insensitive |
-| strip/split/join | whitespace cleanup | tokenize text | Parse lines | CSV-lite parser |
-| replace/find | search and replace | -1 not found | Clean phone fmt | Template messages |
-| f-strings | `{var}`, `{expr:.2f}` | Format specifiers | Reports | Employee letters |
-| Validation lite | in, startswith, len | Not full regex yet | Email/phone checks | Registration form |
 
 ## Interview & Discussion Q&A
 

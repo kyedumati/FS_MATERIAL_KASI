@@ -21,15 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Never commit .env](../15_Lab_Assets/19_git_portfolio_hygiene/)**
-- **[Injection mindset carries to ORM](../15_Lab_Assets/20_sql_injection_demo/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### Security Mindset
 
 **Security** means protecting user data, passwords, and your server from attackers. Django includes many **defaults** (CSRF middleware, template auto-escaping, ORM parameterization) — but misconfiguration (`DEBUG=True` online, weak `SECRET_KEY`, missing HTTPS) causes real breaches.
@@ -226,7 +217,7 @@ flowchart LR
   Mig --> Live[https://your-app...]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Push code → set env on PaaS → migrate + collectstatic → live URL
 - Secrets live in platform env, never in Git
 - `check --deploy` before you call it production-ready
@@ -488,9 +479,11 @@ Learners complete `docs/DEPLOY_CHECKLIST.md`:
 
 1. Generate SECRET_KEY using Django shell: `from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())`
    **Model answer:**
-   ```bash
-   python manage.py shell -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
-   ```
+
+```bash
+python manage.py shell -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
    Store the printed value in an environment variable — never commit it.
 
 2. List three items from deployment checklist and explain each
@@ -499,10 +492,12 @@ Learners complete `docs/DEPLOY_CHECKLIST.md`:
 
 3. Run collectstatic; count files in `staticfiles/admin/`
    **Model answer:**
-   ```bash
-   python manage.py collectstatic --noinput
-   find staticfiles/admin -type f | wc -l
-   ```
+
+```bash
+python manage.py collectstatic --noinput
+find staticfiles/admin -type f | wc -l
+```
+
    Count varies by Django version; non-zero means admin CSS/JS were gathered.
 
 ### Intermediate
@@ -533,7 +528,7 @@ Learners complete `docs/DEPLOY_CHECKLIST.md`:
    **Model answer:**
    Config (secrets, DB URLs, debug flags) changes per environment without code edits. Env vars keep secrets out of the repo and match the 12-factor rule: store config in the environment.
 
-## Mini-Project / Activity
+## Mini-Project / Activity (Assignment)
 
 **Activity: "Staging Ready Portal" (90 min)**  
 **Lab kit:** [19_git_portfolio_hygiene](../15_Lab_Assets/19_git_portfolio_hygiene/) · [20_sql_injection_demo](../15_Lab_Assets/20_sql_injection_demo/)
@@ -558,24 +553,6 @@ Learners complete `docs/DEPLOY_CHECKLIST.md`:
 - [ ] DEPLOY_CHECKLIST.md completed
 - [ ] Gunicorn smoke test **or** platform deploy started
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| CSRF | `{% csrf_token %}`, middleware | Forged POST prevention | Audit all forms | Form checklist |
-| XSS | Escape template vars | Untrusted input danger | Safe `{{ var }}` | No `\|safe` abuse |
-| SQL injection | ORM + params | Never raw f-string SQL | Review queries | ORM-only policy |
-| DEBUG | `False` in production | Leaks stack traces | Toggle locally once | Staging settings |
-| SECRET_KEY | Unique, secret | Signing sessions/CSRF | Env var pattern | .env example |
-| ALLOWED_HOSTS | List domain names | Host header attack | Set for deploy URL | Render hostname |
-| collectstatic | Management command | Admin CSS in prod | Run before deploy | staticfiles dir |
-| Env vars | `load_dotenv` + `os.environ.get` | 12-factor config | `.env` + `.gitignore` + `.env.example` | PaaS dashboard vars |
-| Deploy checklist | 10-step list | Dev vs prod table | Mock deploy dry run | README deploy doc |
-| PaaS overview | Render/Railway/PythonAnywhere | Managed hosting | Read docs pages | Choose one lab |
-
----
 
 ## Interview & Discussion Q&A
 

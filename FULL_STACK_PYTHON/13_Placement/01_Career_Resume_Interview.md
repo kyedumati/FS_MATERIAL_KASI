@@ -22,14 +22,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[GitHub pins + clean README](../15_Lab_Assets/19_git_portfolio_hygiene/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Prerequisites
 
 - Near-complete course projects on GitHub
@@ -408,7 +400,7 @@ Open to junior developer roles — connect via LinkedIn.
    **Model answer:**
    Tie your projects to their stack, show you learn fast (cite a bug you fixed), and state you can contribute from week one on CRUD/APIs while growing into their domain. End with enthusiasm for their product, not generic praise.
 
-## Mini-Project: Placement Kit
+## Mini-Project (Assignment): Placement Kit
 
 ### What to build
 
@@ -432,22 +424,6 @@ Deliverable folder `placement_kit/`:
 - [ ] Tracker has at least 5 real or practice rows
 - [ ] LinkedIn headline + GitHub pins match the resume story
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Agile/Scrum | Sprint, standup, backlog | Team delivery rhythm | Map course to sprint | — |
-| Resume format | 1 page, PDF | ATS keywords | 3 resume versions | Final resume v3 |
-| LinkedIn | Headline, skills, projects | Recruiter search | Profile checklist | Live profile |
-| GitHub portfolio | README, pinned repos | Code as proof | Polish 2 repos | Portfolio page |
-| Mock interview | Intro, projects, Python Qs | Feedback loop | 2 mocks/week | Question bank |
-| Aptitude/coding | Patterns, complexity lite | TCS/Infosys style awareness | 30 min daily | LeetCode easy list |
-| STAR stories | 4 stories ready | Switcher narrative | Record 2 min answer | Story doc |
-| Application tracker | Status columns | Pipeline mindset | 10 applications | Spreadsheet |
-
----
 
 ## Interview & Discussion Q&A
 

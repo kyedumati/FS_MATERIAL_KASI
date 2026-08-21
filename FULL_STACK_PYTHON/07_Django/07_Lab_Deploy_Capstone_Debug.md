@@ -18,14 +18,6 @@
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Deploy hygiene checklist (.env, README)](../15_Lab_Assets/19_git_portfolio_hygiene/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Must-pass checklist
 
 ### Done when
@@ -75,16 +67,3 @@ Success is judged on **env hygiene + `check --deploy`**, not only a public URL.
 ## Assignment
 
 Submit deploy checklist filled + repo tag `lab07-deploy`. Capstone M4 advanced if URL live.
-
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| check --deploy | Command | Why warnings matter | Run & fix | Checklist doc |
-| Env config | Keys in `.env.example` | Shell vs file vs PaaS | Break DEBUG | Staging settings |
-| Static | collectstatic | WhiteNoise role | Broken CSS fix | Admin CSS live |
-
----
-

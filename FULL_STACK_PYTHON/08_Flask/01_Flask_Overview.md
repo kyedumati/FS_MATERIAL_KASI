@@ -19,14 +19,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Tiny Notes JSON API](../15_Lab_Assets/25_flask_notes_api/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is Flask?
 
 **Flask** is a lightweight Python **web framework**. You write a small Python file, map URLs to functions, and return HTML or JSON. Unlike Django, Flask does not ship with admin, ORM, or auth — you add what you need.
@@ -413,63 +405,75 @@ curl http://127.0.0.1:5000/api/notes
 
 1. Add route `/about` returning plain text about your training batch.
    **Model answer:**
-   ```python
-   @app.get("/about")
-   def about():
-       return "KSR Python Full Stack batch — learning Flask APIs."
-   ```
+
+```python
+@app.get("/about")
+def about():
+    return "KSR Python Full Stack batch — learning Flask APIs."
+```
+
 
 2. Add route `/square/<int:n>` returning JSON `{"input": 5, "result": 25}`.
    **Model answer:**
-   ```python
-   from flask import jsonify
 
-   @app.get("/square/<int:n>")
-   def square(n):
-       return jsonify({"input": n, "result": n * n})
-   ```
+```python
+from flask import jsonify
+
+@app.get("/square/<int:n>")
+def square(n):
+    return jsonify({"input": n, "result": n * n})
+```
+
 
 3. Create template `base.html` with a footer "KSR Python Full Stack 2026".
    **Model answer:**
-   ```html
-   <!DOCTYPE html>
-   <html lang="en">
-   <body>
-     {% block content %}{% endblock %}
-     <footer>KSR Python Full Stack 2026</footer>
-   </body>
-   </html>
-   ```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  {% block content %}{% endblock %}
+  <footer>KSR Python Full Stack 2026</footer>
+</body>
+</html>
+```
+
 
 ### Intermediate
 
 1. Add query param filter: `GET /api/notes?search=flask` filters by title substring.
    **Model answer:**
-   ```python
-   @app.get("/api/notes")
-   def list_notes():
-       q = (request.args.get("search") or "").lower()
-       notes = [n for n in NOTES if q in n["title"].lower()] if q else NOTES
-       return jsonify(notes)
-   ```
+
+```python
+@app.get("/api/notes")
+def list_notes():
+    q = (request.args.get("search") or "").lower()
+    notes = [n for n in NOTES if q in n["title"].lower()] if q else NOTES
+    return jsonify(notes)
+```
+
 
 2. Validate POST: reject empty title with 400 and error message.
    **Model answer:**
-   ```python
-   data = request.get_json(silent=True) or {}
-   title = (data.get("title") or "").strip()
-   if not title:
-       return jsonify({"error": "title required"}), 400
-   ```
+
+```python
+data = request.get_json(silent=True) or {}
+title = (data.get("title") or "").strip()
+if not title:
+    return jsonify({"error": "title required"}), 400
+```
+
 
 3. Add `GET /api/stats` returning `{"total": N, "latest_id": M}`.
    **Model answer:**
-   ```python
-   @app.get("/api/stats")
-   def stats():
-       latest = NOTES[-1]["id"] if NOTES else None
-       return jsonify({"total": len(NOTES), "latest_id": latest})
-   ```
+
+```python
+@app.get("/api/stats")
+def stats():
+    latest = NOTES[-1]["id"] if NOTES else None
+    return jsonify({"total": len(NOTES), "latest_id": latest})
+```
+
 
 ### Interview-style
 
@@ -485,7 +489,7 @@ curl http://127.0.0.1:5000/api/notes
    **Model answer:**
    WSGI is the Python standard interface between web servers and Python apps. Flask’s `app` is a WSGI callable that servers like gunicorn invoke to handle HTTP requests.
 
-## Mini-Project: Personal Notes API + HTML Dashboard
+## Mini-Project (Assignment): Personal Notes API + HTML Dashboard
 
 **Lab kit (build here):** [15_Lab_Assets/25_flask_notes_api/](../15_Lab_Assets/25_flask_notes_api/)
 
@@ -510,19 +514,6 @@ curl http://127.0.0.1:5000/api/notes
 - [ ] Jinja page lists notes
 - [ ] README includes at least two curl examples
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Flask vs Django | "Micro vs batteries-included" | When to pick each | Compare table verbally | Decision slide for 3 apps |
-| Install & run | `pip install flask`, `flask run` or `python app.py` | Virtual env isolation | Fresh venv + install | `hello_flask` app |
-| Routes | `@app.route('/path')`, methods list | URL → function mapping | 5 routes with params | Notes API paths |
-| Templates | `render_template()`, Jinja `{{ }}` | Separation of logic/HTML | One page with loop | Notes list page |
-| JSON responses | `jsonify()`, `request.get_json()` | API vs HTML page | Postman/curl tests | REST-style notes |
-| Dev server | `debug=True`, port 5000 | Not for production | Restart on code change | — |
-| Project layout | `app.py`, `templates/`, optional `static/` | Flat vs Django apps | Folder structure | Notes API layout |
 
 ## Interview & Discussion Q&A
 

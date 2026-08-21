@@ -18,14 +18,6 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Placement contact book dict](../15_Lab_Assets/11_contact_book/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 A **dictionary** is like a real dictionary or phone contacts app:
 
 - You look up a **word (key)** and get a **meaning (value)**.
@@ -510,37 +502,40 @@ print(product["name"])
 
    **Model answer:**
 
-   ```python
-   student = {"name": "Dev", "roll": 21, "marks": 88}
-   for key, value in student.items():
-       print(f"{key}: {value}")
-   ```
+```python
+student = {"name": "Dev", "roll": 21, "marks": 88}
+for key, value in student.items():
+    print(f"{key}: {value}")
+```
+
 
 2. Add key `"grade"` based on marks (A if ≥90, B if ≥75, else C).
 
    **Model answer:**
 
-   ```python
-   student = {"name": "Dev", "roll": 21, "marks": 88}
-   marks = student["marks"]
-   if marks >= 90:
-       student["grade"] = "A"
-   elif marks >= 75:
-       student["grade"] = "B"
-   else:
-       student["grade"] = "C"
-   print(student)
-   ```
+```python
+student = {"name": "Dev", "roll": 21, "marks": 88}
+marks = student["marks"]
+if marks >= 90:
+    student["grade"] = "A"
+elif marks >= 75:
+    student["grade"] = "B"
+else:
+    student["grade"] = "C"
+print(student)
+```
+
 
 3. Use `.get()` to read `"phone"` with default `"Not provided"`.
 
    **Model answer:**
 
-   ```python
-   student = {"name": "Dev", "roll": 21, "marks": 88}
-   phone = student.get("phone", "Not provided")
-   print(phone)  # Not provided
-   ```
+```python
+student = {"name": "Dev", "roll": 21, "marks": 88}
+phone = student.get("phone", "Not provided")
+print(phone)  # Not provided
+```
+
 
 ### Intermediate
 
@@ -548,52 +543,55 @@ print(product["name"])
 
    **Model answer:**
 
-   ```python
-   catalog = {
-       "P101": {"name": "Notebook", "price": 80.0},
-       "P102": {"name": "Pen Set", "price": 120.0},
-       "P103": {"name": "USB Drive", "price": 499.0},
-   }
-   sku = input("Enter SKU: ").strip().upper()
-   product = catalog.get(sku)
-   if product:
-       print(f"{product['name']} — ₹{product['price']}")
-   else:
-       print("SKU not found")
-   ```
+```python
+catalog = {
+    "P101": {"name": "Notebook", "price": 80.0},
+    "P102": {"name": "Pen Set", "price": 120.0},
+    "P103": {"name": "USB Drive", "price": 499.0},
+}
+sku = input("Enter SKU: ").strip().upper()
+product = catalog.get(sku)
+if product:
+    print(f"{product['name']} — ₹{product['price']}")
+else:
+    print("SKU not found")
+```
+
 
 5. Count how many expenses per category: `[{"cat":"Food","amt":450}, ...]`.
 
    **Model answer:**
 
-   ```python
-   expenses = [
-       {"cat": "Food", "amt": 450},
-       {"cat": "Travel", "amt": 120},
-       {"cat": "Food", "amt": 200},
-       {"cat": "Utilities", "amt": 900},
-       {"cat": "Travel", "amt": 80},
-   ]
-   counts = {}
-   for row in expenses:
-       cat = row["cat"]
-       counts[cat] = counts.get(cat, 0) + 1
-   print(counts)  # {'Food': 2, 'Travel': 2, 'Utilities': 1}
-   ```
+```python
+expenses = [
+    {"cat": "Food", "amt": 450},
+    {"cat": "Travel", "amt": 120},
+    {"cat": "Food", "amt": 200},
+    {"cat": "Utilities", "amt": 900},
+    {"cat": "Travel", "amt": 80},
+]
+counts = {}
+for row in expenses:
+    cat = row["cat"]
+    counts[cat] = counts.get(cat, 0) + 1
+print(counts)  # {'Food': 2, 'Travel': 2, 'Utilities': 1}
+```
+
 
 6. Update nested dict: change customer city inside an order dict.
 
    **Model answer:**
 
-   ```python
-   order = {
-       "order_id": "ORD-901",
-       "customer": {"name": "Meera", "city": "Pune"},
-       "total": 2499.0,
-   }
-   order["customer"]["city"] = "Bengaluru"
-   print(order["customer"])
-   ```
+```python
+order = {
+    "order_id": "ORD-901",
+    "customer": {"name": "Meera", "city": "Pune"},
+    "total": 2499.0,
+}
+order["customer"]["city"] = "Bengaluru"
+print(order["customer"])
+```
+
 
 ### Interview-style
 
@@ -601,54 +599,57 @@ print(product["name"])
 
    **Model answer:**
 
-   ```python
-   def merge_sum(a, b):
-       result = dict(a)
-       for key, value in b.items():
-           if key in result:
-               result[key] = result[key] + value
-           else:
-               result[key] = value
-       return result
+```python
+def merge_sum(a, b):
+    result = dict(a)
+    for key, value in b.items():
+        if key in result:
+            result[key] = result[key] + value
+        else:
+            result[key] = value
+    return result
 
-   left = {"Food": 450, "Travel": 120}
-   right = {"Food": 200, "Utilities": 900}
-   print(merge_sum(left, right))
-   # {'Food': 650, 'Travel': 120, 'Utilities': 900}
-   ```
+left = {"Food": 450, "Travel": 120}
+right = {"Food": 200, "Utilities": 900}
+print(merge_sum(left, right))
+# {'Food': 650, 'Travel': 120, 'Utilities': 900}
+```
+
 
 8. Invert dict `{101: "Ananya", 102: "Dev"}` → `{"Ananya": 101, "Dev": 102}` (assume unique values).
 
    **Model answer:**
 
-   ```python
-   original = {101: "Ananya", 102: "Dev"}
-   inverted = {value: key for key, value in original.items()}
-   print(inverted)
-   ```
+```python
+original = {101: "Ananya", 102: "Dev"}
+inverted = {value: key for key, value in original.items()}
+print(inverted)
+```
+
 
 9. Flatten one level: `{"a": 1, "b": {"c": 2, "d": 3}}` → keys `a`, `b.c`, `b.d` (optional stretch).
 
    **Model answer:**
 
-   ```python
-   def flatten_one_level(data):
-       flat = {}
-       for key, value in data.items():
-           if isinstance(value, dict):
-               for inner_key, inner_val in value.items():
-                   flat[f"{key}.{inner_key}"] = inner_val
-           else:
-               flat[key] = value
-       return flat
+```python
+def flatten_one_level(data):
+    flat = {}
+    for key, value in data.items():
+        if isinstance(value, dict):
+            for inner_key, inner_val in value.items():
+                flat[f"{key}.{inner_key}"] = inner_val
+        else:
+            flat[key] = value
+    return flat
 
-   print(flatten_one_level({"a": 1, "b": {"c": 2, "d": 3}}))
-   # {'a': 1, 'b.c': 2, 'b.d': 3}
-   ```
+print(flatten_one_level({"a": 1, "b": {"c": 2, "d": 3}}))
+# {'a': 1, 'b.c': 2, 'b.d': 3}
+```
+
 
 ---
 
-## Mini-Project: Contact Book CLI
+## Mini-Project (Assignment): Contact Book CLI
 
 **Title:** Phone-keyed contact book with CRUD  
 **Lab kit (build here):** [15_Lab_Assets/11_contact_book/](../15_Lab_Assets/11_contact_book/)
@@ -694,16 +695,6 @@ def list_contacts():
 - [ ] Update and delete by phone work without KeyError  
 - [ ] Menu exits cleanly on option 6  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Label | What to focus on |
-|-------|------------------|
-| **Memorize** | `{}`, `d[key]`, `d.get(key, default)`, `d[key] = val`, `del d[key]`, `.items()`, `dict()` |
-| **Understand** | Keys must be **hashable** and **unique**; insertion order preserved (3.7+); dict vs list lookup |
-| **Practise** | Contact book CRUD; product lookup by SKU; count word frequency |
-| **Build** | **Contact Book CLI** — add/search/update/delete contacts by phone or email |
 
 ## Interview & Discussion Q&A
 

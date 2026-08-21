@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Mini ATM menu that must not crash/exit wrongly](../15_Lab_Assets/08_atm_menu/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### Why flow control?
 
 Programs rarely run in one straight line. A **student portal** must check login, an **ATM** repeats until user exits, and a **task manager** loops through tasks.
@@ -84,7 +76,7 @@ flowchart TD
   F -->|No| H[Grade Fail]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Checks run **top → bottom**; first `True` branch wins
 - Later `elif`s are skipped once one branch runs
 - `else` is the safety net when nothing above matched
@@ -650,45 +642,49 @@ for choice, value in actions:
 
    **Model answer:**
 
-   ```python
-   n = int(input("Number: "))
-   if n % 2 == 0:
-       print("Even")
-   else:
-       print("Odd")
-   ```
+```python
+n = int(input("Number: "))
+if n % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+```
+
 
 2. Print numbers 1 to 20 using `for` and `range`.
 
    **Model answer:**
 
-   ```python
-   for i in range(1, 21):
-       print(i)
-   ```
+```python
+for i in range(1, 21):
+    print(i)
+```
+
 
 3. Sum numbers 1 to 100 using a loop.
 
    **Model answer:**
 
-   ```python
-   total = 0
-   for i in range(1, 101):
-       total += i
-   print(total)  # 5050
-   ```
+```python
+total = 0
+for i in range(1, 101):
+    total += i
+print(total)  # 5050
+```
+
 
 4. Ask age; print "Minor" if `< 18` else "Adult".
 
    **Model answer:**
 
-   ```python
-   age = int(input("Age: "))
-   if age < 18:
-       print("Minor")
-   else:
-       print("Adult")
-   ```
+```python
+age = int(input("Age: "))
+if age < 18:
+    print("Minor")
+else:
+    print("Adult")
+```
+
 
 ### Intermediate
 
@@ -696,70 +692,74 @@ for choice, value in actions:
 
    **Model answer:**
 
-   ```python
-   marks = int(input("Marks (0-100): "))
-   if marks >= 90:
-       print("Grade: A")
-   elif marks >= 75:
-       print("Grade: B")
-   elif marks >= 50:
-       print("Grade: C")
-   else:
-       print("Fail")
-   ```
+```python
+marks = int(input("Marks (0-100): "))
+if marks >= 90:
+    print("Grade: A")
+elif marks >= 75:
+    print("Grade: B")
+elif marks >= 50:
+    print("Grade: C")
+else:
+    print("Fail")
+```
+
 
 2. Number guessing: hard-code secret; 5 attempts with while; hints higher/lower.
 
    **Model answer:**
 
-   ```python
-   secret = 7
-   attempts = 0
-   while attempts < 5:
-       guess = int(input("Guess (1-10): "))
-       attempts += 1
-       if guess == secret:
-           print("Correct!")
-           break
-       elif guess < secret:
-           print("Higher")
-       else:
-           print("Lower")
-   else:
-       print("Out of attempts. Secret was", secret)
-   ```
+```python
+secret = 7
+attempts = 0
+while attempts < 5:
+    guess = int(input("Guess (1-10): "))
+    attempts += 1
+    if guess == secret:
+        print("Correct!")
+        break
+    elif guess < secret:
+        print("Higher")
+    else:
+        print("Lower")
+else:
+    print("Out of attempts. Secret was", secret)
+```
+
 
 3. Expense menu: add expense, show total, exit — use while True.
 
    **Model answer:**
 
-   ```python
-   total = 0.0
-   while True:
-       print("1 Add expense  2 Show total  3 Exit")
-       choice = input("Choice: ")
-       if choice == "1":
-           amount = float(input("Amount ₹: "))
-           total += amount
-           print("Added.")
-       elif choice == "2":
-           print(f"Total: ₹{total:.2f}")
-       elif choice == "3":
-           print("Bye")
-           break
-       else:
-           print("Invalid choice")
-   ```
+```python
+total = 0.0
+while True:
+    print("1 Add expense  2 Show total  3 Exit")
+    choice = input("Choice: ")
+    if choice == "1":
+        amount = float(input("Amount ₹: "))
+        total += amount
+        print("Added.")
+    elif choice == "2":
+        print(f"Total: ₹{total:.2f}")
+    elif choice == "3":
+        print("Bye")
+        break
+    else:
+        print("Invalid choice")
+```
+
 
 4. Print multiplication table only for even multipliers 2–10.
 
    **Model answer:**
 
-   ```python
-   n = int(input("Table for: "))
-   for m in range(2, 11, 2):
-       print(f"{n} x {m} = {n * m}")
-   ```
+```python
+n = int(input("Table for: "))
+for m in range(2, 11, 2):
+    print(f"{n} x {m} = {n * m}")
+```
+
 
 ### Interview-Oriented
 
@@ -775,17 +775,18 @@ for choice, value in actions:
 
    **Model answer:**
 
-   ```
-   balance = 10000
-   read amount
-   IF amount <= 0:
-     show "Invalid amount"
-   ELSE IF amount > balance:
-     show "Insufficient funds"
-   ELSE:
-     balance = balance - amount
-     show "Withdrawn", amount, "New balance", balance
-   ```
+```
+balance = 10000
+read amount
+IF amount <= 0:
+  show "Invalid amount"
+ELSE IF amount > balance:
+  show "Insufficient funds"
+ELSE:
+  balance = balance - amount
+  show "Withdrawn", amount, "New balance", balance
+```
+
 
 4. Explain while-else construct with PIN example.
 
@@ -806,7 +807,7 @@ for choice, value in actions:
 
 ---
 
-## Mini-Project: ATM Simulator (Console)
+## Mini-Project (Assignment): ATM Simulator (Console)
 
 **Title:** Console ATM with balance + mini statement  
 **Lab kit (build here):** [15_Lab_Assets/08_atm_menu/](../15_Lab_Assets/08_atm_menu/)
@@ -836,20 +837,6 @@ for choice, value in actions:
 - [ ] Deposit and withdraw update balance correctly with validation  
 - [ ] Mini statement shows up to last 3 transactions  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic        | Memorize                        | Understand                | Practise         | Build                 |
-| ------------ | ------------------------------- | ------------------------- | ---------------- | --------------------- |
-| if/elif/else | Syntax + indentation            | Decision branches         | Grade, pass/fail | Login validation      |
-| for loop     | `for x in sequence`             | Iteration over range/list | Tables, sums     | Batch processing      |
-| while loop   | Condition-driven repeat         | Sentinel / menu loops     | Guess game       | ATM menu              |
-| range()      | `range(n)`, `start, stop, step` | Exclusive stop            | Number patterns  | ID ranges             |
-| break        | Exit loop early                 | Search until found        | Exit menu        | Quit option           |
-| continue     | Skip to next iteration          | Filter in loop            | Skip invalid     | Input validation loop |
-| Nested logic | if inside if / loop             | Menu inside while         | ATM sub-menus    | Task manager CLI      |
-| Menu pattern | while True + if/elif            | Standard CLI structure    | 3 menu apps      | ATM simulator         |
 
 ## Interview & Discussion Q&A
 

@@ -123,7 +123,7 @@ flowchart TD
 
 | Minutes | Block | Purpose |
 |--------:|-------|---------|
-| 5 | Classroom Ticket | Open lab kit `starter/` / `broken/` |
+| 5 | Open lab kit | Open `15_Lab_Assets/` `starter/` / `broken/` (from Session Calendar) |
 | 25 | Type-along demo | One concept cluster; learners type along |
 | 35 | Lab | Finish ticket from [15_Lab_Assets](../15_Lab_Assets/) |
 | 10 | Exit + homework | Calendar “Homework” column |

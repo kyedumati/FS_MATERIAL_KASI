@@ -19,14 +19,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Tests must catch the average bug](../15_Lab_Assets/26_unittest_utils/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### Why testing and clean code?
 
 In Indian IT interviews and on the job, you will:
@@ -403,48 +395,54 @@ Set breakpoint before return; inspect `total`, `len(marks)`; fix to `total / len
 
 2. Convert 5 prints to logging with INFO and ERROR.
    **Model answer:**
-   ```python
-   import logging
-   logging.basicConfig(level=logging.INFO)
-   log = logging.getLogger(__name__)
-   log.info("Starting job")
-   try:
-       ...
-   except Exception:
-       log.exception("Job failed")  # ERROR + traceback
-   ```
+
+```python
+import logging
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger(__name__)
+log.info("Starting job")
+try:
+    ...
+except Exception:
+    log.exception("Job failed")  # ERROR + traceback
+```
+
 
 3. Write 2 unittest cases for `is_valid_email` (simple `@` check).
    **Model answer:**
-   ```python
-   import unittest
 
-   def is_valid_email(s):
-       return isinstance(s, str) and "@" in s
+```python
+import unittest
 
-   class TestEmail(unittest.TestCase):
-       def test_valid(self):
-           self.assertTrue(is_valid_email("a@b.com"))
-       def test_invalid(self):
-           self.assertFalse(is_valid_email("no-at-sign"))
-   ```
+def is_valid_email(s):
+    return isinstance(s, str) and "@" in s
+
+class TestEmail(unittest.TestCase):
+    def test_valid(self):
+        self.assertTrue(is_valid_email("a@b.com"))
+    def test_invalid(self):
+        self.assertFalse(is_valid_email("no-at-sign"))
+```
+
 
 ### Intermediate
 
 1. pytest parametrize 5 inputs for GST calculation.
    **Model answer:**
-   ```python
-   import pytest
 
-   def gst(amount, rate=0.18):
-       return round(amount * rate, 2)
+```python
+import pytest
 
-   @pytest.mark.parametrize("amount,expected", [
-       (100, 18.0), (0, 0.0), (50, 9.0), (199.99, 36.0), (1, 0.18),
-   ])
-   def test_gst(amount, expected):
-       assert gst(amount) == expected
-   ```
+def gst(amount, rate=0.18):
+    return round(amount * rate, 2)
+
+@pytest.mark.parametrize("amount,expected", [
+    (100, 18.0), (0, 0.0), (50, 9.0), (199.99, 36.0), (1, 0.18),
+])
+def test_gst(amount, expected):
+    assert gst(amount) == expected
+```
+
 
 2. Refactor 40-line Django view function — extract validation helper.
    **Model answer:**
@@ -468,7 +466,7 @@ Set breakpoint before return; inspect `total`, `len(marks)`; fix to `total / len
    **Model answer:**
    Clear names document intent so teammates (and future you) understand code without decoding abbreviations. They reduce bugs and speed reviews more than clever one-letter names.
 
-## Mini-Project: Tested Utils Package
+## Mini-Project (Assignment): Tested Utils Package
 
 **Lab kit (build here):** [15_Lab_Assets/26_unittest_utils/](../15_Lab_Assets/26_unittest_utils/)
 
@@ -491,20 +489,6 @@ Set breakpoint before return; inspect `total`, `len(marks)`; fix to `total / len
 - [ ] At least 3 pure utils + 8 tests
 - [ ] README shows how a teammate runs tests
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| VS Code debugger | F5, breakpoints, Step Over F10 | Execution flow | Debug loop script | Fix bug live |
-| print vs logging | `logging.info`, levels | Production readiness | Replace prints | Logger in module |
-| unittest | `TestCase`, `assertEqual` | Arrange-Act-Assert | Test pure function | 3 tests |
-| pytest | `assert`, `test_` naming | Less boilerplate | pip install pytest | Same tests pytest |
-| Naming | snake_case, verbs for functions | Readability | Rename bad names | Refactor lab |
-| Small functions | One job per function | Testability | Extract method | Utils module |
-| DRY | Don't Repeat Yourself | When to abstract | Spot duplication | Shared helper |
-| Commits | Imperative mood subject | Atomic commits | Rewrite bad messages | Git log review |
 
 ## Interview & Discussion Q&A
 

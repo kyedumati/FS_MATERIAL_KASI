@@ -20,14 +20,6 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Fix .gitignore + README for hiring](../15_Lab_Assets/19_git_portfolio_hygiene/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Prerequisites
 
 - Git installed (`git --version`) and a free GitHub account
@@ -78,7 +70,7 @@ flowchart LR
   G -->|git pull / clone| W
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Edit → `git add` (stage) → `git commit` (local snapshot) → `git push` (GitHub)
 - `git pull` / `clone` brings remote history back to your working folder
 - Staging = packing list; commit = sealed box; GitHub = warehouse copy
@@ -409,7 +401,7 @@ gitGraph
   merge feature_logging id: "merge logging"
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Build features on `feature/...` branches; keep `main` demo-ready
 - Merge when the feature works; delete the branch after merge
 - Conflicts = same lines edited two ways — edit file, `git add`, finish commit
@@ -476,50 +468,60 @@ git commit -m "Resolve README merge conflict"
 
 1. `git init` a folder; make 3 commits with different files.
    **Model answer:**
-   ```bash
-   mkdir demo && cd demo
-   git init
-   echo "a" > a.txt && git add a.txt && git commit -m "Add a.txt"
-   echo "b" > b.txt && git add b.txt && git commit -m "Add b.txt"
-   echo "c" > c.txt && git add c.txt && git commit -m "Add c.txt"
-   ```
+
+```bash
+mkdir demo && cd demo
+git init
+echo "a" > a.txt && git add a.txt && git commit -m "Add a.txt"
+echo "b" > b.txt && git add b.txt && git commit -m "Add b.txt"
+echo "c" > c.txt && git add c.txt && git commit -m "Add c.txt"
+```
+
 
 2. View history with `git log --oneline --graph`.
    **Model answer:**
-   ```bash
-   git log --oneline --graph
-   ```
+
+```bash
+git log --oneline --graph
+```
+
    Shows a compact one-line-per-commit history; `--graph` draws branch topology when merges exist.
 
 3. Create `.gitignore` ignoring `venv/` and `__pycache__/`.
    **Model answer:**
-   ```bash
-   printf 'venv/\n__pycache__/\n*.pyc\n' > .gitignore
-   git add .gitignore && git commit -m "Add Python gitignore"
-   ```
+
+```bash
+printf 'venv/\n__pycache__/\n*.pyc\n' > .gitignore
+git add .gitignore && git commit -m "Add Python gitignore"
+```
+
 
 ### Intermediate
 
 1. Create branch `feature/csv-export`; merge to `main`.
    **Model answer:**
-   ```bash
-   git checkout -b feature/csv-export
-   # ... edit files, commit ...
-   git checkout main
-   git merge feature/csv-export
-   ```
+
+```bash
+git checkout -b feature/csv-export
+# ... edit files, commit ...
+git checkout main
+git merge feature/csv-export
+```
+
 
 2. Clone your partner's repo; add file; push via PR if using GitHub classroom.
    **Model answer:**
-   ```bash
-   git clone <partner-repo-url>
-   cd <repo>
-   echo "notes" > partner_note.md
-   git checkout -b add-partner-note
-   git add partner_note.md && git commit -m "Add partner note"
-   git push -u origin HEAD
-   # Open PR on GitHub (gh pr create or UI)
-   ```
+
+```bash
+git clone <partner-repo-url>
+cd <repo>
+echo "notes" > partner_note.md
+git checkout -b add-partner-note
+git add partner_note.md && git commit -m "Add partner note"
+git push -u origin HEAD
+# Open PR on GitHub (gh pr create or UI)
+```
+
 
 3. Write README with setup steps for student CRUD project.
    **Model answer:**
@@ -539,7 +541,7 @@ git commit -m "Resolve README merge conflict"
    **Model answer:**
    `git stash` temporarily shelves uncommitted changes so you can switch branches or pull cleanly, then `git stash pop` restores them. Useful for quick context switches without committing WIP.
 
-## Mini-Project: Portfolio Repository Setup
+## Mini-Project (Assignment): Portfolio Repository Setup
 
 **Title:** python-fullstack-portfolio  
 **Lab kit (build here):** [15_Lab_Assets/19_git_portfolio_hygiene/](../15_Lab_Assets/19_git_portfolio_hygiene/)
@@ -568,18 +570,6 @@ git commit -m "Resolve README merge conflict"
 - [ ] Profile README (or project README) states target role and city/region
 - [ ] No `venv/` or `.env` committed
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| Basics | init, status, add, commit | Working tree vs staging | Daily commit drill | First GitHub repo |
-| History | log, diff, show | Commit as snapshot | Trace bug introduction | Meaningful messages |
-| Branching | branch, checkout/switch, merge | Parallel feature work | Branch + merge lab | feature/login branch |
-| Remote | clone, push, pull, origin | Local vs remote repo | Pair push exercise | Portfolio remote |
-| Hygiene | .gitignore, README | What not to commit | Ignore venv/secrets | Professional README |
-| Portfolio | Pin repos, topics | Recruiter scan pattern | Profile cleanup | 3 public projects |
 
 ## Interview & Discussion Q&A
 

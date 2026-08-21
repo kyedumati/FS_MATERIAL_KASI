@@ -1,8 +1,8 @@
-# Module Writing Standard — What / Why Before Syntax
+# Module Writing Standard — Definition / Purpose Before Syntax
 
-**Purpose:** Keep `FULL_STACK_PYTHON/` teachable for live class — What/Why, labs, and modern safe Python (without legacy note patterns).
+**Purpose:** Keep `FULL_STACK_PYTHON/` teachable for live class — Definition/Purpose, labs, and modern safe Python (without legacy note patterns).
 
-**Reference:** [01_Functions_Decorators_Generators.md](../03_Advanced_Python/01_Functions_Decorators_Generators.md) · Core modules with What/Why openings.
+**Reference:** [01_Functions_Decorators_Generators.md](../03_Advanced_Python/01_Functions_Decorators_Generators.md) · Core modules with Definition/Purpose openings.
 
 ---
 
@@ -12,17 +12,19 @@
 |---|---------|--------|
 | 1 | Title + Phase + Previous/Next | No Audience / Program / Duration — timing lives in Session Calendar only |
 | 2 | Learning Outcomes | What they can do after the module |
-| 3 | **Classroom Ticket** | Lab kit first |
-| 4 | Start with **What / Why** (no “Beginner-Friendly” label) | What + Why |
-| 5 | Important Concepts (+ **Try these** after each topic) | What/Why → syntax → **Note** → ≥2 programs per topic |
-| 6 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
-| 7 | Practice Exercises | Basic → Intermediate → Interview; each item has **Model answer:** (stripped in student pack). **Before** Mini-Project |
-| 8 | Mini-Project | Lab kit link + What to build + Stretch + **Done when**. This **is** the homework |
-| 9 | **Revision Map — Memorize / Understand / Practise / Build** | Near the end, not the open |
-| 10 | Assignment | **Only if** there is no Mini-Project |
-| 11 | **Interview & Discussion Q&A** | Shared with students (Q + A). Hand out after concepts + mini-project |
+| 3 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
+| 4 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
+| 5 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
+| 6 | Practice Exercises | Basic → Intermediate → Interview; each item has **Model answer:** (stripped in student pack). **Before** Mini-Project |
+| 7 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
+| 8 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
+| 9 | **Interview & Discussion Q&A** | Shared with students (Q + A). Hand out after concepts + mini-project |
 
 **Do not add** a standalone `## Common Mistakes` section. Put traps next to the sub-topic as **Note:** bullets (see below).
+
+**Do not add** a **Revision Map** table — redundant with Key takeaways callouts, Practice, and Interview Q&A.
+
+**Do not add** a **Classroom Ticket** section — lab kits are linked from the Session Calendar, Mini-Project, and `15_Lab_Assets/`.
 
 **Graded tests** live only in [`16_Assessments/`](../16_Assessments/) (one paper every 2 weeks). Do **not** put `## Assessment` or `## Biweekly Assessment` inside modules — trainers assign papers from the calendar + assessments README.
 
@@ -36,14 +38,14 @@
 
 | Step | Section cue | Learner should leave knowing |
 |------|-------------|------------------------------|
-| 1 | **What is …?** | Plain-English definition + one job example |
-| 2 | **Why do we need …?** | Pain without it vs win with it |
+| 1 | **Definition:** | Plain-English definition + one job example |
+| 2 | **Purpose:** | Pain without it vs win with it (why this idea exists) |
 | 3 | **Kinds / cases** (if any) | Built-in vs user-defined, modes, arg types, … |
 | 4 | **How (syntax + small demo)** | Minimal modern Python 3 |
 | 5 | **Note** (inline) | 1–3 bullets right after syntax or before Try these — interview traps for **this** topic only |
 | 6 | **Table only after prose** | Tables summarise |
 
-**Forbidden cold open:** parameter table / mode matrix / bare `def` with no What/Why.
+**Forbidden cold open:** parameter table / mode matrix / bare `def` with no Definition/Purpose.
 
 ### Inline pitfalls (replaces Common Mistakes)
 
@@ -111,7 +113,9 @@ Use these exact bold labels (standalone paragraphs). They render as coloured box
 | `**Common Error:**` | Classic trap (mutable class list, etc.) |
 | `**Where used?**` | 3–5 real domains (Banking, Ecommerce, …) — **not** a big Use Cases table |
 | `**Icons:** Bank · UPI · Employee · Laptop · Order` | Optional chip strip (also Hospital · Payroll · CRM) |
-| `**Quick Revision:**` | 2–4 bullets **immediately after** a Mermaid diagram (paired beside it in PDF) |
+| `**Key takeaways:**` | 2–4 bullets **immediately after** a Mermaid diagram (paired beside it in PDF). Major ideas only — not every sub-topic |
+
+**Practice answers:** after `**Model answer:**` / `**Expected Output:**`, put a blank line then a fenced block at **column 0**. Do **not** indent `` ``` `` under the list item — Cursor/VS Code preview often renders indented fences as empty.
 
 **Program titles** must be one bold line: `**Program 1 — Book with info()**` (do not split around inline code).
 
@@ -119,19 +123,26 @@ Core/Advanced Python: avoid Django/framework forward-selling; introduce framewor
 
 ---
 
-## Mini-Project shape
+## Mini-Project (Assignment) shape
+
+Use one heading so students always see the word **Assignment**:
+
+```markdown
+## Mini-Project (Assignment): Portfolio-Friendly Title
+```
 
 | Piece | Required |
 |-------|----------|
-| Title | Portfolio-friendly name |
+| Title | Portfolio-friendly name (in the heading) |
 | Lab kit link | `15_Lab_Assets/…` when a kit exists |
 | What to build | Table or bullets with acceptance detail |
 | Stretch | 1–3 optional upgrades |
 | Done when | Checkbox list learners can self-check |
 
-**Order:** Practice Exercises → Mini-Project (never reverse). Practice = short drills; Mini-Project = homework / portfolio Done when.
+**Order:** Practice Exercises → Mini-Project (Assignment) (never reverse).  
+Practice = short drills. **Mini-Project (Assignment)** = take-home homework / portfolio **Done when**.
 
-Mini-Project **is** the homework when present — do not also add a separate Assignment.
+Do **not** add a second `## Assignment` section when a Mini-Project already exists — they are the same deliverable.
 
 ---
 
@@ -166,7 +177,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 | Audience labels (fresher / switcher / beginner) | Avoid in modules; one unified learner voice |
 | Full Prerequisites list | Session Calendar; Previous/Next in header |
 | Absolute week numbers / old hour clocks | [Session_Calendar_100.md](../Session_Calendar_100.md) |
-| Memorize table at the top | Revision Map before Assessment |
+| Memorize / revision tables at module end | Dropped — use Key takeaways (after diagrams) + Practice + Interview Q&A |
 | Trainer Demo Plan | Calendar + Daily Lesson Plan Template |
 
 ### When Prerequisites **are** allowed
@@ -182,7 +193,7 @@ Phase jumps / external tooling only — **2 bullets max** (GitHub, MySQL, Node, 
 - Absorb PDF pedagogy — not unsafe snippets.  
 - Schedule follows the Session Calendar.
 
-### Teaching-order rule (Classroom Ticket / lab kits)
+### Teaching-order rule (lab kits)
 
 A kit attached to calendar session **S** may only require syntax/APIs taught in sessions **1…S**. This applies to **every** topic — not only exceptions.
 
@@ -200,15 +211,15 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 ## Checklist — classroom-ready
 
 - [ ] Section order matches the table above  
-- [ ] Classroom Ticket → lab kit  
+- [ ] No Classroom Ticket section (labs via calendar / Mini-Project / `15_Lab_Assets/`)  
 - [ ] Ticket / lab starter+solution stay within calendar teaching order (no forward concepts)  
-- [ ] What/Why before first big table (no “Beginner-Friendly” heading)  
+- [ ] Definition/Purpose before first big table (no “Beginner-Friendly” heading)  
 - [ ] **Try these (2 programs)** after each topic / Step  
 - [ ] **Note** next to each major sub-topic (no standalone Common Mistakes)  
 - [ ] Practice Exercises include **Model answer:** under each item (trainer copy)  
-- [ ] Practice appears **before** Mini-Project  
-- [ ] Mini-Project: lab kit + Done when (+ Stretch)  
-- [ ] Revision Map near the end  
+- [ ] Practice appears **before** Mini-Project (Assignment)  
+- [ ] Mini-Project (Assignment): lab kit + Done when (+ Stretch) — or standalone `## Assignment` if no mini-project  
+- [ ] No Revision Map table (redundant)  
 - [ ] No Biweekly/Assessment MCQ block in the module (use `16_Assessments/`)  
 - [ ] Interview & Discussion Q&A: shared Q + A (not stripped); hand out after concepts + mini-project  
 - [ ] No Demo Plan / Tips / separate Discussion appendix / Real-World appendix  

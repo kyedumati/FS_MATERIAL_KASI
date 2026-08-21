@@ -20,15 +20,6 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Expense CSV export + logging mindset](../15_Lab_Assets/01_python_expense_tracker/)**
-- **[Yield rows — extend kit 15 with real CSV](../15_Lab_Assets/15_generator_csv_stream/)** (use `seed/large_sample.csv` + `csv.DictReader` stretch)
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ### What is file handling? What is logging?
 
 Programs often need to **remember data after they close** — student records, expense rows, settings. **Files** on disk hold that data. **Logging** writes timestamped messages about what the program did (or failed to do) so you can debug later.
@@ -64,8 +55,8 @@ The **`with`** statement is the polite borrower — Python **closes** the file e
 
 ### 1. File open modes — what / why, then table
 
-**What:** Letter codes that say how Python may use the file.  
-**Why:** Wrong mode silently wipes data (`w`) or refuses to open (`r` on missing file).
+**Definition:** Letter codes that say how Python may use the file.  
+**Purpose:** Wrong mode silently wipes data (`w`) or refuses to open (`r` on missing file).
 
 | Mode | Meaning | File must exist? | Truncates? |
 |------|---------|------------------|------------|
@@ -134,8 +125,8 @@ Vikram present
 
 ### 2. with statement (context manager)
 
-**What:** A block that acquires a resource and guarantees cleanup.  
-**Why:** Forgotten `f.close()` leaks handles; `with` closes even after exceptions.
+**Definition:** A block that acquires a resource and guarantees cleanup.  
+**Purpose:** Forgotten `f.close()` leaks handles; `with` closes even after exceptions.
 
 ```python
 with open("notes.txt", "w", encoding="utf-8") as f:
@@ -539,79 +530,91 @@ logger.info("User login success — console + file")
 
 1. Write program that copies `source.txt` to `backup.txt`.
    **Model answer:**
-   ```python
-   with open("source.txt", encoding="utf-8") as src, open("backup.txt", "w", encoding="utf-8") as dst:
-       dst.write(src.read())
-   ```
+
+```python
+with open("source.txt", encoding="utf-8") as src, open("backup.txt", "w", encoding="utf-8") as dst:
+    dst.write(src.read())
+```
+
 
 2. Count lines, words, characters in a text file.
    **Model answer:**
-   ```python
-   with open("notes.txt", encoding="utf-8") as f:
-       text = f.read()
-   lines = text.splitlines()
-   words = text.split()
-   print(len(lines), len(words), len(text))
-   ```
+
+```python
+with open("notes.txt", encoding="utf-8") as f:
+    text = f.read()
+lines = text.splitlines()
+words = text.split()
+print(len(lines), len(words), len(text))
+```
+
 
 3. Append current date to `diary.txt` with user note.
    **Model answer:**
-   ```python
-   from datetime import date
 
-   note = input("Note: ")
-   with open("diary.txt", "a", encoding="utf-8") as f:
-       f.write(f"{date.today().isoformat()} | {note}\n")
-   ```
+```python
+from datetime import date
+
+note = input("Note: ")
+with open("diary.txt", "a", encoding="utf-8") as f:
+    f.write(f"{date.today().isoformat()} | {note}\n")
+```
+
 
 ### Intermediate
 
 1. Read `marks.csv`, compute class average, write `summary.csv`.
    **Model answer:**
-   ```python
-   import csv
 
-   with open("marks.csv", encoding="utf-8") as f:
-       rows = list(csv.DictReader(f))
-   scores = [float(r["marks"]) for r in rows]
-   avg = sum(scores) / len(scores) if scores else 0
-   with open("summary.csv", "w", newline="", encoding="utf-8") as f:
-       w = csv.writer(f)
-       w.writerow(["count", "average"])
-       w.writerow([len(scores), round(avg, 2)])
-   ```
+```python
+import csv
+
+with open("marks.csv", encoding="utf-8") as f:
+    rows = list(csv.DictReader(f))
+scores = [float(r["marks"]) for r in rows]
+avg = sum(scores) / len(scores) if scores else 0
+with open("summary.csv", "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+    w.writerow(["count", "average"])
+    w.writerow([len(scores), round(avg, 2)])
+```
+
 
 2. Load/save user preferences in `prefs.json`.
    **Model answer:**
-   ```python
-   import json
-   from pathlib import Path
 
-   path = Path("prefs.json")
-   prefs = {"theme": "light", "lang": "en"}
-   if path.exists():
-       prefs = json.loads(path.read_text(encoding="utf-8"))
-   prefs["theme"] = "dark"
-   path.write_text(json.dumps(prefs, indent=2), encoding="utf-8")
-   ```
+```python
+import json
+from pathlib import Path
+
+path = Path("prefs.json")
+prefs = {"theme": "light", "lang": "en"}
+if path.exists():
+    prefs = json.loads(path.read_text(encoding="utf-8"))
+prefs["theme"] = "dark"
+path.write_text(json.dumps(prefs, indent=2), encoding="utf-8")
+```
+
 
 3. Configure logger writing INFO+ to file, WARNING+ to console.
    **Model answer:**
-   ```python
-   import logging
 
-   logger = logging.getLogger("app")
-   logger.setLevel(logging.INFO)
-   fh = logging.FileHandler("app.log")
-   fh.setLevel(logging.INFO)
-   ch = logging.StreamHandler()
-   ch.setLevel(logging.WARNING)
-   fmt = logging.Formatter("%(levelname)s %(message)s")
-   fh.setFormatter(fmt)
-   ch.setFormatter(fmt)
-   logger.addHandler(fh)
-   logger.addHandler(ch)
-   ```
+```python
+import logging
+
+logger = logging.getLogger("app")
+logger.setLevel(logging.INFO)
+fh = logging.FileHandler("app.log")
+fh.setLevel(logging.INFO)
+ch = logging.StreamHandler()
+ch.setLevel(logging.WARNING)
+fmt = logging.Formatter("%(levelname)s %(message)s")
+fh.setFormatter(fmt)
+ch.setFormatter(fmt)
+logger.addHandler(fh)
+logger.addHandler(ch)
+```
+
 
 ### Interview-style
 
@@ -627,7 +630,7 @@ logger.info("User login success — console + file")
    **Model answer:**
    CSV suits flat tabular exports and spreadsheets. JSON fits nested config/API payloads. A database is better for concurrent writes, queries, relationships, and integrity constraints in multi-user apps.
 
-## Mini-Project: Expense Tracker with File + Logging
+## Mini-Project (Assignment): Expense Tracker with File + Logging
 
 **Title:** DailyExpenseLogger  
 **Lab kit (build here):** [15_Lab_Assets/01_python_expense_tracker/](../15_Lab_Assets/01_python_expense_tracker/)  
@@ -658,18 +661,6 @@ logger.info("User login success — console + file")
 - [ ] Bad/missing files handled without traceback for expected cases  
 - [ ] Pushed to GitHub with sample `config.json` (no secrets)
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| open modes | `r`, `w`, `a`, `r+` | Overwrite vs append | Mode prediction quiz | Append-only log file |
-| with statement | `with open(...) as f` | Context manager auto-close | Refactor open/close code | All file ops use `with` |
-| Text files | `read`, `readlines`, `write` | Encoding UTF-8 | Copy file utility | Notes saver CLI |
-| CSV | `csv.reader`, `DictReader` | Tabular data exchange | Parse marks CSV | Export report CSV |
-| JSON files | `json.load`, `json.dump` | Config & API data | Config loader | settings.json app |
-| Logging | DEBUG–CRITICAL levels | When to log vs print | Level filtering lab | Expense logger app |
 
 ## Interview & Discussion Q&A
 

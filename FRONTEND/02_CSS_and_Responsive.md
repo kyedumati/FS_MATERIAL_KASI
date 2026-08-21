@@ -21,14 +21,6 @@ By the end of this module, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Responsive project cards](labs/22_css_responsive_cards/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 **CSS** controls **how HTML looks**: colors, fonts, spacing, layout. HTML says "this is a button"; CSS says "blue, rounded, centered."
 
 | Method | When |
@@ -450,86 +442,100 @@ Style with Flexbox header, flex-wrap card grid, responsive nav column→row at 7
 
 1. Style `h2` with color + bottom border; create `.btn-secondary` outline style.
    **Model answer:**
-   ```css
-   h2 {
-     color: #1a3a4a;
-     border-bottom: 2px solid #1a3a4a;
-     padding-bottom: 0.25rem;
-   }
-   .btn-secondary {
-     background: transparent;
-     border: 2px solid #1a3a4a;
-     color: #1a3a4a;
-     padding: 0.5rem 1rem;
-   }
-   ```
+
+```css
+h2 {
+  color: #1a3a4a;
+  border-bottom: 2px solid #1a3a4a;
+  padding-bottom: 0.25rem;
+}
+.btn-secondary {
+  background: transparent;
+  border: 2px solid #1a3a4a;
+  color: #1a3a4a;
+  padding: 0.5rem 1rem;
+}
+```
+
 
 2. `.card` with rem padding/margin; center div `max-width: 600px; margin: 0 auto`.
    **Model answer:**
-   ```css
-   .card {
-     padding: 1.25rem;
-     margin: 1rem 0;
-   }
-   .centered {
-     max-width: 600px;
-     margin: 0 auto;
-   }
-   ```
+
+```css
+.card {
+  padding: 1.25rem;
+  margin: 1rem 0;
+}
+.centered {
+  max-width: 600px;
+  margin: 0 auto;
+}
+```
+
 
 3. Nav link `:hover` effect.
    **Model answer:**
-   ```css
-   nav a:hover {
-     color: #0b6e4f;
-     text-decoration: underline;
-   }
-   ```
+
+```css
+nav a:hover {
+  color: #0b6e4f;
+  text-decoration: underline;
+}
+```
+
 
 ### Intermediate
 
 1. Flex footer: copyright left, links right; stack on mobile.
    **Model answer:**
-   ```css
-   .footer {
-     display: flex;
-     justify-content: space-between;
-     gap: 1rem;
-   }
-   @media (max-width: 600px) {
-     .footer { flex-direction: column; align-items: flex-start; }
-   }
-   ```
+
+```css
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+@media (max-width: 600px) {
+  .footer { flex-direction: column; align-items: flex-start; }
+}
+```
+
 
 2. Three-column cards → one column below 768px.
    **Model answer:**
-   ```css
-   .grid {
-     display: grid;
-     grid-template-columns: repeat(3, 1fr);
-     gap: 1rem;
-   }
-   @media (max-width: 768px) {
-     .grid { grid-template-columns: 1fr; }
-   }
-   ```
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+}
+```
+
 
 3. Hero with `clamp()` heading; CSS variables for primary color.
    **Model answer:**
-   ```css
-   :root { --primary: #0b6e4f; }
-   .hero h1 {
-     color: var(--primary);
-     font-size: clamp(1.75rem, 4vw, 3rem);
-   }
-   ```
+
+```css
+:root { --primary: #0b6e4f; }
+.hero h1 {
+  color: var(--primary);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+}
+```
+
 
 4. Style HTML table (zebra rows, header background).
    **Model answer:**
-   ```css
-   thead { background: #1a3a4a; color: #fff; }
-   tbody tr:nth-child(even) { background: #f0f4f5; }
-   ```
+
+```css
+thead { background: #1a3a4a; color: #fff; }
+tbody tr:nth-child(even) { background: #f0f4f5; }
+```
+
 
 ### Interview-style
 
@@ -553,7 +559,7 @@ Style with Flexbox header, flex-wrap card grid, responsive nav column→row at 7
    **Model answer:**
    Put CSS under an app or project `static/` folder and load with `{% load static %}` then `<link href="{% static 'css/site.css' %}" …>`. Run `collectstatic` in production.
 
-## Mini-Project: Responsive Landing Page
+## Mini-Project (Assignment): Responsive Landing Page
 
 **Lab kit (build here):** [labs/22_css_responsive_cards/](labs/22_css_responsive_cards/)
 
@@ -577,21 +583,6 @@ Style with Flexbox header, flex-wrap card grid, responsive nav column→row at 7
 - [ ] Flex layout for header and card grid
 - [ ] Page usable at ~375px width without horizontal scroll
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| CSS role | Presentation layer | Separation from HTML | Change one property | Linked stylesheet |
-| Selectors | `.class`, `#id`, element | Specificity lite | Selector drills | Component classes |
-| Box model | margin, border, padding | box-sizing | DevTools overlay | Card component |
-| Typography | rem, font-family | Readable hierarchy | Type scale | Landing hero |
-| Flexbox | flex, justify, align | 1D layouts | Nav + cards | Product grid |
-| Media queries | @media min-width | Mobile-first | 3 breakpoints | Responsive nav |
-| Responsive | stack → row | Fluid images | Resize browser | Landing page |
-
----
 
 ## Interview & Discussion Q&A
 

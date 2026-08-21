@@ -22,18 +22,7 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Refactor ATM into functions](../15_Lab_Assets/13_function_refactor/)** (S28)
-- **[Login-gate decorator](../15_Lab_Assets/14_decorator_login_gate/)** (S30)
-- **[Ship](../15_Lab_Assets/30_ksr_utils_toolkit/)** `ksr_utils` **[toolkit](../15_Lab_Assets/30_ksr_utils_toolkit/)** (homework — **no generators**)
-- **[Stream CSV with yield](../15_Lab_Assets/15_generator_csv_stream/)** (S31 — after functions homework)
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
-### Motivation — Feel the pain of copy-paste
+## Motivation — Feel the pain of copy-paste
 
 Look at this ATM-style script. The same `amount <= 0` check appears in every action:
 
@@ -88,7 +77,7 @@ flowchart TB
   Bug -.->|easy to miss| Missed["D2 still old — silent bug"]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Copy-paste the same check → bug factory when rules change
 - One missed copy keeps the old behaviour silently
 - Fix: write the rule once in a function, call it everywhere
@@ -124,12 +113,12 @@ flowchart LR
   C3 --> Same
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - `def` names the reusable unit
 - Many call sites → one definition
 - Change the function once → all callers update
 
-That named unit is a **function**. Your Classroom Ticket ([Refactor ATM into functions](../15_Lab_Assets/13_function_refactor/)) is the same idea at ATM scale.
+That named unit is a **function**. Your lab kit ([Refactor ATM into functions](../15_Lab_Assets/13_function_refactor/)) is the same idea at ATM scale.
 
 ### What is a function?
 
@@ -146,7 +135,7 @@ flowchart LR
   R --> H3["friend visits"]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Recipe once = function once
 - Hunger / call sites can differ; the steps stay the same
 - Name the function after the job (`make_maggi`, not `f1`)
@@ -191,11 +180,6 @@ flowchart TB
   UserDef --> Use
 ```
 
-**Quick Revision:**
-- Built-ins come with Python (`print`, `len`, `sum`)
-- User-defined = you write with `def` for your project
-- Same call style either way: `name(...)`
-
 You already *use* built-ins. This module teaches you to *create* user-defined ones, then stretch into decorators and generators.
 
 ### Parameter vs argument (words interviewers mix up)
@@ -214,15 +198,10 @@ flowchart LR
   Call -->|fills| Def
 ```
 
-**Quick Revision:**
-- Parameter = name in `def`
-- Argument = value at the call site
-- Interviewers mix the words — keep the distinction clear
-
 ### 1. Creating a user-defined function (`def` and `return`)
 
-**What:** A named block that runs when called.  
-**Why:** So you can reuse logic and give that logic a clear name.
+**Definition:** A named block that runs when called.  
+**Purpose:** So you can reuse logic and give that logic a clear name.
 
 Two keywords matter:
 
@@ -241,7 +220,7 @@ sequenceDiagram
   Main->>Main: result = that value
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Call runs the body; `return` sends a value back
 - No `return` → caller gets `None`
 - Capture the result: `result = greet("Priya")`
@@ -327,15 +306,15 @@ flowchart TB
   F --> Var["Variable: f(1, 2, 3, x=9)<br/>*args / **kwargs catch extras"]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Positional = by order; keyword = by name
 - Defaults make optional params
 - `*args` / `**kwargs` catch extras (tuple / dict)
 
 #### 2a. Positional arguments
 
-**What:** Values match parameters **by order**.  
-**Why:** Simple and short for small APIs.  
+**Definition:** Values match parameters **by order**.  
+**Purpose:** Simple and short for small APIs.  
 **Caution:** Swap order → wrong result (`sub(100, 200)` ≠ `sub(200, 100)`). Count must match.
 
 ```python
@@ -348,8 +327,8 @@ print(sub(200, 100))  # 100
 
 #### 2b. Keyword arguments
 
-**What:** Pass by **parameter name**: `wish(name="Ravi", msg="Hi")`.  
-**Why:** Order no longer matters; calls stay readable when there are many options.  
+**Definition:** Pass by **parameter name**: `wish(name="Ravi", msg="Hi")`.  
+**Purpose:** Order no longer matters; calls stay readable when there are many options.  
 **Rule:** After a keyword argument, you cannot put a bare positional one.
 
 ```python
@@ -363,8 +342,8 @@ wish(msg="Good Morning", name="Ravi")  # same result
 
 #### 2c. Default arguments
 
-**What:** A parameter already has a value if the caller skips it.  
-**Why:** Optional behaviour without writing two functions (`wish("Ravi")` and `wish()`).  
+**Definition:** A parameter already has a value if the caller skips it.  
+**Purpose:** Optional behaviour without writing two functions (`wish("Ravi")` and `wish()`).  
 **Rule:** Non-default parameters must come **before** defaults (`def wish(name="Guest", msg):` is invalid).
 
 ```python
@@ -377,8 +356,8 @@ wish()  # uses "Guest"
 
 #### 2d. Variable-length arguments (`*args`, `**kwargs`)
 
-**What:** Accept **any number** of positional (`*args` → tuple) or keyword (`**kwargs` → dict) values.  
-**Why:** Helpers like `sum_all(...)`, flexible loggers, and wrappers that forward arguments.  
+**Definition:** Accept **any number** of positional (`*args` → tuple) or keyword (`**kwargs` → dict) values.  
+**Purpose:** Helpers like `sum_all(...)`, flexible loggers, and wrappers that forward arguments.  
 **Rule (definition order):** required positional → `*args` → keyword-only → `**kwargs`.
 
 **Visual — packing extras into a bag:**
@@ -391,7 +370,7 @@ flowchart LR
   Call --> Kw["**meta → {city: 'Hyd'}"]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - Required params first, then `*args`, then `**kwargs`
 - `*args` is a tuple of leftover positionals
 - `**kwargs` is a dict of leftover keywords
@@ -453,8 +432,8 @@ print(total(100, 200, 50))  # 367.5
 
 ### 3. Scope — local vs global (and LEGB)
 
-**What:** Where a name is visible.  
-**Why:** Without scope rules, every variable would collide; with them, functions stay self-contained.
+**Definition:** Where a name is visible.  
+**Purpose:** Without scope rules, every variable would collide; with them, functions stay self-contained.
 
 - **Global** — declared outside functions; readable from functions in that module.
 - **Local** — declared inside a function; invisible outside.
@@ -476,7 +455,7 @@ flowchart TD
   B -->|No| Err[NameError]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - LEGB: Local → Enclosing → Global → Built-in
 - Reading a global is fine; reassigning needs `global`
 - Prefer pass-in / return-out over `global`
@@ -527,8 +506,8 @@ print(c())  # 2
 
 ### 4. Lambda (anonymous) functions
 
-**What:** A tiny function **without a** `def` **name**, written as `lambda args: expression`.  
-**Why:** Instant one-off use — especially as the `key=` for `sorted`, or with `map`/`filter`.  
+**Definition:** A tiny function **without a** `def` **name**, written as `lambda args: expression`.  
+**Purpose:** Instant one-off use — especially as the `key=` for `sorted`, or with `map`/`filter`.  
 **When not to:** Multi-step logic, docstrings, or anything you will reuse and test — use `def`.
 
 ```python
@@ -560,8 +539,8 @@ print(sorted(marks, key=lambda row: row[1], reverse=True))
 
 ### 5. `map`, `filter`, and `reduce`
 
-**What:** Built-in helpers that apply a function across an iterable.  
-**Why:** Short pipelines for “transform every item”, “keep matching items”, or “fold many values into one” — often with `lambda` or a small `def`.
+**Definition:** Built-in helpers that apply a function across an iterable.  
+**Purpose:** Short pipelines for “transform every item”, “keep matching items”, or “fold many values into one” — often with `lambda` or a small `def`.
 
 **Visual — three jobs on a list of numbers:**
 
@@ -575,7 +554,7 @@ flowchart LR
   Reduce --> Out3["single value"]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - `map` transforms each item
 - `filter` keeps matching items
 - `reduce` folds many → one (prefer `sum` for plain totals)
@@ -648,8 +627,8 @@ print(sum(bill))   # same — prefer sum for plain addition
 
 ### 6. Decorators
 
-**What:** A function that takes another function and returns a **wrapped** version (extra behaviour before/after).  
-**Why:** Cross-cutting concerns — timing, login checks, retries — without copy-pasting into every function.
+**Definition:** A function that takes another function and returns a **wrapped** version (extra behaviour before/after).  
+**Purpose:** Cross-cutting concerns — timing, login checks, retries — without copy-pasting into every function.
 
 **Visual — `@timer` wraps your function like gift wrap:**
 
@@ -661,7 +640,7 @@ flowchart LR
   Wrap --> Out[return result + print time]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - `@timer` means `greet = timer(greet)`
 - Wrapper runs before/after the original
 - Great for login checks, timing, retries — without copy-paste
@@ -742,11 +721,11 @@ Welcome, Ravi
 **Calendar:** Session 31 — Generators vs lists.  
 **Lab kit:** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) (in-memory `yield` now; real CSV after Files week).
 
-#### 7a. List vs generator (What / Why + table)
+#### 7a. List vs generator (Definition / Purpose + table)
 
-**What:** A **generator** is an iterator that produces values **lazily** — one at a time — using `yield` inside a function, or a **generator expression** `(… for … in …)`.
+**Definition:** A **generator** is an iterator that produces values **lazily** — one at a time — using `yield` inside a function, or a **generator expression** `(… for … in …)`.
 
-**Why:** A list of lakhs of rows holds everything in RAM at once. A generator holds **only the current value** (plus a little state). Use it for streams, large reports, and “process then forget” pipelines.
+**Purpose:** A list of lakhs of rows holds everything in RAM at once. A generator holds **only the current value** (plus a little state). Use it for streams, large reports, and “process then forget” pipelines.
 
 Kitchen analogy: a list is the whole buffet on the table; a generator is a waiter who brings **one dish at a time**.
 
@@ -765,7 +744,7 @@ flowchart TB
   end
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - List = whole buffet in RAM (eager)
 - Generator = waiter brings one dish (lazy)
 - Use generators for large one-pass streams
@@ -817,11 +796,6 @@ sequenceDiagram
   Note over Gen: state remembered between yields
 ```
 
-**Quick Revision:**
-- `return` exits; `yield` pauses and resumes
-- Generator keeps state between yields
-- Calling the function returns a generator object — body waits for `next` / `for`
-
 ```python
 def one_square(n):
     return n * n          # function ends here
@@ -844,7 +818,7 @@ flowchart LR
   Empty -.->|need again| New["call countdown(3) again"]
 ```
 
-**Quick Revision:**
+**Key takeaways:**
 - One full pass → generator is empty
 - Extra `next` → `StopIteration`
 - Need another pass? Call the generator function again
@@ -1363,7 +1337,7 @@ def retry(times=3):
   **Model answer:**
    List comprehension is eager and reusable; a generator expression is lazy, memory-light, and single-pass. Example: `sum(x*x for x in range(1_000_000))` never builds a million-element list.
 
-## Mini-Project: Reusable Utility Library
+## Mini-Project (Assignment): Reusable Utility Library
 
 **Title:** `ksr_utils` — Personal Python Toolkit  
 **Lab kit (build here):** [15_Lab_Assets/30_ksr_utils_toolkit/](../15_Lab_Assets/30_ksr_utils_toolkit/)  
@@ -1398,23 +1372,6 @@ def retry(times=3):
 - [ ] Package pushed to GitHub  
 - [ ] README shows how a teammate imports your helpers  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic             | Memorize                                | Understand                                    | Practise                          | Build                                |
-| ----------------- | --------------------------------------- | --------------------------------------------- | --------------------------------- | ------------------------------------ |
-| Function basics   | `def`, `return`, parameter vs argument  | Why functions reduce duplication              | Write 5 utility functions         | String/date helper module            |
-| Parameters        | Default args, `*args`, `**kwargs`       | Positional vs keyword binding                 | Variadic function drills          | Flexible logger wrapper              |
-| Scope             | `global`, LEGB                          | Why globals are risky                         | Scope prediction exercises        | Refactor global-heavy script         |
-| Lambda            | Syntax `lambda x: x*2`                  | When **not** to use lambda                    | Sort with `key=`                  | Mini map/filter demos                |
-| map/filter/reduce | `map`, `filter`, `functools.reduce`     | Lazy iterators; when comprehension is clearer | GST map + pass filter             | Bill fold with reduce                |
-| Decorators        | `@decorator` syntax                     | Wrapper + closure idea                        | Timing + auth decorators          | Login-gated CLI menu                 |
-| Generators (S31)  | `yield`, `next()`, gen expression `(…)` | Lazy vs eager; exhaustion                     | Countdown, fibonacci, `iter_rows` | Yield lab + optional `generators.py` |
-
-**Label legend:** **Memorize** = recall in interviews · **Understand** = explain in English · **Practise** = daily labs · **Build** = portfolio artefacts
-
----
 
 ## Interview & Discussion Q&A
 

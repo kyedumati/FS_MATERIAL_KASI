@@ -238,7 +238,7 @@ _WHERE_START = re.compile(
     re.IGNORECASE,
 )
 _REVISION_START = re.compile(
-    r"<p><strong>Quick\s+Revision(?:\s*:)?</strong>",
+    r"<p><strong>(?:Key\s+takeaways|Quick\s+Revision)(?:\s*:)?</strong>",
     re.IGNORECASE,
 )
 _CALLOUT_BOUNDARY = re.compile(
@@ -310,7 +310,7 @@ def _consume_soft_callout(blocks: list[str], i: int) -> tuple[list[str], int]:
 
 
 def style_callouts(html: str) -> str:
-    """Wrap Note, Example, Output, margin notes, Where used, Quick Revision."""
+    """Wrap Note, Example, Output, margin notes, Where used, Key takeaways."""
     blocks = _split_html_blocks(html)
     styled: list[str] = []
     i = 0
@@ -493,7 +493,7 @@ def _find_matching_div_end(html: str, open_end: int) -> int:
 
 
 def pair_diagram_revision(html: str) -> str:
-    """Place a Mermaid diagram beside the following Quick Revision callout only."""
+    """Place a Mermaid diagram beside the following Key takeaways callout only."""
     start_re = re.compile(r'<div class="mermaid-diagram"[^>]*>')
     out: list[str] = []
     pos = 0

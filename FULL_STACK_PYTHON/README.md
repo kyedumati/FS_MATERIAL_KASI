@@ -25,7 +25,7 @@
 
 | Minutes | Block |
 |--------:|-------|
-| 5 | Classroom Ticket |
+| 5 | Open lab kit |
 | 25 | Concept demo / notes |
 | 35 | Lab |
 | 10 | Exit + homework |
@@ -80,13 +80,12 @@
 
 Every teaching module follows the same shape:
 
-- Learning outcomes + **Classroom Ticket** (lab kit first)  
-- What / Why before syntax  
+- Learning outcomes  
+- **Definition** / **Purpose** before syntax
 - Important concepts with **Try these (2 programs)** + runnable code (Core / Advanced Python; expanding elsewhere)  
 - Step-by-step annotated code  
 - Practice exercises  
-- **Mini-project** with lab kit, Stretch, and **Done when** (when present)  
-- **Revision Map** (Memorize / Understand / Practise / Build)  
+- **Mini-Project (Assignment)** — take-home homework with lab kit, Stretch, and **Done when** (when present)  
 - Interview & Discussion Q&A  
 - Graded checks: [`16_Assessments/`](16_Assessments/) (biweekly) — not an Assessment block in every module  
 

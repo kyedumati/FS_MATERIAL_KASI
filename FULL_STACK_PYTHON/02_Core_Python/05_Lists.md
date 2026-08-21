@@ -18,14 +18,6 @@ By the end of this session, learners will be able to:
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Student marks list CRUD + toppers](../15_Lab_Assets/10_marks_manager/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 Think of a **list** like a numbered shopping cart or a attendance register:
 
 - Items stay in the **order** you add them (first product added appears first).
@@ -448,38 +440,41 @@ print(b)  # [1, 2, 3]
 
    **Model answer:**
 
-   ```python
-   products = ["Notebook", "Pen", "USB Drive", "Mouse", "Keyboard"]
-   print(products[0])   # first
-   print(products[-1])  # last
-   print(products[2])   # middle (index 2 of 5)
-   ```
+```python
+products = ["Notebook", "Pen", "USB Drive", "Mouse", "Keyboard"]
+print(products[0])   # first
+print(products[-1])  # last
+print(products[2])   # middle (index 2 of 5)
+```
+
 
 2. Add two more products using `append` and one using `insert(0, ...)`.
 
    **Model answer:**
 
-   ```python
-   products = ["Notebook", "Pen", "USB Drive", "Mouse", "Keyboard"]
-   products.append("Charger")
-   products.append("Headset")
-   products.insert(0, "Laptop Bag")
-   print(products)
-   ```
+```python
+products = ["Notebook", "Pen", "USB Drive", "Mouse", "Keyboard"]
+products.append("Charger")
+products.append("Headset")
+products.insert(0, "Laptop Bag")
+print(products)
+```
+
 
 3. Given `marks = [55, 78, 92, 67, 88]`, print the highest mark using `max()` and count how many scored above 80.
 
    **Model answer:**
 
-   ```python
-   marks = [55, 78, 92, 67, 88]
-   print("Highest:", max(marks))
-   count = 0
-   for m in marks:
-       if m > 80:
-           count += 1
-   print("Above 80:", count)  # 2 → 92 and 88
-   ```
+```python
+marks = [55, 78, 92, 67, 88]
+print("Highest:", max(marks))
+count = 0
+for m in marks:
+    if m > 80:
+        count += 1
+print("Above 80:", count)  # 2 → 92 and 88
+```
+
 
 ### Intermediate
 
@@ -487,26 +482,28 @@ print(b)  # [1, 2, 3]
 
    **Model answer:**
 
-   ```python
-   employees = [
-       [101, "Ravi", "HR"],
-       [102, "Priya", "IT"],
-       [103, "Arjun", "Sales"],
-   ]
-   employees[1][2] = "Finance"  # Priya moves to Finance
-   for emp in employees:
-       print(f"ID {emp[0]} | {emp[1]} | {emp[2]}")
-   ```
+```python
+employees = [
+    [101, "Ravi", "HR"],
+    [102, "Priya", "IT"],
+    [103, "Arjun", "Sales"],
+]
+employees[1][2] = "Finance"  # Priya moves to Finance
+for emp in employees:
+    print(f"ID {emp[0]} | {emp[1]} | {emp[2]}")
+```
+
 
 5. From `expenses = [200, 1500, 75, 890, 1200, 45]`, create a new list of expenses above ₹300 using a list comprehension.
 
    **Model answer:**
 
-   ```python
-   expenses = [200, 1500, 75, 890, 1200, 45]
-   big = [e for e in expenses if e > 300]
-   print(big)  # [1500, 890, 1200]
-   ```
+```python
+expenses = [200, 1500, 75, 890, 1200, 45]
+big = [e for e in expenses if e > 300]
+print(big)  # [1500, 890, 1200]
+```
+
 
 6. Remove all occurrences of `"Pen"` from `cart = ["Book", "Pen", "Pen", "Eraser"]` using a loop (not `remove` in a naive loop).
 
@@ -528,23 +525,25 @@ print(b)  # [1, 2, 3]
 
    **Model answer:**
 
-   ```python
-   nums = [10, 20, 30, 40]
-   reversed_list = []
-   for i in range(len(nums) - 1, -1, -1):
-       reversed_list.append(nums[i])
-   print(reversed_list)  # [40, 30, 20, 10]
-   ```
+```python
+nums = [10, 20, 30, 40]
+reversed_list = []
+for i in range(len(nums) - 1, -1, -1):
+    reversed_list.append(nums[i])
+print(reversed_list)  # [40, 30, 20, 10]
+```
+
 
 8. Find the second-largest mark in a list (handle duplicates).
 
    **Model answer:**
 
-   ```python
-   marks = [88, 92, 92, 67, 88]
-   unique_sorted = sorted(set(marks), reverse=True)
-   print(unique_sorted[1])  # 88
-   ```
+```python
+marks = [88, 92, 92, 67, 88]
+unique_sorted = sorted(set(marks), reverse=True)
+print(unique_sorted[1])  # 88
+```
+
 
    Or without relying on `set` only for uniqueness walk:
 
@@ -564,18 +563,19 @@ print(b)  # [1, 2, 3]
 
    **Model answer:**
 
-   ```python
-   nested = [[1, 2], [3], [4, 5]]
-   flat = []
-   for row in nested:
-       for x in row:
-           flat.append(x)
-   print(flat)
-   ```
+```python
+nested = [[1, 2], [3], [4, 5]]
+flat = []
+for row in nested:
+    for x in row:
+        flat.append(x)
+print(flat)
+```
+
 
 ---
 
-## Mini-Project: Student Marks Manager (CLI)
+## Mini-Project (Assignment): Student Marks Manager (CLI)
 
 **Title:** Menu-driven student marks CRUD  
 **Lab kit (build here):** [15_Lab_Assets/10_marks_manager/](../15_Lab_Assets/10_marks_manager/)
@@ -622,18 +622,6 @@ while True:
 - [ ] Menu options 1–4 behave correctly; 5 exits  
 - [ ] Average and “above 80” use the current list data  
 
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Label | What to focus on |
-|-------|------------------|
-| **Memorize** | List syntax `[]`, indexing `lst[0]`, negative index `lst[-1]`, slicing `lst[1:4]`, `append`, `extend`, `pop`, `len()` |
-| **Understand** | Lists are **ordered** and **mutable**; methods vs operators; shallow copy vs reassignment; when nested lists represent tables |
-| **Practise** | CRUD on student marks; filter expenses above ₹500; remove duplicate product IDs with a loop |
-| **Build** | **Student Marks Manager** — add marks, show average, list toppers |
-
----
 
 ## Interview & Discussion Q&A
 

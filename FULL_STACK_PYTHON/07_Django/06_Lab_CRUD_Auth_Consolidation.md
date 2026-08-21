@@ -17,14 +17,6 @@
 
 ---
 
-## Classroom Ticket
-
-Open the lab kit **before** long notes. Read the ticket → code in `starter/` or fix `broken/`.
-
-- **[Auth CRUD consolidation ticket](../15_Lab_Assets/03_django_auth_tasks/)**
-
-Finish the ticket in class; compare with the official solution only when your trainer says so.
-
 ## Lab brief (pick one track)
 
 **Track A — Task Manager:** Task model (`title`, `is_done`, `owner` FK to User). List/create/toggle/delete only for logged-in owner.  
@@ -82,14 +74,3 @@ All boxes below must be checked before demo day.
 Finish any incomplete checklist items + push repo. Demo video 2–3 min.
 
 **Expected:** README shows login screenshot + task list screenshot; clone instructions work for a peer.
-
----
-
-## Revision Map — Memorize / Understand / Practise / Build
-
-| Topic | Memorize | Understand | Practise | Build |
-|-------|----------|------------|----------|-------|
-| MTV request path | URL → view → template/model | Why login_required | Debug 404/403 | Task or Blog CRUD |
-| Auth | login/logout/register URLs | Session cookie idea | Break then fix auth | Protected create/edit |
-| Forms | csrf_token, ModelForm | Validation errors | Invalid submit demos | Working forms |
-

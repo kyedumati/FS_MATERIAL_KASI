@@ -63,7 +63,7 @@ Share **those** PDFs — not any old Python-only PDF folder.
 
 ## What trainers use beyond the shared pack
 
-- **Session Calendar** + module **Classroom Ticket** / lab kit for live class.
+- **Session Calendar** + lab kit (`15_Lab_Assets/`) for live class.
 - Optional blank: [Daily Lesson Plan Template](04_Daily_Lesson_Plan_Template.md).
 - **Student pack / Full Stack PDFs:** assessment answer lines removed automatically.
 - This folder (`14_Trainer_Only/`) only on your machine / private Drive.
@@ -93,4 +93,4 @@ Module assessments in the **trainer** tree may keep answers for prep. The **stud
 
 ## Trainer delivery reminder
 
-Notes are a reference, not a script. Each **1h 15m** session: short theory → type-along demo → mini-lab → homework assign → one Git commit expectation.
+Notes are a reference, not a script. Each **1h 15m** session: short theory → type-along demo → mini-lab → assign **Mini-Project (Assignment)** → one Git commit expectation.
