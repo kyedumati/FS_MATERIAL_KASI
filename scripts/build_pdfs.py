@@ -293,6 +293,11 @@ def _is_callout_stop(block: str) -> bool:
     )
 
 
+def _is_soft_callout_body(block: str) -> bool:
+    """True for list/paragraph body nodes — not ``<pre>`` (``startswith('<p')`` matches pre!)."""
+    return bool(re.match(r"<(ul|ol|p|blockquote)\b", block, re.IGNORECASE))
+
+
 def _consume_soft_callout(blocks: list[str], i: int) -> tuple[list[str], int]:
     """Pull following short paragraphs/lists into a callout body."""
     chunk = [blocks[i]]
@@ -301,7 +306,7 @@ def _consume_soft_callout(blocks: list[str], i: int) -> tuple[list[str], int]:
         nxt = blocks[i]
         if _is_callout_stop(nxt):
             break
-        if nxt.startswith(("<ul", "<ol", "<p", "<blockquote")):
+        if _is_soft_callout_body(nxt):
             chunk.append(nxt)
             i += 1
             continue
@@ -329,7 +334,7 @@ def style_callouts(html: str) -> str:
             while i < len(blocks) and (
                 blocks[i].startswith("<pre")
                 or (
-                    blocks[i].startswith("<p")
+                    re.match(r"<p\b", blocks[i], re.IGNORECASE)
                     and not _is_callout_stop(blocks[i])
                     and len(blocks[i]) < 500
                 )
@@ -382,7 +387,12 @@ def style_callouts(html: str) -> str:
             continue
 
         if _REVISION_START.search(block):
-            chunk, i = _consume_soft_callout(blocks, i)
+            # Key takeaways = label + bullet list only — never following prose / programs
+            chunk = [block]
+            i += 1
+            while i < len(blocks) and re.match(r"<(ul|ol)\b", blocks[i], re.IGNORECASE):
+                chunk.append(blocks[i])
+                i += 1
             styled.append(
                 f'<div class="callout callout-revision">{"".join(chunk)}</div>'
             )
@@ -589,7 +599,7 @@ def wrap_leading_meta(html: str) -> str:
     i = 0
     while i < len(blocks):
         block = blocks[i]
-        if block.startswith("<p") and _META_P_START.search(block):
+        if block.startswith("<p>") and _META_P_START.search(block):
             meta.append(block)
             i += 1
             continue

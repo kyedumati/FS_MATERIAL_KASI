@@ -174,27 +174,29 @@ code {
   display: inline-block;
 }
 
-/* Diagram + Key takeaways side-by-side when authors wrap both */
+/* Diagram + Key takeaways side-by-side */
 .diagram-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 10pt;
   align-items: flex-start;
   margin: 0.4em 0 0.6em;
-  page-break-inside: auto;
-  break-inside: auto;
+  page-break-inside: avoid;
+  break-inside: avoid-page;
 }
 
 .diagram-row .mermaid-diagram {
-  flex: 1 1 52%;
-  min-width: 180px;
+  flex: 1 1 55%;
+  min-width: 0;
+  max-width: 58%;
   margin: 0;
 }
 
 .diagram-row .callout-revision,
 .diagram-row .callout-where {
-  flex: 1 1 38%;
-  min-width: 140px;
+  flex: 1 1 40%;
+  min-width: 0;
+  max-width: 42%;
   margin: 0;
 }
 
@@ -202,6 +204,9 @@ pre.mermaid-source {
   border-left-color: #94a3b8;
   font-size: 8.5pt;
   color: #475569;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 pre {
@@ -212,12 +217,16 @@ pre {
   padding: 10pt 12pt;
   max-width: 100%;
   font-family: "SF Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
-  font-size: 9.2pt;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-wrap: anywhere;
-  /* Allow breaks — avoid clips long demos at page bottom */
+  /* Slightly smaller so common teaching lines fit without wrapping mid-expression */
+  font-size: 8.5pt;
+  line-height: 1.45;
+  /* Do NOT wrap at spaces mid-statement — that looks like broken Python in PDFs */
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  overflow-x: hidden;
+  /* Allow tall demos to split across pages */
   page-break-inside: auto;
   break-inside: auto;
 }
@@ -231,6 +240,7 @@ pre code {
   white-space: inherit;
   word-wrap: inherit;
   overflow-wrap: inherit;
+  word-break: inherit;
 }
 
 pre code span,
@@ -394,6 +404,15 @@ li::marker {
   background: #f1faf4;
   border: 1px solid #c4e5cf;
   border-left: 4px solid #2f8f57;
+  /* Keep "Expected Output:" with its green box — no orphan label / empty frame */
+  page-break-inside: avoid;
+  break-inside: avoid-page;
+}
+
+.callout-output > p:first-child {
+  page-break-after: avoid;
+  break-after: avoid-page;
+  margin-bottom: 0.35em;
 }
 
 .callout-output > p > strong:first-child {
@@ -404,6 +423,15 @@ li::marker {
   margin: 0.5em 0 0.15em;
 }
 
+.callout-output pre,
+.callout-output pre.output-block {
+  page-break-before: avoid;
+  break-before: avoid-page;
+  page-break-inside: avoid;
+  break-inside: avoid-page;
+  margin-top: 0.25em;
+}
+
 .callout-example pre {
   border-left-color: #1f7a8c;
   background: #fff;
@@ -412,6 +440,10 @@ li::marker {
 pre.output-block {
   border-left-color: #2f8f57;
   background: #fff;
+  /* Outputs are short — wrapping OK; prefer staying with the label */
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Pygments — slightly softer for print */
@@ -561,4 +593,14 @@ hr {
 /* Keep Expected Output with preceding code when possible */
 .pdf-program + .callout-output {
   margin-top: -0.15em;
+  page-break-before: avoid;
+  break-before: avoid-page;
+}
+
+/* Soft callouts that should stay together (short) */
+.callout-remember,
+.callout-interview,
+.callout-error {
+  page-break-inside: avoid;
+  break-inside: avoid-page;
 }
