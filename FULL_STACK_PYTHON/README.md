@@ -55,7 +55,6 @@
 | 15 | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub |
 | 16 | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs in-module / [`MYSQL/`](../MYSQL/) |
 | 17 | [03_Advanced_Python/06_Database_Programming_Bridge.md](03_Advanced_Python/06_Database_Programming_Bridge.md) | Python ↔ MySQL |
-| 15A | [03_Advanced_Python/07_Professional_Python_Deep_Dive.md](03_Advanced_Python/07_Professional_Python_Deep_Dive.md) | Optional enrichment (not on critical path) |
 | 18 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
 | 19 | [../FRONTEND/02_CSS_and_Responsive.md](../FRONTEND/02_CSS_and_Responsive.md) | CSS & responsive *(shared)* |
 | 20 | [../FRONTEND/03_JavaScript_DOM_Forms.md](../FRONTEND/03_JavaScript_DOM_Forms.md) | JavaScript, DOM, forms *(shared)* |
@@ -73,6 +72,8 @@
 | 32 | [11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md](11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md) | Testing, debugging, clean code |
 | 33 | [13_Placement/01_Career_Resume_Interview.md](13_Placement/01_Career_Resume_Interview.md) | Resume, interview, placement |
 | 34 | [12_AI_Integration/01_AI_Integration_Lite.md](12_AI_Integration/01_AI_Integration_Lite.md) | AI lite — **optional stretch only** |
+
+**Optional enrichment (not numbered above):** [Professional Python Deep Dive](03_Advanced_Python/07_Professional_Python_Deep_Dive.md) — after Git / Saturday; not on the critical path to Django.
 
 ---
 

@@ -432,7 +432,7 @@ print(b)  # [1, 2, 3]
 
 ---
 
-## Practice
+## Practice Exercises
 
 ### Basic
 

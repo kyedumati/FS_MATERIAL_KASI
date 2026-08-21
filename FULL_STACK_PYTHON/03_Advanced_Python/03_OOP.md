@@ -16,6 +16,8 @@ This module is split for slow-pace teaching (Functions-style depth: Motivation �
 
 **Lab kit:** [17_bank_account_oop](../15_Lab_Assets/17_bank_account_oop/) (start in Part 1 / S37; push in Part 3 / S39)
 
+**Assignment:** only Part 3 has the **Mini-Project (Assignment)** section — Parts 1–2 point there.
+
 **Course order note:** Exception Handling is **after** OOP. All OOP demos/labs validate with **`print` + `return`** (no `raise` / `try` / `except` required in S36–S39).
 
 **Optional enrichment:** [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md) (composition patterns, ABC, `__repr__`)

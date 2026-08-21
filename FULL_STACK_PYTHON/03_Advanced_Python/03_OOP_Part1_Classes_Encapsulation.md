@@ -8,6 +8,10 @@
 
 **Series:** [OOP overview](03_OOP.md) · Part 1 (this file) · [Part 2](03_OOP_Part2_Inheritance.md) · [Part 3](03_OOP_Part3_Polymorphism_Project.md)
 
+**Assignment (take-home):** The portfolio **Mini-Project (Assignment)** is in [Part 3 — BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli). This Part 1 file is class + lab drills; start the lab kit in **S37**, push in **S39**.
+
+**Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
+
 ---
 
 ## Learning Outcomes
@@ -28,6 +32,16 @@ By the end of **S36–S37**, learners will be able to:
 
 ---
 
+## Session guide (do not finish the whole file in one class)
+
+| Session | Teach today | Stop before | Homework |
+|---------|-------------|-------------|----------|
+| **S36** | Motivation → Concepts 1–3 (class / `self` / `__init__`, variables, methods) + light Try these | Concept 4 Encapsulation | Student class drills |
+| **S37** | Concept 4 Encapsulation → Step-by-Step BankAccount → Practice → open lab kit | Part 2 topics | BankAccount lab progress |
+
+---
+
+**Session S36 focus:** Motivation → Concepts 1–3 (class / object / `__init__`, variables, methods). Stop before Encapsulation.
 
 ## Motivation — Feel the pain of dicts + free functions
 
@@ -675,6 +689,8 @@ print(round(FareMath.split_equal(900, 3), 2))  # 300.0
 
 ---
 
+
+**Session S37 focus:** Encapsulation → Step-by-Step BankAccount → Practice → open [lab kit](../15_Lab_Assets/17_bank_account_oop/).
 
 ### 4. Encapsulation — definition, problem, then `_` / `__` / `@property`
 
@@ -1510,5 +1526,7 @@ Balance: 1300.0
 
 
 ## Next
+
+**Assignment reminder:** portfolio push is **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3 (S39). Keep building the [lab kit](../15_Lab_Assets/17_bank_account_oop/) from S37.
 
 Continue with **[OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)** (S38).

@@ -497,7 +497,7 @@ print({"electronics", "sale"} - {"sale", "gift"})
 
 ---
 
-## Practice
+## Practice Exercises
 
 ### Basic
 

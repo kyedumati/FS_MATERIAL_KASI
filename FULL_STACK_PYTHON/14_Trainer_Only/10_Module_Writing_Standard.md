@@ -15,7 +15,7 @@
 | 3 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
 | 4 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
 | 5 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
-| 6 | Practice Exercises | Basic → Intermediate → Interview; each item has **Model answer:** (stripped in student pack). **Before** Mini-Project |
+| 6 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (stripped in student pack). **Before** Mini-Project |
 | 7 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
 | 8 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
 | 9 | **Interview & Discussion Q&A** | Shared with students (Q + A). Hand out after concepts + mini-project |

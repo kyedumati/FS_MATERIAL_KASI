@@ -565,7 +565,7 @@ print(set(totals))
 
 ---
 
-## Practice
+## Practice Exercises
 
 ### Basic
 

@@ -494,7 +494,7 @@ print(product["name"])
 
 ---
 
-## Practice
+## Practice Exercises
 
 ### Basic
 
