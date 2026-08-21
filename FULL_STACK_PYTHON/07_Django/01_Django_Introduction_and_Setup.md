@@ -469,7 +469,7 @@ Build project **`student_portal`** with apps `core` (home placeholder) and `acco
 - [ ] Apps `core` and `accounts` exist and `core` is in `INSTALLED_APPS`
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

@@ -716,7 +716,7 @@ None
 Welcome, Ravi
 ```
 
-### 7. Generators (S31 focus)
+### 7. Generators
 
 **Calendar:** Session 31 — Generators vs lists.  
 **Lab kit:** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) (in-memory `yield` now; real CSV after Files week).
@@ -944,7 +944,7 @@ print(first)  # 35 — did not need to scan the whole list into memory first
 
 #### 7e. Row-stream lab pattern + Done when
 
-In class / homework for S31: yield **dict rows from an in-memory list**. Opening CSV files comes in **Files week** (Stretch on the same lab kit).
+In class / homework: yield **dict rows from an in-memory list**. Opening CSV files comes in **Files week** (Stretch on the same lab kit).
 
 ```python
 SAMPLE_ROWS = [
@@ -963,7 +963,7 @@ for i, row in enumerate(iter_rows(SAMPLE_ROWS)):
         break  # stop early — remaining rows never forced into a big result list
 ```
 
-**Lab Done when (S31):** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/)
+**Lab Done when:** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/)
 
 - [ ] `iter_rows` uses `yield` (not `return` of a full list)
 - [ ] Printing a few rows works without building an extra result list first
@@ -1342,7 +1342,7 @@ def retry(times=3):
 **Title:** `ksr_utils` — Personal Python Toolkit  
 **Lab kit (build here):** [15_Lab_Assets/30_ksr_utils_toolkit/](../15_Lab_Assets/30_ksr_utils_toolkit/)  
 **Also use:** [14_decorator_login_gate](../15_Lab_Assets/14_decorator_login_gate/), [16_venv_package_bootstrap](../15_Lab_Assets/16_venv_package_bootstrap/)  
-**Generators (S31+ only):** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) — not part of this homework
+**Generators (after this topic):** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) — not part of this homework
 
 **Homework scope:** functions + lambda/`map`/`filter` + decorators. **No** `yield` **/ generators.**
 
@@ -1361,7 +1361,7 @@ def retry(times=3):
 
 - Add `is_strong_password(s)` (length ≥ 8, has digit).  
 - Add `@retry(times=3)` decorator for flaky calls.  
-- **After S31:** finish `generators.py` (`read_rows` must `yield`).  
+- **After generators:** finish `generators.py` (`read_rows` must `yield`).  
 - **Later (Files week):** `yield` rows from a CSV with `csv.DictReader`.  
 - Add `README.md` with install/run and 3 import examples.
 
@@ -1373,7 +1373,7 @@ def retry(times=3):
 - [ ] README shows how a teammate imports your helpers  
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

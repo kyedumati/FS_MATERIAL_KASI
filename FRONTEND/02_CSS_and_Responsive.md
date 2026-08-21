@@ -584,7 +584,7 @@ tbody tr:nth-child(even) { background: #f0f4f5; }
 - [ ] Page usable at ~375px width without horizontal scroll
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

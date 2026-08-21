@@ -530,7 +530,7 @@ def validate_price(self, value):
 - [ ] README shows sample JSON for create/list/error
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

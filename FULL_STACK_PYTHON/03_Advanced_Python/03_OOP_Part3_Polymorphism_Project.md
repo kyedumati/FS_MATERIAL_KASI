@@ -1,7 +1,6 @@
 # Module 03c — OOP Part 3: Polymorphism & Project
 
-**Phase:** Advanced Python  
-**Sessions:** **S39**
+**Phase:** Advanced Python
 
 **Previous module:** [OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)  
 **Next module:** [Exception Handling](04_Exception_Handling.md)
@@ -12,7 +11,7 @@
 
 ## Learning Outcomes
 
-By the end of **S39**, learners will be able to:
+By the end of this part, learners will be able to:
 
 1. Apply polymorphism via method overriding and duck typing.
 2. Explain why Python does not use Java-style method overloading (use defaults / `*args`).
@@ -802,7 +801,7 @@ two 5
 ---
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

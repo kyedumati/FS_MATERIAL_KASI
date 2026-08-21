@@ -706,7 +706,7 @@ while True:
 - [ ] Pushed to GitHub without passwords in source
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

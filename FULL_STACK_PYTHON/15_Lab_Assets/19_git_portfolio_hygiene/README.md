@@ -6,4 +6,3 @@
 ## Broken
 `broken/.gitignore` is wrong — fix it. Do **not** commit `.env`.
 
-**Sessions:** ~44–45

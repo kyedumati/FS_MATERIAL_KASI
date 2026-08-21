@@ -1,5 +1,3 @@
-**Sessions:** S28–S30 core · S32 push · generators stretch after S31
-
 # Ticket: Ship `ksr_utils` — Personal Python Toolkit
 
 **Customer:** Your future self (and GitHub reviewers)  

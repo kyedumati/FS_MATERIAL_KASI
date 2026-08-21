@@ -16,4 +16,3 @@ Open `starter/calculator.py` — one price, one qty, print GST total.
 
 **Stretch (after Flow Control):** reject bad input with `if` / re-ask with `while`.
 
-**Sessions:** ~06–10

@@ -572,7 +572,7 @@ def task_delete(request, pk):
 - [ ] Task create uses ModelForm + CSRF + PRG redirect
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

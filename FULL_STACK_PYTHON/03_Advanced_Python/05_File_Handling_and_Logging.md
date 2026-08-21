@@ -662,7 +662,7 @@ logger.addHandler(ch)
 - [ ] Pushed to GitHub with sample `config.json` (no secrets)
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

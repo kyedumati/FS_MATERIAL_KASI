@@ -7,4 +7,3 @@
 - [ ] Logged-out call prints Access denied
 - [ ] Logged-in call runs the function
 
-**Sessions:** ~30–31

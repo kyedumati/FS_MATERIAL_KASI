@@ -1,14 +1,13 @@
 # Module 03b — OOP Part 2: Inheritance & Composition
 
-**Phase:** Advanced Python  
-**Sessions:** **S38**
+**Phase:** Advanced Python
 
 **Previous module:** [OOP Part 1 — Classes & Encapsulation](03_OOP_Part1_Classes_Encapsulation.md)  
 **Next module:** [OOP Part 3 — Polymorphism & Project](03_OOP_Part3_Polymorphism_Project.md)
 
 **Series:** [OOP overview](03_OOP.md) · [Part 1](03_OOP_Part1_Classes_Encapsulation.md) · Part 2 (this file) · [Part 3](03_OOP_Part3_Polymorphism_Project.md)
 
-**Assignment (take-home):** Still the same portfolio deliverable — **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3 (push on **S39**). Today’s homework is inheritance drills; stretch = `SavingsAccount` toward that push.
+**Assignment (take-home):** Still the same portfolio deliverable — **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3. Today’s homework is inheritance drills; stretch = `SavingsAccount` toward that push.
 
 **Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
 
@@ -16,7 +15,7 @@
 
 ## Learning Outcomes
 
-By the end of **S38**, learners will be able to:
+By the end of this part, learners will be able to:
 
 1. Explain inheritance as an **IS-A** relationship and use `class Child(Parent)` with `super()`.
 2. Recognise and sketch the four common inheritance types: single, multilevel, hierarchical, multiple.
@@ -1274,6 +1273,6 @@ class SavingsAccount(BankAccount):
 
 ## Next
 
-**Assignment:** push **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3 (S39) — [lab kit](../15_Lab_Assets/17_bank_account_oop/).
+**Assignment:** push **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3 — [lab kit](../15_Lab_Assets/17_bank_account_oop/).
 
-Continue with **[OOP Part 3 — Polymorphism & Project](03_OOP_Part3_Polymorphism_Project.md)** (S39).
+Continue with **[OOP Part 3 — Polymorphism & Project](03_OOP_Part3_Polymorphism_Project.md)**.

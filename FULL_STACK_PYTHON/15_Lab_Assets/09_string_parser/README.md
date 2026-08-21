@@ -14,4 +14,3 @@ Off-by-one slices and wrong masking in `broken/cleaners.py`.
 - [ ] Phone digits-only, length 10 check
 - [ ] Mask like `******3210`
 
-**Sessions:** ~16–17

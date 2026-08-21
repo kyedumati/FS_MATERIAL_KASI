@@ -758,7 +758,7 @@ pip freeze > requirements.txt
 - [ ] Project pushed to GitHub (no `venv/` committed)
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

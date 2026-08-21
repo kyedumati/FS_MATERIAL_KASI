@@ -1,5 +1,3 @@
-**Sessions:** ~71–77
-
 # Ticket: Private tasks per user
 
 **Bug report:** Any logged-in user can see everyone’s tasks.  

@@ -14,4 +14,3 @@ Scope / mutable default bugs in broken.
 - [ ] Bad amount or overdraft prints a message and leaves balance unchanged
 - [ ] Menu repeats until Quit
 
-**Sessions:** ~28–32

@@ -437,7 +437,7 @@ logger.info("analyze request len=%s", len(text))
 - [ ] No API keys committed; ethics note in README
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

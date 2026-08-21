@@ -554,7 +554,7 @@ find staticfiles/admin -type f | wc -l
 - [ ] Gunicorn smoke test **or** platform deploy started
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

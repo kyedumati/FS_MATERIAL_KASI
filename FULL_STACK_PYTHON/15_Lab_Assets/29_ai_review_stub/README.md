@@ -1,5 +1,3 @@
-**Sessions:** optional after S95
-
 # Ticket: Optional AI Recommend Endpoint
 
 **Customer:** CampusCart stretch goal  

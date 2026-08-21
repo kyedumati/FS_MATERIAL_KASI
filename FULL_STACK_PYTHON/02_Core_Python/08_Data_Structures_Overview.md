@@ -708,7 +708,7 @@ Learners extend `choose_structure` with 5 custom scenarios from their domain (HR
 - [ ] `choose_structure` covers at least 4 built-ins + 5 custom scenarios  
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

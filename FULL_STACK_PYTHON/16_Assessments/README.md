@@ -28,4 +28,4 @@ Papers live only here; modules do **not** contain Biweekly Assessment sections.
 
 **Shape (every paper):** 12 MCQs + 2 coding tasks + 1 short answer (≈30 marks).
 
-**Modules** keep Interview & Discussion for oral practice only.
+**Modules** keep Interview Q&A for oral practice only.

@@ -10,4 +10,3 @@ Fill `starter/choose.py` answers + implement stack.
 - [ ] Quiz answers match solution comments
 - [ ] Undo stack push/pop works
 
-**Sessions:** ~26–27

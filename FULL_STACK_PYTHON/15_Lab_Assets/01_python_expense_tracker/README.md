@@ -1,5 +1,3 @@
-**Sessions:** ~42–45
-
 # Ticket: Expense Tracker CSV Export
 
 **Customer:** Campus accounts team  

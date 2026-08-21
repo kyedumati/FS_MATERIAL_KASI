@@ -18,7 +18,7 @@
 | 6 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (shared — one material). **Before** Mini-Project |
 | 7 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
 | 8 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
-| 9 | **Interview & Discussion Q&A** | Shared with students (Q + A). Hand out after concepts + mini-project |
+| 9 | **Interview Q&A** | Shared with students (Q + A). Share with the module PDF after concepts + mini-project |
 
 **Do not add** a standalone `## Common Mistakes` section. Put traps next to the sub-topic as **Note:** bullets (see below).
 
@@ -30,7 +30,7 @@
 
 **Do not add:** Discussion Questions (separate), Trainer Tips, Trainer Demo Plan, or large Real-World Use Cases **tables**. Prefer a short `**Where used?**` callout instead (see PDF markers above).
 
-**Delivery timing** lives once in the [Session Calendar](../Session_Calendar_100.md) and [Daily Lesson Plan Template](04_Daily_Lesson_Plan_Template.md) — not repeated in every module.
+**Delivery timing / session numbers (S01–S100)** live only in the [Session Calendar](../Session_Calendar_100.md) — **not** in module headers, Learning Outcomes, or learner-facing notes.
 
 ---
 
@@ -146,17 +146,14 @@ Do **not** add a second `## Assignment` section when a Mini-Project already exis
 
 ---
 
-## Interview & Discussion Q&A shape
+## Interview Q&A shape
 
 One shared section (no separate Discuss / Interview-answers headings):
 
 ```markdown
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
-
-1. Open discussion prompt…
-2. …
 
 **Q1. …?**  
 **A:** …
@@ -221,7 +218,8 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 - [ ] Mini-Project (Assignment): lab kit + Done when (+ Stretch) — or standalone `## Assignment` if no mini-project  
 - [ ] No Revision Map table (redundant)  
 - [ ] No Biweekly/Assessment MCQ block in the module (use `16_Assessments/`)  
-- [ ] Interview & Discussion Q&A: shared Q + A; share module PDF after concepts + mini-project  
+- [ ] Interview Q&A: shared Q + A; share module PDF after concepts + mini-project  
 - [ ] No Demo Plan / Tips / separate Discussion appendix / Real-World appendix  
 - [ ] No fresher / switcher / beginner audience splits in learner text  
+- [ ] No session numbers (S01–S100) in module notes — timing only in Session Calendar  
 - [ ] Private only: `14_Trainer_Only/` · `solution/` · `*_KEY.md` (never share those)

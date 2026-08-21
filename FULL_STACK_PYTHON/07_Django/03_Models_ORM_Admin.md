@@ -527,7 +527,7 @@ for u in User.objects.all():
 - [ ] New admin post appears after browser refresh
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

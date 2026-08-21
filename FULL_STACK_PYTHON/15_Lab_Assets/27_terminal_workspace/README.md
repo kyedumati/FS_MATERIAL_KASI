@@ -6,4 +6,3 @@
 ## Starter checklist
 Follow `starter/CHECKLIST.md` — no Python required.
 
-**Sessions:** ~01–02

@@ -701,7 +701,7 @@ abc ValueError age must be an integer
 - [ ] Repo pushed with a short README of sample outputs  
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

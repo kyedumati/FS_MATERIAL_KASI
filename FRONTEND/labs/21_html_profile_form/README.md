@@ -9,4 +9,3 @@ Complete `starter/index.html` TODOs.
 ## Broken
 Missing labels / inputs without `id` — fix a11y.
 
-**Sessions:** ~56–57

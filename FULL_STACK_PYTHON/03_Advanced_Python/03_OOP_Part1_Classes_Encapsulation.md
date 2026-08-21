@@ -1,14 +1,13 @@
 # Module 03a — OOP Part 1: Classes & Encapsulation
 
-**Phase:** Advanced Python  
-**Sessions:** **S36–S37**
+**Phase:** Advanced Python
 
 **Previous module:** [Modules and Packages](02_Modules_and_Packages.md)  
 **Next module:** [OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)
 
 **Series:** [OOP overview](03_OOP.md) · Part 1 (this file) · [Part 2](03_OOP_Part2_Inheritance.md) · [Part 3](03_OOP_Part3_Polymorphism_Project.md)
 
-**Assignment (take-home):** The portfolio **Mini-Project (Assignment)** is in [Part 3 — BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli). This Part 1 file is class + lab drills; start the lab kit in **S37**, push in **S39**.
+**Assignment (take-home):** The portfolio **Mini-Project (Assignment)** is in [Part 3 — BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli). This Part 1 file is class + lab drills; start the [lab kit](../15_Lab_Assets/17_bank_account_oop/) here and push in Part 3.
 
 **Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
 
@@ -16,7 +15,7 @@
 
 ## Learning Outcomes
 
-By the end of **S36–S37**, learners will be able to:
+By the end of this part, learners will be able to:
 
 1. Explain why classes beat loose dicts + free functions for real entities (Student, Order, BankAccount).
 2. Define classes with `__init__`, `self`, instance methods, and create objects.
@@ -31,17 +30,6 @@ By the end of **S36–S37**, learners will be able to:
 **Teaching note (order of the course):** Exception Handling is **next** (after OOP). In OOP week, validation uses `print` **+** `return` — not `raise` / `try` / `except`. If a demo would crash, we leave that line **commented** or check with `hasattr(...)`.
 
 ---
-
-## Session guide (do not finish the whole file in one class)
-
-| Session | Teach today | Stop before | Homework |
-|---------|-------------|-------------|----------|
-| **S36** | Motivation → Concepts 1–3 (class / `self` / `__init__`, variables, methods) + light Try these | Concept 4 Encapsulation | Student class drills |
-| **S37** | Concept 4 Encapsulation → Step-by-Step BankAccount → Practice → open lab kit | Part 2 topics | BankAccount lab progress |
-
----
-
-**Session S36 focus:** Motivation → Concepts 1–3 (class / object / `__init__`, variables, methods). Stop before Encapsulation.
 
 ## Motivation — Feel the pain of dicts + free functions
 
@@ -100,6 +88,7 @@ flowchart LR
   D -.-> F3["display()"]
   Bug["Wrong keys / bad values"] --> D
 ```
+
 
 
 **Key takeaways:**
@@ -163,6 +152,7 @@ flowchart LR
 ```
 
 
+
 **Key takeaways:**
 
 - **Class** = blueprint (form template)
@@ -170,6 +160,7 @@ flowchart LR
 - Methods live **with** the data — call `s1.display()`, not `display(s1)` with a loose dict
 
 ---
+
 
 
 ## What is OOP? / Why do we need it?
@@ -193,6 +184,7 @@ flowchart LR
 | `object`      | One filled form — Rahul, roll 101                    |
 | **Attribute** | Data on the object (`name`, `balance`)               |
 | `method`      | Behaviour on the object (`deposit()`, `get_grade()`) |
+
 
 
 | Without OOP (dicts + functions)      | With OOP (classes)                      |
@@ -219,7 +211,9 @@ Classic pillars (Part 1 focuses on encapsulation; Parts 2–3 cover inheritance 
 ---
 
 
+
 ## Important Concepts
+
 
 
 ### 1. Class, object, `self`, `__init__`
@@ -275,6 +269,7 @@ sequenceDiagram
   Init-->>Main: s1 refers to the object
   Main->>Main: s1.display()
 ```
+
 
 
 **Key takeaways:**
@@ -375,6 +370,7 @@ Name cannot be empty
 ---
 
 
+
 ### 2. Three kinds of variables (instance / class / local)
 
 **Icons:** Employee · Payroll · Order
@@ -448,6 +444,7 @@ flowchart TB
   ClassAttr --> E1
   ClassAttr --> E2
 ```
+
 
 
 **Key takeaways:**
@@ -540,6 +537,7 @@ Fixed ok2.students: []
 ---
 
 
+
 ### 3. Three kinds of methods (instance / class / static)
 
 **Icons:** Order · Bank · UPI · Payroll
@@ -605,6 +603,7 @@ flowchart LR
   Cls --> Use2["counters / from_row"]
   Stat --> Use3["pure math helpers"]
 ```
+
 
 
 **Key takeaways:**
@@ -689,9 +688,6 @@ print(round(FareMath.split_equal(900, 3), 2))  # 300.0
 
 ---
 
-
-**Session S37 focus:** Encapsulation → Step-by-Step BankAccount → Practice → open [lab kit](../15_Lab_Assets/17_bank_account_oop/).
-
 ### 4. Encapsulation — definition, problem, then `_` / `__` / `@property`
 
 **Icons:** Bank · UPI
@@ -699,6 +695,7 @@ print(round(FareMath.split_equal(900, 3), 2))  # 300.0
 **Where used?** Banking balances, UPI wallets, passwords, inventory stock — anything with a rule that must stay true after every change.
 
 ---
+
 
 
 #### Definition (say this in class)
@@ -713,6 +710,7 @@ Interview one-liner: *“Encapsulation = data + behaviour in one place, with con
 It is **not** “putting underscores on variables.” Underscores and `@property` are *tools*. The *goal* is protecting the object’s rules.
 
 ---
+
 
 
 #### Exact problem it solves
@@ -779,6 +777,7 @@ flowchart LR
 ```
 
 
+
 **Key takeaways:**
 
 - Exact problem: **uncontrolled writes** to important state
@@ -800,6 +799,7 @@ Teach the tools in **three layers**:
 3. Optional controlled write: `@x.setter`
 
 ---
+
 
 
 #### 4a. Public vs `_name` vs `__name` (naming)
@@ -858,6 +858,7 @@ flowchart TB
 ```
 
 
+
 **Key takeaways:**
 
 - `_balance` = polite “hands off” — Python does **not** stop you
@@ -877,6 +878,7 @@ flowchart TB
 **Common Error:** saying “`__balance` is private so nobody can read it.” They can: `obj._BankAccount__balance`.
 
 ---
+
 
 
 #### 4b. `@property` — attribute-like read that runs a method
@@ -991,6 +993,7 @@ flowchart LR
 ```
 
 
+
 **Key takeaways:**
 
 - `@property` = read with `obj.balance` (no `()`)
@@ -1001,6 +1004,7 @@ flowchart LR
 **Remember:** `@property` does **not** replace encapsulation by itself. You still store the real value in `_…` / `__…` and validate in `deposit` / `withdraw`.
 
 ---
+
 
 
 #### 4c. Optional — `@balance.setter` (controlled write)
@@ -1048,7 +1052,7 @@ still: Anita Sharma
 - Interview line: “`_name` is convention; `__name` is name mangling; `@property` gives a clean read API over internal storage.”
 - Course rule of thumb: **lab kit** may use `__balance` + `get_balance()`; **notes / interviews** prefer `_balance` + `@property`.
 
-**Lab vs note style (S37):** Lab kit = `__balance` + `get_balance()`. Notes above = `_balance` + `@property`. Same goal — both acceptable in this course.
+**Lab vs note style:** Lab kit = `__balance` + `get_balance()`. Notes above = `_balance` + `@property`. Same goal — both acceptable in this course.
 
 **Common Error:** treating `__balance` as encryption / security. It only renames the attribute (`_BankAccount__balance`).
 
@@ -1133,6 +1137,7 @@ celsius is read-only — change only via a setter or a method (later design)
 ---
 
 
+
 ## Step-by-Step Annotated Python 3 Code
 
 Examples below deepen Part 1 ideas. Type them; predict the output; then run.
@@ -1193,6 +1198,7 @@ Holder: Priya
 ---
 
 
+
 ### Example 2 — Full Student (marks list as instance data)
 
 ```python
@@ -1246,6 +1252,7 @@ Mark must be 0–100
 ---
 
 
+
 ### Example 3 — Product catalogue with classmethod + static GST
 
 ```python
@@ -1297,6 +1304,8 @@ products created: 2
 
 ---
 
+
+
 ## Practice Exercises
 
 *(Each Practice item includes a filled **Model answer** and **Expected Output** where the demo prints.)*
@@ -1304,7 +1313,7 @@ products created: 2
 ### Basic
 
 1. Create `Laptop` with `brand`, `ram_gb`, and a `specs()` method that prints both.
-   **Model answer:**
+  **Model answer:**
 
 ```python
 class Laptop:
@@ -1318,16 +1327,14 @@ class Laptop:
 Laptop("Dell", 16).specs()
 ```
 
-
    **Expected Output:**
 
 ```
 Dell — 16 GB RAM
 ```
 
-
-2. Create two `Laptop` objects and call `specs()` on each.
-   **Model answer:**
+1. Create two `Laptop` objects and call `specs()` on each.
+  **Model answer:**
 
 ```python
 l1 = Laptop("Dell", 16)
@@ -1336,7 +1343,6 @@ l1.specs()
 l2.specs()
 ```
 
-
    **Expected Output:**
 
 ```
@@ -1344,9 +1350,8 @@ Dell — 16 GB RAM
 Lenovo — 8 GB RAM
 ```
 
-
-3. Add `upgrade_ram(extra_gb)` that increases `ram_gb` only when `extra_gb > 0`.
-   **Model answer:**
+1. Add `upgrade_ram(extra_gb)` that increases `ram_gb` only when `extra_gb > 0`.
+  **Model answer:**
 
 ```python
 class Laptop:
@@ -1369,7 +1374,6 @@ lap.upgrade_ram(-2)
 lap.specs()
 ```
 
-
    **Expected Output:**
 
 ```
@@ -1377,9 +1381,8 @@ extra_gb must be positive
 Dell — 16 GB RAM
 ```
 
-
-4. Create `Product` with `sku`, `price`, and `display()` (do **not** use `__str__` yet — that is Part 3).
-   **Model answer:**
+1. Create `Product` with `sku`, `price`, and `display()` (do **not** use `__str__` yet — that is Part 3).
+  **Model answer:**
 
 ```python
 class Product:
@@ -1393,16 +1396,14 @@ class Product:
 Product("PEN-01", 10).display()
 ```
 
-
    **Expected Output:**
 
 ```
 PEN-01 @ ₹10
 ```
 
-
-5. Add `apply_discount(percent)` returning the discounted price (do not mutate unless you choose to).
-   **Model answer:**
+1. Add `apply_discount(percent)` returning the discounted price (do not mutate unless you choose to).
+  **Model answer:**
 
 ```python
 class Product:
@@ -1415,16 +1416,14 @@ class Product:
 print(Product("X", 1000).apply_discount(10))  # 900.0
 ```
 
-
    **Expected Output:**
 
 ```
 900.0
 ```
 
-
-6. Create `Employee` with a **class** attribute `company = "KSR Datavizon"` and instance attributes `emp_id`, `name`. Print both employees after changing `Employee.company`.
-   **Model answer:**
+1. Create `Employee` with a **class** attribute `company = "KSR Datavizon"` and instance attributes `emp_id`, `name`. Print both employees after changing `Employee.company`.
+  **Model answer:**
 
 ```python
 class Employee:
@@ -1444,7 +1443,6 @@ e1.card()
 e2.card()
 ```
 
-
    **Expected Output:**
 
 ```
@@ -1452,9 +1450,8 @@ e2.card()
 2: Meera @ KSR Labs
 ```
 
-
-7. Build a tiny `Wallet` with `_balance`, `@property` `balance`, and `deposit` only (no direct write to balance).
-   **Model answer:**
+1. Build a tiny `Wallet` with `_balance`, `@property` `balance`, and `deposit` only (no direct write to balance).
+  **Model answer:**
 
 ```python
 class Wallet:
@@ -1474,16 +1471,14 @@ w.deposit(50)
 print(w.balance)  # 150.0
 ```
 
-
    **Expected Output:**
 
 ```
 150.0
 ```
 
-
-8. Lab warm-up: write `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance` — reject amount ≤ 0 and overdraft. Then open the lab kit and finish it properly.
-   **Model answer:**
+1. Lab warm-up: write `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance` — reject amount ≤ 0 and overdraft. Then open the lab kit and finish it properly.
+  **Model answer:**
 
 ```python
 class BankAccount:
@@ -1516,7 +1511,6 @@ acct.withdraw(5000)
 print("Balance:", acct.get_balance())
 ```
 
-
    **Expected Output:**
 
 ```
@@ -1525,8 +1519,9 @@ Balance: 1300.0
 ```
 
 
+
 ## Next
 
-**Assignment reminder:** portfolio push is **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3 (S39). Keep building the [lab kit](../15_Lab_Assets/17_bank_account_oop/) from S37.
+**Assignment reminder:** portfolio push is **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3. Keep building the [lab kit](../15_Lab_Assets/17_bank_account_oop/).
 
-Continue with **[OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)** (S38).
+Continue with **[OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)**.

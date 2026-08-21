@@ -15,4 +15,3 @@ KeyError crashes in `broken/contact_book.py`.
 
 **Stretch (after Files / JSON week):** save and load `contacts.json`.
 
-**Sessions:** ~23–25

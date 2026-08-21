@@ -509,7 +509,7 @@ test("shows message", () => {
 - [ ] README documents both `runserver` and `npm run dev`
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

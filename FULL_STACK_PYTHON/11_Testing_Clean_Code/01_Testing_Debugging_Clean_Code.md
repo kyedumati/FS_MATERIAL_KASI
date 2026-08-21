@@ -490,7 +490,7 @@ def test_gst(amount, expected):
 - [ ] README shows how a teammate runs tests
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

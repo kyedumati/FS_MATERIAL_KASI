@@ -1,5 +1,3 @@
-**Sessions:** ~82–85
-
 # Ticket: Product JSON API for mobile
 
 **Request:** GET/POST `/api/products/` returning JSON. Negative price must 400.

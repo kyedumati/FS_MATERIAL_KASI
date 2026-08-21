@@ -580,7 +580,7 @@ return <p>Average ₹{avg.toFixed(2)}</p>;
 - [ ] README documents `npm run dev`
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

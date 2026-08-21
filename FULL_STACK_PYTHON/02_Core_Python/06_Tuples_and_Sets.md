@@ -668,7 +668,7 @@ Clean list: ['101', '102', '103', '104']
 - [ ] Order-preserving dedupe matches the sample  
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

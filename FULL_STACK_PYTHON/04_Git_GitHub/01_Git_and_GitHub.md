@@ -571,7 +571,7 @@ git push -u origin HEAD
 - [ ] No `venv/` or `.env` committed
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

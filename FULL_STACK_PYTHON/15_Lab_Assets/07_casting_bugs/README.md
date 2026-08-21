@@ -13,4 +13,3 @@ Fix bugs in `broken/marks_entry.py`.
 
 **Stretch (after Flow Control):** blank/letters → message + re-ask with `while`.
 
-**Sessions:** ~09

@@ -6,4 +6,3 @@
 ## Broken
 `broken/login_query.py` is injectable. Fix like `solution/`.
 
-**Sessions:** ~55

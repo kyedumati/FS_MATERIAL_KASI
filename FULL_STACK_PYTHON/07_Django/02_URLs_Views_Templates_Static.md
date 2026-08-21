@@ -518,7 +518,7 @@ return render(request, "cart/home.html", {"products": products})
 - [ ] Navbar uses `{% url %}` names (not hardcoded paths only)
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

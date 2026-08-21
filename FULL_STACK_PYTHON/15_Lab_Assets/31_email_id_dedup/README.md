@@ -3,8 +3,6 @@
 **Customer:** Ops team importing product / email lists  
 **Need:** Remove duplicates from a comma-separated list; preserve first-seen order.
 
-**Sessions:** ~21–22 (Tuples & Sets)
-
 ## Starter
 Open `starter/dedup.py` — finish `deduplicate`.
 

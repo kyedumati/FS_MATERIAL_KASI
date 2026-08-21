@@ -87,7 +87,7 @@ Every teaching module follows the same shape:
 - Step-by-step annotated code  
 - Practice exercises  
 - **Mini-Project (Assignment)** — take-home homework with lab kit, Stretch, and **Done when** (when present)  
-- Interview & Discussion Q&A  
+- Interview Q&A  
 - Graded checks: [`16_Assessments/`](16_Assessments/) (biweekly) — not an Assessment block in every module  
 
 **SQL depth** lives in repo **`MYSQL/`** (required labs listed in the MySQL bridge module) — not duplicated here.

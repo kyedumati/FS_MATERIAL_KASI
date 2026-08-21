@@ -1,6 +1,5 @@
 # Ticket: Stream Rows With `yield`
 
-**Sessions:** S31  
 **Customer:** Analytics  
 **Need:** Hand out rows one at a time with `yield` — do not build a giant result list.
 

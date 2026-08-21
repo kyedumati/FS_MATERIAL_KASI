@@ -14,4 +14,3 @@ Infinite loop / wrong withdraw logic in `broken/atm.py`.
 - [ ] Withdraw blocked when amount > balance
 - [ ] Balance never goes negative
 
-**Sessions:** ~11–15

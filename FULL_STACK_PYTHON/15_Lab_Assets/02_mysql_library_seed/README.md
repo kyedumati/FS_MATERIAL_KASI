@@ -1,5 +1,3 @@
-**Sessions:** ~50–55
-
 # Ticket: Library join report
 
 **Customer:** College librarian  

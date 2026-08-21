@@ -771,7 +771,7 @@ Average: 85.00
 - [ ] Marks parse prints roll, name, and average  
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

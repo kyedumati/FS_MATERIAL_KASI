@@ -35,16 +35,16 @@ SQL is a **core placement skill**. Deep notes live in [`MYSQL/`](../../MYSQL/); 
 
 | Done | When | Lab file | You must be able to |
 |:----:|------|----------|---------------------|
-| ☐ | W10 / S46 | [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md) | Install/connect; create `training_db` |
-| ☐ | W10 / S46–47 | [`MYSQL/01_Introduction_to_Databases.md`](../../MYSQL/01_Introduction_to_Databases.md) | Explain table/row/DBMS vs Excel |
-| ☐ | W10 / S47–48 | [`MYSQL/02_Introduction_to_SQL_Basic_Concepts.md`](../../MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | DDL + DML CRUD + constraints |
-| ☐ | W10 / S49 | [`MYSQL/03_Querying_with_SQL.md`](../../MYSQL/03_Querying_with_SQL.md) | WHERE, LIKE, ORDER BY, LIMIT |
-| ☐ | W10 / S50 | This bridge module | ER sketch for Library / CampusCart |
-| ☐ | W11 / S51 | [`MYSQL/06_Modeling_Databases.md`](../../MYSQL/06_Modeling_Databases.md) | PK/FK, 1:N |
-| ☐ | W11 / S52–53 | [`MYSQL/07_Joins.md`](../../MYSQL/07_Joins.md) | INNER + LEFT JOIN multi-table reports |
-| ☐ | W11 / S54 | [`MYSQL/09_Transactions_and_Indexes.md`](../../MYSQL/09_Transactions_and_Indexes.md) | COMMIT/ROLLBACK; when index helps |
+| ☐ | W10 | [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md) | Install/connect; create `training_db` |
+| ☐ | W10 | [`MYSQL/01_Introduction_to_Databases.md`](../../MYSQL/01_Introduction_to_Databases.md) | Explain table/row/DBMS vs Excel |
+| ☐ | W10 | [`MYSQL/02_Introduction_to_SQL_Basic_Concepts.md`](../../MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | DDL + DML CRUD + constraints |
+| ☐ | W10 | [`MYSQL/03_Querying_with_SQL.md`](../../MYSQL/03_Querying_with_SQL.md) | WHERE, LIKE, ORDER BY, LIMIT |
+| ☐ | W10 | This bridge module | ER sketch for Library / CampusCart |
+| ☐ | W11 | [`MYSQL/06_Modeling_Databases.md`](../../MYSQL/06_Modeling_Databases.md) | PK/FK, 1:N |
+| ☐ | W11 | [`MYSQL/07_Joins.md`](../../MYSQL/07_Joins.md) | INNER + LEFT JOIN multi-table reports |
+| ☐ | W11 | [`MYSQL/09_Transactions_and_Indexes.md`](../../MYSQL/09_Transactions_and_Indexes.md) | COMMIT/ROLLBACK; when index helps |
 | ☐ | W11 | [`MYSQL/10_Practice_Exercises.md`](../../MYSQL/10_Practice_Exercises.md) | Complete exercises for ch. 02, 03, 07 |
-| ☐ | W11 / S55 | [Python bridge](../03_Advanced_Python/06_Database_Programming_Bridge.md) | Parameterized INSERT/SELECT/UPDATE/DELETE from Python |
+| ☐ | W11 | [Python bridge](../03_Advanced_Python/06_Database_Programming_Bridge.md) | Parameterized INSERT/SELECT/UPDATE/DELETE from Python |
 
 **Strongly recommended before placement mocks:** [`MYSQL/04`](../../MYSQL/04_Aggregations_and_Group_By.md) · [`MYSQL/05`](../../MYSQL/05_Common_Concepts.md) · [`MYSQL/08`](../../MYSQL/08_Views_and_Subqueries.md) · one project from [`MYSQL/12`](../../MYSQL/12_Real_Time_Projects.md). Window functions ([`MYSQL/11`](../../MYSQL/11_Window_Functions_and_CTEs.md)) only if the required set is solid.
 
@@ -684,7 +684,7 @@ WHERE o.order_date >= '2026-07-01';
 **Python bridge:** `03_Advanced_Python/06_Database_Programming_Bridge.md` → **Next:** Django ORM maps to these tables.
 
 
-## Interview & Discussion Q&A
+## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 

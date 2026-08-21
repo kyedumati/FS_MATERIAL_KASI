@@ -13,4 +13,3 @@ Empty average and toppers / remove bugs in `broken/`.
 - [ ] Menu works for add/list/avg/toppers
 - [ ] Empty list average prints a safe message (no crash)
 
-**Sessions:** ~18–20
