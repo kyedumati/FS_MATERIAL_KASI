@@ -41,7 +41,9 @@ PDF/FULL_STACK_PYTHON/
 ```
 (`14_Trainer_Only` is excluded automatically.)
 
-Student markdown pack (no PDFs required):
+**One material:** these PDFs match the teaching markdown (Practice Model answers included). After each module, share **that module’s PDF** only.
+
+Optional full markdown mirror (still excludes `14_Trainer_Only/`, `solution/`, `*_KEY.md`):
 
 ```bash
 ./scripts/pack_student_share.sh

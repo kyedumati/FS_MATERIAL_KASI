@@ -1299,7 +1299,7 @@ products created: 2
 
 ## Practice Exercises
 
-*(Trainer copy — each item includes a filled **Model answer** and **Expected Output** where the demo prints.)*
+*(Each Practice item includes a filled **Model answer** and **Expected Output** where the demo prints.)*
 
 ### Basic
 

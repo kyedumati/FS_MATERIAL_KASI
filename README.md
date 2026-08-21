@@ -83,7 +83,7 @@ Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
 
 **Maintainers (pack / PDF)**
 - Student pack: `./scripts/pack_student_share.sh` · PDFs: `./scripts/build.sh fullstack`.
-- Private ops: [`FULL_STACK_PYTHON/14_Trainer_Only/`](FULL_STACK_PYTHON/14_Trainer_Only/) (keys, rubrics, sharing guide) — not in the student pack.
+- Private ops: [`FULL_STACK_PYTHON/14_Trainer_Only/`](FULL_STACK_PYTHON/14_Trainer_Only/) (keys, rubrics, sharing guide) — never share. Share each module PDF after teaching (one material).
 
 ---
 

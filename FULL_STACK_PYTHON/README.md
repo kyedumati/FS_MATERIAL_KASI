@@ -112,11 +112,12 @@ Brochure modules **preserved:** Core Python, Advanced Python (incl. decorators/g
 
 ## Maintainers
 
-Student pack / PDFs (from **repo root**, not this folder):
+PDFs / optional share mirror (from **repo root**):
 
 ```bash
-./scripts/pack_student_share.sh   # → dist/FULL_STACK_PYTHON_STUDENT/
-./scripts/build.sh fullstack      # → PDF/FULL_STACK_PYTHON/
+./scripts/build.sh fullstack      # → PDF/FULL_STACK_PYTHON/  (same notes as class)
+./scripts/pack_student_share.sh   # optional zip mirror; excludes private folders only
 ```
 
-Private ops (keys, rubrics, sharing guide): [`14_Trainer_Only/`](14_Trainer_Only/).
+**Share habit:** send each module PDF after that module is taught.  
+Private ops (keys, rubrics): [`14_Trainer_Only/`](14_Trainer_Only/).

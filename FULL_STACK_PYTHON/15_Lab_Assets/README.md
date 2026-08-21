@@ -10,7 +10,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
     README.md     # ticket (start here)
     starter/      # incomplete — learners extend
     broken/       # intentional bugs — debug lab
-    solution/     # reference answers (not in the student pack)
+    solution/     # reference answers (do not share; pack script excludes)
     seed/         # sample CSV/JSON/SQL when needed
 ```
 
@@ -61,7 +61,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 
 ## Student pack policy
 
-`solution/` folders are **stripped** by `scripts/pack_student_share.sh`. Starter/broken/seed remain.
+`solution/` folders are **excluded** by `scripts/pack_student_share.sh` and should not be shared. Starter/broken/seed remain.
 
 ## Map to modules
 

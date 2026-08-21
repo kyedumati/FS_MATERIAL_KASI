@@ -398,7 +398,7 @@ Trainer-only keys: `FULL_STACK_PYTHON/14_Trainer_Only/` (do **not** share with l
 3. SQL: follow **Required MySQL labs** in [01_MySQL_for_Full_Stack_Developers.md](../05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) — labs live in `MYSQL/` but are **required**, not optional extras.  
 4. Convert each module’s headings into PPT; labs → lab manual; graded checks → [`16_Assessments/`](../16_Assessments/) biweekly papers (not per-module MCQs).  
 5. Never skip GitHub, forms validation, auth, or Django lab days `06`–`07`.  
-6. Grade with [standard deliverables](../Standard_Project_Deliverables.md) + skill-level rubric; keep `*_KEY.md` and answer keys private (student pack excludes them).  
+6. Grade with [standard deliverables](../Standard_Project_Deliverables.md) + skill-level rubric; keep `*_KEY.md` and `14_Trainer_Only/` private.
 7. AI module is **stretch only** after a deployed Django MVP.  
 8. Share students the pack from repo root `./scripts/pack_student_share.sh` (or week’s module/PDF), **plus** sibling `MYSQL/` when needed.
 

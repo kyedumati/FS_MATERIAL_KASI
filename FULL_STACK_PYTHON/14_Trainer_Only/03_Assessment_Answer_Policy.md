@@ -1,20 +1,16 @@
 # Assessment & Practice Answer Keys (Trainer Only)
 
-Teaching modules contain `**Answer:**` / `**Model answer:**` under **Practice Exercises** in the **teaching copy** (`FULL_STACK_PYTHON/`, `FRONTEND/`) for live drills.
+**One material:** Teaching modules share Practice `**Model answer:**` and Interview Q&A with students when you send that module’s PDF after teaching.
 
-**Interview & Discussion Q&A** (questions **and** model answers) is **shared** with students — material is handed out after concepts and the mini-project, so keys in that section stay in the student pack.
+## What stays private
 
-The **student pack** strips Practice `**Model answer:**` blocks automatically via `scripts/strip_trainer_sections.py`. Practice **prompts** remain; Practice model solutions do not ship to students.
-
-## Graded tests (biweekly)
-
-1. Use papers under [`../16_Assessments/`](../16_Assessments/) — not Practice items as scored exams.  
-2. Keep `*_KEY.md` private (excluded from student pack).  
-3. Do not reuse unchanged Practice Model answers as the biweekly key.  
-4. Assign the paper as homework after the even week (or Friday wrap-up). Students get `BW##_….md` only.  
+1. Biweekly papers under [`../16_Assessments/`](../16_Assessments/) — students get `BW##_….md` only.  
+2. Keep `*_KEY.md` private (never share; excluded from optional pack scripts).  
+3. Do not use unchanged Practice Model answers as the biweekly exam key.  
+4. Assign the paper as homework after the even week (or Friday wrap-up).  
 5. Mark with the matching `*_KEY.md`; spot-review weak MCQ topics next session.
 
-## Quick extract
+## Quick extract (optional prep)
 
 From repo root:
 
@@ -22,7 +18,5 @@ From repo root:
 rg -n "\*\*(Answer|Model answer|Model):\*\*" FULL_STACK_PYTHON/02_Core_Python/03_Flow_Control.md \
   > FULL_STACK_PYTHON/14_Trainer_Only/keys/flow_control_answers.txt
 ```
-
-Student pack strips prose/code that follows `**Model answer:**` under Practice Exercises. It does **not** strip Interview & Discussion Q&A answers.
 
 Create `keys/` as needed per batch; do not commit real exam papers with cohort names if your policy forbids it.

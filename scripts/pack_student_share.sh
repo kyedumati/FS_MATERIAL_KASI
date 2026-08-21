@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
-# Pack Python Full Stack student batch: program + shared topics.
+# Optional mirror of teaching notes (same content as class — one material policy).
+# Preferred share habit: after each module, send that module’s PDF from PDF/FULL_STACK_PYTHON/.
+#
 # Usage (from repo root): ./scripts/pack_student_share.sh
 #
 # Output layout (paths match repo root so Prev/Next links work):
 #   dist/FULL_STACK_PYTHON_STUDENT/
-#     FULL_STACK_PYTHON/   # stripped program
+#     FULL_STACK_PYTHON/   # same notes as trainers (no answer stripping)
 #     FRONTEND/            # HTML/CSS/JS + FRONTEND/REACT/
 #     MYSQL/
 #     START_HERE.md
+#
+# Still excluded (private): 14_Trainer_Only/, **/solution/, *_KEY.md
 
 set -euo pipefail
 
@@ -50,13 +54,12 @@ for dep in FRONTEND MYSQL; do
     "$ROOT/$dep/" "$DEST/$dep/"
 done
 
-python3 "$ROOT/scripts/strip_trainer_sections.py" "$PROG_DEST"
-python3 "$ROOT/scripts/strip_trainer_sections.py" "$DEST/FRONTEND"
+# One material policy: do NOT strip Practice Model answers — same notes as class PDFs.
 
 cat > "$DEST/START_HERE.md" << 'EOF'
-# Start here — Python Full Stack student pack
+# Start here — Python Full Stack notes
 
-This folder mirrors the repo layout used by trainers.
+**One material:** these files match what trainers teach. Practice **Model answer** blocks are included.
 
 | Folder | What it is |
 |--------|------------|
@@ -65,18 +68,22 @@ This folder mirrors the repo layout used by trainers.
 | `FRONTEND/REACT/` | Shared React |
 | `MYSQL/` | Shared SQL labs (Weeks 10–11) |
 
-1. Open [`FULL_STACK_PYTHON/Session_Calendar_100.md`](FULL_STACK_PYTHON/Session_Calendar_100.md).  
-2. On frontend / React / SQL days, open the folder named in the calendar (`FRONTEND/`, `FRONTEND/REACT/`, `MYSQL/`).  
-3. Type examples; use `labs/` or `15_Lab_Assets/` starters.  
-4. Every even week, complete the matching paper in [`FULL_STACK_PYTHON/16_Assessments/`](FULL_STACK_PYTHON/16_Assessments/README.md).  
-5. Submit projects with [`FULL_STACK_PYTHON/Standard_Project_Deliverables.md`](FULL_STACK_PYTHON/Standard_Project_Deliverables.md).  
-6. Capstone MVP: [`FULL_STACK_PYTHON/Capstone_CampusCart_One_Pager.md`](FULL_STACK_PYTHON/Capstone_CampusCart_One_Pager.md).  
+## How you usually receive material
 
-Practice **model answers**, assessment **keys** (`*_KEY.md`), `14_Trainer_Only/`, and `solution/` folders are removed from this pack. Interview & Discussion Q&A (questions + answers) stays — use after concepts and the mini-project.
+Trainers share **one module PDF at a time** after that module is taught (from `PDF/FULL_STACK_PYTHON/…`).  
+This full folder is optional reference if your batch also gets a Drive/LMS zip.
+
+1. Open [`FULL_STACK_PYTHON/Session_Calendar_100.md`](FULL_STACK_PYTHON/Session_Calendar_100.md).  
+2. On frontend / React / SQL days, open the folder named in the calendar.  
+3. Type examples; use `labs/` or `15_Lab_Assets/` starters (not `solution/`).  
+4. Every even week, complete the matching paper in [`FULL_STACK_PYTHON/16_Assessments/`](FULL_STACK_PYTHON/16_Assessments/README.md) (student papers only — no `*_KEY`).  
+5. Capstone: [`FULL_STACK_PYTHON/Capstone_CampusCart_One_Pager.md`](FULL_STACK_PYTHON/Capstone_CampusCart_One_Pager.md).  
+
+**Not included:** `14_Trainer_Only/`, lab `solution/` folders, assessment `*_KEY.md` files.
 EOF
 
 cat > "$DEST/README.md" << 'EOF'
-# Python Full Stack — Student Batch Pack
+# Python Full Stack — Shared Notes (same as class)
 
 **Schedule:** 20 weeks × 1h 15m — see Session Calendar inside `FULL_STACK_PYTHON/`.  
 **Shared topics:** `FRONTEND/` (includes `REACT/`), `MYSQL/`.
@@ -85,11 +92,9 @@ cat > "$DEST/README.md" << 'EOF'
 
 → [START_HERE.md](START_HERE.md)
 
-## Program modules (Python-owned)
-
-See [`FULL_STACK_PYTHON/README.md`](FULL_STACK_PYTHON/README.md) teaching order.  
-Pointers: `FULL_STACK_PYTHON/06_Frontend/` and `10_React/` only redirect to the shared folders.
+Preferred delivery: module PDF after each teach day. See program README for teaching order.
 EOF
 
-echo "Student pack ready: $DEST"
-echo "Includes: FULL_STACK_PYTHON/ + FRONTEND/ (with REACT/) + MYSQL/"
+echo "Share mirror ready: $DEST"
+echo "Same content as class (Model answers kept). Excludes: 14_Trainer_Only/, solution/, *_KEY.md"
+echo "Preferred: share individual PDFs from PDF/FULL_STACK_PYTHON/ after each module."

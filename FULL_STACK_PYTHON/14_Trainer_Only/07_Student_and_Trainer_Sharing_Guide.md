@@ -1,9 +1,8 @@
 # One Material Policy — Teach and Share the Same Notes
 
-**Rule:** Use **only** `FULL_STACK_PYTHON/` for teaching **and** for student sharing.
+**Rule:** One version of module notes. Teach from `FULL_STACK_PYTHON/` (and shared `FRONTEND/`, `MYSQL/`). Share **that same** content with students — usually the **module PDF after that module is taught**.
 
-Do **not** revive a parallel Python-only pack.  
-Teach the **Python program** from `FULL_STACK_PYTHON/` and open shared topics from repo root: `FRONTEND/` (includes React), `MYSQL/`.
+Do **not** maintain a second “student-only” rewrite of the syllabus, and do **not** strip Practice **Model answer** blocks for sharing.
 
 ---
 
@@ -11,86 +10,56 @@ Teach the **Python program** from `FULL_STACK_PYTHON/` and open shared topics fr
 
 | Role | Open this | Do not open for class |
 |------|-----------|------------------------|
-| **Trainer (live class)** | Same week’s module `.md` in `FULL_STACK_PYTHON/` | Any old Python-only PDF pack |
-| **Student (notes + homework)** | Same module file / PDF built from it | Legacy Python PDF set |
-| **Trainer (private)** | Plus `14_Trainer_Only/` | Never share answer keys |
+| **Trainer (live class)** | Same week’s module `.md` | Legacy parallel packs |
+| **Student (after the module)** | Same module’s PDF (or `.md`) | Assessment `*_KEY.md`, lab `solution/` |
+| **Trainer (private)** | `14_Trainer_Only/` + `*_KEY.md` | Never share these |
 
-**MySQL depth** stays in `MYSQL/` because the Full Stack MySQL bridge module lists the **required labs** there. That is one planned dependency, not a second Python curriculum. See also [09_External_Dependencies.md](09_External_Dependencies.md).
-
-**Schedule authority:** [Session_Calendar_100.md](../Session_Calendar_100.md) — **20 weeks / 100 sessions** (1h 15m each).
+**Schedule authority:** [Session_Calendar_100.md](../Session_Calendar_100.md).
 
 ---
 
-## How to share with students (pick one)
+## How to share (recommended)
 
-### Option A — Markdown (recommended if students use GitHub / Cursor / VS Code)
+1. Teach from the module markdown.  
+2. Build PDFs when needed: `./scripts/build.sh fullstack` → `PDF/FULL_STACK_PYTHON/`.  
+3. After the module (or that day’s Focus) is done, share **only that module’s PDF** on Drive/LMS/WhatsApp.  
+4. Homework = **Mini-Project (Assignment)** in the same PDF/notes.
 
-Share a **student pack** (everything except trainer-only):
+Optional full zip (same notes, still no private folders):
 
 ```bash
-# From repo root
 ./scripts/pack_student_share.sh
+# → dist/FULL_STACK_PYTHON_STUDENT/
 ```
 
-Output: `dist/FULL_STACK_PYTHON_STUDENT/` — upload to Drive/LMS or push to a student repo.  
-The pack already includes nested `FRONTEND/` (with React) and `MYSQL/` beside `FULL_STACK_PYTHON/`.
-
-### Option B — PDFs from the **same** markdown (same content as you teach)
-
-```bash
-# From repo root
-./scripts/build.sh fullstack
-```
-
-PDFs appear under `PDF/FULL_STACK_PYTHON/` mirroring the folder structure.  
-Share **those** PDFs — not any old Python-only PDF folder.
-
-### Week-by-week habit (less overload)
-
-1. Teach from this week’s module file.  
-2. Share **only that week’s** file or PDF + assignment.  
-3. Keep the full pack available as view-only reference on Drive/LMS.
+That pack copies teaching files **without** stripping Model answers. It still excludes `14_Trainer_Only/`, `**/solution/`, and `*_KEY.md`.
 
 ---
 
-## What students should do in every module
+## What stays private
 
-- Read outcomes + beginner explanation.  
-- Type the code.  
-- Basic → Intermediate → Interview exercises.  
-- Mini-project with [standard deliverables](../Standard_Project_Deliverables.md).  
-- GitHub push.  
+| Keep private | Why |
+|--------------|-----|
+| `14_Trainer_Only/` | Ops, rubrics, writing standards |
+| `16_Assessments/*_KEY.md` | Graded answer keys |
+| `15_Lab_Assets/**/solution/` | Full lab solutions |
 
-## What trainers use beyond the shared pack
+Practice **Model answer** / Interview Q&A stay in the shared module — students get them with the notes when you share that PDF.
 
-- **Session Calendar** + lab kit (`15_Lab_Assets/`) for live class.
-- Optional blank: [Daily Lesson Plan Template](04_Daily_Lesson_Plan_Template.md).
-- **Student pack / Full Stack PDFs:** assessment answer lines removed automatically.
-- This folder (`14_Trainer_Only/`) only on your machine / private Drive.
-
-## What is excluded from the student pack
-
-Automatically removed or not copied:
-
-- Entire folder `14_Trainer_Only/` (sharing guide, lesson plan, writing standard, master guide, keys, …)
-- Lab `**/solution/` folders under `15_Lab_Assets/`
-- Practice assessment `**Answer:**` / `**Model answer:**` lines (and inline answer keys)
-- Trainer-only phrasing cleaned by `scripts/strip_trainer_sections.py`
-
-Rebuild after edits (repo root): `./scripts/pack_student_share.sh`
+---
 
 ## Graded tests
 
-Module assessments in the **trainer** tree may keep answers for prep. The **student pack strips those answers**. For scored tests, use [Trainer answer-key index](01_Sample_Answer_Keys_Index.md) / [Assessment Answer Policy](03_Assessment_Answer_Policy.md) and issue a fresh sheet without answers.
+Issue biweekly papers from `16_Assessments/BW##_….md` (no `_KEY`). Mark with the matching `*_KEY.md` on the trainer machine only.
 
 ---
 
-## Legacy Python pack (removed)
+## Legacy
 
-`PDF/PYTHON/` and `PYTHON/` were deleted from this repo. Topic map: [08_PDF_Python_Enrichment_Map.md](08_PDF_Python_Enrichment_Map.md).
+`PDF/PYTHON/` was removed. Topic map: [08_PDF_Python_Enrichment_Map.md](08_PDF_Python_Enrichment_Map.md).
 
 ---
 
 ## Trainer delivery reminder
 
-Notes are a reference, not a script. Each **1h 15m** session: short theory → type-along demo → mini-lab → assign **Mini-Project (Assignment)** → one Git commit expectation.
+Each **1h 15m** session: short theory → type-along demo → mini-lab → assign **Mini-Project (Assignment)** → one Git commit expectation.

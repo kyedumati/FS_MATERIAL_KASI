@@ -15,7 +15,7 @@
 | 3 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
 | 4 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
 | 5 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
-| 6 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (stripped in student pack). **Before** Mini-Project |
+| 6 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (shared — one material). **Before** Mini-Project |
 | 7 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
 | 8 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
 | 9 | **Interview & Discussion Q&A** | Shared with students (Q + A). Hand out after concepts + mini-project |
@@ -88,7 +88,7 @@ print(...)
 - Short (typically 5–20 lines), copy-paste runnable.
 - India-relevant examples OK (INR, student marks, ATM, names like Priya/Ravi).
 - Point to a lab kit when the exercise matches a ticket.
-- **Practice Exercises:** every numbered item must include `**Model answer:**` (prose and/or a fenced code block). Student pack strips these via `strip_trainer_sections.py`.
+- **Practice Exercises:** every numbered item must include `**Model answer:**` (prose and/or a fenced code block). Same notes are shared with students (PDF after the module).
 - After a program that prints, prefer an **Expected Output:** fence so PDF learners can self-check:
 
 ```markdown
@@ -166,7 +166,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 ```
 
 - Hand out **after** teaching concepts + mini-project.
-- **Q + A stay in the student pack** (not stripped). Practice `**Model answer:**` still strips.
+- **Q + A are part of the same shared notes** (PDF after the module). Practice **Model answer** blocks are shared too (one material).
 
 ---
 
@@ -216,12 +216,12 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 - [ ] Definition/Purpose before first big table (no “Beginner-Friendly” heading)  
 - [ ] **Try these (2 programs)** after each topic / Step  
 - [ ] **Note** next to each major sub-topic (no standalone Common Mistakes)  
-- [ ] Practice Exercises include **Model answer:** under each item (trainer copy)  
+- [ ] Practice Exercises include **Model answer:** under each item  
 - [ ] Practice appears **before** Mini-Project (Assignment)  
 - [ ] Mini-Project (Assignment): lab kit + Done when (+ Stretch) — or standalone `## Assignment` if no mini-project  
 - [ ] No Revision Map table (redundant)  
 - [ ] No Biweekly/Assessment MCQ block in the module (use `16_Assessments/`)  
-- [ ] Interview & Discussion Q&A: shared Q + A (not stripped); hand out after concepts + mini-project  
+- [ ] Interview & Discussion Q&A: shared Q + A; share module PDF after concepts + mini-project  
 - [ ] No Demo Plan / Tips / separate Discussion appendix / Real-World appendix  
 - [ ] No fresher / switcher / beginner audience splits in learner text  
-- [ ] Student pack strips Practice `**Model answer:**` / `solution/` / `*_KEY.md` (not Interview Q&A)
+- [ ] Private only: `14_Trainer_Only/` · `solution/` · `*_KEY.md` (never share those)

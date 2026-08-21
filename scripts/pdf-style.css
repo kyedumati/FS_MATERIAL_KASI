@@ -2,8 +2,8 @@
 
 @page {
   size: A4;
-  /* Slightly tighter to cut blank bands; leave room for side notes */
-  margin: 14mm 12mm 15mm 12mm;
+  /* Tighter margins = wider content (still A4 for classroom printers) */
+  margin: 10mm 9mm 11mm 9mm;
 }
 
 *, *::before, *::after {

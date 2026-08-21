@@ -19,4 +19,4 @@ Private ops, rubrics, answer keys, and author standards. Excluded from `./script
 | [10_Module_Writing_Standard.md](10_Module_Writing_Standard.md) | Authoring standard for modules |
 | [11_Master_Course_Guide.md](11_Master_Course_Guide.md) | Full journey, capstone roadmap, placement |
 
-**Policy:** Do not share this folder with learners. Module assessments may keep inline answers in the trainer tree; the student pack strips answer lines.
+**Policy:** Do not share this folder with learners. Graded `*_KEY.md` files stay private. Module notes (including Practice Model answers) are shared as the same PDF you teach from — after that module is done.

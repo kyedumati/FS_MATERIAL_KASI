@@ -790,9 +790,8 @@ def main() -> int:
         else:
             out_dir = args.output / md_path.parent.name
         print(f"Building {md_path.relative_to(ROOT)}")
-        strip = course_root.name in NESTED_COURSES
         if convert_file(
-            md_path, out_dir, css, chrome, args.force, strip_trainer=strip
+            md_path, out_dir, css, chrome, args.force, strip_trainer=False
         ):
             built += 1
     else:
@@ -822,7 +821,7 @@ def main() -> int:
                     css,
                     chrome,
                     args.force,
-                    strip_trainer=recursive,
+                    strip_trainer=False,
                 ):
                     built += 1
 

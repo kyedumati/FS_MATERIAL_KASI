@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Strip trainer-only sections/phrases from Full Stack Markdown for student packs/PDFs."""
+"""Optional cleaner for leftover trainer-ops phrasing (not used in the default share path).
+
+One material policy: Practice **Model answer** blocks stay in teaching notes and PDFs.
+Default share = module PDF after teaching. Optional pack script only excludes
+14_Trainer_Only/, solution/, and *_KEY.md — it does not call this stripper.
+
+This module remains available if you ever need to strip trainer-only H2/H3 sections
+or Model answers for a special batch (pass a folder path).
+"""
 
 from __future__ import annotations
 
@@ -30,7 +38,6 @@ TRAINER_H2 = re.compile(
     re.MULTILINE | re.IGNORECASE,
 )
 
-# H3 subsections that are clearly trainer-facing
 TRAINER_H3 = re.compile(
     r"^###[ \t]+(?:"
     r".*trainer only.*"
@@ -52,7 +59,6 @@ LINE_DROPS = re.compile(
     re.MULTILINE | re.IGNORECASE,
 )
 
-# **Model answer:** / **Answer:** — label line, optional prose lines, optional fenced code
 MODEL_ANSWER_BLOCK = re.compile(
     r"^[ \t]*\*\*(?:Answer|Model answer|Answers|Model scenario answer):\*\*[^\n]*\n"
     r"(?:(?![ \t]*(?:\d+\.|#{1,3} |\Z|\*\*Model answer:\*\*|\*\*Answer:\*\*)).*\n)*"
@@ -60,7 +66,6 @@ MODEL_ANSWER_BLOCK = re.compile(
     re.MULTILINE | re.IGNORECASE,
 )
 
-# Inline keys: "… — **Answer:** c" / "… — **Model:** …"
 INLINE_ANSWER = re.compile(
     r"\s*[—\-–]?\s*\*\*(?:Answers?|Model):\*\*\s*[^\n]*",
     re.IGNORECASE,
@@ -101,7 +106,6 @@ INLINE_PHRASES = [
     (re.compile(r"\*\*Trainer note:\*\*[^\n]*", re.I), ""),
 ]
 
-# Module headers: Duration is course-wide ops; keep Phase if it shared the line
 DURATION_WITH_PHASE = re.compile(
     r"^\*\*Duration:\*\*[^\n]*?\|\s*\*\*Phase:\*\*\s*([^\n]+)\n",
     re.MULTILINE,
@@ -112,13 +116,19 @@ DURATION_LINE = re.compile(
 )
 
 
-def strip_trainer_sections(md_text: str) -> str:
+def strip_trainer_sections(md_text: str, *, keep_model_answers: bool = False) -> str:
+    """Clean trainer-ops wording. By default also removes Practice Model answers.
+
+    For one-material sharing, do not call this on student-facing PDFs/packs.
+    Pass keep_model_answers=True to only remove trainer H2/H3/ops lines.
+    """
     cleaned = TRAINER_H2.sub("", md_text)
     cleaned = TRAINER_H3.sub("", cleaned)
     cleaned = LINE_DROPS.sub("", cleaned)
-    cleaned = MODEL_ANSWER_BLOCK.sub("", cleaned)
-    cleaned = INLINE_ANSWER.sub("", cleaned)
-    cleaned = INLINE_ANSWER_COMPACT.sub("", cleaned)
+    if not keep_model_answers:
+        cleaned = MODEL_ANSWER_BLOCK.sub("", cleaned)
+        cleaned = INLINE_ANSWER.sub("", cleaned)
+        cleaned = INLINE_ANSWER_COMPACT.sub("", cleaned)
     cleaned = BLOCK_TRAINER_NOTE.sub("", cleaned)
     cleaned = HINT_SHEET.sub("", cleaned)
     cleaned = TITLE_TRAINER_READY.sub("", cleaned)
@@ -131,13 +141,15 @@ def strip_trainer_sections(md_text: str) -> str:
     return cleaned.strip() + "\n"
 
 
-def process_tree(root: Path) -> int:
+def process_tree(root: Path, *, keep_model_answers: bool = False) -> int:
     count = 0
     for path in sorted(root.rglob("*.md")):
         if "14_Trainer_Only" in path.parts:
             continue
         original = path.read_text(encoding="utf-8")
-        updated = strip_trainer_sections(original)
+        updated = strip_trainer_sections(
+            original, keep_model_answers=keep_model_answers
+        )
         if updated != original:
             path.write_text(updated, encoding="utf-8")
             count += 1
@@ -151,11 +163,16 @@ def main() -> int:
         type=Path,
         help="Folder of markdown files to clean in place",
     )
+    parser.add_argument(
+        "--keep-model-answers",
+        action="store_true",
+        help="Do not remove Practice **Model answer:** blocks",
+    )
     args = parser.parse_args()
     if not args.root.is_dir():
         print(f"error: not a directory: {args.root}")
         return 1
-    n = process_tree(args.root)
+    n = process_tree(args.root, keep_model_answers=args.keep_model_answers)
     print(f"Stripped trainer sections from {n} file(s) under {args.root}")
     return 0
 
