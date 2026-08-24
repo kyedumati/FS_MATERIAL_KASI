@@ -7,27 +7,13 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Define **models** by subclassing `models.Model` with common field types
-- Run **migrations** with `makemigrations` and `migrate` to sync MySQL schema
-- Perform **ORM CRUD**: create, read, update, delete without raw SQL
-- Use Django **Admin** to register models and manage data via `/admin/`
-- Explain **ForeignKey** and **ManyToManyField** relationships at overview level
-- Query with `filter()`, `get()`, `all()`, and `order_by()` in views
-- Connect models to templates replacing hardcoded context data
-
----
-
 ### What is a Model?
 
 A **model** is a Python class describing **database table structure**. Each **attribute** on the class becomes a **column**. Django **ORM** (Object-Relational Mapper) translates Python operations to SQL.
 
 **Where used?**
 - Campus portal — Student / Course models synced to MySQL
-- Ecommerce — Product, Order models + Django admin for staff
+- **TechMart** — Product, Order models + Django admin for staff
 - Blog — Post / Author / Tag with FK and M2M
 - Task Manager — Task rows owned by User (FK later with auth)
 - Capstone — replace hardcoded template lists with ORM queries
@@ -211,7 +197,7 @@ class Post(models.Model):
         return self.title
 ```
 
-**Program 2 — Include city in Product str**
+**Program 2 — TechMart include city in Product str**
 
 ```python
 class Product(models.Model):
@@ -445,7 +431,6 @@ tasks = Task.objects.filter(done=False).order_by("-created_at")
 return render(request, "tasks/dashboard.html", {"tasks": tasks})
 ```
 
-
 ### Intermediate
 
 1. **Booking:** `Room` model (name, capacity, available) + admin list_filter on available
@@ -462,7 +447,6 @@ class RoomAdmin(admin.ModelAdmin):
     list_filter = ("available",)
 ```
 
-
 2. **Student Portal:** `Student` FK to `Department` model
    **Model answer:**
 
@@ -474,7 +458,6 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="students")
 ```
-
 
 3. Shell: count posts per author using `author.posts.count()`
    **Model answer:**
@@ -525,7 +508,6 @@ for u in User.objects.all():
 - [ ] Public `/blog/` shows ORM data (no hardcoded posts)
 - [ ] Admin `list_display` + search works
 - [ ] New admin post appears after browser refresh
-
 
 ## Interview Q&A
 

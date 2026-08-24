@@ -7,19 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. Explain version control and why teams use Git.
-2. Initialize repos, stage, commit, and view history with core commands.
-3. Branch, merge, and resolve simple conflicts.
-4. Clone, push, and pull with GitHub remotes.
-5. Write a useful `.gitignore` and project `README.md`.
-6. Follow GitHub portfolio habits that help entry-level hiring.
-
----
-
 ## Prerequisites
 
 - Git installed (`git --version`) and a free GitHub account
@@ -35,10 +22,10 @@ By the end of this session, learners will be able to:
 
 **Where used?**
 - College apps — version student portal / CampusCart code across lab days
-- Ecommerce — team feature branches for cart, checkout, product pages
-- Banking / payroll — audit trail of who changed what (commit history)
+- **TechMart** — team feature branches for cart, checkout, product pages
+- **SecureBank** / **AcmeHR** — audit trail of who changed what (commit history)
 - Freelancer / internship — GitHub portfolio recruiters open before calls
-- Hospital / CRM — shared repos so teammates do not overwrite each other
+- **MedCare** — shared repos so teammates do not overwrite each other
 
 **Workflow in one line:**
 
@@ -477,7 +464,6 @@ echo "b" > b.txt && git add b.txt && git commit -m "Add b.txt"
 echo "c" > c.txt && git add c.txt && git commit -m "Add c.txt"
 ```
 
-
 2. View history with `git log --oneline --graph`.
    **Model answer:**
 
@@ -495,7 +481,6 @@ printf 'venv/\n__pycache__/\n*.pyc\n' > .gitignore
 git add .gitignore && git commit -m "Add Python gitignore"
 ```
 
-
 ### Intermediate
 
 1. Create branch `feature/csv-export`; merge to `main`.
@@ -507,7 +492,6 @@ git checkout -b feature/csv-export
 git checkout main
 git merge feature/csv-export
 ```
-
 
 2. Clone your partner's repo; add file; push via PR if using GitHub classroom.
    **Model answer:**
@@ -521,7 +505,6 @@ git add partner_note.md && git commit -m "Add partner note"
 git push -u origin HEAD
 # Open PR on GitHub (gh pr create or UI)
 ```
-
 
 3. Write README with setup steps for student CRUD project.
    **Model answer:**
@@ -569,7 +552,6 @@ git push -u origin HEAD
 - [ ] Public GitHub shows at least one project with clear Setup steps
 - [ ] Profile README (or project README) states target role and city/region
 - [ ] No `venv/` or `.env` committed
-
 
 ## Interview Q&A
 

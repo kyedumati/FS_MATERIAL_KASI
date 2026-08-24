@@ -1,0 +1,9 @@
+# Example notes (trainer / after you try)
+
+pwd:
+/Users/priya/ksr_java_fullstack
+
+ls:
+labs
+notes
+projects

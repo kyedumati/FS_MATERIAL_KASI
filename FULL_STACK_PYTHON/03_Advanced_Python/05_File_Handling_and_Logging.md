@@ -7,19 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. Open and read/write files using correct modes and encoding.
-2. Use the `with` statement for safe resource management.
-3. Process text, CSV, and JSON files from Python.
-4. Configure the `logging` module with levels and `basicConfig`.
-5. Replace `print()` debugging with structured logs in small projects.
-6. Build a file-based expense tracker ready for GitHub portfolio.
-
----
-
 ### What is file handling? What is logging?
 
 Programs often need to **remember data after they close** — student records, expense rows, settings. **Files** on disk hold that data. **Logging** writes timestamped messages about what the program did (or failed to do) so you can debug later.
@@ -43,11 +30,11 @@ The **`with`** statement is the polite borrower — Python **closes** the file e
 **Icons:** Order · Laptop · Payroll · CRM · Bank
 
 **Where used?**
-- Expense / payroll exports — append CSV rows, then summarise by category
+- **AcmeHR** / payroll exports — append CSV rows, then summarise by category
 - Attendance & logs — append-only text files that survive process restarts
 - Config — `prefs.json` / `config.json` loaded at startup
 - Server debugging — `logging` to `app.log` when nobody watches the console
-- Large reports — iterate line-by-line or `csv.DictReader` instead of loading everything
+- **TechMart** reports — iterate line-by-line or `csv.DictReader` instead of loading everything
 
 ---
 
@@ -259,7 +246,7 @@ with open("students.csv", newline="", encoding="utf-8") as f:
 
 **Try these (2 programs):**
 
-**Program 1 — Fees CSV write + total**
+**Program 1 — AcmeHR fees CSV write + total**
 
 ```python
 import csv
@@ -288,7 +275,7 @@ print("Total fees:", total)  # 42000
 Total fees: 42000
 ```
 
-**Program 2 — Canteen menu CSV export**
+**Program 2 — TechMart canteen menu CSV export**
 
 ```python
 import csv
@@ -536,7 +523,6 @@ with open("source.txt", encoding="utf-8") as src, open("backup.txt", "w", encodi
     dst.write(src.read())
 ```
 
-
 2. Count lines, words, characters in a text file.
    **Model answer:**
 
@@ -548,7 +534,6 @@ words = text.split()
 print(len(lines), len(words), len(text))
 ```
 
-
 3. Append current date to `diary.txt` with user note.
    **Model answer:**
 
@@ -559,7 +544,6 @@ note = input("Note: ")
 with open("diary.txt", "a", encoding="utf-8") as f:
     f.write(f"{date.today().isoformat()} | {note}\n")
 ```
-
 
 ### Intermediate
 
@@ -579,7 +563,6 @@ with open("summary.csv", "w", newline="", encoding="utf-8") as f:
     w.writerow([len(scores), round(avg, 2)])
 ```
 
-
 2. Load/save user preferences in `prefs.json`.
    **Model answer:**
 
@@ -594,7 +577,6 @@ if path.exists():
 prefs["theme"] = "dark"
 path.write_text(json.dumps(prefs, indent=2), encoding="utf-8")
 ```
-
 
 3. Configure logger writing INFO+ to file, WARNING+ to console.
    **Model answer:**
@@ -615,7 +597,6 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 ```
 
-
 ### Interview-style
 
 1. Difference between `json.load` and `json.loads`?
@@ -630,7 +611,7 @@ logger.addHandler(ch)
    **Model answer:**
    CSV suits flat tabular exports and spreadsheets. JSON fits nested config/API payloads. A database is better for concurrent writes, queries, relationships, and integrity constraints in multi-user apps.
 
-## Mini-Project (Assignment): Expense Tracker with File + Logging
+## Mini-Project (Assignment): AcmeHR Expense Tracker with File + Logging
 
 **Title:** DailyExpenseLogger  
 **Lab kit (build here):** [15_Lab_Assets/01_python_expense_tracker/](../15_Lab_Assets/01_python_expense_tracker/)  
@@ -660,7 +641,6 @@ logger.addHandler(ch)
 - [ ] Logging writes to `app.log` (not only `print`)  
 - [ ] Bad/missing files handled without traceback for expected cases  
 - [ ] Pushed to GitHub with sample `config.json` (no secrets)
-
 
 ## Interview Q&A
 

@@ -1,7 +1,7 @@
 # Biweekly Assessment BW04 — Weeks 7–8
 
 **Sessions covered:** S31–40  
-**Topics:** Generators, ksr_utils, modules/venv, OOP, try/except basics
+**Topics:** Generators, ksr_utils, modules/venv, OOP (including ABC / interface), try/except basics
 
 **Timebox:** 45–60 minutes (homework or Friday of the even week).  
 **Rules:** Closed notes unless your trainer allows open notes. No copying.  
@@ -95,7 +95,7 @@ Circle the best option.
 # your code
 ```
 
-2. Create `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance`. Reject bad amounts with print+return (or raise if you already prefer exceptions).
+2. Create **SecureBank** `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance`. Reject bad amounts with print+return (or raise if you already prefer exceptions).
 
 ```python
 # your code

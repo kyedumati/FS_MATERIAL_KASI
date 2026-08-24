@@ -3,6 +3,8 @@
 # Usage:
 #   ./scripts/build.sh                    # MYSQL (default)
 #   ./scripts/build.sh fullstack          # FULL_STACK_PYTHON (teach + share same notes)
+#   ./scripts/build.sh java               # FULL_STACK_JAVA
+#   ./scripts/build.sh frontend           # shared FRONTEND/ (HTML/CSS/JS + React)
 #   ./scripts/build.sh mysql
 #   ./scripts/build.sh --force fullstack
 
@@ -43,9 +45,15 @@ for arg in "$@"; do
     fullstack|FULL_STACK_PYTHON|full-stack|fs)
       ARGS+=(--course FULL_STACK_PYTHON)
       ;;
+    java|JAVA|fullstack-java|full-stack-java|fs-java|FULL_STACK_JAVA)
+      ARGS+=(--course FULL_STACK_JAVA)
+      ;;
+    frontend|FRONTEND|fe)
+      ARGS+=(--course FRONTEND)
+      ;;
     *)
       echo "Unknown argument: $arg"
-      echo "Usage: $0 [--force] [fullstack|mysql|sql ...]"
+      echo "Usage: $0 [--force] [fullstack|java|frontend|mysql|sql ...]"
       exit 1
       ;;
   esac
@@ -55,4 +63,8 @@ if $FORCE; then
   ARGS+=(--force)
 fi
 
-python3 scripts/build_pdfs.py "${ARGS[@]}"
+if ((${#ARGS[@]} > 0)); then
+  python3 scripts/build_pdfs.py "${ARGS[@]}"
+else
+  python3 scripts/build_pdfs.py
+fi

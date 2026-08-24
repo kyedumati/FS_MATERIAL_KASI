@@ -7,20 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain what Django is, why Indian companies use it, and how MTV differs from MVC
-- Create an isolated Python environment with `venv` and install Django 5.x
-- Scaffold a project with `django-admin startproject` and an app with `startapp`
-- Run the development server with `runserver` and interpret the default welcome page
-- Navigate `settings.py`, `urls.py`, and `manage.py` at a high level
-- Configure MySQL as the database engine using modern settings patterns
-- Verify database connectivity and apply first migrations
-
----
-
 ## Prerequisites
 
 - MySQL 8+ available locally or on the lab server
@@ -36,7 +22,7 @@ By the end of this module, learners will be able to:
 
 **Where used?**
 - Campus / student portal — login, marks, announcements (MTV + admin)
-- Ecommerce — CampusCart catalog, orders, staff admin for products
+- **TechMart** / CampusCart catalog, orders, staff admin for products
 - Blog / Task Manager / Booking — course theme apps on the same Django project
 - IT services — internal HR / inventory portals with built-in admin
 - Capstone — full CRUD + auth stack recruiters expect on GitHub
@@ -378,7 +364,6 @@ python -m django --version
 # example output: 5.x.x
 ```
 
-
 2. List files created by `startproject` and explain each in one line
    **Model answer:**
    `manage.py` — CLI entry for migrate/runserver; project package `__init__.py`; `settings.py` — config; `urls.py` — root URL map; `asgi.py`/`wsgi.py` — deployment entry points; `wsgi.py` for traditional hosts, `asgi.py` for async.
@@ -467,7 +452,6 @@ Build project **`student_portal`** with apps `core` (home placeholder) and `acco
 - [ ] MySQL `DATABASES` configured; `migrate` succeeds
 - [ ] `requirements.txt` + README with activate/run steps
 - [ ] Apps `core` and `accounts` exist and `core` is in `INSTALLED_APPS`
-
 
 ## Interview Q&A
 

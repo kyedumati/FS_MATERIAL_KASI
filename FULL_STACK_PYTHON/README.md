@@ -1,7 +1,7 @@
 # Python Full Stack Development — Training Material
 
 > **One material policy for the Python program.** Python/Django notes live in this folder.  
-> **Shared topics** (also for Java FS later): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/`](../MYSQL/).  
+> **Shared topics** (also for Java FS): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/`](../MYSQL/).  
 > Pointers only: `06_Frontend/`, `10_React/`. Legacy `PDF/PYTHON/` removed.
 
 **Source syllabus:** KSR Datavizon *FULL STACK PYTHON 2026–27*  
@@ -49,7 +49,7 @@
 | 9 | [02_Core_Python/08_Data_Structures_Overview.md](02_Core_Python/08_Data_Structures_Overview.md) | Data structures overview |
 | 10 | [03_Advanced_Python/01_Functions_Decorators_Generators.md](03_Advanced_Python/01_Functions_Decorators_Generators.md) | Functions, decorators, generators |
 | 11 | [03_Advanced_Python/02_Modules_and_Packages.md](03_Advanced_Python/02_Modules_and_Packages.md) | Modules & packages |
-| 12 | [03_Advanced_Python/03_OOP.md](03_Advanced_Python/03_OOP.md) | OOP (index) → [Part 1](03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md) · [Part 2](03_Advanced_Python/03_OOP_Part2_Inheritance.md) · [Part 3](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) |
+| 12 | [03_Advanced_Python/03_OOP.md](03_Advanced_Python/03_OOP.md) | OOP (index) → [Part 1](03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md) · [Part 2](03_Advanced_Python/03_OOP_Part2_Inheritance.md) · [Part 3](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) · [Part 4](03_Advanced_Python/03_OOP_Part4_Abstract_Classes_Interfaces.md) |
 | 13 | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Exception handling |
 | 14 | [03_Advanced_Python/05_File_Handling_and_Logging.md](03_Advanced_Python/05_File_Handling_and_Logging.md) | Files & logging |
 | 15 | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub |
@@ -81,7 +81,6 @@
 
 Every teaching module follows the same shape:
 
-- Learning outcomes  
 - **Definition** / **Purpose** before syntax
 - Important concepts with **Try these (2 programs)** + runnable code (Core / Advanced Python; expanding elsewhere)  
 - Step-by-step annotated code  

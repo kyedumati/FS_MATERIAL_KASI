@@ -6,28 +6,16 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. **Choose** the right collection — list, tuple, set, or dict — for student, employee, e-commerce, and expense scenarios.
-2. Implement **stack** (LIFO) and **queue** (FIFO) behaviour using Python lists.
-3. Explain **Big-O intuition** at entry-level interview depth: O(1), O(n), O(n²) — not full proofs.
-4. Compare time trade-offs: list scan vs dict lookup vs set membership.
-5. Read simple interview questions on collections and answer with examples from their projects.
-
----
-
 Python gives you four built-in **containers** for grouping data. Choosing the wrong one makes code slower, bug-prier, or harder to read — like using a shopping bag when you need a labelled filing cabinet.
 
 **Icons:** Order · Employee · Bank · UPI · Laptop
 
 **Where used?**
-- Ecommerce — cart (list), SKU lookup (dict), unique tags (set), GPS drop (tuple)
-- Banking / UPI — transaction history list, account dict by ID
-- Payroll — employee-by-id dict, unique active-ID set
+- **TechMart** — cart (list), SKU lookup (dict), unique tags (set), GPS drop (tuple)
+- **SecureBank** / UPI — transaction history list, account dict by ID
+- **AcmeHR** — employee-by-id dict, unique active-ID set
 - College apps — undo stack for form edits, ticket queues
-- Hospital / CRM — support ticket FIFO queue, banned-user set
+- **MedCare** — support ticket FIFO queue, banned-user set
 
 **Quick decision guide:**
 
@@ -133,7 +121,7 @@ employee-by-id → dict
 
 **Interview:** Start answers with the decision guide — key→value? dict · unique? set · fixed row? tuple · ordered mutable? list.
 
-**Program 2 — Tiny canteen examples**
+**Program 2 — TechMart tiny canteen examples**
 
 ```python
 cart = ["Chai", "Samosa"]                 # list
@@ -621,7 +609,6 @@ students = [{"name": name, "marks": marks} for name, marks in rows]
 print(students)
 ```
 
-
 6. Write `is_balanced_parens(s)` using stack for `"((()))"` and `"(()"` (strings module tie-in).
 
    **Model answer:**
@@ -641,7 +628,6 @@ def is_balanced_parens(s):
 print(is_balanced_parens("((()))"))  # True
 print(is_balanced_parens("(()"))     # False
 ```
-
 
 ### Interview-style
 
@@ -707,7 +693,6 @@ Learners extend `choose_structure` with 5 custom scenarios from their domain (HR
 - [ ] `demo_stack` and `demo_queue` run from `__main__`  
 - [ ] `choose_structure` covers at least 4 built-ins + 5 custom scenarios  
 
-
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
@@ -732,8 +717,6 @@ Shared with students after concepts and the mini-project. Use for review and int
 
 5. **What is O(n)?**  
    **A:** Work grows roughly proportionally with input size; one full pass through data.
-
----
 
 ---
 

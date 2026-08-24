@@ -9,15 +9,6 @@
 
 ---
 
-## Learning Outcomes
-
-- Apply `load_dotenv()`, `DEBUG=False` simulation, and WhiteNoise/`STORAGES` from Module 05
-- Run and interpret `python manage.py check --deploy`
-- Debug static files, ALLOWED_HOSTS, and database connection failures calmly
-- Update README with deploy steps and env var list
-
----
-
 ## Must-pass checklist
 
 ### Done when

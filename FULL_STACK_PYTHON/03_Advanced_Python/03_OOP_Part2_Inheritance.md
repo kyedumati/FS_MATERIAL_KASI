@@ -5,28 +5,13 @@
 **Previous module:** [OOP Part 1 — Classes & Encapsulation](03_OOP_Part1_Classes_Encapsulation.md)  
 **Next module:** [OOP Part 3 — Polymorphism & Project](03_OOP_Part3_Polymorphism_Project.md)
 
-**Series:** [OOP overview](03_OOP.md) · [Part 1](03_OOP_Part1_Classes_Encapsulation.md) · Part 2 (this file) · [Part 3](03_OOP_Part3_Polymorphism_Project.md)
+**Series:** [OOP overview](03_OOP.md) · [Part 1](03_OOP_Part1_Classes_Encapsulation.md) · Part 2 (this file) · [Part 3](03_OOP_Part3_Polymorphism_Project.md) · [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md)
 
 **Assignment (take-home):** Still the same portfolio deliverable — **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3. Today’s homework is inheritance drills; stretch = `SavingsAccount` toward that push.
 
 **Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
 
 ---
-
-## Learning Outcomes
-
-By the end of this part, learners will be able to:
-
-1. Explain inheritance as an **IS-A** relationship and use `class Child(Parent)` with `super()`.
-2. Recognise and sketch the four common inheritance types: single, multilevel, hierarchical, multiple.
-3. Override methods safely (and call `super()` when parent behaviour is still needed).
-4. Choose **HAS-A (composition)** when the child only *uses* another object — not when it *is* that object.
-5. Use `isinstance` thoughtfully (and avoid giant `if type == ...` trees).
-6. Extend `BankAccount` into `SavingsAccount` as a stretch toward the Part 3 push.
-
----
-
-**Teaching note:** Still **no** `try` / `except` / `raise` — Exception Handling comes after OOP Part 3. Validation stays `print` + `return`.
 
 **Teach order today:** Inheritance basics → **types of inheritance (with diagrams)** → overriding → then HAS-A / composition as the alternative.
 
@@ -50,7 +35,6 @@ class BankAccount:
 
     def get_balance(self):
         return self._balance
-
 
 class SavingsAccountCopyPaste:
     def __init__(self, holder, balance=0, interest_rate=0.04):
@@ -89,7 +73,6 @@ flowchart TB
   Fix -.->|easy to miss| SA1
 ```
 
-
 **Key takeaways:**
 
 - Same deposit rules in two classes = bug factory
@@ -116,15 +99,16 @@ class SavingsAccount(BankAccount):
 
 ### 1. Inheritance basics — IS-A, parent / child, `super()`
 
+**Real-world analogy:** A **smartphone IS-A phone**. It still makes calls (parent behaviour). It adds camera and apps (child extras). You do not rebuild dialling from scratch. `super()` is “first set up the phone part, then add the smartphone part.” **SecureBank** `SavingsAccount` **is a** `BankAccount`. **AcmeHR** `Manager` **is an** `Employee`. **MedCare** `Inpatient` **is a** `Patient`.
+
 **Icons:** Bank · Employee · Order
 
-**Where used?** `SavingsAccount` is a `BankAccount`; `Manager` is an `Employee`; `Car` is a `Vehicle`.
+**Where used?** **SecureBank** `SavingsAccount` is a `BankAccount`; **AcmeHR** `Manager` is an `Employee`; `Car` is a `Vehicle`.
 
 **Definition:** **Inheritance** lets a **child class** reuse and extend a **parent class**.  
 In plain English: the child **IS-A** specialised kind of the parent.
 
 **Purpose:** Write shared behaviour once on the parent; children only add / change what is special.
-
 
 | Word                            | Meaning                                              |
 | ------------------------------- | ---------------------------------------------------- |
@@ -132,7 +116,6 @@ In plain English: the child **IS-A** specialised kind of the parent.
 | **Child** (derived / sub class) | The specialised class — `SavingsAccount`, `Employee` |
 | **IS-A**                        | `SavingsAccount` **is a** `BankAccount`              |
 | `super()`                       | Call the parent’s method / `__init__` from the child |
-
 
 ```python
 class Person:
@@ -142,7 +125,6 @@ class Person:
     def greet(self):
         return f"Hi, I am {self.name}"
 
-
 class Employee(Person):                 # Employee IS-A Person
     def __init__(self, name, emp_id):
         super().__init__(name)          # init the parent part first
@@ -150,7 +132,6 @@ class Employee(Person):                 # Employee IS-A Person
 
     def card(self):
         return f"{self.greet()} ({self.emp_id})"
-
 
 e = Employee("Priya", 501)
 print(e.card())
@@ -179,7 +160,6 @@ classDiagram
   Person <|-- Employee
 ```
 
-
 **Key takeaways:**
 
 - `class Child(Parent):` = inheritance
@@ -193,9 +173,9 @@ classDiagram
 - Always initialise the parent before adding child-only fields.
 - Inheritance is for **specialisation**, not for “I want to reuse one helper method” (a plain function or composition may be enough).
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — SavingsAccount inherits BankAccount**
+**Program 1 — SecureBank SavingsAccount inherits BankAccount**
 
 ```python
 class BankAccount:
@@ -212,7 +192,6 @@ class BankAccount:
     def get_balance(self):
         return self._balance
 
-
 class SavingsAccount(BankAccount):
     def __init__(self, holder, balance=0, interest_rate=0.04):
         super().__init__(holder, balance)
@@ -225,7 +204,6 @@ class SavingsAccount(BankAccount):
             f"Interest ₹{interest:.2f} added. "
             f"Balance: ₹{self.get_balance():.2f}"
         )
-
 
 acct = SavingsAccount("Priya", 10000, 0.05)
 print("Before:", acct.get_balance())
@@ -241,40 +219,71 @@ Interest ₹500.00 added. Balance: ₹10500.00
 Holder still: Priya
 ```
 
-**Program 2 — TeachingAssistant extends Person**
+**Program 2 — AcmeHR Intern is an Employee**
 
 ```python
-class Person:
-    def __init__(self, name):
+class Employee:
+    def __init__(self, name, emp_id):
         self.name = name
+        self.emp_id = emp_id
 
-    def label(self):
-        return self.name
+    def badge(self):
+        return f"{self.name} ({self.emp_id})"
 
+class Intern(Employee):
+    def __init__(self, name, emp_id, college):
+        super().__init__(name, emp_id)
+        self.college = college
 
-class TeachingAssistant(Person):
-    def __init__(self, name, subject):
-        super().__init__(name)
-        self.subject = subject
+    def badge(self):
+        return f"{super().badge()} — intern from {self.college}"
 
-    def label(self):
-        return f"{super().label()} — {self.subject} lab TA"
-
-
-print(TeachingAssistant("Anita", "DSA").label())
-print(TeachingAssistant("Ravi", "Python").label())
+print(Intern("Anita", 801, "KSR").badge())
+print(Intern("Ravi", 802, "NIT Trichy").badge())
 ```
 
 **Expected Output:**
 
 ```
-Anita — DSA lab TA
-Ravi — Python lab TA
+Anita (801) — intern from KSR
+Ravi (802) — intern from NIT Trichy
+```
+
+**Program 3 — MedCare Inpatient is a Patient**
+
+```python
+class Patient:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def card(self):
+        return f"{self.name}, {self.age}y"
+
+class Inpatient(Patient):
+    def __init__(self, name, age, ward):
+        super().__init__(name, age)
+        self.ward = ward
+
+    def card(self):
+        return f"{super().card()}, ward {self.ward}"
+
+print(Inpatient("Meera Iyer", 54, "ICU").card())
+print("IS-A Patient?", isinstance(Inpatient("Meera Iyer", 54, "ICU"), Patient))
+```
+
+**Expected Output:**
+
+```
+Meera Iyer, 54y, ward ICU
+IS-A Patient? True
 ```
 
 ---
 
 ### 2. Types of inheritance (with diagrams)
+
+**Real-world analogy:** Family-tree **shapes**, not extra magic. **Single:** one parent, one child — savings is a bank account. **Multilevel:** grandparent → parent → child — Person → Employee → Manager. **Hierarchical:** one parent, many children — Vehicle → Car and Bike; Account → Savings and Current. **Multiple:** one child, two parents — “driver + cook” on one person; useful, easy to abuse. Real products mostly use **single** and **hierarchical**. **SecureBank**, **AcmeHR**, and **TechMart** almost never need a spaghetti of five parents.
 
 **Icons:** Employee · Bank · Order
 
@@ -283,14 +292,12 @@ Ravi — Python lab TA
 **Definition:** How many parents / children you wire — the **shape** of the tree.  
 **Purpose:** So you can read diagrams, name the type in interviews, and pick a shallow design.
 
-
 | Type             | Idea                                | Syntax taste                                                |
 | ---------------- | ----------------------------------- | ----------------------------------------------------------- |
 | **Single**       | One parent → one child              | `class B(A)`                                                |
 | **Multilevel**   | Chain: grandparent → parent → child | `class C(B)` and `class B(A)`                               |
 | **Hierarchical** | One parent → many children          | `class Car(Vehicle)`, `class Bike(Vehicle)`                 |
 | **Multiple**     | Many parents → one child            | `class C(A, B)` — supported; prefer composition when unsure |
-
 
 ---
 
@@ -335,16 +342,13 @@ class Person:
     def role(self):
         return "Person"
 
-
 class Employee(Person):
     def role(self):
         return "Employee"
 
-
 class Manager(Employee):         # multilevel: Manager → Employee → Person
     def role(self):
         return "Manager"
-
 
 m = Manager()
 print(m.role())
@@ -388,16 +392,13 @@ class Vehicle:
     def start(self):
         return f"{self.brand} starting…"
 
-
 class Car(Vehicle):
     def info(self):
         return f"Car: {self.brand}"
 
-
 class Bike(Vehicle):
     def info(self):
         return f"Bike: {self.brand}"
-
 
 for v in [Car("Hyundai"), Bike("Royal Enfield")]:
     print(v.info(), "|", v.start())
@@ -436,17 +437,14 @@ class Father:
     def skills(self):
         return ["driving"]
 
-
 class Mother:
     def skills(self):
         return ["cooking"]
-
 
 class Child(Father, Mother):     # multiple inheritance
     def all_skills(self):
         # MRO: Child → Father → Mother → object (left parent first)
         return Father.skills(self) + Mother.skills(self)
-
 
 c = Child()
 print(c.all_skills())
@@ -466,9 +464,9 @@ Which skills() wins alone? ['driving']
 
 **Common Error:** using multiple inheritance just to “mix features” when `self.engine = Engine()` would be clearer.
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — Hierarchical accounts under BankAccount**
+**Program 1 — SecureBank hierarchical accounts under BankAccount**
 
 ```python
 class BankAccount:
@@ -479,16 +477,13 @@ class BankAccount:
     def get_balance(self):
         return self._balance
 
-
 class SavingsAccount(BankAccount):
     def kind(self):
         return "savings"
 
-
 class CurrentAccount(BankAccount):
     def kind(self):
         return "current"
-
 
 for acct in [SavingsAccount("Priya", 1000), CurrentAccount("Ravi", 500)]:
     print(acct.holder, acct.kind(), acct.get_balance())
@@ -501,7 +496,7 @@ Priya savings 1000.0
 Ravi current 500.0
 ```
 
-**Program 2 — Multilevel card text**
+**Program 2 — AcmeHR multilevel: Person → Employee → Manager**
 
 ```python
 class Person:
@@ -511,7 +506,6 @@ class Person:
     def label(self):
         return self.name
 
-
 class Employee(Person):
     def __init__(self, name, emp_id):
         super().__init__(name)
@@ -520,7 +514,6 @@ class Employee(Person):
     def label(self):
         return f"{super().label()} ({self.emp_id})"
 
-
 class Manager(Employee):
     def __init__(self, name, emp_id, team_size):
         super().__init__(name, emp_id)
@@ -528,7 +521,6 @@ class Manager(Employee):
 
     def label(self):
         return f"{super().label()} — team of {self.team_size}"
-
 
 print(Manager("Meera", 900, 6).label())
 ```
@@ -539,9 +531,41 @@ print(Manager("Meera", 900, 6).label())
 Meera (900) — team of 6
 ```
 
+**Program 3 — TechMart hierarchical catalogue (Product → Grocery / Electronics)**
+
+```python
+class Product:
+    def __init__(self, sku, price):
+        self.sku = sku
+        self.price = price
+
+    def tag(self):
+        return f"{self.sku} ₹{self.price}"
+
+class Grocery(Product):
+    def tag(self):
+        return f"GROCERY {super().tag()}"
+
+class Electronics(Product):
+    def tag(self):
+        return f"ELECTRONICS {super().tag()}"
+
+for p in [Grocery("ATTA-5KG", 280), Electronics("USB-C", 199)]:
+    print(p.tag())
+```
+
+**Expected Output:**
+
+```
+GROCERY ATTA-5KG ₹280
+ELECTRONICS USB-C ₹199
+```
+
 ---
 
 ### 3. Method overriding
+
+**Real-world analogy:** Company **leave policy**. The default form says “12 days.” Managers fill the *same form* but write “18 days.” Same question (`leaves()` / `net()` / `info()`), different answer. You still *are* an employee — you just specialise the rule. **AcmeHR** overrides `payslip()`. **SecureBank** overrides `withdraw()` for a current-account overdraft. **TechMart** overrides `ship()` for COD vs prepaid.
 
 **Definition:** The child defines a method with the **same name** as the parent, with a new body.  
 **Purpose:** Specialise behaviour while keeping the same call site (`obj.info()`, `obj.net_salary()`).
@@ -555,7 +579,6 @@ class Vehicle:
     def info(self):
         return f"{self.brand} ({self.year})"
 
-
 class Car(Vehicle):
     def __init__(self, brand, year, doors):
         super().__init__(brand, year)
@@ -564,11 +587,9 @@ class Car(Vehicle):
     def info(self):   # override
         return f"Car: {super().info()}, doors={self.doors}"
 
-
 class Bike(Vehicle):
     def info(self):   # override
         return f"Bike: {super().info()}"
-
 
 for v in [Car("Hyundai", 2022, 4), Bike("Royal Enfield", 2021)]:
     print(v.info())
@@ -589,7 +610,6 @@ flowchart LR
   Call --> BikeInfo["Bike.info"]
 ```
 
-
 **Key takeaways:**
 
 - Override = same method name in child, new body
@@ -598,9 +618,9 @@ flowchart LR
 
 **Common Error:** overriding `__init__` or `info` and forgetting `super()` when the parent still owns required setup.
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — Override payslip on Manager**
+**Program 1 — AcmeHR override payslip on Manager**
 
 ```python
 class Employee:
@@ -614,7 +634,6 @@ class Employee:
     def payslip(self):
         return f"{self.name} net ₹{self.net():.0f}"
 
-
 class Manager(Employee):
     def __init__(self, name, basic, bonus):
         super().__init__(name, basic)
@@ -625,7 +644,6 @@ class Manager(Employee):
 
     def payslip(self):
         return f"{self.name} (Mgr) net ₹{self.net():.0f}"
-
 
 print(Employee("Ravi", 30000).payslip())
 print(Manager("Meera", 30000, 8000).payslip())
@@ -638,37 +656,78 @@ Ravi net ₹27000
 Meera (Mgr) net ₹35000
 ```
 
-**Program 2 — Override start message**
+**Program 2 — SecureBank override withdraw (current allows overdraft)**
 
 ```python
-class Vehicle:
-    def start(self):
-        return "Vehicle starting"
+class BankAccount:
+    def __init__(self, holder, balance):
+        self.holder = holder
+        self._balance = float(balance)
 
+    def withdraw(self, amount):
+        if amount > self._balance:
+            print("Insufficient funds")
+            return
+        self._balance -= amount
 
-class ElectricCar(Vehicle):
-    def start(self):
-        return "ElectricCar starting silently"
+    def get_balance(self):
+        return self._balance
 
+class CurrentAccount(BankAccount):
+    def withdraw(self, amount):
+        # overdraft up to ₹1000
+        if amount > self._balance + 1000:
+            print("Overdraft limit exceeded")
+            return
+        self._balance -= amount
 
-print(Vehicle().start())
-print(ElectricCar().start())
+s = BankAccount("Priya", 500)
+c = CurrentAccount("Ravi", 500)
+s.withdraw(800)   # blocked
+c.withdraw(800)   # allowed — overdraft
+print("Priya:", s.get_balance())
+print("Ravi:", c.get_balance())
 ```
 
 **Expected Output:**
 
 ```
-Vehicle starting
-ElectricCar starting silently
+Insufficient funds
+Priya: 500.0
+Ravi: -300.0
+```
+
+**Program 3 — TechMart override ship() for COD vs prepaid**
+
+```python
+class Order:
+    def ship(self):
+        return "Packed — prepaid, dispatch today"
+
+class CodOrder(Order):
+    def ship(self):
+        return "Packed — collect cash, then dispatch"
+
+print(Order().ship())
+print(CodOrder().ship())
+```
+
+**Expected Output:**
+
+```
+Packed — prepaid, dispatch today
+Packed — collect cash, then dispatch
 ```
 
 ---
 
 ### 4. HAS-A (composition) — when *not* to inherit
 
+**Real-world analogy:** A college **HAS** departments. A student **HAS** an ID card. The student is **not** an ID card — so do not inherit `IdCard`. A car **HAS** an engine; a car is not an engine. Inheritance is “is a specialised kind of.” Composition is “owns / uses a collaborator.” **AcmeHR** `Employee` has a `Laptop`. **TechMart** `OrderService` has a notifier. **MedCare** `Appointment` has a `Doctor` and a `Patient`.
+
 **Icons:** Employee · Laptop · Order
 
-**Where used?** `Employee` **has a** `Laptop`; `OrderService` **has a** notifier; `Car` **has an** `Engine`.
+**Where used?** **AcmeHR** `Employee` **has a** `Laptop`; **TechMart** `OrderService` **has a** notifier; `Car` **has an** `Engine`.
 
 Teach this **after** inheritance types: first learn IS-A trees, then learn when a tree is the wrong tool.
 
@@ -677,12 +736,10 @@ Teach this **after** inheritance types: first learn IS-A trees, then learn when 
 
 **Rule of thumb (decide after you can sketch inheritance types):**
 
-
 | Need                                       | Choose                |
 | ------------------------------------------ | --------------------- |
 | Child **is a** specialised parent          | **IS-A** inheritance  |
 | Object only **uses** / owns another object | **HAS-A** composition |
-
 
 ```python
 class Laptop:
@@ -692,14 +749,12 @@ class Laptop:
     def spec(self):
         return f"Laptop: {self.model}"
 
-
 class Person:
     def __init__(self, name):
         self.name = name
 
     def greet(self):
         return f"Hi, I am {self.name}"
-
 
 class Employee(Person):                    # IS-A Person (inheritance)
     def __init__(self, name, emp_id, laptop):
@@ -709,7 +764,6 @@ class Employee(Person):                    # IS-A Person (inheritance)
 
     def info(self):
         return f"{self.greet()} ({self.emp_id}) — {self.laptop.spec()}"
-
 
 e = Employee("Priya", 501, Laptop("Dell Latitude"))
 print(e.info())
@@ -746,7 +800,6 @@ classDiagram
   Employee --> Laptop : has-a
 ```
 
-
 **Key takeaways:**
 
 - Inheritance = IS-A
@@ -760,20 +813,18 @@ classDiagram
 - Composition keeps parts swappable (`SmsNotifier` vs `EmailNotifier`) without a messy parent list.
 - Richer design patterns live in optional [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md).
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — OrderService HAS-A notifier**
+**Program 1 — TechMart OrderService HAS-A notifier**
 
 ```python
 class SmsNotifier:
     def send(self, message):
         print(f"SMS: {message}")
 
-
 class EmailNotifier:
     def send(self, message):
         print(f"EMAIL: {message}")
-
 
 class OrderService:
     def __init__(self, notifier):
@@ -781,7 +832,6 @@ class OrderService:
 
     def place(self, order_id):
         self.notifier.send(f"Order {order_id} placed")
-
 
 OrderService(SmsNotifier()).place("ORD-101")
 OrderService(EmailNotifier()).place("ORD-102")
@@ -794,38 +844,71 @@ SMS: Order ORD-101 placed
 EMAIL: Order ORD-102 placed
 ```
 
-**Program 2 — Do not inherit Engine; own it**
+**Program 2 — AcmeHR Employee HAS-A Laptop (not IS-A Laptop)**
 
 ```python
-class Engine:
-    def __init__(self, cc):
-        self.cc = cc
+class Laptop:
+    def __init__(self, model):
+        self.model = model
 
-    def roar(self):
-        return f"{self.cc}cc engine running"
+    def spec(self):
+        return f"Laptop {self.model}"
 
+class Employee:
+    def __init__(self, name, laptop):
+        self.name = name
+        self.laptop = laptop   # HAS-A
 
-class Car:
-    def __init__(self, brand, engine):
-        self.brand = brand
-        self.engine = engine       # HAS-A Engine
+    def desk(self):
+        return f"{self.name} uses {self.laptop.spec()}"
 
-    def start(self):
-        return f"{self.brand}: {self.engine.roar()}"
-
-
-print(Car("Tata", Engine(1200)).start())
+print(Employee("Priya", Laptop("Dell Latitude")).desk())
+print("Employee IS-A Laptop?", isinstance(Employee("Priya", Laptop("X")), Laptop))
 ```
 
 **Expected Output:**
 
 ```
-Tata: 1200cc engine running
+Priya uses Laptop Dell Latitude
+Employee IS-A Laptop? False
+```
+
+**Program 3 — MedCare Appointment HAS-A Doctor and Patient**
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Doctor(Person):
+    pass
+
+class Patient(Person):
+    pass
+
+class Appointment:
+    def __init__(self, doctor, patient, slot):
+        self.doctor = doctor     # HAS-A
+        self.patient = patient   # HAS-A
+        self.slot = slot
+
+    def slip(self):
+        return f"{self.patient.name} → Dr {self.doctor.name} @ {self.slot}"
+
+print(Appointment(Doctor("Meera Iyer"), Patient("Anita"), "10:30").slip())
+```
+
+**Expected Output:**
+
+```
+Anita → Dr Meera Iyer @ 10:30
 ```
 
 ---
 
 ### 5. `isinstance` and when *not* to switch on types
+
+**Real-world analogy:** Campus **security** asks “Are you staff?” A professor **is** staff (subclass counts). A visitor is not. `isinstance` is that gate question. `type(obj) is Staff` is the rude version that rejects professors because they are a *kind* of staff. Use the gate for **guards** (don’t print a balance on a dict). Do **not** build a giant “if savings elif current elif wallet” tree — that is Part 3 polymorphism’s job. **SecureBank** rejects a raw dict in `print_balance`. **MedCare** accepts `Inpatient` where `Patient` is required.
 
 **Definition:** `isinstance(obj, Class)` asks “is this object this type (or a subclass)?”  
 **Purpose:** Useful for guards — dangerous as a giant `if/elif` tree that recreates the problem polymorphism solves (Part 3).
@@ -834,23 +917,19 @@ Tata: 1200cc engine running
 class Animal:
     pass
 
-
 class Dog(Animal):
     def speak(self):
         return "woof"
 
-
 class Cat(Animal):
     def speak(self):
         return "meow"
-
 
 def describe(creature):
     if not isinstance(creature, Animal):
         print("Not an Animal")
         return
     print(creature.speak())
-
 
 describe(Dog())
 describe(Cat())
@@ -877,9 +956,9 @@ for creature in [Dog(), Cat()]:
 - `type(obj) is Dog` rejects subclasses; `isinstance(obj, Dog)` accepts them — usually what you want for IS-A checks.
 - If you find yourself writing `if isinstance(...): ... elif isinstance(...):` for business behaviour, you probably want override / duck typing instead.
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — Guard a helper with isinstance**
+**Program 1 — SecureBank: reject a dict, accept a real account**
 
 ```python
 class BankAccount:
@@ -889,13 +968,11 @@ class BankAccount:
     def get_balance(self):
         return self._balance
 
-
 def print_balance(account):
     if not isinstance(account, BankAccount):
         print("Need a BankAccount")
         return
     print("Balance:", account.get_balance())
-
 
 print_balance(BankAccount(500))
 print_balance({"balance": 500})
@@ -908,27 +985,55 @@ Balance: 500
 Need a BankAccount
 ```
 
-**Program 2 — type() vs isinstance with a subclass**
+**Program 2 — MedCare: Inpatient counts as Patient (`type` vs `isinstance`)**
 
 ```python
-class Account:
+class Patient:
     pass
 
-
-class Savings(Account):
+class Inpatient(Patient):
     pass
 
-
-s = Savings()
-print("type is Account?", type(s) is Account)          # False
-print("isinstance Account?", isinstance(s, Account))   # True
+p = Inpatient()
+print("type is Patient?", type(p) is Patient)            # False — too strict
+print("isinstance Patient?", isinstance(p, Patient))     # True — gate accepts subclass
 ```
 
 **Expected Output:**
 
 ```
-type is Account? False
-isinstance Account? True
+type is Patient? False
+isinstance Patient? True
+```
+
+**Program 3 — TechMart: don't switch on type for shipping — call the method**
+
+```python
+class Order:
+    def ship(self):
+        return "standard dispatch"
+
+class ExpressOrder(Order):
+    def ship(self):
+        return "same-day dispatch"
+
+def dispatch(order):
+    if not isinstance(order, Order):
+        print("Need an Order")
+        return
+    print(order.ship())   # polymorphism — not if ExpressOrder elif Order
+
+dispatch(Order())
+dispatch(ExpressOrder())
+dispatch("ORD-101")
+```
+
+**Expected Output:**
+
+```
+standard dispatch
+same-day dispatch
+Need an Order
 ```
 
 ---
@@ -954,7 +1059,6 @@ class Employee:
     def payslip(self):
         return f"{self.name} (Emp) net ₹{self.net_salary():.2f}"
 
-
 class Manager(Employee):
     def __init__(self, emp_id, name, basic_salary, bonus=5000):
         super().__init__(emp_id, name, basic_salary)
@@ -968,7 +1072,6 @@ class Manager(Employee):
             f"{self.name} (Mgr) net ₹{self.net_salary():.2f} "
             f"incl. bonus ₹{self.bonus:.2f}"
         )
-
 
 staff = [
     Employee(1, "Ravi", 30000),
@@ -1017,11 +1120,9 @@ class BankAccount:
     def get_balance(self):
         return self._balance
 
-
 class SavingsAccount(BankAccount):
     def apply_interest(self, rate=0.04):
         self.deposit(self._balance * rate)
-
 
 class CurrentAccount(BankAccount):
     def __init__(self, holder, balance=0, overdraft_limit=5000):
@@ -1037,7 +1138,6 @@ class CurrentAccount(BankAccount):
             return False
         self._balance -= amount
         return True
-
 
 savings = SavingsAccount("Priya", 10000)
 savings.apply_interest(0.05)
@@ -1070,11 +1170,9 @@ class Car:
     def getinfo(self):
         return f"{self.name} {self.model}"
 
-
 class Person:
     def __init__(self, name):
         self.name = name
-
 
 class Employee(Person):
     def __init__(self, name, emp_id, car):
@@ -1084,7 +1182,6 @@ class Employee(Person):
 
     def card(self):
         return f"{self.name} ({self.emp_id}) drives {self.car.getinfo()}"
-
 
 print(Employee("Anita", 101, Car("Innova", "Crysta")).card())
 print(Employee("Vikram", 102, Car("Nexon", "EV")).card())
@@ -1125,13 +1222,11 @@ sq = Square(4)
 print(sq.area(), sq.perimeter())  # 16 16
 ```
 
-
    **Expected Output:**
 
 ```
 16 16
 ```
-
 
 2. **Multilevel:** `Person` → `Employee` → `Developer` with `language` and a `label()` override that uses `super()`.
    **Model answer:**
@@ -1163,13 +1258,11 @@ class Developer(Employee):
 print(Developer("Anita", 11, "Python").label())
 ```
 
-
    **Expected Output:**
 
 ```
 Anita (11) — Python
 ```
-
 
 3. Sketch (on paper or Mermaid) **hierarchical** inheritance for `Shape` → `Circle` / `Rectangle`. Then implement `area()`.
    **Model answer:**
@@ -1199,14 +1292,12 @@ for s in [Circle(2), Rectangle(3, 4)]:
     print(round(s.area(), 2))
 ```
 
-
    **Expected Output:**
 
 ```
 12.57
 12
 ```
-
 
 4. **Composition:** `Library` HAS-A list of `Book` objects; implement `add(book)` and `count()`.
    **Model answer:**
@@ -1233,13 +1324,11 @@ lib.add(Book("Fluent Python"))
 print(lib.name, lib.count())  # KSR Central 2
 ```
 
-
    **Expected Output:**
 
 ```
 KSR Central 2
 ```
-
 
 5. Extend lab kit: add `SavingsAccount(BankAccount)` with `add_interest(rate=0.04)` that deposits `balance * rate`.
    **Model answer:**
@@ -1249,7 +1338,6 @@ class SavingsAccount(BankAccount):
     def add_interest(self, rate=0.04):
         self.deposit(self.get_balance() * rate)
 ```
-
 
 6. Explain in 3–4 lines (no code): when would you **not** make `Car` inherit from `Engine`?
    **Model answer:**  

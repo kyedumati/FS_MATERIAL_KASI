@@ -3,27 +3,11 @@
 **Phase:** Advanced Python
 
 **Previous module:** [OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)  
-**Next module:** [Exception Handling](04_Exception_Handling.md)
+**Next module:** [OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md)
 
-**Series:** [OOP overview](03_OOP.md) · [Part 1](03_OOP_Part1_Classes_Encapsulation.md) · [Part 2](03_OOP_Part2_Inheritance.md) · Part 3 (this file)
-
----
-
-## Learning Outcomes
-
-By the end of this part, learners will be able to:
-
-1. Apply polymorphism via method overriding and duck typing.
-2. Explain why Python does not use Java-style method overloading (use defaults / `*args`).
-3. Override `__str__` for readable object printing when debugging or logging.
-4. Ship the BankAccount OOP CLI mini-project (lab kit + menu) and push with a short README.
+**Series:** [OOP overview](03_OOP.md) · [Part 1](03_OOP_Part1_Classes_Encapsulation.md) · [Part 2](03_OOP_Part2_Inheritance.md) · Part 3 (this file) · [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md)
 
 ---
-
-**Teaching note:** Ship with `print` **+** `return` validation. Do **not** require `raise` / `try` / `except` yet — that is the next module ([Exception Handling](04_Exception_Handling.md)).
-
----
-
 
 ## Motivation — Feel the pain of `if payment_type == ...`
 
@@ -39,7 +23,6 @@ def checkout(payment_type, amount):
         print(f"Paid ₹{amount} in Cash")
     else:
         print("Unknown payment type")
-
 
 checkout("upi", 250)
 checkout("card", 999)
@@ -70,7 +53,6 @@ flowchart TB
   end
 ```
 
-
 **Key takeaways:**
 
 - Giant `if type == ...` trees grow brittle
@@ -84,15 +66,12 @@ class UPI:
     def pay(self, amount):
         print(f"Paid ₹{amount} via UPI")
 
-
 class Card:
     def pay(self, amount):
         print(f"Paid ₹{amount} via Card")
 
-
 def checkout(method, amount):
     method.pay(amount)
-
 
 checkout(UPI(), 250)
 checkout(Card(), 999)
@@ -107,15 +86,15 @@ Paid ₹999 via Card
 
 ---
 
-
 ## Important Concepts
-
 
 ### 1. Polymorphism (override → duck typing → “no overloading”)
 
+**Real-world analogy:** **You.** At home you are a child. In class you are a student. At the internship you are an intern. Same person, different behaviour — that is polymorphism. In code, `pay(amount)` on UPI, card, and cash is the same *call*; each object does its own work. **TechMart** checkout loops over payment methods. **SecureBank** prints statements for savings and current with one `print(acct)`. **AcmeHR** runs `payslip()` on intern and manager in one list. Do not write `if payment_type == "upi"` forever.
+
 **Icons:** Bank · UPI · Order · Employee
 
-**Where used?** Payment methods, shapes/areas, notification channels, account types printing a statement — one loop, many behaviours.
+**Where used?** Payment methods, shapes/areas, notification channels, **SecureBank** account types printing a statement — one loop, many behaviours.
 
 **Definition:** “Many forms” — the same operation name behaves differently depending on the object.  
 **Purpose:** Write one loop/helper without giant `if type == ...` chains.
@@ -127,16 +106,13 @@ class Vehicle:
     def info(self):
         return "Vehicle"
 
-
 class Car(Vehicle):
     def info(self):
         return "Car"
 
-
 class Bike(Vehicle):
     def info(self):
         return "Bike"
-
 
 for v in [Car(), Bike(), Car()]:
     print(v.info())   # same call site
@@ -157,15 +133,12 @@ class UPI:
     def pay(self, amount):
         print(f"Paid ₹{amount} via UPI")
 
-
 class Card:
     def pay(self, amount):
         print(f"Paid ₹{amount} via Card")
 
-
 def checkout(method, amount):
     method.pay(amount)
-
 
 checkout(UPI(), 250)
 checkout(Card(), 999)
@@ -179,7 +152,6 @@ Python: *if it walks like a duck and quacks like a duck…*
 class Adder:
     def add(self, *nums):
         return sum(nums)
-
 
 print(Adder().add(1, 2))
 print(Adder().add(1, 2, 3, 4))
@@ -201,7 +173,6 @@ class Broken:
 
     def add(self, a, b, c):   # replaces the previous add
         return a + b + c
-
 
 # Broken().add(1, 2)  → TypeError: missing c
 print(Broken().add(1, 2, 3))
@@ -226,7 +197,6 @@ class BookStack:
     def __str__(self):
         return f"BookStack({self.pages} pages)"
 
-
 print(BookStack(100) + BookStack(200))
 ```
 
@@ -246,7 +216,6 @@ flowchart LR
   Loop --> C["TypeC.action"]
 ```
 
-
 **Key takeaways:**
 
 - Override poly = shared parent + redefined methods
@@ -261,29 +230,25 @@ flowchart LR
 - Shared base classes help when you need shared fields / default behaviour (Part 2 Vehicles).
 - Operator overloading (`__add__`, `__len__`, …) is powerful — use sparingly so code stays readable.
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — Several pay methods, one checkout loop**
+**Program 1 — TechMart several pay methods, one checkout loop**
 
 ```python
 class UPI:
     def pay(self, amount):
         print(f"Paid ₹{amount} via UPI")
 
-
 class Card:
     def pay(self, amount):
         print(f"Paid ₹{amount} via Card")
-
 
 class Cash:
     def pay(self, amount):
         print(f"Paid ₹{amount} in Cash")
 
-
 def checkout(method, amount):
     method.pay(amount)
-
 
 for method in [UPI(), Card(), Cash()]:
     checkout(method, 100)
@@ -297,48 +262,71 @@ Paid ₹100 via Card
 Paid ₹100 in Cash
 ```
 
-**Program 2 — Shape areas without isinstance**
+**Program 2 — AcmeHR one payroll loop (intern vs manager)**
 
 ```python
-import math
+class Intern:
+    def __init__(self, name, stipend):
+        self.name = name
+        self.stipend = stipend
 
+    def pay(self):
+        return self.stipend
 
-class Circle:
-    def __init__(self, r):
-        self.r = r
+class Manager:
+    def __init__(self, name, basic, bonus):
+        self.name = name
+        self.basic = basic
+        self.bonus = bonus
 
-    def area(self):
-        return math.pi * self.r ** 2
+    def pay(self):
+        return self.basic + self.bonus
 
-
-class Square:
-    def __init__(self, side):
-        self.side = side
-
-    def area(self):
-        return self.side ** 2
-
-
-for shape in [Circle(3), Square(4), Circle(1)]:
-    print(f"{shape.__class__.__name__} area: {shape.area():.2f}")
+for person in [Intern("Anita", 15000), Manager("Meera", 40000, 8000)]:
+    print(f"{person.name}: ₹{person.pay()}")
 ```
 
 **Expected Output:**
 
 ```
-Circle area: 28.27
-Square area: 16.00
-Circle area: 3.14
+Anita: ₹15000
+Meera: ₹48000
+```
+
+**Program 3 — MedCare notify() on SMS vs WhatsApp (same call site)**
+
+```python
+class SmsAlert:
+    def notify(self, patient, msg):
+        print(f"SMS to {patient}: {msg}")
+
+class WhatsAppAlert:
+    def notify(self, patient, msg):
+        print(f"WhatsApp to {patient}: {msg}")
+
+def send_report_ready(channel, patient):
+    channel.notify(patient, "Lab report ready")
+
+send_report_ready(SmsAlert(), "Anita")
+send_report_ready(WhatsAppAlert(), "Ravi")
+```
+
+**Expected Output:**
+
+```
+SMS to Anita: Lab report ready
+WhatsApp to Ravi: Lab report ready
 ```
 
 ---
 
-
 ### 2. Readable objects with `__str__`
+
+**Real-world analogy:** A **name badge** vs a locker number. `print(account)` should look like `Priya — savings ₹5,000`, not `<Account object at 0x...>`. The hex address is the locker number — useful to the OS, useless to a support engineer. **SecureBank** statements, **TechMart** cart lines, and **MedCare** appointment slips all override `__str__` so logs and CLIs are readable.
 
 **Icons:** Bank · Order · Employee · CRM
 
-**Where used?** Debugging accounts, logging orders, printing employee cards, showing cart lines in a CLI.
+**Where used?** Debugging **SecureBank** accounts, logging **TechMart** orders, printing **AcmeHR** employee cards, showing cart lines in a CLI.
 
 **Definition:** `__str__` controls what you see when you `print(obj)` or convert it with `str(obj)`.  
 **Purpose:** Default object text (`<__main__.Student object at 0x...>`) is useless when debugging; a clear string saves time.
@@ -351,7 +339,6 @@ class Student:
 
     def __str__(self):
         return f"Student({self.roll}, {self.name})"
-
 
 print(Student(101, "Anita"))
 print("Label:", str(Student(102, "Vikram")))
@@ -371,7 +358,6 @@ class Bare:
     def __init__(self, name):
         self.name = name
 
-
 print(Bare("Anita"))  # <__main__.Bare object at 0x...>
 ```
 
@@ -385,7 +371,6 @@ sequenceDiagram
   Obj-->>Main: "Student(101, Anita)"
 ```
 
-
 **Key takeaways:**
 
 - `print(obj)` → `obj.__str__()` if defined
@@ -396,9 +381,9 @@ sequenceDiagram
 
 **Common Error:** putting side effects (network calls, file writes) inside `__str__` — keep it a pure, cheap description.
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — Readable account**
+**Program 1 — SecureBank readable account**
 
 ```python
 class BankAccount:
@@ -408,7 +393,6 @@ class BankAccount:
 
     def __str__(self):
         return f"{self.holder}'s account — ₹{self._balance:.2f}"
-
 
 print(BankAccount("Priya", 1000))
 print(BankAccount("Ravi", 250.5))
@@ -421,7 +405,7 @@ Priya's account — ₹1000.00
 Ravi's account — ₹250.50
 ```
 
-**Program 2 — Product label + list join**
+**Program 2 — TechMart product label + list join**
 
 ```python
 class Product:
@@ -431,7 +415,6 @@ class Product:
 
     def __str__(self):
         return f"{self.sku} @ ₹{self.price}"
-
 
 cart = [Product("NB-A4", 40), Product("PEN-01", 10)]
 print(" | ".join(str(p) for p in cart))
@@ -443,11 +426,36 @@ print(" | ".join(str(p) for p in cart))
 NB-A4 @ ₹40 | PEN-01 @ ₹10
 ```
 
+**Program 3 — MedCare appointment slip in a queue print**
+
+```python
+class Appointment:
+    def __init__(self, patient, doctor, slot):
+        self.patient = patient
+        self.doctor = doctor
+        self.slot = slot
+
+    def __str__(self):
+        return f"{self.slot} | {self.patient} → Dr {self.doctor}"
+
+queue = [
+    Appointment("Anita", "Meera Iyer", "10:30"),
+    Appointment("Ravi", "Kiran Das", "11:00"),
+]
+for slip in queue:
+    print(slip)
+```
+
+**Expected Output:**
+
+```
+10:30 | Anita → Dr Meera Iyer
+11:00 | Ravi → Dr Kiran Das
+```
+
 ---
 
-
 ## Step-by-Step Annotated Python 3 Code
-
 
 ### Example 1 — Payment checkout (duck typing + totals)
 
@@ -457,7 +465,6 @@ class UPI:
         print(f"UPI paid ₹{amount:.2f}")
         return True
 
-
 class Card:
     def pay(self, amount):
         if amount > 50000:
@@ -466,14 +473,12 @@ class Card:
         print(f"Card paid ₹{amount:.2f}")
         return True
 
-
 def run_checkout(methods_and_amounts):
     ok = 0
     for method, amount in methods_and_amounts:
         if method.pay(amount):
             ok += 1
     print(f"Successful payments: {ok}/{len(methods_and_amounts)}")
-
 
 run_checkout([
     (UPI(), 250),
@@ -493,7 +498,6 @@ Successful payments: 2/3
 
 ---
 
-
 ### Example 2 — Hierarchical accounts printing statements (`__str__` + override)
 
 ```python
@@ -509,7 +513,6 @@ class BankAccount:
     def __str__(self):
         return f"{self.holder}: ₹{self._balance:.2f}"
 
-
 class SavingsAccount(BankAccount):
     def __init__(self, holder, balance=0, rate=0.04):
         super().__init__(holder, balance)
@@ -520,7 +523,6 @@ class SavingsAccount(BankAccount):
 
     def __str__(self):
         return f"Savings | {super().__str__()} | rate={self.rate:.0%}"
-
 
 accounts = [
     BankAccount("Anita", 1000),
@@ -539,7 +541,6 @@ Savings | Priya: ₹10500.00 | rate=5%
 ```
 
 ---
-
 
 ### Example 3 — Mini CLI core (no menu yet) for the lab class
 
@@ -570,7 +571,6 @@ class BankAccount:
     def __str__(self):
         return f"{self.owner}: ₹{self.__balance:.2f}"
 
-
 acct = BankAccount("Anita", 1000)
 acct.deposit(200)
 acct.withdraw(100)
@@ -589,14 +589,12 @@ balance: 1100.0
 
 ---
 
-
-## Mini-Project (Assignment): BankAccount OOP CLI
+## Mini-Project (Assignment): SecureBank BankAccount OOP CLI
 
 **Title:** Encapsulated account demo  
 **Lab kit (build here):** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
 
 ### What to build
-
 
 | Piece         | Detail                                                                       |
 | ------------- | ---------------------------------------------------------------------------- |
@@ -604,7 +602,6 @@ balance: 1100.0
 | Rules         | Reject amount ≤ 0; reject withdraw over balance                              |
 | CLI menu      | 1 Deposit · 2 Withdraw · 3 Balance · 4 Exit                                  |
 | Nice to have  | `__str__` for a one-line status print                                        |
-
 
 **Starter idea (class):**
 
@@ -660,7 +657,6 @@ def run_menu(account):
         else:
             print("Invalid choice")
 
-
 if __name__ == "__main__":
     holder = input("Account holder name: ").strip() or "Student"
     opening = float(input("Opening balance: ") or "0")
@@ -691,13 +687,11 @@ Choose: 4
 Bye
 ```
 
-
 ### Stretch
 
 - Add `SavingsAccount(BankAccount)` with `apply_interest(rate)` **or** a `CurrentAccount` with a different minimum-balance / overdraft rule.
 - Log each successful deposit/withdraw as a list of tuples `(action, amount, balance)`.
 - **Later (Exceptions week):** switch validation to `raise ValueError` and catch it in the menu loop.
-
 
 ### Done when
 
@@ -708,9 +702,7 @@ Bye
 
 ---
 
-
 ## Practice Exercises
-
 
 ### Advanced / interview-style coding
 
@@ -800,7 +792,6 @@ two 5
 
 ---
 
-
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
@@ -830,14 +821,13 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** No. Name mangling renames it to `_ClassName__balance`. It prevents *accidental* access, not determined access. Real security is auth, permissions, and server-side checks.
 
 **Q9. Why might a class variable for** `tax_rate` **be useful?**  
-**A:** One shared rate for all employees; change `Employee.tax_rate` once and every instance’s net-pay logic can pick it up (unless shadowed).
+**A:** One shared rate for all **AcmeHR** employees; change `Employee.tax_rate` once and every instance’s net-pay logic can pick it up (unless shadowed).
 
 **Q10. Polymorphism in one sentence?**  
-**A:** Same operation name, different behaviour depending on the object — so one loop can handle many types.
+**A:** Same operation name, different behaviour depending on the object — so one loop can handle **SecureBank** account types or **TechMart** pay methods.
 
 ---
 
-
 ## Next
 
-Continue with **[Exception Handling](04_Exception_Handling.md)** after the BankAccount push.
+Continue with **[OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md)** after the BankAccount push. Then [Exception Handling](04_Exception_Handling.md).

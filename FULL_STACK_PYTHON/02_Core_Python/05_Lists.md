@@ -6,18 +6,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. Create, read, update, and delete items in a Python list (CRUD).
-2. Use common list methods: `append`, `extend`, `insert`, `remove`, `pop`, `sort`, `reverse`, `count`, `index`, `clear`.
-3. Work with nested lists (e.g., student marks per subject, order line items).
-4. Write simple list comprehensions to build lists from existing data.
-5. Choose a list when order and mutability matter (cart items, employee names, expense rows).
-
----
-
 Think of a **list** like a numbered shopping cart or a attendance register:
 
 - Items stay in the **order** you add them (first product added appears first).
@@ -27,11 +15,11 @@ Think of a **list** like a numbered shopping cart or a attendance register:
 **Icons:** Order · Employee · Bank · Payroll · Laptop
 
 **Where used?**
-- Ecommerce — cart items, order line rows
+- **TechMart** — cart items, order line rows
 - College apps — marks per subject, attendance registers
-- Payroll — employee name rosters, salary line items
-- Banking — recent transactions (ordered history)
-- Hospital / CRM — appointment queues, task lists
+- **AcmeHR** — employee name rosters, salary line items
+- **SecureBank** — recent transactions (ordered history)
+- **MedCare** — appointment queues, task lists
 
 **Real-life parallels:**
 
@@ -85,7 +73,7 @@ print(len(products))     # 3 — number of items
 
 **Try these (2 programs):**
 
-**Program 1 — Cart first, last, length**
+**Program 1 — TechMart cart first, last, length**
 
 ```python
 cart = ["Notebook", "Pen", "USB"]
@@ -375,7 +363,7 @@ big = [a for a in expenses if a > 500]
 print(big)
 ```
 
-**Program 2 — GST with comprehension**
+**Program 2 — TechMart GST with comprehension**
 
 ```python
 prices = [100, 250, 499]
@@ -447,7 +435,6 @@ print(products[-1])  # last
 print(products[2])   # middle (index 2 of 5)
 ```
 
-
 2. Add two more products using `append` and one using `insert(0, ...)`.
 
    **Model answer:**
@@ -459,7 +446,6 @@ products.append("Headset")
 products.insert(0, "Laptop Bag")
 print(products)
 ```
-
 
 3. Given `marks = [55, 78, 92, 67, 88]`, print the highest mark using `max()` and count how many scored above 80.
 
@@ -474,7 +460,6 @@ for m in marks:
         count += 1
 print("Above 80:", count)  # 2 → 92 and 88
 ```
-
 
 ### Intermediate
 
@@ -493,7 +478,6 @@ for emp in employees:
     print(f"ID {emp[0]} | {emp[1]} | {emp[2]}")
 ```
 
-
 5. From `expenses = [200, 1500, 75, 890, 1200, 45]`, create a new list of expenses above ₹300 using a list comprehension.
 
    **Model answer:**
@@ -503,7 +487,6 @@ expenses = [200, 1500, 75, 890, 1200, 45]
 big = [e for e in expenses if e > 300]
 print(big)  # [1500, 890, 1200]
 ```
-
 
 6. Remove all occurrences of `"Pen"` from `cart = ["Book", "Pen", "Pen", "Eraser"]` using a loop (not `remove` in a naive loop).
 
@@ -533,7 +516,6 @@ for i in range(len(nums) - 1, -1, -1):
 print(reversed_list)  # [40, 30, 20, 10]
 ```
 
-
 8. Find the second-largest mark in a list (handle duplicates).
 
    **Model answer:**
@@ -543,7 +525,6 @@ marks = [88, 92, 92, 67, 88]
 unique_sorted = sorted(set(marks), reverse=True)
 print(unique_sorted[1])  # 88
 ```
-
 
    Or without relying on `set` only for uniqueness walk:
 
@@ -571,7 +552,6 @@ for row in nested:
         flat.append(x)
 print(flat)
 ```
-
 
 ---
 
@@ -622,16 +602,15 @@ while True:
 - [ ] Menu options 1–4 behave correctly; 5 exits  
 - [ ] Average and “above 80” use the current list data  
 
-
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why does Python use index `0` for the first element? How is that different from "row 1" in Excel?
-2. When would you use a list of strings vs a list of dictionaries for employee data? (Preview of dict module.)
+2. When would you use a list of strings vs a list of dictionaries for **AcmeHR** employee data? (Preview of dict module.)
 3. Is `[1, 2, 3] + [4, 5]` the same as extending? What does each return?
 4. Why might modifying a list while iterating over it cause bugs?
-5. In an e-commerce app, what part of the order would be a list vs a single value?
+5. In a **TechMart** order, what part would be a list vs a single value?
 
 1. **Is Python list thread-safe?**  
    **A:** Not for concurrent writes; for entry-level interviews: lists are fine in single-threaded scripts; multi-user apps usually store shared data in a database.

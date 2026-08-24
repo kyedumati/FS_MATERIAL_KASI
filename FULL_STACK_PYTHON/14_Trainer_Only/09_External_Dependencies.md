@@ -1,7 +1,7 @@
 # External Dependencies (Versioned)
 
 `FULL_STACK_PYTHON/` is the **Python program** (calendar, Python/Django/Flask/DRF notes, Python lab kits).  
-Shared, non-Python topics live at **repo root** so Java FS can reuse them later.
+Shared, non-Python topics live at **repo root** so Java FS reuses them (do not copy into either program folder).
 
 | Dependency | Path (repo root) | Role | Version / pin |
 |------------|------------------|------|----------------|

@@ -1,10 +1,10 @@
 # PFS Training Material
 
-Structured training material for **Python Full Stack** and shared **MySQL / Frontend** topics.
+Structured training material for **Python Full Stack**, **Java Full Stack**, and shared **MySQL / Frontend** topics.
 
 ---
 
-## Python Full Stack Development (primary program — **one material**)
+## Python Full Stack Development (**one material**)
 
 **Audience:** Fresh graduates, non-IT career switchers, and learners targeting entry-level Python / Django / full-stack roles in India.
 
@@ -19,11 +19,33 @@ Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
 | Toolchain / deliverables / capstone | [Tested_Toolchain.md](FULL_STACK_PYTHON/Tested_Toolchain.md) · [Standard_Project_Deliverables.md](FULL_STACK_PYTHON/Standard_Project_Deliverables.md) · [Capstone_CampusCart_One_Pager.md](FULL_STACK_PYTHON/Capstone_CampusCart_One_Pager.md) |
 | Trainer ops (private) | [FULL_STACK_PYTHON/14_Trainer_Only/](FULL_STACK_PYTHON/14_Trainer_Only/) |
 | Student pack | `./scripts/pack_student_share.sh` → `dist/FULL_STACK_PYTHON_STUDENT/` |
-| Student PDFs | `./scripts/build.sh fullstack` → `PDF/FULL_STACK_PYTHON/` |
+| Student PDFs | `./scripts/build.sh fullstack` → `PDF/FULL_STACK_PYTHON/` · `./scripts/build.sh frontend` → `PDF/FRONTEND/` |
 
 **Default schedule:** 20 weeks × **1 hour 15 minutes/day** live (100 sessions) · Stack: Python 3, MySQL 8+, Django 5.x, HTML/CSS/JS, React, Flask overview, GitHub, VS Code.
 
 **Phases:** Foundations → Core Python → Advanced Python → Git → MySQL → Frontend → Django → Flask/REST → React → Testing/AI lite → Placement.
+
+---
+
+## Java Full Stack Development (**one material**)
+
+**Audience:** Learners targeting entry-level Java / Spring Boot / full-stack roles in India (one unified learner voice).
+
+**Teach:** [`FULL_STACK_JAVA/`](FULL_STACK_JAVA/) + the **same** shared [`FRONTEND/`](FRONTEND/) and [`MYSQL/`](MYSQL/) — do not copy those topics into the Java folder.
+
+| Resource | Link |
+|----------|------|
+| Syllabus map | [COURSE_CONTENTS/Full_Stack_Java_Course_Contents.md](COURSE_CONTENTS/Full_Stack_Java_Course_Contents.md) |
+| Course folder | [FULL_STACK_JAVA/](FULL_STACK_JAVA/) |
+| Session calendar | [FULL_STACK_JAVA/Session_Calendar_100.md](FULL_STACK_JAVA/Session_Calendar_100.md) |
+| Toolchain / deliverables / capstone | [Tested_Toolchain.md](FULL_STACK_JAVA/Tested_Toolchain.md) · [Standard_Project_Deliverables.md](FULL_STACK_JAVA/Standard_Project_Deliverables.md) · [Capstone_CampusCart_One_Pager.md](FULL_STACK_JAVA/Capstone_CampusCart_One_Pager.md) |
+| Trainer ops (private) | [FULL_STACK_JAVA/14_Trainer_Only/](FULL_STACK_JAVA/14_Trainer_Only/) |
+| Student pack | `./scripts/pack_student_share.sh java` → `dist/FULL_STACK_JAVA_STUDENT/` |
+| Student PDFs | `./scripts/build.sh java` → `PDF/FULL_STACK_JAVA/` · `./scripts/build.sh frontend` → `PDF/FRONTEND/` |
+
+**Default schedule:** 20 weeks × **1 hour 15 minutes/day** live (100 sessions) · Stack: JDK 17, Maven 3.9+, MySQL 8+, Spring Boot 3.x (Jakarta), HTML/CSS/JS, React, GitHub, VS Code or IntelliJ Community, Postman, JUnit 5.
+
+**Phases:** Foundations → Core Java → OOP → Collections/Exceptions/IO → Git → MySQL → JDBC → Frontend → Spring Boot (REST + JPA + labs) → React → Testing → Placement. AI lite is optional stretch after a deployed MVP.
 
 ---
 
@@ -78,12 +100,18 @@ Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
 - Open the linked modules and lab kits in calendar order (same files for class and homework).
 - Shared topics: [`FRONTEND/`](FRONTEND/) (HTML/CSS/JS + React) · [`MYSQL/`](MYSQL/) (labs listed from the MySQL bridge module).
 
+**Java Full Stack path**
+- Start at [`FULL_STACK_JAVA/`](FULL_STACK_JAVA/) → [Session Calendar](FULL_STACK_JAVA/Session_Calendar_100.md).
+- Same shared `FRONTEND/` and `MYSQL/` files (pointers only inside the Java folder).
+- JDBC then JPA; REST-first Spring Boot; Servlets/JSP are one interview-map session only.
+
 **MySQL-only path**
 - Follow numbered order in `MYSQL/`; use `10_Practice_Exercises.md` for homework.
 
 **Maintainers (pack / PDF)**
-- Student pack: `./scripts/pack_student_share.sh` · PDFs: `./scripts/build.sh fullstack`.
-- Private ops: [`FULL_STACK_PYTHON/14_Trainer_Only/`](FULL_STACK_PYTHON/14_Trainer_Only/) (keys, rubrics, sharing guide) — never share. Share each module PDF after teaching (one material).
+- Student pack: `./scripts/pack_student_share.sh` (Python) or `./scripts/pack_student_share.sh java`.
+- PDFs: `./scripts/build.sh fullstack` or `./scripts/build.sh java` (also `frontend`, `mysql`).
+- Private ops: `14_Trainer_Only/` inside each program folder — never share. Share each module PDF after teaching (one material).
 
 ---
 
@@ -93,6 +121,7 @@ Legacy `PDF/PYTHON/` / `PYTHON/` were **removed**.
 PFS_MATERIAL_KASI/
 ├── README.md
 ├── FULL_STACK_PYTHON/        # Python program (calendar, Django, Python labs)
+├── FULL_STACK_JAVA/          # Java program (calendar, Spring Boot, Java labs)
 ├── FRONTEND/                 # Shared HTML/CSS/JS + REACT/ (+ labs)
 ├── MYSQL/                    # Shared SQL (FS Weeks 10–11 + MySQL-only)
 ├── COURSE_CONTENTS/          # Syllabus / brochure maps
@@ -129,7 +158,11 @@ chmod +x scripts/build.sh   # first time only
 ```bash
 ./scripts/build.sh mysql
 ./scripts/build.sh fullstack
+./scripts/build.sh java
+./scripts/build.sh frontend
 ```
+
+(`fullstack-java` is an alias for `java`.)
 
 ### Rebuild after editing a chapter
 
@@ -147,9 +180,9 @@ python3 scripts/build_pdfs.py --file MYSQL/07_Joins.md
 
 ### Typical workflow
 
-1. Edit a chapter in `MYSQL/` or `FULL_STACK_PYTHON/`.
+1. Edit a chapter in `MYSQL/`, `FULL_STACK_PYTHON/`, `FULL_STACK_JAVA/`, or `FRONTEND/`.
 2. Commit and push the `.md` change to git.
-3. Run `./scripts/build.sh mysql` or `./scripts/build.sh fullstack`.
+3. Run `./scripts/build.sh mysql`, `./scripts/build.sh fullstack`, `./scripts/build.sh java`, or `./scripts/build.sh frontend`.
 4. Upload updated PDFs from `PDF/` to Google Drive / LMS / email.
 
 Generated PDFs mirror the source folder structure — e.g. `MYSQL/07_Joins.md` becomes `PDF/MYSQL/07_Joins.pdf`.

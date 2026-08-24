@@ -5,20 +5,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Compare Flask and Django and choose when each fits Indian startup/MNC contexts
-- Install Flask in a virtual environment and run a development server
-- Define routes with `@app.route`, HTTP methods, and URL parameters
-- Render HTML templates with Jinja2 and pass context variables
-- Return JSON responses for API-style endpoints
-- Build a small in-memory Notes API with GET/POST/PUT/DELETE routes
-- Explain how Flask complements (not replaces) Django in the full-stack curriculum
-
----
-
 ### What is Flask?
 
 **Flask** is a lightweight Python **web framework**. You write a small Python file, map URLs to functions, and return HTML or JSON. Unlike Django, Flask does not ship with admin, ORM, or auth — you add what you need.
@@ -26,10 +12,10 @@ By the end of this module, learners will be able to:
 **Icons:** Order · Laptop · Employee · Bank · Payroll
 
 **Where used?**
-- Ecommerce — tiny Notes / product JSON APIs for hackathons and microservices
+- **TechMart** — tiny Notes / product JSON APIs for hackathons and microservices
 - College apps — quick campus tools without full Django admin
 - Startups — Flask/FastAPI-style API roles next to React
-- Banking / payroll — internal microservices that only need a few routes
+- **SecureBank** / **AcmeHR** — internal microservices that only need a few routes
 - Prototypes — prove an endpoint before wiring Django/DRF
 
 **Analogy:** Django is a furnished apartment (kitchen, bed, wardrobe included). Flask is an empty studio — you bring furniture as required. For a 2-day hackathon API, Flask is faster to start. For a full HR portal with login and admin, Django wins.
@@ -412,7 +398,6 @@ def about():
     return "KSR Python Full Stack batch — learning Flask APIs."
 ```
 
-
 2. Add route `/square/<int:n>` returning JSON `{"input": 5, "result": 25}`.
    **Model answer:**
 
@@ -423,7 +408,6 @@ from flask import jsonify
 def square(n):
     return jsonify({"input": n, "result": n * n})
 ```
-
 
 3. Create template `base.html` with a footer "KSR Python Full Stack 2026".
    **Model answer:**
@@ -438,7 +422,6 @@ def square(n):
 </html>
 ```
 
-
 ### Intermediate
 
 1. Add query param filter: `GET /api/notes?search=flask` filters by title substring.
@@ -452,7 +435,6 @@ def list_notes():
     return jsonify(notes)
 ```
 
-
 2. Validate POST: reject empty title with 400 and error message.
    **Model answer:**
 
@@ -463,7 +445,6 @@ if not title:
     return jsonify({"error": "title required"}), 400
 ```
 
-
 3. Add `GET /api/stats` returning `{"total": N, "latest_id": M}`.
    **Model answer:**
 
@@ -473,7 +454,6 @@ def stats():
     latest = NOTES[-1]["id"] if NOTES else None
     return jsonify({"total": len(NOTES), "latest_id": latest})
 ```
-
 
 ### Interview-style
 
@@ -513,7 +493,6 @@ def stats():
 - [ ] GET/POST list+create work (curl or Postman)
 - [ ] Jinja page lists notes
 - [ ] README includes at least two curl examples
-
 
 ## Interview Q&A
 

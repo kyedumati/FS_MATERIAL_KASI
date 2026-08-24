@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: campus-auth-catalog
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:training_db}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Kolkata
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiry-minutes: ${JWT_EXPIRY_MINUTES:60}
+
+server:
+  port: ${SERVER_PORT:8080}

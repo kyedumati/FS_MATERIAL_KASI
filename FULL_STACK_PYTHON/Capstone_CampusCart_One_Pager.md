@@ -6,6 +6,8 @@
 
 **CampusCart** — College E-Commerce & Booking Portal
 
+CampusCart is the college storefront; it uses the same catalog / cart / order patterns as **TechMart**. Batch alts: MediBook Clinic → **MedCare**, teller portal → **SecureBank**.
+
 ## Stack
 
 Django 5.x · MySQL · HTML/CSS/JS · GitHub · (stretch) DRF + React

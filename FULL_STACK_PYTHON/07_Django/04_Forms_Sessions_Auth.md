@@ -7,27 +7,13 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Build HTML forms with **`forms.Form`** and **`forms.ModelForm`**
-- Validate user input on server side with field and form **`clean()`** methods
-- Handle **GET vs POST** in views and redirect after successful POST (**PRG pattern**)
-- Use **sessions** to store data across requests (cart preview, flash messages intro)
-- Implement **register, login, logout** with **`django.contrib.auth`**
-- Protect views with **`@login_required`** and explain **permissions** overview
-- Connect authenticated users to Task and Blog ownership models
-
----
-
 ### Why Forms in Django?
 
 Browsers submit **HTML forms** with **GET** (read/search) or **POST** (create/update/delete). Django **forms** validate and clean data before saving to database — never trust raw **`request.POST`** alone.
 
 **Where used?**
 - Campus portal — register / login / profile forms
-- Ecommerce — add-to-cart session count; checkout ModelForms
+- **TechMart** — add-to-cart session count; checkout ModelForms
 - Task Manager / Blog — create/edit forms with owner = `request.user`
 - Admin workflows — staff still use `/admin/`; users use your forms
 - Capstone — CSRF-protected POST + `@login_required` CRUD
@@ -464,7 +450,6 @@ class RegisterForm(UserCreationForm):
         fields = ("username", "email", "password1", "password2")
 ```
 
-
 2. Display logged-in username in `base.html` navbar
    **Model answer:**
 
@@ -475,7 +460,6 @@ class RegisterForm(UserCreationForm):
   <a href="{% url 'login' %}">Login</a>
 {% endif %}
 ```
-
 
 3. Contact form: show success message after valid POST (context flag)
    **Model answer:**
@@ -490,7 +474,6 @@ else:
     form = ContactForm()
 return render(request, "contact.html", {"form": form})
 ```
-
 
 ### Intermediate
 
@@ -509,7 +492,6 @@ def post_create(request):
     return render(request, "blog/post_form.html", {"form": form})
 ```
 
-
 2. **Booking:** Session holds selected room id until confirm page
    **Model answer:**
 
@@ -517,7 +499,6 @@ def post_create(request):
 request.session["room_id"] = room.id  # on select
 room_id = request.session.get("room_id")  # on confirm
 ```
-
 
 3. Delete task view with POST-only + ownership check
    **Model answer:**
@@ -531,7 +512,6 @@ def task_delete(request, pk):
         return redirect("dashboard")
     return HttpResponseNotAllowed(["POST"])
 ```
-
 
 ### Interview Prep
 
@@ -570,7 +550,6 @@ def task_delete(request, pk):
 - [ ] Register → login → logout works
 - [ ] User A cannot see User B's tasks
 - [ ] Task create uses ModelForm + CSRF + PRG redirect
-
 
 ## Interview Q&A
 

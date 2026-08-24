@@ -9,14 +9,6 @@
 
 ---
 
-## Learning Outcomes
-
-- Complete end-to-end Django flow independently
-- Fix common auth and form bugs independently
-- Push a working CRUD+auth app with the [standard deliverables bundle](../Standard_Project_Deliverables.md)
-
----
-
 ## Lab brief (pick one track)
 
 **Track A — Task Manager:** Task model (`title`, `is_done`, `owner` FK to User). List/create/toggle/delete only for logged-in owner.  

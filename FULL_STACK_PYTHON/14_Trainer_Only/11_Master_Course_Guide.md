@@ -75,7 +75,7 @@ flowchart TD
 | 09 | `02_Core_Python/08_Data_Structures_Overview.md` | Core | Stack/queue idea | Complexity lite | Interview DS Qs | Mini DS demos |
 | 10 | `03_Advanced_Python/01_Functions_Decorators_Generators.md` | Advanced | `def`, `*args` | Decorator idea | Refactor scripts | Utility library |
 | 11 | `03_Advanced_Python/02_Modules_and_Packages.md` | Advanced | `import` | Package layout | Reuse code | Package demo |
-| 12 | `03_Advanced_Python/03_OOP.md` (+ Parts 1–3) | Advanced | class/object | Inheritance | Model entities | Employee classes |
+| 12 | `03_Advanced_Python/03_OOP.md` (+ Parts 1–4) | Advanced | class/object | Inheritance + ABC | Model entities | Employee + Campus Wallet |
 | 13 | `03_Advanced_Python/04_Exception_Handling.md` | Advanced | try/except | Custom errors | Robust CLI | Safe file reader |
 | 14 | `03_Advanced_Python/05_File_Handling_and_Logging.md` | Advanced | open modes | Logging levels | CSV/JSON files | Expense file logger |
 | 15 | `04_Git_GitHub/01_Git_and_GitHub.md` | Tools | Basic commands | Branching | Daily commits | Portfolio repos |
@@ -172,7 +172,8 @@ flowchart TD
 ### Project title
 
 **CampusCart** — College E-Commerce & Booking Portal  
-*(Alternate titles for batches: TaskFlow Pro, MediBook Clinic, LearnBlog CMS — same architecture.)*
+CampusCart is the college storefront; it uses the same catalog / cart / order patterns as **TechMart**. Teaching brands across the course: **AcmeHR**, **TechMart**, **MedCare**, **SecureBank** — see [12_Named_Product_Domains.md](12_Named_Product_Domains.md).  
+*(Alternate titles for batches: TechMart storefront, MediBook Clinic → **MedCare**, SecureBank teller portal, TaskFlow Pro, LearnBlog CMS — same architecture.)*
 
 ### Problem statement
 
@@ -265,6 +266,8 @@ categories ──< products
 ---
 
 ## 4. Project Portfolio Plan
+
+Teaching brands in labs and notes (soft-apply): **AcmeHR**, **TechMart**, **MedCare**, **SecureBank**. CampusCart remains the major capstone.
 
 | # | Project | Stack | When | Resume one-liner |
 |---|---------|-------|------|------------------|

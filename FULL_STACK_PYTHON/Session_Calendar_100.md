@@ -92,7 +92,7 @@
 | 36 | 8 | Class / object / `__init__` | [03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md](03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md) | Student class |
 | 37 | 8 | Encapsulation + methods | [Part 1 same](03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md) | BankAccount |
 | 38 | 8 | Inheritance + `super()` | [03_Advanced_Python/03_OOP_Part2_Inheritance.md](03_Advanced_Python/03_OOP_Part2_Inheritance.md) | Employee hierarchy |
-| 39 | 8 | Polymorphism lab | [03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) | Push OOP app |
+| 39 | 8 | Polymorphism lab | [03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) | Push OOP app; start [Part 4 ABC / interfaces](03_Advanced_Python/03_OOP_Part4_Abstract_Classes_Interfaces.md) |
 | 40 | 8 | Exceptions try/except/finally | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Safe input lab |
 | 41 | 9 | Custom exceptions | same | Domain errors |
 | 42 | 9 | Files + `with` + CSV/JSON | [03_Advanced_Python/05_File_Handling_and_Logging.md](03_Advanced_Python/05_File_Handling_and_Logging.md) | CSV append |

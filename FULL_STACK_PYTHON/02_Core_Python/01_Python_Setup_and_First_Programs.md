@@ -5,20 +5,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain why Python is popular for full-stack, data, and automation roles in India
-- Install Python 3 and verify installation from terminal and VS Code
-- Configure VS Code for Python (interpreter, formatting, run button)
-- Run Python code in interactive mode (REPL) and as script files (`.py`)
-- Identify Python keywords, valid identifiers, and naming conventions
-- Write and run first programs: hello world, comments, simple output
-- Compare Python syntax simplicity with Java/C at a high level (no deep Java required)
-
----
-
 ### Why Python?
 
 **Python** is a programming language created by Guido van Rossum (first released 1991). It reads almost like English, which helps learners learn faster than lower-level languages.
@@ -26,11 +12,11 @@ By the end of this module, learners will be able to:
 **Icons:** Bank · Order · Laptop · Payroll
 
 **Where used?**
-- Banking / UPI scripts — small tools that print balances, receipts, or job status
+- **SecureBank** / UPI scripts — small tools that print balances, receipts, or job status
 - College apps — student portal banners, marks entry CLIs
-- Ecommerce — canteen/order labels and first checkout demos
-- Payroll — employee welcome scripts and HR training labs
-- Hospital / CRM — appointment or ticket “hello” scripts before real CRUD
+- **TechMart** — canteen/order labels and first checkout demos
+- **AcmeHR** — employee welcome scripts and HR training labs
+- **MedCare** — appointment or ticket “hello” scripts before real CRUD
 
 **Why companies in India hire Python developers:**
 
@@ -212,7 +198,7 @@ REPL is great for testing one line; scripts are for programs you keep.
 
 **Try these (2 programs):**
 
-**Program 1 — Greeting and canteen sum**
+**Program 1 — Greeting and TechMart canteen sum**
 
 ```python
 print("Hello, Ravi")
@@ -316,11 +302,11 @@ Please use registered email.
 
 **Try these (2 programs):**
 
-**Program 1 — ATM welcome banner**
+**Program 1 — SecureBank ATM welcome banner**
 
 ```python
 print("=" * 24)
-print("    KSR BANK ATM")
+print("    SECUREBANK ATM")
 print("=" * 24)
 print("  Welcome, customer")
 print("=" * 24)
@@ -330,7 +316,7 @@ print("=" * 24)
 
 ```
 ========================
-    KSR BANK ATM
+    SECUREBANK ATM
 ========================
   Welcome, customer
 ========================
@@ -517,16 +503,16 @@ print("Module: Setup — no amounts yet")
 
 **Try these (2 programs):**
 
-**Program 1 — Canteen banner one line**
+**Program 1 — TechMart canteen banner one line**
 
 ```python
-print("Canteen Bill")
+print("TechMart Canteen Bill")
 ```
 
-**Program 2 — Canteen banner two lines**
+**Program 2 — TechMart canteen banner two lines**
 
 ```python
-print("Canteen Bill")
+print("TechMart Canteen Bill")
 print("Pay at counter")
 ```
 
@@ -555,7 +541,6 @@ print("Priya Sharma")
 print("Hyderabad")
 ```
 
-
    Run: `python3 hello.py`
 
 3. In REPL, print the result of `10 * 5` and `100 / 4`.
@@ -580,7 +565,6 @@ import keyword
 print(keyword.kwlist[:10])
 ```
 
-
    Example first ten: `False`, `None`, `True`, `and`, `as`, `assert`, `async`, `await`, `break`, `class` (exact order can vary slightly by version — print the list on your machine).
 
 ### Intermediate
@@ -596,7 +580,6 @@ print("  KSR Full Stack Python")
 print("  Welcome, learners!")
 print("==============================")
 ```
-
 
 2. Fix this code (find 3 errors):
 
@@ -667,7 +650,6 @@ print("==============================")
 - [ ] Lab kit ticket folders/scripts prove a clean workspace  
 - [ ] `env_check.py`, `hello.py`, and `my_intro.py` all run without errors  
 - [ ] Comparison notes file exists with at least 5 rows  
-
 
 ## Interview Q&A
 

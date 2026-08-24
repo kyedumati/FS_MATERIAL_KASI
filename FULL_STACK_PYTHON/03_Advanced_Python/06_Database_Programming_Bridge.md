@@ -7,19 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. Explain why Python applications connect to databases like MySQL.
-2. Install and use `mysql-connector-python` or `PyMySQL`.
-3. Follow the connect → cursor → execute → commit pattern.
-4. Perform CRUD operations on a `students` table safely.
-5. Use **parameterized queries** to prevent SQL injection.
-6. Handle DB exceptions and close connections properly.
-
----
-
 ## Prerequisites
 
 - Local or lab MySQL with a practice database (e.g. `training_db`)
@@ -56,8 +43,8 @@ So far you saved data in **files** (CSV, JSON). That works for one user on one m
 **Where used?**
 - College / fee apps — `students` table shared by many users
 - Library systems — parameterized search by author or title
-- Banking / UPI-style backends — balances must survive concurrent writes
-- CRM / hospital records — structured queries, not one CSV per clerk
+- **SecureBank** / UPI-style backends — balances must survive concurrent writes
+- **MedCare** / CRM records — structured queries, not one CSV per clerk
 - Any multi-user app — connect → cursor → execute → commit → close
 
 ---
@@ -277,7 +264,7 @@ Both `mysql-connector-python` and `PyMySQL` use `%s` placeholders (not `?` like 
 
 **Try these (2 programs):**
 
-**Program 1 — Parameterized INSERT**
+**Program 1 — AcmeHR parameterized INSERT**
 
 ```python
 import mysql.connector
@@ -585,7 +572,6 @@ cur.close()
 conn.close()
 ```
 
-
 2. Insert 3 students with parameterized INSERT.
    **Model answer:**
 
@@ -596,7 +582,6 @@ cur.executemany(sql, rows)
 conn.commit()
 ```
 
-
 3. SELECT all students with marks > 75.
    **Model answer:**
 
@@ -605,7 +590,6 @@ cur.execute("SELECT name, marks FROM students WHERE marks > %s", (75,))
 for row in cur.fetchall():
     print(row)
 ```
-
 
 ### Intermediate
 
@@ -621,7 +605,6 @@ def get_student(conn, roll):
     return row  # dict or None
 ```
 
-
 2. Function `update_marks(roll, new_marks)`.
    **Model answer:**
 
@@ -634,7 +617,6 @@ def update_marks(conn, roll, new_marks):
     cur.close()
     return affected
 ```
-
 
 3. Menu CLI: 1-Add 2-List 3-Update 4-Delete 5-Exit.
    **Model answer:**
@@ -661,7 +643,6 @@ while True:
     elif choice == "5":
         break
 ```
-
 
 ### Interview-style
 
@@ -705,7 +686,6 @@ while True:
 - [ ] README lists create-database + run steps for a teammate  
 - [ ] Pushed to GitHub without passwords in source
 
-
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
@@ -723,10 +703,10 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Database cursor executes SQL and retrieves results row by row or in batches; intermediary between connection and data.
 
 **Q3. Parameterized query vs string formatting?**  
-**A:** Parameters send values separately from SQL plan, preventing injection and handling escaping correctly.
+**A:** Parameters send values separately from SQL, blocking injection (typed **AcmeHR** name or library title never becomes a command).
 
 **Q4. commit vs rollback?**  
-**A:** commit makes transaction changes permanent; rollback undoes changes since last commit on error.
+**A:** commit makes transaction changes permanent; rollback undoes them — **SecureBank** transfer or **TechMart** checkout + stock must succeed or fail together.
 
 **Q5. ORM vs raw SQL?**  
 **A:** An ORM maps Python classes/objects to tables and generates SQL, which reduces boilerplate and some injection risk; raw SQL is still useful for complex reports or performance tuning.

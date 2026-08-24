@@ -1,6 +1,6 @@
 # Ticket: Login Gate Decorator
 
-**Customer:** Internal tools team  
+**Customer:** AcmeHR internal tools team  
 **Need:** `@require_login` should block salary view when logged-out.
 
 ## Done when

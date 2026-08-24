@@ -1,6 +1,6 @@
 # Ticket: Campus Canteen Calculator
 
-**Customer:** Canteen counter staff  
+**Customer:** TechMart canteen counter (CampusCart stall)  
 **Bug/need:** Staff still use paper for `price × qty + GST`. Build a CLI calculator.
 
 ## Starter

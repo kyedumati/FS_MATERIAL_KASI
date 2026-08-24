@@ -6,23 +6,12 @@
 **Previous:** [File Handling & Logging](05_File_Handling_and_Logging.md) (finish core Advanced first)  
 **Next:** Continue calendar — [Git & GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) or MySQL phase as scheduled
 
-## Learning outcomes
-
-By the end, learners can:
-
-- Choose composition or inheritance for a small business feature.
-- Use an abstract base class when a shared contract adds clarity.
-- Explain `__str__` and `__repr__` through a useful debugging example.
-- Avoid mutable default argument bugs.
-- Write focused custom exceptions and preserve useful error context.
-- Explain a package entry point using `if __name__ == "__main__"`.
-
 **Icons:** Order · Bank · Laptop
 
 **Where used?**
 - Order / notification flows — swap Email vs SMS without rewriting the service
 - Inventory — reject oversell with a clear custom exception
-- Payment demos — shared `pay()` contract via an abstract base class
+- Payment demos — shared `pay()` contract (taught in [OOP Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md))
 - Library APIs — `__str__` for humans, `__repr__` for debugging dumps
 
 ## 1. Function design: avoid the mutable default trap
@@ -159,9 +148,11 @@ svc.notifier = type("N", (), {"send": staticmethod(lambda m: print("LOG:", m))})
 svc.place_order("ORD-2")
 ```
 
-## 3. Abstract base classes: a small, useful contract
+## 3. Abstract base classes: recap (full notes in OOP Part 4)
 
-Use an abstract base class only when multiple implementations must offer the same behaviour.
+ABC is taught in [OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md). This is a short Saturday recap only.
+
+Use an abstract base class when multiple implementations must offer the same behaviour. This enrichment file is **after** Exceptions, so `raise` is allowed here.
 
 ```python
 from abc import ABC, abstractmethod
@@ -246,7 +237,7 @@ except InsufficientStockError as e:
 
 ### Stretch
 
-- Add a `PaymentGateway` abstract base class and a `DemoGateway` implementation.
+- Add a `PaymentGateway` abstract base class and a `DemoGateway` implementation (see [OOP Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md) if this is new).
 - Write two unit tests for `reserve` (kit [26_unittest_utils](../15_Lab_Assets/26_unittest_utils/) ideas).
 
 ## How to run this session

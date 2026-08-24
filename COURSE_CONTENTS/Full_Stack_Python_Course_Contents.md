@@ -14,7 +14,6 @@
 
 ### Program map (improved sequence)
 
-
 | Phase | Weeks | Focus | Outcome |
 | ----- | ----- | ----- | ------- |
 | 0–1   | 1–2   | Computer + Core Python foundations | Think like a programmer; write small CLI scripts |
@@ -25,7 +24,6 @@
 | 6     | 14–16 | Django auth, labs `06`–`07`, capstone shell | Auth CRUD + deploy checks |
 | 7     | 17–18 | Flask lite + DRF + React | REST APIs & SPA integration |
 | 8     | 19–20 | Testing, capstone, placement (**AI optional**) | Portfolio + interview readiness |
-
 
 ---
 
@@ -74,7 +72,7 @@
 
 - Functions; *decorators & generators*
 - Modules & packages
-- OOP: class, object, constructor, encapsulation, inheritance, polymorphism
+- OOP: class, object, constructor, encapsulation, inheritance, polymorphism, abstract class / abstract method, interface (`ABC` / Protocol)
 - Exception handling
 - File handling
 - Logging

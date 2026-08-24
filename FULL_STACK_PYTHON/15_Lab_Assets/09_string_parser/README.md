@@ -1,6 +1,6 @@
 # Ticket: Registration Field Cleaner
 
-**Customer:** Admissions portal  
+**Customer:** AcmeHR onboarding + admissions portal  
 **Need:** Clean email/phone from messy user input; mask phone for display.
 
 ## Starter

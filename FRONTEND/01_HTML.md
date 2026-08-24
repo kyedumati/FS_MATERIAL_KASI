@@ -2,22 +2,9 @@
 
 **Shared topic** (Python FS + Java FS).
 
-**Previous (Python FS):** [Database Programming Bridge](../FULL_STACK_PYTHON/03_Advanced_Python/06_Database_Programming_Bridge.md)
+**Previous (Python FS):** [Database Programming Bridge](../FULL_STACK_PYTHON/03_Advanced_Python/06_Database_Programming_Bridge.md)  
+**Previous (Java FS):** [JDBC CRUD](../FULL_STACK_JAVA/07_JDBC/01_JDBC_CRUD.md)  
 **Next:** [CSS and Responsive](02_CSS_and_Responsive.md)
-
----
-
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain HTML's role in the browser–server–database stack
-- Build valid page structure with `<!DOCTYPE>`, `<html>`, `<head>`, `<body>`
-- Use semantic tags: `header`, `nav`, `main`, `section`, `article`, `footer`
-- Create links, images, lists, and accessible tables
-- Build forms with GET and POST methods and common input types
-- Apply basic accessibility: labels, alt text, heading hierarchy
-- Prepare HTML that Django templates and React will later consume
 
 ---
 
@@ -26,6 +13,14 @@ By the end of this module, learners will be able to:
 Full-stack flow: `Browser (HTML/CSS/JS) → Django/Python → MySQL`
 
 When you open a login page, the server sends **HTML**. **Django** will generate HTML from templates; **React** builds HTML-like JSX — concepts start here.
+
+**Where used?**
+- CampusCart / **TechMart** — home, product cards, checkout form
+- **AcmeHR** — leave request form (`from_date`, `to_date`, `leave_type`)
+- **MedCare** — appointment booking (`doctor`, `patient`, `appointment_date`)
+- **SecureBank** — transfer form (`from_account`, `to_account`, `amount`)
+
+CampusCart stays the **capstone skin** (college storefront). Same tags work for TechMart.
 
 Elements: `<tagname attribute="value">Content</tagname>`  
 Example: `<a href="/home">Home</a>`
@@ -356,7 +351,7 @@ Django adds `{% csrf_token %}` to POST forms later.
 
 **Try these (2 programs):**
 
-**Program 1 — Canteen search (GET)**
+**Program 1 — TechMart search (GET)**
 
 ```html
 <!DOCTYPE html>
@@ -372,7 +367,7 @@ Django adds `{% csrf_token %}` to POST forms later.
 </html>
 ```
 
-**Program 2 — Mini registration (POST)**
+**Program 2 — AcmeHR mini registration (POST)**
 
 ```html
 <!DOCTYPE html>
@@ -425,17 +420,17 @@ Django adds `{% csrf_token %}` to POST forms later.
 </html>
 ```
 
-**Program 2 — Heading hierarchy check**
+**Program 2 — TechMart product heading hierarchy**
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><title>Headings</title></head>
 <body>
-  <h1>CampusCart</h1>
-  <h2>Today's menu</h2>
-  <h3>South Indian</h3>
-  <p>Idli, dosa, vada — prices in ₹.</p>
+  <h1>TechMart</h1>
+  <h2>Today's catalog</h2>
+  <h3>Electronics</h3>
+  <p>Same heading rules as CampusCart — do not jump from h1 to h3.</p>
   <!-- Do not jump from h1 to h3 -->
 </body>
 </html>
@@ -468,7 +463,6 @@ Django adds `{% csrf_token %}` to POST forms later.
 <p>Built a small profile page.</p>
 ```
 
-
 2. Nav with 4 relative links; ordered list of 5 goals.
    **Model answer:**
 
@@ -484,7 +478,6 @@ Django adds `{% csrf_token %}` to POST forms later.
 </ol>
 ```
 
-
 3. Image with alt; contact form (name, email, textarea).
    **Model answer:**
 
@@ -497,7 +490,6 @@ Django adds `{% csrf_token %}` to POST forms later.
   <button type="submit">Send</button>
 </form>
 ```
-
 
 ### Intermediate
 
@@ -519,7 +511,6 @@ Django adds `{% csrf_token %}` to POST forms later.
 </table>
 ```
 
-
 3. Login form POST with action `#`; FAQ with `<details>`/`<summary>`.
    **Model answer:**
 
@@ -535,7 +526,6 @@ Django adds `{% csrf_token %}` to POST forms later.
 </details>
 ```
 
-
 4. Add `lang`, viewport meta, title on every page.
    **Model answer:**
 
@@ -548,7 +538,6 @@ Django adds `{% csrf_token %}` to POST forms later.
   <title>Page Title</title>
 </head>
 ```
-
 
 ### Interview-style
 
@@ -595,7 +584,6 @@ Semantic structure; all images have alt; all inputs labeled; internal nav works;
 - [ ] One `<h1>`, semantic `header`/`main`/`footer`
 - [ ] Every input has a matching `<label for>`
 - [ ] Every meaningful image has `alt` text
-
 
 ## Interview Q&A
 

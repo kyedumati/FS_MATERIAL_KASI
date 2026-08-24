@@ -8,19 +8,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain how applications call ML/AI capabilities via HTTP APIs (not training models from scratch)
-- Run a tiny scikit-learn demo (train/predict) and expose prediction via Flask or Django endpoint
-- Call an external model API pattern (OpenAI-compatible or Hugging Face inference — concept + optional lab)
-- Build a simple text analyzer or chatbot UI pattern: HTML/React form → Python endpoint → JSON response
-- Describe ethical and security basics: API keys in env, no secrets in Git, user data caution
-- Position AI integration skills on resume for Indian junior full-stack roles realistically
-
----
-
 ## Prerequisites
 
 - **Optional stretch module** — only after Flask/Django API + a simple frontend form/`fetch`
@@ -39,10 +26,10 @@ Most **junior Python full-stack** roles want you to:
 **Icons:** Order · Laptop · Employee · Bank · Payroll
 
 **Where used?**
-- Ecommerce — canteen review sentiment / spam filter behind a Flask route
+- **TechMart** — canteen review sentiment / spam filter behind a Flask route
 - College apps — simple chatbot FAQ endpoint on the student portal
 - CRM / support — summarize tickets via remote model API
-- Banking — fraud/risk scores consumed as JSON (you wire the call, not train GPT)
+- **SecureBank** — fraud/risk scores consumed as JSON (you wire the call, not train GPT)
 - Resume — one honest “AI-integrated demo” after Django deploy is solid
 
 Employers do **not** expect you to publish research papers or build GPT from scratch. This module matches **brochure "AI Integration Lite"** — practical wiring.
@@ -382,7 +369,6 @@ label = model.classes_[proba.argmax()]
 return jsonify({"label": str(label), "score": float(proba.max())})
 ```
 
-
 2. Chat UI with message history displayed as list.
    **Model answer:**
    Keep a `messages` array in React/JS state (or server session). On send, append user text, call the API, append assistant reply, and render `<ul>{messages.map(...)}</ul>` (or equivalent).
@@ -394,7 +380,6 @@ return jsonify({"label": str(label), "score": float(proba.max())})
 logger.info("analyze request len=%s", len(text))
 # do NOT log: logger.info(text)
 ```
-
 
 ### Interview-style
 
@@ -435,7 +420,6 @@ logger.info("analyze request len=%s", len(text))
 - [ ] `/api/analyze` returns JSON label
 - [ ] UI shows loading + result
 - [ ] No API keys committed; ethics note in README
-
 
 ## Interview Q&A
 

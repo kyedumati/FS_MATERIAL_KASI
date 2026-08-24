@@ -4,27 +4,13 @@
 
 **Previous:** [CSS and Responsive](02_CSS_and_Responsive.md)
 **Next (Python FS):** [Django Introduction](../FULL_STACK_PYTHON/07_Django/01_Django_Introduction_and_Setup.md)  
-**Next (Java FS):** Spring / backend module (when that program is added)
-
----
-
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Declare variables with `let` and `const`; explain why to avoid `var`
-- Write functions (declaration and arrow) for event handlers
-- Select and update DOM elements with `querySelector` / `querySelectorAll`
-- Attach event listeners for click, input, and submit
-- Validate HTML forms in JavaScript before submission
-- Use `fetch()` to call a JSON API and display results (overview)
-- Connect frontend JS patterns to upcoming Django views and React components
+**Next (Java FS):** [Maven and Spring Boot Setup](../FULL_STACK_JAVA/09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md)
 
 ---
 
 **JavaScript** makes pages **interactive**. HTML = skeleton; CSS = skin; JS = muscles — clicks, validation, fetching data from Django API without full reload.
 
-CampusCart "Add to cart" flow:
+CampusCart is the college **TechMart** storefront. "Add to cart" flow (same pattern for AcmeHR leave submit, MedCare book slot, SecureBank transfer):
 
 1. Event listener hears click
 2. JS updates **DOM** (browser's live HTML tree)
@@ -123,7 +109,7 @@ cartCount = cartCount + 1;
 
 **Try these (2 programs):**
 
-**Program 1 — Cart counter**
+**Program 1 — TechMart cart counter**
 
 ```javascript
 "use strict";
@@ -134,7 +120,7 @@ cartCount += 1;
 console.log(APP_NAME, "items:", cartCount);
 ```
 
-**Program 2 — INR totals**
+**Program 2 — TechMart INR totals**
 
 ```javascript
 "use strict";
@@ -157,7 +143,7 @@ const double = (n) => n * 2;
 
 **Try these (2 programs):**
 
-**Program 1 — formatPrice**
+**Program 1 — TechMart formatPrice**
 
 ```javascript
 "use strict";
@@ -217,7 +203,7 @@ Prefer `classList` over inline `style`.
 </script>
 ```
 
-**Program 2 — Style product cards**
+**Program 2 — TechMart style product cards**
 
 ```javascript
 "use strict";
@@ -408,7 +394,7 @@ async function createOrder(data) {
 
 **Try these (2 programs):**
 
-**Program 1 — Load users into a list**
+**Program 1 — AcmeHR load employees into a list**
 
 ```javascript
 "use strict";
@@ -468,7 +454,6 @@ let moduleNumber = 3;
 console.log(courseName, moduleNumber);
 ```
 
-
 2. `celsiusToFahrenheit(c)` function.
    **Model answer:**
 
@@ -478,7 +463,6 @@ function celsiusToFahrenheit(c) {
 }
 console.log(celsiusToFahrenheit(37));
 ```
-
 
 3. Button increments `#count` span.
    **Model answer:**
@@ -491,7 +475,6 @@ document.querySelector("#inc").addEventListener("click", () => {
 });
 ```
 
-
 4. Loop `.item` paragraphs — change color.
    **Model answer:**
 
@@ -500,7 +483,6 @@ document.querySelectorAll(".item").forEach((el) => {
   el.style.color = "#0b6e4f";
 });
 ```
-
 
 ### Intermediate
 
@@ -517,7 +499,6 @@ input.addEventListener("input", () => {
 });
 ```
 
-
 2. FAQ toggle with classList.
    **Model answer:**
 
@@ -528,7 +509,6 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
   });
 });
 ```
-
 
 3. fetch `/posts/1` from jsonplaceholder — show title.
    **Model answer:**
@@ -542,7 +522,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
   .catch((err) => console.error(err));
 ```
 
-
 4. Disable submit until terms checkbox checked.
    **Model answer:**
 
@@ -554,7 +533,6 @@ box.addEventListener("change", () => {
   btn.disabled = !box.checked;
 });
 ```
-
 
 ### Interview-style
 
@@ -603,7 +581,6 @@ box.addEventListener("change", () => {
 - [ ] Invalid submit does not reload the page; errors show inline
 - [ ] Valid submit logs payload to console
 - [ ] At least one `fetch` demo loads JSON into the DOM
-
 
 ## Interview Q&A
 

@@ -7,20 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Write conditional logic using `if`, `elif`, and `else`
-- Implement `for` and `while` loops with `range()`
-- Use `break` and `continue` to control loop flow
-- Build nested menu-driven CLI apps (ATM, student portal, task manager)
-- Choose the right loop type for a given problem
-- Avoid infinite loops and indentation errors
-- Trace program flow with simple diagrams
-
----
-
 ### Why flow control?
 
 Programs rarely run in one straight line. A **student portal** must check login, an **ATM** repeats until user exits, and a **task manager** loops through tasks.
@@ -28,11 +14,11 @@ Programs rarely run in one straight line. A **student portal** must check login,
 **Icons:** Bank · UPI · Employee · Order · Payroll
 
 **Where used?**
-- Banking / ATM — PIN retries, withdraw only if balance allows
+- **SecureBank** ATM — PIN retries, withdraw only if balance allows
 - College apps — pass/fail grades, marks menus
-- Ecommerce — cart checkout loops, stock checks
-- Payroll — overtime flags, salary slab branches
-- Hospital / CRM — ticket priority menus, appointment status
+- **TechMart** — cart checkout loops, stock checks
+- **AcmeHR** — overtime flags, salary slab branches
+- **MedCare** — ticket priority menus, appointment status
 
 **Flow control** lets you:
 
@@ -471,7 +457,7 @@ else:
 Distinction
 ```
 
-**Program 2 — Nested withdraw check**
+**Program 2 — SecureBank nested withdraw check**
 
 ```python
 balance = 5000
@@ -535,7 +521,7 @@ while True:
 
 **Try these (2 programs):**
 
-**Program 1 — ATM deposit / withdraw demo**
+**Program 1 — SecureBank ATM deposit / withdraw demo**
 
 ```python
 balance = 5000
@@ -650,7 +636,6 @@ else:
     print("Odd")
 ```
 
-
 2. Print numbers 1 to 20 using `for` and `range`.
 
    **Model answer:**
@@ -659,7 +644,6 @@ else:
 for i in range(1, 21):
     print(i)
 ```
-
 
 3. Sum numbers 1 to 100 using a loop.
 
@@ -672,7 +656,6 @@ for i in range(1, 101):
 print(total)  # 5050
 ```
 
-
 4. Ask age; print "Minor" if `< 18` else "Adult".
 
    **Model answer:**
@@ -684,7 +667,6 @@ if age < 18:
 else:
     print("Adult")
 ```
-
 
 ### Intermediate
 
@@ -703,7 +685,6 @@ elif marks >= 50:
 else:
     print("Fail")
 ```
-
 
 2. Number guessing: hard-code secret; 5 attempts with while; hints higher/lower.
 
@@ -725,7 +706,6 @@ while attempts < 5:
 else:
     print("Out of attempts. Secret was", secret)
 ```
-
 
 3. Expense menu: add expense, show total, exit — use while True.
 
@@ -749,7 +729,6 @@ while True:
         print("Invalid choice")
 ```
 
-
 4. Print multiplication table only for even multipliers 2–10.
 
    **Model answer:**
@@ -759,7 +738,6 @@ n = int(input("Table for: "))
 for m in range(2, 11, 2):
     print(f"{n} x {m} = {n * m}")
 ```
-
 
 ### Interview-Oriented
 
@@ -787,7 +765,6 @@ ELSE:
   show "Withdrawn", amount, "New balance", balance
 ```
 
-
 4. Explain while-else construct with PIN example.
 
    **Model answer:** A `while` loop’s `else` runs when the loop ends **normally** (condition becomes false) — **not** when you `break` out. PIN example: loop up to 3 attempts; on correct PIN `break`; if all attempts fail without break, `else` prints “Card blocked.”
@@ -807,7 +784,7 @@ ELSE:
 
 ---
 
-## Mini-Project (Assignment): ATM Simulator (Console)
+## Mini-Project (Assignment): SecureBank ATM Simulator (Console)
 
 **Title:** Console ATM with balance + mini statement  
 **Lab kit (build here):** [15_Lab_Assets/08_atm_menu/](../15_Lab_Assets/08_atm_menu/)
@@ -837,16 +814,15 @@ ELSE:
 - [ ] Deposit and withdraw update balance correctly with validation  
 - [ ] Mini statement shows up to last 3 transactions  
 
-
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why is menu-driven design still used in training if real apps have GUIs?
-2. Could you use `for` instead of `while` for ATM menu? What would be awkward?
-3. How does nested if map to HR approval workflows (employee → manager → HR)?
+2. Could you use `for` instead of `while` for a **SecureBank** ATM menu? What would be awkward?
+3. How does nested if map to **AcmeHR** approval workflows (employee → manager → HR)?
 4. What real-world system might run an infinite loop intentionally?
-5. How would you add "confirm before withdraw" using flow control only?
+5. How would you add "confirm before **SecureBank** withdraw" using flow control only?
 
 **Q1. Explain if/elif/else execution order.**  
 **A:** Python tests top to bottom; first true branch runs; rest skipped; else runs if none true.

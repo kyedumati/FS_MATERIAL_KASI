@@ -7,20 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Link external CSS and apply styles via external stylesheets (preferred)
-- Use selectors: element, class, id, descendant, pseudo-classes
-- Explain the box model: content, padding, border, margin
-- Layout pages with Flexbox for nav, cards, and footers
-- Write media queries for mobile-first responsive design
-- Build a simple responsive landing page (portfolio or ecommerce)
-- Prepare styles for Django static files and React components
-
----
-
 **CSS** controls **how HTML looks**: colors, fonts, spacing, layout. HTML says "this is a button"; CSS says "blue, rounded, centered."
 
 | Method | When |
@@ -32,6 +18,14 @@ By the end of this module, learners will be able to:
 **Cascade:** More specific rules win; later rules can override earlier ones.
 
 Full-stack: `HTML + CSS + JS → Django/React`. Django serves CSS from `static/css/`. React uses component CSS or Tailwind — **Flexbox and selectors transfer directly**.
+
+**Where used?**
+- CampusCart / **TechMart** — product card grid, promo banner, responsive nav
+- **AcmeHR** — employee directory cards, payslip layout
+- **MedCare** — appointment board, doctor cards
+- **SecureBank** — account summary tiles, transfer confirmation
+
+CampusCart remains the landing-page lab skin. Treat it as the college **TechMart** storefront.
 
 ---
 
@@ -180,7 +174,7 @@ DevTools → Computed → box diagram.
 
 **Try these (2 programs):**
 
-**Program 1 — Product card box**
+**Program 1 — TechMart product card box**
 
 ```css
 .card {
@@ -311,7 +305,7 @@ p { font-size: 1rem; }
 }
 ```
 
-**Program 2 — Product grid**
+**Program 2 — TechMart product grid**
 
 ```css
 .product-grid {
@@ -414,7 +408,7 @@ Style with Flexbox header, flex-wrap card grid, responsive nav column→row at 7
 </section>
 ```
 
-**Program 2 — Three cards**
+**Program 2 — TechMart three cards**
 
 ```html
 <section id="menu" class="product-grid">
@@ -457,7 +451,6 @@ h2 {
 }
 ```
 
-
 2. `.card` with rem padding/margin; center div `max-width: 600px; margin: 0 auto`.
    **Model answer:**
 
@@ -472,7 +465,6 @@ h2 {
 }
 ```
 
-
 3. Nav link `:hover` effect.
    **Model answer:**
 
@@ -482,7 +474,6 @@ nav a:hover {
   text-decoration: underline;
 }
 ```
-
 
 ### Intermediate
 
@@ -500,7 +491,6 @@ nav a:hover {
 }
 ```
 
-
 2. Three-column cards → one column below 768px.
    **Model answer:**
 
@@ -515,7 +505,6 @@ nav a:hover {
 }
 ```
 
-
 3. Hero with `clamp()` heading; CSS variables for primary color.
    **Model answer:**
 
@@ -527,7 +516,6 @@ nav a:hover {
 }
 ```
 
-
 4. Style HTML table (zebra rows, header background).
    **Model answer:**
 
@@ -535,7 +523,6 @@ nav a:hover {
 thead { background: #1a3a4a; color: #fff; }
 tbody tr:nth-child(even) { background: #f0f4f5; }
 ```
-
 
 ### Interview-style
 
@@ -582,7 +569,6 @@ tbody tr:nth-child(even) { background: #f0f4f5; }
 - [ ] External stylesheet linked (not only inline styles)
 - [ ] Flex layout for header and card grid
 - [ ] Page usable at ~375px width without horizontal scroll
-
 
 ## Interview Q&A
 

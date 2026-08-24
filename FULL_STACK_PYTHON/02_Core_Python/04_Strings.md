@@ -7,20 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Create strings using single, double, and triple quotes
-- Access characters with indexing (positive and negative) and slicing
-- Explain string immutability and predict behavior of "modifications"
-- Use common string methods: `upper`, `lower`, `strip`, `split`, `join`, `replace`, `find`, `startswith`, `endswith`, `count`
-- Format output with f-strings, `format()`, and basic alignment
-- Solve job-oriented tasks: email validation lite, slug generation, parsing CSV-like lines, masking phone numbers
-- Avoid common pitfalls with mutable vs immutable thinking
-
----
-
 ### What is a string?
 
 A **string** (`str`) is a sequence of characters — letters, digits, symbols, spaces — used for names, emails, addresses, JSON text, and HTML.
@@ -28,11 +14,11 @@ A **string** (`str`) is a sequence of characters — letters, digits, symbols, s
 **Icons:** Bank · UPI · Employee · Order · Hospital
 
 **Where used?**
-- Banking / UPI — mask account/phone digits, parse UPI IDs
+- **SecureBank** / UPI — mask account/phone digits, parse UPI IDs
 - College apps — roll numbers, email normalize for login
-- Ecommerce — product titles, URL slugs, invoice lines
-- Payroll — offer-letter templates, employee name formatting
-- Hospital / CRM — patient phone masking, ticket subject cleanup
+- **TechMart** — product titles, URL slugs, invoice lines
+- **AcmeHR** — offer-letter templates, employee name formatting
+- **MedCare** — patient phone masking, ticket subject cleanup
 
 ### Why do we need strings?
 
@@ -602,7 +588,6 @@ print(s[-1])     # n
 print(len(s))    # 17
 ```
 
-
 2. Slice to extract `"Stack"` from the string above.
 
    **Model answer:**
@@ -611,7 +596,6 @@ print(len(s))    # 17
 s = "Full Stack Python"
 print(s[5:10])  # Stack
 ```
-
 
 3. Convert `"  hello world  "` to `"HELLO WORLD"` using methods only.
 
@@ -623,7 +607,6 @@ clean = raw.strip().upper()
 print(clean)  # HELLO WORLD
 ```
 
-
 4. Split `"apple,banana,mango"` by comma; print each fruit on new line with for.
 
    **Model answer:**
@@ -633,7 +616,6 @@ fruits = "apple,banana,mango".split(",")
 for fruit in fruits:
     print(fruit)
 ```
-
 
 ### Intermediate
 
@@ -648,7 +630,6 @@ print(f"Username: {username}")
 print(f"Domain: {domain}")
 ```
 
-
 2. Mask Aadhaar-style number: show only last 4 digits (`XXXX-XXXX-1234`).
 
    **Model answer:**
@@ -658,7 +639,6 @@ aadhaar = input("12-digit Aadhaar: ").strip().replace(" ", "").replace("-", "")
 last4 = aadhaar[-4:]
 print(f"XXXX-XXXX-{last4}")
 ```
-
 
 3. Check password length >= 8 and contains at least one digit (loop + `in`).
 
@@ -677,7 +657,6 @@ else:
     print("Need length >= 8 and at least one digit")
 ```
 
-
 4. Reverse a string using slicing `[::-1]` and using a loop (two ways).
 
    **Model answer:**
@@ -691,7 +670,6 @@ for ch in s:
     reversed_s = ch + reversed_s
 print(reversed_s)  # loop
 ```
-
 
 ### Interview-Oriented
 
@@ -727,7 +705,7 @@ print(reversed_s)  # loop
 
 ---
 
-## Mini-Project (Assignment): Text Utilities CLI (Employee / Student Data)
+## Mini-Project (Assignment): AcmeHR / Student Text Utilities CLI
 
 **Title:** Menu-driven text cleaner for registration fields  
 **Lab kit (build here):** [15_Lab_Assets/09_string_parser/](../15_Lab_Assets/09_string_parser/)
@@ -769,7 +747,6 @@ Average: 85.00
 - [ ] Lab kit string-parser ticket cleans email/phone as expected  
 - [ ] Menu options 1–5 work and exit on `0`  
 - [ ] Marks parse prints roll, name, and average  
-
 
 ## Interview Q&A
 

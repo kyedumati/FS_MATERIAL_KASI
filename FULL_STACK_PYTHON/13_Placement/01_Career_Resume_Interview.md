@@ -8,20 +8,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain Agile/Scrum ceremonies and vocabulary used in Indian IT delivery teams
-- Write a one-page resume tailored for Python/Django/React junior roles in India
-- Optimize LinkedIn headline, About, and project section for recruiter search
-- Present GitHub portfolio with README, commits, and 2–3 demo projects
-- Follow a structured mock interview plan (technical + HR + aptitude awareness)
-- Prepare STAR stories (Situation, Task, Action, Result)
-- Maintain a job application tracker with follow-ups and outcomes
-
----
-
 ## Prerequisites
 
 - Near-complete course projects on GitHub
@@ -423,7 +409,6 @@ Deliverable folder `placement_kit/`:
 - [ ] Four STAR stories written and practised aloud
 - [ ] Tracker has at least 5 real or practice rows
 - [ ] LinkedIn headline + GitHub pins match the resume story
-
 
 ## Interview Q&A
 

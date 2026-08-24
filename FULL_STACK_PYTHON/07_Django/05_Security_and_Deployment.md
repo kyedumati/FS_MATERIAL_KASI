@@ -7,27 +7,13 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain **CSRF**, **XSS**, and **SQL injection** risks and Django mitigations
-- Configure production-safe settings: **`DEBUG=False`**, **`SECRET_KEY`**, **`ALLOWED_HOSTS`**
-- Load secrets from **environment variables** instead of hardcoding in `settings.py`
-- Run **`collectstatic`** and understand static vs media files in deployment
-- Follow a **deployment checklist** for Django + MySQL on PaaS platforms
-- Compare deployment options: **Render**, **Railway**, **PythonAnywhere** (overview)
-- Prepare a Student Portal or Blog app for a staging deployment demo
-
----
-
 ### Security Mindset
 
 **Security** means protecting user data, passwords, and your server from attackers. Django includes many **defaults** (CSRF middleware, template auto-escaping, ORM parameterization) — but misconfiguration (`DEBUG=True` online, weak `SECRET_KEY`, missing HTTPS) causes real breaches.
 
 **Where used?**
 - Campus portal / Blog — public deploy must hide stack traces (`DEBUG=False`)
-- Ecommerce — CSRF on checkout forms; never commit CampusCart `.env`
+- **TechMart** — CSRF on checkout forms; never commit CampusCart `.env`
 - Admin — only staff on production; rotate leaked `SECRET_KEY`
 - Capstone demo — Render/Railway/PythonAnywhere with env vars + `collectstatic`
 - Interviews — explain why `DEBUG=True` online is a resume red flag
@@ -552,7 +538,6 @@ find staticfiles/admin -type f | wc -l
 - [ ] `collectstatic` succeeds; WhiteNoise/`STORAGES` configured
 - [ ] DEPLOY_CHECKLIST.md completed
 - [ ] Gunicorn smoke test **or** platform deploy started
-
 
 ## Interview Q&A
 

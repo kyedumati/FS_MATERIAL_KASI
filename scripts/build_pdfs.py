@@ -22,7 +22,7 @@ from pygments.lexers import TextLexer, get_lexer_by_name, guess_lexer
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_COURSES = ("MYSQL",)
-NESTED_COURSES = ("FULL_STACK_PYTHON",)  # recursive md tree; excludes trainer-only
+NESTED_COURSES = ("FULL_STACK_PYTHON", "FULL_STACK_JAVA", "FRONTEND")  # recursive md tree; excludes trainer-only
 TRAINER_ONLY_DIR_NAME = "14_Trainer_Only"
 STYLE_PATH = Path(__file__).resolve().parent / "pdf-style.css"
 MERMAID_CACHE_DIR = ROOT / ".cache" / "mermaid"
@@ -103,6 +103,13 @@ def sanitize_mermaid_source(source: str) -> str:
     """Normalize labels so mermaid-cli accepts diagrams that preview OK in editors."""
     # Markdown authors often write wish(\"Priya\"); Mermaid wants wish('Priya').
     source = source.replace('\\"', "'")
+    # Unquoted flowchart edge labels with ( ) are parsed as node shapes.
+    # |this(holder, 0)|  ->  |"this(holder, 0)"|
+    source = re.sub(
+        r'\|(?!")([^|\n]*\([^|\n]*)\|',
+        r'|"\1"|',
+        source,
+    )
     return source
 
 
@@ -736,7 +743,7 @@ def main() -> int:
         "--course",
         action="append",
         choices=[*DEFAULT_COURSES, *NESTED_COURSES, "SQL", "all"],
-        help="Course folder to build (repeatable). Default: MYSQL.",
+        help="Course folder to build (repeatable). Default: MYSQL. FRONTEND is nested (HTML/CSS/JS + React).",
     )
     parser.add_argument(
         "--file",
@@ -779,7 +786,7 @@ def main() -> int:
         if not md_path.exists():
             print(f"error: file not found: {md_path}", file=sys.stderr)
             return 1
-        # Prefer nested course root when under FULL_STACK_PYTHON
+        # Prefer nested course root when under FULL_STACK_PYTHON / FULL_STACK_JAVA
         course_root = md_path.parent
         for part in md_path.resolve().relative_to(ROOT).parts:
             if part in NESTED_COURSES or part in DEFAULT_COURSES:

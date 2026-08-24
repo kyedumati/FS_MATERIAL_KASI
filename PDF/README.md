@@ -17,28 +17,21 @@ Authors can use these markers — `scripts/build_pdfs.py` styles them automatica
 | `**Icons:** Bank · UPI · Employee · Laptop · Order` | Icon chip strip |
 | Inline `` `class` `` / `` `object` `` / `` `inheritance` `` | Blue / green / purple keywords |
 
-## Primary Full Stack course (teach + share same content)
+## Full Stack courses (teach + share same content)
 
 From the repo root:
 
 ```bash
-./scripts/build.sh fullstack
+./scripts/build.sh fullstack          # → PDF/FULL_STACK_PYTHON/
+./scripts/build.sh java               # → PDF/FULL_STACK_JAVA/
+./scripts/build.sh frontend           # → PDF/FRONTEND/ (shared HTML/CSS/JS + React)
 # rebuild one module after Mermaid/CSS changes:
 python3 scripts/build_pdfs.py --force --file FULL_STACK_PYTHON/03_Advanced_Python/01_Functions_Decorators_Generators.md
+python3 scripts/build_pdfs.py --force --file FULL_STACK_JAVA/06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md
 ```
 
-PDFs are written to:
+PDFs are written to `PDF/FULL_STACK_PYTHON/`, `PDF/FULL_STACK_JAVA/`, or `PDF/FRONTEND/` mirroring the source tree.
 
-```
-PDF/FULL_STACK_PYTHON/
-├── Session_Calendar_100.pdf
-├── Capstone_CampusCart_One_Pager.pdf
-├── Standard_Project_Deliverables.pdf
-├── Tested_Toolchain.pdf
-├── 01_Foundations/
-├── 02_Core_Python/
-└── ...
-```
 (`14_Trainer_Only` is excluded automatically.)
 
 **One material:** these PDFs match the teaching markdown (Practice Model answers included). After each module, share **that module’s PDF** only.
@@ -46,11 +39,11 @@ PDF/FULL_STACK_PYTHON/
 Optional full markdown mirror (still excludes `14_Trainer_Only/`, `solution/`, `*_KEY.md`):
 
 ```bash
-./scripts/pack_student_share.sh
-# → dist/FULL_STACK_PYTHON_STUDENT/
+./scripts/pack_student_share.sh         # → dist/FULL_STACK_PYTHON_STUDENT/
+./scripts/pack_student_share.sh java    # → dist/FULL_STACK_JAVA_STUDENT/
 ```
 
-Also share sibling **`MYSQL/`** (or build MySQL PDFs below) for Weeks 10–11.
+Also share sibling **`MYSQL/`** (or build MySQL PDFs below) for SQL weeks.
 
 ## Other builds
 

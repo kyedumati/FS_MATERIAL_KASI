@@ -6,18 +6,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. Explain **tuple immutability** and when to use tuples vs lists.
-2. Create tuples; use **packing** and **unpacking** for clean assignment and function returns.
-3. Explain **set uniqueness** and why sets ignore duplicate values.
-4. Perform set operations: union, intersection, difference, symmetric difference.
-5. Apply tuples and sets to real scenarios: coordinates, employee records, deduplication, tag lists.
-
----
-
 ### Tuples — the sealed envelope
 
 A **tuple** is like a printed receipt or Aadhaar-linked record: once created, you should **not change** the fields. You can **read** them, pass them around, and unpack them into variables.
@@ -25,11 +13,11 @@ A **tuple** is like a printed receipt or Aadhaar-linked record: once created, yo
 **Icons:** Employee · Order · Bank · Payroll · Laptop
 
 **Where used?**
-- Payroll — fixed employee row `(emp_id, name, dept)` snapshots
-- Ecommerce — product catalog rows, shipping status tuples
-- Banking — immutable transaction snapshots (date, type, ₹ amount)
+- **AcmeHR** — fixed employee row `(emp_id, name, dept)` snapshots
+- **TechMart** — product catalog rows, shipping status tuples
+- **SecureBank** — immutable transaction snapshots (date, type, ₹ amount)
 - College apps — GPS campus coords, exam slot `(date, room)`
-- Hospital / CRM — appointment keys, unique tag sets for departments
+- **MedCare** — appointment keys, unique tag sets for departments
 
 **Use tuples when:**
 
@@ -94,7 +82,7 @@ print(employee[1:3])        # ('Ananya Sharma', 'Engineering')
 
 **Try these (2 programs):**
 
-**Program 1 — Employee tuple by index**
+**Program 1 — AcmeHR employee tuple by index**
 
 ```python
 emp = ("EMP-204", "Priya Nair", "HR")
@@ -513,7 +501,6 @@ print(category)
 print(amount)
 ```
 
-
 2. Create a set from `[1, 2, 2, 3, 3, 3]`. Print length before and after.
 
    **Model answer:**
@@ -525,7 +512,6 @@ unique = set(nums)
 print(len(unique))     # 3 → {1, 2, 3}
 print(unique)
 ```
-
 
 3. Given `t = (10, 20, 30, 40)`, print first and last using unpacking with `*`.
 
@@ -539,7 +525,6 @@ print(last)    # 40
 print(middle)  # [20, 30]
 ```
 
-
 ### Intermediate
 
 4. Two lists: `batch_2024 = ["A", "B", "C", "D"]` and `batch_2025 = ["C", "D", "E", "F"]`. Find students in both batches using sets.
@@ -552,7 +537,6 @@ batch_2025 = ["C", "D", "E", "F"]
 both = set(batch_2024) & set(batch_2025)
 print(both)  # {'C', 'D'}
 ```
-
 
 5. Write a function `split_name(full_name)` returning `(first, last)` for `"Ananya Sharma"`.
 
@@ -568,7 +552,6 @@ def split_name(full_name):
 print(split_name("Ananya Sharma"))  # ('Ananya', 'Sharma')
 ```
 
-
 6. Remove duplicates from `product_ids = [101, 102, 101, 103, 102]` preserving first-seen order.
 
    **Model answer:**
@@ -583,7 +566,6 @@ for pid in product_ids:
         ordered.append(pid)
 print(ordered)  # [101, 102, 103]
 ```
-
 
 ### Interview-style
 
@@ -615,7 +597,6 @@ def min_max(values):
 lo, hi = min_max([55, 78, 92, 67, 88])
 print(lo, hi)  # 55 92
 ```
-
 
 ---
 
@@ -666,7 +647,6 @@ Clean list: ['101', '102', '103', '104']
 - [ ] Lab kit dedup ticket passes  
 - [ ] Comma-separated input prints original vs unique counts  
 - [ ] Order-preserving dedupe matches the sample  
-
 
 ## Interview Q&A
 

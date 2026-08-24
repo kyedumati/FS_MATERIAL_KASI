@@ -4,29 +4,15 @@
 
 **Shared topic** (Python FS + Java FS).
 
-**Previous (Python FS):** [APIs / DRF](../../FULL_STACK_PYTHON/09_APIs_REST/01_APIs_JSON_Postman_DRF.md)
+**Previous (Python FS):** [APIs / DRF](../../FULL_STACK_PYTHON/09_APIs_REST/01_APIs_JSON_Postman_DRF.md)  
+**Previous (Java FS):** [REST DTOs and Postman](../../FULL_STACK_JAVA/09_Spring_Boot/04_REST_DTOs_Postman.md)  
 **Next:** [React Hooks, Routing, API](02_React_Hooks_Routing_API_Deploy.md)
-
----
-
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain why React is used for modern SPAs and how it pairs with a Django/DRF backend
-- Scaffold a React project with Vite and run the dev server
-- Build functional components with JSX syntax rules
-- Pass data with props and manage local state with `useState`
-- Handle events (click, input change, form submit)
-- Render lists with `.map()` and stable `key` props
-- Build controlled forms with validation basics
-- Apply simple styling (CSS modules or plain CSS files)
 
 ---
 
 ## Prerequisites
 
-- Node.js **20 LTS** (or 22 LTS) and npm — see [Tested Toolchain](../../FULL_STACK_PYTHON/Tested_Toolchain.md)
+- Node.js **20 LTS** (or 22 LTS) and npm — see the program [Python toolchain](../../FULL_STACK_PYTHON/Tested_Toolchain.md) or [Java toolchain](../../FULL_STACK_JAVA/Tested_Toolchain.md)
 - HTML/CSS/JS and JSON/REST from prior modules
 
 ---
@@ -42,6 +28,14 @@ Product UIs and many admin dashboards use React (or similar) because:
 - **Components:** Reuse UI pieces (`<ProductCard />` everywhere)
 - **State:** When data changes, UI updates automatically
 - **Pairs with Django:** Django/DRF backend + React frontend is a common junior stack
+
+**Where used?**
+- CampusCart / **TechMart** — `<ProductCard />` list and cart count
+- **AcmeHR** — leave request form with `useState`
+- **MedCare** — appointment status list (`scheduled` / `completed` / `cancelled`)
+- **SecureBank** — transfer amount field + confirmation
+
+CampusCart stays the default demo skin (college TechMart).
 
 **Note:**
 - Comparing React to Django MVC literally causes confusion — React is the view layer only.
@@ -105,7 +99,7 @@ export default function App() {
   return (
     <main>
       <Hello />
-      <p>Hyderabad canteen UI</p>
+      <p>Hyderabad TechMart / CampusCart UI</p>
     </main>
   );
 }
@@ -168,7 +162,7 @@ Props are **read-only**. To change data, lift state up (next section).
 
 **Try these (2 programs):**
 
-**Program 1 — ProductCard props**
+**Program 1 — TechMart ProductCard props**
 
 ```jsx
 function ProductCard({ name, price }) {
@@ -208,7 +202,7 @@ return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
 
 **Try these (2 programs):**
 
-**Program 1 — Cart counter**
+**Program 1 — TechMart cart counter**
 
 ```jsx
 import { useState } from "react";
@@ -223,7 +217,7 @@ export default function CartButton() {
 }
 ```
 
-**Program 2 — Toggle sold out**
+**Program 2 — TechMart toggle sold out**
 
 ```jsx
 import { useState } from "react";
@@ -255,7 +249,7 @@ Use stable unique `key` (prefer id over index when list changes).
 
 **Try these (2 programs):**
 
-**Program 1 — Map products**
+**Program 1 — TechMart map products**
 
 ```jsx
 const products = [
@@ -325,7 +319,7 @@ export default function NameForm() {
 }
 ```
 
-**Program 2 — Price field**
+**Program 2 — TechMart price field**
 
 ```jsx
 import { useState } from "react";
@@ -480,7 +474,6 @@ function Footer() {
 // render <Footer /> inside App
 ```
 
-
 2. Button toggles dark/light class on `app` div (useState boolean).
    **Model answer:**
 
@@ -493,7 +486,6 @@ return (
 );
 ```
 
-
 3. Display product count above grid.
    **Model answer:**
 
@@ -501,7 +493,6 @@ return (
 <p>{products.length} products</p>
 <div className="grid">{/* cards */}</div>
 ```
-
 
 ### Intermediate
 
@@ -515,7 +506,6 @@ function remove(id) {
 // <button onClick={() => remove(product.id)}>Delete</button>
 ```
 
-
 2. Search box filters list by name (case-insensitive).
    **Model answer:**
 
@@ -525,7 +515,6 @@ const visible = products.filter((p) =>
   p.name.toLowerCase().includes(q.toLowerCase())
 );
 ```
-
 
 3. Show average price of all products.
    **Model answer:**
@@ -537,7 +526,6 @@ const avg =
     : products.reduce((sum, p) => sum + p.price, 0) / products.length;
 return <p>Average ₹{avg.toFixed(2)}</p>;
 ```
-
 
 ### Interview-style
 
@@ -578,7 +566,6 @@ return <p>Average ₹{avg.toFixed(2)}</p>;
 - [ ] Add + delete works with local state
 - [ ] Empty state shows when list is empty
 - [ ] README documents `npm run dev`
-
 
 ## Interview Q&A
 

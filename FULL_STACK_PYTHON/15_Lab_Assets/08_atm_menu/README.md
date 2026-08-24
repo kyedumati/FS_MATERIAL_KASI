@@ -1,6 +1,6 @@
 # Ticket: Mini ATM Menu
 
-**Customer:** Training bank demo  
+**Customer:** SecureBank training ATM  
 **Need:** Console ATM: check balance, deposit, withdraw, quit. Wrong choice must not exit.
 
 ## Starter

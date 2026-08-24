@@ -7,20 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Create variables and explain dynamic typing in Python
-- Use core datatypes: `int`, `float`, `str`, `bool`, and `None`
-- Convert between types safely with `int()`, `float()`, `str()`, and `bool()`
-- Apply arithmetic, comparison, logical, assignment, membership, and identity operators
-- Read user input with `input()` and display output with `print()` and f-strings
-- Build a simple CLI calculator for student marks or expense amounts
-- Debug common type errors in beginner code
-
----
-
 ### What is a variable?
 
 A **variable** is a name that points to a value stored in memory. Think of it as a labelled box: the label is `student_name`, the contents are `"Ravi Kumar"`.
@@ -28,11 +14,11 @@ A **variable** is a name that points to a value stored in memory. Think of it as
 **Icons:** Bank · UPI · Employee · Payroll · Order
 
 **Where used?**
-- Banking / UPI — balance, transfer amount, PIN flags
+- **SecureBank** / UPI — balance, transfer amount, PIN flags
 - College apps — roll, marks, fees as `int` / `float`
-- Payroll — basic salary, HRA, CTC in lakhs
-- Ecommerce — cart line price × qty, GST totals
-- Hospital / CRM — patient age, ticket amount, `is_active` flags
+- **AcmeHR** — basic salary, HRA, CTC in lakhs
+- **TechMart** — cart line price × qty, GST totals
+- **MedCare** — patient age, ticket amount, `is_active` flags
 
 ```python
 student_name = "Ravi Kumar"   # str
@@ -210,7 +196,7 @@ print(manager_id is None)    # True — preferred None check
 
 **Try these (2 programs):**
 
-**Program 1 — Employee types for Priya**
+**Program 1 — AcmeHR types for Priya Shah**
 
 ```python
 emp_id = "E2048"
@@ -384,7 +370,7 @@ task_count += 1   # common pattern when adding tasks
 
 **Try these (2 programs):**
 
-**Program 1 — ATM deposit and withdraw**
+**Program 1 — SecureBank ATM deposit and withdraw**
 
 ```python
 balance = 8000
@@ -435,7 +421,7 @@ print("@" in email)
 print(".in" in email)
 ```
 
-**Program 2 — manager is None message**
+**Program 2 — AcmeHR manager is None message**
 
 ```python
 manager = None
@@ -516,7 +502,7 @@ print(f"{'Food':<15}{450.5:>10.2f}")
 
 **Try these (2 programs):**
 
-**Program 1 — Offer letter f-string**
+**Program 1 — AcmeHR offer letter f-string**
 
 ```python
 name = "Ravi"
@@ -525,7 +511,7 @@ salary = 25000
 print(f"{name} — {role} — ₹{salary:,}/month")
 ```
 
-**Program 2 — Aligned canteen receipt**
+**Program 2 — TechMart aligned canteen receipt**
 
 ```python
 print(f"{'Item':<10}{'Price':>8}")
@@ -564,7 +550,7 @@ print(f"Average: {average:.2f}")
 print("Pass:", average >= 35)
 ```
 
-**Program 2 — Line total with 18% GST**
+**Program 2 — TechMart line total with 18% GST**
 
 ```python
 price = 499.0
@@ -597,7 +583,6 @@ fees = 45000.0
 print(f"{name}, age {age}, enrolled in {course}. Fees: ₹{fees}")
 ```
 
-
 2. Convert `"100"` and `"3.14"` to int and float; print types.
 
    **Model answer:**
@@ -608,7 +593,6 @@ x = float("3.14")
 print(n, type(n))
 print(x, type(x))
 ```
-
 
 3. Evaluate: `10 + 5 * 2`, `20 // 3`, `20 % 3`, `2 ** 4`.
 
@@ -621,7 +605,6 @@ print(20 % 3)      # 2 — remainder
 print(2 ** 4)      # 16 — power
 ```
 
-
 4. Ask user for name and city; print greeting.
 
    **Model answer:**
@@ -631,7 +614,6 @@ name = input("Name: ")
 city = input("City: ")
 print(f"Namaste, {name} from {city}!")
 ```
-
 
 ### Intermediate
 
@@ -645,7 +627,6 @@ hra = float(input("HRA: "))
 total = basic + hra
 print(f"Total compensation: ₹{total:.2f}")
 ```
-
 
 2. Check if email contains `@` and `.com` using `in` and `and`.
 
@@ -670,7 +651,6 @@ total += 80    # metro
 print(f"Running total: ₹{total}")
 ```
 
-
 4. Format a receipt table (3 items, amounts, grand total) with aligned f-strings.
 
    **Model answer:**
@@ -686,7 +666,6 @@ print(f"{item2:<12}{amt2:>8.2f}")
 print(f"{item3:<12}{amt3:>8.2f}")
 print(f"{'TOTAL':<12}{grand:>8.2f}")
 ```
-
 
 ### Interview-Oriented
 
@@ -708,7 +687,7 @@ print(f"{'TOTAL':<12}{grand:>8.2f}")
 
 ---
 
-## Mini-Project (Assignment): CLI Canteen Calculator
+## Mini-Project (Assignment): TechMart CLI Canteen Calculator
 
 **Title:** One-session calculator with GST + validation  
 **Lab kit (build here):** [15_Lab_Assets/06_cli_calculator/](../15_Lab_Assets/06_cli_calculator/)  
@@ -745,7 +724,6 @@ Day total: ₹210.00
 - [ ] Three valid items update `day_total` correctly  
 - [ ] Amount/`qty` `<= 0` prints an error and is not added  
 - [ ] Output uses `₹` and two decimal places  
-
 
 ## Interview Q&A
 

@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: campus-jpa-catalog
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:training_db}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Kolkata
+    username: ${MYSQL_USER:root}
+    # TODO: password from env — ${MYSQL_PASSWORD} — never a literal
+    password:
+  jpa:
+    hibernate:
+      # TODO: lab-only ddl-auto update
+      ddl-auto:
+    show-sql: true
+
+server:
+  port: ${SERVER_PORT:8080}

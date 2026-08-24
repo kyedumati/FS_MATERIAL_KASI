@@ -7,20 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Map URLs to views using `path()` in project and app `urls.py` with `include()`
-- Write function-based views (FBVs) that return `HttpResponse` and render templates
-- Pass **context** dictionaries from views to templates
-- Use Django template language: variables, tags, filters, and `{% url %}`
-- Implement **template inheritance** with `base.html`, `{% block %}`, and `{% extends %}`
-- Serve **static files** (CSS, JS, images) in development via `STATIC_URL` and `{% static %}`
-- Build multi-page navigation for a Blog or Task Manager prototype
-
----
-
 ### What Happens When User Opens a Page?
 
 1. Browser sends **HTTP request** to URL like `http://127.0.0.1:8000/blog/`
@@ -31,7 +17,7 @@ By the end of this module, learners will be able to:
 
 **Where used?**
 - Campus portal — home, about, announcements pages with shared `base.html`
-- Ecommerce — product list / detail templates + CSS for CampusCart
+- **TechMart** — product list / detail templates + CSS for CampusCart
 - Blog / Task Manager — multi-page nav via `{% url %}` and `{% extends %}`
 - Admin-facing staff sites — same URL → view → template pattern
 - Capstone — reusable layout so every page shares navbar/footer
@@ -434,7 +420,6 @@ def contact(request):
 </footer>
 ```
 
-
 3. Style navbar with flexbox in `site.css`
    **Model answer:**
 
@@ -516,7 +501,6 @@ return render(request, "cart/home.html", {"products": products})
 - [ ] Click Blog → Tasks → Blog without 404
 - [ ] CSS visible on all pages via `{% static %}`
 - [ ] Navbar uses `{% url %}` names (not hardcoded paths only)
-
 
 ## Interview Q&A
 

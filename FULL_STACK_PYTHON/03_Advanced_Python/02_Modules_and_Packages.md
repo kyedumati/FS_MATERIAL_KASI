@@ -7,19 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of these sessions, learners will be able to:
-
-1. Explain what a module and package are and why Python uses them.
-2. Use common `import` forms (`import`, `from ... import`, aliases) and `if __name__ == "__main__":`.
-3. Use common standard-library modules: `math`, `datetime`, `random`, `json`, `os`.
-4. Create a multi-file package with `__init__.py` and relative imports.
-5. Set up a virtual environment (`venv`) and install packages with `pip`.
-6. Structure a small multi-file project ready for GitHub.
-
----
-
 ### What is a module? What is a package?
 
 - A **module** is one Python file (`.py`) that holds related names: variables, functions, classes.  
@@ -756,7 +743,6 @@ pip freeze > requirements.txt
 - [ ] Package import works without `sys.path` hacks  
 - [ ] README shows how a teammate recreates the env from `requirements.txt`  
 - [ ] Project pushed to GitHub (no `venv/` committed)
-
 
 ## Interview Q&A
 

@@ -4,20 +4,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain what a computer, operating system, and file system are in simple English
-- Navigate folders and files using VS Code and the terminal (Windows/macOS/Linux)
-- Describe what programming is and how it differs from an algorithm
-- Draw a simple client–server diagram for a web application
-- Name common developer roles in the Indian IT industry and what each role does
-- Set up VS Code with Python extensions and run basic terminal commands
-- Create a personal learning roadmap note for their full-stack journey
-
----
-
 ### What is a computer?
 
 A **computer** is a machine that takes **input**, processes it using rules, and gives **output**. When you open a student portal on your phone, you type a roll number (input), the server checks the database (processing), and shows your marks (output).
@@ -26,10 +12,10 @@ A **computer** is a machine that takes **input**, processes it using rules, and 
 
 **Where used?**
 - College apps — student portal login, marks screens, lab machines
-- Ecommerce — CampusCart checkout flow (browser client → server → DB)
-- Banking / UPI — ATM withdrawal algorithm; app request → bank server
-- Payroll / HR — employee tools that run on company laptops
-- Hospital / CRM — appointment desks using folders, terminals, and web portals
+- **TechMart** / CampusCart — checkout flow (browser client → server → DB)
+- **SecureBank** / UPI — ATM withdrawal; app request → bank server
+- **AcmeHR** — employee tools that run on company laptops
+- **MedCare** — appointment desks using folders, terminals, and web portals
 
 Think of it like a kitchen:
 
@@ -391,7 +377,7 @@ You will write the Python version in Module 03 (Flow Control). Today, focus on *
 
 **Try these (2 programs):**
 
-**Program 1 — ATM withdraw algorithm**
+**Program 1 — SecureBank ATM withdraw algorithm**
 
 ```
 START
@@ -590,7 +576,6 @@ LOOP forever
   IF choice == 4: stop
 ```
 
-
 ### Interview-Oriented
 
 1. Explain client–server model to a non-technical friend in 60 seconds.
@@ -637,7 +622,6 @@ LOOP forever
 - [ ] `notes/day01_foundations.md` and `notes/my_roadmap.md` are filled in your words
 - [ ] Terminal shows correct `pwd` / `ls` for the course root
 - [ ] Lab kit ticket steps completed
-
 
 ## Interview Q&A
 

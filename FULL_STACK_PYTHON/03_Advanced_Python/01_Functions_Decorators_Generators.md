@@ -7,21 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. Define and call functions with parameters, default values, and return values.
-2. Explain variable scope (local, global, LEGB rule) and use `*args` / `**kwargs`.
-3. Write one-line functions using `lambda` where appropriate.
-4. Use `map`, `filter`, and `functools.reduce` (and know when a comprehension is clearer).
-5. Build and apply simple decorators (timing, login check).
-6. Write generator functions with `yield`, use `next()`, and explain exhaustion vs lists.
-7. Write generator expressions and stream in-memory rows one at a time (CSV files come in Files week).
-8. Refactor repetitive scripts into reusable utility functions.
-
----
-
 ## Motivation — Feel the pain of copy-paste
 
 Look at this ATM-style script. The same `amount <= 0` check appears in every action:
@@ -155,9 +140,9 @@ In other languages the same idea may be called a *method*, *procedure*, or *subr
 **Icons:** Bank · UPI · Order · Payroll · Laptop
 
 **Where used?**
-- Banking / UPI — validate amount once, reuse in deposit / withdraw / transfer
-- Ecommerce — GST map, cart totals, login-gated checkout helpers
-- Payroll — bill / salary calculators with defaults and `*args` for allowances
+- **SecureBank** / UPI — validate amount once, reuse in deposit / withdraw / transfer
+- **TechMart** — GST map, cart totals, login-gated checkout helpers
+- **AcmeHR** — bill / salary calculators with defaults and `*args` for allowances
 - Reporting — generators stream large attendance or expense rows without loading everything
 - Toolkits — shared `ksr_utils` validators and formatters imported across scripts
 
@@ -597,7 +582,7 @@ passed = [m for m in marks if m >= 75]
 
 **Try these (2 programs):**
 
-**Program 1 — `map` + `filter` on canteen prices**
+**Program 1 — TechMart `map` + `filter` on canteen prices**
 
 ```python
 prices = [40, 25, 60, 15, 120]
@@ -614,7 +599,7 @@ print(big)
 [63.0, 126.0]
 ```
 
-**Program 2 — `reduce` for bill total (and contrast with `sum`)**
+**Program 2 — TechMart `reduce` for bill total (and contrast with `sum`)**
 
 ```python
 from functools import reduce
@@ -909,7 +894,7 @@ print(sum(passed_gen))   # 303 — consumes the generator
 
 **Try these (2 programs):**
 
-**Program 1 — GST with a generator expression**
+**Program 1 — TechMart GST with a generator expression**
 
 ```python
 prices = [40, 25, 60, 15, 120]
@@ -1371,7 +1356,6 @@ def retry(times=3):
 - [ ] `with_gst` / `keep_high` use `map` / `filter`  
 - [ ] Package pushed to GitHub  
 - [ ] README shows how a teammate imports your helpers  
-
 
 ## Interview Q&A
 

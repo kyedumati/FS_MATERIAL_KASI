@@ -6,18 +6,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. Perform **CRUD** operations on dictionaries (create, read, update, delete key-value pairs).
-2. Use `.get()`, `.keys()`, `.values()`, `.items()` safely and idiomatically.
-3. Build and traverse **nested dictionaries** (employee profile, product catalog, order JSON).
-4. Iterate dictionaries with `for` loops without losing track of keys and values.
-5. Relate Python dicts to **JSON-like** structures used in APIs and front-end apps.
-
----
-
 A **dictionary** is like a real dictionary or phone contacts app:
 
 - You look up a **word (key)** and get a **meaning (value)**.
@@ -27,11 +15,11 @@ A **dictionary** is like a real dictionary or phone contacts app:
 **Icons:** Employee · Order · Bank · Payroll · CRM
 
 **Where used?**
-- Payroll / Employee portal — `{emp_id: profile}` lookups
-- Ecommerce — product by SKU, order JSON with nested items
-- Banking — account record fields, UPI txn metadata
+- **AcmeHR** — `{emp_id: profile}` lookups
+- **TechMart** — product by SKU, order JSON with nested items
+- **SecureBank** — account record fields, UPI txn metadata
 - College apps — student dict (`roll`, `marks`, `grade`)
-- Hospital / CRM — contact book, ticket fields from APIs
+- **MedCare** — contact book, ticket fields from APIs
 
 **Examples from daily work:**
 
@@ -112,7 +100,7 @@ N/A
 
 **Remember:** Prefer `.get("key", default)` when a field might be missing — brackets `d["key"]` raise `KeyError`.
 
-**Program 2 — Product via dict()**
+**Program 2 — TechMart product via dict()**
 
 ```python
 product = dict(sku="P10", name="Chai Mug", price=299)
@@ -292,7 +280,7 @@ print(frequency)
 {'good': 2, 'fast': 2, 'ok': 1}
 ```
 
-**Program 2 — 10% off dict comprehension**
+**Program 2 — TechMart 10% off dict comprehension**
 
 ```python
 prices = {"mouse": 799, "hub": 599}
@@ -335,7 +323,7 @@ employee["address"]["pincode"] = "600002"
 
 **Try these (2 programs):**
 
-**Program 1 — Nested employee city and skill**
+**Program 1 — AcmeHR nested employee city and skill**
 
 ```python
 employee = {
@@ -383,7 +371,7 @@ for item in order["items"]:
 
 **Try these (2 programs):**
 
-**Program 1 — Order line totals**
+**Program 1 — TechMart order line totals**
 
 ```python
 order = {
@@ -397,7 +385,7 @@ for item in order["items"]:
     print(f"₹{item['qty'] * item['price']}")
 ```
 
-**Program 2 — Nested customer email**
+**Program 2 — TechMart nested customer email**
 
 ```python
 order = {
@@ -508,7 +496,6 @@ for key, value in student.items():
     print(f"{key}: {value}")
 ```
 
-
 2. Add key `"grade"` based on marks (A if ≥90, B if ≥75, else C).
 
    **Model answer:**
@@ -525,7 +512,6 @@ else:
 print(student)
 ```
 
-
 3. Use `.get()` to read `"phone"` with default `"Not provided"`.
 
    **Model answer:**
@@ -535,7 +521,6 @@ student = {"name": "Dev", "roll": 21, "marks": 88}
 phone = student.get("phone", "Not provided")
 print(phone)  # Not provided
 ```
-
 
 ### Intermediate
 
@@ -557,7 +542,6 @@ else:
     print("SKU not found")
 ```
 
-
 5. Count how many expenses per category: `[{"cat":"Food","amt":450}, ...]`.
 
    **Model answer:**
@@ -577,7 +561,6 @@ for row in expenses:
 print(counts)  # {'Food': 2, 'Travel': 2, 'Utilities': 1}
 ```
 
-
 6. Update nested dict: change customer city inside an order dict.
 
    **Model answer:**
@@ -591,7 +574,6 @@ order = {
 order["customer"]["city"] = "Bengaluru"
 print(order["customer"])
 ```
-
 
 ### Interview-style
 
@@ -615,7 +597,6 @@ print(merge_sum(left, right))
 # {'Food': 650, 'Travel': 120, 'Utilities': 900}
 ```
 
-
 8. Invert dict `{101: "Ananya", 102: "Dev"}` → `{"Ananya": 101, "Dev": 102}` (assume unique values).
 
    **Model answer:**
@@ -625,7 +606,6 @@ original = {101: "Ananya", 102: "Dev"}
 inverted = {value: key for key, value in original.items()}
 print(inverted)
 ```
-
 
 9. Flatten one level: `{"a": 1, "b": {"c": 2, "d": 3}}` → keys `a`, `b.c`, `b.d` (optional stretch).
 
@@ -645,7 +625,6 @@ def flatten_one_level(data):
 print(flatten_one_level({"a": 1, "b": {"c": 2, "d": 3}}))
 # {'a': 1, 'b.c': 2, 'b.d': 3}
 ```
-
 
 ---
 
@@ -695,7 +674,6 @@ def list_contacts():
 - [ ] Update and delete by phone work without KeyError  
 - [ ] Menu exits cleanly on option 6  
 
-
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
@@ -704,7 +682,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 2. How is a Python dict similar to a MySQL row + column names?
 3. What happens if two API clients send the same JSON key twice?
 4. When would nested dict become hard to maintain? (Preview: classes and methods.)
-5. Can dict values be lists? Give an order example.
+5. Can dict values be lists? Give a **TechMart** order example.
 
 1. **Dict vs list for lookup by ID?**  
    **A:** Dict O(1) average vs list O(n) scan.

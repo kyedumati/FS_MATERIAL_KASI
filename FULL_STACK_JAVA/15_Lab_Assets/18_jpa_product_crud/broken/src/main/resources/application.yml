@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: campus-jpa-catalog
+  datasource:
+    url: jdbc:mysql://localhost:3306/training_db
+    username: root
+    # BROKEN: password in git — use ${MYSQL_PASSWORD}
+    password: root123
+  jpa:
+    hibernate:
+      # BROKEN: create-drop wipes the catalog on shutdown
+      ddl-auto: create-drop
+    show-sql: true
+
+server:
+  port: 8080

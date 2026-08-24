@@ -11,20 +11,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Explain database, table, row, column, primary key, and foreign key in full-stack context
-- Classify SQL into DDL, DML, DQL, and TCL with MySQL examples
-- Write CREATE, INSERT, SELECT, UPDATE, DELETE for student, employee, and ecommerce schemas
-- Use INNER JOIN and LEFT JOIN to combine related tables
-- Apply 1NF, 2NF, and 3NF at a practical level when designing schemas
-- Design a normalized schema for Library or CampusCart mini-project
-- Complete the **Required MySQL labs** below before Django models / capstone schema
-
----
-
 ## Prerequisites
 
 - MySQL installed — [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md)
@@ -55,11 +41,11 @@ A **full-stack application** has three layers: **frontend** (browser), **backend
 **Icons:** Order · Employee · Bank · Payroll · Laptop
 
 **Where used?**
-- Ecommerce — CampusCart customers, products, orders, order_items
+- **TechMart** / CampusCart customers, products, orders, order_items
 - College apps — students, courses, enrollments in LMS / portals
-- Payroll / HR — departments and employees tables
-- Banking — accounts and transactions (PK/FK integrity matters)
-- Hospital / CRM — patients, appointments, tickets stored as related rows
+- **AcmeHR** — departments and employees tables
+- **SecureBank** — accounts and transactions (PK/FK integrity matters)
+- **MedCare** — patients, appointments, tickets stored as related rows
 
 **Visual — three layers talking:**
 
@@ -114,7 +100,7 @@ This module teaches **full-stack essentials**. For aggregations, subqueries, win
 
 **Try these (2 programs):**
 
-**Program 1 — Domain sketch note**
+**Program 1 — Named-product domain sketch note**
 
 ```sql
 -- Which domain? CampusCart canteen = Ecommerce
@@ -306,7 +292,7 @@ DELETE FROM students WHERE email = 'rahul@campus.in';  -- always use WHERE!
 
 **Try these (2 programs):**
 
-**Program 1 — Seed canteen products (INR)**
+**Program 1 — TechMart seed canteen products (INR)**
 
 ```sql
 USE training_db;
@@ -349,7 +335,7 @@ SELECT name, price FROM products WHERE price BETWEEN 40 AND 150;
 
 **Try these (2 programs):**
 
-**Program 1 — Products under ₹100**
+**Program 1 — TechMart products under ₹100**
 
 ```sql
 USE training_db;
@@ -360,7 +346,7 @@ WHERE price < 100
 ORDER BY price ASC;
 ```
 
-**Program 2 — Hyderabad customers**
+**Program 2 — TechMart Hyderabad customers**
 
 ```sql
 USE training_db;
@@ -383,7 +369,7 @@ COMMIT;
 
 **Try these (2 programs):**
 
-**Program 1 — Rollback a bad price cut**
+**Program 1 — TechMart rollback a bad price cut**
 
 ```sql
 USE training_db;
@@ -395,7 +381,7 @@ ROLLBACK;
 SELECT name, price FROM products WHERE name = 'Veg Thali';  -- restored
 ```
 
-**Program 2 — Commit a real discount**
+**Program 2 — TechMart commit a real discount**
 
 ```sql
 USE training_db;
@@ -439,7 +425,7 @@ INNER JOIN products p ON oi.product_id = p.product_id;
 
 **Try these (2 programs):**
 
-**Program 1 — Employees with department names**
+**Program 1 — AcmeHR employees with department names**
 
 ```sql
 USE training_db;
@@ -450,7 +436,7 @@ INNER JOIN departments d ON e.dept_id = d.dept_id
 ORDER BY d.dept_name, e.full_name;
 ```
 
-**Program 2 — Customers with or without orders**
+**Program 2 — TechMart customers with or without orders**
 
 ```sql
 USE training_db;
@@ -534,7 +520,6 @@ INSERT INTO courses (title, credits) VALUES
 SELECT * FROM courses WHERE credits > 3;
 ```
 
-
 2. UPDATE one title; DELETE one row by id.
    **Model answer:**
 
@@ -543,14 +528,12 @@ UPDATE courses SET title = 'Advanced Python' WHERE course_id = 1;
 DELETE FROM courses WHERE course_id = 5;
 ```
 
-
 3. List all departments alphabetically.
    **Model answer:**
 
 ```sql
 SELECT * FROM departments ORDER BY dept_name ASC;
 ```
-
 
 ### Intermediate
 
@@ -571,7 +554,6 @@ INNER JOIN enrollments e ON s.student_id = e.student_id
 INNER JOIN courses c ON c.course_id = e.course_id;
 ```
 
-
 2. LEFT JOIN — students with no enrollments.
    **Model answer:**
 
@@ -582,7 +564,6 @@ LEFT JOIN enrollments e ON s.student_id = e.student_id
 WHERE e.student_id IS NULL;
 ```
 
-
 3. Employee report: dept_name, count, avg salary → see `MYSQL/04_Aggregations_and_Group_By.md`.
    **Model answer:**
 
@@ -592,7 +573,6 @@ FROM departments d
 LEFT JOIN employees e ON d.dept_id = e.dept_id
 GROUP BY d.dept_name;
 ```
-
 
 4. Fix denormalized `bad_library` table into 3NF.
    **Model answer:**
@@ -612,7 +592,6 @@ FROM students s
 LEFT JOIN enrollments e ON s.student_id = e.student_id;
 ```
 
-
 2. When use TRANSACTION? (checkout, money transfer)
    **Model answer:**
    Use a transaction when multiple statements must succeed or fail together — e.g. debit one account and credit another, or place an order and decrement stock. `START TRANSACTION` … `COMMIT`/`ROLLBACK` protects consistency.
@@ -629,7 +608,7 @@ LEFT JOIN enrollments e ON s.student_id = e.student_id;
    **Model answer:**
    FLOAT is binary approximate and can produce rounding errors in money. DECIMAL stores exact base-10 values, so totals and invoices stay accurate.
 
-## Mini-Project (Assignment): Schema Design (Library or CampusCart)
+## Mini-Project (Assignment): Schema Design (Library, TechMart / CampusCart, or AcmeHR)
 
 **Lab kit (build here):** [15_Lab_Assets/02_mysql_library_seed/](../15_Lab_Assets/02_mysql_library_seed/)  
 **SQL depth (SoT):** Weeks 10–11 · follow [`MYSQL/`](../../MYSQL/) + the **Required MySQL labs** table in this module
@@ -683,14 +662,13 @@ WHERE o.order_date >= '2026-07-01';
 
 **Python bridge:** `03_Advanced_Python/06_Database_Programming_Bridge.md` → **Next:** Django ORM maps to these tables.
 
-
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why can't we store app data in a Python list after restart?
-2. When does LEFT JOIN show NULL? Ecommerce example?
-3. Is normalization always good? When might startups denormalize?
+2. When does LEFT JOIN show NULL? **TechMart** ecommerce example?
+3. Is normalization always good? When might **TechMart** denormalize read reports?
 4. How does Django ORM relate to today's SQL?
 5. foreign key ≈ hyperlink between spreadsheets?
 
@@ -698,7 +676,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Data in tables with rows/columns linked by keys; MySQL is open-source RDBMS for Python/Django backends.
 
 **Q2. INNER JOIN vs LEFT JOIN?**  
-**A:** INNER = matching rows only; LEFT = all left rows + matches or NULL on right.
+**A:** INNER = matching rows only; LEFT = all left rows + matches or NULL on right (**TechMart** customers with no orders; **AcmeHR** employees with no leave).
 
 **Q3. What is normalization? Why 3NF?**  
 **A:** Reduces redundancy; 3NF removes transitive dependencies preventing update anomalies.

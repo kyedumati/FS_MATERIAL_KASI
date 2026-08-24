@@ -7,20 +7,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Define API, REST, and resource-oriented URLs in plain English
-- Use HTTP methods (GET, POST, PUT, PATCH, DELETE) and common status codes correctly
-- Serialize and deserialize JSON in Python with `json` module and Django/DRF
-- Test APIs manually with Postman (collections, headers, body)
-- Build DRF CRUD for a `Product` model using serializers, viewsets, and routers
-- Consume a REST API from Python (`requests`) and JavaScript (`fetch`)
-- Explain how React/mobile frontends talk to Django backends via JSON
-
----
-
 ### What is an API?
 
 An **API (Application Programming Interface)** is a agreed way for programs to talk to each other. Your React app does not read the database directly — it calls the Django **API**, which returns **JSON** data.
@@ -28,10 +14,10 @@ An **API (Application Programming Interface)** is a agreed way for programs to t
 **Icons:** Order · Laptop · Employee · Bank · Payroll
 
 **Where used?**
-- Ecommerce — React / mobile apps call `/api/products/` for CampusCart
+- **TechMart** — React / mobile apps call `/api/products/` for CampusCart
 - College apps — student portal SPA fetching enrollments as JSON
-- Banking / UPI — apps talk to bank APIs, never the DB directly
-- Payroll — HR mobile clients consume employee/leave REST endpoints
+- **SecureBank** / UPI — apps talk to bank APIs, never the DB directly
+- **AcmeHR** — HR mobile clients consume employee/leave REST endpoints
 - Postman / QA — manual API checks before frontend is ready
 
 **Restaurant analogy:** You (client) read the menu (API docs), tell the waiter your order (HTTP request), kitchen prepares food (server logic), waiter brings plate (JSON response). You never enter the kitchen.
@@ -454,7 +440,6 @@ for p in products:
         print(p["name"])
 ```
 
-
 3. Match status codes to scenarios (wrong id, successful create, server crash).
    **Model answer:**
    Wrong id → **404**; successful create → **201**; unhandled server crash → **500**. Client errors are 4xx; server failures are 5xx.
@@ -478,7 +463,6 @@ class ProductViewSet(viewsets.ModelViewSet):
     search_fields = ["name", "category"]
 ```
 
-
 3. Return custom 400 when price is negative (serializer validation).
    **Model answer:**
 
@@ -488,7 +472,6 @@ def validate_price(self, value):
         raise serializers.ValidationError("price must be >= 0")
     return value
 ```
-
 
 ### Interview-style
 
@@ -504,7 +487,7 @@ def validate_price(self, value):
    **Model answer:**
    Mobile apps need structured data to render their own UI. JSON is compact and language-neutral; HTML is meant for browsers, not for native clients to parse as data.
 
-## Mini-Project (Assignment): Product Catalog API + Client Script
+## Mini-Project (Assignment): TechMart Product Catalog API + Client Script
 
 **Lab kit (build here):** [15_Lab_Assets/04_drf_products/](../15_Lab_Assets/04_drf_products/)  
 **Deliverables:** follow [`Standard_Project_Deliverables.md`](../Standard_Project_Deliverables.md)
@@ -528,7 +511,6 @@ def validate_price(self, value):
 - [ ] CRUD works in Postman (including validation 400)
 - [ ] Client script prints product list
 - [ ] README shows sample JSON for create/list/error
-
 
 ## Interview Q&A
 

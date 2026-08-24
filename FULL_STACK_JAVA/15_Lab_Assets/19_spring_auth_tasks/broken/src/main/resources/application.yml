@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: campus-auth-catalog
+  datasource:
+    url: jdbc:mysql://localhost:3306/training_db
+    username: root
+    # BROKEN: password in git — use ${MYSQL_PASSWORD}
+    password: root123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# BROKEN: JWT secret committed. Use ${JWT_SECRET} from env.
+app:
+  jwt:
+    secret: super-secret-please-commit-me-ok
+    expiry-minutes: 60
+
+server:
+  port: 8080

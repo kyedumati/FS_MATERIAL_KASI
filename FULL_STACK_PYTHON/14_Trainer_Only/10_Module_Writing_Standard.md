@@ -11,14 +11,13 @@
 | # | Section | Notes |
 |---|---------|--------|
 | 1 | Title + Phase + Previous/Next | No Audience / Program / Duration — timing lives in Session Calendar only |
-| 2 | Learning Outcomes | What they can do after the module |
-| 3 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
-| 4 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
-| 5 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
-| 6 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (shared — one material). **Before** Mini-Project |
-| 7 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
-| 8 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
-| 9 | **Interview Q&A** | Shared with students (Q + A). Share with the module PDF after concepts + mini-project |
+| 2 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
+| 3 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
+| 4 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
+| 5 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (shared — one material). **Before** Mini-Project |
+| 6 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
+| 7 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
+| 8 | **Interview Q&A** | Shared with students (Q + A). Share with the module PDF after concepts + mini-project |
 
 **Do not add** a standalone `## Common Mistakes` section. Put traps next to the sub-topic as **Note:** bullets (see below).
 
@@ -30,7 +29,9 @@
 
 **Do not add:** Discussion Questions (separate), Trainer Tips, Trainer Demo Plan, or large Real-World Use Cases **tables**. Prefer a short `**Where used?**` callout instead (see PDF markers above).
 
-**Delivery timing / session numbers (S01–S100)** live only in the [Session Calendar](../Session_Calendar_100.md) — **not** in module headers, Learning Outcomes, or learner-facing notes.
+**Do not add** a **Learning Outcomes** section or a **Teaching note** paragraph.
+
+**Delivery timing / session numbers (S01–S100)** live only in the [Session Calendar](../Session_Calendar_100.md) — **not** in module headers or learner-facing notes.
 
 ---
 
@@ -87,6 +88,7 @@ print(...)
 
 - Short (typically 5–20 lines), copy-paste runnable.
 - India-relevant examples OK (INR, student marks, ATM, names like Priya/Ravi).
+- **Named products (soft-apply):** when the example is business-shaped, prefer **AcmeHR**, **TechMart**, **MedCare**, or **SecureBank** in `**Where used?**`, program titles, Interview Q&A, and mini-project tickets. Do not force syntax-only drills. See [12_Named_Product_Domains.md](12_Named_Product_Domains.md). Canonical schemas: [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md). CampusCart stays the capstone (college TechMart-style storefront).
 - Point to a lab kit when the exercise matches a ticket.
 - **Practice Exercises:** every numbered item must include `**Model answer:**` (prose and/or a fenced code block). Same notes are shared with students (PDF after the module).
 - After a program that prints, prefer an **Expected Output:** fence so PDF learners can self-check:
@@ -111,7 +113,7 @@ Use these exact bold labels (standalone paragraphs). They render as coloured box
 | `**Remember:**` | One-liner to keep (`self` = current object) |
 | `**Interview:**` | Short interview cue |
 | `**Common Error:**` | Classic trap (mutable class list, etc.) |
-| `**Where used?**` | 3–5 real domains (Banking, Ecommerce, …) — **not** a big Use Cases table |
+| `**Where used?**` | 3–5 real domains that **name** AcmeHR / TechMart / MedCare / SecureBank when business-shaped — **not** a big Use Cases table |
 | `**Icons:** Bank · UPI · Employee · Laptop · Order` | Optional chip strip (also Hospital · Payroll · CRM) |
 | `**Key takeaways:**` | 2–4 bullets **immediately after** a Mermaid diagram (paired beside it in PDF). Major ideas only — not every sub-topic |
 
@@ -209,6 +211,7 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 
 - [ ] Section order matches the table above  
 - [ ] No Classroom Ticket section (labs via calendar / Mini-Project / `15_Lab_Assets/`)  
+- [ ] No Learning Outcomes section and no Teaching note paragraph  
 - [ ] Ticket / lab starter+solution stay within calendar teaching order (no forward concepts)  
 - [ ] Definition/Purpose before first big table (no “Beginner-Friendly” heading)  
 - [ ] **Try these (2 programs)** after each topic / Step  

@@ -2,21 +2,8 @@
 
 **Phase:** Advanced Python
 
-**Previous module:** [OOP Part 3 — Polymorphism & Project](03_OOP_Part3_Polymorphism_Project.md)
+**Previous module:** [OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md)
 **Next module:** File Handling and Logging
-
----
-
-## Learning Outcomes
-
-By the end of this session, learners will be able to:
-
-1. Use `try`, `except`, `else`, and `finally` blocks correctly.
-2. Identify and handle common built-in exceptions.
-3. Raise exceptions intentionally with `raise`.
-4. Create custom exception classes for domain errors.
-5. Write robust CLI and file programs that fail gracefully.
-6. Explain exception handling best practices for interviews and production code.
 
 ---
 
@@ -42,10 +29,10 @@ Think of an ATM: wrong PIN should not “explode” the machine — it shows “
 **Icons:** Bank · UPI · Order · Hospital · Payroll
 
 **Where used?**
-- UPI / banking — wrong PIN, insufficient balance, invalid amount
+- **SecureBank** / UPI — wrong PIN, insufficient balance, invalid amount
 - Forms & CLI — bad age, non-numeric input, missing required fields
 - File / CSV jobs — missing file, bad row converted with `int(...)`
-- Booking / orders — seat capacity, discount out of range
+- **TechMart** / **MedCare** — order capacity, appointment slot out of range
 - Payments — domain errors (`PaymentError`) callers can catch separately
 
 ---
@@ -76,7 +63,7 @@ except ZeroDivisionError:
 
 **Try these (2 programs):**
 
-**Program 1 — UPI PIN with retry**
+**Program 1 — SecureBank UPI PIN with retry**
 
 ```python
 # Simulate two attempts: bad then good (replace with input() in lab)
@@ -98,7 +85,7 @@ PIN must be digits only
 PIN accepted: 1234
 ```
 
-**Program 2 — Split bill safely**
+**Program 2 — TechMart split bill safely**
 
 ```python
 bill = 500
@@ -282,7 +269,7 @@ Error: Discount must be 0–100, got -5
 Discount set to 15%
 ```
 
-**Program 2 — `book_seat` capacity check**
+**Program 2 — MedCare `book_slot` capacity check**
 
 ```python
 def book_seat(available, requested):
@@ -576,7 +563,6 @@ except ZeroDivisionError:
     print("Cannot divide by zero")
 ```
 
-
 2. Catch `ValueError` when converting user input to float.
    **Model answer:**
 
@@ -588,7 +574,6 @@ try:
 except ValueError:
     print("Not a valid number")
 ```
-
 
 3. Use `try/except` when accessing dict key — prefer `.get()` too.
    **Model answer:**
@@ -603,7 +588,6 @@ except KeyError:
 print(data.get("email", "email missing"))  # preferred
 ```
 
-
 ### Intermediate
 
 1. Write `safe_divide(a, b)` returning `None` on error instead of crashing.
@@ -617,7 +601,6 @@ def safe_divide(a, b):
         return None
 ```
 
-
 2. Create `InvalidEmailError` and validator function.
    **Model answer:**
 
@@ -630,7 +613,6 @@ def validate_email(email):
         raise InvalidEmailError(f"Invalid email: {email}")
     return email
 ```
-
 
 3. Refactor file reader to use `try/except/else/finally`.
    **Model answer:**
@@ -649,7 +631,6 @@ finally:
         f.close()
 ```
 
-
 ### Interview-style
 
 1. Difference between `except Exception` and bare `except`?
@@ -664,7 +645,7 @@ finally:
    **Model answer:**
    An exception raised in `finally` replaces any pending exception from the `try`/`except` block. The original error is lost unless you explicitly chain or log it before the `finally` raises.
 
-## Mini-Project (Assignment): Safe Age Input CLI
+## Mini-Project (Assignment): MedCare Safe Age Input CLI
 
 **Title:** Never crash on bad age  
 **Lab kit (build here):** [15_Lab_Assets/18_safe_input_exceptions/](../15_Lab_Assets/18_safe_input_exceptions/)
@@ -700,7 +681,6 @@ abc ValueError age must be an integer
 - [ ] Non-numeric input raises / is caught as `ValueError` (no crash)  
 - [ ] Repo pushed with a short README of sample outputs  
 
-
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
@@ -709,7 +689,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 2. When would you catch a broad `Exception` vs a specific type like `ValueError`?
 3. Why log before re-raising?
 4. Difference between error and exception in everyday language vs Python?
-5. How would you handle errors in a payment API integration?
+5. How would you handle errors in a **SecureBank** payment API integration?
 
 **Q1. try/except/else/finally execution order?**  
 **A:** Run try; on exception matching except, run that handler (skip else); else runs only if no exception; finally always runs (cleanup).
@@ -718,7 +698,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Python doesn't have Java-style checked exceptions; all exceptions are unchecked — not required to declare throws.
 
 **Q3. When create custom exception?**  
-**A:** When domain needs specific error types callers can catch separately (`SeatNotAvailableError` vs generic `Exception`).
+**A:** When the domain needs a type callers can catch separately (**MedCare** `SlotNotAvailableError` vs generic `Exception`).
 
 **Q4. EAFP vs LBYL?**  
 **A:** EAFP: try operation, handle failure. LBYL: Look Before You Leap — check conditions first. Python culture favors EAFP for many I/O cases.

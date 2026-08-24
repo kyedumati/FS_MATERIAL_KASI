@@ -5,21 +5,8 @@
 **Shared topic** (Python FS + Java FS).
 
 **Previous:** [React Fundamentals](01_React_Fundamentals.md)
-**Next (Python FS):** [Testing & Clean Code](../../FULL_STACK_PYTHON/11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md)
-
----
-
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Fetch data on mount and on dependency change with `useEffect`
-- Set up client-side routes with React Router (BrowserRouter, Routes, Link)
-- Connect React UI to Django/DRF Product API using `fetch`
-- Explain CORS and fix basic cross-origin issues with `django-cors-headers`
-- Build production bundle with `npm run build` and outline deploy options (Netlify/Vercel + Django on Render/Railway concept)
-- Write introductory component tests with Vitest/React Testing Library
-- Handle loading and error states in API-driven components
+**Next (Python FS):** [Testing & Clean Code](../../FULL_STACK_PYTHON/11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md)  
+**Next (Java FS):** [Testing & Clean Code](../../FULL_STACK_JAVA/12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md)
 
 ---
 
@@ -27,6 +14,14 @@ By the end of this module, learners will be able to:
 
 - React Fundamentals completed
 - A local DRF Product API (or equivalent) you can call from the browser
+
+**Where used?**
+- CampusCart / **TechMart** — product list `useEffect` + `/api/products`
+- **AcmeHR** — employee directory fetch
+- **MedCare** — appointment calendar routes
+- **SecureBank** — protected transfer route after login
+
+CampusCart remains the capstone skin (college TechMart).
 
 ---
 
@@ -207,7 +202,7 @@ export async function listProducts() {
 }
 ```
 
-**Program 2 — createProduct**
+**Program 2 — TechMart createProduct**
 
 ```javascript
 export async function createProduct(payload) {
@@ -404,7 +399,6 @@ export default function Home() {
 }
 ```
 
-
 2. ProductDetail shows name, price, stock from API by id.
    **Model answer:**
 
@@ -425,7 +419,6 @@ return (
   </div>
 );
 ```
-
 
 3. Document CORS error screenshot + fix in README.
    **Model answer:**
@@ -448,7 +441,6 @@ async function onSubmit(e) {
 }
 ```
 
-
 2. Refetch list when navigating back using location key or manual refresh button.
    **Model answer:**
    Depend `useEffect` on `location.key` from `useLocation()`, or add a Refresh button that re-calls the fetch function. Either approach reloads products after create/delete.
@@ -465,7 +457,6 @@ test("shows message", () => {
   expect(screen.getByText("Network failed")).toBeInTheDocument();
 });
 ```
-
 
 ### Interview-style
 
@@ -507,7 +498,6 @@ test("shows message", () => {
 - [ ] CORS error is resolved (lab kit if needed)
 - [ ] Add + delete work against the API
 - [ ] README documents both `runserver` and `npm run dev`
-
 
 ## Interview Q&A
 

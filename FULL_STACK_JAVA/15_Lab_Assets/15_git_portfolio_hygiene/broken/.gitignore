@@ -1,0 +1,7 @@
+# BROKEN — these lines are inverted / dangerous
+!.env
+target/
+# Bug: not ignoring *.class
+# Bug: ignoring *.java by mistake — remove this:
+*.java
+# Bug: not ignoring .idea/

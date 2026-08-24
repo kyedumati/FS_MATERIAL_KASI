@@ -5,20 +5,6 @@
 
 ---
 
-## Learning Outcomes
-
-By the end of this module, learners will be able to:
-
-- Debug Python code with VS Code breakpoints, step over/into, and watch variables
-- Choose between `print` debugging and proper `logging` with levels
-- Write basic unit tests with `unittest` and `pytest` (assertions, fixtures lite)
-- Apply clean code habits: meaningful names, small functions, DRY principle
-- Structure commits with clear messages linked to small logical changes
-- Explain why tests and clean code matter in Indian service/product team reviews
-- Refactor a messy script into testable functions
-
----
-
 ### Why testing and clean code?
 
 In Indian IT interviews and on the job, you will:
@@ -30,9 +16,9 @@ In Indian IT interviews and on the job, you will:
 **Icons:** Laptop · Order · Employee · Bank · Payroll
 
 **Where used?**
-- Ecommerce — discount / GST helpers must not ship wrong ₹ amounts
+- **TechMart** — discount / GST helpers must not ship wrong ₹ amounts
 - College apps — marks averages and login validators covered by unit tests
-- Banking / payroll — money math needs tests before production merges
+- **SecureBank** / **AcmeHR** — money math needs tests before production merges
 - Service companies — PR reviews expect tests + clear function names
 - Capstone — prove CRUD edge cases (empty list, bad percent) before demo
 
@@ -407,7 +393,6 @@ except Exception:
     log.exception("Job failed")  # ERROR + traceback
 ```
 
-
 3. Write 2 unittest cases for `is_valid_email` (simple `@` check).
    **Model answer:**
 
@@ -423,7 +408,6 @@ class TestEmail(unittest.TestCase):
     def test_invalid(self):
         self.assertFalse(is_valid_email("no-at-sign"))
 ```
-
 
 ### Intermediate
 
@@ -442,7 +426,6 @@ def gst(amount, rate=0.18):
 def test_gst(amount, expected):
     assert gst(amount) == expected
 ```
-
 
 2. Refactor 40-line Django view function — extract validation helper.
    **Model answer:**
@@ -488,7 +471,6 @@ def test_gst(amount, expected):
 - [ ] `pytest` is green locally
 - [ ] At least 3 pure utils + 8 tests
 - [ ] README shows how a teammate runs tests
-
 
 ## Interview Q&A
 

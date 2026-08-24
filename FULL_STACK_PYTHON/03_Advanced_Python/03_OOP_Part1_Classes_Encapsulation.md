@@ -5,29 +5,11 @@
 **Previous module:** [Modules and Packages](02_Modules_and_Packages.md)  
 **Next module:** [OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)
 
-**Series:** [OOP overview](03_OOP.md) · Part 1 (this file) · [Part 2](03_OOP_Part2_Inheritance.md) · [Part 3](03_OOP_Part3_Polymorphism_Project.md)
+**Series:** [OOP overview](03_OOP.md) · Part 1 (this file) · [Part 2](03_OOP_Part2_Inheritance.md) · [Part 3](03_OOP_Part3_Polymorphism_Project.md) · [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md)
 
 **Assignment (take-home):** The portfolio **Mini-Project (Assignment)** is in [Part 3 — BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli). This Part 1 file is class + lab drills; start the [lab kit](../15_Lab_Assets/17_bank_account_oop/) here and push in Part 3.
 
 **Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
-
----
-
-## Learning Outcomes
-
-By the end of this part, learners will be able to:
-
-1. Explain why classes beat loose dicts + free functions for real entities (Student, Order, BankAccount).
-2. Define classes with `__init__`, `self`, instance methods, and create objects.
-3. Differentiate instance, class, and local variables — and avoid the mutable class-attribute trap.
-4. Choose instance methods, `@classmethod`, and `@staticmethod` for the right job.
-5. Define encapsulation (bundle + controlled access) and explain the problem it solves: unprotected fields let callers bypass rules.
-6. Encapsulate state with `_name` / `__name` and `@property` (or getters) so balance cannot be casually corrupted.
-7. Build a lab-shaped `BankAccount` with validated deposit / withdraw (lab).
-
----
-
-**Teaching note (order of the course):** Exception Handling is **next** (after OOP). In OOP week, validation uses `print` **+** `return` — not `raise` / `try` / `except`. If a demo would crash, we leave that line **commented** or check with `hasattr(...)`.
 
 ---
 
@@ -89,8 +71,6 @@ flowchart LR
   Bug["Wrong keys / bad values"] --> D
 ```
 
-
-
 **Key takeaways:**
 
 - Dicts hold data; free functions hold behaviour — easy to desync
@@ -151,8 +131,6 @@ flowchart LR
   C --> O3["OBJECT<br/>Asha, 103"]
 ```
 
-
-
 **Key takeaways:**
 
 - **Class** = blueprint (form template)
@@ -160,8 +138,6 @@ flowchart LR
 - Methods live **with** the data — call `s1.display()`, not `display(s1)` with a loose dict
 
 ---
-
-
 
 ## What is OOP? / Why do we need it?
 
@@ -171,12 +147,11 @@ flowchart LR
 
 **Where used?**
 
-- Banking (accounts, UPI wallets)
-- Ecommerce (orders, products, carts)
-- Hospital (patients, appointments)
-- Payroll (employees, salary slips)
+- **SecureBank** (accounts, UPI wallets)
+- **TechMart** (orders, products, carts)
+- **MedCare** (patients, appointments)
+- **AcmeHR** (employees, salary slips)
 - CRM (customers, tickets)
-
 
 | Idea          | Meaning                                              |
 | ------------- | ---------------------------------------------------- |
@@ -185,8 +160,6 @@ flowchart LR
 | **Attribute** | Data on the object (`name`, `balance`)               |
 | `method`      | Behaviour on the object (`deposit()`, `get_grade()`) |
 
-
-
 | Without OOP (dicts + functions)      | With OOP (classes)                      |
 | ------------------------------------ | --------------------------------------- |
 | Data and rules in different places   | One type owns both                      |
@@ -194,29 +167,24 @@ flowchart LR
 | Hard to reuse across scripts         | Import the class; create many objects   |
 | Growing apps become “dict spaghetti” | Clear nouns: Account, Order, Employee   |
 
-
 Classic pillars (Part 1 focuses on encapsulation; Parts 2–3 cover inheritance and polymorphism):
-
 
 | Pillar            | Plain English                                                                 | Python taste                                                                                          |
 | ----------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | **Encapsulation** | Bundle data + methods; **hide** state; force changes through a validating API | Exact problem: stop `acct.balance = -50000` bypassing `withdraw` — use `_`/`__` + methods/`@property` |
-| **Abstraction**   | Show essentials; hide messy internals                                         | Callers use `deposit()` / `withdraw()` without knowing balance rules                                  |
+| **Abstraction**   | Show essentials; hide messy internals                                         | Callers use `deposit()` / `withdraw()` without knowing balance rules; **ABC / interfaces →** [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md) |
 | `inheritance`     | Child reuses/extends parent (**IS-A**)                                        | → [Part 2](03_OOP_Part2_Inheritance.md)                                                               |
 | **Polymorphism**  | Same call, different behaviour                                                | → [Part 3](03_OOP_Part3_Polymorphism_Project.md)                                                      |
-
 
 **Composition (HAS-A)** is previewed here and practised in [Part 2](03_OOP_Part2_Inheritance.md): an `Employee` **has a** `Laptop`.
 
 ---
 
-
-
 ## Important Concepts
 
-
-
 ### 1. Class, object, `self`, `__init__`
+
+**Real-world analogy:** An **ATM card slot** is the class — one machine design. Priya's debit card is one **object**; Ravi's card is another. Same fields (`holder`, `balance`), different values. `__init__` is the branch printing *this* card with *this* account number. `self` is “the card in the slot right now.” **SecureBank** mints millions of `Account` objects from one class. **TechMart** does the same for `Order`. **MedCare** does the same for `Patient`.
 
 **Icons:** Employee · Order · Bank
 
@@ -270,8 +238,6 @@ sequenceDiagram
   Main->>Main: s1.display()
 ```
 
-
-
 **Key takeaways:**
 
 - `ClassName(...)` creates an object and runs `__init__`
@@ -280,7 +246,6 @@ sequenceDiagram
 
 **Difference between Method and Constructor:**
 
-
 |                      | Method                    | Constructor (`__init__`)             |
 | -------------------- | ------------------------- | ------------------------------------ |
 | Name                 | Any valid name            | Always `__init__`                    |
@@ -288,7 +253,6 @@ sequenceDiagram
 | How often per object | As many times as you call | Once (at creation)                   |
 | Typical job          | Business logic            | Declare and initialize instance data |
 | Return               | Optional value            | Should not return a useful value     |
-
 
 **Remember:** `self` = the **current object**. First parameter of every instance method. On `s1.display()`, Python secretly passes `s1` as `self`.
 
@@ -301,77 +265,110 @@ sequenceDiagram
 - If you omit `__init__`, Python still creates the object (empty shell); you can add attributes later (usually not ideal for real entities).
 - Over-engineering OOP (five classes for hello world) — use functions until complexity grows.
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — Book with info() and discount helper**
-
-```python
-class Book:
-    def __init__(self, title, author, price):
-        self.title = title
-        self.author = author
-        self.price = float(price)
-
-    def info(self):
-        print(f"{self.title} by {self.author} — ₹{self.price:.0f}")
-
-    def price_after_discount(self, percent):
-        return self.price * (1 - percent / 100)
-
-b1 = Book("Atomic Habits", "James Clear", 499)
-b2 = Book("Wings of Fire", "A.P.J. Abdul Kalam", 350)
-b1.info()
-b2.info()
-print("10% off Atomic Habits:", round(b1.price_after_discount(10), 1))
-```
-
-**Expected Output:**
-
-```
-Atomic Habits by James Clear — ₹499
-Wings of Fire by A.P.J. Abdul Kalam — ₹350
-10% off Atomic Habits: 449.1
-```
-
-**Program 2 — Student.is_pass and update_name**
+**Program 1 — SecureBank savings account (deposit + mini statement)**
 
 ```python
-class Student:
-    def __init__(self, roll, name):
-        self.roll = roll
-        self.name = name
+class SavingsAccount:
+    def __init__(self, holder, account_no, balance=0):
+        self.holder = holder
+        self.account_no = account_no
+        self.balance = float(balance)
 
-    def is_pass(self, marks):
-        return marks >= 40
-
-    def update_name(self, new_name):
-        if not new_name.strip():
-            print("Name cannot be empty")
+    def deposit(self, amount):
+        if amount <= 0:
+            print("Deposit must be positive")
             return
-        self.name = new_name.strip()
+        self.balance += amount
 
-s = Student(101, "Anita")
-print(s.is_pass(35))   # False
-print(s.is_pass(72))   # True
-s.update_name("  Anita Sharma  ")
-print(s.roll, s.name)
-s.update_name("   ")   # rejected
+    def statement(self):
+        print(f"{self.account_no} | {self.holder} | ₹{self.balance:.0f}")
+
+priya = SavingsAccount("Priya Shah", "SB-1001", 5000)
+ravi = SavingsAccount("Ravi Menon", "SB-1002", 1200)
+priya.deposit(1500)
+ravi.deposit(-10)  # rejected
+priya.statement()
+ravi.statement()
 ```
 
 **Expected Output:**
 
 ```
-False
-True
-101 Anita Sharma
-Name cannot be empty
+Deposit must be positive
+SB-1001 | Priya Shah | ₹6500
+SB-1002 | Ravi Menon | ₹1200
+```
+
+**Program 2 — TechMart checkout line (SKU, qty, line total)**
+
+```python
+class OrderLine:
+    def __init__(self, sku, name, unit_price, qty):
+        self.sku = sku
+        self.name = name
+        self.unit_price = float(unit_price)
+        self.qty = int(qty)
+
+    def line_total(self):
+        return self.unit_price * self.qty
+
+    def label(self):
+        return f"{self.sku} {self.name} x{self.qty} = ₹{self.line_total():.0f}"
+
+cart = [
+    OrderLine("NB-A4", "Notebook", 40, 3),
+    OrderLine("PEN-01", "Gel pen", 10, 5),
+]
+for line in cart:
+    print(line.label())
+print("Cart total:", sum(line.line_total() for line in cart))
+```
+
+**Expected Output:**
+
+```
+NB-A4 Notebook x3 = ₹120
+PEN-01 Gel pen x5 = ₹50
+Cart total: 170
+```
+
+**Program 3 — MedCare appointment slip (patient, doctor, slot)**
+
+```python
+class Appointment:
+    def __init__(self, patient, doctor, slot):
+        self.patient = patient
+        self.doctor = doctor
+        self.slot = slot
+        self.status = "scheduled"
+
+    def confirm(self):
+        self.status = "confirmed"
+
+    def slip(self):
+        print(f"{self.patient} → Dr {self.doctor} @ {self.slot} [{self.status}]")
+
+a1 = Appointment("Anita Sharma", "Meera Iyer", "10:30")
+a2 = Appointment("Vikram Rao", "Kiran Das", "11:15")
+a1.confirm()
+a1.slip()
+a2.slip()
+```
+
+**Expected Output:**
+
+```
+Anita Sharma → Dr Meera Iyer @ 10:30 [confirmed]
+Vikram Rao → Dr Kiran Das @ 11:15 [scheduled]
 ```
 
 ---
 
-
-
 ### 2. Three kinds of variables (instance / class / local)
+
+**Real-world analogy:** A **college ID card**. The college name is printed the same on every card — that is a **class** variable (one shared value). Your roll number is only yours — **instance**. The ink drying while the printer runs is **local**: it exists during that print job and disappears. **AcmeHR** shares `company` across employees. **SecureBank** shares `IFSC` across accounts at one branch. **TechMart** must *not* share one cart list across every customer (that is the mutable-class trap below).
 
 **Icons:** Employee · Payroll · Order
 
@@ -445,8 +442,6 @@ flowchart TB
   ClassAttr --> E2
 ```
 
-
-
 **Key takeaways:**
 
 - Instance attrs = per object (`self.x`)
@@ -462,83 +457,115 @@ flowchart TB
 - Prefer `ClassName.attr` when you mean the shared value (clearer than `self.attr` for class data).
 - Locals are fine for temporary calculations; do not invent `self.tmp` for values you never need later.
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — Shared college name + per-student roll**
+**Program 1 — AcmeHR shared company name + per-employee id**
 
 ```python
-class Student:
-    college = "KSR College"
+class Employee:
+    company = "AcmeHR Bengaluru"
 
-    def __init__(self, roll, name):
-        self.roll = roll
+    def __init__(self, emp_id, name, city):
+        self.emp_id = emp_id
         self.name = name
+        self.city = city
 
-    def card(self):
-        return f"{self.name} ({self.roll}) — {Student.college}"
+    def badge(self):
+        return f"{self.name} ({self.emp_id}) — {Employee.company}, {self.city}"
 
-s1 = Student(1, "Anita")
-s2 = Student(2, "Vikram")
-print(s1.card())
-print(s2.card())
+e1 = Employee(501, "Priya Shah", "Bengaluru")
+e2 = Employee(502, "Ravi Menon", "Mumbai")
+print(e1.badge())
+print(e2.badge())
 
-Student.college = "KSR Institute of Technology"
-print(s1.card())
-print(s2.card())  # both reflect the new class value
+Employee.company = "AcmeHR India"
+print(e1.badge())
+print(e2.badge())  # both pick up the shared class value
 ```
 
 **Expected Output:**
 
 ```
-Anita (1) — KSR College
-Vikram (2) — KSR College
-Anita (1) — KSR Institute of Technology
-Vikram (2) — KSR Institute of Technology
+Priya Shah (501) — AcmeHR Bengaluru, Bengaluru
+Ravi Menon (502) — AcmeHR Bengaluru, Mumbai
+Priya Shah (501) — AcmeHR India, Bengaluru
+Ravi Menon (502) — AcmeHR India, Mumbai
 ```
 
-**Program 2 — Mutable class attribute trap (spot the bug, then the fix)**
+**Program 2 — TechMart shared-cart trap (spot the bug, then the fix)**
 
 ```python
-class BatchBroken:
-    students = []   # WRONG if you meant "each batch has its own list"
+class CartBroken:
+    items = []   # WRONG — every customer shares one list
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, customer):
+        self.customer = customer
 
-    def add(self, student):
-        self.students.append(student)
+    def add(self, sku):
+        self.items.append(sku)
 
-b1 = BatchBroken("Python FS Morning")
-b2 = BatchBroken("Python FS Evening")
-b1.add("Arjun")
-print("Broken b2.students:", b2.students)  # ['Arjun'] — shared!
+c1 = CartBroken("Priya")
+c2 = CartBroken("Ravi")
+c1.add("NB-A4")
+print("Broken Ravi cart:", c2.items)  # ['NB-A4'] — leaked!
 
-class Batch:
-    def __init__(self, name):
-        self.name = name
-        self.students = []   # CORRECT — per object
+class Cart:
+    def __init__(self, customer):
+        self.customer = customer
+        self.items = []   # CORRECT — per object
 
-    def add(self, student):
-        self.students.append(student)
+    def add(self, sku):
+        self.items.append(sku)
 
-ok1 = Batch("Python FS Morning")
-ok2 = Batch("Python FS Evening")
-ok1.add("Arjun")
-print("Fixed ok2.students:", ok2.students)  # []
+ok1 = Cart("Priya")
+ok2 = Cart("Ravi")
+ok1.add("NB-A4")
+print("Fixed Ravi cart:", ok2.items)  # []
 ```
 
 **Expected Output:**
 
 ```
-Broken b2.students: ['Arjun']
-Fixed ok2.students: []
+Broken Ravi cart: ['NB-A4']
+Fixed Ravi cart: []
+```
+
+**Program 3 — SecureBank shared IFSC + local fee inside a method**
+
+```python
+class BranchAccount:
+    ifsc = "SBIN0001234"   # class — one branch code for every account here
+
+    def __init__(self, holder, balance):
+        self.holder = holder
+        self.balance = float(balance)
+
+    def transfer_out(self, amount):
+        fee = 5.0   # local — exists only during this transfer
+        if amount + fee > self.balance:
+            print("Not enough for amount + fee")
+            return
+        self.balance -= amount + fee
+        print(f"{self.holder} sent ₹{amount:.0f} (fee ₹{fee:.0f}) via {BranchAccount.ifsc}")
+
+a = BranchAccount("Priya", 1000)
+a.transfer_out(200)
+print("Balance left:", a.balance)
+# print(fee)  # NameError — local died when the method ended
+```
+
+**Expected Output:**
+
+```
+Priya sent ₹200 (fee ₹5) via SBIN0001234
+Balance left: 795.0
 ```
 
 ---
 
-
-
 ### 3. Three kinds of methods (instance / class / static)
+
+**Real-world analogy:** A **canteen counter**. `bill()` uses *your* tray (instance method — needs `self`). `today_menu()` is the same board for every student (class method — needs the class, not one tray). `gst(amount)` is a calculator anyone can tap without taking a token (static method — no `self` / `cls`). **TechMart** counts orders with `@classmethod`. **SecureBank** computes GST with `@staticmethod`. **MedCare** builds a `Patient` from an Aadhaar CSV row with an alternate constructor.
 
 **Icons:** Order · Bank · UPI · Payroll
 
@@ -604,8 +631,6 @@ flowchart LR
   Stat --> Use3["pure math helpers"]
 ```
 
-
-
 **Key takeaways:**
 
 - Instance = normal day-to-day methods
@@ -620,21 +645,22 @@ flowchart LR
 - Alternate constructors (`from_pair`, `from_dict`) keep `__init__` simple and give callers a clear name for each creation path.
 - Calling `Order.gst_amount(100)` or `o.gst_amount(100)` both work for static methods; prefer the class name when it is a pure utility.
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — Track how many Ticket objects were created**
+**Program 1 — TechMart order counter + build-from-CSV**
 
 ```python
-class Ticket:
+class Order:
     count = 0
 
-    def __init__(self, seat, price):
-        self.seat = seat
-        self.price = price
-        Ticket.count += 1
+    def __init__(self, order_id, sku, qty):
+        self.order_id = order_id
+        self.sku = sku
+        self.qty = int(qty)
+        Order.count += 1
 
     def label(self):
-        return f"Seat {self.seat} — ₹{self.price}"
+        return f"{self.order_id}: {self.sku} x{self.qty}"
 
     @classmethod
     def how_many(cls):
@@ -642,61 +668,92 @@ class Ticket:
 
     @classmethod
     def from_csv_row(cls, row):
-        # row like "A1,250"
-        seat, price = row.split(",")
-        return cls(seat.strip(), float(price))
+        order_id, sku, qty = row.split(",")
+        return cls(order_id.strip(), sku.strip(), qty)
 
-t1 = Ticket("A1", 250)
-t2 = Ticket.from_csv_row("A2,300")
-print(t1.label())
-print(t2.label())
-print("sold:", Ticket.how_many())
+o1 = Order("ORD-101", "NB-A4", 3)
+o2 = Order.from_csv_row("ORD-102,PEN-01,5")
+print(o1.label())
+print(o2.label())
+print("orders today:", Order.how_many())
 ```
 
 **Expected Output:**
 
 ```
-Seat A1 — ₹250
-Seat A2 — ₹300
-sold: 2
+ORD-101: NB-A4 x3
+ORD-102: PEN-01 x5
+orders today: 2
 ```
 
-**Program 2 — Static helper on a fare namespace**
+**Program 2 — SecureBank GST / UPI fee (static utilities)**
 
 ```python
-class FareMath:
+class BankMath:
     @staticmethod
-    def with_gst(amount, rate=0.05):
+    def with_gst(amount, rate=0.18):
         return amount * (1 + rate)
 
     @staticmethod
-    def split_equal(total, people):
-        if people <= 0:
+    def upi_fee(amount):
+        if amount <= 0:
             return 0.0
-        return total / people
+        return 0 if amount < 1000 else 2.0
 
-print(FareMath.with_gst(1000))                 # 1050.0
-print(round(FareMath.split_equal(900, 3), 2))  # 300.0
+print("₹1000 + GST:", round(BankMath.with_gst(1000), 2))
+print("UPI fee on ₹200:", BankMath.upi_fee(200))
+print("UPI fee on ₹2500:", BankMath.upi_fee(2500))
 ```
 
 **Expected Output:**
 
 ```
-1050.0
-300.0
+₹1000 + GST: 1180.0
+UPI fee on ₹200: 0
+UPI fee on ₹2500: 2.0
+```
+
+**Program 3 — MedCare Patient from Aadhaar CSV row**
+
+```python
+class Patient:
+    def __init__(self, name, age, ward):
+        self.name = name
+        self.age = int(age)
+        self.ward = ward
+
+    def card(self):
+        return f"{self.name}, {self.age}y, ward {self.ward}"
+
+    @classmethod
+    def from_csv_row(cls, row):
+        name, age, ward = row.split(",")
+        return cls(name.strip(), age.strip(), ward.strip())
+
+p1 = Patient("Anita Sharma", 28, "OPD")
+p2 = Patient.from_csv_row("Ravi Menon, 41, ICU")
+print(p1.card())
+print(p2.card())
+```
+
+**Expected Output:**
+
+```
+Anita Sharma, 28y, ward OPD
+Ravi Menon, 41y, ward ICU
 ```
 
 ---
 
 ### 4. Encapsulation — definition, problem, then `_` / `__` / `@property`
 
+**Real-world analogy:** You cannot open an **ATM vault** with a screwdriver. You press **Withdraw**. The machine checks PIN and balance, then dispenses cash. Encapsulation is that locked vault plus the buttons. If anyone could type `acct.balance = -50000`, **SecureBank** would be bankrupt on paper. **TechMart** stock cannot go negative because a tired intern edited a field. **MedCare** vitals cannot be overwritten with `"N/A"` from a random script.
+
 **Icons:** Bank · UPI
 
-**Where used?** Banking balances, UPI wallets, passwords, inventory stock — anything with a rule that must stay true after every change.
+**Where used?** **SecureBank** balances, UPI wallets, passwords, **TechMart** inventory stock — anything with a rule that must stay true after every change.
 
 ---
-
-
 
 #### Definition (say this in class)
 
@@ -710,8 +767,6 @@ Interview one-liner: *“Encapsulation = data + behaviour in one place, with con
 It is **not** “putting underscores on variables.” Underscores and `@property` are *tools*. The *goal* is protecting the object’s rules.
 
 ---
-
-
 
 #### Exact problem it solves
 
@@ -734,7 +789,6 @@ class OpenAccount:
             return
         self.balance -= amount
 
-
 acct = OpenAccount("Priya", 1000)
 acct.withdraw(200)          # OK — uses the method
 print("after withdraw:", acct.balance)
@@ -754,14 +808,12 @@ corrupted balance: N/A
 
 Problems this causes in real projects:
 
-
 | What goes wrong                                    | Why it hurts                                         |
 | -------------------------------------------------- | ---------------------------------------------------- |
 | Outside code writes `acct.balance = …`             | Rules in `withdraw` are **bypassed**                 |
 | Invalid values sneak in (`-50000`, `"N/A"`)        | Downstream math / UIs / reports crash or lie         |
 | Fixing the rule means hunting **every** assignment | Same pain as copy-paste functions — scattered writes |
 | You cannot change how balance is stored later      | Callers are glued to the raw field name              |
-
 
 **Visual — naked field vs guarded API:**
 
@@ -775,8 +827,6 @@ flowchart LR
     API -->|"validates"| B2["hidden _balance / __balance"]
   end
 ```
-
-
 
 **Key takeaways:**
 
@@ -800,17 +850,13 @@ Teach the tools in **three layers**:
 
 ---
 
-
-
 #### 4a. Public vs `_name` vs `__name` (naming)
-
 
 | Syntax   | Name people use                                  | What Python does             | What it means for you                                                           |
 | -------- | ------------------------------------------------ | ---------------------------- | ------------------------------------------------------------------------------- |
 | `name`   | **public**                                       | Normal attribute             | Part of the API — callers may read/write                                        |
 | `_name`  | **protected** (by convention)                    | Still a normal attribute     | “Internal — please don’t touch from outside.” Python does **not** block access  |
 | `__name` | **name-mangled** (often called private in notes) | Stored as `_ClassName__name` | Accidental `obj.__name` fails; determined access can still use the mangled name |
-
 
 **Important:** None of these is encryption or real security. Encapsulation is for **honest, clear code** — teammates follow the public API.
 
@@ -821,11 +867,9 @@ class AccountUnderscore:
     def __init__(self, balance):
         self._balance = float(balance)   # convention only
 
-
 class AccountDunder:
     def __init__(self, balance):
         self.__balance = float(balance)  # name-mangled
-
 
 u = AccountUnderscore(1000)
 d = AccountDunder(1000)
@@ -857,8 +901,6 @@ flowchart TB
   Two["__balance = mangled<br/>obj.__balance fails<br/>obj._Class__balance works"]
 ```
 
-
-
 **Key takeaways:**
 
 - `_balance` = polite “hands off” — Python does **not** stop you
@@ -868,18 +910,14 @@ flowchart TB
 
 **Which should students use?**
 
-
 | Style                         | When                                   | Course note                     |
 | ----------------------------- | -------------------------------------- | ------------------------------- |
 | `_balance` + `@property`      | Idiomatic modern Python                | Preferred in notes / interviews |
 | `__balance` + `get_balance()` | Clear “don’t touch” + Java-like getter | **Lab kit** style — both OK     |
 
-
 **Common Error:** saying “`__balance` is private so nobody can read it.” They can: `obj._BankAccount__balance`.
 
 ---
-
-
 
 #### 4b. `@property` — attribute-like read that runs a method
 
@@ -905,12 +943,10 @@ print(acct.balance)
 
 Two equivalent public APIs:
 
-
 | Style                     | Call site            | Internals         |
 | ------------------------- | -------------------- | ----------------- |
 | Getter method (lab style) | `acct.get_balance()` | often `__balance` |
 | `@property` (idiomatic)   | `acct.balance`       | often `_balance`  |
-
 
 `@property` turns a method into something you **read like an attribute** (no parentheses):
 
@@ -938,7 +974,6 @@ class BankAccount:
             print("Insufficient funds")
             return
         self._balance -= amount
-
 
 acct = BankAccount("Priya", 1000)
 acct.deposit(500)
@@ -972,7 +1007,6 @@ class BankAccountLabStyle:
         if amount > 0:
             self.__balance += amount
 
-
 lab = BankAccountLabStyle("Anita", 1000)
 lab.deposit(200)
 print("balance via getter:", lab.get_balance())
@@ -992,8 +1026,6 @@ flowchart LR
   API --> Hidden["_balance or __balance"]
 ```
 
-
-
 **Key takeaways:**
 
 - `@property` = read with `obj.balance` (no `()`)
@@ -1004,8 +1036,6 @@ flowchart LR
 **Remember:** `@property` does **not** replace encapsulation by itself. You still store the real value in `_…` / `__…` and validate in `deposit` / `withdraw`.
 
 ---
-
-
 
 #### 4c. Optional — `@balance.setter` (controlled write)
 
@@ -1027,7 +1057,6 @@ class Student:
             print("Name cannot be empty")
             return
         self._name = value
-
 
 s = Student("Anita")
 print(s.name)
@@ -1056,9 +1085,9 @@ still: Anita Sharma
 
 **Common Error:** treating `__balance` as encryption / security. It only renames the attribute (`_BankAccount__balance`).
 
-**Try these (2 programs):**
+**Try these (3 project examples):**
 
-**Program 1 — UPIWallet with** `__balance` **+ getter (lab style)**
+**Program 1 — SecureBank UPIWallet with** `__balance` **+ getter (lab style)**
 
 ```python
 class UPIWallet:
@@ -1083,7 +1112,6 @@ class UPIWallet:
     def get_balance(self):
         return self.__balance
 
-
 wallet = UPIWallet(500)
 wallet.credit(200)
 wallet.debit(100)
@@ -1103,10 +1131,10 @@ Direct '__balance' visible? False
 Mangled peek (don't do this in apps): 600.0
 ```
 
-**Program 2 —** `@property` **read-only + computed view (idiomatic)**
+**Program 2 — MedCare vitals:** `@property` **read-only + computed band**
 
 ```python
-class Temperature:
+class Vitals:
     def __init__(self, celsius):
         self._celsius = float(celsius)   # internal
 
@@ -1118,11 +1146,15 @@ class Temperature:
     def fahrenheit(self):                # computed — no stored F
         return self._celsius * 9 / 5 + 32
 
+    @property
+    def fever(self):
+        return self._celsius >= 38.0
 
-t = Temperature(37)
-print("C:", t.celsius)
-print("F:", round(t.fahrenheit, 1))
-# t.celsius = 40   # do not uncomment — crashes (read-only property; no setter)
+v = Vitals(37)
+print("C:", v.celsius)
+print("F:", round(v.fahrenheit, 1))
+print("fever?", v.fever)
+# v.celsius = 40   # do not uncomment — crashes (read-only property; no setter)
 print("celsius is read-only — change only via a setter or a method (later design)")
 ```
 
@@ -1131,12 +1163,53 @@ print("celsius is read-only — change only via a setter or a method (later desi
 ```
 C: 37.0
 F: 98.6
+fever? False
 celsius is read-only — change only via a setter or a method (later design)
 ```
 
+**Program 3 — TechMart stock cannot go negative (public API only)**
+
+```python
+class Product:
+    def __init__(self, sku, stock):
+        self.sku = sku
+        self.__stock = int(stock)
+
+    def sell(self, qty):
+        if qty <= 0:
+            print("Invalid qty")
+            return
+        if qty > self.__stock:
+            print(f"{self.sku}: not enough stock")
+            return
+        self.__stock -= qty
+
+    def restock(self, qty):
+        if qty <= 0:
+            print("Invalid qty")
+            return
+        self.__stock += qty
+
+    def get_stock(self):
+        return self.__stock
+
+p = Product("NB-A4", 10)
+p.sell(3)
+p.sell(20)   # rejected
+p.restock(5)
+print("Stock:", p.get_stock())
+print("Direct '__stock' visible?", hasattr(p, "__stock"))
+```
+
+**Expected Output:**
+
+```
+NB-A4: not enough stock
+Stock: 12
+Direct '__stock' visible? False
+```
+
 ---
-
-
 
 ## Step-by-Step Annotated Python 3 Code
 
@@ -1197,8 +1270,6 @@ Holder: Priya
 
 ---
 
-
-
 ### Example 2 — Full Student (marks list as instance data)
 
 ```python
@@ -1251,8 +1322,6 @@ Mark must be 0–100
 
 ---
 
-
-
 ### Example 3 — Product catalogue with classmethod + static GST
 
 ```python
@@ -1303,8 +1372,6 @@ products created: 2
 ```
 
 ---
-
-
 
 ## Practice Exercises
 
@@ -1517,8 +1584,6 @@ print("Balance:", acct.get_balance())
 Insufficient funds
 Balance: 1300.0
 ```
-
-
 
 ## Next
 
