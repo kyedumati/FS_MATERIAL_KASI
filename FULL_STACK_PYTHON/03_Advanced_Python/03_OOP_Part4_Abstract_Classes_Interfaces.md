@@ -68,8 +68,6 @@ Child classes are responsible for providing the implementation of the parent’s
 
 **Remember:** Abstract method = “I know the name. I do not know the body yet.”
 
-**Interview:** Does an abstract method have a body in Python? Only a stub (`pass` or `...`). Java writes no body at all. The decorator is what makes it abstract.
-
 **Common Error:** writing a fake body like `return "account"` and skipping `@abstractmethod`. Then a child can forget to override, and the fake value ships.
 
 **Note:**
