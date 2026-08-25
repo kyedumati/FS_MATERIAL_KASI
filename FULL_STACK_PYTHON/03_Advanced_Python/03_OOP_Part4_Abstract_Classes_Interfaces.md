@@ -13,27 +13,26 @@
 
 ## 1. Abstract method
 
-**Real-world analogy:** A **job posting** says “must be able to treat patients.” It does not write the treatment. Each hired doctor fills that in — cardiology vs paediatrics. An **abstract method** is that must-have skill with **no recipe yet** (`pass`). **SecureBank** declares `kind()` before savings or wallet exists. **AcmeHR** declares `net()` before intern vs faculty. **TechMart** declares `pay()` before UPI vs card.
+**Real-world analogy:** A **job posting** says “must treat patients.” It does not write the treatment. Each doctor fills that in. An **abstract method** is the must-have skill with **no recipe yet**. **SecureBank** declares `kind()` before savings or wallet exists. **AcmeHR** declares `net()` before intern vs faculty. **TechMart** declares `pay()` before UPI vs card.
 
 **Icons:** Bank · Employee · Order
 
-**Where used?** **SecureBank** does not know `kind()` until savings or wallet exists. **AcmeHR** does not know `net()` until intern vs faculty. **TechMart** does not know `pay()` until UPI vs card.
+**Where used?** **SecureBank** `kind()`, **AcmeHR** `net()`, **TechMart** `pay()` — the parent names the method; the child writes the body.
 
 **Definition:** Sometimes we don't know the implementation yet, but we still want to declare the method. Such a method is an **abstract method**. It has only a **declaration**, not the real code.
 
 **Purpose:** The parent says “every child must have this method.” The child writes the actual body.
 
-In Python we declare it with the `@abstractmethod` decorator:
-
 ```python
+from abc import ABC, abstractmethod
+
+
 @abstractmethod
 def m1(self):
     pass
 ```
 
-`pass` means “no algorithm yet.” It does **not** mean the method does nothing useful forever.
-
-`@abstractmethod` lives in the `abc` module (`abc` = abstract base class). We must import it. If we forget the import, Python does not know the name.
+`pass` means “no algorithm yet.” `@abstractmethod` lives in the `abc` module. Forget the import → `NameError`.
 
 **Case — forgot the import:**
 
@@ -50,55 +49,45 @@ class Test:
 NameError: name 'abstractmethod' is not defined
 ```
 
-Correct import:
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Test:
-    @abstractmethod
-    def m1(self):
-        pass
-```
-
-This file now runs. Creating `Test()` is a **different** question — that is the abstract **class** topic next.
-
-Child classes are responsible for providing the implementation of the parent’s abstract methods.
+Child classes are responsible for providing the implementation.
 
 **Remember:** Abstract method = “I know the name. I do not know the body yet.”
 
 **Common Error:** writing a fake body like `return "account"` and skipping `@abstractmethod`. Then a child can forget to override, and the fake value ships.
 
 **Note:**
+- Do not use `raise NotImplementedError` this week. Use `@abstractmethod` + `pass`.
+- Creating the object is the **abstract class** topic next — import alone does not block `Test()`.
 
-- Do not use `raise NotImplementedError` this week. Exceptions come next. Use `@abstractmethod` + `pass`.
-- Import from `abc`. `from abc import *` works in old notes; we import the two names we need.
+**Try these (2 programs):**
 
-**Try these (3 project examples):**
-
-**Program 1 — AcmeHR job role:** `net_pay()` **declared, body later**
+**Program 1 — AcmeHR declares net_pay(), intern writes it**
 
 ```python
 from abc import ABC, abstractmethod
 
 
-class JobRole:
+class JobRole(ABC):
     @abstractmethod
     def net_pay(self):
         pass
 
 
-print("JobRole created. Intern and Faculty will write net_pay().")
+class Intern(JobRole):
+    def net_pay(self):
+        return 15000
+
+
+print(Intern().net_pay())
 ```
 
 **Expected Output:**
 
 ```
-JobRole created. Intern and Faculty will write net_pay().
+15000
 ```
 
-**Program 2 — SecureBank children fill** `kind()`
+**Program 2 — SecureBank children fill kind()**
 
 ```python
 from abc import ABC, abstractmethod
@@ -134,58 +123,21 @@ savings
 wallet
 ```
 
-**Program 3 — TechMart children fill** `pay()`
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Payment(ABC):
-    @abstractmethod
-    def pay(self, amount):
-        pass
-
-
-class UpiPayment(Payment):
-    def pay(self, amount):
-        return f"UPI ₹{amount}"
-
-
-class CardPayment(Payment):
-    def pay(self, amount):
-        return f"Card ₹{amount}"
-
-
-print(UpiPayment().pay(250))
-print(CardPayment().pay(999))
-```
-
-**Expected Output:**
-
-```
-UPI ₹250
-Card ₹999
-```
-
 ---
-
-
 
 ## 2. Abstract class
 
-**Real-world analogy:** An **incomplete house plan**. Rooms are named. The kitchen is not drawn. You cannot *live* in the plan — you can only live in a finished house. The plan still shares plumbing rules (deposit, holder, header). Children finish the missing room (`kind()`, `title()`, `no_of_wheels()`). **SecureBank** `Account` is that plan. **MedCare** `Report` is that plan. Walk the `Test` cases below the way the classic notes do — then the project programs show the same rule in a product.
+**Real-world analogy:** An **incomplete house plan**. Rooms are named; the kitchen is not drawn. You cannot live in the plan — only in a finished house. Shared plumbing stays on the plan (`deposit`, holder). Children finish the missing room (`kind()`, `title()`).
 
 **Icons:** Bank · Employee · Laptop
 
-**Where used?** **SecureBank** `Account` (savings vs wallet), **MedCare** `Report` (lab vs invoice), vehicle types (`no_of_wheels`).
+**Where used?** **SecureBank** `Account` (savings vs wallet), **MedCare** `Report` (lab vs invoice).
 
 **Definition:** Sometimes the implementation of a class is **not complete**. Such a partially implemented class is an **abstract class**.
 
-**Purpose:** Share the parts we already know (`deposit`, holder, balance) and force children to finish the missing part (`kind()`, `no_of_wheels()`).
+**Purpose:** Share the parts we already know and force children to finish the missing part.
 
-Every abstract class in Python should extend `ABC`, which is also in the `abc` module.
-
-Whether we can create an object depends on **two** things together: did we extend `ABC`, and does the class contain at least one `@abstractmethod`? Walk the cases in order.
+Every abstract class in Python should extend `ABC`. Instantiation depends on **two** things together: did we extend `ABC`, and is there at least one `@abstractmethod`?
 
 ### Case-1 — Normal class, no abstract method
 
@@ -207,7 +159,7 @@ print("object created")
 object created
 ```
 
-We can create an object. `Test` is a **concrete** class. It does not contain any abstract method.
+Concrete class — we can create an object.
 
 ### Case-2 — Extends `ABC`, but no abstract method
 
@@ -229,7 +181,7 @@ print("object created")
 object created
 ```
 
-We can still create an object. Extending `ABC` alone is not enough. There is no abstract method, so Python treats it as complete.
+`ABC` alone is not enough. No abstract method → Python treats it as complete.
 
 ### Case-3 — Extends `ABC` **and** has an abstract method
 
@@ -252,7 +204,7 @@ t = Test()
 TypeError: Can't instantiate abstract class Test ... m1
 ```
 
-(The exact wording changes slightly by Python version. The idea is the same: instantiation is not possible.)
+(The exact wording changes slightly by Python version.)
 
 ### Case-4 — Abstract method, but does **not** extend `ABC`
 
@@ -276,7 +228,7 @@ print("object created")
 object created
 ```
 
-We can create an object even though the class contains an abstract method, because we did **not** extend `ABC`. The decorator is then only documentation. It does not block `Test()`.
+Without `ABC`, the decorator is only documentation. It does not block `Test()`.
 
 ### Case-5 — Abstract method with a real body, still not extending `ABC`
 
@@ -300,15 +252,13 @@ t.m1()
 Hello
 ```
 
-Without `ABC`, `@abstractmethod` does not stop construction. The method runs like a normal method.
+Without `ABC`, the method runs like a normal method.
 
-**Conclusion:** If a class contains **at least one abstract method** **and** we are extending `ABC`, instantiation is not possible.
+**Conclusion:** At least one abstract method **and** `ABC` → instantiation is not possible.
 
-**Remember:** abstract class + abstract method → instantiation is not possible.
+**Remember:** abstract class + abstract method → no object.
 
-Parent abstract methods should be implemented in the child classes. Otherwise we cannot instantiate the **child** either. If we never create the child object, we will not see the error.
-
-**Child Case-1 — class is incomplete, but we never construct it:**
+A child that skips the abstract method is **also abstract**. The `class` line is legal. `Child()` is not.
 
 ```python
 from abc import ABC, abstractmethod
@@ -325,6 +275,7 @@ class Bus(Vehicle):
 
 
 print("Bus class exists. No object yet — no error.")
+# b = Bus()  # TypeError — Bus did not override no_of_wheels
 ```
 
 **Expected Output:**
@@ -332,35 +283,6 @@ print("Bus class exists. No object yet — no error.")
 ```
 Bus class exists. No object yet — no error.
 ```
-
-This is valid, because we did not create a `Bus` object.
-
-**Child Case-2 — same** `Bus`**, now we construct it:**
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Vehicle(ABC):
-    @abstractmethod
-    def no_of_wheels(self):
-        pass
-
-
-class Bus(Vehicle):
-    pass
-
-
-b = Bus()
-```
-
-**Expected Output:**
-
-```
-TypeError: Can't instantiate abstract class Bus ... no_of_wheels
-```
-
-**Note:** If we extend an abstract class and do not override its abstract method, the **child is also abstract**. Instantiation is not possible.
 
 When children **do** implement the method:
 
@@ -384,10 +306,8 @@ class Auto(Vehicle):
         return 3
 
 
-b = Bus()
-a = Auto()
-print(b.no_of_wheels())
-print(a.no_of_wheels())
+print(Bus().no_of_wheels())
+print(Auto().no_of_wheels())
 ```
 
 **Expected Output:**
@@ -397,7 +317,7 @@ print(a.no_of_wheels())
 3
 ```
 
-**Note:** An abstract class can contain **both** abstract and non-abstract (normal) methods. The normal methods are the shared implementation. The abstract methods are the holes.
+An abstract class can contain **both** abstract and normal methods. Normal methods are the shared implementation. Abstract methods are the holes.
 
 ```mermaid
 classDiagram
@@ -415,8 +335,6 @@ classDiagram
   Vehicle <|-- Auto
 ```
 
-
-
 **Key takeaways:**
 
 - `ABC` alone does not block objects
@@ -428,9 +346,9 @@ classDiagram
 
 **Common Error:** `class Account(ABC):` with no `@abstractmethod`. Then `Account("Campus")` still works — Case-2.
 
-**Try these (3 project examples):**
+**Try these (2 programs):**
 
-**Program 1 — Shared** `deposit`**, abstract** `kind()` **(SecureBank)**
+**Program 1 — Shared deposit, abstract kind() (SecureBank)**
 
 ```python
 from abc import ABC, abstractmethod
@@ -513,66 +431,19 @@ MedCare | Anita - Blood test
 MedCare | Ravi - Pharmacy bill
 ```
 
-**Program 3 — TechMart abstract shipment + shared tracking id**
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Shipment(ABC):
-    def __init__(self, order_id):
-        self.order_id = order_id
-
-    def tracking(self):
-        return "TRK-" + self.order_id
-
-    @abstractmethod
-    def eta_days(self):
-        pass
-
-
-class StandardShip(Shipment):
-    def eta_days(self):
-        return 5
-
-
-class ExpressShip(Shipment):
-    def eta_days(self):
-        return 1
-
-
-s = StandardShip("101")
-e = ExpressShip("102")
-print(s.tracking(), "ETA", s.eta_days(), "days")
-print(e.tracking(), "ETA", e.eta_days(), "days")
-```
-
-**Expected Output:**
-
-```
-TRK-101 ETA 5 days
-TRK-102 ETA 1 days
-```
-
 ---
-
-
 
 ## 3. Interface in Python
 
-**Real-world analogy:** A **wall socket**. Any appliance with the same pins works — fan, charger, induction stove. The socket does not know *how* the appliance uses power. An **interface** is that socket: only method names (`connect`, `pay`, `send`), no business body. **SecureBank** swaps MySQL vs Postgres behind `DBInterface`. **TechMart** swaps UPI vs card behind `Payable`. **MedCare** swaps SMS vs email behind `Notifier`. Python has no `interface` keyword — we simulate it with `ABC` + only abstract methods.
+**Real-world analogy:** A **wall socket**. Any appliance with the same pins works. The socket does not know *how* the appliance uses power. An **interface** is that socket: only method names (`connect`, `pay`, `send`), no business body. Python has no `interface` keyword — we simulate it with `ABC` + only abstract methods.
 
 **Icons:** Bank · UPI · Order
 
-**Where used?** Database drivers (**MySQL** vs **Postgres**), **TechMart** pay methods (UPI vs card), printers (EPSON vs HP). Same method names, different products.
+**Where used?** Database drivers (**MySQL** vs **Postgres**), **TechMart** pay methods, **MedCare** SMS vs email.
 
-**Definition:** In general, if an abstract class contains **only abstract methods**, we consider that abstract class an **interface**.
+**Definition:** If an abstract class contains **only abstract methods**, we consider it an **interface**.
 
-Python has **no** `interface` keyword (Java does). We still use the word in interviews: “interface” means **requirement only** — we know *what* must exist (`connect`, `pay`), we do not know *how* yet.
-
-**Purpose:** Write business code against the contract. Swap the real class later (MySQL today, Postgres tomorrow) without rewriting the caller.
-
-**Demo — pick the database engine at runtime:**
+**Purpose:** Write business code against the contract. Swap the real class later without rewriting the caller.
 
 ```python
 from abc import ABC, abstractmethod
@@ -605,8 +476,7 @@ class Postgres(DBInterface):
 
 
 engines = {"MySQL": MySQL, "Postgres": Postgres}
-name = "MySQL"            # later this can come from input() or a config file
-db = engines[name]()
+db = engines["MySQL"]()
 db.connect()
 db.disconnect()
 ```
@@ -618,85 +488,23 @@ Connecting to MySQL...
 Disconnecting MySQL...
 ```
 
-Change `name = "Postgres"` and the **same** `db.connect()` / `db.disconnect()` lines talk to a different engine. That is the point of an interface.
+Change the key to `"Postgres"` — the same `connect()` / `disconnect()` calls talk to a different engine.
 
-**Later — Files week:** the old notes read the class name from `config.txt`. Same idea — do not use `open` until that module.
+A class may take **two** interface-style parents: `class WalletAccount(Account, Payable)`. Savings **is an** account. A wallet **can** pay. Do not put `pay` on `Account`, or every savings account is forced to fake a payment.
 
-**Demo — TechMart checkout against** `Payable`**:**
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Payable(ABC):
-    @abstractmethod
-    def pay(self, amount):
-        pass
-
-
-class Upi(Payable):
-    def pay(self, amount):
-        print("UPI paid ₹" + str(int(amount)))
-        return True
-
-
-class CardPay(Payable):
-    def pay(self, amount):
-        if amount > 50000:
-            print("Card limit exceeded")
-            return False
-        print("Card paid ₹" + str(int(amount)))
-        return True
-
-
-def checkout(method, amount):
-    ok = method.pay(amount)
-    print("ok?", ok)
-
-
-checkout(Upi(), 250)
-checkout(CardPay(), 999)
-checkout(CardPay(), 60000)
-```
-
-**Expected Output:**
-
-```
-UPI paid ₹250
-ok? True
-Card paid ₹999
-ok? True
-Card limit exceeded
-ok? False
-```
-
-A class may take **two** interface-style parents (Python already allows multiple inheritance from Part 2):
-
-```python
-class WalletAccount(Account, Payable):
-    def kind(self):
-        return "wallet"
-
-    def pay(self, amount):
-        ...
-```
-
-Savings **is an** account. A wallet **can** pay. Do not put `pay` on `Account`, or every savings account is forced to fake a payment.
-
-**Interview:** `typing.Protocol` is another way to describe an interface **without** inheriting `ABC` (“if it has `pay`, it counts”). Classroom labs use `ABC`. Protocol is the interview name for a structural interface.
+**Interview:** `typing.Protocol` describes an interface **without** inheriting `ABC`. Labs use `ABC`.
 
 **Remember:** Interface = only abstract methods = specification. The child writes the service.
 
-**Common Error:** storing `holder` / `_balance` on `Payable`. That is account **state**. Keep state on the abstract **class** `Account`. Keep `Payable` as methods only.
+**Common Error:** storing `holder` / `_balance` on `Payable`. That is account **state**. Keep state on abstract `Account`. Keep `Payable` as methods only.
 
 **Note:**
+- Duck typing (Part 3) fails when we **call** a missing method. ABC fails when we **construct** an incomplete child.
+- Wrong: `DBInterface()` — Case-3. Construct `MySQL()` or `Postgres()`.
 
-- Duck typing (Part 3) is an **informal** interface. ABC makes a missing method fail when we **construct** the object, not later in a loop.
-- Wrong: `DBInterface()` — that is Case-3. Construct `MySQL()` or `Postgres()`.
+**Try these (2 programs):**
 
-**Try these (3 project examples):**
-
-**Program 1 —** `Notifier` **interface, SMS vs email**
+**Program 1 — Notifier interface, SMS vs email**
 
 ```python
 from abc import ABC, abstractmethod
@@ -778,57 +586,19 @@ paid ₹120
 Ravi ₹380
 ```
 
-**Program 3 — TechMart** `PaymentGateway` **interface (UPI vs card)**
-
-```python
-from abc import ABC, abstractmethod
-
-
-class PaymentGateway(ABC):
-    @abstractmethod
-    def charge(self, amount):
-        pass
-
-
-class UpiGateway(PaymentGateway):
-    def charge(self, amount):
-        print("UPI charged ₹" + str(amount))
-
-
-class CardGateway(PaymentGateway):
-    def charge(self, amount):
-        print("Card charged ₹" + str(amount))
-
-
-for g in (UpiGateway(), CardGateway()):
-    g.charge(199)
-```
-
-**Expected Output:**
-
-```
-UPI charged ₹199
-Card charged ₹199
-```
-
 ---
-
-
 
 ## 4. Concrete class vs abstract class vs interface
 
-**Real-world analogy:** Three documents on a campus project. The **requirement PDF** lists steps only (`register`, `verify_kyc`, `activate`) — **interface**. The **half-built floor** already has wiring and plumbing, but the shop shutter is not fitted — **abstract class**. The **open canteen** is ready to serve — **concrete class**. **SecureBank** `Payable` is the PDF. `Account` (deposit + hole `kind`) is the half-built floor. `SavingsAccount` is the open branch. **AcmeHR** onboarding uses the same three layers.
+**Real-world analogy:** Three documents on a campus project. The **requirement PDF** lists steps only — **interface**. The **half-built floor** has wiring but no shutter — **abstract class**. The **open canteen** is ready to serve — **concrete class**. **SecureBank** `Payable` is the PDF. `Account` is the half-built floor. `SavingsAccount` is the open branch.
 
 **Icons:** Bank · Employee · UPI
 
-**Where used?** Every interview: “When interface, when abstract class?” **SecureBank** `Payable` vs `Account` is the stock example.
+**Where used?** Interview staple: “When interface, when abstract class?” **SecureBank** `Payable` vs `Account`.
 
-Do not memorise a big table first. Use this three-line rule:
-
-1. If we don't know **anything** about implementation — we only have the requirement — go for an **interface**.
-2. If we are talking about implementation, but **not completely** — go for an **abstract class** (partially implemented class).
-3. If we are talking about implementation **completely** and we are ready to provide the service — go for a **concrete class**.
-
+1. Know **only** the requirement → **interface**.
+2. Some real code, some holes → **abstract class**.
+3. Implementation complete → **concrete class**.
 
 |              | Interface                          | Abstract class                                   | Concrete class                                 |
 | ------------ | ---------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
@@ -837,10 +607,7 @@ Do not memorise a big table first. Use this three-line rule:
 | Construct?   | No                                 | No                                               | Yes                                            |
 | Example      | `Payable`, `DBInterface`           | `Account` with `deposit` + abstract `kind`       | `SavingsAccount`, `MySQL`                      |
 
-
-**Remember:** specification → interface. Partial code → abstract class. Ready to use → concrete class.
-
-The three layers can sit in a chain. The top class is only requirements. The middle class implements some methods. The bottom class finishes the last method — only then can we create an object.
+The three layers can sit in a chain. Only the bottom class is constructible.
 
 ```python
 from abc import ABC, abstractmethod
@@ -887,71 +654,15 @@ m2 method implementation
 m3 method implementation
 ```
 
-`CollegeAutomation` is an interface (only abstract methods). `AbsCls` is still abstract (`m3` missing). `ConcreteCls` is complete — now `ConcreteCls()` is legal.
+**AcmeHR** onboarding is the same chain: interface lists `register` / `activate`; abstract class writes `register`; intern vs faculty finish `activate`.
 
-Same pattern in a job story: **AcmeHR** onboarding.
-
-- Interface: `register`, `verify_kyc`, `activate` — we only know the steps.
-- Abstract class: `register` and `verify_kyc` are written; `activate` is still different for intern vs faculty.
-- Concrete class: intern activation vs faculty activation.
-
-**Interview:** Why not put `pay` on abstract `Account`? Because we are **not** talking about payment for every account. Savings may only deposit / withdraw / add interest. `Payable` is the requirement for types that **can** pay.
+**Interview:** Why not put `pay` on abstract `Account`? Not every account pays. `Payable` is the requirement for types that **can** pay.
 
 **Common Error:** calling `ABC` “Python’s interface keyword.” `ABC` is the abstract-class tool. Using it with **only** abstract methods is how we **simulate** an interface.
 
-**Try these (3 project examples):**
+**Try these (2 programs):**
 
-**Program 1 — Keep** `pay` **off** `Account`**; only wallet is** `Payable`
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Account(ABC):
-    def __init__(self, holder, balance):
-        self.holder = holder
-        self._balance = float(balance)
-
-    def get_balance(self):
-        return self._balance
-
-    @abstractmethod
-    def kind(self):
-        pass
-
-
-class Payable(ABC):
-    @abstractmethod
-    def pay(self, amount):
-        pass
-
-
-class SavingsAccount(Account):
-    def kind(self):
-        return "savings"
-
-
-class WalletAccount(Account, Payable):
-    def kind(self):
-        return "wallet"
-
-    def pay(self, amount):
-        print(self.kind(), "pays ₹" + str(int(amount)))
-        return True
-
-
-print(SavingsAccount("Priya", 1000).kind())
-WalletAccount("Ravi", 500).pay(50)
-```
-
-**Expected Output:**
-
-```
-savings
-wallet pays ₹50
-```
-
-**Program 2 — One loop; pay only if** `Payable`
+**Program 1 — Keep pay off Account; only wallet is Payable**
 
 ```python
 from abc import ABC, abstractmethod
@@ -1001,13 +712,13 @@ wallet Ravi
 pay ₹80 from Ravi
 ```
 
-**Program 3 — AcmeHR: interface + abstract class + concrete intern**
+**Program 2 — AcmeHR interface + abstract class + concrete intern**
 
 ```python
 from abc import ABC, abstractmethod
 
 
-class Onboarding(ABC):           # interface — steps only
+class Onboarding(ABC):
     @abstractmethod
     def register(self):
         pass
@@ -1017,7 +728,7 @@ class Onboarding(ABC):           # interface — steps only
         pass
 
 
-class StaffOnboarding(Onboarding):  # abstract — register done, activate open
+class StaffOnboarding(Onboarding):
     def __init__(self, name):
         self.name = name
 
@@ -1025,7 +736,7 @@ class StaffOnboarding(Onboarding):  # abstract — register done, activate open
         print("KYC done for", self.name)
 
 
-class InternOnboarding(StaffOnboarding):  # concrete
+class InternOnboarding(StaffOnboarding):
     def activate(self):
         print(self.name, "activated as intern")
 
@@ -1043,8 +754,6 @@ Anita activated as intern
 ```
 
 ---
-
-
 
 ## Step-by-Step: SecureBank campus wallet
 
@@ -1091,8 +800,6 @@ class Account(ABC):
         print(self.kind(), "|", self.holder, "₹" + str(int(self._balance)))
 ```
 
-
-
 ### Step 2 — Interface `Payable` and two concrete children
 
 ```python
@@ -1127,8 +834,6 @@ class WalletAccount(Account, Payable):
         return True
 ```
 
-
-
 ### Step 3 — One loop
 
 ```python
@@ -1145,6 +850,8 @@ accounts[1].print_slip()
 
 accounts[0].add_interest()
 accounts[0].print_slip()
+
+print("rejected?", WalletAccount("Ravi", 50).pay(120))
 ```
 
 **Expected Output:**
@@ -1156,158 +863,15 @@ Paid ₹120 from wallet
 pay ok? True
 wallet | Ravi ₹380
 savings | Priya ₹1040
-```
-
-**Note:** Do not write `if a.kind() == "wallet"` to call `pay`. Use `isinstance(a, Payable)` or hold the wallet as `Payable`. `print_slip` is a **normal** method on the abstract class — that is why `Account` is not an interface.
-
-**Try these (3 project examples):**
-
-**Program 1 — Two slips through the parent type**
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Account(ABC):
-    def __init__(self, holder, opening):
-        self.holder = holder
-        self._balance = float(opening)
-
-    @abstractmethod
-    def kind(self):
-        pass
-
-    def print_slip(self):
-        print(self.kind(), "|", self.holder, "₹" + str(int(self._balance)))
-
-
-class SavingsAccount(Account):
-    def kind(self):
-        return "savings"
-
-
-class WalletAccount(Account):
-    def kind(self):
-        return "wallet"
-
-
-for a in (SavingsAccount("Priya", 1000), WalletAccount("Ravi", 500)):
-    a.print_slip()
-```
-
-**Expected Output:**
-
-```
-savings | Priya ₹1000
-wallet | Ravi ₹500
-```
-
-**Program 2 — Wallet pay rejected (print + return)**
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Account(ABC):
-    def __init__(self, holder, opening):
-        self.holder = holder
-        self._balance = float(opening)
-
-    def withdraw(self, amount):
-        if amount <= 0:
-            print("amount must be positive")
-            return
-        if amount > self._balance:
-            print("insufficient funds")
-            return
-        self._balance -= amount
-
-    def get_balance(self):
-        return self._balance
-
-    @abstractmethod
-    def kind(self):
-        pass
-
-
-class Payable(ABC):
-    @abstractmethod
-    def pay(self, amount):
-        pass
-
-
-class WalletAccount(Account, Payable):
-    def kind(self):
-        return "wallet"
-
-    def pay(self, amount):
-        before = self.get_balance()
-        self.withdraw(amount)
-        if self.get_balance() == before:
-            return False
-        print("Paid ₹" + str(int(amount)))
-        return True
-
-
-w = WalletAccount("Ravi", 50)
-print("ok?", w.pay(120))
-print("balance", int(w.get_balance()))
-```
-
-**Expected Output:**
-
-```
 insufficient funds
-ok? False
-balance 50
+rejected? False
 ```
 
-**Program 3 — MedCare lab vs invoice through one report list**
-
-```python
-from abc import ABC, abstractmethod
-
-
-class Report(ABC):
-    def __init__(self, patient):
-        self.patient = patient
-
-    @abstractmethod
-    def title(self):
-        pass
-
-    def print_slip(self):
-        print(self.title(), "|", self.patient)
-
-
-class LabReport(Report):
-    def title(self):
-        return "Lab"
-
-
-class InvoiceReport(Report):
-    def title(self):
-        return "Invoice"
-
-
-for r in (LabReport("Anita"), InvoiceReport("Ravi")):
-    r.print_slip()
-```
-
-**Expected Output:**
-
-```
-Lab | Anita
-Invoice | Ravi
-```
+**Note:** Do not write `if a.kind() == "wallet"` to call `pay`. Use `isinstance(a, Payable)`. `print_slip` is a normal method on `Account` — that is why `Account` is not an interface.
 
 ---
 
-
-
 ## Practice Exercises
-
-
 
 ### Basic
 
@@ -1320,8 +884,6 @@ Invoice | Ravi
 3. Write the conclusion of Cases 1–5 in one line.
   **Model answer:**  
    If a class contains at least one abstract method **and** extends `ABC`, instantiation is not possible.
-
-
 
 ### Intermediate
 
@@ -1369,27 +931,11 @@ print(int(Rect(3, 4).area()))
 12
 ```
 
-1. When do we pick interface vs abstract class vs concrete class?
+3. When do we pick interface vs abstract class vs concrete class?
   **Model answer:**  
    Interface: we know only the requirement (`connect` / `pay`). Abstract class: we have some real code and some holes (`deposit` written, `kind` missing). Concrete class: implementation is complete and we can create objects (`MySQL()`, `SavingsAccount(...)`).
 
-
-
-### Interview
-
-1. What is an interface in Python? Is there an `interface` keyword?
-  **Model answer:**  
-   No keyword. An abstract class that contains **only** abstract methods is treated as an interface. Children provide every method. `typing.Protocol` is the structural interview alternative; labs use `ABC`.
-2. Why can we create an object of a class that has `@abstractmethod` but does **not** extend `ABC`?
-  **Model answer:**  
-   Case-4. The decorator only blocks construction when the class also extends `ABC`. Without `ABC`, it is a normal class.
-3. Duck typing vs ABC — what extra do we get from `@abstractmethod`?
-  **Model answer:**  
-   Duck typing fails when we **call** a missing method. An ABC fails when we **construct** an incomplete child. Named contracts also let us write `isinstance(x, Payable)`.
-
 ---
-
-
 
 ## Mini-Project (Assignment): SecureBank Campus Wallet
 
@@ -1399,7 +945,6 @@ print(int(Rect(3, 4).area()))
 
 ### What to build
 
-
 | Piece            | Detail                                                                                                    |
 | ---------------- | --------------------------------------------------------------------------------------------------------- |
 | `Account(ABC)`   | abstract class: holder, balance, `deposit` / `withdraw` / `get_balance` / `print_slip`; abstract `kind()` |
@@ -1408,10 +953,19 @@ print(int(Rect(3, 4).area()))
 | `WalletAccount`  | concrete; `Account` **and** `Payable`; `pay` uses `withdraw` (print + return)                             |
 | Demo             | list of accounts; print slips; pay from wallet; add interest on savings                                   |
 
+### Stretch
+
+- Reject a zero / negative pay with a print, keep the old balance.
+- Add a `CurrentAccount` that is an `Account` but **not** `Payable`.
+
+### Done when
+
+- [ ] `Account("Campus", 0)` is not allowed
+- [ ] Savings and wallet both print a slip through the parent type
+- [ ] Wallet `pay` succeeds and fails (print + return) without `raise`
+- [ ] Savings can `add_interest()`; it does not implement `pay`
 
 ---
-
-
 
 ## Interview Q&A
 
@@ -1447,9 +1001,10 @@ Shared with students after concepts and the mini-project. Use for review and int
 **Q10. Why give an abstract class** `__init__`**?**  
 **A:** Children still need holder and opening balance. `__init__` runs through `super()` when we construct the child — never as `Account(...)`.
 
+**Q11. Duck typing vs ABC — what extra do we get from** `@abstractmethod`**?**  
+**A:** Duck typing fails when we **call** a missing method. An ABC fails when we **construct** an incomplete child. Named contracts also let us write `isinstance(x, Payable)`.
+
 ---
-
-
 
 ## Next
 
