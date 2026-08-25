@@ -53,11 +53,7 @@ Child classes are responsible for providing the implementation.
 
 **Remember:** Abstract method = “I know the name. I do not know the body yet.”
 
-**Common Error:** writing a fake body like `return "account"` and skipping `@abstractmethod`. Then a child can forget to override, and the fake value ships.
 
-**Note:**
-- Do not use `raise NotImplementedError` this week. Use `@abstractmethod` + `pass`.
-- Creating the object is the **abstract class** topic next — import alone does not block `Test()`.
 
 **Try these (2 programs):**
 
@@ -124,6 +120,8 @@ wallet
 ```
 
 ---
+
+
 
 ## 2. Abstract class
 
@@ -335,6 +333,8 @@ classDiagram
   Vehicle <|-- Auto
 ```
 
+
+
 **Key takeaways:**
 
 - `ABC` alone does not block objects
@@ -433,6 +433,8 @@ MedCare | Ravi - Pharmacy bill
 
 ---
 
+
+
 ## 3. Interface in Python
 
 **Real-world analogy:** A **wall socket**. Any appliance with the same pins works. The socket does not know *how* the appliance uses power. An **interface** is that socket: only method names (`connect`, `pay`, `send`), no business body. Python has no `interface` keyword — we simulate it with `ABC` + only abstract methods.
@@ -499,6 +501,7 @@ A class may take **two** interface-style parents: `class WalletAccount(Account, 
 **Common Error:** storing `holder` / `_balance` on `Payable`. That is account **state**. Keep state on abstract `Account`. Keep `Payable` as methods only.
 
 **Note:**
+
 - Duck typing (Part 3) fails when we **call** a missing method. ABC fails when we **construct** an incomplete child.
 - Wrong: `DBInterface()` — Case-3. Construct `MySQL()` or `Postgres()`.
 
@@ -588,6 +591,8 @@ Ravi ₹380
 
 ---
 
+
+
 ## 4. Concrete class vs abstract class vs interface
 
 **Real-world analogy:** Three documents on a campus project. The **requirement PDF** lists steps only — **interface**. The **half-built floor** has wiring but no shutter — **abstract class**. The **open canteen** is ready to serve — **concrete class**. **SecureBank** `Payable` is the PDF. `Account` is the half-built floor. `SavingsAccount` is the open branch.
@@ -600,12 +605,14 @@ Ravi ₹380
 2. Some real code, some holes → **abstract class**.
 3. Implementation complete → **concrete class**.
 
+
 |              | Interface                          | Abstract class                                   | Concrete class                                 |
 | ------------ | ---------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
 | What we know | Only method names                  | Some real code + some holes                      | Full service                                   |
 | Python       | `ABC` + **only** `@abstractmethod` | `ABC` + mix of real methods and abstract methods | Normal class (or child that filled every hole) |
 | Construct?   | No                                 | No                                               | Yes                                            |
 | Example      | `Payable`, `DBInterface`           | `Account` with `deposit` + abstract `kind`       | `SavingsAccount`, `MySQL`                      |
+
 
 The three layers can sit in a chain. Only the bottom class is constructible.
 
@@ -755,6 +762,8 @@ Anita activated as intern
 
 ---
 
+
+
 ## Step-by-Step: SecureBank campus wallet
 
 **Icons:** Bank · UPI · Order
@@ -800,6 +809,8 @@ class Account(ABC):
         print(self.kind(), "|", self.holder, "₹" + str(int(self._balance)))
 ```
 
+
+
 ### Step 2 — Interface `Payable` and two concrete children
 
 ```python
@@ -833,6 +844,8 @@ class WalletAccount(Account, Payable):
         print("Paid ₹" + str(int(amount)), "from wallet")
         return True
 ```
+
+
 
 ### Step 3 — One loop
 
@@ -871,7 +884,11 @@ rejected? False
 
 ---
 
+
+
 ## Practice Exercises
+
+
 
 ### Basic
 
@@ -884,6 +901,8 @@ rejected? False
 3. Write the conclusion of Cases 1–5 in one line.
   **Model answer:**  
    If a class contains at least one abstract method **and** extends `ABC`, instantiation is not possible.
+
+
 
 ### Intermediate
 
@@ -937,6 +956,8 @@ print(int(Rect(3, 4).area()))
 
 ---
 
+
+
 ## Mini-Project (Assignment): SecureBank Campus Wallet
 
 **Lab kit:** [15_Lab_Assets/32_campus_wallet_abc/](../15_Lab_Assets/32_campus_wallet_abc/)
@@ -944,6 +965,7 @@ print(int(Rect(3, 4).area()))
 **Business request:** SecureBank campus desk needs savings and wallet on one slip loop. Wallet can **pay**. A generic `Account(...)` must not be allowed.
 
 ### What to build
+
 
 | Piece            | Detail                                                                                                    |
 | ---------------- | --------------------------------------------------------------------------------------------------------- |
@@ -953,10 +975,15 @@ print(int(Rect(3, 4).area()))
 | `WalletAccount`  | concrete; `Account` **and** `Payable`; `pay` uses `withdraw` (print + return)                             |
 | Demo             | list of accounts; print slips; pay from wallet; add interest on savings                                   |
 
+
+
+
 ### Stretch
 
 - Reject a zero / negative pay with a print, keep the old balance.
 - Add a `CurrentAccount` that is an `Account` but **not** `Payable`.
+
+
 
 ### Done when
 
@@ -966,6 +993,8 @@ print(int(Rect(3, 4).area()))
 - [ ] Savings can `add_interest()`; it does not implement `pay`
 
 ---
+
+
 
 ## Interview Q&A
 
@@ -1005,6 +1034,8 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Duck typing fails when we **call** a missing method. An ABC fails when we **construct** an incomplete child. Named contracts also let us write `isinstance(x, Payable)`.
 
 ---
+
+
 
 ## Next
 
