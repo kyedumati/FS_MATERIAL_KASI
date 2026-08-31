@@ -15,8 +15,8 @@
 From repo root:
 
 ```bash
-rg -n "\*\*(Answer|Model answer|Model):\*\*" FULL_STACK_PYTHON/02_Core_Python/03_Flow_Control.md \
-  > FULL_STACK_PYTHON/14_Trainer_Only/keys/flow_control_answers.txt
+rg -n "\*\*(Answer|Model answer|Model):\*\*" PYTHON/02_Core_Python/03_Flow_Control.md \
+  > PYTHON/14_Trainer_Only/keys/flow_control_answers.txt
 ```
 
 Create `keys/` as needed per batch; do not commit real exam papers with cohort names if your policy forbids it.

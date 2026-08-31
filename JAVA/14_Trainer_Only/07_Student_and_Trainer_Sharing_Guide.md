@@ -1,6 +1,6 @@
 # One Material Policy — Teach and Share the Same Notes
 
-**Rule:** One version of module notes. Teach from `FULL_STACK_JAVA/` (and shared `FRONTEND/`, `MYSQL/`). Share **that same** content with students — usually the **module PDF after that module is taught**.
+**Rule:** One version of module notes. Teach from `JAVA/` (and shared `FRONTEND/`, `MYSQL/`). Share **that same** content with students — usually the **module PDF after that module is taught**.
 
 Do **not** maintain a second “student-only” rewrite of the syllabus, and do **not** strip Practice **Model answer** blocks for sharing.
 
@@ -21,7 +21,7 @@ Do **not** maintain a second “student-only” rewrite of the syllabus, and do 
 ## How to share (recommended)
 
 1. Teach from the module markdown.  
-2. Build PDFs when needed: `./scripts/build.sh java` → `PDF/FULL_STACK_JAVA/`.  
+2. Build PDFs when needed: `./scripts/build.sh java` → `PDF/JAVA/`.  
 3. After the module (or that day’s Focus) is done, share **only that module’s PDF** on Drive/LMS/WhatsApp.  
 4. Homework = **Mini-Project (Assignment)** in the same PDF/notes.
 
@@ -29,12 +29,12 @@ Optional full zip (same notes, still no private folders):
 
 ```bash
 ./scripts/pack_student_share.sh java
-# → dist/FULL_STACK_JAVA_STUDENT/
+# → dist/JAVA_STUDENT/
 ```
 
 That pack copies teaching files **without** stripping Model answers. It still excludes `14_Trainer_Only/`, `**/solution/`, and `*_KEY.md`.
 
-Python FS pack is unchanged: `./scripts/pack_student_share.sh` (default) → `dist/FULL_STACK_PYTHON_STUDENT/`.
+Python FS pack is unchanged: `./scripts/pack_student_share.sh` (default) → `dist/PYTHON_STUDENT/`.
 
 ---
 

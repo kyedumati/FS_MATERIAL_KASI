@@ -65,7 +65,7 @@ flowchart TD
 - HTML/CSS/JS before Spring; React after a real REST API exists
 - AI never sits on the critical path to placement
 
-### Module index (detailed notes live under `FULL_STACK_JAVA/`)
+### Module index (detailed notes live under `JAVA/`)
 
 | # | Module folder / file | Phase | Memorize | Understand | Practise | Build |
 |---|----------------------|-------|----------|------------|----------|-------|
@@ -387,7 +387,7 @@ Score each dimension **0–10**. Passing job-ready bar: **≥ 35/50** and all Mu
 | **Independent** | Completes lab from notes without help |
 | **Interview-ready** | Explains trade-offs and answers related interview Qs |
 
-Trainer-only keys: `FULL_STACK_JAVA/14_Trainer_Only/` (do **not** share with learners).
+Trainer-only keys: `JAVA/14_Trainer_Only/` (do **not** share with learners).
 
 **Oral defense (10 min):** problem → demo → schema → one tough bug you fixed → what you’d add next.
 
@@ -396,7 +396,7 @@ Trainer-only keys: `FULL_STACK_JAVA/14_Trainer_Only/` (do **not** share with lea
 ## 8. How Trainers Use This Folder
 
 1. Start every batch with [Session Calendar](../Session_Calendar_100.md) + `COURSE_CONTENTS/Full_Stack_Java_Course_Contents.md`.  
-2. Teach module files in numbered order under `FULL_STACK_JAVA/` — same files students receive.  
+2. Teach module files in numbered order under `JAVA/` — same files students receive.  
 3. SQL: follow **Required MySQL labs** in [01_MySQL_for_Full_Stack_Developers.md](../06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) — labs live in `MYSQL/` but are **required**, not optional extras.  
 4. Convert each module’s headings into PPT; labs → lab manual; graded checks → [`16_Assessments/`](../16_Assessments/) biweekly papers (not per-module MCQs).  
 5. Never skip GitHub, `PreparedStatement`, JPA after JDBC, auth, or Spring lab days `06`–`07`.  

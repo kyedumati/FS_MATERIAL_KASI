@@ -5,8 +5,8 @@
 **Shared topic** (Python FS + Java FS).
 
 **Previous:** [React Fundamentals](01_React_Fundamentals.md)
-**Next (Python FS):** [Testing & Clean Code](../../FULL_STACK_PYTHON/11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md)  
-**Next (Java FS):** [Testing & Clean Code](../../FULL_STACK_JAVA/12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md)
+**Next (Python FS):** [Testing & Clean Code](../../PYTHON/11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md)  
+**Next (Java FS):** [Testing & Clean Code](../../JAVA/12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md)
 
 ---
 
@@ -474,7 +474,7 @@ test("shows message", () => {
 
 ## Mini-Project (Assignment): Full-Stack Product Browser
 
-**Lab kits:** [05_react_product_list](labs/05_react_product_list/) · [28_cors_fetch_debug](labs/28_cors_fetch_debug/) · [04_drf_products](../../FULL_STACK_PYTHON/15_Lab_Assets/04_drf_products/)
+**Lab kits:** [05_react_product_list](labs/05_react_product_list/) · [28_cors_fetch_debug](labs/28_cors_fetch_debug/) · [04_drf_products](../../PYTHON/15_Lab_Assets/04_drf_products/)
 
 **Stack:** React (Vite) + Django DRF Product API
 

@@ -2,7 +2,7 @@
 
 Python FS uses the **same four teaching brands** as Java FS. Do not duplicate the mapping here.
 
-**Canonical bible:** [`FULL_STACK_JAVA/14_Trainer_Only/12_Named_Product_Domains.md`](../../FULL_STACK_JAVA/14_Trainer_Only/12_Named_Product_Domains.md)
+**Canonical bible:** [`JAVA/14_Trainer_Only/12_Named_Product_Domains.md`](../../JAVA/14_Trainer_Only/12_Named_Product_Domains.md)
 
 **Canonical schemas / sample people:** [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md)
 

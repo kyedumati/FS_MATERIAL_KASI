@@ -3,7 +3,7 @@
 **Audience:** Learners preparing for entry-level Java / Spring Boot / full-stack roles  
 **Stack:** JDK 17 (21 mentioned) · Maven 3.9+ · MySQL 8+ · Spring Boot 3.x (Jakarta) · HTML/CSS/JS · React · GitHub · VS Code or IntelliJ Community · Postman  
 **Duration (default plan):** **20 weeks × 1 hour 15 minutes/day** (Mon–Fri live) = **100 sessions / ~125 live hours** + homework  
-**Schedule authority:** `FULL_STACK_JAVA/Session_Calendar_100.md`  
+**Schedule authority:** `JAVA/Session_Calendar_100.md`  
 **Practice DB:** `training_db` | **IDE:** VS Code or IntelliJ Community | **VCS:** Git + GitHub  
 **Legend:** **Must** = job-ready path | *Optional* = deepen if hours allow / advanced batch
 
@@ -102,7 +102,7 @@
 
 ### 7. Database (MySQL) (**Must**)
 
-- Full-stack bridge + **required MySQL labs table**: `FULL_STACK_JAVA/06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` (points into `MYSQL/` — mandatory for placement)
+- Full-stack bridge + **required MySQL labs table**: `JAVA/06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` (points into `MYSQL/` — mandatory for placement)
 - DDL, DML, DQL, TCL, JOINS, normalization overview
 - **Do not duplicate** `MYSQL/` into this folder
 

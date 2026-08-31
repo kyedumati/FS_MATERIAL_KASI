@@ -114,11 +114,11 @@ Brochure modules **preserved:** Core Java, OOP, Collections, Exceptions, JDBC, J
 PDFs / optional share mirror (from **repo root**):
 
 ```bash
-./scripts/build.sh java                 # → PDF/FULL_STACK_JAVA/  (same notes as class)
+./scripts/build.sh java                 # → PDF/JAVA/  (same notes as class)
 ./scripts/pack_student_share.sh java    # optional zip mirror; excludes private folders only
 ```
 
-Python FS is unchanged: `./scripts/build.sh fullstack` · `./scripts/pack_student_share.sh`.
+Python FS is unchanged: `./scripts/build.sh python` · `./scripts/pack_student_share.sh`.
 
 **Share habit:** send each module PDF after that module is taught.  
 Private ops (keys, rubrics): [`14_Trainer_Only/`](14_Trainer_Only/).

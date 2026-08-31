@@ -1,6 +1,6 @@
 # Module Writing Standard — Definition / Purpose Before Syntax
 
-**Purpose:** Keep `FULL_STACK_PYTHON/` teachable for live class — Definition/Purpose, labs, and modern safe Python (without legacy note patterns).
+**Purpose:** Keep `PYTHON/` teachable for live class — Definition/Purpose, labs, and modern safe Python (without legacy note patterns).
 
 **Reference:** [01_Functions_Decorators_Generators.md](../03_Advanced_Python/01_Functions_Decorators_Generators.md) · Core modules with Definition/Purpose openings.
 

@@ -1,6 +1,6 @@
 # One Material Policy — Teach and Share the Same Notes
 
-**Rule:** One version of module notes. Teach from `FULL_STACK_PYTHON/` (and shared `FRONTEND/`, `MYSQL/`). Share **that same** content with students — usually the **module PDF after that module is taught**.
+**Rule:** One version of module notes. Teach from `PYTHON/` (and shared `FRONTEND/`, `MYSQL/`). Share **that same** content with students — usually the **module PDF after that module is taught**.
 
 Do **not** maintain a second “student-only” rewrite of the syllabus, and do **not** strip Practice **Model answer** blocks for sharing.
 
@@ -21,7 +21,7 @@ Do **not** maintain a second “student-only” rewrite of the syllabus, and do 
 ## How to share (recommended)
 
 1. Teach from the module markdown.  
-2. Build PDFs when needed: `./scripts/build.sh fullstack` → `PDF/FULL_STACK_PYTHON/`.  
+2. Build PDFs when needed: `./scripts/build.sh python` → `PDF/PYTHON/`.  
 3. After the module (or that day’s Focus) is done, share **only that module’s PDF** on Drive/LMS/WhatsApp.  
 4. Homework = **Mini-Project (Assignment)** in the same PDF/notes.
 
@@ -29,7 +29,7 @@ Optional full zip (same notes, still no private folders):
 
 ```bash
 ./scripts/pack_student_share.sh
-# → dist/FULL_STACK_PYTHON_STUDENT/
+# → dist/PYTHON_STUDENT/
 ```
 
 That pack copies teaching files **without** stripping Model answers. It still excludes `14_Trainer_Only/`, `**/solution/`, and `*_KEY.md`.
@@ -54,9 +54,9 @@ Issue biweekly papers from `16_Assessments/BW##_….md` (no `_KEY`). Mark with t
 
 ---
 
-## Legacy
+## Topic map
 
-`PDF/PYTHON/` was removed. Topic map: [08_PDF_Python_Enrichment_Map.md](08_PDF_Python_Enrichment_Map.md).
+See [08_PDF_Python_Enrichment_Map.md](08_PDF_Python_Enrichment_Map.md) if you need the old-topic → current-file list.
 
 ---
 

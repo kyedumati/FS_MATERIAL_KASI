@@ -2,7 +2,7 @@
 
 > **One material policy for the Python program.** Python/Django notes live in this folder.  
 > **Shared topics** (also for Java FS): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/`](../MYSQL/).  
-> Pointers only: `06_Frontend/`, `10_React/`. Legacy `PDF/PYTHON/` removed.
+> Pointers only: `06_Frontend/`, `10_React/`. PDFs: `PDF/PYTHON/`.
 
 **Source syllabus:** KSR Datavizon *FULL STACK PYTHON 2026–27*  
 **Audience:** Learners preparing for entry-level Python / Django / full-stack roles
@@ -91,7 +91,7 @@ Every teaching module follows the same shape:
 
 **SQL depth** lives in repo **`MYSQL/`** (required labs listed in the MySQL bridge module) — not duplicated here.
 
-> Mermaid diagrams render on GitHub, many Markdown previewers, and Cursor. PDF builds pre-render them to SVG (`./scripts/build.sh fullstack` needs Node/`npx` + Chrome). In plain text viewers you still see the diagram source as a readable sketch.
+> Mermaid diagrams render on GitHub, many Markdown previewers, and Cursor. PDF builds pre-render them to SVG (`./scripts/build.sh python` needs Node/`npx` + Chrome). In plain text viewers you still see the diagram source as a readable sketch.
 
 ---
 
@@ -114,7 +114,7 @@ Brochure modules **preserved:** Core Python, Advanced Python (incl. decorators/g
 PDFs / optional share mirror (from **repo root**):
 
 ```bash
-./scripts/build.sh fullstack      # → PDF/FULL_STACK_PYTHON/  (same notes as class)
+./scripts/build.sh python         # → PDF/PYTHON/  (same notes as class)
 ./scripts/pack_student_share.sh   # optional zip mirror; excludes private folders only
 ```
 

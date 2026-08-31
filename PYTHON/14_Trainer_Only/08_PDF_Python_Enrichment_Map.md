@@ -1,13 +1,12 @@
-# Legacy Python notes — Removed
+# Python topic map
 
-**Status:** `PDF/PYTHON/` and source folder `PYTHON/` were **removed** from this repo.  
-Do **not** restore them as a parallel curriculum.
+**Status:** The Python program folder is **`PYTHON/`**. Student PDFs go to **`PDF/PYTHON/`**. SQL depth lives in **`MYSQL/`**.
 
-All Python teaching lives in **`FULL_STACK_PYTHON/`**. SQL depth lives in **`MYSQL/`**.
+Do **not** add a second Python curriculum beside this folder.
 
-## Where topics live now
+## Where topics live
 
-| Old topic (was PDF 01–20) | Use this instead |
+| Topic | Use this |
 |---|---|
 | Programming fundamentals | `01_Foundations/` + `02_Core_Python/01_…` |
 | Operators · I/O | `02_Core_Python/02_…` |
@@ -21,10 +20,10 @@ All Python teaching lives in **`FULL_STACK_PYTHON/`**. SQL depth lives in **`MYS
 | Files · Logging | `03_Advanced_Python/05_…` |
 | Database programming | `03_Advanced_Python/06_…` + Required MySQL labs (`MYSQL/`) |
 
-## Why we removed them
+## Why one pack
 
 - Two packs = double prep and conflicting examples.  
-- Legacy notes used outdated or unsafe patterns (`eval(input)`, bare `except`, `has_key`, etc.).  
-- Full Stack modules already include labs, assessments, visuals, and the placement path.
+- Older notes used outdated or unsafe patterns (`eval(input)`, bare `except`, `has_key`, etc.).  
+- These modules already include labs, assessments, visuals, and the placement path.
 
-**Source of truth for class and students:** `FULL_STACK_PYTHON/` only (+ share sibling `MYSQL/` for SQL weeks).
+**Source of truth for class and students:** `PYTHON/` only (+ share sibling `MYSQL/` for SQL weeks).

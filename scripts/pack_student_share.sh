@@ -8,8 +8,8 @@
 #   ./scripts/pack_student_share.sh java
 #
 # Output layout (paths match repo root so Prev/Next links work):
-#   dist/FULL_STACK_PYTHON_STUDENT/   or   dist/FULL_STACK_JAVA_STUDENT/
-#     FULL_STACK_PYTHON/ or FULL_STACK_JAVA/
+#   dist/PYTHON_STUDENT/   or   dist/JAVA_STUDENT/
+#     PYTHON/ or JAVA/
 #     FRONTEND/            # HTML/CSS/JS + FRONTEND/REACT/
 #     MYSQL/
 #     START_HERE.md
@@ -22,38 +22,38 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PROG="${1:-python}"
 
 case "$PROG" in
-  python|PYTHON|fullstack|FULL_STACK_PYTHON)
-    FOLDER="FULL_STACK_PYTHON"
-    DEST="$ROOT/dist/FULL_STACK_PYTHON_STUDENT"
+  python|PYTHON|fullstack)
+    FOLDER="PYTHON"
+    DEST="$ROOT/dist/PYTHON_STUDENT"
     TITLE="Python Full Stack"
-    PDF_HINT="PDF/FULL_STACK_PYTHON/"
+    PDF_HINT="PDF/PYTHON/"
     START_BODY='# Start here — Python Full Stack notes
 
 **One material:** these files match what trainers teach. Practice **Model answer** blocks are included.
 
 | Folder | What it is |
 |--------|------------|
-| `FULL_STACK_PYTHON/` | Python program (calendar, Django, labs, placement) |
+| `PYTHON/` | Python program (calendar, Django, labs, placement) |
 | `FRONTEND/` | Shared HTML / CSS / JS |
 | `FRONTEND/REACT/` | Shared React |
 | `MYSQL/` | Shared SQL labs (Weeks 10–11) |
 
 ## How you usually receive material
 
-Trainers share **one module PDF at a time** after that module is taught (from `PDF/FULL_STACK_PYTHON/…`; frontend days use `PDF/FRONTEND/`).  
+Trainers share **one module PDF at a time** after that module is taught (from `PDF/PYTHON/…`; frontend days use `PDF/FRONTEND/`).  
 This full folder is optional reference if your batch also gets a Drive/LMS zip.
 
-1. Open [`FULL_STACK_PYTHON/Session_Calendar_100.md`](FULL_STACK_PYTHON/Session_Calendar_100.md).  
+1. Open [`PYTHON/Session_Calendar_100.md`](PYTHON/Session_Calendar_100.md).  
 2. On frontend / React / SQL days, open the folder named in the calendar.  
 3. Type examples; use `labs/` or `15_Lab_Assets/` starters (not `solution/`).  
-4. Every even week, complete the matching paper in [`FULL_STACK_PYTHON/16_Assessments/`](FULL_STACK_PYTHON/16_Assessments/README.md) (student papers only — no `*_KEY`).  
-5. Capstone: [`FULL_STACK_PYTHON/Capstone_CampusCart_One_Pager.md`](FULL_STACK_PYTHON/Capstone_CampusCart_One_Pager.md).  
+4. Every even week, complete the matching paper in [`PYTHON/16_Assessments/`](PYTHON/16_Assessments/README.md) (student papers only — no `*_KEY`).  
+5. Capstone: [`PYTHON/Capstone_CampusCart_One_Pager.md`](PYTHON/Capstone_CampusCart_One_Pager.md).  
 
 **Not included:** `14_Trainer_Only/`, lab `solution/` folders, assessment `*_KEY.md` files.
 '
     README_BODY='# Python Full Stack — Shared Notes (same as class)
 
-**Schedule:** 20 weeks × 1h 15m — see Session Calendar inside `FULL_STACK_PYTHON/`.  
+**Schedule:** 20 weeks × 1h 15m — see Session Calendar inside `PYTHON/`.  
 **Shared topics:** `FRONTEND/` (includes `REACT/`), `MYSQL/`.
 
 ## Start
@@ -63,38 +63,38 @@ This full folder is optional reference if your batch also gets a Drive/LMS zip.
 Preferred delivery: module PDF after each teach day. See program README for teaching order.
 '
     ;;
-  java|JAVA|fullstack-java|full-stack-java|FULL_STACK_JAVA)
-    FOLDER="FULL_STACK_JAVA"
-    DEST="$ROOT/dist/FULL_STACK_JAVA_STUDENT"
+  java|JAVA|fullstack-java|full-stack-java)
+    FOLDER="JAVA"
+    DEST="$ROOT/dist/JAVA_STUDENT"
     TITLE="Java Full Stack"
-    PDF_HINT="PDF/FULL_STACK_JAVA/"
+    PDF_HINT="PDF/JAVA/"
     START_BODY='# Start here — Java Full Stack notes
 
 **One material:** these files match what trainers teach. Practice **Model answer** blocks are included.
 
 | Folder | What it is |
 |--------|------------|
-| `FULL_STACK_JAVA/` | Java program (calendar, Spring Boot, labs, placement) |
+| `JAVA/` | Java program (calendar, Spring Boot, labs, placement) |
 | `FRONTEND/` | Shared HTML / CSS / JS |
 | `FRONTEND/REACT/` | Shared React |
 | `MYSQL/` | Shared SQL labs (Weeks 10–11) |
 
 ## How you usually receive material
 
-Trainers share **one module PDF at a time** after that module is taught (from `PDF/FULL_STACK_JAVA/…`; frontend days use `PDF/FRONTEND/`).  
+Trainers share **one module PDF at a time** after that module is taught (from `PDF/JAVA/…`; frontend days use `PDF/FRONTEND/`).  
 This full folder is optional reference if your batch also gets a Drive/LMS zip.
 
-1. Open [`FULL_STACK_JAVA/Session_Calendar_100.md`](FULL_STACK_JAVA/Session_Calendar_100.md).  
+1. Open [`JAVA/Session_Calendar_100.md`](JAVA/Session_Calendar_100.md).  
 2. On frontend / React / SQL days, open the folder named in the calendar.  
 3. Type examples; use `labs/` or `15_Lab_Assets/` starters (not `solution/`).  
-4. Every even week, complete the matching paper in [`FULL_STACK_JAVA/16_Assessments/`](FULL_STACK_JAVA/16_Assessments/README.md) (student papers only — no `*_KEY`).  
-5. Capstone: [`FULL_STACK_JAVA/Capstone_CampusCart_One_Pager.md`](FULL_STACK_JAVA/Capstone_CampusCart_One_Pager.md).  
+4. Every even week, complete the matching paper in [`JAVA/16_Assessments/`](JAVA/16_Assessments/README.md) (student papers only — no `*_KEY`).  
+5. Capstone: [`JAVA/Capstone_CampusCart_One_Pager.md`](JAVA/Capstone_CampusCart_One_Pager.md).  
 
 **Not included:** `14_Trainer_Only/`, lab `solution/` folders, assessment `*_KEY.md` files.
 '
     README_BODY='# Java Full Stack — Shared Notes (same as class)
 
-**Schedule:** 20 weeks × 1h 15m — see Session Calendar inside `FULL_STACK_JAVA/`.  
+**Schedule:** 20 weeks × 1h 15m — see Session Calendar inside `JAVA/`.  
 **Shared topics:** `FRONTEND/` (includes `REACT/`), `MYSQL/`.
 
 ## Start

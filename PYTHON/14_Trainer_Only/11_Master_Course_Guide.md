@@ -60,7 +60,7 @@ flowchart TD
   K -.-> L[AI stretch optional]
 ```
 
-### Module index (detailed notes live under `FULL_STACK_PYTHON/`)
+### Module index (detailed notes live under `PYTHON/`)
 
 | # | Module folder / file | Phase | Memorize | Understand | Practise | Build |
 |---|----------------------|-------|----------|------------|----------|-------|
@@ -388,7 +388,7 @@ Score each dimension **0–10**. Passing job-ready bar: **≥ 35/50** and all Mu
 | **Independent** | Completes lab from notes without help |
 | **Interview-ready** | Explains trade-offs and answers related interview Qs |
 
-Trainer-only keys: `FULL_STACK_PYTHON/14_Trainer_Only/` (do **not** share with learners).
+Trainer-only keys: `PYTHON/14_Trainer_Only/` (do **not** share with learners).
 
 **Oral defense (10 min):** problem → demo → schema → one tough bug you fixed → what you’d add next.
 
@@ -397,7 +397,7 @@ Trainer-only keys: `FULL_STACK_PYTHON/14_Trainer_Only/` (do **not** share with l
 ## 8. How Trainers Use This Folder
 
 1. Start every batch with [Session Calendar](../Session_Calendar_100.md) + `COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md`.  
-2. Teach module files in numbered order under `FULL_STACK_PYTHON/` — same files students receive.  
+2. Teach module files in numbered order under `PYTHON/` — same files students receive.  
 3. SQL: follow **Required MySQL labs** in [01_MySQL_for_Full_Stack_Developers.md](../05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) — labs live in `MYSQL/` but are **required**, not optional extras.  
 4. Convert each module’s headings into PPT; labs → lab manual; graded checks → [`16_Assessments/`](../16_Assessments/) biweekly papers (not per-module MCQs).  
 5. Never skip GitHub, forms validation, auth, or Django lab days `06`–`07`.  

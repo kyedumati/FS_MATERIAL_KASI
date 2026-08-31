@@ -4,15 +4,15 @@
 
 **Shared topic** (Python FS + Java FS).
 
-**Previous (Python FS):** [APIs / DRF](../../FULL_STACK_PYTHON/09_APIs_REST/01_APIs_JSON_Postman_DRF.md)  
-**Previous (Java FS):** [REST DTOs and Postman](../../FULL_STACK_JAVA/09_Spring_Boot/04_REST_DTOs_Postman.md)  
+**Previous (Python FS):** [APIs / DRF](../../PYTHON/09_APIs_REST/01_APIs_JSON_Postman_DRF.md)  
+**Previous (Java FS):** [REST DTOs and Postman](../../JAVA/09_Spring_Boot/04_REST_DTOs_Postman.md)  
 **Next:** [React Hooks, Routing, API](02_React_Hooks_Routing_API_Deploy.md)
 
 ---
 
 ## Prerequisites
 
-- Node.js **20 LTS** (or 22 LTS) and npm — see the program [Python toolchain](../../FULL_STACK_PYTHON/Tested_Toolchain.md) or [Java toolchain](../../FULL_STACK_JAVA/Tested_Toolchain.md)
+- Node.js **20 LTS** (or 22 LTS) and npm — see the program [Python toolchain](../../PYTHON/Tested_Toolchain.md) or [Java toolchain](../../JAVA/Tested_Toolchain.md)
 - HTML/CSS/JS and JSON/REST from prior modules
 
 ---

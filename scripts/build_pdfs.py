@@ -22,7 +22,7 @@ from pygments.lexers import TextLexer, get_lexer_by_name, guess_lexer
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_COURSES = ("MYSQL",)
-NESTED_COURSES = ("FULL_STACK_PYTHON", "FULL_STACK_JAVA", "FRONTEND")  # recursive md tree; excludes trainer-only
+NESTED_COURSES = ("PYTHON", "JAVA", "FRONTEND")  # recursive md tree; excludes trainer-only
 TRAINER_ONLY_DIR_NAME = "14_Trainer_Only"
 STYLE_PATH = Path(__file__).resolve().parent / "pdf-style.css"
 MERMAID_CACHE_DIR = ROOT / ".cache" / "mermaid"
@@ -786,7 +786,7 @@ def main() -> int:
         if not md_path.exists():
             print(f"error: file not found: {md_path}", file=sys.stderr)
             return 1
-        # Prefer nested course root when under FULL_STACK_PYTHON / FULL_STACK_JAVA
+        # Prefer nested course root when under PYTHON / JAVA
         course_root = md_path.parent
         for part in md_path.resolve().relative_to(ROOT).parts:
             if part in NESTED_COURSES or part in DEFAULT_COURSES:

@@ -1,8 +1,8 @@
 # Module Writing Standard — Definition / Purpose Before Syntax
 
-**Purpose:** Keep `FULL_STACK_JAVA/` teachable for live class — Definition/Purpose, labs, and modern safe Java (without legacy note patterns).
+**Purpose:** Keep `JAVA/` teachable for live class — Definition/Purpose, labs, and modern safe Java (without legacy note patterns).
 
-**Reference:** Python FS [10_Module_Writing_Standard.md](../../FULL_STACK_PYTHON/14_Trainer_Only/10_Module_Writing_Standard.md) — same house style, Java code. Strong module target: Python `03_OOP_Part1_Classes_Encapsulation.md`.
+**Reference:** Python FS [10_Module_Writing_Standard.md](../../PYTHON/14_Trainer_Only/10_Module_Writing_Standard.md) — same house style, Java code. Strong module target: Python `03_OOP_Part1_Classes_Encapsulation.md`.
 
 ---
 

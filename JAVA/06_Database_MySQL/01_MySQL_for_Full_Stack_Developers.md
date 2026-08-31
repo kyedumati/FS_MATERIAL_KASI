@@ -6,7 +6,7 @@
 **Schedule:** [Session Calendar](../Session_Calendar_100.md) — Weeks 10–11 / Sessions 46–54 (JDBC follows in `07_JDBC/`).  
 **Java connectivity:** [`../07_JDBC/01_JDBC_CRUD.md`](../07_JDBC/01_JDBC_CRUD.md)
 
-> **Note:** This FS module is the **bridge** (ER, normalization, JDBC context). Placement-ready SQL depth is taught from **`MYSQL/`** during **Weeks 10–11**. Do not treat SQL as optional. Do not copy `MYSQL/` into `FULL_STACK_JAVA/`.
+> **Note:** This FS module is the **bridge** (ER, normalization, JDBC context). Placement-ready SQL depth is taught from **`MYSQL/`** during **Weeks 10–11**. Do not treat SQL as optional. Do not copy `MYSQL/` into `JAVA/`.
 
 **Previous module:** [Git and GitHub](../05_Git_GitHub/01_Git_and_GitHub.md)  
 **Next module:** [JDBC CRUD](../07_JDBC/01_JDBC_CRUD.md)

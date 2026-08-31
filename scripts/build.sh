@@ -2,11 +2,11 @@
 # Build PDFs from training Markdown files.
 # Usage:
 #   ./scripts/build.sh                    # MYSQL (default)
-#   ./scripts/build.sh fullstack          # FULL_STACK_PYTHON (teach + share same notes)
-#   ./scripts/build.sh java               # FULL_STACK_JAVA
+#   ./scripts/build.sh python             # PYTHON (teach + share same notes)
+#   ./scripts/build.sh java               # JAVA
 #   ./scripts/build.sh frontend           # shared FRONTEND/ (HTML/CSS/JS + React)
 #   ./scripts/build.sh mysql
-#   ./scripts/build.sh --force fullstack
+#   ./scripts/build.sh --force python
 
 set -euo pipefail
 
@@ -32,9 +32,11 @@ for arg in "$@"; do
     --force|-f)
       FORCE=true
       ;;
-    python|PYTHON)
-      echo "error: legacy PYTHON / PDF/PYTHON was removed. Use: $0 fullstack" >&2
-      exit 1
+    python|PYTHON|fullstack|full-stack|fs)
+      ARGS+=(--course PYTHON)
+      ;;
+    java|JAVA|fullstack-java|full-stack-java|fs-java)
+      ARGS+=(--course JAVA)
       ;;
     mysql|MYSQL)
       ARGS+=(--course MYSQL)
@@ -42,18 +44,12 @@ for arg in "$@"; do
     sql|SQL)
       ARGS+=(--course SQL)
       ;;
-    fullstack|FULL_STACK_PYTHON|full-stack|fs)
-      ARGS+=(--course FULL_STACK_PYTHON)
-      ;;
-    java|JAVA|fullstack-java|full-stack-java|fs-java|FULL_STACK_JAVA)
-      ARGS+=(--course FULL_STACK_JAVA)
-      ;;
     frontend|FRONTEND|fe)
       ARGS+=(--course FRONTEND)
       ;;
     *)
       echo "Unknown argument: $arg"
-      echo "Usage: $0 [--force] [fullstack|java|frontend|mysql|sql ...]"
+      echo "Usage: $0 [--force] [python|java|frontend|mysql|sql ...]"
       exit 1
       ;;
   esac

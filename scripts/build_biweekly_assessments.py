@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FS = ROOT / "FULL_STACK_PYTHON"
+FS = ROOT / "PYTHON"
 ASSESS = FS / "16_Assessments"
 FRONTEND = ROOT / "FRONTEND"
 
@@ -474,7 +474,7 @@ def strip_and_point(path: Path, bw_id: str, when: str, rel_prefix: str) -> bool:
 
 
 def rel_to_assessments(module_path: Path) -> str:
-    # FULL_STACK_PYTHON/xx/yy.md -> ../16_Assessments/ or ../../ etc
+    # PYTHON/xx/yy.md -> ../16_Assessments/ or ../../ etc
     depth = len(module_path.relative_to(FS).parts) - 1
     return "../" * depth + "16_Assessments/"
 
@@ -538,9 +538,9 @@ def main() -> None:
         if not path.exists():
             print("skip missing FRONTEND", rel)
             continue
-        # FRONTEND/01_HTML.md -> ../FULL_STACK_PYTHON/16_Assessments/
+        # FRONTEND/01_HTML.md -> ../PYTHON/16_Assessments/
         depth = len(Path(rel).parts) - 1
-        prefix = "../" * (depth + 1) + "FULL_STACK_PYTHON/16_Assessments/"
+        prefix = "../" * (depth + 1) + "PYTHON/16_Assessments/"
         if strip_and_point(path, bw_id, when, prefix):
             changed += 1
             print("updated FRONTEND/" + rel)
