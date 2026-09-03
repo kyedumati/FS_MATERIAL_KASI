@@ -11,6 +11,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Code to an interface (`Payable`) and let UPI or card fill `pay()`
+- Use an abstract class when some recipe is shared and some is not
+- Push Campus Wallet with packages that a recruiter can open
+
 **Teach order today:** abstract classes → interfaces (`implements`) → polymorphism (same call, many forms) → packages → Campus Wallet push.
 
 ---

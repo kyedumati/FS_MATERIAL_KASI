@@ -1,5 +1,11 @@
 # Joins
 
+**Module Outcome:**
+
+- Join students to courses (or orders to customers) instead of one giant table
+- Tell INNER from LEFT — missing matches stay or vanish on purpose
+- Read a join result and know which table each column came from
+
 So far we have learnt to analyse the data that is present in a single table. But in real-world scenarios, often the data is distributed in multiple tables. To fetch meaningful insights, we have to bring the data together by 'combining' the tables.
 
 We use **JOIN** clause to combine rows from two or more tables, based on a related column between them. Types of joins: Natural join, Inner join, Full Join, Cross Join, Left Join, Right Join.

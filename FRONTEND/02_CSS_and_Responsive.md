@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Style a card and a form without inline `style=` soup
+- Make a layout that still works on a phone (flex / media queries)
+- Separate look from HTML so TechMart and AcmeHR can share a palette
+
 **CSS** controls **how HTML looks**: colors, fonts, spacing, layout. HTML says "this is a button"; CSS says "blue, rounded, centered."
 
 | Method | When |

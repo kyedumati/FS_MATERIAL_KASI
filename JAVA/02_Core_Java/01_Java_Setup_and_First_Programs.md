@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Install JDK 17, compile with `javac`, run with `java` — no mystery IDE button
+- Write `Hello` as a class with `main` and explain bytecode + JVM in one line
+- Know why the same `.class` runs on Windows, macOS, and the lab PC
+
 ### Why Java?
 
 **Java** is a programming language first released in 1995. It is **compiled** to **bytecode**, then run by the **Java Virtual Machine (JVM)** — so the same `.class` files can run on Windows, macOS, and Linux.

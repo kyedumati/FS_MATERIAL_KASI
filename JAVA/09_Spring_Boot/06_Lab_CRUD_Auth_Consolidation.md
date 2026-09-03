@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Freeze the API: 401 before 400, owner rules, statuses a demo can show
+- Break a classmate’s auth on purpose — then fix yours
+- Leave a demo bundle (Postman + README) a recruiter could follow
+
 **Teach order today:** what consolidation *is* → end-to-end glue path → feature freeze IN/OUT → must-pass statuses (401 before 400) → peer break-auth → demo bundle.
 
 ---

@@ -5,6 +5,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Write a unittest that fails first, then proves the fix
+- Read a traceback and fix the line — not the symptom
+- Leave code a teammate can review: names, small functions, no mystery `x`
+
 ### Why testing and clean code?
 
 In Indian IT interviews and on the job, you will:

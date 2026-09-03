@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Decide like an ATM: withdraw only if the PIN and balance allow it
+- Repeat work with `while` / `for` instead of copy-pasting the same lines
+- Build a small menu (pass/fail, cart check, retry) that does not run in a straight line
+
 ### Why flow control?
 
 Programs rarely run in one straight line. A **student portal** must check login, an **ATM** repeats until user exits, and a **task manager** loops through tasks.

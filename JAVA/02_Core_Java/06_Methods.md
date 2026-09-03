@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Name a job (`withdraw`) and call it instead of pasting the ATM check twice
+- Pass arguments and return a value — `void` vs `int` with intent
+- Overload when the same job takes different inputs (amount vs amount+note)
+
 ### What is a method?
 
 A **method** is a named block of code that does one job. You **call** it when you need that job.

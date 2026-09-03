@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Let Maven fetch jars so you are not hunting a driver on the desktop
+- `mvn spring-boot:run` a Hello JSON endpoint on `:8080`
+- Keep secrets in env / `.env.example` — not in `application.yml` on GitHub
+
 **Teach order today:** classpath pain → Maven GAV + wrapper → Boot 3 parent + `starter-web` → Initializr / paste pom → `@SpringBootApplication` + `mvn spring-boot:run` → `application.yml` → `.env.example` → `@RestController` Hello + health JSON.
 
 ---

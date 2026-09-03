@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Name a labelled box (`student_name = "Ravi"`) and know what type is inside
+- Do money and marks maths with operators — and print a clear result
+- Read from `input()` and write a line the user can actually understand
+
 ### What is a variable?
 
 A **variable** is a name that points to a value stored in memory. Think of it as a labelled box: the label is `student_name`, the contents are `"Ravi Kumar"`.

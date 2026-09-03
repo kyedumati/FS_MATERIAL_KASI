@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Polymorphism — override, duck typing, no Java-style overloading
+- Readable objects with `__str__`
+- SecureBank BankAccount CLI (mini-project)
+
 ## Motivation — Feel the pain of `if payment_type == ...`
 
 Checkout code without polymorphism often looks like this:

@@ -7,6 +7,15 @@
 
 ---
 
+**Module Outcome:**
+
+- User-defined functions (`def`, `return`)
+- Types of arguments (positional, keyword, default, `*args` / `**kwargs`)
+- Scope — local vs global (LEGB)
+- Lambda, `map` / `filter` / `reduce`
+- Decorators
+- Generators
+
 ## Motivation — Feel the pain of copy-paste
 
 Look at this ATM-style script. The same `amount <= 0` check appears in every action:

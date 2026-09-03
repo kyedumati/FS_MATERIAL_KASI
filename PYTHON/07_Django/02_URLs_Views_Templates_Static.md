@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Map `/blog/` to a view and send HTML back — URL, view, template as one path
+- Pass context into a template without hard-coding Priya in three places
+- Serve CSS/images as static files, not as copy-pasted `<style>` in every page
+
 ### What Happens When User Opens a Page?
 
 1. Browser sends **HTTP request** to URL like `http://127.0.0.1:8000/blog/`

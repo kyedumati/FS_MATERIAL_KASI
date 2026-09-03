@@ -6,6 +6,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Look up a contact, SKU, or roll number by **key** — not by scanning a list
+- Add, update, and guard missing keys so a MedCare form does not explode
+- Nest a dict when one person has many fields (name, marks, phone)
+
 A **dictionary** is like a real dictionary or phone contacts app:
 
 - You look up a **word (key)** and get a **meaning (value)**.

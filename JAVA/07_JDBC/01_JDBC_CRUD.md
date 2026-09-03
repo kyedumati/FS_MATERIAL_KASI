@@ -11,6 +11,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Open a MySQL connection with try-with-resources and a URL you can explain
+- Run SELECT / INSERT / UPDATE / DELETE through `PreparedStatement` — never string-glue SQL
+- Push library CRUD that uses the tables you already modelled
+
 **Teach order today:** CSV vs shared MySQL → driver + JDBC URL + classpath → `Connection` + try-with-resources → secrets → `PreparedStatement` SELECT → `ResultSet` → INSERT / UPDATE / DELETE → SQL-injection note → library CRUD push.
 
 ---

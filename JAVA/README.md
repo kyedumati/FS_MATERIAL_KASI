@@ -79,6 +79,7 @@
 
 Every teaching module follows the same shape:
 
+- **Module Outcome** (3–5 can-do bullets) right after the header
 - **Definition** / **Purpose** before syntax
 - Important concepts with **Try these (2 programs)** + runnable Java (JDK 17); MySQL bridge Try these are SQL (depth in `MYSQL/`)  
 - Step-by-step annotated code  

@@ -1,5 +1,11 @@
 # Views and Subqueries
 
+**Module Outcome:**
+
+- Name a query as a view so the next person does not rewrite a 20-line SELECT
+- Nest a subquery when a join would be noisier
+- Know a view is not a second copy of the data
+
 **Note:** This chapter uses **MySQL** syntax. String literals use single quotes (`'value'`).
 
 ## Views

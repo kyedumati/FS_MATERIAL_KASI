@@ -13,6 +13,13 @@
 
 ---
 
+**Module Outcome:**
+
+- Class, object, `self`, `__init__`
+- Instance / class / local variables
+- Instance / class / static methods
+- Encapsulation (`_`, `__`, `@property`)
+
 ## Motivation — Feel the pain of dicts + free functions
 
 Look at this student tracker. Data lives in a dict; behaviour lives in separate functions:

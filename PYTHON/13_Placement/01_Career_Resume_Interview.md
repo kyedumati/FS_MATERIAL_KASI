@@ -8,6 +8,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Tell a 60-second story of CampusCart that a recruiter can repeat
+- Pin two repos with README, screenshot, and stack — not a dump of class files
+- Walk a mock interview on your own code, not a memorised definition
+
 ## Prerequisites
 
 - Near-complete course projects on GitHub

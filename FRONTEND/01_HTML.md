@@ -8,6 +8,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Build the skeleton of a page: headings, lists, links, images, a real form
+- Mark up CampusCart / TechMart meaning — not just “make it look like a site”
+- Know HTML is structure; CSS and JS come next, Django/Spring will emit this later
+
 **HTML** describes the **structure and meaning** of a web page — not Python, not CSS. The browser renders HTML; **CSS** styles it (next module); **JavaScript** makes it interactive.
 
 Full-stack flow: `Browser (HTML/CSS/JS) → Django/Python → MySQL`

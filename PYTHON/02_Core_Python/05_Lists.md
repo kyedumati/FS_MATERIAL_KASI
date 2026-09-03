@@ -6,6 +6,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Keep a TechMart cart or attendance register in order — add, swap, remove
+- Index from `0`, loop items, and know when a list is the right bag
+- Mutate in place without accidentally aliasing two carts together
+
 Think of a **list** like a numbered shopping cart or a attendance register:
 
 - Items stay in the **order** you add them (first product added appears first).

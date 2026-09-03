@@ -5,6 +5,13 @@
 **Previous module:** [Modules and Packages](02_Modules_and_Packages.md)  
 **Next module:** [Exception Handling](04_Exception_Handling.md) (after Part 4)
 
+**Module Outcome:**
+
+- Part 1 — classes and encapsulation
+- Part 2 — inheritance and composition
+- Part 3 — polymorphism and BankAccount CLI
+- Part 4 — abstract classes, interfaces, Campus Wallet
+
 This module is split for slow-pace teaching (Functions-style depth: Motivation → Definition/Purpose → concepts with **Try these** → annotated examples → practice → project). Use the parts in order:
 
 | Part | File | Focus |

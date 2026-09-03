@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Explain an API as “React does not touch MySQL — it asks Django for JSON”
+- Hit list/create/update/delete in Postman against a DRF endpoint
+- Return a clean JSON contract a frontend can trust
+
 ### What is an API?
 
 An **API (Application Programming Interface)** is a agreed way for programs to talk to each other. Your React app does not read the database directly — it calls the Django **API**, which returns **JSON** data.

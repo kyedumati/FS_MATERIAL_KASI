@@ -7,6 +7,13 @@
 
 ---
 
+**Module Outcome:**
+
+- Architecture (script → connector → database)
+- Setup and connection parameters
+- Parameterized query pattern
+- CRUD mapping
+
 ## Prerequisites
 
 - Local or lab MySQL with a practice database (e.g. `training_db`)

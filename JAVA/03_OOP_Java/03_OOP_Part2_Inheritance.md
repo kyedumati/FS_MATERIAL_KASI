@@ -11,6 +11,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Say **IS-A**: SavingsAccount extends Account — reuse, then specialise
+- Call `super()` and override without copying the parent
+- Reach for HAS-A when a class is not really a kind of another class
+
 **Teach order today:** Inheritance basics → **types of inheritance (with diagrams)** → overriding → `protected` → then HAS-A / composition as the alternative.
 
 ---

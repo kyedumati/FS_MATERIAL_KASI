@@ -1,5 +1,11 @@
 # Transactions and Indexes
 
+**Module Outcome:**
+
+- Wrap a SecureBank transfer in a transaction — both rows or neither
+- Say ACID in examples, not slogans
+- Add an index where a lookup is slow — and not on every column “just in case”
+
 ## Transactions
 
 A transaction is a logical group of one or more SQL statements. Transactions are used in various scenarios such as banking, ecommerce, social networks, booking tickets, etc.

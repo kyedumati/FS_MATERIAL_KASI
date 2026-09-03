@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Tell AuthN from AuthZ in one sentence
+- Register / login, hash with BCrypt, and send a JWT
+- Protect POST so a stranger cannot create TechMart products
+
 **Teach order today:** AuthN vs AuthZ → BCrypt → `SecurityFilterChain` → `AppUser` + register/login → JWT Bearer → protect POST.
 
 ---

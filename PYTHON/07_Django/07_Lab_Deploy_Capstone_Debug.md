@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Get `check --deploy` green (or a written blocked-by-platform note)
+- Put a live or staging URL on the Done when list — or document why not
+- Debug one real fail (static, env, allowed hosts) instead of reinstalling Django
+
 ## Must-pass checklist
 
 ### Done when

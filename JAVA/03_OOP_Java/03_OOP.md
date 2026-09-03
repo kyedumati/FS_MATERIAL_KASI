@@ -5,6 +5,12 @@
 **Previous module:** [Methods](../02_Core_Java/06_Methods.md)  
 **Next module:** [Collections](../04_Collections_Exceptions_IO/01_Collections.md)
 
+**Module Outcome:**
+
+- Know the three-part map: class → inherit → abstract / interface / polymorphism
+- Open Part 1 today — Java OOP is heavier than the Python block
+- Point BankAccount and Campus Wallet to the right part
+
 This module is split for slow-pace teaching (Definition/Purpose depth: Motivation → concepts with **Try these** → annotated examples → practice → project). Java OOP is **heavier** than the Python OOP block — use the parts in order:
 
 | Part | File | Focus |

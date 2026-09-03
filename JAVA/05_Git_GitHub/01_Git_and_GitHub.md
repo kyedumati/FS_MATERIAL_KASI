@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Commit, branch, and push a Maven project so the lab is not on one USB stick
+- Put a clean repo on GitHub a recruiter can clone
+- Gitignore `target/`, `.idea`, and secrets — they are not portfolio
+
 ## Prerequisites
 
 - Git installed (`git --version`) and a free GitHub account

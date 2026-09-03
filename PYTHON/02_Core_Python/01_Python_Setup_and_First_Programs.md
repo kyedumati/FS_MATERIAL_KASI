@@ -5,6 +5,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Run Python on your machine (REPL and a `.py` file) without guessing
+- Print, comment, and save a tiny script you can show a classmate
+- Know why Python is the language this course builds on
+
 ### Why Python?
 
 **Python** is a programming language created by Guido van Rossum (first released 1991). It reads almost like English, which helps learners learn faster than lower-level languages.

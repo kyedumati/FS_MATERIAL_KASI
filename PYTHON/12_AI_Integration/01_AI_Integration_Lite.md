@@ -8,6 +8,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Optional: call one AI/ML API or demo from a form you already shipped
+- Never let this module delay a deployed Django app or SQL comfort
+- Keep secrets in env — the API key is not a GitHub souvenir
+
 ## Prerequisites
 
 - **Optional stretch module** — only after Flask/Django API + a simple frontend form/`fetch`

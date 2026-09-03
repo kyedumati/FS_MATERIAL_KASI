@@ -566,6 +566,16 @@ code.kw-method {
   color: #047857;
 }
 
+.callout-outcome {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-left: 4px solid #1d4ed8;
+}
+
+.callout-outcome > p > strong:first-child {
+  color: #1e40af;
+}
+
 .callout-revision {
   background: #fff7ed;
   border: 1px solid #fed7aa;

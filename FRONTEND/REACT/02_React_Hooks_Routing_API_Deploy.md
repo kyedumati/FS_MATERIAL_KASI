@@ -10,6 +10,12 @@
 
 ---
 
+**Module Outcome:**
+
+- `useEffect` to fetch JSON, routes for more than one screen
+- Talk to Django DRF or Spring Boot — and debug CORS instead of guessing
+- Deploy the frontend (or document the blocked path) so the API is not localhost-only
+
 ## Prerequisites
 
 - React Fundamentals completed

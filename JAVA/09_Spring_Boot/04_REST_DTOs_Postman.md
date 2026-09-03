@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Stop leaking the entity as JSON — map request/response DTOs by hand
+- Reject bad POST bodies with `@Valid` and a clear 400
+- Save a Postman collection v1 and remember CORS for Vite `:5173` → `:8080`
+
 **Teach order today:** entity-as-JSON pain → request / response DTOs + manual map → `starter-validation` + `@Valid` on POST → lite 400 advice → Postman collection v1 → CORS recap (Vite `:5173` → `:8080`).
 
 ---

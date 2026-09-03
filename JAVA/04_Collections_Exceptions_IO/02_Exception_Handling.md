@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Catch a bad age or PIN without dumping a stack on the user
+- Tell checked vs unchecked, `throw` vs `throws`, and why `finally` still runs
+- Write a named business exception and close a `Scanner` with try-with-resources
+
 **Teach order today:** crash pain → `try` / `catch` → several catch blocks → `finally` → `throw` → `throws` + checked vs unchecked → custom exceptions → try-with-resources (`Scanner`) → Safe Age push.
 
 ---

@@ -4,6 +4,12 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 
 ---
 
+**Module Outcome:**
+
+- Drill each chapter against `training_db` until the syntax is in your fingers
+- Write the query first, then check — not copy from a neighbour
+- Treat this file as gym work, not a new topic
+
 ## Chapter 01 — Introduction to Databases
 
 1. Explain the difference between **data**, **database**, and **DBMS** in your own words.

@@ -7,6 +7,16 @@
 
 ---
 
+**Module Outcome:**
+
+- Type of errors — syntax vs runtime vs logical
+- What an exception is, and why we handle it
+- `try` / `except` — risky attempt and named recovery
+- Catching multiple exceptions
+- `else` and `finally` — success path vs cleanup
+- `raise` and custom exception classes
+- Common built-in exceptions
+
 ### Three kinds of errors:
 
 **1. Syntax error** — Python cannot even read the program. Missing `:`, `if pin = 1234` instead of `==`, a keyword used as a name. The file never really starts. 
@@ -46,8 +56,6 @@ Python’s everyday word for a runtime failure is **exception**. Handling them �
 - `try`/`except` around a syntax error in the **same** file does not work; Python never reaches `try`.
 - A wrong business formula is not an exception until you **raise** one on purpose (`raise ValueError(...)`).
 
-
-
 ### What is an exception?
 
 A runtime error packaged as an **object** with a type (`ValueError`, `ZeroDivisionError`, `FileNotFoundError`) and a message. If nobody handles it, Python **stops** and prints a traceback.
@@ -60,14 +68,14 @@ Think of an ATM: wrong PIN should not “explode” the machine — it shows “
 
 Python gives you **four keywords** for that story. Learn what each one is *for* before memorising the layout.
 
-**`try`** — The risky attempt. Only the lines that might fail belong here: `int(pin)`, split a bill, look up a dict key. Keep it short. If `try` is 40 lines, you will not know which line raised.
+`**try**` — The risky attempt. Only the lines that might fail belong here: `int(pin)`, split a bill, look up a dict key. Keep it short. If `try` is 40 lines, you will not know which line raised.
 
-**`except`** — Named recovery. “If this **type** of failure happened, do this instead of crashing.”  
+`**except**` — Named recovery. “If this **type** of failure happened, do this instead of crashing.”  
 `except ValueError as e` binds the error object to `e` so you can print the message (`e`) or the type (`type(e).__name__`). You may stack several `except` blocks — Python uses the **first match**, so put specific types (`ValueError`) above broad ones (`Exception`). When two types share the same recovery, use a tuple: `except (TypeError, ValueError) as e:`.
 
-**`else`** — The success path. Runs only when `try` finished with **no** exception. Put “PIN accepted — show the menu” here, not inside `try`. If that success code later bugs, `except` will not swallow it and pretend the PIN failed.
+`**else**` — The success path. Runs only when `try` finished with **no** exception. Put “PIN accepted — show the menu” here, not inside `try`. If that success code later bugs, `except` will not swallow it and pretend the PIN failed.
 
-**`finally`** — Cleanup that **always** runs: success, caught error, even `return` from a function. ATM: return the card. UPI: log that an attempt happened. Do not put business decisions here (`if paid: ship_order()` belongs in `else`).
+`**finally**` — Cleanup that **always** runs: success, caught error, even `return` from a function. ATM: return the card. UPI: log that an attempt happened. Do not put business decisions here (`if paid: ship_order()` belongs in `else`).
 
 ```mermaid
 flowchart TD
@@ -82,18 +90,22 @@ flowchart TD
   C -->|No| TB[Traceback]
 ```
 
+
+
 **Key takeaways:**
 
 - `try` = attempt · `except` = recover by type · `else` = it worked · `finally` = cleanup
 - `else` is skipped when any exception was raised in `try`
 - `finally` still runs if you `return` inside `try` or `except`
 
-| Piece | Runs when | Typical job |
-| ----- | --------- | ----------- |
-| `try` | Always entered first | Risky work only |
-| `except` | Matching type raised in `try` | Message, retry, fallback |
-| `else` | `try` succeeded (no exception) | Receipt, next screen |
-| `finally` | Always, after the others | Return card, close, log |
+
+| Piece     | Runs when                      | Typical job              |
+| --------- | ------------------------------ | ------------------------ |
+| `try`     | Always entered first           | Risky work only          |
+| `except`  | Matching type raised in `try`  | Message, retry, fallback |
+| `else`    | `try` succeeded (no exception) | Receipt, next screen     |
+| `finally` | Always, after the others       | Return card, close, log  |
+
 
 **Remember:** Bare `except:` also catches Ctrl+C — never use it. Catch specific types.
 
@@ -111,11 +123,7 @@ flowchart TD
 
 ---
 
-
-
 ## Important Concepts
-
-
 
 ### 1. try and except — risky attempt, named recovery
 
@@ -147,6 +155,7 @@ Cannot divide by zero.
 `except ValueError as e` binds the object so you can print a useful message. First matching `except` wins — list **specific** types before a broad `Exception`.
 
 **Note:**
+
 - Bare `except:` catches `KeyboardInterrupt` and hides bugs — catch specific exceptions.
 - Swallowing exceptions with empty `except: pass` — log and handle, or re-raise.
 - Using exceptions for flow control is slow and unreadable — use if/else for expected cases.
@@ -195,8 +204,6 @@ Each pays ₹125.00
 Cannot split among 0 friends
 ```
 
-
-
 ### 2. Catching multiple exceptions
 
 **Definition:** One handler for several related error types, or several handlers when recovery differs.  
@@ -223,6 +230,7 @@ except ValueError:
 ```
 
 **Note:**
+
 - Over-broad `except Exception` masks real bugs — catch narrow types first.
 - Wrong: `except ValueError, KeyError:` (old Python 2) — that is not a tuple. Use `except (ValueError, KeyError):`.
 
@@ -276,8 +284,6 @@ Age: 21
 Bad age data: ValueError invalid literal for int() with base 10: 'twenty'
 Bad age data: KeyError 'age'
 ```
-
-
 
 ### 3. else and finally — success path vs cleanup
 
@@ -338,6 +344,7 @@ Split attempt finished
 ```
 
 **Note:**
+
 - `return` inside `finally` can suppress exceptions — keep `finally` for cleanup only.
 - `else` does not run if `try` raised, even if `except` handled it.
 
@@ -400,8 +407,6 @@ finally still runs before the return completes
 Result: success
 ```
 
-
-
 ### 4. raise — intentional errors
 
 **Definition:** You create an error on purpose when input or state is invalid.  
@@ -433,6 +438,7 @@ Withdraw failed: Not enough balance
 ```
 
 **Note:**
+
 - Raise a specific type (`ValueError`, or your custom class) — not a bare string (`raise "oops"` is invalid).
 - After `raise`, the rest of that function does not run.
 
@@ -483,8 +489,6 @@ Booked 2 seat(s). Left: 3
 Booking failed: Not enough seats
 ```
 
-
-
 ### 5. Custom exception class
 
 **Definition:** A class you write that inherits from `Exception`, named for a **business** failure.  
@@ -505,6 +509,7 @@ class InvalidAccountError(Exception):
 Use it like any built-in: `raise InsufficientBalanceError("Not enough balance")`, then `except InsufficientBalanceError as e:`.
 
 **Note:**
+
 - Custom exception not inheriting `Exception` → not caught as expected — always inherit `Exception`.
 - Empty `pass` is enough at first; add `__init__` when you need extra fields (`account_id`, `roll`).
 
@@ -570,23 +575,23 @@ Anita
 Error: Roll not found: 999 | roll attr: 999
 ```
 
-
-
 ### 6. Common built-in exceptions
 
 **Definition:** Types Python already raises. You catch them by name.  
 **Purpose:** The type tells you *what* went wrong so the message can tell the user *what to do*.
 
-| Exception | Typical cause |
-| --------- | ------------- |
-| `ValueError` | Wrong value (`int("abc")`) |
-| `TypeError` | Wrong type operation (`"a" + 1`) |
-| `IndexError` | Invalid list index |
-| `KeyError` | Missing dict key |
-| `FileNotFoundError` | File missing (you will use this a lot in File Handling) |
-| `ZeroDivisionError` | `/` or `//` by zero |
-| `AttributeError` | Missing attribute/method |
-| `ImportError` / `ModuleNotFoundError` | Import failure |
+
+| Exception                             | Typical cause                                           |
+| ------------------------------------- | ------------------------------------------------------- |
+| `ValueError`                          | Wrong value (`int("abc")`)                              |
+| `TypeError`                           | Wrong type operation (`"a" + 1`)                        |
+| `IndexError`                          | Invalid list index                                      |
+| `KeyError`                            | Missing dict key                                        |
+| `FileNotFoundError`                   | File missing (you will use this a lot in File Handling) |
+| `ZeroDivisionError`                   | `/` or `//` by zero                                     |
+| `AttributeError`                      | Missing attribute/method                                |
+| `ImportError` / `ModuleNotFoundError` | Import failure                                          |
+
 
 **Try these (2 programs):**
 
@@ -659,7 +664,6 @@ ValueError
 ```
 
 ---
-
 
 ## Step-by-Step Annotated Python 3 Code
 
@@ -884,7 +888,7 @@ except ZeroDivisionError:
     print("Cannot divide by zero")
 ```
 
-2. Catch `ValueError` when converting a string to float.
+1. Catch `ValueError` when converting a string to float.
 
 **Model answer:**
 
@@ -897,7 +901,7 @@ except ValueError:
     print("Not a valid number")
 ```
 
-3. Use `try/except` when accessing a dict key — prefer `.get()` too.
+1. Use `try/except` when accessing a dict key — prefer `.get()` too.
 
 **Model answer:**
 
@@ -925,7 +929,7 @@ def safe_divide(a, b):
         return None
 ```
 
-2. Create `InvalidEmailError` and a validator function.
+1. Create `InvalidEmailError` and a validator function.
 
 **Model answer:**
 
@@ -940,7 +944,7 @@ def validate_email(email):
     return email
 ```
 
-3. SecureBank PIN using `try` / `except` / `else` / `finally`.
+1. SecureBank PIN using `try` / `except` / `else` / `finally`.
 
 **Model answer:**
 
@@ -965,17 +969,17 @@ finally:
 **Model answer:**
 `except Exception` catches almost all application errors but not system exits like `KeyboardInterrupt`/`SystemExit`. Bare `except:` catches everything including those, which can hide bugs and block clean shutdown — avoid it.
 
-2. When to create custom exceptions?
+1. When to create custom exceptions?
 
 **Model answer:**
 Create them when callers need to distinguish your domain failure (e.g. `InvalidEmailError`) from generic errors and handle it specifically. Prefer a clear hierarchy under `Exception` over overloading `ValueError` for every case.
 
-3. What happens if an exception is raised in the `finally` block?
+1. What happens if an exception is raised in the `finally` block?
 
 **Model answer:**
 An exception raised in `finally` replaces any pending exception from the `try`/`except` block. The original error is lost unless you explicitly chain or log it before the `finally` raises.
 
-4. Why put success work in `else` instead of at the end of `try`?
+1. Why put success work in `else` instead of at the end of `try`?
 
 **Model answer:**
 If success code lives in `try` and later raises, `except` may catch it and report the wrong failure (e.g. “Invalid PIN” when the PIN was fine). `else` runs only after `try` fully succeeded, so that mix-up cannot happen.
@@ -989,12 +993,14 @@ If success code lives in `try` and later raises, `except` may catch it and repor
 
 ### What to build
 
-| Feature | Detail |
-| ------- | ------ |
-| `InvalidAgeError` | Custom exception for age outside 1–120 |
-| `read_age(raw)` | `int` conversion; raise `ValueError` on non-int; raise `InvalidAgeError` on range |
-| Demo loop | Test `"21"`, `"abc"`, `"0"`, `"200"` without a traceback for expected cases |
-| Clear messages | Print exception type + message |
+
+| Feature           | Detail                                                                            |
+| ----------------- | --------------------------------------------------------------------------------- |
+| `InvalidAgeError` | Custom exception for age outside 1–120                                            |
+| `read_age(raw)`   | `int` conversion; raise `ValueError` on non-int; raise `InvalidAgeError` on range |
+| Demo loop         | Test `"21"`, `"abc"`, `"0"`, `"200"` without a traceback for expected cases       |
+| Clear messages    | Print exception type + message                                                    |
+
 
 **Sample:**
 
@@ -1050,3 +1056,4 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Catch specific types (timeout vs invalid amount vs insufficient balance), map them to clear messages, log, and re-raise or return a safe result. Use a small hierarchy (`PaymentError` / `GatewayTimeoutError`) so callers can treat “any payment issue” or one subtype.
 
 ---
+

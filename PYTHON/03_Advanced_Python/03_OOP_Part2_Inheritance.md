@@ -13,6 +13,14 @@
 
 ---
 
+**Module Outcome:**
+
+- Inheritance basics — IS-A, parent / child, `super()`
+- Types of inheritance (single, multilevel, hierarchical, multiple)
+- Method overriding
+- HAS-A (composition)
+- `isinstance` (guards, not type-switch trees)
+
 **Teach order today:** Inheritance basics → **types of inheritance (with diagrams)** → overriding → then HAS-A / composition as the alternative.
 
 ---

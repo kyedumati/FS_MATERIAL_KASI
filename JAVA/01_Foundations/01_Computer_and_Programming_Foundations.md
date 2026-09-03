@@ -6,6 +6,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Trace any app as **input → process → output** (roll number in, marks out)
+- Tell hardware, OS, and a program apart — and why we write code at all
+- Use bits, files, and a terminal well enough to survive JDK setup
+
 ### What is a computer?
 
 A **computer** is a machine that takes **input**, processes it using rules, and gives **output**. When you open a student portal on your phone, you type a roll number (input), the server checks the database (processing), and shows your marks (output).

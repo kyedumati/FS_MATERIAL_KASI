@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Walk a request from browser to your `@RestController` in oral English
+- Contrast Servlet vs Spring in five bullets — not a history lecture
+- Say `jakarta.*` and “Boot ships the server in a JAR” without freezing
+
 **Teach order today:** what the map *is* → why interviews still say Servlet → oral request path → five contrasts → `jakarta.*` + JAR (module 01 mapped, not flipped).
 
 ---

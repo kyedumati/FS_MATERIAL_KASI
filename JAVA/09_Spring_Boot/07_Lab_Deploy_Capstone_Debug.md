@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Prove health (Actuator or `/health`) and env on a host, not only on localhost
+- Attempt PaaS and write what blocked you if it did
+- Park capstone M0 so Week 18 is not a blank repo
+
 **Teach order today:** what deploy/debug *is* → Actuator health vs handmade `/health` → profiles / env on a host → debug playbook → PaaS attempt → capstone M0.
 
 ---

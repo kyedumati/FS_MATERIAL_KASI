@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Describe a table as a Python class and let Django talk SQL
+- Create / list / update rows without writing raw INSERT in the view
+- Use Admin to poke CampusCart data while you build the public pages
+
 ### What is a Model?
 
 A **model** is a Python class describing **database table structure**. Each **attribute** on the class becomes a **column**. Django **ORM** (Object-Relational Mapper) translates Python operations to SQL.

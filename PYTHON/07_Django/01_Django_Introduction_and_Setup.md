@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- `startproject`, run the server, and know what each default file is for
+- See request → Django → response as a story, not magic
+- Point settings at MySQL the safe way (`os.environ`) before writing views
+
 ## Prerequisites
 
 - MySQL 8+ available locally or on the lab server

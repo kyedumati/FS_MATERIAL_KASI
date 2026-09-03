@@ -81,6 +81,7 @@
 
 Every teaching module follows the same shape:
 
+- **Module Outcome** (3–5 can-do bullets) right after the header
 - **Definition** / **Purpose** before syntax
 - Important concepts with **Try these (2 programs)** + runnable code (Core / Advanced Python; expanding elsewhere)  
 - Step-by-step annotated code  

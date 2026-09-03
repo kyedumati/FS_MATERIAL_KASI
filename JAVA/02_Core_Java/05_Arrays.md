@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Store a fixed list of marks or prices and loop by index from `0`
+- Know length vs last index so `ArrayIndexOutOfBounds` is not a surprise
+- Leave `ArrayList` for Collections week — today is the raw array
+
 **Collections** (`ArrayList`) are a later module. Stay on arrays.
 
 ---

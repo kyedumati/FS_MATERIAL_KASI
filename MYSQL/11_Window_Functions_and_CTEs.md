@@ -6,6 +6,12 @@ Window functions perform calculations across a set of rows **related to the curr
 
 ---
 
+**Module Outcome:**
+
+- Rank or running-total **without** collapsing rows like GROUP BY
+- Name a CTE with `WITH` so a nested mess becomes a story
+- Remember this needs MySQL 8 — lab PCs on 5.7 will lie to you
+
 ## Window Functions Overview
 
 Unlike aggregate functions with `GROUP BY`, window functions keep all rows and add a computed column.

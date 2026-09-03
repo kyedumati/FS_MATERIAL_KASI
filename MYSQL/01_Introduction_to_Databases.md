@@ -1,5 +1,11 @@
 # Introduction to Databases
 
+**Module Outcome:**
+
+- Say data vs database vs DBMS without mixing the three
+- Pick relational vs document for a real app (CampusCart vs a chat log)
+- Know why this course lives in MySQL tables, not a spreadsheet forever
+
 ## Concepts in Focus
 
 - Data

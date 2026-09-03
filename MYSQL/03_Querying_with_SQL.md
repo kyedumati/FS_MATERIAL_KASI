@@ -1,5 +1,11 @@
 # Querying with SQL
 
+**Module Outcome:**
+
+- Filter TechMart products with WHERE, comparison, LIKE, and IN
+- Sort and limit so a catalogue page is not 10,000 rows
+- Write a SELECT you could paste into Workbench and trust
+
 **Note:** This chapter uses **MySQL** syntax. String literals use single quotes (`'value'`).
 
 ## Comparison Operators

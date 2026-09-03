@@ -1,5 +1,11 @@
 # Introduction to SQL (Basic Concepts)
 
+**Module Outcome:**
+
+- Place a command in DDL / DML / DQL / DCL / TCL — not “SQL is SELECT”
+- Create a small table and insert a row with MySQL quotes (`'Ravi'`)
+- Treat SQL as declaring *what* you want, not looping like Python
+
 ## Introduction to SQL [Basics]
 
 - SQL stands for **Structured Query Language**.

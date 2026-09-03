@@ -11,6 +11,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Turn loose fields + static methods into a class with `new`, `this`, and a constructor
+- Hide balance so nobody sets SecureBank to `-10` from `main`
+- Start the BankAccount lab as objects
+
 ## Motivation — Feel the pain of loose data + static methods
 
 Last week, ATM logic lived in **static** methods. Balance was a `double` in `main`. That works for one number. It breaks when you have **many accounts**.

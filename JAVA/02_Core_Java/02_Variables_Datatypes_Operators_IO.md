@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Declare a labelled box (`String studentName = "Ravi"`) with the right type
+- Do money and marks maths — and print a line a user can read
+- Stay **linear** today: no `if` / loops yet, just data moving through `main`
+
 **Teaching-order:** programs in this module stay **linear** — no `if` / `while` / `for` / extra methods. Decisions and loops start in Flow Control.
 
 ---

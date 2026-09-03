@@ -1,5 +1,11 @@
 # Common Concepts
 
+**Module Outcome:**
+
+- Build expressions (`collection - budget`) and string/date helpers MySQL actually has
+- CONCAT names, format dates, and date-diff a stay or a leave request
+- Keep functions in SELECT / WHERE without inventing Oracle syntax
+
 **Note:** This course uses **MySQL 8+** functions. Key MySQL functions: `CONCAT()`, `LENGTH()`, `DATE_FORMAT()`, `DATEDIFF()`.
 
 ## SQL Expressions

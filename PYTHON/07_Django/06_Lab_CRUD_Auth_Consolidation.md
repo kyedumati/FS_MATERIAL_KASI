@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Finish one login-protected CRUD feature you can demo without the trainer driving
+- Prove owner-only rows (Priya cannot delete Ravi’s task)
+- Leave with a GitHub commit that matches the Done when list
+
 ## Lab brief (pick one track)
 
 **Track A — Task Manager:** Task model (`title`, `is_done`, `owner` FK to User). List/create/toggle/delete only for logged-in owner.  

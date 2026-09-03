@@ -1,5 +1,11 @@
 # Aggregations and Group By
 
+**Module Outcome:**
+
+- Turn many order rows into COUNT / SUM / AVG a manager can use
+- GROUP BY category or brand without “invalid in select list” panic
+- Filter groups with HAVING — not WHERE on the aggregate
+
 **Note:** This chapter uses **MySQL** syntax. String literals use single quotes (`'value'`).
 
 We perform aggregations in such scenarios to combine multiple values into a single value, i.e., individual scores to an average score.

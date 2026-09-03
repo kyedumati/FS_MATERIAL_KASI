@@ -244,6 +244,10 @@ _WHERE_START = re.compile(
     r"<p><strong>(?:Where\s+used\??|When\s+will\s+I\s+use\s+this\??)(?:\s*:)?</strong>",
     re.IGNORECASE,
 )
+_OUTCOME_START = re.compile(
+    r"<p><strong>Module\s+Outcome(?:\s*:)?</strong>",
+    re.IGNORECASE,
+)
 _REVISION_START = re.compile(
     r"<p><strong>(?:Key\s+takeaways|Quick\s+Revision)(?:\s*:)?</strong>",
     re.IGNORECASE,
@@ -296,6 +300,7 @@ def _is_callout_stop(block: str) -> bool:
         or _INTERVIEW_START.search(block)
         or _COMMON_ERROR_START.search(block)
         or _WHERE_START.search(block)
+        or _OUTCOME_START.search(block)
         or _REVISION_START.search(block)
     )
 
@@ -322,7 +327,7 @@ def _consume_soft_callout(blocks: list[str], i: int) -> tuple[list[str], int]:
 
 
 def style_callouts(html: str) -> str:
-    """Wrap Note, Example, Output, margin notes, Where used, Key takeaways."""
+    """Wrap Note, Example, Output, margin notes, Module Outcome, Where used, Key takeaways."""
     blocks = _split_html_blocks(html)
     styled: list[str] = []
     i = 0
@@ -391,6 +396,13 @@ def style_callouts(html: str) -> str:
         if _WHERE_START.search(block):
             chunk, i = _consume_soft_callout(blocks, i)
             styled.append(f'<div class="callout callout-where">{"".join(chunk)}</div>')
+            continue
+
+        if _OUTCOME_START.search(block):
+            chunk, i = _consume_soft_callout(blocks, i)
+            styled.append(
+                f'<div class="callout callout-outcome">{"".join(chunk)}</div>'
+            )
             continue
 
         if _REVISION_START.search(block):
@@ -580,7 +592,8 @@ _H1_PATTERN = re.compile(r"^\s*<h1>(.*?)</h1>\s*", re.DOTALL | re.IGNORECASE)
 
 # Leading module meta lines: Phase / Previous / Next / Module / Schedule / …
 _META_P_START = re.compile(
-    r"^<p><strong>(?:Phase|Previous(?: module)?|Next(?: module)?|Module|"
+    r"^<p><strong>(?:Phase|Previous(?: module)?|Next(?: module)?|"
+    r"Module:(?!\s*Outcome)|"
     r"Schedule|SQL material|Python connectivity|Checklist|Lab kit|"
     r"Previous|Next)[^<]*</strong>",
     re.IGNORECASE,

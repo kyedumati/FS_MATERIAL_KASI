@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Slice and clean names, emails, and UPI IDs without breaking Unicode
+- Format a receipt line (`f"₹{amount}"`) instead of glueing commas by hand
+- Spot immutable-string traps before they silently drop an edit
+
 ### What is a string?
 
 A **string** (`str`) is a sequence of characters — letters, digits, symbols, spaces — used for names, emails, addresses, JSON text, and HTML.

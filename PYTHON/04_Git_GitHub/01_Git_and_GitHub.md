@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Commit, branch, and push so a lab is not trapped on one USB stick
+- Put a clean repo on GitHub that a recruiter can clone
+- Use `.gitignore` so `.venv` and secrets never go online
+
 ## Prerequisites
 
 - Git installed (`git --version`) and a free GitHub account

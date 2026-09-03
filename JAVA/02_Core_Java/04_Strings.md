@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Slice and compare names, emails, and UPI IDs with `String` methods
+- Format a receipt line instead of glueing commas by hand
+- Remember `String` is immutable — `concat` without storing the result is a no-op
+
 ### What is a string?
 
 A **string** is a sequence of characters — names, emails, UPI IDs, error messages.

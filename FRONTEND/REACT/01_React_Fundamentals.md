@@ -10,6 +10,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Think in components: one ProductCard, many products
+- Hold form/list state and re-render when it changes
+- Build a list + form you could later point at a real API
+
 ## Prerequisites
 
 - Node.js **20 LTS** (or 22 LTS) and npm — see the program [Python toolchain](../../PYTHON/Tested_Toolchain.md) or [Java toolchain](../../JAVA/Tested_Toolchain.md)

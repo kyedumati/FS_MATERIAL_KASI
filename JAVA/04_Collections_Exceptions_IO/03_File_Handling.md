@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Write and read an expense file so data survives after `main` ends
+- Use `Path` / `Files` and try-with-resources — overwrite vs append on purpose
+- Parse a simple CSV without inventing a new library
+
 **Teach order today:** RAM pain → `Path` / `Files` → write (overwrite trap) → append → read → try-with-resources + `IOException` → simple CSV → expense CSV push.
 
 ---

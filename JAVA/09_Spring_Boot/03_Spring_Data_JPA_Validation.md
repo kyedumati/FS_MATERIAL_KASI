@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Persist a Product with `@Entity` + `JpaRepository` instead of a list in RAM
+- Wire MySQL in `application.yml` without committing the password
+- List / get / create against the real table — then peek at `@Valid`
+
 **Teach order today:** in-memory pain → JDBC vs JPA → `@Entity` Product → `JpaRepository` → pom starters + driver → `application.yml` + env + Hikari name + lab `ddl-auto` → REST list / get / create against the DB → lite `@Valid` peek.
 
 ---

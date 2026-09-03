@@ -11,6 +11,16 @@
 
 ---
 
+**Module Outcome:**
+
+- Abstract method
+- Abstract class (`ABC`, when we can / cannot construct)
+- Interface in Python (ABC with only abstract methods)
+- Concrete class vs abstract class vs interface
+- SecureBank campus wallet (lab)
+
+
+
 ## 1. Abstract method
 
 **Real-world analogy:** A **job posting** says “must treat patients.” It does not write the treatment. Each doctor fills that in. An **abstract method** is the must-have skill with **no recipe yet**. **SecureBank** declares `kind()` before savings or wallet exists. **AcmeHR** declares `net()` before intern vs faculty. **TechMart** declares `pay()` before UPI vs card.
@@ -52,8 +62,6 @@ NameError: name 'abstractmethod' is not defined
 Child classes are responsible for providing the implementation.
 
 **Remember:** Abstract method = “I know the name. I do not know the body yet.”
-
-
 
 **Try these (2 programs):**
 
@@ -950,7 +958,7 @@ print(int(Rect(3, 4).area()))
 12
 ```
 
-3. When do we pick interface vs abstract class vs concrete class?
+1. When do we pick interface vs abstract class vs concrete class?
   **Model answer:**  
    Interface: we know only the requirement (`connect` / `pay`). Abstract class: we have some real code and some holes (`deposit` written, `kind` missing). Concrete class: implementation is complete and we can create objects (`MySQL()`, `SavingsAccount(...)`).
 

@@ -6,6 +6,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Use a **tuple** when the record should stay sealed (receipt, GPS drop, roll+name)
+- Use a **set** when duplicates must die (unique emails, tags, SKUs)
+- Unpack a tuple and convert list ↔ set without losing the point of each
+
 ### Tuples — the sealed envelope
 
 A **tuple** is like a printed receipt or Aadhaar-linked record: once created, you should **not change** the fields. You can **read** them, pass them around, and unpack them into variables.

@@ -14,6 +14,12 @@ CREATE DATABASE securebank; -- Banking project
 
 ---
 
+**Module Outcome:**
+
+- Stand up AcmeHR, TechMart, or MedCare as a real schema + sample data
+- Answer the project queries from tables you created, not screenshots
+- Reuse these schemas in Python/Java labs instead of inventing column names
+
 ## Project 1: AcmeHR — Employee Management System
 
 ### Overview

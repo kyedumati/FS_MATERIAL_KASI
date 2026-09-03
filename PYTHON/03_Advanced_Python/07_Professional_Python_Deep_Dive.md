@@ -6,6 +6,14 @@
 **Previous:** [File Handling & Logging](05_File_Handling_and_Logging.md) (finish core Advanced first)  
 **Next:** Continue calendar — [Git & GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) or MySQL phase as scheduled
 
+**Module Outcome:**
+
+- Function design — mutable default trap
+- Composition before inheritance
+- Abstract base classes (recap)
+- `__str__` vs `__repr__`
+- Custom exceptions with context
+
 **Icons:** Order · Bank · Laptop
 
 **Where used?**

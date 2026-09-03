@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Validate a POST with a Django form — never trust raw `request.POST`
+- Log someone in, remember them with a session, and kick strangers off CRUD
+- Ship a login-protected create/update that you can demo
+
 ### Why Forms in Django?
 
 Browsers submit **HTML forms** with **GET** (read/search) or **POST** (create/update/delete). Django **forms** validate and clean data before saving to database — never trust raw **`request.POST`** alone.

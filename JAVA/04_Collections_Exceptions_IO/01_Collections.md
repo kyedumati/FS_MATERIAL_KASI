@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Replace a painful array with `List` / `Set` / `Map` — code to the interface
+- Pick ArrayList vs HashSet vs HashMap the way TechMart picks a cart vs a SKU index
+- Push an inventory / contacts lab that would have exploded as a raw array
+
 **Teach order today:** array pain → code to the interface → `List` / `ArrayList` → `Set` / `HashSet` → `Map` / `HashMap` → choose the structure → inventory / contacts push.
 
 ---

@@ -7,6 +7,15 @@
 
 ---
 
+**Module Outcome:**
+
+- Import forms
+- Module search path
+- `if __name__ == "__main__"`
+- Package structure and relative vs absolute imports
+- pip / venv workflow
+- Standard library highlights
+
 ### What is a module? What is a package?
 
 - A **module** is one Python file (`.py`) that holds related names: variables, functions, classes.  

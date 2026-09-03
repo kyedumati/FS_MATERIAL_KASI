@@ -6,6 +6,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Pick list vs tuple vs set vs dict the way a shop picks a bag vs a filing cabinet
+- Say *why* TechMart cart is a list and SKU lookup is a dict — in one sentence
+- Spot the wrong container before it makes the next module painful
+
 Python gives you four built-in **containers** for grouping data. Choosing the wrong one makes code slower, bug-prier, or harder to read — like using a shopping bag when you need a labelled filing cabinet.
 
 **Icons:** Order · Employee · Bank · UPI · Laptop

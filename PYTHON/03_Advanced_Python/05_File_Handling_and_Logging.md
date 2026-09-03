@@ -7,6 +7,14 @@
 
 ---
 
+**Module Outcome:**
+
+- File open modes
+- `with` statement (context manager)
+- Reading strategies
+- CSV module
+- Logging levels
+
 ### What is file handling? What is logging?
 
 Programs often need to **remember data after they close** — student records, expense rows, settings. **Files** on disk hold that data. **Logging** writes timestamped messages about what the program did (or failed to do) so you can debug later.

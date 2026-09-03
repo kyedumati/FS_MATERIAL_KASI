@@ -11,13 +11,14 @@
 | # | Section | Notes |
 |---|---------|--------|
 | 1 | Title + Phase + Previous/Next | No Audience / Program / Duration — timing lives in Session Calendar only |
-| 2 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
-| 3 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
-| 4 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
-| 5 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (shared — one material). **Before** Mini-Project |
-| 6 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
-| 7 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
-| 8 | **Interview Q&A** | Shared with students (Q + A). Share with the module PDF after concepts + mini-project |
+| 2 | **Module Outcome** | `**Module Outcome:**` + bullets that **name the high-level topics** taught in this module (match the `##` / `###` concept headings). Immediately after the header `---`. Not Bloom “can explain/apply” skills |
+| 3 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
+| 4 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
+| 5 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
+| 6 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (shared — one material). **Before** Mini-Project |
+| 7 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
+| 8 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
+| 9 | **Interview Q&A** | Shared with students (Q + A). Share with the module PDF after concepts + mini-project |
 
 **Do not add** a standalone `## Common Mistakes` section. Put traps next to the sub-topic as **Note:** bullets (see below).
 
@@ -29,7 +30,7 @@
 
 **Do not add:** Discussion Questions (separate), Trainer Tips, Trainer Demo Plan, or large Real-World Use Cases **tables**. Prefer a short `**Where used?**` callout instead (see PDF markers above).
 
-**Do not add** a **Learning Outcomes** section or a **Teaching note** paragraph.
+**Do not add** a Bloom-style **Learning Outcomes** list or a **Teaching note** paragraph. Use **Module Outcome** (high-level topic list) at the start instead.
 
 **Delivery timing / session numbers (S01–S100)** live only in the [Session Calendar](../Session_Calendar_100.md) — **not** in module headers or learner-facing notes.
 
@@ -113,6 +114,7 @@ Use these exact bold labels (standalone paragraphs). They render as coloured box
 | `**Remember:**` | One-liner to keep (`self` = current object) |
 | `**Interview:**` | Short interview cue |
 | `**Common Error:**` | Classic trap (mutable class list, etc.) |
+| `**Module Outcome:**` | High-level **topic list** at the **module start** (after header) — names of concepts inside this file, not Bloom “can do” skills |
 | `**Where used?**` | 3–5 real domains that **name** AcmeHR / TechMart / MedCare / SecureBank when business-shaped — **not** a big Use Cases table |
 | `**Icons:** Bank · UPI · Employee · Laptop · Order` | Optional chip strip (also Hospital · Payroll · CRM) |
 | `**Key takeaways:**` | 2–4 bullets **immediately after** a Mermaid diagram (paired beside it in PDF). Major ideas only — not every sub-topic |
@@ -211,7 +213,8 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 
 - [ ] Section order matches the table above  
 - [ ] No Classroom Ticket section (labs via calendar / Mini-Project / `15_Lab_Assets/`)  
-- [ ] No Learning Outcomes section and no Teaching note paragraph  
+- [ ] **Module Outcome:** (high-level topics taught in this module) immediately after the header  
+- [ ] No Bloom Learning Outcomes list and no Teaching note paragraph  
 - [ ] Ticket / lab starter+solution stay within calendar teaching order (no forward concepts)  
 - [ ] Definition/Purpose before first big table (no “Beginner-Friendly” heading)  
 - [ ] **Try these (2 programs)** after each topic / Step  

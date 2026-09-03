@@ -8,6 +8,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Listen to a click, read a field, and rewrite the page without a full reload
+- Validate a form in the browser before it hits Django or Spring
+- See “Add to cart” as DOM + data — the same pattern as MedCare book-slot
+
 **JavaScript** makes pages **interactive**. HTML = skeleton; CSS = skin; JS = muscles — clicks, validation, fetching data from Django API without full reload.
 
 CampusCart is the college **TechMart** storefront. "Add to cart" flow (same pattern for AcmeHR leave submit, MedCare book slot, SecureBank transfer):

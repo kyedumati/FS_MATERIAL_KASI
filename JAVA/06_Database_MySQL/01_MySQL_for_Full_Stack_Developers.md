@@ -13,6 +13,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Sketch an ER for AcmeHR / TechMart before JDBC
+- Open the real SQL labs in `MYSQL/` — this file is the bridge, not the course
+- Normalise enough that one fact does not live in three columns
+
 ## Prerequisites
 
 - MySQL installed — [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md)

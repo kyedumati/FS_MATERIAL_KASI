@@ -5,6 +5,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Stand up a tiny Flask app and map a URL to a function
+- Return HTML or JSON without Django’s admin/ORM — on purpose
+- See when Flask is the right small tool vs when CampusCart stays on Django
+
 ### What is Flask?
 
 **Flask** is a lightweight Python **web framework**. You write a small Python file, map URLs to functions, and return HTML or JSON. Unlike Django, Flask does not ship with admin, ORM, or auth — you add what you need.

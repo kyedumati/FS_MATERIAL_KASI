@@ -7,6 +7,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Turn `DEBUG` off, hide `SECRET_KEY`, and load env vars before the internet sees you
+- Know what CSRF, hashed passwords, and `check --deploy` are *for*
+- Prepare a production-shaped settings story (HTTPS, static, allowed hosts)
+
 ### Security Mindset
 
 **Security** means protecting user data, passwords, and your server from attackers. Django includes many **defaults** (CSRF middleware, template auto-escaping, ORM parameterization) — but misconfiguration (`DEBUG=True` online, weak `SECRET_KEY`, missing HTTPS) causes real breaches.

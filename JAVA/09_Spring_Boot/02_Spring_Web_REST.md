@@ -9,6 +9,12 @@
 
 ---
 
+**Module Outcome:**
+
+- Map GET/POST to JSON with `@RestController` — verb + path as the contract
+- Return 200 / 201 / 404 on purpose, not whatever exploded
+- Ship an in-memory list API you can hit from the browser or Postman
+
 **Teach order today:** HTTP verb + path → JSON `List` (in-memory GET list) → 200 / 201 / 404 lite → `@PathVariable` GET by id → `@RequestBody` POST → optional Thymeleaf one-pager.
 
 ---

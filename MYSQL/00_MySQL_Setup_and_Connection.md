@@ -4,6 +4,12 @@ This course uses **MySQL 8+** as the primary database. You can interact with MyS
 
 ---
 
+**Module Outcome:**
+
+- Install MySQL 8+ and open it from CLI or Workbench with a password you actually remember
+- Connect, run `SELECT 1`, and know the service is up
+- Keep root credentials off GitHub and off the projector
+
 ## Installing MySQL
 
 ### Windows
