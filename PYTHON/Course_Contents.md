@@ -100,7 +100,7 @@
 
 **Practice:** employee / student schema  
 **Assignment:** Library or E-commerce schema + CRUD queries  
-**Detail:** `MYSQL_Course_Contents.md` / `MYSQL/` modules
+**Detail:** [`MYSQL/Course_Contents.md`](../MYSQL/Course_Contents.md) / `MYSQL/` modules
 
 ---
 

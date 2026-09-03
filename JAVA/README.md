@@ -17,7 +17,7 @@
 1. [**Session Calendar**](Session_Calendar_100.md) — 100 sessions, one focus each  
 2. [**Tested Toolchain**](Tested_Toolchain.md) · [**Project deliverables**](Standard_Project_Deliverables.md) · [**Capstone one-pager**](Capstone_CampusCart_One_Pager.md)  
 3. [**Lab Assets**](15_Lab_Assets/) · [**Biweekly Assessments**](16_Assessments/)  
-4. [Course Contents (syllabus map)](../COURSE_CONTENTS/Full_Stack_Java_Course_Contents.md)  
+4. [Course Contents (syllabus map)](Course_Contents.md)  
 5. Open the **same** module files in Session Calendar order  
 6. Optional: [AI Integration Lite](12_AI_Integration/01_AI_Integration_Lite.md) — stretch after a deployed MVP only  
 
@@ -81,11 +81,11 @@ Every teaching module follows the same shape:
 
 - **Module Outcome** (3–5 can-do bullets) right after the header
 - **Definition** / **Purpose** before syntax
-- Important concepts with **Try these (2 programs)** + runnable Java (JDK 17); MySQL bridge Try these are SQL (depth in `MYSQL/`)  
-- Step-by-step annotated code  
-- Practice exercises  
-- **Mini-Project (Assignment)** — take-home homework with lab kit, Stretch, and **Done when** (when present)  
-- Interview Q&A  
+- Important concepts with **Try these** (type-along + **Expected Output**; a second program only when the case differs); MySQL bridge Try these are SQL (depth in `MYSQL/`)
+- **One** Step-by-step assemble (lab = `starter/`, not pasted `solution/`)
+- Practice — 4–6 transfer drills (not the class demo again)
+- **Mini-Project (Assignment)** — the lab kit, Stretch, and **Done when**
+- Interview Q&A (oral; not copied into Practice)  
 - Graded checks: [`16_Assessments/`](16_Assessments/) (biweekly) — not an Assessment block in every module  
 
 **SQL depth** lives in repo **`MYSQL/`** (required labs listed in the MySQL bridge module) — not duplicated here.

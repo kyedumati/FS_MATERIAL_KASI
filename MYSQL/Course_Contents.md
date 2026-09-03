@@ -2,7 +2,7 @@
 
 **Audience:** Freshers & career switchers | **DB:** MySQL 8+ | **Practice DB:** `training_db`
 
-**Start:** [`MYSQL/README.md`](../MYSQL/README.md) (two tracks) · **Homework:** [`MYSQL/homework/10_Practice_Exercises.md`](../MYSQL/homework/10_Practice_Exercises.md) · **Seed:** [`MYSQL/labs/training_db_seed.sql`](../MYSQL/labs/training_db_seed.sql)
+**Start:** [`README.md`](README.md) (two tracks) · **Homework:** [`homework/10_Practice_Exercises.md`](homework/10_Practice_Exercises.md) · **Seed:** [`labs/training_db_seed.sql`](labs/training_db_seed.sql)
 
 ---
 

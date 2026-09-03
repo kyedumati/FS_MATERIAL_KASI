@@ -12,7 +12,7 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 
 | Resource | Link |
 |----------|------|
-| Syllabus map | [COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md](COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md) |
+| Syllabus map | [PYTHON/Course_Contents.md](PYTHON/Course_Contents.md) |
 | Course folder | [PYTHON/](PYTHON/) |
 | Session calendar | [PYTHON/Session_Calendar_100.md](PYTHON/Session_Calendar_100.md) |
 | Toolchain / deliverables / capstone | [Tested_Toolchain.md](PYTHON/Tested_Toolchain.md) · [Standard_Project_Deliverables.md](PYTHON/Standard_Project_Deliverables.md) · [Capstone_CampusCart_One_Pager.md](PYTHON/Capstone_CampusCart_One_Pager.md) |
@@ -34,7 +34,7 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 
 | Resource | Link |
 |----------|------|
-| Syllabus map | [COURSE_CONTENTS/Full_Stack_Java_Course_Contents.md](COURSE_CONTENTS/Full_Stack_Java_Course_Contents.md) |
+| Syllabus map | [JAVA/Course_Contents.md](JAVA/Course_Contents.md) |
 | Course folder | [JAVA/](JAVA/) |
 | Session calendar | [JAVA/Session_Calendar_100.md](JAVA/Session_Calendar_100.md) |
 | Toolchain / deliverables / capstone | [Tested_Toolchain.md](JAVA/Tested_Toolchain.md) · [Standard_Project_Deliverables.md](JAVA/Standard_Project_Deliverables.md) · [Capstone_CampusCart_One_Pager.md](JAVA/Capstone_CampusCart_One_Pager.md) |
@@ -52,7 +52,8 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 
 **Audience:** Beginners with no database background and career switchers preparing for analyst, backend, or full-stack roles.
 
-**Start:** [`MYSQL/README.md`](MYSQL/README.md) — two tracks (full stack Weeks 10–11 vs MySQL-only), homework, and the `training_db` seed.
+**Start:** [`MYSQL/README.md`](MYSQL/README.md) — two tracks (full stack Weeks 10–11 vs MySQL-only), homework, and the `training_db` seed.  
+**Syllabus map:** [`MYSQL/Course_Contents.md`](MYSQL/Course_Contents.md).
 
 **Setup:** [MySQL Setup and Connection](MYSQL/00_MySQL_Setup_and_Connection.md) — install MySQL, connect via CLI or Workbench, create `training_db`.
 
@@ -85,13 +86,20 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 ```
 PFS_MATERIAL_KASI/
 ├── README.md
-├── PYTHON/                   # Python program (calendar, Django, Python labs)
-├── JAVA/                     # Java program (calendar, Spring Boot, Java labs)
-├── FRONTEND/                 # Shared HTML/CSS/JS + REACT/ (+ labs)
-├── MYSQL/                    # Shared SQL (README + notes + homework/ + labs/)
-├── COURSE_CONTENTS/          # Syllabus / brochure maps
-├── PDF/                      # Generated PDFs
-├── dist/                     # Student batch packs
+│
+│   Programs
+├── PYTHON/                   # Python FS (calendar, Course_Contents.md, Django, labs)
+├── JAVA/                     # Java FS (calendar, Course_Contents.md, Spring Boot, labs)
+│
+│   Shared topics
+├── FRONTEND/                 # HTML/CSS/JS + REACT/ (+ labs)
+├── MYSQL/                    # SQL notes + Course_Contents.md + homework/ + labs/
+│
+│   Generated
+├── PDF/                      # Student PDFs (tracked)
+├── dist/                     # Student batch packs (gitignored)
+│
+│   Tooling
 └── scripts/
 ```
 

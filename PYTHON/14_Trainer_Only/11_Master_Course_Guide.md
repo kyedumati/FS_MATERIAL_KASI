@@ -396,7 +396,7 @@ Trainer-only keys: `PYTHON/14_Trainer_Only/` (do **not** share with learners).
 
 ## 8. How Trainers Use This Folder
 
-1. Start every batch with [Session Calendar](../Session_Calendar_100.md) + `COURSE_CONTENTS/Full_Stack_Python_Course_Contents.md`.  
+1. Start every batch with [Session Calendar](../Session_Calendar_100.md) + [Course Contents](../Course_Contents.md).  
 2. Teach module files in numbered order under `PYTHON/` — same files students receive.  
 3. SQL: follow **Required MySQL labs** in [01_MySQL_for_Full_Stack_Developers.md](../05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) — labs live in `MYSQL/` but are **required**, not optional extras.  
 4. Convert each module’s headings into PPT; labs → lab manual; graded checks → [`16_Assessments/`](../16_Assessments/) biweekly papers (not per-module MCQs).  

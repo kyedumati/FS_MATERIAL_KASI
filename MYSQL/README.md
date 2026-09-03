@@ -3,7 +3,7 @@
 **Shared topic pack** — used by Python Full Stack, Java Full Stack, and a MySQL-only course.  
 Not owned by `PYTHON/` or `JAVA/`.
 
-**Practice DB:** `training_db` · **Start:** [00_MySQL_Setup_and_Connection.md](00_MySQL_Setup_and_Connection.md)
+**Practice DB:** `training_db` · **Start:** [00_MySQL_Setup_and_Connection.md](00_MySQL_Setup_and_Connection.md) · **Syllabus map:** [Course_Contents.md](Course_Contents.md)
 
 ## Two tracks, same files
 

@@ -7,7 +7,7 @@ Shared, non-Java topics live at **repo root** so Python FS and Java FS reuse the
 |------------|------------------|------|----------------|
 | **MySQL** | [`MYSQL/`](../../MYSQL/) | Shared SQL depth (FS Weeks 10–11 / S46–54; also MySQL-only batches) | Same git commit as this release |
 | **Frontend** | [`FRONTEND/`](../../FRONTEND/) | Shared HTML / CSS / JS (+ `FRONTEND/labs/`) and **React** under [`FRONTEND/REACT/`](../../FRONTEND/REACT/) | Same commit |
-| **Syllabus map** | `COURSE_CONTENTS/Full_Stack_Java_Course_Contents.md` | Brochure alignment | Calendar wins on order |
+| **Syllabus map** | [`JAVA/Course_Contents.md`](../Course_Contents.md) | Brochure alignment | Calendar wins on order |
 
 ## Contract
 
@@ -22,7 +22,7 @@ Shared, non-Java topics live at **repo root** so Python FS and Java FS reuse the
 | Option | What to zip |
 |--------|-------------|
 | A (recommended) | `dist/JAVA_STUDENT/` (nests program + FRONTEND + MYSQL) |
-| B (USB offline) | Same + `COURSE_CONTENTS/Full_Stack_Java_Course_Contents.md` |
+| B (USB offline) | Same + `JAVA/Course_Contents.md` (already in the program folder) |
 
 ## Change control
 
