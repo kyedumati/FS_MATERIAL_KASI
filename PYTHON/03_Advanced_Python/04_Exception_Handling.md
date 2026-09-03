@@ -234,7 +234,7 @@ except ValueError:
 - Over-broad `except Exception` masks real bugs — catch narrow types first.
 - Wrong: `except ValueError, KeyError:` (old Python 2) — that is not a tuple. Use `except (ValueError, KeyError):`.
 
-**Try these (2 programs):**
+**Try these:**
 
 **Program 1 — AcmeHR marks: missing vs not a number**
 
@@ -258,31 +258,6 @@ for path in ("marks.txt", "bad.txt", "missing.txt"):
 Marks: 87
 Could not read marks: ValueError — invalid literal for int() with base 10: 'eighty'
 Could not read marks: FileNotFoundError — missing.txt
-```
-
-**Program 2 — MedCare dict KeyError / ValueError**
-
-```python
-samples = [
-    {"age": "21"},
-    {"age": "twenty"},
-    {"name": "Ravi"},  # missing age
-]
-
-for data in samples:
-    try:
-        age = int(data["age"])
-        print("Age:", age)
-    except (KeyError, ValueError) as e:
-        print("Bad age data:", type(e).__name__, e)
-```
-
-**Expected Output:**
-
-```
-Age: 21
-Bad age data: ValueError invalid literal for int() with base 10: 'twenty'
-Bad age data: KeyError 'age'
 ```
 
 ### 3. else and finally — success path vs cleanup
@@ -442,32 +417,9 @@ Withdraw failed: Not enough balance
 - Raise a specific type (`ValueError`, or your custom class) — not a bare string (`raise "oops"` is invalid).
 - After `raise`, the rest of that function does not run.
 
-**Try these (2 programs):**
+**Try these:**
 
-**Program 1 — set_discount with raise**
-
-```python
-def set_discount(percent):
-    if not 0 <= percent <= 100:
-        raise ValueError(f"Discount must be 0–100, got {percent}")
-    print(f"Discount set to {percent}%")
-
-for p in (120, -5, 15):
-    try:
-        set_discount(p)
-    except ValueError as e:
-        print("Error:", e)
-```
-
-**Expected Output:**
-
-```
-Error: Discount must be 0–100, got 120
-Error: Discount must be 0–100, got -5
-Discount set to 15%
-```
-
-**Program 2 — MedCare book_seat capacity check**
+**Program 1 — MedCare book_seat capacity check**
 
 ```python
 def book_seat(available, requested):
@@ -517,35 +469,7 @@ Use it like any built-in: `raise InsufficientBalanceError("Not enough balance")`
 
 **Try these (2 programs):**
 
-**Program 1 — Custom UnderAgeError**
-
-```python
-class UnderAgeError(Exception):
-    """Raised when voter age is below 18."""
-    pass
-
-
-def register_voter(age):
-    if age < 18:
-        raise UnderAgeError(age)
-    print(f"Voter registered (age {age})")
-
-
-for age in (16, 21):
-    try:
-        register_voter(age)
-    except UnderAgeError as e:
-        print(f"Registration denied — age {e} is under 18")
-```
-
-**Expected Output:**
-
-```
-Registration denied — age 16 is under 18
-Voter registered (age 21)
-```
-
-**Program 2 — InvalidRollError with roll stored**
+**Program 1 — InvalidRollError with roll stored**
 
 ```python
 class InvalidRollError(Exception):
@@ -575,6 +499,32 @@ Anita
 Error: Roll not found: 999 | roll attr: 999
 ```
 
+**Program 2 — Print, then re-raise**
+
+`raise` with no argument re-raises the **same** exception so the caller can still handle it.
+
+```python
+def parse_marks(raw):
+    try:
+        return int(raw)
+    except ValueError:
+        print("ERROR: could not parse marks:", raw)
+        raise
+
+
+try:
+    print("Marks:", parse_marks("eighty"))
+except ValueError:
+    print("Caller: show a form error, not a traceback")
+```
+
+**Expected Output:**
+
+```
+ERROR: could not parse marks: eighty
+Caller: show a form error, not a traceback
+```
+
 ### 6. Common built-in exceptions
 
 **Definition:** Types Python already raises. You catch them by name.  
@@ -593,36 +543,9 @@ Error: Roll not found: 999 | roll attr: 999
 | `ImportError` / `ModuleNotFoundError` | Import failure                                          |
 
 
-**Try these (2 programs):**
+**Try these:**
 
-**Program 1 — Three built-ins, three handlers**
-
-```python
-try:
-    print([10, 20, 30][5])
-except IndexError as e:
-    print("IndexError:", e)
-
-try:
-    print({"a": 1}["b"])
-except KeyError as e:
-    print("KeyError:", e)
-
-try:
-    print(10 / 0)
-except ZeroDivisionError as e:
-    print("ZeroDivisionError:", e)
-```
-
-**Expected Output:**
-
-```
-IndexError: list index out of range
-KeyError: 'b'
-ZeroDivisionError: division by zero
-```
-
-**Program 2 — Name that error quiz**
+**Program 1 — Name that error quiz** (print only the type name; `except Exception` is for this quiz only)
 
 ```python
 # Run each block — print only the type name. (except Exception is for this quiz only.)
@@ -665,40 +588,9 @@ ValueError
 
 ---
 
-## Step-by-Step Annotated Python 3 Code
+## Step-by-Step: one assemble — SecureBank UPI
 
-### Example 1 — Safe age input (retry until valid)
-
-`try` converts; `raise` rejects non-positive; `except` prints and the loop tries the next sample.
-
-```python
-def read_positive_int(samples):
-    for raw in samples:
-        try:
-            value = int(raw)
-            if value <= 0:
-                raise ValueError("Number must be positive")
-            return value
-        except ValueError as e:
-            print(f"Invalid input ({raw!r}): {e}. Try again.")
-    return None
-
-
-age = read_positive_int(["abc", "-3", "21"])
-print("Valid age:", age)
-```
-
-**Expected Output:**
-
-```
-Invalid input ('abc'): invalid literal for int() with base 10: 'abc'. Try again.
-Invalid input ('-3'): Number must be positive. Try again.
-Valid age: 21
-```
-
-### Example 2 — All four keywords: SecureBank UPI
-
-Read the comments in order: `try` → `except` → `else` → `finally`. `finally` still runs when `except` or `else` **returns**.
+Type this with the class. Read it in order: `try` → `except` → `else` → `finally`. `finally` still runs when `except` or `else` **returns**.
 
 ```python
 def upi_transfer(pin, amount, balance):
@@ -724,6 +616,9 @@ print("Returned:", upi_transfer("ab12", 200, 1000))
 print()
 print("Case 2 — success")
 print("Returned:", upi_transfer("4321", 200, 1000))
+print()
+print("Case 3 — not enough money")
+print("Returned:", upi_transfer("4321", 5000, 1000))
 ```
 
 **Expected Output:**
@@ -738,271 +633,121 @@ Case 2 — success
 Sent ₹200. New balance: ₹800
 Attempt logged
 Returned: 800
+
+Case 3 — not enough money
+Transfer failed: Insufficient balance
+Attempt logged
+Returned: 1000
 ```
 
-### Example 3 — raise with PAN validation
-
-```python
-def validate_pan(pan):
-    """Indian PAN format: ABCDE1234F (simplified check)."""
-    if pan is None or len(pan) != 10:
-        raise ValueError("PAN must be 10 characters")
-    if not pan[:5].isalpha() or not pan[5:9].isdigit() or not pan[9].isalpha():
-        raise ValueError("Invalid PAN format")
-    return pan.upper()
-
-
-for pan in ("ABCDE1234F", "INVALID"):
-    try:
-        print("OK:", validate_pan(pan))
-    except ValueError as err:
-        print("Validation failed:", err)
-```
-
-**Expected Output:**
-
-```
-OK: ABCDE1234F
-Validation failed: PAN must be 10 characters
-```
-
-### Example 4 — Custom exception hierarchy (SecureBank payments)
-
-Catch the **most specific** type first. `GatewayTimeoutError` is a `PaymentError` — if `except PaymentError` came first, the timeout would never hit its own handler.
-
-```python
-class AppError(Exception):
-    """Base for application errors."""
-    pass
-
-
-class PaymentError(AppError):
-    pass
-
-
-class GatewayTimeoutError(PaymentError):
-    pass
-
-
-def process_payment(amount):
-    if amount > 100000:
-        raise PaymentError("Amount exceeds limit")
-    raise GatewayTimeoutError("Razorpay timeout")
-
-
-for amount in (150000, 5000):
-    try:
-        process_payment(amount)
-    except GatewayTimeoutError as e:
-        print("Gateway:", e)
-    except PaymentError as e:
-        print("Payment issue:", e)
-```
-
-**Expected Output:**
-
-```
-Payment issue: Amount exceeds limit
-Gateway: Razorpay timeout
-```
-
-### Example 5 — Print, then re-raise
-
-`raise` with no argument re-raises the **same** exception so the caller can still handle it. Swallowing it here would hide the bug.
-
-```python
-def parse_marks(raw):
-    try:
-        return int(raw)
-    except ValueError:
-        print("ERROR: could not parse marks:", raw)
-        raise
-
-
-try:
-    print("Marks:", parse_marks("eighty"))
-except ValueError:
-    print("Caller: show a form error, not a traceback")
-```
-
-**Expected Output:**
-
-```
-ERROR: could not parse marks: eighty
-Caller: show a form error, not a traceback
-```
-
-### Example 6 — Exception in an OOP method (SecureBank)
-
-Define the custom type **before** the class that raises it.
-
-```python
-class InsufficientBalanceError(Exception):
-    pass
-
-
-class BankAccount:
-    def __init__(self, balance):
-        self.balance = balance
-
-    def withdraw(self, amount):
-        if amount > self.balance:
-            raise InsufficientBalanceError(
-                f"Requested ₹{amount}, available ₹{self.balance}"
-            )
-        self.balance -= amount
-        return self.balance
-
-
-acct = BankAccount(500)
-for amt in (200, 800):
-    try:
-        print("Balance:", acct.withdraw(amt))
-    except InsufficientBalanceError as e:
-        print("Transaction failed:", e)
-```
-
-**Expected Output:**
-
-```
-Balance: 300
-Transaction failed: Requested ₹800, available ₹300
-```
+**Then open the kit** (lab / tonight): [`18_safe_input_exceptions`](../15_Lab_Assets/18_safe_input_exceptions/) — finish `read_age` in `starter/safe_age.py`. `InvalidAgeError` is already there. Type it — do not paste `solution/`.
 
 ---
 
 ## Practice Exercises
 
-### Basic
-
-1. Handle `ZeroDivisionError` in a TechMart split.
+1. AcmeHR roll call: for each name, print the first letter. One name is `""` — catch `IndexError` so the loop continues.
 
 **Model answer:**
 
 ```python
-bill = 500
-friends = 0
-try:
-    print(bill / friends)
-except ZeroDivisionError:
-    print("Cannot divide by zero")
-```
-
-1. Catch `ValueError` when converting a string to float.
-
-**Model answer:**
-
-```python
-raw = "12.5kg"
-try:
-    value = float(raw)
-    print("OK:", value)
-except ValueError:
-    print("Not a valid number")
-```
-
-1. Use `try/except` when accessing a dict key — prefer `.get()` too.
-
-**Model answer:**
-
-```python
-data = {"name": "Priya"}
-try:
-    print(data["email"])
-except KeyError:
-    print("email missing")
-
-print(data.get("email", "email missing"))  # preferred
-```
-
-### Intermediate
-
-1. Write `safe_divide(a, b)` returning `None` on error instead of crashing.
-
-**Model answer:**
-
-```python
-def safe_divide(a, b):
+names = ["Priya", "", "Ravi"]
+for name in names:
     try:
-        return a / b
-    except (ZeroDivisionError, TypeError):
-        return None
+        print(name, "→", name[0])
+    except IndexError:
+        print("(blank name — skipped)")
 ```
 
-1. Create `InvalidEmailError` and a validator function.
+**Expected Output:**
+
+```
+Priya → P
+(blank name — skipped)
+Ravi → R
+```
+
+2. Parse a TechMart price written as `"₹1,200"`. Strip `₹` and commas, then `int`. Bad strings raise `ValueError` at the call site.
 
 **Model answer:**
 
 ```python
-class InvalidEmailError(ValueError):
+def parse_inr(raw):
+    cleaned = raw.replace("₹", "").replace(",", "").strip()
+    return int(cleaned)
+
+
+for raw in ("₹1,200", "n/a"):
+    try:
+        print(raw, "→", parse_inr(raw))
+    except ValueError:
+        print(raw, "→ not a price")
+```
+
+3. TechMart stock: raise custom `OutOfStockError` when requested qty is greater than stock. Catch it at the call site (this is not the UPI PIN demo).
+
+**Model answer:**
+
+```python
+class OutOfStockError(Exception):
     pass
 
 
-def validate_email(email):
-    if "@" not in email or "." not in email.split("@")[-1]:
-        raise InvalidEmailError(f"Invalid email: {email}")
-    return email
+def take_from_shelf(stock, qty):
+    if qty > stock:
+        raise OutOfStockError(f"need {qty}, have {stock}")
+    return stock - qty
+
+
+for qty in (2, 10):
+    try:
+        print("Left:", take_from_shelf(5, qty))
+    except OutOfStockError as e:
+        print("Shelf:", e)
 ```
 
-1. SecureBank PIN using `try` / `except` / `else` / `finally`.
+4. MedCare OTP: `try` `int(otp)`, `else` print accepted, `finally` print `"sms slot released"`. Use `"12ab"` and `"4321"` — not the SecureBank PIN story.
 
 **Model answer:**
 
 ```python
-pin = "1234"
-try:
-    code = int(pin)
-    if code != 1234:
-        raise ValueError("Wrong PIN")
-except ValueError as e:
-    print("Access denied:", e)
-else:
-    print("PIN accepted")
-finally:
-    print("Please remove your card")
+for otp in ("12ab", "4321"):
+    try:
+        code = int(otp)
+        if code != 4321:
+            raise ValueError("Wrong OTP")
+    except ValueError as e:
+        print("Denied:", e)
+    else:
+        print("OTP accepted")
+    finally:
+        print("sms slot released")
 ```
-
-### Interview-style
-
-1. Difference between `except Exception` and bare `except`?
-
-**Model answer:**
-`except Exception` catches almost all application errors but not system exits like `KeyboardInterrupt`/`SystemExit`. Bare `except:` catches everything including those, which can hide bugs and block clean shutdown — avoid it.
-
-1. When to create custom exceptions?
-
-**Model answer:**
-Create them when callers need to distinguish your domain failure (e.g. `InvalidEmailError`) from generic errors and handle it specifically. Prefer a clear hierarchy under `Exception` over overloading `ValueError` for every case.
-
-1. What happens if an exception is raised in the `finally` block?
-
-**Model answer:**
-An exception raised in `finally` replaces any pending exception from the `try`/`except` block. The original error is lost unless you explicitly chain or log it before the `finally` raises.
-
-1. Why put success work in `else` instead of at the end of `try`?
-
-**Model answer:**
-If success code lives in `try` and later raises, `except` may catch it and report the wrong failure (e.g. “Invalid PIN” when the PIN was fine). `else` runs only after `try` fully succeeded, so that mix-up cannot happen.
-
----
 
 ## Mini-Project (Assignment): MedCare Safe Age Input CLI
 
-**Title:** Never crash on bad age  
-**Lab kit (build here):** [15_Lab_Assets/18_safe_input_exceptions/](../15_Lab_Assets/18_safe_input_exceptions/)
+**Customer:** MedCare registration desk. A clerk types an age. `"abc"` must not dump a traceback on the counter screen. `"0"` and `"200"` are not valid patients. `"21"` must go through.
+
+**Lab kit:** [15_Lab_Assets/18_safe_input_exceptions/](../15_Lab_Assets/18_safe_input_exceptions/)
+
+| File | What you do |
+|------|-------------|
+| `starter/safe_age.py` | Finish `read_age`. `InvalidAgeError` is already declared. Keep the `__main__` loop. |
+| `broken/safe_age.py` | Bare `except:` returns `-1`; `"0"` looks successful. Fix both bugs. |
+| `solution/` | Do **not** copy this. Use it only if you are stuck after you have tried. |
+
+This is **not** the SecureBank UPI assemble from class. Same tools (`try` / `raise` / custom exception), different ticket.
 
 ### What to build
 
+| Piece | Detail |
+|-------|--------|
+| `InvalidAgeError` | Subclass of `Exception`. Raise when the number is not in **1–120**. Message includes the bad value (`age out of range: 0`). |
+| `read_age(raw)` | `int(raw)` in `try`. Non-numeric → `ValueError` with message `age must be an integer` (re-raise or raise a new one — no traceback in `__main__`). In range → return the `int`. |
+| Demo loop | Keep the four samples: `"21"`, `"abc"`, `"0"`, `"200"`. Print `sample`, then `->` and the age, **or** the exception type and message. |
+| No type hints | Not required on this ticket. No `raise ... from e`. No `assert`. |
 
-| Feature           | Detail                                                                            |
-| ----------------- | --------------------------------------------------------------------------------- |
-| `InvalidAgeError` | Custom exception for age outside 1–120                                            |
-| `read_age(raw)`   | `int` conversion; raise `ValueError` on non-int; raise `InvalidAgeError` on range |
-| Demo loop         | Test `"21"`, `"abc"`, `"0"`, `"200"` without a traceback for expected cases       |
-| Clear messages    | Print exception type + message                                                    |
-
-
-**Sample:**
+### Sample run
 
 ```
 21 -> 21
@@ -1013,16 +758,18 @@ abc ValueError age must be an integer
 
 ### Stretch
 
-- Wrap `read_age` in a `while True` prompt until a valid age is entered.  
-- Add `read_positive_float` for amounts (reuse the same pattern).  
-- Log failures with a timestamp (`datetime.now()`) before File Handling module.
+- Wrap `read_age` in a `while True` prompt until a valid age is entered.
+- Add `read_positive_float` for amounts (same pattern).
+- **Later — Files week:** log failures with a timestamp (`datetime.now()`).
 
 ### Done when
 
-- [ ] Lab kit `safe_age` ticket passes for the four samples  
-- [ ] Custom `InvalidAgeError` is raised for out-of-range ages  
-- [ ] Non-numeric input raises / is caught as `ValueError` (no crash)  
-- [ ] Repo pushed with a short README of sample outputs  
+- [ ] `"21"` prints `21 -> 21`
+- [ ] `"abc"` is caught as `ValueError` (`age must be an integer`) — no traceback
+- [ ] `"0"` and `"200"` are `InvalidAgeError` (`age out of range: …`)
+- [ ] `InvalidAgeError` inherits `Exception`
+- [ ] `broken/` no longer uses bare `except:` and no longer accepts `0` / `200`
+- [ ] Short README of sample outputs is pushed with the repo
 
 ## Interview Q&A
 

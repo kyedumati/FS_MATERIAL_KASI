@@ -18,6 +18,20 @@ Do **not** maintain a second “student-only” rewrite of the syllabus, and do 
 
 ---
 
+## Three places (do not merge them)
+
+The module markdown is the **script**. Live class still happens on the board and in the batch repo.
+
+| Place | What it is | After class |
+|-------|------------|-------------|
+| **Material** `PFS_MATERIAL_KASI` | Curriculum: Try these, one assemble, lab kit, mini-project, Interview Q&A | Commit only when the *curriculum* changes |
+| **OpenBoard** | Running notes: diagrams, traps, student questions | Photo / export if you want; not a second syllabus |
+| **Batch workspace** | Running **code copy** — type Try these and the assemble here | **Commit here after every class** |
+
+Do **not** paste that day’s class files back into the module. OpenBoard + batch repo keep the live feeling; the notes stay reusable for the next batch.
+
+---
+
 ## How to share (recommended)
 
 1. Teach from the module markdown.  

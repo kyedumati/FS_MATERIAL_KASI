@@ -52,7 +52,11 @@ Do **not** invent a multi-hour agenda. If the calendar lists several days for on
 ## Homework / GitHub
 
 - [ ] Mini-project / lab slice assigned  
-- [ ] Repo push expected by: _____________  
+- [ ] Learners push their repo  
+- [ ] Trainer: commit **batch workspace** running code (not `PFS_MATERIAL_KASI`)  
+- [ ] OpenBoard notes saved if useful  
+
+Repo push expected by: _____________  
 
 ## At-risk learners (follow up)
 

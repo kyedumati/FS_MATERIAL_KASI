@@ -1,6 +1,6 @@
 # Module Writing Standard — Definition / Purpose Before Syntax
 
-**Purpose:** Keep `JAVA/` teachable for live class — Definition/Purpose, labs, and modern safe Java (without legacy note patterns).
+**Purpose:** Keep `JAVA/` teachable in a **75-minute** live class — Definition/Purpose, type-along code, one lab kit. Slimming means stop repeating the same program, not flattening notes into an outline. Same layering as Python FS [10_Module_Writing_Standard.md](../../PYTHON/14_Trainer_Only/10_Module_Writing_Standard.md).
 
 **Reference:** Python FS [10_Module_Writing_Standard.md](../../PYTHON/14_Trainer_Only/10_Module_Writing_Standard.md) — same house style, Java code. Strong module target: Python `03_OOP_Part1_Classes_Encapsulation.md`.
 
@@ -13,10 +13,10 @@
 | 1 | Title + Phase + Previous/Next | No Audience / Program / Duration — timing lives in Session Calendar only |
 | 2 | **Module Outcome** | `**Module Outcome:**` + 3–5 lively can-do bullets (job scene, named product when business-shaped). Immediately after the header `---`. Not a Bloom “Learning Outcomes” list |
 | 3 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
-| 4 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
-| 5 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
-| 6 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (shared — one material). **Before** Mini-Project |
-| 7 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
+| 4 | Important Concepts (+ **Try these**) | Definition/Purpose → syntax → **Note** → type-along (one program; two only when the case differs) |
+| 5 | Step-by-Step annotated code | **One** assemble that stitches today’s ideas (Core may *be* the lesson spine) |
+| 6 | Practice Exercises | Heading exactly `## Practice Exercises`. Transfer, **4–6 items**, **Model answer:** each. No Interview-style block. **Before** Mini-Project |
+| 7 | **Mini-Project (Assignment)** | Take-home = lab kit. Do not restate the assemble |
 | 8 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Spring lab days) |
 | 9 | **Interview Q&A** | Shared with students (Q + A). Share with the module PDF after concepts + mini-project |
 
@@ -65,9 +65,11 @@ After teaching a concept (syntax + short demo), add a short note block — not a
 
 ---
 
-## Try these (2 programs) — required after each topic
+## Try these — live type-along (keep the energy)
 
-After every major concept block (`### 1. …` / `### Step N: …`), add **two complete runnable programs** (not prompts only):
+After every major concept block (`### 1. …` / `### Step N: …`), students type **at least one** complete runnable program (not a prompt only). Add a **second** only when it shows a *different* case — not Program 1 with new variable names. Heading: `**Try these:**` or `**Try these (2 programs):**`.
+
+Step-by-Step is **one** assemble (not Example 1–6). If a lab kit exists, point at `starter/` — do not paste `solution/`.
 
 ```markdown
 **Try these (2 programs):**
@@ -151,7 +153,7 @@ Use one heading so students always see the word **Assignment**:
 | Done when | Checkbox list learners can self-check |
 
 **Order:** Practice Exercises → Mini-Project (Assignment) (never reverse).  
-Practice = short drills. **Mini-Project (Assignment)** = take-home homework / portfolio **Done when**.
+Practice = gym on a *different* ticket (4–6 items, no Interview-style block). **Mini-Project** = the lab kit they opened in class — do not paste the assemble.
 
 Do **not** add a second `## Assignment` section when a Mini-Project already exists — they are the same deliverable.
 
@@ -228,7 +230,9 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 - [ ] No Bloom Learning Outcomes list and no Teaching note paragraph  
 - [ ] Ticket / lab starter+solution stay within calendar teaching order (no forward concepts)  
 - [ ] Definition/Purpose before first big table  
-- [ ] **Try these (2 programs)** after each topic / Step — complete runnable Java  
+- [ ] **Try these** after each topic / Step — one runnable Java program; two only when the case differs
+- [ ] Step-by-Step is **one assemble** (no recap gallery; no pasted `solution/`)
+- [ ] Practice: 4–6 transfer items; no Interview-style block  
 - [ ] **Note** next to each major sub-topic (no standalone Common Mistakes)  
 - [ ] Practice Exercises include **Model answer:** under each item  
 - [ ] Practice appears **before** Mini-Project (Assignment)  

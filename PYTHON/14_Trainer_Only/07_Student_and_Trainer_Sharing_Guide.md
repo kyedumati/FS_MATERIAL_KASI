@@ -18,6 +18,22 @@ Do **not** maintain a second “student-only” rewrite of the syllabus, and do 
 
 ---
 
+## Three places (do not merge them)
+
+The module markdown is the **script**. Live class still happens on the board and in the batch repo.
+
+| Place | What it is | After class |
+|-------|------------|-------------|
+| **Material** `PFS_MATERIAL_KASI` | Curriculum: Try these, one assemble, lab kit, mini-project, Interview Q&A | Commit only when the *curriculum* changes |
+| **OpenBoard** | Running notes: diagrams, traps, student questions | Photo / export if you want; not a second syllabus |
+| **Batch workspace** e.g. `WORKSPACE/KSR-YK-PFS-MAY2026` | Running **code copy** — type Try these and the assemble here (`input()`, names, comments, false starts) | **Commit here after every class** |
+
+Students type along with you in **their** repos. You commit the trainer running copy in the **batch** workspace, not into `PYTHON/` notes.
+
+Do **not** paste that day’s `.py` files back into the module. Do **not** turn the module into a class diary. OpenBoard + batch repo keep the live feeling; the notes stay reusable for the next batch.
+
+---
+
 ## How to share (recommended)
 
 1. Teach from the module markdown.  
@@ -62,4 +78,4 @@ See [08_PDF_Python_Enrichment_Map.md](08_PDF_Python_Enrichment_Map.md) if you ne
 
 ## Trainer delivery reminder
 
-Each **1h 15m** session: short theory → type-along demo → mini-lab → assign **Mini-Project (Assignment)** → one Git commit expectation.
+Each **1h 15m** session: short theory → type-along in the **batch workspace** (OpenBoard for notes) → mini-lab → assign **Mini-Project (Assignment)** → commit the batch repo after class.

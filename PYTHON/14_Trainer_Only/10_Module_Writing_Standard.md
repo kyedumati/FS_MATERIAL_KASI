@@ -1,8 +1,33 @@
 # Module Writing Standard — Definition / Purpose Before Syntax
 
-**Purpose:** Keep `PYTHON/` teachable for live class — Definition/Purpose, labs, and modern safe Python (without legacy note patterns).
+**Purpose:** Keep `PYTHON/` teachable in a **75-minute** live class — Definition/Purpose, type-along code, one lab kit. Do not flatten notes into an outline.
 
-**Reference:** [01_Functions_Decorators_Generators.md](../03_Advanced_Python/01_Functions_Decorators_Generators.md) · Core modules with Definition/Purpose openings.
+**Reference (live type-along):** [01_Functions_Decorators_Generators.md](../03_Advanced_Python/01_Functions_Decorators_Generators.md)  
+**Reference (one assemble, no triple demo):** [04_Exception_Handling.md](../03_Advanced_Python/04_Exception_Handling.md)
+
+---
+
+## Live class first (do not flatten)
+
+Slimming means **stop repeating the same program**. It does **not** mean replacing runnable code with discussion prompts.
+
+Keep:
+
+- Short programs students type with you
+- **Expected Output:** on the projector
+- Named products, INR, ATM / UPI / canteen stories
+- **Note:** traps next to the demo
+
+Class shape (same as Session Calendar): 5 min kit → **25 min type-along** → **35 min lab** → 10 min exit.
+
+Type **Try these** and the assemble into the **batch workspace** (running code). Use **OpenBoard** for running notes. Commit that workspace after class. Do not commit class scribbles into these module files.
+
+| When | Open | Not in class |
+|------|------|----------------|
+| Live (25 min) | Concepts + **Try these** | Second copy of the same program |
+| Live (35 min) | Lab `starter/` | Pasted `solution/` in the notes |
+| Tonight | Mini-project = **that kit** | Practice that rebuilds the demo |
+| Mocks | Interview Q&A | Interview-style items inside Practice |
 
 ---
 
@@ -13,12 +38,12 @@
 | 1 | Title + Phase + Previous/Next | No Audience / Program / Duration — timing lives in Session Calendar only |
 | 2 | **Module Outcome** | `**Module Outcome:**` + bullets that **name the high-level topics** taught in this module (match the `##` / `###` concept headings). Immediately after the header `---`. Not Bloom “can explain/apply” skills |
 | 3 | Start with **Definition / Purpose** (or Motivation) | Definition + Purpose — no Classroom Ticket section |
-| 4 | Important Concepts (+ **Try these** after each topic) | Definition/Purpose → syntax → **Note** → ≥2 programs per topic |
-| 5 | Step-by-Step annotated code | Longer demos (Core often merges topics here) |
-| 6 | Practice Exercises | Heading must be exactly `## Practice Exercises` (not `## Practice`). Basic → Intermediate → Interview; each item has **Model answer:** (shared — one material). **Before** Mini-Project |
-| 7 | **Mini-Project (Assignment)** | Same section — take-home / homework. Heading: `## Mini-Project (Assignment): Title`. Lab kit + What to build + Stretch + **Done when** |
+| 4 | Important Concepts (+ **Try these**) | Definition/Purpose → syntax → **Note** → type-along (see below) |
+| 5 | Step-by-Step annotated code | **One** assemble that stitches today’s ideas (Core may *be* the lesson spine) |
+| 6 | Practice Exercises | Heading exactly `## Practice Exercises`. Transfer drills, **4–6 items**, each with **Model answer:**. **Before** Mini-Project |
+| 7 | **Mini-Project (Assignment)** | Full take-home ticket (story, kit, what to build, sample run, Stretch, Done when). Do not paste the class assemble or `solution/` |
 | 8 | Assignment (standalone) | Use `## Assignment` **only if** the module has no Mini-Project (e.g. some Django lab days) |
-| 9 | **Interview Q&A** | Shared with students (Q + A). Share with the module PDF after concepts + mini-project |
+| 9 | **Interview Q&A** | Shared Q + A. Oral layer only — do not copy these items into Practice |
 
 **Do not add** a standalone `## Common Mistakes` section. Put traps next to the sub-topic as **Note:** bullets (see below).
 
@@ -65,12 +90,12 @@ After teaching a concept (syntax + short demo), add a short note block — not a
 
 ---
 
-## Try these (2 programs) — required after each topic
+## Try these — live type-along (keep the energy)
 
-After every major concept block (`### 1. …` / `### Step N: …`), add **two complete runnable programs** (not prompts only):
+After every major concept block (`### 1. …` / `### Step N: …`), students type **at least one** complete runnable program (not a prompt only):
 
 ```markdown
-**Try these (2 programs):**
+**Try these:**
 
 **Program 1 — Short title**
 
@@ -78,20 +103,14 @@ After every major concept block (`### 1. …` / `### Step N: …`), add **two co
 # complete runnable Python 3
 print(...)
 ```
-
-**Program 2 — Short title**
-
-```python
-# complete runnable Python 3
-print(...)
 ```
-```
+
+Add a **second** program only when it shows a *different* case (success vs fail, a second exception type, `finally` after `return`) — not Program 1 with new variable names. Then the heading is `**Try these (2 programs):**`.
 
 - Short (typically 5–20 lines), copy-paste runnable.
 - India-relevant examples OK (INR, student marks, ATM, names like Priya/Ravi).
 - **Named products (soft-apply):** when the example is business-shaped, prefer **AcmeHR**, **TechMart**, **MedCare**, or **SecureBank** in `**Where used?**`, program titles, Interview Q&A, and mini-project tickets. Do not force syntax-only drills. See [12_Named_Product_Domains.md](12_Named_Product_Domains.md). Canonical schemas: [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md). CampusCart stays the capstone (college TechMart-style storefront).
 - Point to a lab kit when the exercise matches a ticket.
-- **Practice Exercises:** every numbered item must include `**Model answer:**` (prose and/or a fenced code block). Same notes are shared with students (PDF after the module).
 - After a program that prints, prefer an **Expected Output:** fence so PDF learners can self-check:
 
 ```markdown
@@ -101,6 +120,35 @@ print(...)
 Priya
 ```
 ```
+
+**Program titles** must be one bold line: `**Program 1 — Book with info()**` (do not split around inline code).
+
+Core/Advanced Python: avoid Django/framework forward-selling; introduce frameworks in their own phase modules.
+
+---
+
+## Step-by-Step — one assemble
+
+This is the **live “now we put it together”** block — still typed, still with Expected Output. It is not a second textbook.
+
+| Do | Do not |
+|----|--------|
+| **One** program (or 2–3 short steps of the *same* story) that stitches today’s ideas | Example 1…6 that replay each concept |
+| Core: this section may *be* the lesson spine (one idea per Step + Try these inside) | A second gallery after that spine |
+| If a lab kit exists: after the assemble, say what to open in `starter/` | Paste `solution/` or rebuild the mini-project here |
+
+---
+
+## Practice Exercises — transfer, not replay
+
+Heading must be exactly `## Practice Exercises` (not `## Practice`).
+
+- **4–6 items.** New domain, a twist, or two ideas combined.
+- Every numbered item includes `**Model answer:**` (prose and/or a fenced code block). Same notes are shared with students (PDF after the module).
+- **No** Basic / Intermediate / Interview subheadings. **No** Interview-style block (that is Interview Q&A).
+- Must not be the class demo with renamed variables.
+
+**Practice answers:** after `**Model answer:**` / `**Expected Output:**`, put a blank line then a fenced block at **column 0**. Do **not** indent `` ``` `` under the list item — Cursor/VS Code preview often renders indented fences as empty.
 
 ---
 
@@ -119,12 +167,6 @@ Use these exact bold labels (standalone paragraphs). They render as coloured box
 | `**Icons:** Bank · UPI · Employee · Laptop · Order` | Optional chip strip (also Hospital · Payroll · CRM) |
 | `**Key takeaways:**` | 2–4 bullets **immediately after** a Mermaid diagram (paired beside it in PDF). Major ideas only — not every sub-topic |
 
-**Practice answers:** after `**Model answer:**` / `**Expected Output:**`, put a blank line then a fenced block at **column 0**. Do **not** indent `` ``` `` under the list item — Cursor/VS Code preview often renders indented fences as empty.
-
-**Program titles** must be one bold line: `**Program 1 — Book with info()**` (do not split around inline code).
-
-Core/Advanced Python: avoid Django/framework forward-selling; introduce frameworks in their own phase modules.
-
 ---
 
 ## Mini-Project (Assignment) shape
@@ -137,14 +179,18 @@ Use one heading so students always see the word **Assignment**:
 
 | Piece | Required |
 |-------|----------|
-| Title | Portfolio-friendly name (in the heading) |
-| Lab kit link | `15_Lab_Assets/…` when a kit exists |
-| What to build | Table or bullets with acceptance detail |
+| Heading | `## Mini-Project (Assignment): Portfolio-Friendly Title` |
+| Story | Who needs this (named product) and what “never crash” looks like |
+| Lab kit | `15_Lab_Assets/…` — `starter/` and `broken/` when they exist. Tell them not to paste `solution/` |
+| What to build | Table or bullets with acceptance detail (functions, exceptions, demo loop) |
+| Sample run | Expected prints for the happy path and the failure cases |
 | Stretch | 1–3 optional upgrades |
 | Done when | Checkbox list learners can self-check |
 
+Do **not** paste the Step-by-Step assemble or the kit `solution/` here. The ticket should be complete enough to build from — not a one-line link.
+
 **Order:** Practice Exercises → Mini-Project (Assignment) (never reverse).  
-Practice = short drills. **Mini-Project (Assignment)** = take-home homework / portfolio **Done when**.
+Practice = gym on a *different* ticket. **Mini-Project** = tonight’s product (usually the lab kit).
 
 Do **not** add a second `## Assignment` section when a Mini-Project already exists — they are the same deliverable.
 
@@ -212,16 +258,18 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 ## Checklist — classroom-ready
 
 - [ ] Section order matches the table above  
+- [ ] Notes still type-along (runnable programs + Expected Output) — not an outline  
 - [ ] No Classroom Ticket section (labs via calendar / Mini-Project / `15_Lab_Assets/`)  
 - [ ] **Module Outcome:** (high-level topics taught in this module) immediately after the header  
 - [ ] No Bloom Learning Outcomes list and no Teaching note paragraph  
 - [ ] Ticket / lab starter+solution stay within calendar teaching order (no forward concepts)  
 - [ ] Definition/Purpose before first big table (no “Beginner-Friendly” heading)  
-- [ ] **Try these (2 programs)** after each topic / Step  
+- [ ] **Try these** after each topic / Step — one program; two only when the case differs  
+- [ ] Step-by-Step is **one assemble** (no Example 1–6 recap; no pasted `solution/`)  
 - [ ] **Note** next to each major sub-topic (no standalone Common Mistakes)  
-- [ ] Practice Exercises include **Model answer:** under each item  
+- [ ] Practice: 4–6 transfer items, **Model answer:** each; no Interview-style block  
 - [ ] Practice appears **before** Mini-Project (Assignment)  
-- [ ] Mini-Project (Assignment): lab kit + Done when (+ Stretch) — or standalone `## Assignment` if no mini-project  
+- [ ] Mini-Project is a full ticket (story, kit, what to build, sample run, Stretch, Done when) — not a one-line link and not the class assemble pasted again  
 - [ ] No Revision Map table (redundant)  
 - [ ] No Biweekly/Assessment MCQ block in the module (use `16_Assessments/`)  
 - [ ] Interview Q&A: shared Q + A; share module PDF after concepts + mini-project  

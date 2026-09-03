@@ -2,7 +2,7 @@
 
 Private ops, rubrics, answer keys, and author standards. Excluded from `./scripts/pack_student_share.sh`.
 
-**Live class:** [Session Calendar](../Session_Calendar_100.md) + [Daily Lesson Plan](04_Daily_Lesson_Plan_Template.md) + lab kit from `15_Lab_Assets/`.
+**Live class:** [Session Calendar](../Session_Calendar_100.md) + [Daily Lesson Plan](04_Daily_Lesson_Plan_Template.md) + lab kit from `15_Lab_Assets/`. Running code → batch workspace (commit after class). Running notes → OpenBoard.
 
 | File | Purpose |
 |------|---------|
