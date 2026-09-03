@@ -34,7 +34,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 | [15_generator_csv_stream](15_generator_csv_stream/) | ~31 | Ticket: Stream Large CSV |
 | [16_venv_package_bootstrap](16_venv_package_bootstrap/) | ~33–35 | Ticket: Ship a Tiny Utils Package |
 | [17_bank_account_oop](17_bank_account_oop/) | ~36–39 | Ticket: BankAccount Class |
-| [18_safe_input_exceptions](18_safe_input_exceptions/) | ~40–41 | Ticket: Never Crash on Bad Input |
+| [18_safe_input_exceptions](18_safe_input_exceptions/) | ~41 | Ticket: Never Crash on Bad Input |
 | [19_git_portfolio_hygiene](19_git_portfolio_hygiene/) | ~44–45 | Ticket: Clean GitHub Repo Hygiene |
 | [20_sql_injection_demo](20_sql_injection_demo/) | ~55 | Ticket: Stop SQL Injection |
 | [24_django_url_views_stub](24_django_url_views_stub/) | ~63–67 | Ticket: Two Pages With One Base Template |
@@ -44,7 +44,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 | [29_ai_review_stub](29_ai_review_stub/) | optional after S95 | Ticket: Optional AI Recommend Endpoint |
 | [30_ksr_utils_toolkit](30_ksr_utils_toolkit/) | ~28–35 | Ticket: Ship `ksr_utils` (validators, formatters, decorators, generators) |
 | [31_email_id_dedup](31_email_id_dedup/) | ~21–22 | Ticket: Clean Duplicate IDs Before Import |
-| [32_campus_wallet_abc](32_campus_wallet_abc/) | ~39 | Ticket: SecureBank Campus Wallet |
+| [32_campus_wallet_abc](32_campus_wallet_abc/) | ~40 | Ticket: SecureBank Campus Wallet |
 
 ### Shared topic labs (outside this folder)
 

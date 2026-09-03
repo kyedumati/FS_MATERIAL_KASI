@@ -1,11 +1,11 @@
 # Biweekly Assessment BW04 — Weeks 7–8
 
 **Sessions covered:** S31–40  
-**Topics:** Generators, ksr_utils, modules/venv, OOP (including ABC / interface), try/except basics
+**Topics:** Generators, ksr_utils, modules/venv, OOP (including ABC / interface)
 
 **Timebox:** 45–60 minutes (homework or Friday of the even week).  
 **Rules:** Closed notes unless your trainer allows open notes. No copying.  
-**Coding constraint:** Classes and try/except OK. Custom exception classes are Week 9 stretch if unsure.
+**Coding constraint:** Classes and ABC OK. Use print+return for bad amounts — no `try`/`except` (exceptions are Week 9).
 
 ---
 
@@ -49,17 +49,17 @@ Circle the best option.
    c) Git merge
    d) Generators only
 
-7. `try`/`except` is for:
-   a) Creating tables
-   b) Naming folders
-   c) Styling pages
-   d) Handling runtime errors
+7. Instantiating `class Account(ABC)` that has `@abstractmethod def kind(self)` raises:
+   a) SyntaxError
+   b) TypeError
+   c) ValueError
+   d) KeyError
 
-8. `raise ValueError("msg")`:
-   a) Installs packages
-   b) Ignores errors
-   c) Signals an error intentionally
-   d) Prints only
+8. In these notes, a Python “interface” is:
+   a) The `interface` keyword
+   b) `ABC` with only abstract methods
+   c) Any class with `__init__`
+   d) A Django model
 
 9. Decorator `@f` above `def g` means:
    a) g = f(g)
@@ -95,7 +95,7 @@ Circle the best option.
 # your code
 ```
 
-2. Create **SecureBank** `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance`. Reject bad amounts with print+return (or raise if you already prefer exceptions).
+2. Create **SecureBank** `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance`. Reject bad amounts with print+return (no `raise` / `try` / `except`).
 
 ```python
 # your code

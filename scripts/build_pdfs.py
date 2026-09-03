@@ -22,7 +22,7 @@ from pygments.lexers import TextLexer, get_lexer_by_name, guess_lexer
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_COURSES = ("MYSQL",)
-NESTED_COURSES = ("PYTHON", "JAVA", "FRONTEND")  # recursive md tree; excludes trainer-only
+NESTED_COURSES = ("PYTHON", "JAVA", "FRONTEND", "MYSQL")  # recursive md tree; excludes trainer-only
 TRAINER_ONLY_DIR_NAME = "14_Trainer_Only"
 STYLE_PATH = Path(__file__).resolve().parent / "pdf-style.css"
 MERMAID_CACHE_DIR = ROOT / ".cache" / "mermaid"
@@ -755,8 +755,8 @@ def main() -> int:
     parser.add_argument(
         "--course",
         action="append",
-        choices=[*DEFAULT_COURSES, *NESTED_COURSES, "SQL", "all"],
-        help="Course folder to build (repeatable). Default: MYSQL. FRONTEND is nested (HTML/CSS/JS + React).",
+        choices=["MYSQL", "PYTHON", "JAVA", "FRONTEND", "SQL", "all"],
+        help="Course folder to build (repeatable). Default: MYSQL. PYTHON, JAVA, FRONTEND, and MYSQL are nested trees.",
     )
     parser.add_argument(
         "--file",

@@ -1,7 +1,7 @@
 # Python Full Stack Development — Training Material
 
 > **One material policy for the Python program.** Python/Django notes live in this folder.  
-> **Shared topics** (also for Java FS): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/`](../MYSQL/).  
+> **Shared topics** (also for Java FS): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/README.md`](../MYSQL/README.md).  
 > Pointers only: `06_Frontend/`, `10_React/`. PDFs: `PDF/PYTHON/`.
 
 **Source syllabus:** KSR Datavizon *FULL STACK PYTHON 2026–27*  
@@ -53,7 +53,7 @@
 | 13 | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Exception handling |
 | 14 | [03_Advanced_Python/05_File_Handling_and_Logging.md](03_Advanced_Python/05_File_Handling_and_Logging.md) | Files & logging |
 | 15 | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub |
-| 16 | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs in-module / [`MYSQL/`](../MYSQL/) |
+| 16 | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs — map: [`MYSQL/README.md`](../MYSQL/README.md) |
 | 17 | [03_Advanced_Python/06_Database_Programming_Bridge.md](03_Advanced_Python/06_Database_Programming_Bridge.md) | Python ↔ MySQL |
 | 18 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
 | 19 | [../FRONTEND/02_CSS_and_Responsive.md](../FRONTEND/02_CSS_and_Responsive.md) | CSS & responsive *(shared)* |
@@ -119,5 +119,5 @@ PDFs / optional share mirror (from **repo root**):
 ./scripts/pack_student_share.sh   # optional zip mirror; excludes private folders only
 ```
 
-**Share habit:** send each module PDF after that module is taught.  
+**Share habit:** send each module PDF after that module is taught. Rebuilt PDFs under `PDF/` are committed and pushed to origin with the notes.  
 Private ops (keys, rubrics): [`14_Trainer_Only/`](14_Trainer_Only/).

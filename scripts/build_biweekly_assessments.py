@@ -42,14 +42,14 @@ BW_META = {
         "file": "BW04_Weeks_07_08_Advanced_OOP_Exceptions.md",
         "title": "Biweekly Assessment BW04 — Weeks 7–8",
         "sessions": "S31–40",
-        "topics": "Generators, ksr_utils, modules/venv, OOP, try/except basics",
-        "coding_note": "Classes and try/except OK. Custom exception classes are Week 9 stretch if unsure.",
+        "topics": "Generators, ksr_utils, modules/venv, OOP (including ABC / interface)",
+        "coding_note": "Classes and ABC OK. Use print+return for bad amounts — no try/except (exceptions are Week 9).",
     },
     "BW05": {
         "file": "BW05_Weeks_09_10_Files_Git_MySQL.md",
         "title": "Biweekly Assessment BW05 — Weeks 9–10",
         "sessions": "S41–50",
-        "topics": "Custom exceptions, files/CSV/logging, Git/GitHub, MySQL setup and joins intro",
+        "topics": "Exception handling (try/except + custom), files/CSV/logging, Git/GitHub, MySQL setup and SELECT intro",
         "coding_note": "Files + SQL concepts OK.",
     },
     "BW06": {

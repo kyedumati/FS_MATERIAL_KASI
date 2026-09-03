@@ -21,8 +21,8 @@ Do **not** maintain a second “student-only” rewrite of the syllabus, and do 
 ## How to share (recommended)
 
 1. Teach from the module markdown.  
-2. Build PDFs when needed: `./scripts/build.sh python` → `PDF/PYTHON/`.  
-3. After the module (or that day’s Focus) is done, share **only that module’s PDF** on Drive/LMS/WhatsApp.  
+2. Build PDFs when needed: `./scripts/build.sh python` → `PDF/PYTHON/`. Commit and push those PDFs with the notes.  
+3. After the module (or that day’s Focus) is done, share **only that module’s PDF** from GitHub `PDF/` (or Drive/LMS/WhatsApp).  
 4. Homework = **Mini-Project (Assignment)** in the same PDF/notes.
 
 Optional full zip (same notes, still no private folders):

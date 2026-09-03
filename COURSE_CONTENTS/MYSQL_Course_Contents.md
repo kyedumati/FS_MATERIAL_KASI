@@ -2,6 +2,8 @@
 
 **Audience:** Freshers & career switchers | **DB:** MySQL 8+ | **Practice DB:** `training_db`
 
+**Start:** [`MYSQL/README.md`](../MYSQL/README.md) (two tracks) · **Homework:** [`MYSQL/homework/10_Practice_Exercises.md`](../MYSQL/homework/10_Practice_Exercises.md) · **Seed:** [`MYSQL/labs/training_db_seed.sql`](../MYSQL/labs/training_db_seed.sql)
+
 ---
 
 ### 1. Setup & Connection
@@ -99,7 +101,8 @@
 
 ### 12. Practice Exercises
 
-- Chapter-wise homework aligned to modules above
+- Chapter-wise homework in `MYSQL/homework/10_Practice_Exercises.md`
+- Sample rows: `MYSQL/labs/training_db_seed.sql` (before chapter 03)
 
 
 

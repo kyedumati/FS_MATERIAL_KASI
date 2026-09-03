@@ -1,7 +1,7 @@
 # Biweekly Assessment BW05 — Weeks 9–10
 
 **Sessions covered:** S41–50  
-**Topics:** Custom exceptions, files/CSV/logging, Git/GitHub, MySQL setup and joins intro
+**Topics:** Exception handling (try/except + custom), files/CSV/logging, Git/GitHub, MySQL setup and SELECT intro
 
 **Timebox:** 45–60 minutes (homework or Friday of the even week).  
 **Rules:** Closed notes unless your trainer allows open notes. No copying.  
@@ -49,10 +49,10 @@ Circle the best option.
    c) A React prop
    d) A column type
 
-7. JOIN is used to:
+7. `SELECT ... WHERE` is used to:
    a) Commit git
    b) Create venv
-   c) Combine related tables
+   c) Filter rows that match a condition
    d) Style HTML
 
 8. Parameterized queries help prevent:

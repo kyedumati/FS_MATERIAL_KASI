@@ -92,9 +92,9 @@
 | 36 | 8 | Class / object / `__init__` | [03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md](03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md) | Student class |
 | 37 | 8 | Encapsulation + methods | [Part 1 same](03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md) | BankAccount |
 | 38 | 8 | Inheritance + `super()` | [03_Advanced_Python/03_OOP_Part2_Inheritance.md](03_Advanced_Python/03_OOP_Part2_Inheritance.md) | Employee hierarchy |
-| 39 | 8 | Polymorphism lab | [03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) | Push OOP app; start [Part 4 ABC / interfaces](03_Advanced_Python/03_OOP_Part4_Abstract_Classes_Interfaces.md) |
-| 40 | 8 | Exceptions try/except/finally | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Safe input lab |
-| 41 | 9 | Custom exceptions | same | Domain errors |
+| 39 | 8 | Polymorphism lab | [03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) | Push OOP app (BankAccount CLI) |
+| 40 | 8 | ABC / interfaces | [03_Advanced_Python/03_OOP_Part4_Abstract_Classes_Interfaces.md](03_Advanced_Python/03_OOP_Part4_Abstract_Classes_Interfaces.md) | Campus Wallet lab |
+| 41 | 9 | Exceptions try/except + custom | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Safe input lab |
 | 42 | 9 | Files + `with` + CSV/JSON | [03_Advanced_Python/05_File_Handling_and_Logging.md](03_Advanced_Python/05_File_Handling_and_Logging.md) | CSV append |
 | 43 | 9 | Logging levels | same | Logger in expense app |
 | 44 | 9 | Git local: add/commit/branch | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Daily commit habit |
@@ -106,10 +106,10 @@
 
 | S# | Wk | Focus | Module / lab | Homework |
 |---:|---:|-------|--------------|---------|
-| 46 | 10 | Why DB; install/connect | [00_MySQL_Setup](../MYSQL/00_MySQL_Setup_and_Connection.md) + [FS bridge](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | `training_db` created |
+| 46 | 10 | Why DB; install/connect | [MYSQL README](../MYSQL/README.md) + [00_MySQL_Setup](../MYSQL/00_MySQL_Setup_and_Connection.md) + [FS bridge](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | `training_db` created |
 | 47 | 10 | Tables, PK; DDL CREATE | [MYSQL/01](../MYSQL/01_Introduction_to_Databases.md)–[02](../MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | 3 tables |
 | 48 | 10 | DML INSERT/UPDATE/DELETE | [MYSQL/02](../MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | Seed data |
-| 49 | 10 | DQL WHERE/ORDER/LIMIT | [MYSQL/03](../MYSQL/03_Querying_with_SQL.md) | Report queries |
+| 49 | 10 | DQL WHERE/ORDER/LIMIT | [MYSQL/03](../MYSQL/03_Querying_with_SQL.md) + [labs seed](../MYSQL/labs/README.md) | Report queries |
 | 50 | 10 | FS bridge concepts + ER sketch | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | Library ER |
 | 51 | 11 | Modeling PK/FK | [MYSQL/06](../MYSQL/06_Modeling_Databases.md) | Related tables |
 | 52 | 11 | INNER JOIN | [MYSQL/07](../MYSQL/07_Joins.md) | Join drills |

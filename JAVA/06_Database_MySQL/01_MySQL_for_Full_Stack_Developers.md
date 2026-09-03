@@ -2,7 +2,7 @@
 
 **Phase:** Database
 
-**SQL material (source of truth):** repo folder [`MYSQL/`](../../MYSQL/) — open those files on lab days.  
+**SQL material (source of truth):** [`MYSQL/README.md`](../../MYSQL/README.md) — open those files on lab days.  
 **Schedule:** [Session Calendar](../Session_Calendar_100.md) — Weeks 10–11 / Sessions 46–54 (JDBC follows in `07_JDBC/`).  
 **Java connectivity:** [`../07_JDBC/01_JDBC_CRUD.md`](../07_JDBC/01_JDBC_CRUD.md)
 
@@ -29,15 +29,16 @@ SQL is a **core placement skill**. Deep notes live in [`MYSQL/`](../../MYSQL/); 
 
 | Done | When | Lab file | You must be able to |
 |:----:|------|----------|---------------------|
-| ☐ | W10 | [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md) | Install/connect; create `training_db` |
+| ☐ | W10 | [`MYSQL/00_MySQL_Setup_and_Connection.md`](../../MYSQL/00_MySQL_Setup_and_Connection.md) + [`MYSQL/README.md`](../../MYSQL/README.md) | Install/connect; create `training_db` |
 | ☐ | W10 | [`MYSQL/01_Introduction_to_Databases.md`](../../MYSQL/01_Introduction_to_Databases.md) | Explain table/row/DBMS vs Excel |
 | ☐ | W10 | [`MYSQL/02_Introduction_to_SQL_Basic_Concepts.md`](../../MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | DDL + DML CRUD + constraints |
 | ☐ | W10 | [`MYSQL/03_Querying_with_SQL.md`](../../MYSQL/03_Querying_with_SQL.md) | WHERE, LIKE, ORDER BY, LIMIT |
+| ☐ | W10 | [`MYSQL/labs/README.md`](../../MYSQL/labs/README.md) | Run `training_db_seed.sql` before ch. 03 drills |
 | ☐ | W10 | This bridge module | ER sketch for Library / CampusCart |
 | ☐ | W11 | [`MYSQL/06_Modeling_Databases.md`](../../MYSQL/06_Modeling_Databases.md) | PK/FK, 1:N |
 | ☐ | W11 | [`MYSQL/07_Joins.md`](../../MYSQL/07_Joins.md) | INNER + LEFT JOIN multi-table reports |
 | ☐ | W11 | [`MYSQL/09_Transactions_and_Indexes.md`](../../MYSQL/09_Transactions_and_Indexes.md) | COMMIT/ROLLBACK; when index helps |
-| ☐ | W11 | [`MYSQL/10_Practice_Exercises.md`](../../MYSQL/10_Practice_Exercises.md) | Complete exercises for ch. 02, 03, 07 |
+| ☐ | W11 | [`MYSQL/homework/10_Practice_Exercises.md`](../../MYSQL/homework/10_Practice_Exercises.md) | Complete exercises for ch. 02, 03, 07 |
 | ☐ | W11–12 | [JDBC CRUD](../07_JDBC/01_JDBC_CRUD.md) | Parameterized INSERT/SELECT/UPDATE/DELETE from Java |
 
 **Strongly recommended before placement mocks:** [`MYSQL/04`](../../MYSQL/04_Aggregations_and_Group_By.md) · [`MYSQL/05`](../../MYSQL/05_Common_Concepts.md) · [`MYSQL/08`](../../MYSQL/08_Views_and_Subqueries.md) · one project from [`MYSQL/12`](../../MYSQL/12_Real_Time_Projects.md). Window functions ([`MYSQL/11`](../../MYSQL/11_Window_Functions_and_CTEs.md)) only if the required set is solid.
@@ -805,7 +806,7 @@ Work in MySQL Workbench / CLI. Commit the `.sql` script to your GitHub portfolio
 | All joins | `MYSQL/07_Joins.md` |
 | Subqueries, views | `MYSQL/08_Views_and_Subqueries.md` |
 | Transactions, indexes | `MYSQL/09_Transactions_and_Indexes.md` |
-| Practice + projects | `MYSQL/10_Practice_Exercises.md`, `MYSQL/12_Real_Time_Projects.md` |
+| Practice + projects | `MYSQL/homework/10_Practice_Exercises.md`, `MYSQL/12_Real_Time_Projects.md` |
 
 **Java next:** [`07_JDBC/01_JDBC_CRUD.md`](../07_JDBC/01_JDBC_CRUD.md) — `PreparedStatement` CRUD against **these** tables. No Spring Boot this week.
 

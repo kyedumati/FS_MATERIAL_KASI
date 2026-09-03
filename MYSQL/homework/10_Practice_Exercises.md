@@ -1,6 +1,10 @@
 # Practice Exercises
 
-Work through these exercises after completing each chapter. Use **MySQL 8+** and the `training_db` database from [MySQL Setup](00_MySQL_Setup_and_Connection.md).
+Work through these exercises after completing each chapter. Use **MySQL 8+** and the `training_db` database from [MySQL Setup](../00_MySQL_Setup_and_Connection.md).
+
+Load sample rows with [`labs/training_db_seed.sql`](../labs/training_db_seed.sql) before chapter 03. Chapter 02 still has you `CREATE` `player` and `employee` yourself.
+
+Map of modules: [MYSQL README](../README.md).
 
 ---
 
@@ -9,6 +13,16 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 - Drill each chapter against `training_db` until the syntax is in your fingers
 - Write the query first, then check — not copy from a neighbour
 - Treat this file as gym work, not a new topic
+
+## Chapter 00 — MySQL Setup
+
+1. Install MySQL and MySQL Workbench on your machine.
+2. Connect via CLI using `mysql -u root -p`.
+3. Create database `training_db` and run `USE training_db;`.
+4. Run `DESCRIBE` on any table you create.
+5. Create a practice user with `GRANT SELECT ON training_db.* TO 'trainee'@'localhost';`
+
+---
 
 ## Chapter 01 — Introduction to Databases
 
@@ -20,7 +34,7 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 
 ## Chapter 02 — Introduction to SQL (Basic Concepts)
 
-**Setup:** Use the `player` table (`id`, `name`, `age`, `score`).
+**Setup:** Do **not** use the seed for this chapter. Create the `player` table yourself (`id`, `name`, `age`, `score`).
 
 1. Write a `CREATE TABLE` statement for `player` with `id` as `PRIMARY KEY AUTO_INCREMENT`.
 2. Insert three players. Let MySQL auto-assign `id` for at least one row.
@@ -35,7 +49,7 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 
 ## Chapter 03 — Querying with SQL
 
-**Setup:** Use the `product` table (`name`, `category`, `price`, `brand`, `rating`).
+**Setup:** Run [`labs/training_db_seed.sql`](../labs/training_db_seed.sql). Use the `product` table (`name`, `category`, `price`, `brand`, `rating`).
 
 1. Get all products with `price` greater than `500`.
 2. Get all products whose `name` contains `"cake"`.
@@ -52,7 +66,7 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 
 ## Chapter 04 — Aggregations and Group By
 
-**Setup:** Use the `player_match_details` table (`name`, `score`, `year`).
+**Setup:** Seed loaded. Use the `player_match_details` table (`name`, `score`, `year`).
 
 1. Find the total runs scored by `"Ram"`.
 2. Find the average score across all matches.
@@ -66,7 +80,7 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 
 ## Chapter 05 — Common Concepts
 
-**Setup:** Use the `movie` table (`id`, `name`, `genre`, `budget_in_cr`, `collection_in_cr`, `rating`, `release_date`).
+**Setup:** Seed loaded. Use the `movie` table (`id`, `name`, `genre`, `budget_in_cr`, `collection_in_cr`, `rating`, `release_date`). Actor IDs live in `movie_actor`.
 
 1. Select `name` and profit (`collection_in_cr - budget_in_cr`) for all movies.
 2. Get movies released in the year `2010` using `YEAR()` or `DATE_FORMAT()`.
@@ -91,7 +105,7 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 
 ## Chapter 07 — Joins
 
-**Setup:** Use the e-learning tables: `student`, `course`, `instructor`, `student_course`, `review`.
+**Setup:** Seed loaded. Use the e-learning tables: `student`, `course`, `instructor`, `student_course`, `review`.
 
 1. Use `NATURAL JOIN` to list courses taught by `"Alex"`.
 2. Use `INNER JOIN` to get reviews for course id `15` with student names.
@@ -103,6 +117,8 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 ---
 
 ## Chapter 08 — Views and Subqueries
+
+**Setup:** Seed loaded. Use `product` and `product_order`.
 
 1. Create a view `high_rated_products` showing products with `rating > 4.5`.
 2. Query the view to list product names.
@@ -116,6 +132,8 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 
 ## Chapter 09 — Transactions and Indexes
 
+**Setup:** Seed loaded. Transfers use the `accounts` table (`Sam`, `David`). Index drills use `product`. Use the `employee` table you created in chapter 02 for the unique index.
+
 1. Explain ACID properties with the bank transfer example in your own words.
 2. Write a transaction that debits `500` from Sam and credits `500` to David using `BEGIN`, `COMMIT`.
 3. What happens if you `ROLLBACK` instead of `COMMIT` after the two `UPDATE` statements?
@@ -128,30 +146,22 @@ Work through these exercises after completing each chapter. Use **MySQL 8+** and
 
 ---
 
-## Chapter 00 — MySQL Setup
-
-1. Install MySQL and MySQL Workbench on your machine.
-2. Connect via CLI using `mysql -u root -p`.
-3. Create database `training_db` and run `USE training_db;`.
-4. Run `DESCRIBE` on any table you create.
-5. Create a practice user with `GRANT SELECT ON training_db.* TO 'trainee'@'localhost';`
-
----
-
 ## Chapter 11 — Window Functions & CTEs
+
+**Setup:** Seed loaded. Ranking drills use `product`.
 
 1. Rank products by price within each category using `ROW_NUMBER()`.
 2. Find the top-rated product per category using `ROW_NUMBER()` in a subquery.
-3. Rank players by score using `RANK()` and `DENSE_RANK()` — compare outputs when scores tie.
+3. Rank players by score using `RANK()` and `DENSE_RANK()` — compare outputs when scores tie. Use `player_match_details`.
 4. Write a CTE to find products priced above the average.
-5. Write a recursive CTE for a 3-level employee hierarchy.
+5. Write a recursive CTE for a 3-level employee hierarchy (create a small `org_chart` table for this drill).
 6. **Challenge:** Use `DENSE_RANK()` to find the 2nd highest-rated product in each category.
 
 ---
 
 ## Chapter 12 — Real-Time Projects
 
-Complete at least **one** full project from [Real-Time Projects](12_Real_Time_Projects.md):
+Complete at least **one** full project from [Real-Time Projects](../12_Real_Time_Projects.md):
 
 - **AcmeHR** — all 7 practice queries + challenge
 - **TechMart** — all 7 practice queries + challenge

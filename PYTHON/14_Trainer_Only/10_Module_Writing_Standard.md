@@ -202,10 +202,10 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 - **Stretch:** may preview later topics — label clearly (e.g. “Later — Files week”).  
 - **Before Flow Control (S11):** no `if` / `while` / `for` / `def` in core path — linear scripts.  
 - **Before Functions (S28):** no `def` / `global` / type hints in Core kits — menu scripts and top-level statements.  
-- **Before Exceptions (S40):** no `try` / `except` / `raise` (including `raise NotImplementedError` stubs — use `pass` / `return` / `if False: yield`).  
+- **Before Exceptions (S41):** no `try` / `except` / `raise` (including `raise NotImplementedError` stubs — use `pass` / `return` / `if False: yield`).  
 - **Before Files (S42):** no `open` / `with` / `csv` / `pathlib` in generator labs — yield in-memory rows; CSV is Stretch.  
 - **Do not require** type hints, `X | Y` unions, `dataclass`, or `assert` in learner Done when (optional trainer smoke only).  
-- **From S40 onward:** `try`/`except`/`raise` OK (`18_safe_input_exceptions` and later).
+- **From S41 onward:** `try`/`except`/`raise` OK (`18_safe_input_exceptions` and later).
 
 ---
 

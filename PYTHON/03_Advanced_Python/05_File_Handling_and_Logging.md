@@ -2,8 +2,8 @@
 
 **Phase:** Advanced Python
 
-**Previous module:** Exception Handling
-**Next module:** Git and GitHub
+**Previous module:** [Exception Handling](04_Exception_Handling.md)
+**Next module:** [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md)
 
 ---
 

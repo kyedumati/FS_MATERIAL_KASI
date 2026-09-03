@@ -108,10 +108,10 @@
 
 | S# | Wk | Focus | Module / lab | Homework |
 |---:|---:|-------|--------------|---------|
-| 46 | 10 | Why DB; install/connect | [00_MySQL_Setup](../MYSQL/00_MySQL_Setup_and_Connection.md) + [FS bridge](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | `training_db` created |
+| 46 | 10 | Why DB; install/connect | [MYSQL README](../MYSQL/README.md) + [00_MySQL_Setup](../MYSQL/00_MySQL_Setup_and_Connection.md) + [FS bridge](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | `training_db` created |
 | 47 | 10 | Tables, PK; DDL CREATE | [MYSQL/01](../MYSQL/01_Introduction_to_Databases.md)–[02](../MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | 3 tables |
 | 48 | 10 | DML INSERT/UPDATE/DELETE | [MYSQL/02](../MYSQL/02_Introduction_to_SQL_Basic_Concepts.md) | Seed data |
-| 49 | 10 | DQL WHERE/ORDER/LIMIT | [MYSQL/03](../MYSQL/03_Querying_with_SQL.md) | Report queries |
+| 49 | 10 | DQL WHERE/ORDER/LIMIT | [MYSQL/03](../MYSQL/03_Querying_with_SQL.md) + [labs seed](../MYSQL/labs/README.md) | Report queries |
 | 50 | 10 | FS bridge concepts + ER sketch | [06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | Library ER |
 | 51 | 11 | Modeling PK/FK | [MYSQL/06](../MYSQL/06_Modeling_Databases.md) | Related tables |
 | 52 | 11 | INNER JOIN | [MYSQL/07](../MYSQL/07_Joins.md) | Join drills |

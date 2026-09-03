@@ -26,4 +26,4 @@ Not owned by `PYTHON/` or `JAVA/`.
 
 **Calendars:** [`PYTHON/Session_Calendar_100.md`](../PYTHON/Session_Calendar_100.md) · [`JAVA/Session_Calendar_100.md`](../JAVA/Session_Calendar_100.md)
 
-**Sibling shared topic:** [`MYSQL/`](../MYSQL/)
+**Sibling shared topic:** [`MYSQL/README.md`](../MYSQL/README.md)

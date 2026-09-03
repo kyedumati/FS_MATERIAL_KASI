@@ -3,7 +3,7 @@
 **Phase:** Advanced Python
 
 **Previous module:** [OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md)
-**Next module:** File Handling and Logging
+**Next module:** [File Handling and Logging](05_File_Handling_and_Logging.md)
 
 ---
 
@@ -68,14 +68,14 @@ Think of an ATM: wrong PIN should not “explode” the machine — it shows “
 
 Python gives you **four keywords** for that story. Learn what each one is *for* before memorising the layout.
 
-`**try**` — The risky attempt. Only the lines that might fail belong here: `int(pin)`, split a bill, look up a dict key. Keep it short. If `try` is 40 lines, you will not know which line raised.
+**`try`** — The risky attempt. Only the lines that might fail belong here: `int(pin)`, split a bill, look up a dict key. Keep it short. If `try` is 40 lines, you will not know which line raised.
 
-`**except**` — Named recovery. “If this **type** of failure happened, do this instead of crashing.”  
+**`except`** — Named recovery. “If this **type** of failure happened, do this instead of crashing.”  
 `except ValueError as e` binds the error object to `e` so you can print the message (`e`) or the type (`type(e).__name__`). You may stack several `except` blocks — Python uses the **first match**, so put specific types (`ValueError`) above broad ones (`Exception`). When two types share the same recovery, use a tuple: `except (TypeError, ValueError) as e:`.
 
-`**else**` — The success path. Runs only when `try` finished with **no** exception. Put “PIN accepted — show the menu” here, not inside `try`. If that success code later bugs, `except` will not swallow it and pretend the PIN failed.
+**`else`** — The success path. Runs only when `try` finished with **no** exception. Put “PIN accepted — show the menu” here, not inside `try`. If that success code later bugs, `except` will not swallow it and pretend the PIN failed.
 
-`**finally**` — Cleanup that **always** runs: success, caught error, even `return` from a function. ATM: return the card. UPI: log that an attempt happened. Do not put business decisions here (`if paid: ship_order()` belongs in `else`).
+**`finally`** — Cleanup that **always** runs: success, caught error, even `return` from a function. ATM: return the card. UPI: log that an attempt happened. Do not put business decisions here (`if paid: ship_order()` belongs in `else`).
 
 ```mermaid
 flowchart TD

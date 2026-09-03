@@ -79,6 +79,8 @@ SELECT DATABASE();
 SHOW TABLES;
 ```
 
+**Step 5 (before querying homework):** Load sample tables from [`labs/training_db_seed.sql`](labs/training_db_seed.sql). Module 02 still has you `CREATE` `player` yourself. How to run the script: [`labs/README.md`](labs/README.md).
+
 **Common CLI commands:**
 
 | Command | Description |
@@ -166,3 +168,5 @@ mysql -u trainee -p training_db
 | Port 3306 in use | Check if another MySQL instance is running |
 
 **Note:** All SQL examples in this course assume you are connected to MySQL 8+ and have run `USE training_db;` (or your project database) before executing queries.
+
+**What next:** [MYSQL README](README.md) — two teaching tracks, homework, and the seed lab.

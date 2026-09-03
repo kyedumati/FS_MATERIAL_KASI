@@ -10,7 +10,7 @@
 4. **b** — Stages then records a snapshot
 5. **b** — Remote (e.g. GitHub)
 6. **a** — A row
-7. **c** — Combine related tables
+7. **c** — Filter rows that match a condition
 8. **c** — SQL injection
 9. **b** — Exception
 10. **a** — Explain how to run the project

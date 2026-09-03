@@ -1,7 +1,7 @@
 # Java Full Stack Development — Training Material
 
 > **One material policy for the Java program.** Java / Spring Boot notes live in this folder.  
-> **Shared topics** (same files as Python FS): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/`](../MYSQL/).  
+> **Shared topics** (same files as Python FS): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/README.md`](../MYSQL/README.md).  
 > Pointers only: `08_Frontend/`, `11_React/`. JPA/REST home is `09_Spring_Boot/` — `10_JPA_and_REST/` is a pointer, not a second copy.
 
 **Source syllabus:** KSR Datavizon *Java Full Stack Development*  
@@ -50,7 +50,7 @@
 | 10 | [04_Collections_Exceptions_IO/02_Exception_Handling.md](04_Collections_Exceptions_IO/02_Exception_Handling.md) | Exception handling |
 | 11 | [04_Collections_Exceptions_IO/03_File_Handling.md](04_Collections_Exceptions_IO/03_File_Handling.md) | Files & I/O |
 | 12 | [05_Git_GitHub/01_Git_and_GitHub.md](05_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub (Java `.gitignore`, Maven) |
-| 13 | [06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs in-module / [`MYSQL/`](../MYSQL/) |
+| 13 | [06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs — map: [`MYSQL/README.md`](../MYSQL/README.md) |
 | 14 | [07_JDBC/01_JDBC_CRUD.md](07_JDBC/01_JDBC_CRUD.md) | JDBC CRUD (`PreparedStatement`) |
 | 15 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
 | 16 | [../FRONTEND/02_CSS_and_Responsive.md](../FRONTEND/02_CSS_and_Responsive.md) | CSS & responsive *(shared)* |
@@ -121,5 +121,5 @@ PDFs / optional share mirror (from **repo root**):
 
 Python FS is unchanged: `./scripts/build.sh python` · `./scripts/pack_student_share.sh`.
 
-**Share habit:** send each module PDF after that module is taught.  
+**Share habit:** send each module PDF after that module is taught. Rebuilt PDFs under `PDF/` are committed and pushed to origin with the notes.  
 Private ops (keys, rubrics): [`14_Trainer_Only/`](14_Trainer_Only/).

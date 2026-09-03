@@ -1,11 +1,11 @@
-"""STARTER exceptions."""
+"""STARTER — exceptions. Finish read_age. No type hints."""
 
 class InvalidAgeError(Exception):
     pass
 
 
-def read_age(raw: str) -> int:
-    # TODO: ValueError vs InvalidAgeError
+def read_age(raw):
+    # TODO: int() in try; InvalidAgeError if not 1–120
     raise NotImplementedError
 
 

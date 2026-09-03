@@ -36,7 +36,7 @@ case "$PROG" in
 | `PYTHON/` | Python program (calendar, Django, labs, placement) |
 | `FRONTEND/` | Shared HTML / CSS / JS |
 | `FRONTEND/REACT/` | Shared React |
-| `MYSQL/` | Shared SQL labs (Weeks 10–11) |
+| `MYSQL/` | Shared SQL — start at `MYSQL/README.md` |
 
 ## How you usually receive material
 
@@ -77,7 +77,7 @@ Preferred delivery: module PDF after each teach day. See program README for teac
 | `JAVA/` | Java program (calendar, Spring Boot, labs, placement) |
 | `FRONTEND/` | Shared HTML / CSS / JS |
 | `FRONTEND/REACT/` | Shared React |
-| `MYSQL/` | Shared SQL labs (Weeks 10–11) |
+| `MYSQL/` | Shared SQL — start at `MYSQL/README.md` |
 
 ## How you usually receive material
 

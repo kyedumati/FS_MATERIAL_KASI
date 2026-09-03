@@ -2,6 +2,8 @@
 
 This folder is **auto-generated**. Do not edit files here.
 
+**Git:** student PDFs **are committed and pushed** to origin with the matching markdown. After you change a module `.md`, rebuild that PDF and include `PDF/**` in the same commit. Temporary preview folders (`.pdf_pages/`, `.cache/`) stay gitignored.
+
 **Requirements:** Python (`markdown`, `pygments`), Google Chrome, and **Node.js (`npx`)** so Mermaid diagrams render as SVG (not raw ```mermaid code).
 
 ## PDF visual conventions (in Markdown)
@@ -48,5 +50,5 @@ Also share sibling **`MYSQL/`** (or build MySQL PDFs below) for SQL weeks.
 ## Other builds
 
 ```bash
-./scripts/build.sh mysql    # → PDF/MYSQL/
+./scripts/build.sh mysql    # → PDF/MYSQL/ (nested: notes, homework/, labs/)
 ```

@@ -6,7 +6,7 @@
 - Sort and limit so a catalogue page is not 10,000 rows
 - Write a SELECT you could paste into Workbench and trust
 
-**Note:** This chapter uses **MySQL** syntax. String literals use single quotes (`'value'`).
+**Note:** This chapter uses **MySQL** syntax. String literals use single quotes (`'value'`). For homework rows, load [`labs/training_db_seed.sql`](labs/training_db_seed.sql) first.
 
 ## Comparison Operators
 

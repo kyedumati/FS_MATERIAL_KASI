@@ -1,6 +1,5 @@
-# Generated PDFs (rebuild with: ./scripts/build.sh)
-PDF/*
-!PDF/README.md
+# Student PDFs under PDF/ are committed and pushed to origin.
+# Rebuild with: ./scripts/build.sh [python|java|frontend|mysql]
 
 # Student packs (rebuild with: ./scripts/pack_student_share.sh)
 dist/
