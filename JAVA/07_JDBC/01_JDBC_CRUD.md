@@ -114,9 +114,7 @@ MySQL already has the table — Java must use JDBC.
 - Prefer: `java -cp ".:mysql-connector-j-8.4.0.jar" YourClass` (Windows: `;` instead of `:`).
 - **Later — Maven / Spring:** the JAR becomes a dependency. Not this module.
 
-**Try these (2 programs):**
-
-**Program 1 — Name the four hops**
+Print the four JDBC layers from Java app through Connector/J to MySQL tables.
 
 ```java
 public class JdbcLayerLabels {
@@ -138,7 +136,7 @@ public class JdbcLayerLabels {
 4 MySQL server / tables
 ```
 
-**Program 2 — Compile vs run**
+Print why javac can compile java.sql without a JAR while java needs Connector/J on -cp.
 
 ```java
 public class JdbcApiVsDriver {
@@ -187,9 +185,7 @@ jdbc:mysql://localhost:3306/training_db?allowPublicKeyRetrieval=true&useSSL=fals
 
 **Remember:** `javac YourClass.java` then `java -cp ".:mysql-connector-j-8.4.0.jar" YourClass`.
 
-**Try these (2 programs):**
-
-**Program 1 — Print URL pieces (no connect)**
+Build and print a JDBC URL from host, port, and database with the lab flags (do not connect).
 
 ```java
 public class JdbcUrlPieces {
@@ -210,7 +206,7 @@ public class JdbcUrlPieces {
 jdbc:mysql://localhost:3306/training_db?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Kolkata
 ```
 
-**Program 2 — Classpath reminder**
+Print the macOS/Linux and Windows java -cp lines that put Connector/J on the classpath.
 
 ```java
 public class ClasspathHintPrint {
@@ -280,9 +276,7 @@ If the env var is missing, the program prints `Set MYSQL_PASSWORD first` and exi
 
 **Interview:** Why try-with-resources on `Connection`? Because `close()` returns the session to the server even if `executeQuery` throws.
 
-**Try these (2 programs):**
-
-**Program 1 — Prove `Connection` is closeable**
+Print whether java.sql.Connection implements AutoCloseable.
 
 ```java
 import java.sql.Connection;
@@ -300,7 +294,7 @@ public class ConnectionIsAutoCloseable {
 true
 ```
 
-**Program 2 — Friendly connect failure (no password)**
+Exit with a friendly message when MYSQL_PASSWORD is unset so you never call DriverManager without a password.
 
 ```java
 public class MissingPasswordNoConnect {
@@ -349,9 +343,7 @@ MYSQL_DATABASE=training_db
 
 **Remember:** Env first, then `.env`. Never a password literal in source.
 
-**Try these (2 programs):**
-
-**Program 1 — Missing key exits**
+Read MYSQL_PASSWORD from the environment and print a missing-key message or the password length.
 
 ```java
 public class MissingMysqlPassword {
@@ -372,7 +364,7 @@ public class MissingMysqlPassword {
 Set MYSQL_PASSWORD first
 ```
 
-**Program 2 — Read one key from a demo file**
+Write a throwaway env_demo_jdbc.txt, parse MYSQL_PASSWORD from it, print the value, then delete the file.
 
 ```java
 import java.io.IOException;
@@ -466,9 +458,7 @@ Malgudi Days — R. K. Narayan
 
 **Interview:** `executeQuery` is for **SELECT**. Writes use `executeUpdate`. Mixing them throws.
 
-**Try these (2 programs):**
-
-**Program 1 — Placeholder count vs `setString` index**
+Print a two-placeholder SELECT and the matching setString/setInt indexes.
 
 ```java
 public class PlaceholderIndexNote {
@@ -487,7 +477,7 @@ SELECT title FROM books WHERE author = ? AND copies >= ?
 setString(1, author); setInt(2, copies);
 ```
 
-**Program 2 — `SELECT` with two `?` (needs MySQL)**
+Connect and SELECT copies from books WHERE title = ? for The White Tiger (needs MySQL).
 
 ```java
 import java.sql.Connection;
@@ -585,9 +575,7 @@ Inserted rows: 1
 - `UPDATE` / `DELETE` without `WHERE` can touch **every** row. Always bind a key (`title` or `book_id`) with `?`.
 - Stretch: `prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)` then `getGeneratedKeys()` for `AUTO_INCREMENT` `book_id`.
 
-**Try these (2 programs):**
-
-**Program 1 — UPDATE copies (needs MySQL)**
+UPDATE books SET copies = ? WHERE title = ? for The White Tiger (needs MySQL).
 
 ```java
 import java.sql.Connection;
@@ -623,7 +611,7 @@ public class UpdateCopiesPrepared {
 Updated rows: 1
 ```
 
-**Program 2 — DELETE by title template (print only)**
+Print a DELETE-by-title template and remind yourself to bind with setString, not string concat.
 
 ```java
 public class DeleteByTitleTemplate {
@@ -684,9 +672,7 @@ The unsafe line is a **SELECT of every title** if you ran it through `Statement`
 
 **Interview:** Parameterized queries send the plan and the values separately, so user input cannot change the plan.
 
-**Try these (2 programs):**
-
-**Program 1 — `?` is not string concat**
+Print a SELECT template with ? and show that a DROP TABLE attack string stays data, not SQL.
 
 ```java
 public class QuestionMarkIsData {
@@ -706,7 +692,7 @@ SQL stays: SELECT title FROM books WHERE title = ?
 Value stays data: CampusCart'; DROP TABLE books; --
 ```
 
-**Program 2 — Login concat vs two placeholders**
+Print an unsafe login concat that comments out the PIN check next to a two-placeholder template.
 
 ```java
 public class LoginConcatVsPlaceholders {
@@ -745,9 +731,7 @@ The `--` in the unsafe string comments out the PIN check. Placeholders cannot do
 
 **Remember:** `next()` then getters. Indexes start at 1.
 
-**Try these (2 programs):**
-
-**Program 1 — 1-based column index (print only)**
+Print that ResultSet column indexes start at 1 and that named getters are preferred in class.
 
 ```java
 public class ResultSetOneBased {
@@ -767,7 +751,7 @@ getString(1) is title — not 0
 Prefer getString("title") in class demos
 ```
 
-**Program 2 — Nested close order (print only)**
+Print the nested try-with-resources close order: ResultSet, then statement, then connection.
 
 ```java
 public class NestedTwrOrderPrint {
@@ -829,9 +813,7 @@ public class StepConnectProof {
 
 Even a parameter-less SELECT still uses **`PreparedStatement`** — stay on one API.
 
-**Try these (2 programs):**
-
-**Program 1 — `SELECT VERSION()` template**
+Print SELECT VERSION() and that it uses executeQuery, not executeUpdate.
 
 ```java
 public class StepSelectVersion {
@@ -849,7 +831,7 @@ SELECT VERSION()
 executeQuery — not executeUpdate
 ```
 
-**Program 2 — Current user template**
+Print SELECT CURRENT_USER() as a PreparedStatement with zero placeholders.
 
 ```java
 public class StepCurrentUser {
@@ -901,9 +883,7 @@ public class StepListAllBooks {
 }
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Filter SQL with `?` (print)**
+Print a copies filter template and setInt(1, 3).
 
 ```java
 public class StepFilterByCopies {
@@ -921,7 +901,7 @@ SELECT title FROM books WHERE copies >= ?
 setInt(1, 3);
 ```
 
-**Program 2 — ORDER BY is still SQL you know**
+Print an ORDER BY title SELECT and note that a fixed column needs no placeholder.
 
 ```java
 public class StepOrderByTitle {
@@ -976,9 +956,7 @@ public class StepInsertCookbook {
 }
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Four placeholders**
+Print an INSERT with four ? and the bind order for title, author, copies, and price_inr.
 
 ```java
 public class StepInsertPlaceholders {
@@ -996,7 +974,7 @@ INSERT INTO books (title, author, copies, price_inr) VALUES (?, ?, ?, ?)
 1 title  2 author  3 copies  4 price_inr
 ```
 
-**Program 2 — Generated keys (print — Stretch to code)**
+Print how to request RETURN_GENERATED_KEYS and read book_id from getGeneratedKeys.
 
 ```java
 public class StepGeneratedKeySketch {
@@ -1054,9 +1032,7 @@ public class StepUpdateThenDelete {
 
 If a seed `loans` row points at a book, DELETE of **that** book can fail on the foreign key ([`MYSQL/06`](../../MYSQL/06_Modeling_Databases.md)). Demo INSERT/UPDATE/DELETE on a **new** title so you do not fight the FK in the first hour.
 
-**Try these (2 programs):**
-
-**Program 1 — UPDATE template**
+Print an UPDATE price_inr template and the setBigDecimal/setString bind order.
 
 ```java
 public class StepUpdatePrice {
@@ -1074,7 +1050,7 @@ UPDATE books SET price_inr = ? WHERE title = ?
 setBigDecimal(1, price); setString(2, title);
 ```
 
-**Program 2 — DELETE template**
+Print a DELETE-by-title template and that executeUpdate returns the row count.
 
 ```java
 public class StepDeleteByTitle {
@@ -1115,9 +1091,7 @@ Never run: SELECT title FROM books WHERE author = 'Chetan Bhagat'
 Always run: SELECT title FROM books WHERE author = ?
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Attack string vs template**
+Print an OR 1=1 attack as a bound value while the SQL stays a ? template.
 
 ```java
 public class StepInjectSafePrint {
@@ -1136,7 +1110,7 @@ Bound value would be: x' OR '1'='1
 SQL stays: SELECT title FROM books WHERE author = ?
 ```
 
-**Program 2 — `%s` is the wrong placeholder here**
+Print that Java Connector/J uses ? and you must not copy Python %s into JDBC.
 
 ```java
 public class StepInjectUnsafePrint {
@@ -1191,9 +1165,7 @@ public class StepListTitlesLoop {
 listTitles needs a live Connection from openConnection()
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Count query**
+Print a COUNT(*) query and that you read n with getInt after next().
 
 ```java
 public class StepCountBooks {
@@ -1211,7 +1183,7 @@ SELECT COUNT(*) AS n FROM books
 getInt("n") after next()
 ```
 
-**Program 2 — Menu choice without hanging the compiler check**
+Sketch a library menu that routes choice "2" to a SELECT with ? without hanging on Scanner.
 
 ```java
 public class LibraryMenuSketch {

@@ -68,9 +68,7 @@ flowchart LR
 - `git pull` / `clone` brings remote history back to your working folder
 - Staging = packing list; commit = sealed box; GitHub = warehouse copy
 
-**Try these (2 programs):**
-
-**Program 1 — Trace one file through the three areas**
+Initialize a repo and trace one file through working directory, staging, and repository with git status after each step.
 
 ```bash
 mkdir -p ~/git_lab_areas && cd ~/git_lab_areas
@@ -92,7 +90,7 @@ git status                    # clean — snapshot is in Repository
 # final status — nothing to commit, working tree clean
 ```
 
-**Program 2 — Label the packing line**
+Write a markdown note labeling the Git packing line from working directory to GitHub.
 
 ```markdown
 # Git packing line (India campus project)
@@ -125,9 +123,7 @@ git status                    # clean — snapshot is in Repository
 - Committing broken code to `main` → team blocked — use branches for features.
 - Force push to shared `main` destroys teammates' work — avoid `--force` unless solo and sure.
 
-**Try these (2 programs):**
-
-**Program 1 — First three commits**
+Make three commits building README, .gitignore, and main.py, then view the log.
 
 ```bash
 mkdir -p ~/expense_tracker_git && cd ~/expense_tracker_git
@@ -154,7 +150,7 @@ ghi9012 Initial commit: README
 
 **Remember:** Commit messages use **imperative** mood (`Add`, `Fix`, `Update`) — like giving an order to the codebase.
 
-**Program 2 — Status and diff before commit**
+Edit README, review status and diff, then stage and commit the change.
 
 ```bash
 cd ~/expense_tracker_git
@@ -179,9 +175,7 @@ Use imperative mood; first line ≤ 50 chars; optional body after blank line.
 **Note:**
 - Vague messages ("update", "fix") → useless history — write descriptive imperative messages.
 
-**Try these (2 programs):**
-
-**Program 1 — Rewrite bad messages**
+Rewrite vague commit messages into clear imperative ones.
 
 ```markdown
 # Bad → Good
@@ -192,7 +186,7 @@ update                → Update README with MySQL setup steps
 done today            → Add INR formatting helper
 ```
 
-**Program 2 — Commit with body**
+Add format_inr to main.py and commit with a multi-line message body.
 
 ```bash
 cd ~/expense_tracker_git
@@ -236,9 +230,7 @@ config.local.json
 **Note:**
 - Committing `venv/` or `.env` → huge repo / leaked secrets — add `.gitignore` before the first push.
 
-**Try these (2 programs):**
-
-**Program 1 — Write a course .gitignore**
+Create a .gitignore covering venv, secrets, and Python cache, then commit it.
 
 ```bash
 cd ~/expense_tracker_git
@@ -254,7 +246,7 @@ git add .gitignore
 git commit -m "Harden gitignore for secrets and venv"
 ```
 
-**Program 2 — Prove secrets stay out**
+Create .env and venv/ locally and confirm git status ignores them.
 
 ```bash
 cd ~/expense_tracker_git
@@ -294,9 +286,7 @@ Your Name — LinkedIn — Hyderabad
 - No README → recruiter skips the repo — add setup steps and screenshots.
 - Empty GitHub profile looks inactive — pin 3–6 best repos.
 
-**Try these (2 programs):**
-
-**Program 1 — Portfolio README draft**
+Draft a portfolio README for a campus expense tracker with features, stack, and setup steps.
 
 ```markdown
 # Campus Expense Tracker
@@ -320,7 +310,7 @@ Python 3.11
 Priya Sharma — Hyderabad — LinkedIn
 ```
 
-**Program 2 — Profile README bullets**
+Write GitHub profile README bullets highlighting your stack, projects, and contact links.
 
 ```markdown
 # Hi, I'm Ravi — Python Full Stack learner (Bengaluru)

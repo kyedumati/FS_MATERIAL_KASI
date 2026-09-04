@@ -64,9 +64,7 @@ from flask import Flask
 app = Flask(__name__)   # __name__ helps Flask find templates folder
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Minimal app**
+Build a minimal Flask app that serves a campus notes heading on `/`. Run it with `python app.py` and confirm the dev server starts on port 5000.
 
 ```python
 from flask import Flask
@@ -89,7 +87,7 @@ if __name__ == "__main__":
 
 Open `/` in the browser → page heading **Campus Notes — Hyderabad**.
 
-**Program 2 — Confirm app name**
+Create a Flask app object and print its `name` attribute to see how Flask identifies the app when you run the file as a script.
 
 ```python
 from flask import Flask
@@ -112,9 +110,7 @@ A **route** connects a URL path to a Python function. The function's return valu
 **Note:**
 - Route typo → 404. Check the URL, trailing slash, and method (GET vs POST).
 
-**Try these (2 programs):**
-
-**Program 1 — Two pages**
+Add two routes — `/` and `/about` — that return simple text responses for home and about pages.
 
 ```python
 from flask import Flask
@@ -132,7 +128,7 @@ if __name__ == "__main__":
     app.run(debug=True)
 ```
 
-**Program 2 — Path parameter**
+Add a route with a `<name>` path parameter and visit `/user/Priya` in the browser to test the greeting.
 
 ```python
 from flask import Flask
@@ -166,9 +162,7 @@ Namaste, Priya!
 | PUT | Update (full) | Replace note by id |
 | DELETE | Remove | Delete note by id |
 
-**Try these (2 programs):**
-
-**Program 1 — GET vs POST on same path**
+Create a `/ping` route that accepts both GET and POST and returns which HTTP method the client used.
 
 ```python
 from flask import Flask, request
@@ -182,7 +176,7 @@ if __name__ == "__main__":
     app.run(debug=True)
 ```
 
-**Program 2 — Method table as JSON**
+Return a JSON array from `/api/methods` that describes when to use GET, POST, and DELETE for a notes API.
 
 ```python
 from flask import Flask, jsonify
@@ -207,9 +201,7 @@ Flask uses **Jinja2** (same family as Django templates). Files live in `template
 **Note:**
 - Folder must be named exactly `templates` next to the app — a typo → `TemplateNotFound`.
 
-**Try these (2 programs):**
-
-**Program 1 — Render list**
+Pass a notes list from a view function into `render_template` and loop over it in `templates/notes.html` with Jinja2.
 
 ```python
 from flask import Flask, render_template
@@ -231,7 +223,7 @@ def home():
 </ul>
 ```
 
-**Program 2 — Count in template**
+Display the total number of notes in the template using Jinja2's `length` filter.
 
 ```html
 <p>Total notes: {{ notes|length }}</p>
@@ -246,9 +238,7 @@ Mobile apps and React frontends consume **JSON**, not HTML. Use `jsonify()` to r
 
 ---
 
-**Try these (2 programs):**
-
-**Program 1 — jsonify list**
+Expose `/api/notes` as a GET endpoint that returns a JSON list of notes using `jsonify()`.
 
 ```python
 from flask import Flask, jsonify
@@ -262,7 +252,7 @@ if __name__ == "__main__":
     app.run(debug=True)
 ```
 
-**Program 2 — POST create**
+Implement POST on `/api/notes` that requires a `title` field, returns 201 on success, and 400 when the title is missing.
 
 ```python
 from flask import Flask, jsonify, request

@@ -101,9 +101,7 @@ employees = {
 print(employees[101]["name"])                     # Ananya — O(1) average lookup
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Pick the best structure**
+Print each scenario paired with the best data structure (list, tuple, set, or dict).
 
 ```python
 scenarios = {
@@ -127,7 +125,7 @@ employee-by-id → dict
 
 **Interview:** Start answers with the decision guide — key→value? dict · unique? set · fixed row? tuple · ordered mutable? list.
 
-**Program 2 — TechMart tiny canteen examples**
+Create list, tuple, set, and dict examples for a TechMart canteen and print all four.
 
 ```python
 cart = ["Chai", "Samosa"]                 # list
@@ -165,9 +163,7 @@ API_VERSION = ("v2",)
 - Wrong: Using a list for many `in` checks (O(n) each time); a dict when an order-only list suffices; a tuple for data you must update.
 - Prefer: Set for membership; a simple list when you only need order; list or dict when data must change.
 
-**Try these (2 programs):**
-
-**Program 1 — Banned users as a set**
+Store banned user IDs in a set and check membership for ID 1002.
 
 ```python
 banned_users = {1001, 1002, 1003}
@@ -180,7 +176,7 @@ print(1002 in banned_users)
 True
 ```
 
-**Program 2 — Immutable API version tuple**
+Create a one-item API version tuple and print it (tuples cannot be appended).
 
 ```python
 API_VERSION = ("v2",)
@@ -223,9 +219,7 @@ go_back()                             # Back from: products → Now at: home
 - Wrong: Stack pop from the front — wrong end; not LIFO.
 - Prefer: `pop()` from the end.
 
-**Try these (2 programs):**
-
-**Program 1 — Browser history stack**
+Push three pages onto a history stack, pop twice, and print the remaining history.
 
 ```python
 history = []
@@ -244,7 +238,7 @@ print(history)  # ['home']
 
 **Remember:** Stack = **LIFO** — push/pop from the **same end** (`append` / `pop()`). Queue = **FIFO** — enqueue at end, dequeue from front (`pop(0)` or `deque.popleft()`).
 
-**Program 2 — Form undo stack**
+Simulate form undo with append and pop, then print the reverted and removed values.
 
 ```python
 undo = []
@@ -300,9 +294,7 @@ fast_queue.popleft()                  # O(1) — good for interviews to name
 - Wrong: Queue pop from the end — that is LIFO, not FIFO.
 - Prefer: `pop(0)` (or `deque.popleft()`).
 
-**Try these (2 programs):**
-
-**Program 1 — Ticket queue with list**
+Enqueue three tickets with a list, serve two from the front, and print the next ticket.
 
 ```python
 queue = []
@@ -321,7 +313,7 @@ Next: T-3
 
 **Common Error:** Using `pop()` (no index) for a queue — that removes the **last** item (LIFO), not the first customer in line.
 
-**Program 2 — Ticket queue with deque**
+Run the same ticket queue flow using `deque` and `popleft`, then print the next ticket.
 
 ```python
 from collections import deque
@@ -371,9 +363,7 @@ for i in range(len(marks)):
 - Wrong: Ignoring nested-loop cost (hidden O(n²)); memorizing Big-O with no job context.
 - Prefer: Know your loop depth; tie complexity to cart, lookup, and dedupe examples in interviews.
 
-**Try these (2 programs):**
-
-**Program 1 — Membership list vs set**
+Check membership of 105 in both a list and a set built from the same range.
 
 ```python
 ids_list = list(range(100, 120))
@@ -382,7 +372,7 @@ print(105 in ids_list)
 print(105 in ids_set)
 ```
 
-**Program 2 — Count equal pairs O(n²)**
+Count equal mark pairs with nested loops and print the count.
 
 ```python
 marks = [78, 92, 85, 92]
@@ -408,9 +398,7 @@ print(count)
 
 \*Average case; simplified for entry-level interviews.
 
-**Try these (2 programs):**
-
-**Program 1 — Complexity comment cheat sheet**
+Print a loaded message after commenting Big-O costs for list `in`, set `in`, dict lookup, and `pop(0)`.
 
 ```python
 # list `in` → O(n)
@@ -420,7 +408,7 @@ print(count)
 print("cheat sheet loaded")
 ```
 
-**Program 2 — SKU membership structure**
+Use a set of known SKUs and check membership for P002.
 
 ```python
 # Use a set (or dict keys) for 10,000 SKUs — average O(1) membership.
@@ -463,9 +451,7 @@ revenue = sum(
 print(f"Revenue: ₹{revenue}")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Unique SKUs from orders**
+Collect unique SKUs from nested order items with a set comprehension and print them.
 
 ```python
 orders = [
@@ -476,7 +462,7 @@ skus = {item["sku"] for order in orders for item in order["items"]}
 print(skus)
 ```
 
-**Program 2 — Total revenue**
+Sum qty × price across all order items and print total revenue.
 
 ```python
 orders = [
@@ -519,9 +505,7 @@ for e in expenses:
 print(totals)                         # {'Food': 770, 'Travel': 1150}
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Index expenses by id and update**
+Index expenses by id, update one amount, and print that expense record.
 
 ```python
 expenses = [
@@ -533,7 +517,7 @@ by_id[1]["amount"] = 500
 print(by_id[1])
 ```
 
-**Program 2 — Category totals and unique set**
+Aggregate category totals from expenses and print totals plus the set of categories.
 
 ```python
 expenses = [

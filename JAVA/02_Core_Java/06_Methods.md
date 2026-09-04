@@ -88,9 +88,7 @@ public class Banner {
 ==== KSR ATM ====
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Greet**
+Write a `void greet` method that prints Namaste for Priya, then call it from `main`.
 
 ```java
 public class GreetMethod {
@@ -104,7 +102,7 @@ public class GreetMethod {
 }
 ```
 
-**Program 2 — Two jobs**
+Write `showMenu` and `bye` as two `void` methods, then call both from `main`.
 
 ```java
 public class TwoJobs {
@@ -148,9 +146,7 @@ public class LineTotal {
 - Wrong: `return` then more statements that must run after it in the same path.
 - Prefer: compute, then one `return`.
 
-**Try these (2 programs):**
-
-**Program 1 — Average two marks**
+Write `average` that takes two doubles, returns their mean, and print `average(80, 70)`.
 
 ```java
 public class AvgTwo {
@@ -170,7 +166,7 @@ public class AvgTwo {
 75.0
 ```
 
-**Program 2 — TechMart GST helper**
+Write a TechMart `withGst` helper that multiplies a subtotal by 1.05, then print `withGst(80)` as rupees with two decimals.
 
 ```java
 public class GstHelper {
@@ -212,9 +208,7 @@ public class OverloadDemo {
 
 Same name is OK when the **parameter list** differs. Return type alone is **not** enough to overload.
 
-**Try these (2 programs):**
-
-**Program 1 — greet overload**
+Overload `greet` with a no-arg version that prints Hello and a `String` version that greets Ravi by name; call both.
 
 ```java
 public class GreetOverload {
@@ -233,7 +227,7 @@ public class GreetOverload {
 }
 ```
 
-**Program 2 — area overload lite**
+Overload `area` for a square of side 4 and a 4-by-5 rectangle, then print both areas.
 
 ```java
 public class AreaOverload {
@@ -286,9 +280,7 @@ public static double deposit(double balance, double amount) {
 
 **Interview:** Java passes primitives by value. (Arrays are a reference copy — the method can change **elements**. Return is still clearer for ATM balance.)
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank return new balance**
+Write a SecureBank `deposit` that returns the new balance; start at 1000, deposit 200, and print the result.
 
 ```java
 public class DepositReturn {
@@ -310,7 +302,7 @@ public class DepositReturn {
 1200.0
 ```
 
-**Program 2 — SecureBank withdraw with print+return (no throw)**
+Write a SecureBank `withdraw` that prints Insufficient balance and returns the old balance on overdraft; call it with 1200 then 200 from 1000.
 
 ```java
 public class WithdrawReturn {

@@ -119,9 +119,7 @@ Map kit 19: container -> filters -> DispatcherServlet -> JSON
 
 **Remember:** Buzzword ≠ extra lab. Kit 19 is the evidence.
 
-**Try these (2 programs):**
-
-**Program 1 — JD vs desk**
+Print the JD vs desk gap: the JD buzzword is Servlet/JSP, desk work is Spring Boot REST on Tomcat, proof is kit 19 JSON plus JWT.
 
 ```java
 public class JdVsDesk {
@@ -141,7 +139,7 @@ Desk work: Spring Boot REST on Tomcat
 Proof: kit 19 JSON + JWT
 ```
 
-**Program 2 — Not a second track**
+Print that this session is an interview map — not HttpServlet homework, not JSP / Struts / JSF.
 
 ```java
 public class NotAServletCourse {
@@ -206,9 +204,7 @@ Filter order (already taught — **do not rewrite** [Spring Security Lite](05_Sp
 
 **Interview:** Where is `DispatcherServlet` in your project? You typically **do not** write the class. Boot’s web starter registers it on the embedded container.
 
-**Try these (2 programs):**
-
-**Program 1 — Say the path**
+Print the oral path: client, servlet container, filter chain, DispatcherServlet, `@RestController`.
 
 ```java
 public class OralPathPrint {
@@ -232,7 +228,7 @@ DispatcherServlet
 @RestController
 ```
 
-**Program 2 — Front controller is a servlet**
+Print that `DispatcherServlet` extends `HttpServlet`, you write `@GetMapping` methods, and Boot registers the front controller.
 
 ```java
 public class DispatcherIsAServlet {
@@ -281,9 +277,7 @@ Boot registers the front controller
 
 **Where used?** Same five lines work for CampusCart, TechMart catalog, AcmeHR staff API, MedCare list, SecureBank ping — the **path** does not change.
 
-**Try these (2 programs):**
-
-**Program 1 — Five labels**
+Print the five interview labels: Servlet-JSP vs Boot REST, web.xml vs annotations plus auto-config, WAR plus external Tomcat vs JAR plus embedded, javax vs jakarta, and still Servlet API without writing an HttpServlet class.
 
 ```java
 public class FiveContrastLabels {
@@ -307,7 +301,7 @@ public class FiveContrastLabels {
 5 still Servlet API without HttpServlet class
 ```
 
-**Program 2 — XML vs annotations one-liners**
+Print old `servlet-mapping` in `web.xml` versus `@GetMapping` on `@RestController`, plus Boot auto-config from `starter-web`.
 
 ```java
 public class WebXmlVsAnnotations {
@@ -348,9 +342,7 @@ Point back — **do not rewrite:** [Maven and Spring Boot Setup](01_Maven_and_Sp
 
 **Interview:** Did you deploy a WAR? **No** — `java -jar` with embedded Tomcat. I can **explain** WAR if an office still uses external Tomcat.
 
-**Try these (2 programs):**
-
-**Program 1 — Package names**
+Print Boot 2 / Java EE `javax.servlet` versus Boot 3 / Jakarta `jakarta.servlet`, and that the wrong import is cannot find symbol.
 
 ```java
 public class JakartaNotJavaxMap {
@@ -370,7 +362,7 @@ Boot 3 / Jakarta:  jakarta.servlet
 Wrong import = cannot find symbol
 ```
 
-**Program 2 — This course ships JAR**
+Print JAR with embedded Tomcat versus WAR on external Tomcat, and that this course ships JAR — do not flip Done when.
 
 ```java
 public class CourseShipsJar {
@@ -428,9 +420,7 @@ JSON list 200
 - Wrong: “GET skips `DispatcherServlet`.”
 - Prefer: same path as POST; AuthZ result differs.
 
-**Try these (2 programs):**
-
-**Program 1 — GET still uses the path**
+Print that a public GET is still Boot REST JSON, not a JSP page.
 
 ```java
 public class GetStillUsesPath {
@@ -448,7 +438,7 @@ Public GET is not a JSP page
 Public GET is Boot REST JSON
 ```
 
-**Program 2 — Point at module 02**
+Print that `@GetMapping` was already taught in Spring Web REST — do not rewrite that module.
 
 ```java
 public class PointAtRestNotes {
@@ -503,9 +493,7 @@ Bearer ok -> DispatcherServlet -> 201
 
 **Interview:** Is Spring Security a servlet? The **filters** are servlet filters. The **DSL** is `SecurityFilterChain` (Boot 3). You already configured it.
 
-**Try these (2 programs):**
-
-**Program 1 — Filter then MVC**
+Print order: `SecurityFilterChain` first, `DispatcherServlet` second, `@RestController` third.
 
 ```java
 public class FilterThenMvc {
@@ -525,7 +513,7 @@ DispatcherServlet second
 @RestController third
 ```
 
-**Program 2 — What you already shipped**
+Print what kit 19 already shipped: GET list public, POST needs JWT, JAR plus health in Lab 07.
 
 ```java
 public class AlreadyShippedKit19 {
@@ -579,9 +567,7 @@ still Servlet API without writing HttpServlet
 - Wrong: submitting a new GitHub Boot app “for the Servlet map.”
 - Prefer: a `.txt` / README section / notebook with **five lines** plus “I pointed at kit 19.”
 
-**Try these (2 programs):**
-
-**Program 1 — Out of this session**
+Print what is out of this session: no CORS rewrite, no capstone M1 M2 M3, no kit 20 and no Servlet lab folder.
 
 ```java
 public class OutOfServletMap {
@@ -601,7 +587,7 @@ No capstone M1 M2 M3
 No kit 20 / no Servlet lab folder
 ```
 
-**Program 2 — Why Spring won (one breath)**
+Print why Spring won in one breath: annotations and starters beat web.xml, one JAR with embedded Tomcat, REST JSON for modern clients, still the Servlet container underneath.
 
 ```java
 public class WhySpringWon {

@@ -159,9 +159,7 @@ public class PassFail {
 - Wrong: `if marks >= 35` without parentheses.
 - Prefer: `if (marks >= 35)`.
 
-**Try these (2 programs):**
-
-**Program 1 — Even or odd**
+Store `n = 7` and print Even or Odd using remainder `% 2`.
 
 ```java
 public class EvenOdd {
@@ -182,7 +180,7 @@ public class EvenOdd {
 Odd
 ```
 
-**Program 2 — SecureBank ATM amount valid (positive)**
+Store a SecureBank ATM amount of `-50` and print whether it is OK to process or ask for a positive amount.
 
 ```java
 public class AmountValid {
@@ -228,9 +226,7 @@ public class GradeCalc {
 B
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank UPI daily limit**
+Check a SecureBank UPI amount of ₹60000 against a ₹100000 demo limit and print Above bank demo limit, Within limit, or Invalid amount.
 
 ```java
 public class UpiLimit {
@@ -247,7 +243,7 @@ public class UpiLimit {
 }
 ```
 
-**Program 2 — SecureBank nested if (withdraw)**
+For a SecureBank withdraw of ₹1200 from balance ₹1000, nest ifs to print Invalid amount, Insufficient balance, or Dispense.
 
 ```java
 public class WithdrawCheck {
@@ -296,9 +292,7 @@ public class SwitchMenu {
 Withdraw
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Classic switch with break**
+Use a classic `switch` with `break` on grade `'B'` to print Excellent, Good, or Keep practising.
 
 ```java
 public class ClassicSwitch {
@@ -324,7 +318,7 @@ public class ClassicSwitch {
 Good
 ```
 
-**Program 2 — SecureBank ATM fall-through trap (read, do not copy)**
+Read this classic `switch` on `n = 1` with no `break` — do not copy it into real ATM menus — and see both `one` and `two` print.
 
 ```java
 public class FallThrough {
@@ -361,9 +355,7 @@ public class Table7 {
 }
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Count 1 to 5**
+Use `for` to print the numbers 1 through 5, one per line.
 
 ```java
 public class CountFive {
@@ -375,7 +367,7 @@ public class CountFive {
 }
 ```
 
-**Program 2 — Sum 1 to 4**
+Use `for` to add 1 through 4 and print the sum.
 
 ```java
 public class SumFour {
@@ -416,9 +408,7 @@ public class PinWhile {
 
 **Note:** `equals` for `String` — `==` is the wrong tool (Strings week explains why). Use `equals` for PIN text from today.
 
-**Try these (2 programs):**
-
-**Program 1 — Countdown**
+Use `while` to count down from 3 to 1, then print Go.
 
 ```java
 public class Countdown {
@@ -433,7 +423,7 @@ public class Countdown {
 }
 ```
 
-**Program 2 — break and continue**
+Loop 1 to 5: skip 2 with `continue`, stop at 4 with `break`, and print the numbers that remain.
 
 ```java
 public class BreakContinue {

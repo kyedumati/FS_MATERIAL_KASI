@@ -87,9 +87,7 @@ print(employee.get("email", "N/A"))   # N/A — default provided
 - Wrong: Using a list as a key → `TypeError: unhashable type: 'list'`; `d["missing"]` without a check → `KeyError`; duplicate keys in a literal (last value wins silently).
 - Prefer: String or tuple keys; `.get()` or `if key in d`; avoid duplicate keys (`{"a": 1, "a": 2}` → `a` is 2).
 
-**Try these (2 programs):**
-
-**Program 1 — Student dict with .get**
+Create a student dict, print name by key, and use `.get` for a missing phone with a default.
 
 ```python
 student = {"name": "Priya", "roll": "2026001", "marks": 88}
@@ -106,7 +104,7 @@ N/A
 
 **Remember:** Prefer `.get("key", default)` when a field might be missing — brackets `d["key"]` raise `KeyError`.
 
-**Program 2 — TechMart product via dict()**
+Create a TechMart product with `dict()` and print its price.
 
 ```python
 product = dict(sku="P10", name="Chai Mug", price=299)
@@ -139,9 +137,7 @@ extra = {"company": "KSR Tech", "role": "Developer"}
 contact.update(extra)
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Update and add contact fields**
+Update phone, add email and city to a contact dict, and print the full dict.
 
 ```python
 contact = {"name": "Ravi", "phone": "9876543210"}
@@ -151,7 +147,7 @@ contact["city"] = "Bengaluru"
 print(contact)
 ```
 
-**Program 2 — update with role and company**
+Merge role and company into a contact dict with `update()` and print the result.
 
 ```python
 contact = {"name": "Ravi", "phone": "9876543210"}
@@ -175,9 +171,7 @@ print(amount, expense)                # 450 {'date': '2025-07-01'}
 expense.clear()                       # {}
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — pop amount**
+Pop the amount from an expense dict and print the returned value and remaining dict.
 
 ```python
 expense = {"date": "01-08-2026", "category": "Food", "amount": 450}
@@ -193,7 +187,7 @@ print(expense)
 {'date': '01-08-2026', 'category': 'Food'}
 ```
 
-**Program 2 — del then clear**
+Delete category from an expense, clear all keys, and print the empty dict.
 
 ```python
 expense = {"date": "01-08-2026", "category": "Food", "amount": 450}
@@ -221,9 +215,7 @@ for key, value in product.items():
     print(f"{key}: {value}")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Loop marks items**
+Loop subject-score pairs in a marks dict and print each line.
 
 ```python
 marks = {"Python": 88, "SQL": 76}
@@ -238,7 +230,7 @@ Python: 88
 SQL: 76
 ```
 
-**Program 2 — keys and values lists**
+Print lists of keys and values from a product dict.
 
 ```python
 product = {"sku": "P10", "name": "Chai Mug", "price": 299}
@@ -268,9 +260,7 @@ print(sale_prices)
 - Wrong: Modifying a dict while iterating — RuntimeError or skipped keys.
 - Prefer: Iterate over a copy: `list(d.items())`.
 
-**Try these (2 programs):**
-
-**Program 1 — Word frequency with .get**
+Count word frequency in a list using `.get` and print the frequency dict.
 
 ```python
 words = ["good", "fast", "good", "ok", "fast"]
@@ -286,7 +276,7 @@ print(frequency)
 {'good': 2, 'fast': 2, 'ok': 1}
 ```
 
-**Program 2 — TechMart 10% off dict comprehension**
+Build discounted prices at 10% off with a dict comprehension and print the result.
 
 ```python
 prices = {"mouse": 799, "hub": 599}
@@ -327,9 +317,7 @@ employee["address"]["pincode"] = "600002"
 - Wrong: Shared nested dict reference — changing a shallow copy affects the original.
 - Prefer: `copy.deepcopy()` for nested structures.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR nested employee city and skill**
+Read nested city and first skill from an employee dict and print them.
 
 ```python
 employee = {
@@ -341,7 +329,7 @@ print(employee["address"]["city"])
 print(employee["skills"][0])
 ```
 
-**Program 2 — Update nested pincode**
+Update a nested address pincode and print the address sub-dict.
 
 ```python
 employee = {
@@ -375,9 +363,7 @@ for item in order["items"]:
     print(f"{item['name']}: ₹{line_total}")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart order line totals**
+Loop order items and print each line's total (qty × price).
 
 ```python
 order = {
@@ -391,7 +377,7 @@ for item in order["items"]:
     print(f"₹{item['qty'] * item['price']}")
 ```
 
-**Program 2 — TechMart nested customer email**
+Print the customer's email from a nested order dict.
 
 ```python
 order = {
@@ -419,9 +405,7 @@ print(user["role"])                   # staff — original unchanged
 - Wrong: Using `in` as if it checks values (`"aisha" in d` checks **keys** only).
 - Prefer: `if "aisha" in d.values():` when you mean values.
 
-**Try these (2 programs):**
-
-**Program 1 — Key membership check**
+Check if the email key exists in a contact dict and print Found or Missing.
 
 ```python
 contact = {"name": "Ravi", "phone": "9876543210"}
@@ -436,7 +420,7 @@ Missing
 
 **Common Error:** `"Ravi" in contact` checks **keys**, not values — that expression is `False` even though `"Ravi"` is stored as a value.
 
-**Program 2 — Shallow copy independence**
+Copy a user dict, change role on the copy, and show the original role unchanged.
 
 ```python
 user = {"username": "aisha", "role": "staff"}
@@ -465,9 +449,7 @@ print(parsed["name"])                 # Mouse
 - Wrong: Assuming JSON allows a tuple — JSON has no tuple type.
 - Prefer: Convert tuples to lists before `json.dumps`.
 
-**Try these (2 programs):**
-
-**Program 1 — dict to JSON string**
+Convert a product dict to a JSON string with `json.dumps` and print it.
 
 ```python
 import json
@@ -476,7 +458,7 @@ product = {"sku": "P001", "name": "Mouse", "price": 799}
 print(json.dumps(product))
 ```
 
-**Program 2 — JSON string back to dict**
+Parse JSON back to a dict with `json.loads` and print the product name.
 
 ```python
 import json

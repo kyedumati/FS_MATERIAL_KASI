@@ -185,9 +185,7 @@ Note: `or` combines invalid range checks.
 - Wrong: Leaving an empty block under `if`/`else`.
 - Prefer: Use `pass` as a placeholder when needed.
 
-**Try these (2 programs):**
-
-**Program 1 — Pass / Fail with range check**
+Check marks 72 for invalid range, pass, or fail using if/elif/else.
 
 ```python
 marks = 72
@@ -205,7 +203,7 @@ else:
 Pass
 ```
 
-**Program 2 — Minor / Adult / Senior**
+Classify age 62 as Minor, Adult, or Senior with elif branches.
 
 ```python
 age = 62
@@ -244,9 +242,7 @@ else:
 - Wrong: Using `=` when you meant to compare — logic always wrong or SyntaxError.
 - Prefer: `==` to compare, `=` to assign.
 
-**Try these (2 programs):**
-
-**Program 1 — Simple login check**
+Compare entered credentials to stored username/password and print Welcome or Invalid.
 
 ```python
 username = "priya"
@@ -265,7 +261,7 @@ else:
 Welcome
 ```
 
-**Program 2 — Separate username and PIN checks**
+Run separate username and PIN checks and print which check failed.
 
 ```python
 username = "priya"
@@ -302,16 +298,14 @@ for i in range(1, 11):
 - Wrong: Off-by-one with `range` (loop one short or one long).
 - Prefer: Remember the stop value is exclusive (`range(1, 11)` → 1…10).
 
-**Try these (2 programs):**
-
-**Program 1 — Table of 7**
+Print the multiplication table of 7 for 1 through 10.
 
 ```python
 for i in range(1, 11):
     print(f"7 x {i} = {7 * i}")
 ```
 
-**Program 2 — Even numbers 2 to 20**
+Print even numbers from 2 to 20 on one line using range with step 2.
 
 ```python
 for n in range(2, 21, 2):
@@ -352,9 +346,7 @@ else:
 - Wrong: Infinite `while` — the condition never moves toward exit.
 - Prefer: Ensure a variable in the condition changes (counter, flag, or `break`).
 
-**Try these (2 programs):**
-
-**Program 1 — PIN retries with while-else**
+Simulate up to three PIN attempts with while-else; break on correct PIN or block the card.
 
 ```python
 CORRECT_PIN = "2580"
@@ -376,7 +368,7 @@ else:
 Access granted
 ```
 
-**Program 2 — Accept positive amount**
+Loop demo amounts until you find a positive value and print Accepted.
 
 ```python
 amounts = [-50, 0, 250]  # demo inputs until positive
@@ -400,9 +392,7 @@ for _ in range(3):   # _ means "I don't need loop variable name"
 print(f"Valid expense total: ₹{total:.2f}")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Sum valid expenses with continue**
+Sum only numeric expense strings from a list, skipping invalid entries with continue.
 
 ```python
 raw = ["120", "abc", "85.5", "xx", "40"]
@@ -415,7 +405,7 @@ for item in raw:
 print(f"Sum of valid amounts: ₹{total}")
 ```
 
-**Program 2 — Skip multiples of 3**
+Print numbers 1–15 skipping multiples of 3 using continue.
 
 ```python
 for n in range(1, 16):
@@ -442,9 +432,7 @@ else:
     print("Backlog.")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Nested Distinction / Pass / Fail**
+Use nested if to print Distinction, Pass, or Fail for marks 82.
 
 ```python
 marks = 82
@@ -463,7 +451,7 @@ else:
 Distinction
 ```
 
-**Program 2 — SecureBank nested withdraw check**
+Check a positive withdrawal amount against balance with nested if and print the outcome.
 
 ```python
 balance = 5000
@@ -525,9 +513,7 @@ while True:
 - Wrong: Comparing menu `input()` to an int (`choice == 1`) when choice is still a string.
 - Prefer: Compare strings (`choice == "1"`) or convert deliberately with `int(choice)`.
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank ATM deposit / withdraw demo**
+Demo deposit, withdraw, overdraft check, and print final ATM balance.
 
 ```python
 balance = 5000
@@ -543,7 +529,7 @@ if overdraft > balance:
 print(f"Final balance: ₹{balance}")
 ```
 
-**Program 2 — Track last action**
+Track balance updates and record the last deposit or withdraw action.
 
 ```python
 balance = 5000
@@ -593,9 +579,7 @@ while True:
         print("Invalid option.")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Delete last task with pop**
+Pop the last task from a list if any exist and print what was deleted and what remains.
 
 ```python
 tasks = ["Login page", "API", "Deploy"]
@@ -605,7 +589,7 @@ if tasks:
 print("Remaining:", tasks)
 ```
 
-**Program 2 — Mini student portal (demo actions)**
+Simulate a mini student portal that adds names, lists them, and handles blank input.
 
 ```python
 names = []

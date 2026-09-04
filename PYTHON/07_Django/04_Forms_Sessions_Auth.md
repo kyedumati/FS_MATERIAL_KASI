@@ -114,9 +114,7 @@ If you return the success HTML directly on POST, refresh can **create the same t
 
 **Common Error:** Missing `{% csrf_token %}` in POST forms → **403 Forbidden**. Put the token inside every `<form method="post">`.
 
-**Try these (2 programs):**
-
-**Program 1 — Redirect after successful POST**
+Save a valid TaskForm on POST and redirect to the task list (PRG) so refresh does not duplicate the task.
 
 ```python
 from django.shortcuts import redirect, render
@@ -133,7 +131,7 @@ def task_create(request):
     return render(request, "tasks/form.html", {"form": form})
 ```
 
-**Program 2 — Why PRG note**
+Write a short note that contrasts refresh-after-POST without PRG versus POST → 302 → GET.
 
 ```markdown
 # Without PRG
@@ -156,9 +154,7 @@ LOGOUT_REDIRECT_URL = "home"
 **Note:**
 - `@login_required` without a valid `LOGIN_URL` → 404 on redirect. Set `LOGIN_URL` in settings to a named route that exists.
 
-**Try these (2 programs):**
-
-**Program 1 — Settings redirects**
+Set LOGIN_URL, LOGIN_REDIRECT_URL, and LOGOUT_REDIRECT_URL to named routes.
 
 ```python
 # settings.py
@@ -167,7 +163,7 @@ LOGIN_REDIRECT_URL = "task_list"
 LOGOUT_REDIRECT_URL = "login"
 ```
 
-**Program 2 — Protect a view**
+Protect the dashboard view with `@login_required`.
 
 ```python
 from django.contrib.auth.decorators import login_required
@@ -190,9 +186,7 @@ Filter tasks: **`Task.objects.filter(owner=request.user)`**.
 **Note:**
 - Showing all users' tasks is a privacy bug — always filter by `owner=request.user` (or equivalent).
 
-**Try these (2 programs):**
-
-**Program 1 — Owner FK**
+Add an owner ForeignKey on Task to AUTH_USER_MODEL with `related_name="tasks"`.
 
 ```python
 from django.conf import settings
@@ -210,7 +204,7 @@ class Task(models.Model):
         return self.title
 ```
 
-**Program 2 — Filter by request.user**
+List only the logged-in user’s tasks with `filter(owner=request.user)`.
 
 ```python
 @login_required
@@ -225,9 +219,7 @@ Built-in form for registration with password validation — extend for email fie
 
 ---
 
-**Try these (2 programs):**
-
-**Program 1 — Register view**
+Build a register view that saves UserCreationForm, logs the user in, and redirects to the task list.
 
 ```python
 from django.contrib.auth import login
@@ -246,7 +238,7 @@ def register(request):
     return render(request, "registration/register.html", {"form": form})
 ```
 
-**Program 2 — Register template**
+Render the registration form with `{% csrf_token %}` and `form.as_p`.
 
 ```html
 <form method="post">

@@ -111,9 +111,7 @@ Django does not ship MySQL driver inside the box. You install **`mysqlclient`** 
 **Note:**
 - `startproject` without a trailing `.` nests an extra folder. Prefer `django-admin startproject config .` (or move files if you already nested).
 
-**Try these (2 programs):**
-
-**Program 1 — Version check in venv**
+Create a venv, install Django 5.x, and print the django-admin version so you confirm the isolated install.
 
 ```bash
 python3 -m venv venv
@@ -128,7 +126,7 @@ django-admin --version
 5.x.x
 ```
 
-**Program 2 — Project name note**
+Write a short note listing Django 5.x course conventions for URLs, static storage, and Python version.
 
 ```markdown
 # Why Django 5.x here?
@@ -150,9 +148,7 @@ django-admin --version
 **Note:**
 - Never share or commit a real `SECRET_KEY` — use environment variables (Security & Deployment module). A leaked key is a production security risk.
 
-**Try these (2 programs):**
-
-**Program 1 — Dev settings reminder**
+Set DEBUG and ALLOWED_HOSTS for local development and print the DEBUG flag.
 
 ```python
 # settings.py (dev only — never ship like this)
@@ -168,7 +164,7 @@ print("Dev mode: DEBUG =", DEBUG)
 Dev mode: DEBUG = True
 ```
 
-**Program 2 — Production checklist stub**
+Write a production checklist covering DEBUG, SECRET_KEY, ALLOWED_HOSTS, and HTTPS.
 
 ```markdown
 # Production (later)
@@ -186,9 +182,7 @@ Every Django **app** you create must be listed in `INSTALLED_APPS` (or use auto-
 **Note:**
 - App missing from `INSTALLED_APPS` → models/admin ignored. Add the app string (e.g. `"blog"`) after `startapp`.
 
-**Try these (2 programs):**
-
-**Program 1 — Register a new app**
+Add the `blog` app to INSTALLED_APPS after `startapp`.
 
 ```python
 # config/settings.py — after startapp blog
@@ -203,7 +197,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-**Program 2 — Verify apps load**
+Run Django system checks and list migrations to confirm apps load.
 
 ```bash
 python manage.py check
@@ -224,16 +218,14 @@ Django ships with tables for **users**, **sessions**, and **admin**. Running **`
 
 ---
 
-**Try these (2 programs):**
-
-**Program 1 — Apply built-in auth tables**
+Apply built-in migrations and show the auth app’s migration status.
 
 ```bash
 python manage.py migrate
 python manage.py showmigrations auth
 ```
 
-**Program 2 — Createsuperuser smoke**
+Create a superuser, then open `/admin/` after `runserver`.
 
 ```bash
 python manage.py createsuperuser

@@ -77,9 +77,7 @@ print(len(products))     # 3 — number of items
 - Wrong: Indexing past the end (`lst[10]` on a short list) → `IndexError`.
 - Prefer: Check `len(lst)` first.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart cart first, last, length**
+Print first item, last item, and length of a TechMart cart list.
 
 ```python
 cart = ["Notebook", "Pen", "USB"]
@@ -92,7 +90,7 @@ print(cart[0], cart[-1], len(cart))
 Notebook USB 3
 ```
 
-**Program 2 — Middle two expenses**
+Slice the middle two expenses from a four-item list.
 
 ```python
 expenses = [450, 1200, 89, 2500]
@@ -126,9 +124,7 @@ print(cart)                     # ['Shirt', 'T-Shirt', 'Jeans', 'Belt', 'Socks']
 - Wrong: Using `append` with a list when you mean `extend` (`lst.append([4, 5])` → one nested element).
 - Prefer: `extend([4, 5])` to add multiple items.
 
-**Try these (2 programs):**
-
-**Program 1 — Update list item**
+Update the second name in a list to Ravi Kumar and print the list.
 
 ```python
 names = ["Ananya", "Ravi", "Priya"]
@@ -136,7 +132,7 @@ names[1] = "Ravi Kumar"
 print(names)
 ```
 
-**Program 2 — append, extend, insert**
+Build a cart with append, extend, and insert at index 0.
 
 ```python
 cart = []
@@ -175,9 +171,7 @@ orders.clear()                  # []
 - Wrong: `remove(x)` when `x` is not in the list → `ValueError`.
 - Prefer: `if x in lst: lst.remove(x)`.
 
-**Try these (2 programs):**
-
-**Program 1 — remove first matching order**
+Remove the first ORD-2 from an orders list with duplicate entries.
 
 ```python
 orders = ["ORD-1", "ORD-2", "ORD-2"]
@@ -191,7 +185,7 @@ print(orders)
 ['ORD-1', 'ORD-2']
 ```
 
-**Program 2 — pop last task**
+Pop the last task and print what was removed and the remaining tasks.
 
 ```python
 tasks = ["Login page", "API", "Deploy"]
@@ -229,9 +223,7 @@ print(scores)                   # [88, 72, 95] — unchanged
 - Wrong: Confusing `sort()` with `sorted()` — unexpected in-place change.
 - Prefer: `sort()` changes the original; `sorted()` returns a new list.
 
-**Try these (2 programs):**
-
-**Program 1 — count and index**
+Print how many times 82 appears in marks and the index of 91.
 
 ```python
 marks = [78, 82, 91, 65, 88, 82]
@@ -239,7 +231,7 @@ print(marks.count(82))
 print(marks.index(91))
 ```
 
-**Program 2 — sorted copy descending**
+Create a descending sorted copy of scores without changing the original.
 
 ```python
 original = [88, 72, 95]
@@ -267,16 +259,14 @@ for name, mark in zip(student_names, student_marks):
 - Wrong: Modifying a list while looping over it — skipped items or infinite loops.
 - Prefer: Loop over a copy: `for x in lst[:]`.
 
-**Try these (2 programs):**
-
-**Program 1 — Zip names and marks**
+Zip names and marks pairs and print each as name: mark%.
 
 ```python
 for name, mark in zip(["Priya", "Ravi"], [88, 76]):
     print(f"{name}: {mark}%")
 ```
 
-**Program 2 — Filter large expenses**
+Loop expenses and print only amounts greater than ₹500.
 
 ```python
 for amount in [200, 1500, 75]:
@@ -310,16 +300,14 @@ total = sum(line[1] * line[2] for line in order_lines)
 print(f"Order total: ₹{total}")   # ₹315
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Nested list mark lookup**
+Look up Ravi's second subject mark from a nested list of rows.
 
 ```python
 rows = [["Priya", 78, 82], ["Ravi", 91, 70]]
 print(rows[1][2])  # Ravi's second subject = 70
 ```
 
-**Program 2 — Order line totals**
+Compute per-line and total order cost from nested [name, qty, price] rows.
 
 ```python
 order = [["Chai", 2, 20], ["Samosa", 3, 25]]
@@ -359,9 +347,7 @@ emp_labels = [f"EMP-{eid}" for eid in emp_ids]
 print(emp_labels)               # ['EMP-101', 'EMP-102', 'EMP-105']
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Filter with comprehension**
+Build a list comprehension of expenses above ₹500.
 
 ```python
 expenses = [450, 1200, 89, 2500, 320]
@@ -369,7 +355,7 @@ big = [a for a in expenses if a > 500]
 print(big)
 ```
 
-**Program 2 — TechMart GST with comprehension**
+Apply 18% GST to each price with a list comprehension.
 
 ```python
 prices = [100, 250, 499]
@@ -395,9 +381,7 @@ copy3 = original[:]
 - Wrong: Relying on a shallow copy of a *nested* list (inner lists still shared); using `is` to compare list *content* (`[1, 2] is [1, 2]` is False).
 - Prefer: `copy.deepcopy()` for deep copy (advanced); use `==` for value equality, `is` only for the same object.
 
-**Try these (2 programs):**
-
-**Program 1 — Alias bug**
+Demonstrate the alias bug: append via b changes a.
 
 ```python
 a = [1, 2]
@@ -414,7 +398,7 @@ print(a)  # [1, 2, 3] — same list
 
 **Remember:** `b = a` does **not** copy the list — both names point to the same object. Use `.copy()` / `list(a)` / `a[:]` when you need a separate list.
 
-**Program 2 — Fix with copy**
+Use .copy() so appending to b does not change a.
 
 ```python
 a = [1, 2]

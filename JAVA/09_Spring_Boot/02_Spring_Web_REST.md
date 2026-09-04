@@ -153,9 +153,7 @@ Keep **GET `/hello`** and **GET `/health`** from module 01 — the lab kit still
 
 **Interview:** GET vs POST? GET **reads** (safe to refresh). POST **creates** (body + 201). Do not create rows with GET.
 
-**Try these (2 programs):**
-
-**Program 1 — Verb and path**
+Print the HTTP verb and path for `/hello`, `/health`, GET `/canteen/items`, and POST `/canteen/items`.
 
 ```java
 public class RestVerbPathPrint {
@@ -177,7 +175,7 @@ GET  /canteen/items
 POST /canteen/items
 ```
 
-**Program 2 — Class prefix plus method**
+Print how class `@RequestMapping("/canteen/items")` joins `@GetMapping` and `@GetMapping("/{id}")` into full URLs.
 
 ```java
 public class MappingJoinPrint {
@@ -271,9 +269,7 @@ Seed in the constructor: Idli ₹40, Filter coffee ₹25, Masala dosa ₹60.
 
 **Remember:** Restart `spring-boot:run` → empty seed again. That is expected without a database.
 
-**Try these (2 programs):**
-
-**Program 1 — Array vs object (print)**
+Print how a List becomes a JSON array, a Map a JSON object, and `CanteenItem` getters an object with `id` and `name` like Idli.
 
 ```java
 public class JsonArrayVsObject {
@@ -293,7 +289,7 @@ Map  -> JSON object { ... }
 CanteenItem getters -> {"id":1,"name":"Idli",...}
 ```
 
-**Program 2 — TechMart seed three snacks**
+Print a TechMart canteen seed of three snacks — Idli ₹40, Filter coffee ₹25, Masala dosa ₹60 — stored in an ArrayList in the controller.
 
 ```java
 public class CanteenSeedPrint {
@@ -386,9 +382,7 @@ Default GET return → **200** without extra annotations.
 
 **Interview:** Why not always 200? Clients and API gateways branch on the code. 201 vs 200 is a frequent junior question.
 
-**Try these (2 programs):**
-
-**Program 1 — Three codes**
+Print the three status codes this module uses: 200 for GET list/found, 201 for POST add, and 404 for a missing id.
 
 ```java
 public class ThreeStatusCodes {
@@ -408,7 +402,7 @@ public class ThreeStatusCodes {
 404 Not Found  GET missing id
 ```
 
-**Program 2 — `response.ok` band**
+Print that `response.ok` is true for 200 and 201, and false for 404.
 
 ```java
 public class FetchOkBand {
@@ -465,9 +459,7 @@ First: **200** + Idli JSON. Second: **404** + error JSON.
 
 **Remember:** PUT / DELETE by id are **Later —** (or Stretch). Core path is GET by id + POST.
 
-**Try these (2 programs):**
-
-**Program 1 — URL vs variable**
+Print how URL `GET /canteen/items/2` binds to `@GetMapping("/{id}")` `@PathVariable int id` so `id` is 2.
 
 ```java
 public class PathVariableBindPrint {
@@ -487,7 +479,7 @@ Code @GetMapping("/{id}") @PathVariable int id
 id is 2
 ```
 
-**Program 2 — TechMart missing snack**
+Print a TechMart 404 line for a missing snack id.
 
 ```java
 public class MissingSnackPrint {
@@ -562,9 +554,7 @@ That is a **console check** — do not rewrite the JS chapter. **Later —** COR
 
 **Interview:** `@RequestBody` vs `@PathVariable` vs `@RequestParam`? Body JSON vs URL segment vs `?key=` query. This module: path + body. Query params are optional Stretch.
 
-**Try these (2 programs):**
-
-**Program 1 — POST pieces**
+Print the POST pieces: path `/canteen/items`, `@RequestBody CanteenItem`, `Content-Type: application/json`, and 201 Created.
 
 ```java
 public class PostPiecesPrint {
@@ -586,7 +576,7 @@ Content-Type: application/json
 201 Created
 ```
 
-**Program 2 — Server assigns id**
+Print that the client sent `name` plus `priceInr` and the server assigned the next id.
 
 ```java
 public class ServerAssignsId {
@@ -670,9 +660,7 @@ Browser `http://localhost:8080/canteen/page` shows **South Indian** and **Idli**
 
 **Interview:** Why REST-first? Mobile apps and React need JSON. Thymeleaf is useful for admin pages in some offices — mention it; do not make it the product.
 
-**Try these (2 programs):**
-
-**Program 1 — JSON vs view name**
+Print the difference: `@RestController` returning a Map is a JSON body; `@Controller` returning `"canteen"` is `templates/canteen.html`.
 
 ```java
 public class RestVsViewPrint {
@@ -690,7 +678,7 @@ public class RestVsViewPrint {
 @Controller return "canteen" -> templates/canteen.html
 ```
 
-**Program 2 — Optional dependency**
+Print that the core path is `starter-web` only, Thymeleaf plus one HTML file is an optional demo, and it is not required for kit 17.
 
 ```java
 public class ThymeleafOptionalPrint {
@@ -732,9 +720,7 @@ curl http://localhost:8080/health
 
 Complete TODOs so both return JSON (kit ticket: **two JSON endpoints**).
 
-**Try these (2 programs):**
-
-**Program 1 — Two required GET paths**
+Print the two required JSON GET paths: `/hello` and `/health`.
 
 ```java
 public class TwoJsonEndpointsPrint {
@@ -752,7 +738,7 @@ GET /hello
 GET /health
 ```
 
-**Program 2 — Open the pom folder**
+Print that you `cd` into the folder that contains `pom.xml`, then run `mvn spring-boot:run`.
 
 ```java
 public class OpenPomFolder {
@@ -776,9 +762,7 @@ mvn spring-boot:run
 
 Add `CanteenItem` + `GET /canteen/items` returning the **`ArrayList`**. Seed three campus snacks. Confirm a **JSON array**.
 
-**Try these (2 programs):**
-
-**Program 1 — List URL**
+Print the GET URL `http://localhost:8080/canteen/items` and that the body is a JSON array of objects.
 
 ```java
 public class CanteenListUrl {
@@ -796,7 +780,7 @@ GET http://localhost:8080/canteen/items
 JSON array of objects
 ```
 
-**Program 2 — Mutable store**
+Print that `ArrayList` lets POST add items, while `List.of` throws on add.
 
 ```java
 public class ArrayListNotListOf {
@@ -820,9 +804,7 @@ List.of: add throws
 
 `GET /canteen/items/{id}` with `@PathVariable`. Found → **200**. Missing → **404** and a small error `Map`.
 
-**Try these (2 programs):**
-
-**Program 1 — Curl found vs missing**
+Print curl for a found snack (`/canteen/items/1`) and a missing one (`/canteen/items/99`).
 
 ```java
 public class CurlByIdPrint {
@@ -840,7 +822,7 @@ curl http://localhost:8080/canteen/items/1
 curl http://localhost:8080/canteen/items/99
 ```
 
-**Program 2 — Loop is enough**
+Print the find-by-id loop: for each `CanteenItem`, return 200 when `getId()` matches, otherwise 404 after the loop.
 
 ```java
 public class LoopFindIdPrint {
@@ -866,9 +848,7 @@ after loop return 404
 
 `POST /canteen/items` with `@RequestBody`, `@ResponseStatus(HttpStatus.CREATED)`, server-assigned id.
 
-**Try these (2 programs):**
-
-**Program 1 — curl POST**
+Print a curl POST to `/canteen/items` with JSON `Content-Type` and body name Pani puri at ₹30.
 
 ```java
 public class CurlPostPrint {
@@ -888,7 +868,7 @@ curl -X POST .../canteen/items
 -d {"name":"Pani puri","priceInr":30}
 ```
 
-**Program 2 — Restart clears POST**
+Print that POST then GET shows Pani puri, a restart returns to seed only, and JPA keeping rows is Later.
 
 ```java
 public class RestartClearsMemory {
@@ -914,9 +894,7 @@ Later — JPA keeps rows in MySQL
 
 Use the browser console or a tiny page you already know how to write from FRONTEND week. Point `fetch` at `http://localhost:8080/canteen/items`.
 
-**Try these (2 programs):**
-
-**Program 1 — Same JSON URL**
+Print a `fetch("http://localhost:8080/canteen/items")` call followed by `res.json()`.
 
 ```java
 public class FetchUrlPrint {
@@ -934,7 +912,7 @@ fetch("http://localhost:8080/canteen/items")
 then res.json()
 ```
 
-**Program 2 — CORS is Later**
+Print that same-origin or curl is OK this week, and Vite `:5173` calling `:8080` needs CORS Later.
 
 ```java
 public class CorsLaterPrint {
@@ -960,9 +938,7 @@ Vite :5173 -> :8080 needs CORS Later
 
 Do **not** add Thymeleaf or JPA to pass.
 
-**Try these (2 programs):**
-
-**Program 1 — Ignore list reminder**
+Print what to ignore (`target/`, `.env`) and what to keep (`pom.xml`, `src/`, `.env.example`).
 
 ```java
 public class RestGitignorePrint {
@@ -982,7 +958,7 @@ ignore: .env
 keep: pom.xml src/ .env.example
 ```
 
-**Program 2 — Optional page is not the ticket**
+Print that kit 17 is JSON endpoints plus an in-memory list, and a Thymeleaf one-pager is Stretch only.
 
 ```java
 public class KitJsonNotHtml {

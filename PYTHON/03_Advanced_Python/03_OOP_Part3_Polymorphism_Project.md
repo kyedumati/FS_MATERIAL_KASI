@@ -236,9 +236,7 @@ flowchart LR
 - Shared base classes help when you need shared fields / default behaviour (Part 2 Vehicles).
 - Operator overloading (`__add__`, `__len__`, …) is powerful — use sparingly so code stays readable.
 
-**Try these (3 project examples):**
-
-**Program 1 — TechMart several pay methods, one checkout loop**
+Write TechMart `UPI`, `Card`, and `Cash` with the same `pay` method. Loop them through one `checkout` function.
 
 ```python
 class UPI:
@@ -268,7 +266,7 @@ Paid ₹100 via Card
 Paid ₹100 in Cash
 ```
 
-**Program 2 — AcmeHR one payroll loop (intern vs manager)**
+Write AcmeHR `Intern` and `Manager` with `pay()`. Loop one list and print each person’s pay.
 
 ```python
 class Intern:
@@ -299,7 +297,7 @@ Anita: ₹15000
 Meera: ₹48000
 ```
 
-**Program 3 — MedCare notify() on SMS vs WhatsApp (same call site)**
+Write MedCare `SmsAlert` and `WhatsAppAlert` with `notify()`. Send “Lab report ready” through one `send_report_ready` function for both channels.
 
 ```python
 class SmsAlert:
@@ -387,9 +385,7 @@ sequenceDiagram
 
 **Common Error:** putting side effects (network calls, file writes) inside `__str__` — keep it a pure, cheap description.
 
-**Try these (3 project examples):**
-
-**Program 1 — SecureBank readable account**
+Give SecureBank `BankAccount` a `__str__` so `print(account)` shows holder and balance, not a memory address.
 
 ```python
 class BankAccount:
@@ -411,7 +407,7 @@ Priya's account — ₹1000.00
 Ravi's account — ₹250.50
 ```
 
-**Program 2 — TechMart product label + list join**
+Give TechMart `Product` a `__str__` and print a cart as SKU/price labels joined with ` | `.
 
 ```python
 class Product:
@@ -432,7 +428,7 @@ print(" | ".join(str(p) for p in cart))
 NB-A4 @ ₹40 | PEN-01 @ ₹10
 ```
 
-**Program 3 — MedCare appointment slip in a queue print**
+Give MedCare `Appointment` a `__str__` and print a queue of slips in a `for` loop.
 
 ```python
 class Appointment:

@@ -67,14 +67,14 @@ After teaching a concept (syntax + short demo), add a short note block — not a
 
 ## Try these — live type-along (keep the energy)
 
-After every major concept block (`### 1. …` / `### Step N: …`), students type **at least one** complete runnable program (not a prompt only). Add a **second** only when it shows a *different* case — not Program 1 with new variable names. Heading: `**Try these:**` or `**Try these (2 programs):**`.
+After every major concept block (`### 1. …` / `### Step N: …`), students type **at least one** complete runnable program (not a prompt only). Add a **second** only when it shows a *different* case — not the first program with new variable names.
+
+Do **not** use a `**Try these:**` heading or `**Program N — Short title**` labels. Instead, write a **1–2 sentence requirement** immediately before each code fence — what the learner must build (imperative voice: *Print…*, *Write a class that…*, *Store…*).
 
 Step-by-Step is **one** assemble (not Example 1–6). If a lab kit exists, point at `starter/` — do not paste `solution/`.
 
 ```markdown
-**Try these (2 programs):**
-
-**Program 1 — Short title**
+Print Priya's name from a `main` method.
 
 ```java
 public class DemoOne {
@@ -84,7 +84,7 @@ public class DemoOne {
 }
 ```
 
-**Program 2 — Short title**
+Print Ravi's name from a second class (different case — not the first program renamed).
 
 ```java
 public class DemoTwo {
@@ -98,7 +98,7 @@ public class DemoTwo {
 - Short (typically 5–20 lines), copy-paste runnable **JDK 17**.
 - Prefer `public class` + `main` unless the topic is Spring.
 - India-relevant examples OK (INR, student marks, ATM, names like Priya/Ravi, UPI, campus).
-- **Named products (soft-apply):** when the example is business-shaped, prefer **AcmeHR**, **TechMart**, **MedCare**, or **SecureBank** in `**Where used?**`, program titles, Interview Q&A, and mini-project tickets. Do not force syntax-only drills. See [12_Named_Product_Domains.md](12_Named_Product_Domains.md). Canonical schemas: [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md). CampusCart stays the capstone (college TechMart-style storefront).
+- **Named products (soft-apply):** when the example is business-shaped, prefer **AcmeHR**, **TechMart**, **MedCare**, or **SecureBank** in `**Where used?**`, requirement lines, Interview Q&A, and mini-project tickets. Do not force syntax-only drills. See [12_Named_Product_Domains.md](12_Named_Product_Domains.md). Canonical schemas: [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md). CampusCart stays the capstone (college TechMart-style storefront).
 - Point to a lab kit when the exercise matches a ticket.
 - **Practice Exercises:** every numbered item must include `**Model answer:**` (prose and/or a fenced code block). Same notes are shared with students (PDF after the module).
 - After a program that prints, prefer an **Expected Output:** fence so PDF learners can self-check:
@@ -130,7 +130,7 @@ Use these exact bold labels (standalone paragraphs). They render as coloured box
 
 **Practice answers:** after `**Model answer:**` / `**Expected Output:**`, put a blank line then a fenced block at **column 0**. Do **not** indent `` ``` `` under the list item — Cursor/VS Code preview often renders indented fences as empty.
 
-**Program titles** must be one bold line: `**Program 1 — Book with info()**` (do not split around inline code).
+**Requirement lines** must stand alone as plain paragraphs (one or two sentences). Do not wrap them in bold labels.
 
 Core Java / OOP: avoid Spring/framework forward-selling; introduce Spring in `09_Spring_Boot/`. JDBC before JPA. Label any preview **Later — …**.
 
@@ -230,7 +230,7 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 - [ ] No Bloom Learning Outcomes list and no Teaching note paragraph  
 - [ ] Ticket / lab starter+solution stay within calendar teaching order (no forward concepts)  
 - [ ] Definition/Purpose before first big table  
-- [ ] **Try these** after each topic / Step — one runnable Java program; two only when the case differs
+- [ ] After each topic / Step — one runnable Java program with a **requirement line** before the fence; two only when the case differs (no `Try these` heading or `Program N` titles)
 - [ ] Step-by-Step is **one assemble** (no recap gallery; no pasted `solution/`)
 - [ ] Practice: 4–6 transfer items; no Interview-style block  
 - [ ] **Note** next to each major sub-topic (no standalone Common Mistakes)  

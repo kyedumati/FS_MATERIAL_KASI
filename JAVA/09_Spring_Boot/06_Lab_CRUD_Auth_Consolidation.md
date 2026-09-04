@@ -139,9 +139,7 @@ Do not rewrite SecurityFilterChain
 
 **Interview:** What does “protected lab” mean here? Time to **finish and demo**, not a new topic.
 
-**Try these (2 programs):**
-
-**Program 1 — Glue not rewrite**
+Print that this lab glues modules already taught: 03 JPA persist, 04 DTO Valid 400, 05 JWT BCrypt chain — it is not a rewrite.
 
 ```java
 public class GlueNotRewrite {
@@ -161,7 +159,7 @@ public class GlueNotRewrite {
 05 JWT BCrypt chain - already taught
 ```
 
-**Program 2 — One kit**
+Print that you use kit 19 `starter` or `broken`, and there is no kit 20.
 
 ```java
 public class OneKitPrint {
@@ -227,9 +225,7 @@ Chain recap (module 05 — **do not rewrite**; confirm GET stays public):
 
 **Interview:** Walk the request: JSON → DTO → `@Valid` → mapper → entity → MySQL. Then say where JWT sits (**before** the controller on POST).
 
-**Try these (2 programs):**
-
-**Program 1 — Path in one breath**
+Print the happy path in one breath: GET menu public, register for a token, POST a snack with Bearer.
 
 ```java
 public class HappyPathBreath {
@@ -249,7 +245,7 @@ register -> token
 POST snack with Bearer
 ```
 
-**Program 2 — JSON is not the row**
+Print that `ProductRequest` is in, `ProductResponse` is out, and `Product` stays the entity.
 
 ```java
 public class JsonNotTheRow {
@@ -317,9 +313,7 @@ OUT: deploy OAuth2 React DELETE
 
 **Interview:** How do you stop scope creep? Publish an IN/OUT list **before** coding the last night.
 
-**Try these (2 programs):**
-
-**Program 1 — Freeze IN**
+Print the freeze-in contract: catalog DTO Valid JWT, GET public POST protected, 400 with token and 401 without.
 
 ```java
 public class FreezeInPrint {
@@ -339,7 +333,7 @@ GET public POST protected
 400 with token 401 without
 ```
 
-**Program 2 — Freeze OUT**
+Print freeze-out: no Actuator this lab, no OAuth2 refresh roles, no React required.
 
 ```java
 public class FreezeOutPrint {
@@ -404,9 +398,7 @@ Lite 401 body (module 05 entry point):
 
 **Interview:** Why can a blank-name POST return 401? Because AuthN failed first.
 
-**Try these (2 programs):**
-
-**Program 1 — Door before form**
+Print door-before-form: no Bearer is 401, Bearer plus blank name is 400, and `@Valid` never ran on 401.
 
 ```java
 public class DoorBeforeForm {
@@ -426,7 +418,7 @@ Bearer + blank name -> 400
 @Valid never ran on 401
 ```
 
-**Program 2 — Public 404**
+Print public GET `/products/99999` with no token and 404 lite JSON.
 
 ```java
 public class Public404Print {
@@ -502,9 +494,7 @@ secret in git
 
 **Interview:** How do you know passwords are hashed? Select the column. `$2a$` / `$2b$` / `$2` prefix — never `IdliDosa8`.
 
-**Try these (2 programs):**
-
-**Program 1 — Permit-all smell**
+Print the permitAll smell: POST `/products` with no header — 201 is a bug, 401 means the door works.
 
 ```java
 public class PermitAllSmell {
@@ -524,7 +514,7 @@ POST /products no header
 401 means the door works
 ```
 
-**Program 2 — Secret grep**
+Print git rules: `.env.example` yes, JWT_SECRET literal no, YAML uses `${JWT_SECRET}`.
 
 ```java
 public class SecretGrepPrint {
@@ -577,9 +567,7 @@ yml uses ${JWT_SECRET}
 
 **Interview:** What do you show in 3 minutes? Guest read → failed write → login → successful write → validation → missing id.
 
-**Try these (2 programs):**
-
-**Program 1 — README must list**
+Print what README must list: export `MYSQL_PASSWORD` and `JWT_SECRET`, `mvn spring-boot:run`, import the Postman collection.
 
 ```java
 public class ReadmeMustPrint {
@@ -599,7 +587,7 @@ mvn spring-boot:run
 import Postman collection
 ```
 
-**Program 2 — Demo order**
+Print demo order: GET 200, POST 401, register 201, then POST 201, POST 400, GET 404.
 
 ```java
 public class DemoOrderPrint {
@@ -661,9 +649,7 @@ cd starter          # or broken until it matches Done when
 mvn spring-boot:run
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — What must start**
+Print the three beans that must start: Tomcat, DataSource, `SecurityFilterChain`.
 
 ```java
 public class WhatMustStart {
@@ -683,7 +669,7 @@ DataSource
 SecurityFilterChain
 ```
 
-**Program 2 — Jakarta not javax**
+Print Boot 3 imports `jakarta.validation.Valid` and `jakarta.persistence.Entity` — not `javax`.
 
 ```java
 public class JakartaNotJavax {
@@ -739,9 +725,7 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST http://localhost:8080/products 
 # expect 400 — not 401
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Collection order**
+Print collection order: Register saves the token, 401 POST has no Authorization, 400 POST still has Bearer.
 
 ```java
 public class CollectionOrderPrint {
@@ -761,7 +745,7 @@ Register saves token
 400 POST still has Bearer
 ```
 
-**Program 2 — Duplicate 409**
+Print that registering the same email twice returns 409, not 201.
 
 ```java
 public class Duplicate409Print {
@@ -792,9 +776,7 @@ Checklist to speak out loud:
 3. Header set but still 401 on a “valid” fake token? → filter or `JwtService`.
 4. yml contains `root123` or `super-secret-please-commit-me-ok`? → env.
 
-**Try these (2 programs):**
-
-**Program 1 — Hash prefix**
+Print that a BCrypt hash starts with `$2`, and storing `IdliDosa8` in MySQL is a fail.
 
 ```java
 public class HashPrefixPrint {
@@ -812,7 +794,7 @@ BCrypt starts with $2
 IdliDosa8 in MySQL is a fail
 ```
 
-**Program 2 — Fake token smell**
+Print that `fake.email.token` is not HS256, and jjwt signs with `JWT_SECRET`.
 
 ```java
 public class FakeTokenSmell {
@@ -836,9 +818,7 @@ jjwt signs with JWT_SECRET
 
 Copy the README template in [Standard Project Deliverables](../Standard_Project_Deliverables.md). Paste your freeze IN/OUT table. Add screenshots of Postman 201 and 401. Link the video. Push **without** `.env`.
 
-**Try these (2 programs):**
-
-**Program 1 — Git ignore freeze**
+Print the freeze ignore list: `target/`, `.env`, `*.class`.
 
 ```java
 public class GitIgnoreFreeze {
@@ -858,7 +838,7 @@ target/
 *.class
 ```
 
-**Program 2 — What not to promise**
+Print what not to promise: no live PaaS URL, no React login, next lab is deploy.
 
 ```java
 public class WhatNotToPromise {

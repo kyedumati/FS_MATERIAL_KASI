@@ -172,9 +172,7 @@ print(newline)
 - Wrong: Comparing or adding strings to numbers (`"42" + 1`); using `is` for string *content* (`a is "hi"`).
 - Prefer: Convert (`int("42") + 1`); use `==` for value compare.
 
-**Try these (2 programs):**
-
-**Program 1 — Multi-line portal banner**
+Print a multi-line KSR Student Portal banner using a triple-quoted string.
 
 ```python
 msg = """KSR Student Portal
@@ -183,7 +181,7 @@ msg = """KSR Student Portal
 print(msg)
 ```
 
-**Program 2 — Windows path with escapes**
+Store a Windows path with backslashes and print it.
 
 ```python
 path = "C:\\Users\\Priya\\projects"
@@ -214,9 +212,7 @@ username, domain = email.split("@")
 - Wrong: Indexing past the end (`s[100]` on a short string); expecting `s[0:3]` to be 4 characters; confusing negative-step slices like `s[::-1]`.
 - Prefer: Check `len(s)` first; remember stop is exclusive (3 chars); draw an index diagram for reverse slices.
 
-**Try these (2 programs):**
-
-**Program 1 — Split email at @**
+Split ravi.kumar@ksr.in at @ and print username and domain.
 
 ```python
 email = "ravi.kumar@ksr.in"
@@ -232,7 +228,7 @@ username: ravi.kumar
 domain: ksr.in
 ```
 
-**Program 2 — Index and slice Priya**
+Print first and last characters and the slice name[1:4] for Priya.
 
 ```python
 name = "Priya"
@@ -262,9 +258,7 @@ print(id(status))      # different id than before
 - Wrong: Calling `s.upper()` and expecting `s` to change (`print(s)` still old).
 - Prefer: Assign the result: `s = s.upper()`.
 
-**Try these (2 programs):**
-
-**Program 1 — replace creates a new string**
+Replace pending with paid in a new string and show the original is unchanged.
 
 ```python
 msg = "pending"
@@ -282,7 +276,7 @@ paid
 
 **Remember:** Strings are **immutable** — `replace` / `upper` return a *new* string; rebind if you want to keep the change (`s = s.upper()`).
 
-**Program 2 — Immutability note (assignment commented)**
+Rebuild Ravi with X as the first letter (comment out the invalid index assignment).
 
 ```python
 s = "Ravi"
@@ -314,9 +308,7 @@ else:
 - Wrong: Skipping `.strip()` on input — `" admin "` fails a login compare.
 - Prefer: `.strip()` (and usually `.lower()`) on user-entered text.
 
-**Try these (2 programs):**
-
-**Program 1 — Normalize login email**
+Normalize a spaced, uppercase email with strip and lower, then compare and print it.
 
 ```python
 raw = "  PRIYA@KSR.IN  "
@@ -334,7 +326,7 @@ priya@ksr.in
 
 **Common Error:** Comparing login email without `.strip().lower()` — `" Admin@KSR.IN "` fails even when the account exists.
 
-**Program 2 — Title-case a name**
+Strip and title-case a messy name string.
 
 ```python
 name = "  ravi kumar  "
@@ -366,16 +358,14 @@ print(f"Roll {roll}: {name} — Python {py}")
 - Wrong: Splitting with the wrong delimiter (`"a,b,c".split(", ")` vs `split(",")`).
 - Prefer: Match the exact separator in the data.
 
-**Try these (2 programs):**
-
-**Program 1 — Split and join menu items**
+Split comma-separated menu items and join them with | separators.
 
 ```python
 items = "Chai,Samosa,Dosa".split(",")
 print(" | ".join(items))
 ```
 
-**Program 2 — Parse pipe-separated marks**
+Parse a pipe-separated marks record and print roll, name, and Python marks.
 
 ```python
 roll, name, python, sql, html = "2026003|Ravi|88|72|91".split("|")
@@ -394,9 +384,7 @@ print(text.count("error"))        # 2
 print(text.replace("error", "warn"))  # new string
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Mask phone number**
+Mask a 10-digit phone number showing only the first two and last two digits.
 
 ```python
 phone = "9876543210"
@@ -410,7 +398,7 @@ print(masked)  # 98******10
 98******10
 ```
 
-**Program 2 — Count and replace fail**
+Count fail occurrences in text and replace fail with warn.
 
 ```python
 text = "fail retry fail ok"
@@ -442,16 +430,14 @@ if "@" in email and "." in email.split("@")[-1]:
     print("Email looks structurally OK (lite check)")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Case-insensitive .pdf check**
+Check whether invoice_july.pdf ends with .pdf case-insensitively.
 
 ```python
 filename = "invoice_july.pdf"
 print(filename.lower().endswith(".pdf"))
 ```
 
-**Program 2 — Lite email validation**
+Run a lite email validation: require @ and a dot in the domain.
 
 ```python
 email = "priya@ksr.in"
@@ -484,9 +470,7 @@ HR Team
 print(letter)
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Offer letter snippet**
+Print a short offer letter with candidate name, role, and formatted CTC.
 
 ```python
 name = "Priya"
@@ -498,7 +482,7 @@ print(f"Role: {role}")
 print(f"CTC: ₹{ctc:,}")
 ```
 
-**Program 2 — Aligned Name / Role columns**
+Print aligned Name and Role columns for two employees.
 
 ```python
 print(f"{'Name':<10}{'Role':<10}")
@@ -522,9 +506,7 @@ print(slug)   # python-full-stack---july-2026-batch
 # Production: use regex module — taught later
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — URL slug from title**
+Convert a course title to a URL slug with strip, lower, and space-to-hyphen.
 
 ```python
 title = " Python Training Notes "
@@ -532,7 +514,7 @@ slug = title.strip().lower().replace(" ", "-")
 print(slug)
 ```
 
-**Program 2 — Clean noisy course title**
+Clean a noisy course title to lowercase hyphenated form without exclamation marks.
 
 ```python
 raw = "Full Stack!!! Python"
@@ -552,9 +534,7 @@ for ch in name:
 print(f"Vowels in '{name}': {count}")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Count vowels**
+Count vowels in Ananya Sharma.
 
 ```python
 name = "Ananya Sharma"
@@ -569,7 +549,7 @@ print(count)
 5
 ```
 
-**Program 2 — Count digits in messy phone**
+Count digit characters in a messy phone string.
 
 ```python
 phone = "98a76b543210"

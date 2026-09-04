@@ -70,9 +70,7 @@ Write code that reads like clear instructions for the next developer — often *
 }
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Breakpoint target**
+Set a breakpoint on the `return` line in `format_inr` and run the file in VS Code debug mode to inspect variables.
 
 ```python
 def format_inr(amount):
@@ -91,7 +89,7 @@ if __name__ == "__main__":
 ₹90.00
 ```
 
-**Program 2 — Debug checklist**
+Follow the VS Code debug checklist to set a breakpoint, launch Python File debug, and step through with F10.
 
 ```markdown
 # VS Code debug
@@ -115,9 +113,7 @@ if __name__ == "__main__":
 **Note:**
 - `logger.debug` with INFO level → missing logs — set the level correctly or use INFO.
 
-**Try these (2 programs):**
-
-**Program 1 — Basic logging**
+Configure INFO-level logging and emit info, warning, and error messages for a campus discount scenario.
 
 ```python
 import logging
@@ -136,7 +132,7 @@ WARNING: Price missing — using 0
 ERROR: Cannot connect to MySQL
 ```
 
-**Program 2 — Function with log**
+Add DEBUG logging inside `apply_discount` and call it to see price and percent values in the log output.
 
 ```python
 import logging
@@ -178,9 +174,7 @@ DEBUG:root:price=100 percent=10
 - Wrong test file discovery → 0 tests collected — name files `test_*.py` (add `__init__.py` if needed).
 - Mutating shared test data → order-dependent failures — use fresh fixtures per test.
 
-**Try these (2 programs):**
-
-**Program 1 — pytest style**
+Write pytest-style tests for `apply_discount` covering a valid ten-percent case and a `ValueError` for a bad percent.
 
 ```python
 # test_discount.py
@@ -198,7 +192,7 @@ def test_bad_percent():
         apply_discount(100, -1)
 ```
 
-**Program 2 — unittest style**
+Write a unittest `TestCase` class for `add_gst` and run it with `unittest.main()`.
 
 ```python
 import unittest
@@ -224,9 +218,7 @@ if __name__ == "__main__":
 - Giant functions → untestable — extract helpers.
 - Over-DRY too early → confusing abstractions — follow the rule of three.
 
-**Try these (2 programs):**
-
-**Program 1 — Extract helper**
+Extract a `format_inr` helper and use it inside `line_total` to format quantity × price as rupees.
 
 ```python
 def format_inr(n):
@@ -238,7 +230,7 @@ def line_total(qty, price):
 print(line_total(2, 60))  # ₹120.00
 ```
 
-**Program 2 — Before/after note**
+Document the before/after benefit of replacing copy-pasted GST logic with one shared `add_gst` function.
 
 ```markdown
 # Before: copy-paste GST in 4 places
@@ -256,9 +248,7 @@ Bad: `changes`, `final`, `final2`, `done`
 **Note:**
 - Commit everything Friday → unreviewable PR — prefer small daily commits.
 
-**Try these (2 programs):**
-
-**Program 1 — Good commit messages**
+List three good commit message examples that describe the change instead of generic labels like "final" or "done".
 
 ```markdown
 Add pytest for apply_discount edge cases
@@ -266,7 +256,7 @@ Fix logging format to include levelname
 Update README with pytest command
 ```
 
-**Program 2 — Commit after green tests**
+Run pytest, then stage and commit GST helpers only after tests pass green.
 
 ```bash
 pytest -q

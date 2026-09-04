@@ -93,9 +93,7 @@ Most Indian product and service teams say they are **Agile**.
 - Lying skills → fails technical — honest list + learning.
 - Switcher hides past → confusing story — brief positive framing.
 
-**Try these (2 programs):**
-
-**Program 1 — Rewrite a weak bullet**
+Rewrite a weak "worked on Django" bullet into a strong outcome-focused line with concrete stack details.
 
 ```markdown
 # Weak
@@ -111,7 +109,7 @@ Built Django Task Manager with login, owner-filtered CRUD, and MySQL — deploye
 Built Django Task Manager with login, owner-filtered CRUD, and MySQL — deployed checklist with DEBUG=False
 ```
 
-**Program 2 — One-line profile**
+Write a one-line profile targeting Python full stack junior roles in Hyderabad, Bengaluru, or remote.
 
 ```markdown
 Python Full Stack learner (Django, MySQL, React) seeking junior developer roles in Hyderabad / Bengaluru / remote.
@@ -123,15 +121,13 @@ Python, Django, Django REST Framework, React.js, MySQL, REST API, Git, HTML, CSS
 
 Use naturally in skills and project bullets — no keyword stuffing paragraph.
 
-**Try these (2 programs):**
-
-**Program 1 — Keyword bank**
+Build a keyword bank separated by middle dots for your Skills section on resume and LinkedIn.
 
 ```markdown
 Python · Django · MySQL · REST · DRF · Git · HTML · CSS · JavaScript · React · pytest · Linux
 ```
 
-**Program 2 — Match a Naukri JD**
+Note which JD keywords must appear in Skills and at least one project bullet when you tailor a Naukri application.
 
 ```markdown
 # JD asks: Django, REST API, MySQL
@@ -149,9 +145,7 @@ Python · Django · MySQL · REST · DRF · Git · HTML · CSS · JavaScript · 
 **Note:**
 - Only Naukri mass apply → low response — use LinkedIn + referrals too.
 
-**Try these (2 programs):**
-
-**Program 1 — Headline rewrite**
+Rewrite a generic student headline into a Python full stack developer headline with location and open-to-work signal.
 
 ```markdown
 # Before
@@ -161,7 +155,7 @@ Student at XYZ College
 Python Full Stack Developer | Django · MySQL · React | Open to internships — Hyderabad
 ```
 
-**Program 2 — Featured section plan**
+Plan three Featured section items — portfolio README, demo video, and certificate — for your LinkedIn profile.
 
 ```markdown
 1. GitHub portfolio README
@@ -177,9 +171,7 @@ Python Full Stack Developer | Django · MySQL · React | Open to internships —
 - [ ] Commits show progression — not single upload
 - [ ] No secrets, no `venv/` committed
 
-**Try these (2 programs):**
-
-**Program 1 — Pin list**
+List three pinned repos with clear names that showcase CLI, Django, and React work on your GitHub profile.
 
 ```markdown
 - expense-tracker (Python CLI)
@@ -187,7 +179,7 @@ Python Full Stack Developer | Django · MySQL · React | Open to internships —
 - product-browser (React + DRF)
 ```
 
-**Program 2 — README must-haves**
+Create a README checklist every pinned repo must have before you share the link with recruiters.
 
 ```markdown
 # Every pinned repo
@@ -211,9 +203,7 @@ Python Full Stack Developer | Django · MySQL · React | Open to internships —
 **Note:**
 - Ignoring aptitude → fail OA — practise 30 minutes daily.
 
-**Try these (2 programs):**
-
-**Program 1 — Week plan**
+Draft a four-week mock interview plan spanning Python, Django, REST/React, and STAR practice.
 
 ```markdown
 Week 1: Python + SQL basics (30 Q)
@@ -222,7 +212,7 @@ Week 3: REST + React fetch (15 Q)
 Week 4: Full mock + STAR stories
 ```
 
-**Program 2 — Daily 20-minute drill**
+Write a daily 20-minute drill covering yesterday's commit, one coding puzzle, and one STAR story out loud.
 
 ```markdown
 - 5 min: explain yesterday's commit
@@ -243,9 +233,7 @@ T: Team wanted automated FAQ responses.
 A: Learned Python, built Flask FAQ API prototype in training capstone.  
 R: Reduced lookup time in demo scenario; motivated completing the KSR full-stack course.
 
-**Try these (2 programs):**
-
-**Program 1 — STAR for Task Manager**
+Write a STAR story for making tasks private per owner in the Task Manager project.
 
 ```markdown
 Situation: Tasks were visible to every user in class demo
@@ -254,7 +242,7 @@ Action: Added User FK, @login_required, filtered QuerySet
 Result: User A cannot see User B tasks; demo passed checklist
 ```
 
-**Program 2 — STAR for Git hygiene**
+Write a STAR story for stopping a `.env` password leak using gitignore, password rotation, and `.env.example`.
 
 ```markdown
 Situation: .env with DB password almost pushed
@@ -274,9 +262,7 @@ Track: Applied → OA → Technical → HR → Offer/Rejected.
 **Note:**
 - No follow-up → missed opportunity — set a tracker reminder for 7 days.
 
-**Try these (2 programs):**
-
-**Program 1 — Tracker headers**
+Create application tracker table headers and one sample row for a Naukri application.
 
 ```markdown
 | Date | Company | Role | Portal | Status | Next action | Notes |
@@ -284,7 +270,7 @@ Track: Applied → OA → Technical → HR → Offer/Rejected.
 | 03-Aug | Acme | Junior Python | Naukri | Applied | Follow up 10-Aug | Django JD |
 ```
 
-**Program 2 — Status vocabulary**
+Define your status vocabulary from Wishlist through Offer or Rejected for consistent tracker updates.
 
 ```markdown
 Wishlist → Applied → OA → Interview 1 → Interview 2 → Offer / Rejected / On hold

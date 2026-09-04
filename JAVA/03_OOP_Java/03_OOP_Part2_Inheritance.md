@@ -243,9 +243,7 @@ Java rule: a class may extend **only one** class. There is no `extends A, B`.
 - Inheritance is for **specialisation**, not for “I want to reuse one helper method” (a plain static method or composition may be enough).
 - Private parent fields stay hidden. The child uses getters / methods, or `protected` (next topics).
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank SavingsAccount inherits BankAccount**
+Write a SecureBank `SavingsAccount` that extends `BankAccount`, deposits, and applies interest via `getBalance()`. Print Priya's holder and balance after interest.
 
 ```java
 public class SavingsInherit {
@@ -306,7 +304,7 @@ Interest ₹48.0 added
 Priya ₹1248.0
 ```
 
-**Program 2 — Campus TA is a Person**
+Write a campus `Ta` that extends `Person`. Print two TAs with their lab names.
 
 ```java
 public class CampusTa {
@@ -554,9 +552,7 @@ That diagram is **illegal** as two `extends` in Java.
 
 **Common Error:** using inheritance just to “mix features” when `this.engine = new Engine()` would be clearer.
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank hierarchical accounts under BankAccount**
+Write SecureBank `SavingsAccount` and `CurrentAccount` as siblings under `BankAccount`. Print each holder's kind and balance.
 
 ```java
 public class AccountKinds {
@@ -614,7 +610,7 @@ Priya savings 1000.0
 Ravi current 500.0
 ```
 
-**Program 2 — Multilevel card text**
+Write a multilevel chain `Person` → `Employee` → `Manager` where each `label()` adds a piece. Print Meera's manager card.
 
 ```java
 public class MultilevelCard {
@@ -771,9 +767,7 @@ flowchart LR
 - `final` methods cannot be overridden. `final` classes cannot be extended. Useful interview bite; you do not need it in the lab core path.
 - `toString` is an override of `Object.toString` — see topic 6.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR override payslip on Manager**
+Write an AcmeHR `Manager` that overrides `net()` and `payslip()`. Print Ravi's employee slip and Meera's manager slip.
 
 ```java
 public class PayslipOverride {
@@ -830,7 +824,7 @@ Ravi net ₹27000
 Meera (Mgr) net ₹35000
 ```
 
-**Program 2 — Override start message**
+Write an `ElectricCar` that overrides `Vehicle.start()`. Print both start messages.
 
 ```java
 public class SilentStart {
@@ -938,9 +932,7 @@ class CampusWallet extends BankAccount {
 - Lab kit core path can keep `balance` **private** and use `deposit` / `getBalance` from the child. That is the safer habit.
 - `protected` is the interview word. Use it when a child helper would otherwise need a clumsy public setter.
 
-**Try these (2 programs):**
-
-**Program 1 — Child reads protected rate**
+Write a `GstItem` child that reads the parent's `protected` GST rate and prints the total for a ₹20 samosa.
 
 ```java
 public class ProtectedRate {
@@ -983,7 +975,7 @@ class GstItem extends Priced {
 21.0
 ```
 
-**Program 2 — private field blocks the child**
+Show that a child cannot read a parent's `private` field and must use `getSecret()`. Print the secret through the getter.
 
 ```java
 public class PrivateBlocksChild {
@@ -1132,9 +1124,7 @@ classDiagram
 - Composition keeps parts swappable (`SmsNotifier` vs `EmailNotifier`) without a messy parent list.
 - Do not make `Car extends Engine`. A car **has** an engine.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart OrderService HAS-A notifier**
+Write a TechMart `OrderService` that HAS-A SMS or email notifier. Place ORD-101 by SMS and ORD-102 by email.
 
 ```java
 public class OrderNotify {
@@ -1193,7 +1183,7 @@ EMAIL: Order ORD-102 placed
 
 *(The two constructors are a Part 1 trick. **Later — Part 3** you will pass one `Notifier` interface instead of `if useSms`.)*
 
-**Program 2 — Library HAS-A books (array + count)**
+Write a `Library` that HAS-A `Book` array plus a count. Add two books and print the library name and count.
 
 ```java
 public class LibraryHasA {
@@ -1325,9 +1315,7 @@ e is Manager? false
 - Prefer `display()` / `toString()` overrides over switching on types.
 - You do not need `getClass().getName()` in the core path.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR instanceof on staff roles**
+Write AcmeHR `Faculty` extending `Staff`. Print `instanceof` against `Staff`, `Faculty`, and `Object`.
 
 ```java
 public class RoleCheck {
@@ -1365,7 +1353,7 @@ true
 true
 ```
 
-**Program 2 — TechMart Product toString**
+Write a TechMart `Product` that overrides `toString()`. Print the product with `System.out.println(p)`.
 
 ```java
 public class ProductToString {

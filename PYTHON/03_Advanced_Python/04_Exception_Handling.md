@@ -162,9 +162,7 @@ Cannot divide by zero.
 
 **Common Error:** Bare `except:` (or empty `except: pass`) hides real bugs and can block Ctrl+C. Catch specific types and log or re-raise.
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank UPI PIN with retry**
+Try `int()` on SecureBank PIN attempts `"ab12"` then `"1234"`. Catch `ValueError`, print a digits-only message, and accept the valid PIN.
 
 ```python
 attempts = ["ab12", "1234"]
@@ -185,7 +183,7 @@ PIN must be digits only — invalid literal for int() with base 10: 'ab12'
 PIN accepted: 1234
 ```
 
-**Program 2 — TechMart split bill safely**
+Split a TechMart bill of ₹500 among 4 friends and among 0 friends. Catch `ZeroDivisionError` for the zero case.
 
 ```python
 bill = 500
@@ -234,9 +232,7 @@ except ValueError:
 - Over-broad `except Exception` masks real bugs — catch narrow types first.
 - Wrong: `except ValueError, KeyError:` (old Python 2) — that is not a tuple. Use `except (ValueError, KeyError):`.
 
-**Try these:**
-
-**Program 1 — AcmeHR marks: missing vs not a number**
+Write AcmeHR `load_marks` that raises `FileNotFoundError` or `ValueError`. In one `except` tuple, print a clear message for good marks, a non-numeric file, and a missing file.
 
 ```python
 def load_marks(path, files):
@@ -327,9 +323,7 @@ Split attempt finished
 
 **Interview:** “`else` vs putting code in `try`” — `else` stops the success path from being swallowed by `except`.
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank PIN: except, else, finally**
+For SecureBank PINs `ab12`, `0000`, and `1234`, use `except` / `else` / `finally` so denied vs welcome is clear and “Please remove your card” always prints.
 
 ```python
 CORRECT = 1234
@@ -361,7 +355,7 @@ Please remove your card
 ---
 ```
 
-**Program 2 — finally still runs after return**
+Write a function that `return`s from `try` and print from `finally` so students see cleanup still runs before the return completes.
 
 ```python
 def demo():
@@ -417,9 +411,7 @@ Withdraw failed: Not enough balance
 - Raise a specific type (`ValueError`, or your custom class) — not a bare string (`raise "oops"` is invalid).
 - After `raise`, the rest of that function does not run.
 
-**Try these:**
-
-**Program 1 — MedCare book_seat capacity check**
+Write MedCare `book_seat` that `raise ValueError("Not enough seats")` when requested > available. Try a valid booking and an overbook.
 
 ```python
 def book_seat(available, requested):
@@ -467,9 +459,7 @@ Use it like any built-in: `raise InsufficientBalanceError("Not enough balance")`
 
 **Interview:** Custom exceptions name domain failures (`UnderAgeError`, `InsufficientBalanceError`) so callers can catch them without treating every `Exception` the same.
 
-**Try these (2 programs):**
-
-**Program 1 — InvalidRollError with roll stored**
+Write `InvalidRollError` that stores `roll`. `find_student` should raise it for a missing roll; print the error and `e.roll`.
 
 ```python
 class InvalidRollError(Exception):
@@ -499,7 +489,7 @@ Anita
 Error: Roll not found: 999 | roll attr: 999
 ```
 
-**Program 2 — Print, then re-raise**
+In `parse_marks`, catch `ValueError`, print an ERROR line, then bare-`raise` so the caller can show a form error.
 
 `raise` with no argument re-raises the **same** exception so the caller can still handle it.
 
@@ -543,9 +533,7 @@ Caller: show a form error, not a traceback
 | `ImportError` / `ModuleNotFoundError` | Import failure                                          |
 
 
-**Try these:**
-
-**Program 1 — Name that error quiz** (print only the type name; `except Exception` is for this quiz only)
+Run the quiz blocks and print only `type(e).__name__` for each crash (`except Exception` is for this quiz only).
 
 ```python
 # Run each block — print only the type name. (except Exception is for this quiz only.)

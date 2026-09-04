@@ -140,9 +140,7 @@ AuthZ: Priya may POST /products
 
 **Interview:** AuthN vs AuthZ in one sentence each.
 
-**Try these (2 programs):**
-
-**Program 1 — Two questions**
+Print the two security questions: who are you (AuthN) and what may you do (AuthZ).
 
 ```java
 public class TwoSecurityQuestions {
@@ -160,7 +158,7 @@ Who are you? -> AuthN
 What may you do? -> AuthZ
 ```
 
-**Program 2 — Catalog rules**
+Print CampusCart catalog rules: GET `/products` public, POST `/products` JWT required, POST `/auth/login` public.
 
 ```java
 public class CatalogRulesPrint {
@@ -226,9 +224,7 @@ Hashes usually start with **`$2a$`** or **`$2b$`**.
 
 **Interview:** Why not SHA-256 once? Fast hashes are easier to brute-force. BCrypt is designed to be **slow**.
 
-**Try these (2 programs):**
-
-**Program 1 — What the column holds**
+Print that the POST body may be `IdliDosa8` but the MySQL column holds a `$2a$10$...` hash — never store the raw password.
 
 ```java
 public class HashColumnPrint {
@@ -248,7 +244,7 @@ MySQL column: $2a$10$...
 never store IdliDosa8
 ```
 
-**Program 2 — encode vs matches**
+Print when you call `encoder.encode` (register) versus `encoder.matches` (login).
 
 ```java
 public class EncodeVsMatches {
@@ -328,9 +324,7 @@ public class SecurityConfigSketch {
 
 **Interview:** Why disable CSRF on a JWT API? Because the browser is not auto-sending a session cookie on cross-site POST for this design.
 
-**Try these (2 programs):**
-
-**Program 1 — Public matchers**
+Print the matchers: `/auth/**` permitAll, GET `/products` permitAll, POST `/products` authenticated.
 
 ```java
 public class PublicMatchersPrint {
@@ -350,7 +344,7 @@ GET /products permitAll
 POST /products authenticated
 ```
 
-**Program 2 — Dead class name**
+Print Boot 3 `SecurityFilterChain` `@Bean` and that `WebSecurityConfigurerAdapter` is dead.
 
 ```java
 public class AdapterIsDead {
@@ -409,9 +403,7 @@ Login: find by email → `matches` → JWT **200** or **401** `"Bad email or pas
 
 **Interview:** Why not `User` as the class name? It collides with `java.lang` / Security’s `User` builder. `AppUser` stays clear.
 
-**Try these (2 programs):**
-
-**Program 1 — Two tables**
+Print the two tables: `campus_products` for snacks and `campus_users` for email plus hash.
 
 ```java
 public class TwoTablesPrint {
@@ -429,7 +421,7 @@ campus_products -> snacks
 campus_users -> email + hash
 ```
 
-**Program 2 — Auth JSON out**
+Print auth JSON out: `token`, `email`, and no `passwordHash`.
 
 ```java
 public class AuthJsonOut {
@@ -487,9 +479,7 @@ Secret: **`JWT_SECRET`** env, **≥ 32 characters** for HS256. yml: `app.jwt.sec
 
 **Interview:** JWT vs session cookie? JWT is sent by the client each time (stateless). A session id is looked up in server memory or Redis.
 
-**Try these (2 programs):**
-
-**Program 1 — Header shape**
+Print the header shape `Authorization: Bearer <jwt>` and that a `?token=` query is wrong.
 
 ```java
 public class BearerHeaderPrint {
@@ -507,7 +497,7 @@ Authorization: Bearer <jwt>
 not ?token=
 ```
 
-**Program 2 — Secret home**
+Print that YAML uses `${JWT_SECRET}`, `.env.example` is in git, and the real secret is not.
 
 ```java
 public class JwtSecretHome {
@@ -563,9 +553,7 @@ Lite 401 body: `{"error":"Unauthorized"}` from an **`AuthenticationEntryPoint`**
 
 **Interview:** Where is the user stored between requests? In the **token**, not in Tomcat session (`STATELESS`).
 
-**Try these (2 programs):**
-
-**Program 1 — POST without token**
+Print POST `/products` with no Authorization header and status 401 Unauthorized.
 
 ```java
 public class PostWithoutToken {
@@ -583,7 +571,7 @@ POST /products no header
 401 Unauthorized
 ```
 
-**Program 2 — POST with token**
+Print POST with `Authorization Bearer` JWT and 201 `ProductResponse`.
 
 ```java
 public class PostWithToken {
@@ -622,9 +610,7 @@ curl http://localhost:8080/products
 
 If Security blocks GET before you finish matchers, that is expected — Step 3 opens GET.
 
-**Try these (2 programs):**
-
-**Program 1 — Catalog still MySQL**
+Print that the `Product` entity is unchanged and `findAll` still backs GET list.
 
 ```java
 public class CatalogStillMysql {
@@ -642,7 +628,7 @@ Product entity unchanged
 findAll still GET list
 ```
 
-**Program 2 — New starter**
+Print the new artifacts: `spring-boot-starter-security` and the three jjwt modules.
 
 ```java
 public class NewStarterPrint {
@@ -666,9 +652,7 @@ jjwt-api / jjwt-impl / jjwt-jackson
 
 Complete `AppUser` unique email. `PasswordEncoder` bean. `POST /auth/register` encodes, saves, returns token. Check Workbench: `password_hash` starts with `$2`.
 
-**Try these (2 programs):**
-
-**Program 1 — Register status**
+Print register statuses: POST `/auth/register` 201, duplicate email 409.
 
 ```java
 public class RegisterStatusPrint {
@@ -686,7 +670,7 @@ POST /auth/register -> 201
 duplicate email -> 409
 ```
 
-**Program 2 — Curl register**
+Print curl POST to `http://localhost:8080/auth/register` with JSON email plus password.
 
 ```java
 public class CurlRegisterPrint {
@@ -710,9 +694,7 @@ JSON email + password
 
 Permit `/auth/**` and GET `/products`. `anyRequest().authenticated()`. CSRF off. STATELESS. GET list should work without a token. POST without token → 401.
 
-**Try these (2 programs):**
-
-**Program 1 — Session policy**
+Print `SessionCreationPolicy.STATELESS` and that JWT holds the login.
 
 ```java
 public class StatelessPrint {
@@ -730,7 +712,7 @@ SessionCreationPolicy.STATELESS
 JWT holds login
 ```
 
-**Program 2 — CSRF off reason**
+Print that this is a Bearer token API so `csrf.disable` is the design for this module.
 
 ```java
 public class CsrfOffPrint {
@@ -754,9 +736,7 @@ csrf.disable for this design
 
 `JwtService.createToken` / `parseEmail`. Login `matches` then 200 token. Bad password 401. Secret from env.
 
-**Try these (2 programs):**
-
-**Program 1 — Login statuses**
+Print login statuses: good password 200 with token, bad password 401.
 
 ```java
 public class LoginStatusesPrint {
@@ -774,7 +754,7 @@ good password -> 200 token
 bad password  -> 401
 ```
 
-**Program 2 — Three JWT parts**
+Print the three JWT parts: `header.payload.signature`.
 
 ```java
 public class JwtThreeParts {
@@ -808,9 +788,7 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST http://localhost:8080/products 
 401
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Filter class**
+Print the filter class `OncePerRequestFilter` and that you take the Bearer substring from index 7.
 
 ```java
 public class FilterClassPrint {
@@ -828,7 +806,7 @@ OncePerRequestFilter
 Bearer substring 7
 ```
 
-**Program 2 — Entry point JSON**
+Print the 401 entry-point JSON `{"error":"Unauthorized"}`.
 
 ```java
 public class EntryPointJson {
@@ -852,9 +830,7 @@ Import [`CampusCart_Auth_v1.postman_collection.json`](../15_Lab_Assets/19_spring
 
 Do **not** add OAuth2, refresh tokens, roles, or Lombok to pass.
 
-**Try these (2 programs):**
-
-**Program 1 — Collection file**
+Print the auth collection file name `CampusCart_Auth_v1.postman_collection.json`.
 
 ```java
 public class AuthCollectionFile {
@@ -870,7 +846,7 @@ public class AuthCollectionFile {
 CampusCart_Auth_v1.postman_collection.json
 ```
 
-**Program 2 — Git hygiene**
+Print git hygiene: commit the collection JSON, do not commit `JWT_SECRET`, do not commit `target/`.
 
 ```java
 public class AuthGitHygiene {

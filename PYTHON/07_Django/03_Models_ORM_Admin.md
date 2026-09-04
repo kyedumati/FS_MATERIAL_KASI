@@ -114,9 +114,7 @@ Never edit applied migration files manually as a beginner — create new migrati
 - Forgot `makemigrations` after editing `models.py` → no schema change. Run `makemigrations` then `migrate`.
 - Editing an applied migration by hand often causes conflicts — regenerate in lab or ask in class.
 
-**Try these (2 programs):**
-
-**Program 1 — Make and apply**
+Create and apply blog migrations, then list the blog app’s migration status.
 
 ```bash
 python manage.py makemigrations blog
@@ -134,7 +132,7 @@ Applying blog.0001_initial... OK
  [X] 0001_initial
 ```
 
-**Program 2 — Read the migration file tip**
+Open the generated migration and confirm CreateModel for Post matches `models.py` before you migrate.
 
 ```markdown
 # After makemigrations
@@ -153,9 +151,7 @@ Then migrate.
 - `Post.objects.get()` with 0 or 2+ rows → `DoesNotExist` / `MultipleObjectsReturned`. Prefer `filter().first()` or handle the exception.
 - N+1 queries in a template (looping related objects) slow the page — use `select_related('author')` when you know you'll need the FK (interview teaser).
 
-**Try these (2 programs):**
-
-**Program 1 — Shell CRUD read**
+In the Django shell, create a published Post and print titles of published posts.
 
 ```python
 # python manage.py shell
@@ -172,7 +168,7 @@ print(list(Post.objects.filter(published=True).values_list("title", flat=True)))
 
 **Remember:** Change `models.py` → `makemigrations` → `migrate` — skipping either leaves MySQL out of sync.
 
-**Program 2 — Order and limit**
+Fetch the five newest posts with `order_by` and a slice, then print each id and title.
 
 ```python
 from blog.models import Post
@@ -190,9 +186,7 @@ def __str__(self):
     return self.title
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Readable admin labels**
+Give Post a `__str__` that returns the title so admin and the shell show a readable label.
 
 ```python
 class Post(models.Model):
@@ -203,7 +197,7 @@ class Post(models.Model):
         return self.title
 ```
 
-**Program 2 — TechMart include city in Product str**
+Give a TechMart Product a `__str__` that includes name and rupee price.
 
 ```python
 class Product(models.Model):
@@ -226,9 +220,7 @@ class PostAdmin(admin.ModelAdmin):
 
 ---
 
-**Try these (2 programs):**
-
-**Program 1 — Register with list_display**
+Register Post in admin with `list_display` and a title search.
 
 ```python
 # blog/admin.py
@@ -241,7 +233,7 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ("title",)
 ```
 
-**Program 2 — Filter published**
+Add a published sidebar filter on the Post admin changelist.
 
 ```python
 @admin.register(Post)

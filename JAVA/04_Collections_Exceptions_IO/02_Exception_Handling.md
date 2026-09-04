@@ -108,9 +108,7 @@ still running
 
 **Common Error:** Catching `Exception` and returning `-1` so the caller thinks `-1` is a real age. Throw or print — do not invent a magic number.
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank UPI PIN with retry**
+Try parsing SecureBank UPI PIN attempts `ab12` then `1234`; catch `NumberFormatException`, print that the PIN must be digits, and break when a PIN is accepted.
 
 ```java
 public class PinRetry {
@@ -136,7 +134,7 @@ PIN must be digits only
 PIN accepted: 1234
 ```
 
-**Program 2 — TechMart split bill safely**
+Split a TechMart bill of ₹500 among 4 friends then among 0; catch `ArithmeticException` when dividing by zero.
 
 ```java
 public class SplitBill {
@@ -202,9 +200,7 @@ Order matters if you use **separate** catches: a parent type (`Exception`) must 
 - Prefer: narrow types, or `A | B` when the message is shared.
 - Wrong: catching `NullPointerException` as your inventory strategy — fix `containsKey` instead (Collections week). Catch NPE only as a last-ditch log, not as business logic.
 
-**Try these (2 programs):**
-
-**Program 1 — two separate catches**
+Parse `"0"` and divide 10 by that value using two separate catch blocks for `NumberFormatException` and `ArithmeticException`.
 
 ```java
 public class TwoCatches {
@@ -226,7 +222,7 @@ public class TwoCatches {
 divide by zero
 ```
 
-**Program 2 — missing map key is not an exception**
+Look up missing SKU P999 with `get`; if the value is null, print `not found` — a missing key is not a thrown exception.
 
 ```java
 import java.util.HashMap;
@@ -296,9 +292,7 @@ Attempt finished
 - Wrong: relying on `finally` to “fix” a bad catch.
 - Prefer: try-with-resources (next) when the cleanup is `close()`.
 
-**Try these (2 programs):**
-
-**Program 1 — `finally` after success and failure**
+Parse `"x"` then `"7"`; print skip on `NumberFormatException` and print `done` in `finally` after both attempts.
 
 ```java
 public class FinallyTwoAttempts {
@@ -325,7 +319,7 @@ done
 done
 ```
 
-**Program 2 — `finally` still runs before `return`**
+Return `"success"` from `try` and print from `finally` so cleanup runs before the return completes.
 
 ```java
 public class FinallyBeforeReturn {
@@ -397,9 +391,7 @@ Discount set to 15%
 - Wrong: `throw new Exception("bad")` from every setter — that forces every caller to declare `throws Exception`.
 - Prefer: `IllegalArgumentException` / `IllegalStateException` for “you passed garbage”; **custom** types when callers must distinguish domain failures.
 
-**Try these (2 programs):**
-
-**Program 1 — MedCare book appointment slots**
+Book MedCare seats when 2 of 5 are available, then throw `IllegalArgumentException` when 5 are requested of only 3.
 
 ```java
 public class ThrowSeats {
@@ -428,7 +420,7 @@ Booked 2 seat(s). Left: 3
 Booking failed: Not enough seats
 ```
 
-**Program 2 — SecureBank amount must be positive**
+Call a SecureBank helper that throws `IllegalArgumentException` when the amount is -10, and print the message.
 
 ```java
 public class ThrowAmount {
@@ -529,9 +521,7 @@ classDiagram
 - Wrong: wrapping everything in `throws Exception`.
 - Prefer: `throws InvalidAgeException` (your type) or catch at the menu.
 
-**Try these (2 programs):**
-
-**Program 1 — unchecked needs no `throws`**
+Throw `IllegalArgumentException` from a method with no `throws` clause and catch it in `main`.
 
 ```java
 public class UncheckedNoThrows {
@@ -555,7 +545,7 @@ public class UncheckedNoThrows {
 unchecked
 ```
 
-**Program 2 — checked needs `throws` or `catch`**
+Throw a custom checked exception from a method that declares `throws`, and catch it in `main`.
 
 ```java
 public class CheckedMustDeclare {
@@ -635,9 +625,7 @@ Voter registered (age 21)
 
 **Interview:** Custom exceptions name **business** failures (`InsufficientFundsException`, `InvalidAgeException`) so a menu can show the right line.
 
-**Try these (2 programs):**
-
-**Program 1 — `InvalidRollException` with the roll in the message**
+Look up rolls 101 and 999; throw `InvalidRollException` with the missing roll in the message.
 
 ```java
 import java.util.HashMap;
@@ -679,7 +667,7 @@ Anita
 Error: Roll not found: 999
 ```
 
-**Program 2 — SecureBank `InsufficientFundsException` (unchecked)**
+Withdraw ₹800 from a SecureBank balance of ₹500; throw unchecked `InsufficientFundsException` and catch it in `main`.
 
 ```java
 public class CustomFunds {
@@ -755,9 +743,7 @@ age 21
 - Prefer: `try (Scanner sc = new Scanner(sample))` in the lab; `System.in` in the mini-project menu.
 - **Later — Files:** `try (BufferedReader br = Files.newBufferedReader(path))`.
 
-**Try these (2 programs):**
-
-**Program 1 — try-with-resources + bad token**
+Open a `Scanner` on `"abc"` in try-with-resources, parse the line as an int, and catch `NumberFormatException`.
 
 ```java
 import java.util.Scanner;
@@ -779,7 +765,7 @@ public class TwrBadToken {
 not an int
 ```
 
-**Program 2 — two lines from one String scanner**
+Read two integers from one String `Scanner` (`40` then `10`) in try-with-resources and print their sum.
 
 ```java
 import java.util.Scanner;
@@ -818,9 +804,7 @@ public class TwrTwoLines {
 | `InvalidAgeException` (yours) | Age not in 1–120 | Checked if `extends Exception` |
 | `IOException` | Missing file, read error | Checked — **Later — Files** |
 
-**Try these (2 programs):**
-
-**Program 1 — name that error**
+Catch `Exception` around `parseInt("hello")` and `1 / 0`, and print each simple class name.
 
 ```java
 public class NameThatError {
@@ -848,7 +832,7 @@ ArithmeticException
 
 (Quiz only — production code still prefers specific `catch` types.)
 
-**Program 2 — index off the list**
+Add Tea to a list, then catch `IndexOutOfBoundsException` when you `get(3)`.
 
 ```java
 import java.util.ArrayList;
@@ -903,9 +887,7 @@ Invalid input: abc. Try again.
 Valid age: 18
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — trim then parse**
+Trim `"  22  "` then `parseInt` it; catch `NumberFormatException` if it fails.
 
 ```java
 public class TrimThenParse {
@@ -925,7 +907,7 @@ public class TrimThenParse {
 22
 ```
 
-**Program 2 — `Double.parseDouble` catch**
+Parse `78.5` with `Double.parseDouble`, then catch `NumberFormatException` on `"x"`.
 
 ```java
 public class ParseDoubleCatch {
@@ -1000,9 +982,7 @@ abc NumberFormatException age must be an integer
 
 Lab kit: [15_Lab_Assets/13_safe_input_exceptions/](../15_Lab_Assets/13_safe_input_exceptions/).
 
-**Try these (2 programs):**
-
-**Program 1 — only range (already an int)**
+With age already `0`, throw `InvalidAgeException` when the value is outside 1–120 and print the message.
 
 ```java
 public class RangeOnly {
@@ -1031,7 +1011,7 @@ class InvalidAgeException extends Exception {
 age out of range: 0
 ```
 
-**Program 2 — parse only**
+Catch `NumberFormatException` from `parseInt("abc")` and print that age must be an integer.
 
 ```java
 public class ParseOnly {
@@ -1115,9 +1095,7 @@ Anita ₹500
 
 Balance is unchanged. That is the same rule as print + return — now the **caller cannot miss it**.
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank catch illegal amount**
+Throw `IllegalArgumentException` when a SecureBank amount of -5 is not positive, and print the message.
 
 ```java
 public class BankBadAmount {
@@ -1139,7 +1117,7 @@ public class BankBadAmount {
 amount must be positive
 ```
 
-**Program 2 — SecureBank successful withdraw after catch demo**
+Subtract a successful SecureBank withdraw of ₹100 from ₹500 and print the new balance.
 
 ```java
 public class BankOkWithdraw {
@@ -1216,9 +1194,7 @@ class InvalidAgeException extends Exception {
 
 `javac SafeAgeMenuSketch.java` then `java SafeAgeMenuSketch`. Compile-only in automated checks (it waits for the keyboard).
 
-**Try these (2 programs):**
-
-**Program 1 — empty line after trim**
+Parse an empty trimmed string as an int and print that age must be an integer.
 
 ```java
 public class EmptyLineParse {
@@ -1238,7 +1214,7 @@ public class EmptyLineParse {
 age must be an integer
 ```
 
-**Program 2 — `q` is not an age**
+If the typed line is `q`, print `Bye` instead of parsing an age.
 
 ```java
 public class QuitIsNotAge {

@@ -145,9 +145,7 @@ Average marks: 80.0
 - Wrong: `(marksJava + marksSql) / 2` stays `int` if both are `int`.
 - Prefer: divide by `2.0` so the result is `double`.
 
-**Try these (2 programs):**
-
-**Program 1 — Ravi marks average**
+Store Ravi's roll `2026002`, Java marks 81, and SQL marks 74, then print his name, roll, and average.
 
 ```java
 public class RaviAverage {
@@ -168,7 +166,7 @@ public class RaviAverage {
 Ravi (2026002) average: 77.5
 ```
 
-**Program 2 — Daily expense total**
+Store food ₹185.50 and travel ₹60, add them, and print today's total with ₹.
 
 ```java
 public class DailyExpense {
@@ -217,9 +215,7 @@ true
 B
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank UPI amount as double**
+Store a SecureBank UPI ID `priya@okaxis` and a transfer of ₹120.00 as `double`, then print both.
 
 ```java
 public class UpiAmount {
@@ -232,7 +228,7 @@ public class UpiAmount {
 }
 ```
 
-**Program 2 — Two booleans printed**
+Store `isLoggedIn` as false and `hasPaidFees` as true, then print both flags.
 
 ```java
 public class Flags {
@@ -273,9 +269,7 @@ Remainder demo 10 % 3 = 1
 
 **Remember:** `5 / 2` is `2`. `5 / 2.0` is `2.5`.
 
-**Try these (2 programs):**
-
-**Program 1 — Integer vs double division**
+Print `5 / 2` (integer division) and `5 / 2.0` (double division) on two lines.
 
 ```java
 public class DivisionDemo {
@@ -293,7 +287,7 @@ public class DivisionDemo {
 2.5
 ```
 
-**Program 2 — Split bill three ways**
+Split a ₹450 bill three ways and print what each person pays.
 
 ```java
 public class SplitBill {
@@ -328,9 +322,7 @@ true
 
 Flow Control will *use* these booleans in `if`. Today, only print them.
 
-**Try these (2 programs):**
-
-**Program 1 — Fee paid flag**
+Store paid and due fees as 25000 each, then print whether they are equal and whether they are not equal.
 
 ```java
 public class FeeCheck {
@@ -343,7 +335,7 @@ public class FeeCheck {
 }
 ```
 
-**Program 2 — PIN length idea (length only)**
+Store PIN `1234` and print whether its length is exactly 4.
 
 ```java
 public class PinLength {
@@ -374,9 +366,7 @@ public class GreetScanner {
 - Wrong: Mixing `nextInt()` then `nextLine()` without care — leftover newline bites later.
 - Prefer: `nextLine()` + `Integer.parseInt` / `Double.parseDouble` this week (simple and consistent).
 
-**Try these (2 programs):**
-
-**Program 1 — Read city**
+Read a city name with `Scanner` and print `You typed:` followed by what the user entered.
 
 ```java
 import java.util.Scanner;
@@ -392,7 +382,7 @@ public class ReadCity {
 }
 ```
 
-**Program 2 — Read qty as int**
+Read quantity as a line of text, convert it with `Integer.parseInt`, and print `Qty is` plus the number.
 
 ```java
 import java.util.Scanner;
@@ -437,9 +427,7 @@ public class CastingLite {
 
 **Interview:** Autoboxing (`Integer x = 5`) exists — say “compiler wraps the primitive” if asked.
 
-**Try these (2 programs):**
-
-**Program 1 — parseInt happy path**
+Parse roll `"2026001"` with `Integer.parseInt`, add 1, and print the next roll number.
 
 ```java
 public class ParseRoll {
@@ -456,7 +444,7 @@ public class ParseRoll {
 2026002
 ```
 
-**Program 2 — Cast double to int**
+Cast average `79.9` to `int` and print the truncated value.
 
 ```java
 public class TruncateMarks {
@@ -492,9 +480,7 @@ Total: ₹105.00
 
 `%n` is a newline. `%.2f` is two decimal places.
 
-**Try these (2 programs):**
-
-**Program 1 — Average two decimals**
+Print average `77.5` with `printf` so it shows two decimal places.
 
 ```java
 public class AvgFormat {
@@ -505,7 +491,7 @@ public class AvgFormat {
 }
 ```
 
-**Program 2 — TechMart GST line**
+Print a TechMart GST line of ₹4.00 using `printf` with two decimal places.
 
 ```java
 public class GstLine {

@@ -121,9 +121,7 @@ blog/urls.py  (app)
 - Trailing-slash mismatch → 404 or redirect loop. Stay consistent with Django `APPEND_SLASH`.
 - Hardcoding `/blog/` in `href` breaks when the URL prefix changes — use `{% url 'post_list' %}`.
 
-**Try these (2 programs):**
-
-**Program 1 — Project includes app urls**
+Include the blog app URLs under `/blog/` in the project root URLconf.
 
 ```python
 # config/urls.py
@@ -136,7 +134,7 @@ urlpatterns = [
 ]
 ```
 
-**Program 2 — App urlpatterns**
+Map home and about views in `blog/urls.py` with named routes.
 
 ```python
 # blog/urls.py
@@ -153,9 +151,7 @@ urlpatterns = [
 
 Today focus on **GET** (read page). Module 04 covers **POST** (form submit).
 
-**Try these (2 programs):**
-
-**Program 1 — Inspect method in view**
+Return the request HTTP method in an HttpResponse so you can inspect GET vs POST.
 
 ```python
 from django.http import HttpResponse
@@ -164,7 +160,7 @@ def ping(request):
     return HttpResponse(f"Method: {request.method}")
 ```
 
-**Program 2 — Only allow GET for a page**
+Reject non-GET requests on an about page and return “About CampusCart” for GET.
 
 ```python
 from django.http import HttpResponse, HttpResponseNotAllowed
@@ -187,9 +183,7 @@ def about(request):
 **Note:**
 - URL name typo in `{% url %}` → `NoReverseMatch`. Match `name=` in `urls.py` exactly.
 
-**Try these (2 programs):**
-
-**Program 1 — Context variable**
+Render `student_name` and `batch_city` from the view context in a template that extends `base.html`.
 
 ```html
 <!-- templates/blog/home.html -->
@@ -200,7 +194,7 @@ def about(request):
 {% endblock %}
 ```
 
-**Program 2 — url tag nav**
+Build a nav that uses `{% url %}` with named routes instead of hardcoded paths.
 
 ```html
 <nav>
@@ -224,16 +218,14 @@ App-level static: `blog/static/blog/css/blog.css` (namespaced by app folder).
 
 ---
 
-**Try these (2 programs):**
-
-**Program 1 — Load static in template**
+Load the static tag and link the project CSS file from the template.
 
 ```html
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 ```
 
-**Program 2 — Minimal static CSS**
+Add a minimal `styles.css` for body font and nav spacing.
 
 ```css
 /* static/css/styles.css */

@@ -47,9 +47,7 @@ print(add_skill("SQL"))     # ['SQL'], not ['Python', 'SQL']
 
 **Remember:** Mutable defaults (`skills=[]`) are shared across calls — use `None` and create a fresh list inside.
 
-**Try these (2 programs):**
-
-**Program 1 — Prove the bug**
+Call `add_skill` twice with a mutable default list `skills=[]` and print both results so the leak is visible.
 
 ```python
 def add_skill(skill, skills=[]):
@@ -67,7 +65,7 @@ print(add_skill("SQL"))  # leaks prior call
 ['Python', 'SQL']
 ```
 
-**Program 2 — Fix with None**
+Fix `add_skill` by defaulting `skills=None` and creating a new list inside. Print two independent calls.
 
 ```python
 def add_skill(skill, skills=None):
@@ -111,9 +109,7 @@ service.place_order("ORD-101")
 
 **Common Error:** Forcing inheritance when the relationship is only HAS-A — you end up with a rigid tree that is hard to swap (Email → SMS). Prefer composition.
 
-**Try these (2 programs):**
-
-**Program 1 — SMS notifier composition**
+Write `OrderService` that HAS-A `SmsNotifier` and call `place_order("ORD-202")`.
 
 ```python
 class SmsNotifier:
@@ -136,7 +132,7 @@ OrderService(SmsNotifier()).place_order("ORD-202")
 SMS: Order ORD-202 placed
 ```
 
-**Program 2 — Swap notifier at runtime**
+Start `OrderService` with `EmailNotifier`, place an order, then replace `svc.notifier` at runtime and place a second order.
 
 ```python
 class EmailNotifier:

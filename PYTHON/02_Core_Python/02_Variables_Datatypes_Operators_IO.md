@@ -149,9 +149,7 @@ print(f"Average marks: {average:.2f}")     # 2 decimal places
 - Wrong: Typo in a name (`salary = 100` then `print(salery)`) → `NameError`.
 - Prefer: Spell names consistently; copy-paste the identifier when unsure.
 
-**Try these (2 programs):**
-
-**Program 1 — Ravi marks average**
+Store Ravi's roll number, name, and two subject marks, then print his average to two decimal places.
 
 ```python
 roll = "2026002"
@@ -168,7 +166,7 @@ print(f"{name} ({roll}) average: {average:.2f}")
 Ravi (2026002) average: 77.50
 ```
 
-**Program 2 — Daily expense total**
+Store food and travel expenses, compute the daily total, and print it formatted with ₹ to two decimal places.
 
 ```python
 food = 185.50
@@ -200,9 +198,7 @@ print(manager_id is None)    # True — preferred None check
 - Wrong: Checking None with `if x == None`.
 - Prefer: `if x is None`.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR types for Priya Shah**
+Define AcmeHR employee fields for Priya Shah and print the type of each value.
 
 ```python
 emp_id = "E2048"
@@ -213,7 +209,7 @@ manager_id = None
 print(type(emp_id), type(years), type(ctc_lakhs), type(is_remote), type(manager_id))
 ```
 
-**Program 2 — None and bool checks**
+Set manager_id to None and is_remote to True, then print the None and bool identity checks.
 
 ```python
 manager_id = None
@@ -258,9 +254,7 @@ print(f"Today's spend: ₹{total:.2f}")
 - Wrong: Expecting `5 / 2` to be `2` (it is `2.5` in Python 3); showing raw `0.1 + 0.2` floats in money UIs.
 - Prefer: Use `//` for integer division; round for display (`f"{x:.2f}"`).
 
-**Try these (2 programs):**
-
-**Program 1 — All arithmetic on 25 and 4**
+Apply all seven arithmetic operators to 25 and 4 and print each result.
 
 ```python
 a, b = 25, 4
@@ -285,7 +279,7 @@ print(a ** b)
 390625
 ```
 
-**Program 2 — Split ₹999 among 3 friends**
+Split a ₹999 bill among 3 friends using division, floor division, and remainder.
 
 ```python
 bill = 999
@@ -337,9 +331,7 @@ discount = has_coupon or is_member  # True
 - Wrong: Using `=` inside a condition (`if x = 5`) — assignment, not comparison.
 - Prefer: `==` for comparison.
 
-**Try these (2 programs):**
-
-**Program 1 — Pass / distinction / fail flags**
+Given marks 68, print pass, distinction, and fail flags using comparison operators.
 
 ```python
 marks = 68
@@ -349,7 +341,7 @@ print("distinction:", marks >= 75)
 print("fail:", marks < pass_mark)
 ```
 
-**Program 2 — Login and discount with and/or**
+Use and/or to evaluate login eligibility and discount eligibility, then print both results.
 
 ```python
 user_ok = True
@@ -374,9 +366,7 @@ task_count = 0
 task_count += 1   # common pattern when adding tasks
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank ATM deposit and withdraw**
+Start with balance ₹8000, deposit ₹1500, withdraw ₹2000, and print the final balance.
 
 ```python
 balance = 8000
@@ -391,7 +381,7 @@ print(f"Final balance: ₹{balance}")
 Final balance: ₹7500
 ```
 
-**Program 2 — Month total with +=**
+Build a month total by adding three expenses with += and print the result.
 
 ```python
 month_total = 0
@@ -417,9 +407,7 @@ if status is None:
 
 Use `==` for value comparison; `is` mainly for `None` and small integers cache (interview nuance — avoid `is` for strings/content).
 
-**Try these (2 programs):**
-
-**Program 1 — Email membership checks**
+Check whether priya@ksr.in contains @ and .in using membership operators.
 
 ```python
 email = "priya@ksr.in"
@@ -427,7 +415,7 @@ print("@" in email)
 print(".in" in email)
 ```
 
-**Program 2 — AcmeHR manager is None message**
+If manager is None, print that no manager is assigned yet.
 
 ```python
 manager = None
@@ -463,9 +451,7 @@ else:
 - Wrong: Treating `input()` as a number (`input("N: ") + 1`) or casting `int("12.5")` directly.
 - Prefer: `int(input(...))` / `float(input(...))`; for `"12.5"` use `float` first (then `int` if needed).
 
-**Try these (2 programs):**
-
-**Program 1 — Category and amount entry**
+Simulate saving a food expense of ₹250 and print the formatted saved message.
 
 ```python
 category = "food"
@@ -473,7 +459,7 @@ amount = float("250")
 print(f"Saved: {category} → ₹{amount:.2f}")
 ```
 
-**Program 2 — Validate roll with isdigit**
+Validate roll text with isdigit, convert to int if valid, or print Invalid roll.
 
 ```python
 roll_text = "2026001"
@@ -506,9 +492,7 @@ print(f"{'Food':<15}{450.5:>10.2f}")
 - Wrong: Concatenating str + int (`"Age: " + 22`) → `TypeError`.
 - Prefer: `f"Age: {22}"` or `str(22)`.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR offer letter f-string**
+Print an AcmeHR offer line with name, role, and comma-formatted monthly salary.
 
 ```python
 name = "Ravi"
@@ -517,7 +501,7 @@ salary = 25000
 print(f"{name} — {role} — ₹{salary:,}/month")
 ```
 
-**Program 2 — TechMart aligned canteen receipt**
+Print a TechMart canteen receipt with left-aligned items and right-aligned prices.
 
 ```python
 print(f"{'Item':<10}{'Price':>8}")
@@ -543,9 +527,7 @@ print(f"Average: {average:.2f}")
 print(f"Pass?" , average >= 35)   # preview of flow control
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Three-subject average**
+Compute total and average for three subject marks and print pass status.
 
 ```python
 m1, m2, m3 = 78, 82, 91
@@ -556,7 +538,7 @@ print(f"Average: {average:.2f}")
 print("Pass:", average >= 35)
 ```
 
-**Program 2 — TechMart line total with 18% GST**
+Calculate TechMart line total for price × qty with 18% GST and print the result.
 
 ```python
 price = 499.0

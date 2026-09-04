@@ -75,9 +75,7 @@ Both end the same way for your React/Flask app: **JSON in, JSON out**.
 - Expecting ML magic on 6 samples → wrong predictions — explain toy-model limits.
 - Training on every request → slow server — train once, load the model at startup.
 
-**Try these (2 programs):**
-
-**Program 1 — Tiny classifier sketch**
+Build a tiny MultinomialNB text classifier on four campus reviews and predict a label for "amazing thali".
 
 ```python
 from sklearn.feature_extraction.text import CountVectorizer
@@ -104,7 +102,7 @@ print(model.predict(vec.transform(["amazing thali"])))
 
 **Interview:** "Did you train GPT?" → No — "I called a hosted model API / tiny sklearn classifier from Flask/Django and returned JSON to the UI."
 
-**Program 2 — Train/predict note**
+Write a short markdown note describing the train/predict flow and the rule to never ship API keys in code.
 
 ```markdown
 # Flow
@@ -136,9 +134,7 @@ Course may use mock URL in lab if no paid API key — pattern matters.
 **Note:**
 - Blocking call without timeout → hung request — use `timeout=30` on requests.
 
-**Try these (2 programs):**
-
-**Program 1 — Env-based key pattern**
+Load the AI API key from an environment variable and exit with a clear message if it is missing.
 
 ```python
 import os
@@ -149,7 +145,7 @@ if not API_KEY:
 print("Key loaded:", bool(API_KEY))
 ```
 
-**Program 2 — Mock response (no network)**
+Implement a mock `analyze` function that returns positive or neutral based on keywords — no network call required.
 
 ```python
 def mock_analyze(text: str) -> dict:
@@ -171,9 +167,7 @@ print(mock_analyze("Good filter coffee in Hyderabad"))
 - No input validation → crash or abuse — add length limits and strip text.
 - CORS again on AI Flask → browser block — reuse the same cors-headers pattern.
 
-**Try these (2 programs):**
-
-**Program 1 — Fetch analyze endpoint**
+Write an async function that POSTs review text to `/api/analyze` and returns parsed JSON from the response.
 
 ```javascript
 async function analyzeReview(text) {
@@ -187,7 +181,7 @@ async function analyzeReview(text) {
 }
 ```
 
-**Program 2 — Loading state sketch**
+Sketch a React component with loading state, result display, and protection against double-submit while fetching.
 
 ```jsx
 import { useState } from "react";
@@ -225,9 +219,7 @@ export default function Analyzer() {
 - API key in GitHub → key revoked / security incident — use `.env` + gitignore.
 - Overclaiming on resume → interview embarrassment — say "integrated API," not "built GPT."
 
-**Try these (2 programs):**
-
-**Program 1 — .gitignore secrets**
+Add `.env`, pem files, and service-account JSON to `.gitignore` so secrets are never committed.
 
 ```gitignore
 .env
@@ -235,7 +227,7 @@ export default function Analyzer() {
 service-account.json
 ```
 
-**Program 2 — Ethics note**
+Draft a short ethics note for your portfolio README covering PII, mock vs real models, and rate limiting.
 
 ```markdown
 # AI ethics (portfolio README)

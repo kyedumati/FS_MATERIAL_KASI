@@ -253,9 +253,7 @@ Hello, Priya!
 
 **Remember:** No `return` → the call evaluates to `None`. Printing `print(f())` when you meant to return a value is a classic silent bug.
 
-**Try these (2 programs):**
-
-**Program 1 — Celsius to Fahrenheit**
+Write a function that converts Celsius to Fahrenheit and print the result for 0°C, 37°C, and 100°C.
 
 ```python
 def celsius_to_fahrenheit(c):
@@ -273,7 +271,7 @@ for temp in (0, 37, 100):
 100°C → 212.0°F
 ```
 
-**Program 2 — Even or Odd**
+Write a function that returns `"Even"` or `"Odd"` and print the result for 10 and 15.
 
 ```python
 def even_odd(n):
@@ -395,9 +393,7 @@ print(build_profile("Arjun", "Python", "SQL", city="Hyderabad"))
 | `*args`    | `def f(*args)`    | Unknown count of positional values |
 | `**kwargs` | `def f(**kwargs)` | Unknown named options              |
 
-**Try these (2 programs):**
-
-**Program 1 — Default + keyword arguments**
+Write `greet` with a default message of `"Good Morning"`. Call it once with a positional name, then once with keyword arguments for name and a custom message.
 
 ```python
 def greet(name, msg="Good Morning"):
@@ -414,7 +410,7 @@ Hello Priya, Good Morning
 Hello Ravi, Good Evening
 ```
 
-**Program 2 — `*args` with tax**
+Write `total(*amounts, tax_rate=0.05)` that sums the amounts, adds tax, rounds to 2 decimals, and print `total(100, 200, 50)`.
 
 ```python
 def total(*amounts, tax_rate=0.05):
@@ -466,9 +462,7 @@ Use `global x` only when you must **reassign** a global name. Prefer passing val
 
 **Common Error:** Assigning to a name inside a function makes it local for the whole function — `x = x + 1` without `global` raises `UnboundLocalError`.
 
-**Try these (2 programs):**
-
-**Program 1 — Fix counter with return (prefer this over `global`)**
+Bump a counter by returning `n + 1` and assigning the result back — do not use `global`. Print the updated count.
 
 ```python
 count = 0
@@ -480,7 +474,7 @@ count = bump(count)
 print(count)  # 1
 ```
 
-**Program 2 — Closure counter (no globals)**
+Write `make_counter()` that returns a nested function using `nonlocal` so two calls print 1 then 2 with no globals.
 
 ```python
 def make_counter():
@@ -514,16 +508,14 @@ print(sorted(names, key=lambda x: len(x)))
 
 Lambda **returns** the expression result automatically — no `return` keyword.
 
-**Try these (2 programs):**
-
-**Program 1 — Sort names by length**
+Sort `["Meera", "Ravi", "An"]` by string length using a `lambda` key and print the sorted list.
 
 ```python
 names = ["Meera", "Ravi", "An"]
 print(sorted(names, key=lambda x: len(x)))  # ['An', 'Ravi', 'Meera']
 ```
 
-**Program 2 — Sort marks descending**
+Sort a list of `(name, marks)` tuples by marks descending using a `lambda` key and print the result.
 
 ```python
 marks = [("A", 88), ("B", 95), ("C", 70)]
@@ -589,9 +581,7 @@ passed = [m for m in marks if m >= 75]
 - `reduce` lives in `functools` (not a built-in). The function takes **(accumulator, next_item)**.
 - Do not force `reduce` for a simple sum — `sum(prices)` is better. Use `reduce` when the fold is custom (e.g. merge dicts, running max with a twist).
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart `map` + `filter` on canteen prices**
+For TechMart canteen prices, use `map` to add 5% GST, then `filter` for prices ≥ 50. Print both lists.
 
 ```python
 prices = [40, 25, 60, 15, 120]
@@ -608,7 +598,7 @@ print(big)
 [63.0, 126.0]
 ```
 
-**Program 2 — TechMart `reduce` for bill total (and contrast with `sum`)**
+Use `functools.reduce` to total a TechMart bill, then print `sum(bill)` beside it to show they match.
 
 ```python
 from functools import reduce
@@ -657,9 +647,7 @@ def slow_task():
 
 **Interview:** A decorator is a function that takes a function and returns a wrapped function. `@dec` is sugar for `func = dec(func)`.
 
-**Try these (2 programs):**
-
-**Program 1 — `@shout` decorator**
+Write a `@shout` decorator that uppercases the wrapped function’s return value and print `greet("Priya")`.
 
 ```python
 def shout(func):
@@ -680,7 +668,7 @@ print(greet("Priya"))  # HELLO, PRIYA
 HELLO, PRIYA
 ```
 
-**Program 2 — `@require_login` gate**
+Write `@require_login` that denies access when `current_user` is `None`, then allows `view_dashboard` after you set a user. Print both calls.
 
 ```python
 current_user = None
@@ -845,9 +833,7 @@ print(list(g2))  # []  — already exhausted; create a new generator if you need
 - Do not index a generator like a list (`gen[0]` fails). Use `next(gen)` or a `for` loop.
 - After one full `for` / `list(gen)`, the generator is empty. Call the function again to get a fresh generator.
 
-**Try these (2 programs):**
-
-**Program 1 — Countdown with `next`**
+Write a `countdown` generator. Pull the first three values with `next`, then loop the rest.
 
 ```python
 def countdown(n):
@@ -869,7 +855,7 @@ print()
 2 1 
 ```
 
-**Program 2 — Even number stream**
+Write `even_stream(limit)` that yields even numbers from 0 through the limit and print `list(even_stream(10))`.
 
 ```python
 def even_stream(limit):
@@ -901,9 +887,7 @@ print(sum(passed_gen))   # 303 — consumes the generator
 - Need the full collection, reuse, or indexing → **list** comprehension.
 - One-pass filter/transform (especially large) → **generator** expression or `yield` function.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart GST with a generator expression**
+Build a TechMart GST generator expression (5% on each price) and print each value one at a time.
 
 ```python
 prices = [40, 25, 60, 15, 120]
@@ -922,7 +906,7 @@ for p in with_gst:
 126.0
 ```
 
-**Program 2 — First failing mark (stop early)**
+Write a generator that yields marks below 40 and use `next(..., None)` so you stop at the first failing mark without scanning the whole list first.
 
 ```python
 marks = [80, 72, 35, 90, 28]

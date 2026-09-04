@@ -124,9 +124,7 @@ If `mvn` is missing, install Maven 3.9+ ([Tested Toolchain](../Tested_Toolchain.
 
 **Remember:** `groupId` is the organisation (`in.ksr`). `artifactId` is the project folder name (`campus-hello`).
 
-**Try these (2 programs):**
-
-**Program 1 — Print a GAV**
+Print the Maven GAV for campus-hello: groupId `in.ksr`, artifactId `campus-hello`, and version `0.0.1-SNAPSHOT`.
 
 ```java
 public class GavLabels {
@@ -146,7 +144,7 @@ artifactId: campus-hello
 version:    0.0.1-SNAPSHOT
 ```
 
-**Program 2 — Wrapper vs installed Maven**
+Print the three commands that start Spring Boot: installed `mvn`, macOS/Linux `./mvnw`, and Windows `mvnw.cmd`.
 
 ```java
 public class WrapperVsMvn {
@@ -229,9 +227,7 @@ Course pin: **Spring Boot 3.x** (examples use **3.5.16**) and **`jakarta.*`**. s
 
 **Interview:** Parent vs starter? Parent = version bill of materials + plugin defaults. Starter = the JARs you actually compile against.
 
-**Try these (2 programs):**
-
-**Program 1 — Allowed starter this week**
+Print which starter is allowed this week (`spring-boot-starter-web`) and which ones stay out: JPA, Security, Thymeleaf, and JDBC/Hikari.
 
 ```java
 public class AllowedStarter {
@@ -251,7 +247,7 @@ NO   starter-data-jpa / starter-security / thymeleaf
 NO   starter-jdbc  (that pulls Hikari)
 ```
 
-**Program 2 — JAR vs WAR one-liners**
+Print one line each for JAR with embedded Tomcat, WAR on an external Tomcat, and that this course ships JAR.
 
 ```java
 public class JarVsWarLite {
@@ -314,9 +310,7 @@ If the zip has `application.properties`, replace it with **`application.yml`** (
 
 **Common Error:** Opening the **parent** folder in the IDE so Maven cannot see `pom.xml`. Open **`campus-hello/`** (the folder that contains `pom.xml`).
 
-**Try these (2 programs):**
-
-**Program 1 — Scan from the application package**
+Print a valid `CampusHelloApplication` package, two controller packages that component-scan will find, and the `in.ksr.web` 404 trap.
 
 ```java
 public class ComponentScanRule {
@@ -338,7 +332,7 @@ OK:         in.ksr.campushello.web.HelloController
 404 trap:   in.ksr.web.HelloController
 ```
 
-**Program 2 — Source folders Maven expects**
+Print the three Maven folders: `src/main/java`, `src/main/resources` for `application.yml`, and gitignored `target/`.
 
 ```java
 public class MavenSourceLayout {
@@ -399,9 +393,7 @@ Look for a log line similar to **`Tomcat started on port 8080`**. Browser `http:
 
 **Interview:** Why embedded Tomcat? So one JAR (or `spring-boot:run`) is enough in class and on many PaaS hosts. You are not installing a separate Tomcat to learn Hello JSON.
 
-**Try these (2 programs):**
-
-**Program 1 — Annotation pieces (print)**
+Print the three annotations inside `@SpringBootApplication`: `@Configuration`, `@EnableAutoConfiguration`, and `@ComponentScan`.
 
 ```java
 public class SpringBootApplicationParts {
@@ -423,7 +415,7 @@ public class SpringBootApplicationParts {
 Together: @SpringBootApplication
 ```
 
-**Program 2 — Proof is the log line**
+Print the `mvn spring-boot:run` command, the Tomcat-started-on-8080 log line to look for, and that a 404 on `/` is OK before `@RestController`.
 
 ```java
 public class RunProofLog {
@@ -474,9 +466,7 @@ Spring maps **`SERVER_PORT`** to **`server.port`**. `APP_MESSAGE` is your own ke
 
 **Remember:** Change port in yml, restart `spring-boot:run`. Config is not hot-reloaded unless you add extra tools (**Later —**).
 
-**Try these (2 programs):**
-
-**Program 1 — Print the yml keys**
+Print the three YAML keys for CampusCart: `spring.application.name`, `server.port` with a `SERVER_PORT` default, and `app.message` with an `APP_MESSAGE` default.
 
 ```java
 public class YmlKeysPrint {
@@ -496,7 +486,7 @@ server.port=${SERVER_PORT:8080}
 app.message=${APP_MESSAGE:Hello, CampusCart}
 ```
 
-**Program 2 — Port busy → 8081**
+Print what to set when port 8080 is busy (`server.port: 8081`) and the URL to open for `/hello`.
 
 ```java
 public class PortBusyHint {
@@ -548,9 +538,7 @@ Windows PowerShell: `$env:SERVER_PORT=8080` then `mvn spring-boot:run`.
 
 **Remember:** Env first. Never a password literal in `application.yml` on GitHub.
 
-**Try these (2 programs):**
-
-**Program 1 — Missing env uses YAML default**
+Print `app.message` when the env var is missing so the YAML default `Hello, CampusCart` is used.
 
 ```java
 public class EnvOrDefault {
@@ -570,7 +558,7 @@ public class EnvOrDefault {
 Hello, CampusCart
 ```
 
-**Program 2 — Never commit `.env`**
+Print git rules for `.env.example` vs `.env`, and that Boot reads OS env — not a `.env` file by itself.
 
 ```java
 public class EnvGitRule {
@@ -654,9 +642,7 @@ curl http://localhost:8080/health
 
 **Interview:** `@RestController` vs `@Controller`? REST + JSON vs (typically) HTML templates. This module is JSON-only.
 
-**Try these (2 programs):**
-
-**Program 1 — Mapping names**
+Print the two GET paths (`/hello` and `/health`) and that `@RestController` returns a JSON body, not an HTML file.
 
 ```java
 public class MappingNamesPrint {
@@ -676,7 +662,7 @@ GET /health -> JSON status UP
 @RestController = JSON body, not a .html file
 ```
 
-**Program 2 — `jakarta` vs `javax` (print)**
+Print Boot 2 `javax.servlet` vs Boot 3 `jakarta.servlet`, and that the wrong import fails with cannot find symbol.
 
 ```java
 public class JakartaNotJavax {
@@ -720,9 +706,7 @@ javac -version
 mvn -version
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — What you need on PATH**
+Print the three PATH tools you need: `java`, `javac` (Maven still uses it), and `mvn` to read `pom.xml`.
 
 ```java
 public class PathTools {
@@ -742,7 +726,7 @@ javac  — still used by Maven
 mvn    — reads pom.xml
 ```
 
-**Program 2 — JAVA_HOME mismatch (print)**
+Print that `mvn -version` must show Java 17, and that Java 8 or 11 means you must fix `JAVA_HOME`.
 
 ```java
 public class JavaHomeHint {
@@ -766,9 +750,7 @@ If it shows 8 or 11, fix JAVA_HOME
 
 Keep **`CampusHelloApplication`** where Initializr put it (`in.ksr.campushello`). Do not move it to the default package.
 
-**Try these (2 programs):**
-
-**Program 1 — `main` calls `SpringApplication.run` (print)**
+Print the `SpringApplication.run(CampusHelloApplication.class, args)` call and that this line starts the server.
 
 ```java
 public class BootMainSketch {
@@ -786,7 +768,7 @@ SpringApplication.run(CampusHelloApplication.class, args)
 That line is the server start
 ```
 
-**Program 2 — Default package trap**
+Print the default-package trap: a Boot class with no `package` confuses component scan — always use `in.ksr.campushello`.
 
 ```java
 public class DefaultPackageTrap {
@@ -814,9 +796,7 @@ mvn spring-boot:run
 
 Wait until Tomcat started. Leave it running. Open a **second** terminal for `curl`.
 
-**Try these (2 programs):**
-
-**Program 1 — Success log tokens**
+Print the two success log tokens: `Started CampusHelloApplication` and `Tomcat started on port 8080 (http)`.
 
 ```java
 public class TomcatStartedTokens {
@@ -834,7 +814,7 @@ Started CampusHelloApplication
 Tomcat started on port 8080 (http)
 ```
 
-**Program 2 — Failure: dependency download**
+Print that the first `mvn` run needs Maven Central (network), then JARs sit in the local `.m2` cache.
 
 ```java
 public class FirstRunNetwork {
@@ -860,9 +840,7 @@ Create `src/main/resources/application.yml` (keys from concept 5). Add `.env.exa
 
 Restart Boot after yml changes.
 
-**Try these (2 programs):**
-
-**Program 1 — Resources path**
+Print that `application.yml` lives at `src/main/resources/application.yml`, not next to `pom.xml`.
 
 ```java
 public class ResourcesPathPrint {
@@ -880,7 +858,7 @@ src/main/resources/application.yml
 Not next to pom.xml
 ```
 
-**Program 2 — Restart after yml**
+Print that changing `server.port` requires Ctrl+C and `mvn spring-boot:run` again.
 
 ```java
 public class RestartAfterYml {
@@ -909,9 +887,7 @@ curl http://localhost:8080/hello
 curl http://localhost:8080/health
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Two GET paths**
+Print the two URLs to hit: `http://localhost:8080/hello` and `http://localhost:8080/health`.
 
 ```java
 public class TwoGetPaths {
@@ -929,7 +905,7 @@ http://localhost:8080/hello
 http://localhost:8080/health
 ```
 
-**Program 2 — JSON is the body**
+Print that `/hello` is not an HTML page, then print the JSON body `{"message":"Hello, CampusCart"}`.
 
 ```java
 public class JsonIsTheBody {
@@ -953,9 +929,7 @@ Not an HTML page
 
 `git status` must **not** list `target/` or `.env`. README: JDK 17, Boot 3, `mvn spring-boot:run`, two curl lines. See [Standard Project Deliverables](../Standard_Project_Deliverables.md).
 
-**Try these (2 programs):**
-
-**Program 1 — Ignore list reminder**
+Print what to ignore (`target/`, `.env`) and what to keep (`pom.xml`, `mvnw`, `src/`, `.env.example`).
 
 ```java
 public class BootGitignore {
@@ -975,7 +949,7 @@ ignore: .env
 keep:   pom.xml mvnw src/ .env.example
 ```
 
-**Program 2 — README run lines**
+Print the two README run lines: `mvn spring-boot:run` and `curl http://localhost:8080/hello`.
 
 ```java
 public class ReadmeRunLines {

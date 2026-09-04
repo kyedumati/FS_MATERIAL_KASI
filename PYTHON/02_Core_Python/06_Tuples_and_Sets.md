@@ -86,9 +86,7 @@ print(employee[1:3])        # ('Ananya Sharma', 'Engineering')
 - Wrong: Writing `(42)` and thinking it is a 1-tuple — it is just an int.
 - Prefer: Always use a trailing comma for a 1-tuple: `(42,)`.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR employee tuple by index**
+Create an AcmeHR employee tuple and print each field by index.
 
 ```python
 emp = ("EMP-204", "Priya Nair", "HR")
@@ -101,7 +99,7 @@ print(emp[0], emp[1], emp[2])
 EMP-204 Priya Nair HR
 ```
 
-**Program 2 — One-element tuple vs int**
+Compare a one-element tuple `(100,)` with `(100)` and print their types.
 
 ```python
 one = (100,)
@@ -127,9 +125,7 @@ print(scores.index(85))     # 2 — first index of 85
 print(len(scores))          # 5
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Tuple count and index**
+Count how many times 92 appears in the scores tuple and find the index of 85.
 
 ```python
 scores = (78, 92, 85, 92, 88)
@@ -137,7 +133,7 @@ print(scores.count(92))
 print(scores.index(85))
 ```
 
-**Program 2 — Shipping tuple length**
+Print the length of a shipping tuple with order ID, amount, and status.
 
 ```python
 shipment = ("ORD-9", 1499.0, "Packed")
@@ -169,9 +165,7 @@ print(a, b)                 # 20 10
 - Wrong: Unpacking the wrong number of variables → `ValueError: too many/few values`.
 - Prefer: Match variable count to tuple length.
 
-**Try these (2 programs):**
-
-**Program 1 — Unpack expense tuple**
+Unpack an expense tuple into date, category, and amount, then print them in one line.
 
 ```python
 date, category, amount = ("31-07-2026", "Food", 450.0)
@@ -184,7 +178,7 @@ print(f"{date} | {category} | ₹{amount}")
 31-07-2026 | Food | ₹450.0
 ```
 
-**Program 2 — Swap with unpacking**
+Swap two name strings using tuple unpacking and print the result.
 
 ```python
 a, b = "Ravi", "Priya"
@@ -213,9 +207,7 @@ if result:
     print(f"{name} works in {dept}, CTC ₹{salary}")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — minmax returns a tuple**
+Write a `minmax` function that returns min and max as a tuple, then unpack and print them.
 
 ```python
 def minmax(nums):
@@ -231,7 +223,7 @@ print(lo, hi)
 45 90
 ```
 
-**Program 2 — split_name returns a tuple**
+Write `split_name` to return first and last name as a tuple, then unpack and print them.
 
 ```python
 def split_name(full):
@@ -256,9 +248,7 @@ for pid, name, price in catalog:                # unpack in loop
     print(f"{pid}: {name} — ₹{price}")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Loop catalog tuples**
+Loop over catalog product tuples and print SKU, name, and price for each item.
 
 ```python
 catalog = [
@@ -270,7 +260,7 @@ for sku, name, price in catalog:
     print(f"{sku} {name}: ₹{price}")
 ```
 
-**Program 2 — Filter under ₹1000**
+Loop the catalog and print only products priced under ₹1000.
 
 ```python
 catalog = [
@@ -308,9 +298,7 @@ print("Java" in skills)         # False
 - Wrong: Using `{}` for an empty set (that creates an empty **dict**); putting lists inside sets (`TypeError: unhashable`); expecting a fixed set order.
 - Prefer: `set()` for empty; use a tuple (or frozenset) instead of a list; use a list when order matters.
 
-**Try these (2 programs):**
-
-**Program 1 — Unique IDs with set**
+From a list of duplicate employee IDs, build a set of unique IDs and print the count.
 
 ```python
 ids = [101, 102, 101, 103, 102]
@@ -326,7 +314,7 @@ print(len(unique))
 
 **Remember:** Sets drop duplicates and are **unordered** — never rely on print order for set contents in exams or production logs.
 
-**Program 2 — Membership in skill set**
+Check whether Python and Java are in a skills set and print the results.
 
 ```python
 skills = {"Python", "SQL", "Git"}
@@ -365,9 +353,7 @@ exclusive = team_a ^ team_b
 print(exclusive)                # {'Ananya', 'Dev', 'Priya', 'Kiran'}
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Intersection and difference**
+Print students in both batches (intersection) and students only in batch A (difference).
 
 ```python
 batch_a = {"Priya", "Ravi", "Dev"}
@@ -376,7 +362,7 @@ print(batch_a & batch_b)
 print(batch_a - batch_b)
 ```
 
-**Program 2 — Tag union**
+Print the union of two tag sets to combine all tags.
 
 ```python
 print({"sale", "new"} | {"gift", "sale"})
@@ -399,9 +385,7 @@ print(cart_categories)
 - Wrong: `remove` on a missing set item → `KeyError`.
 - Prefer: Use `discard` when the item might be absent.
 
-**Try these (2 programs):**
-
-**Program 1 — add and discard**
+Add Books to a categories set and safely discard Food without error, then print the set.
 
 ```python
 cats = {"Electronics"}
@@ -410,7 +394,7 @@ cats.discard("Food")
 print(cats)
 ```
 
-**Program 2 — update with a list**
+Update a categories set with multiple items from a list and print the result.
 
 ```python
 cats = {"Electronics"}
@@ -437,9 +421,7 @@ print(unique_emails)
 - Wrong: Treating `set([1, 2, 2])` as a sorted unique list — a set is unordered.
 - Prefer: `sorted(set(...))` when you need sorted unique output.
 
-**Try these (2 programs):**
-
-**Program 1 — Deduplicate preserving order**
+Deduplicate emails while preserving first-seen order with `dict.fromkeys`, then print the list.
 
 ```python
 emails = ["ravi@ksr.in", "priya@ksr.in", "ravi@ksr.in"]
@@ -453,7 +435,7 @@ print(unique)
 ['ravi@ksr.in', 'priya@ksr.in']
 ```
 
-**Program 2 — Deduplicate with set (order may differ)**
+Show both order-preserving and set-based deduplication of the same email list.
 
 ```python
 emails = ["ravi@ksr.in", "priya@ksr.in", "ravi@ksr.in"]
@@ -475,15 +457,13 @@ unique_to_a = product_a_tags - product_b_tags
 print(unique_to_a)              # {'electronics'}
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Common product tags**
+Print tags common to both product tag sets (intersection).
 
 ```python
 print({"sale", "wireless"} & {"sale", "gift"})
 ```
 
-**Program 2 — Tags only on product A**
+Print tags that belong to product A but not product B (difference).
 
 ```python
 print({"electronics", "sale"} - {"sale", "gift"})

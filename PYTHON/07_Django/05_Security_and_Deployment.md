@@ -104,9 +104,7 @@ config/settings/
 
 Or single file with `if os.environ.get("DJANGO_ENV") == "production"`.
 
-**Try these (2 programs):**
-
-**Program 1 — load_dotenv pattern**
+Load `.env` with python-dotenv and read SECRET_KEY, DEBUG, and ALLOWED_HOSTS from the environment.
 
 ```python
 from pathlib import Path
@@ -121,7 +119,7 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
 ```
 
-**Program 2 — .env.example**
+Commit an `.env.example` with placeholder Django env vars — never commit a real `.env`.
 
 ```bash
 # .env.example (commit this — never commit real .env)
@@ -140,9 +138,7 @@ CSRF_COOKIE_SECURE = True
 
 PaaS platforms often terminate SSL at edge — follow platform docs.
 
-**Try these (2 programs):**
-
-**Program 1 — Secure cookie flags (prod)**
+Turn on secure session/CSRF cookies and SSL redirect for production behind HTTPS.
 
 ```python
 # Only when HTTPS is terminated in front of Django
@@ -151,7 +147,7 @@ CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 ```
 
-**Program 2 — Local note**
+Write a note that SECURE_* flags stay off on `http://127.0.0.1:8000` and on for HTTPS hosts.
 
 ```markdown
 # Local laptop
@@ -175,16 +171,14 @@ Static files → WhiteNoise or platform static handler
 **Note:**
 - Using `runserver` in production → crashes and insecure defaults. Use Gunicorn (or similar) behind a platform/proxy.
 
-**Try these (2 programs):**
-
-**Program 1 — Gunicorn smoke**
+Install Gunicorn and bind the WSGI application on 127.0.0.1:8000 as a production-server smoke test.
 
 ```bash
 pip install gunicorn
 gunicorn config.wsgi:application --bind 127.0.0.1:8000
 ```
 
-**Program 2 — collectstatic**
+Collect static files with `--noinput` for a deploy-style build.
 
 ```bash
 python manage.py collectstatic --noinput
@@ -224,9 +218,7 @@ All need: `DEBUG=False`, `ALLOWED_HOSTS`, static config, production database URL
 
 ---
 
-**Try these (2 programs):**
-
-**Program 1 — Deploy checklist file**
+Write a DEPLOY_CHECKLIST.md covering env, DEBUG, ALLOWED_HOSTS, collectstatic, and the database URL.
 
 ```markdown
 # DEPLOY_CHECKLIST.md
@@ -238,7 +230,7 @@ All need: `DEBUG=False`, `ALLOWED_HOSTS`, static config, production database URL
 - [ ] MySQL/Postgres URL set
 ```
 
-**Program 2 — README env table**
+Add a README table documenting DJANGO_SECRET_KEY, DJANGO_DEBUG, and DATABASE_URL.
 
 ```markdown
 | Variable | Example | Notes |

@@ -86,9 +86,7 @@ flowchart LR
 - `git add .` stages **everything** that is not ignored — glance at `git status` first.
 - A commit is **local** until you `git push`. Closing the laptop does not upload.
 
-**Try these (2 programs):**
-
-**Program 1 — Trace one file through the three areas**
+Initialize a repo and trace one file through working directory, staging, and repository with git status after each step.
 
 ```bash
 mkdir -p ~/git_lab_areas && cd ~/git_lab_areas
@@ -110,7 +108,7 @@ git status                    # clean — snapshot is in Repository
 # final status — nothing to commit, working tree clean
 ```
 
-**Program 2 — Label the packing line**
+Write a markdown note labeling the Git packing line from working directory to GitHub.
 
 ```markdown
 # Git packing line (India campus project)
@@ -149,9 +147,7 @@ git status                    # clean — snapshot is in Repository
 - Force push to shared `main` destroys teammates' work — avoid `--force` unless solo and sure.
 - Older notes use `git checkout -b feature-x`; `git switch -c` is the same idea.
 
-**Try these (2 programs):**
-
-**Program 1 — First three commits**
+Make three commits building README, .gitignore, and CanteenCalculator.java, then view the log.
 
 ```bash
 mkdir -p ~/campus-canteen-calculator && cd ~/campus-canteen-calculator
@@ -178,7 +174,7 @@ ghi9012 Initial commit: README
 
 **Remember:** Commit messages use **imperative** mood (`Add`, `Fix`, `Update`) — like giving an order to the codebase.
 
-**Program 2 — Status and diff before commit**
+Edit README, review status and diff, then stage and commit the change.
 
 ```bash
 cd ~/campus-canteen-calculator
@@ -209,9 +205,7 @@ Use imperative mood; first line ≤ 50 chars; optional body after a blank line.
 - Vague messages ("update", "fix") → useless history — write descriptive imperative messages.
 - One logical change per commit when you can. Do not dump the whole Desktop in one "final" snapshot.
 
-**Try these (2 programs):**
-
-**Program 1 — Rewrite bad messages**
+Rewrite vague commit messages into clear imperative ones.
 
 ```markdown
 # Bad → Good
@@ -222,7 +216,7 @@ update                → Update README with javac run steps
 done today            → Add INR total print for canteen bill
 ```
 
-**Program 2 — Commit with body**
+Add a formatInr comment stub to CanteenCalculator.java and commit with a multi-line message body.
 
 ```bash
 cd ~/campus-canteen-calculator
@@ -247,9 +241,7 @@ git log -1
 - Stay on `main` for every edit → one bad save blocks the demo — `git switch -c feature/readme` first.
 - Conflicts = the same lines edited two ways — not a crash. Edit the file, remove markers, `git add`, finish the commit.
 
-**Try these (2 programs):**
-
-**Program 1 — Feature branch then merge**
+Create a feature branch, add an INR README bullet, merge it into main, then delete the branch.
 
 ```bash
 cd ~/campus-canteen-calculator
@@ -263,7 +255,7 @@ git branch -d feature/readme
 git log --oneline --graph -5
 ```
 
-**Program 2 — See both branches before merge**
+Create a notes branch, commit HABIT.md, inspect both lines with git log --graph --all, then merge.
 
 ```bash
 cd ~/campus-canteen-calculator
@@ -317,9 +309,7 @@ credentials.json
 - Ignoring `*.java` is the opposite bug: teammates cannot clone your source.
 - Already tracked a secret? Remove it from the index (`git rm --cached .env`), keep the ignore line, commit the fix, and **rotate** the password (treat it as leaked). Same idea for `git rm --cached '*.class'` or `git rm -r --cached target/`.
 
-**Try these (2 programs):**
-
-**Program 1 — Write a course `.gitignore`**
+Write a course .gitignore covering class files, target, IDE folders, and secrets, then commit it.
 
 ```bash
 cd ~/campus-canteen-calculator
@@ -338,7 +328,7 @@ git add .gitignore
 git commit -m "Harden gitignore for class files, target, and secrets"
 ```
 
-**Program 2 — Prove bytecode and secrets stay out**
+Create .env, target/, and a .class file locally and confirm git status ignores them.
 
 ```bash
 cd ~/campus-canteen-calculator
@@ -386,9 +376,7 @@ Your Name — LinkedIn — Hyderabad
 - Empty GitHub profile looks inactive — pin 3–6 best repos.
 - Do not list Spring / MySQL as *this* project's stack until those weeks. JDK 17 + what the folder actually runs is honest.
 
-**Try these (2 programs):**
-
-**Program 1 — Portfolio README draft**
+Draft a portfolio README for Campus Canteen Calculator with features, stack, and setup steps.
 
 ```markdown
 # Campus Canteen Calculator
@@ -412,7 +400,7 @@ JDK 17
 Priya Sharma — Hyderabad — LinkedIn
 ```
 
-**Program 2 — Profile README bullets**
+Write GitHub profile README bullets highlighting your stack, projects, and contact links.
 
 ```markdown
 # Hi, I'm Ravi — Java Full Stack learner (Bengaluru)

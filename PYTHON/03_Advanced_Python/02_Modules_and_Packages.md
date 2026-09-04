@@ -74,9 +74,7 @@ from os import path as osp           # alias for one imported name
 
 **Remember:** Prefer `import math` or named imports — `from math import *` hides where names came from and invites clashes.
 
-**Try these (2 programs):**
-
-**Program 1 — `import` vs `from … import`**
+Print `ceil(4.2)` and `sqrt(81)` twice: once with `import math` (prefix) and once with `from math import ceil, sqrt` (no prefix).
 
 ```python
 import math
@@ -97,7 +95,7 @@ print(sqrt(81))         # 9.0
 9.0
 ```
 
-**Program 2 — Attendance date header**
+Import `datetime as dt` and print today’s date in a Hyderabad attendance header using `strftime('%d-%m-%Y')`.
 
 ```python
 import datetime as dt
@@ -128,9 +126,7 @@ print(sys.path)  # debugging import errors
 - Wrong working directory → `ModuleNotFoundError` — run from the project root or fix `PYTHONPATH`.
 - Typo in module name → `ModuleNotFoundError` — match the filename exactly (case-sensitive on Linux).
 
-**Try these (2 programs):**
-
-**Program 1 — Inspect `sys.path`**
+Print each `sys.path` entry with an index, and tag the current folder and `site-packages` entries.
 
 ```python
 import sys
@@ -146,7 +142,7 @@ for i, entry in enumerate(sys.path):
     print(f"{i}: {entry!r}{tag}")
 ```
 
-**Program 2 — Local module import (and ModuleNotFoundError demo)**
+Save `namaste` in `greetings.py`, import it from `main.py`, and note the `ModuleNotFoundError` you get if that file is missing.
 
 ```python
 # Save as greetings.py (same folder), then run this as main.py
@@ -185,9 +181,7 @@ When you `import greetings` from `main.py`, `__name__` inside `greetings` is `"g
 
 **Common Error:** Leaving `print` / `input` at module top level — every `import` triggers side effects. Guard demos with `if __name__ == "__main__":`.
 
-**Try these (2 programs):**
-
-**Program 1 — Module stays quiet when imported**
+Put `namaste` and a demo `print` under `if __name__ == "__main__":` in `greetings.py`. From `main.py`, import it and call `namaste` so the demo line does not run.
 
 ```python
 # save as greetings.py
@@ -206,7 +200,7 @@ print(greetings.namaste("Priya"))
 # No "Running as script" line — guard blocked the demo
 ```
 
-**Program 2 — Same file as a script**
+Run `python greetings.py` so the `__main__` guard prints `Running as script: Namaste, Ravi!`.
 
 ```bash
 python greetings.py
@@ -236,9 +230,7 @@ my_project/
 - Circular imports → `ImportError` / partial init — restructure; move shared code to a third module.
 - Missing `__init__.py` (older Python / some tools) → package not recognized — add `__init__.py` in each package folder.
 
-**Try these (2 programs):**
-
-**Program 1 — `format_inr` package (illustrative layout)**
+Create `campus_utils/formatters.py` with `format_inr` and import it from `main.py` as `from campus_utils.formatters import format_inr`. Print `format_inr(1250)`.
 
 ```python
 # Folder layout:
@@ -262,7 +254,7 @@ print(format_inr(1250))  # ₹1,250.00
 ₹1,250.00
 ```
 
-**Program 2 — Re-export from `__init__.py`**
+Re-export `format_inr` from `campus_utils/__init__.py` so `main.py` can use `from campus_utils import format_inr`.
 
 ```python
 # --- campus_utils/formatters.py ---
@@ -313,9 +305,7 @@ from campus_utils import format_inr
 - Relative imports (`from .x import y`) only work **inside** a package — not in a loose script you run as `python formatters.py`.
 - Prefer absolute imports from project entry points (`main.py`); use relative imports inside package modules / `__init__.py`.
 
-**Try these (2 programs):**
-
-**Program 1 — Relative re-export in `__init__.py`**
+In `campus_utils/__init__.py`, use a relative import (`from .formatters import format_inr`) and print `format_inr(99)` from `main.py`.
 
 ```python
 # campus_utils/formatters.py
@@ -332,7 +322,7 @@ from campus_utils import format_inr
 print(format_inr(99))
 ```
 
-**Program 2 — Absolute from a sibling module (illustrative)**
+In `campus_utils/report.py`, import `is_email` from `campus_utils.validators` with an absolute import and wrap it in `check(user)`.
 
 ```python
 # campus_utils/validators.py
@@ -372,9 +362,7 @@ deactivate                        # leave the sandbox
 
 **Interview:** A module is one `.py` file; a package is a folder of modules (usually with `__init__.py`). `venv` isolates each project's pip installs.
 
-**Try these (2 programs):**
-
-**Program 1 — Prove `requests` is installed (inside activated venv)**
+Inside an activated venv with `requests` installed, import it and print `requests.__version__`.
 
 ```python
 # First (in terminal):
@@ -388,7 +376,7 @@ import requests
 print("requests version:", requests.__version__)
 ```
 
-**Program 2 — GET via `requests` (run inside venv; needs network)**
+Call `requests.get` on `https://httpbin.org/get` (timeout 10) and print the status code and JSON `url`.
 
 ```python
 import requests
@@ -420,9 +408,7 @@ If the lab PC has no internet, stop after Program 1 — that alone proves the ve
 - Build paths with `os.path.join(...)`, not string `"folder/" + "file"` (Windows vs macOS).
 - Prefer in-memory `json.dumps` / `json.loads` first. File `json.dump` / `json.load` is OK for the JSON file homework; deep `open` / CSV mastery comes in the Files module.
 
-**Try these (2 programs):**
-
-**Program 1 — Random lunch picker**
+Use `random.choice` on a list of lunch spots and print today’s pick.
 
 ```python
 import random
@@ -431,7 +417,7 @@ spots = ["Canteen", "Mess", "Tiffin centre", "Home"]
 print("Today's lunch:", random.choice(spots))
 ```
 
-**Program 2 — JSON dump and load (in-memory — OK before Files week)**
+Dump a small dict with `json.dumps`, print the JSON string, then `json.loads` it back and print the city.
 
 ```python
 import json

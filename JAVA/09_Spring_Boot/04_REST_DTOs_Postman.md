@@ -171,9 +171,7 @@ public class ProductResponse {
 
 **Interview:** DTO? Data Transfer Object — a type for the wire, not the database.
 
-**Try these (2 programs):**
-
-**Program 1 — JSON is not the table**
+Print that the entity is `campus_products` columns, request JSON is `name` plus `priceInr` with no id, and response JSON includes the MySQL id.
 
 ```java
 public class JsonIsNotTheTable {
@@ -193,7 +191,7 @@ Request JSON: name + priceInr, no id
 Response JSON: id from MySQL
 ```
 
-**Program 2 — Client id is a trap**
+Print the client-id trap: POSTing `{"id":1,"name":"Idli"}` on an entity body may UPDATE id 1; a request DTO has no id field to bind.
 
 ```java
 public class ClientIdTrap {
@@ -275,9 +273,7 @@ public ProductResponse add(@Valid @RequestBody ProductRequest incoming) {
 
 **Interview:** “Who maps?” — You, in Java. Libraries are optional later.
 
-**Try these (2 programs):**
-
-**Program 1 — Three steps of a POST**
+Print the three POST steps: JSON to `ProductRequest`, request to a `Product` entity with id null, then `save` to `ProductResponse`.
 
 ```java
 public class PostThreeSteps {
@@ -297,7 +293,7 @@ public class PostThreeSteps {
 3 save -> ProductResponse
 ```
 
-**Program 2 — GET list still uses findAll**
+Print that GET list still calls `findAll()`, then maps each `Product` to `ProductResponse` — MySQL store, not ArrayList.
 
 ```java
 public class ListStillFindAll {
@@ -404,9 +400,7 @@ public ProductResponse add(@Valid @RequestBody ProductRequest incoming) {
 
 **Interview:** Bean Validation is the **standard**. Hibernate Validator is the **engine** on the classpath (same idea as Hibernate for JPA).
 
-**Try these (2 programs):**
-
-**Program 1 — What @Valid checks**
+Print what `@Valid` checks on POST `ProductRequest`: `@NotBlank`/`@Size` on name and `@NotNull`/`@Min(1)` on `Integer priceInr`.
 
 ```java
 public class ValidChecksPrint {
@@ -426,7 +420,7 @@ public class ValidChecksPrint {
 @Valid on POST ProductRequest
 ```
 
-**Program 2 — Wrapper vs primitive**
+Print that `Integer` plus `@NotNull` catches a missing price, `int` cannot be null so omit becomes 0, and the entity may still use `int` after mapping.
 
 ```java
 public class WrapperForNotNull {
@@ -525,9 +519,7 @@ public ResponseEntity<?> getById(@PathVariable Long id) {
 
 **Interview:** `@ControllerAdvice` is global exception handling for controllers. `@RestControllerAdvice` = advice + JSON `@ResponseBody`.
 
-**Try these (2 programs):**
-
-**Program 1 — 400 keys**
+Print the three keys in a 400 validation body: `status`, `error`, and `fields`.
 
 ```java
 public class ErrorBodyKeys {
@@ -547,7 +539,7 @@ error
 fields
 ```
 
-**Program 2 — 404 stays in the controller**
+Print that GET `/products/99` is still 404 from `ProductController.getById`; advice this module handles validation 400 only.
 
 ```java
 public class NotFoundStays {
@@ -604,9 +596,7 @@ Workflow:
 
 **Interview:** Why Postman before React? You prove the API contract without a UI. QA and teammates import the same file.
 
-**Try these (2 programs):**
-
-**Program 1 — Collection checklist**
+Print the Postman checklist statuses: GET list 200, POST create 201, GET by id 200, GET missing 404, POST blank name 400.
 
 ```java
 public class CollectionFiveCalls {
@@ -630,7 +620,7 @@ GET missing 404
 POST blank name 400
 ```
 
-**Program 2 — Header on POST**
+Print POST setup: raw JSON body, `Content-Type: application/json`, and baseUrl `http://localhost:8080`.
 
 ```java
 public class PostmanJsonHeader {
@@ -701,9 +691,7 @@ public class CorsConfig implements WebMvcConfigurer {
 
 **Interview:** Why does curl work and the React app not? curl skips the browser SOP / CORS check. The API must opt in for the page’s origin.
 
-**Try these (2 programs):**
-
-**Program 1 — Two origins**
+Print the two origins: Vite `http://localhost:5173` and Boot `http://localhost:8080`, plus `@CrossOrigin` for the Vite origin.
 
 ```java
 public class ViteOriginPrint {
@@ -723,7 +711,7 @@ Boot API:   http://localhost:8080
 @CrossOrigin origins = http://localhost:5173
 ```
 
-**Program 2 — What stays Later**
+Print what stays Later: React fetch/`useEffect`, production allowed origins, and Spring Security CORS.
 
 ```java
 public class CorsLaterPrint {
@@ -763,9 +751,7 @@ mvn spring-boot:run
 curl http://localhost:8080/products
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Store has not changed**
+Print that the store is still `JpaRepository` `findAll` / `findById` / `save` on table `campus_products`, not an ArrayList.
 
 ```java
 public class StoreStillMysql {
@@ -785,7 +771,7 @@ Table campus_products
 Not ArrayList
 ```
 
-**Program 2 — Same three URLs**
+Print the same three URLs: GET `/products`, GET `/products/{id}`, POST `/products`.
 
 ```java
 public class SameThreeUrls {
@@ -811,9 +797,7 @@ POST /products
 
 Create the two DTO classes (starter stubs). **No** `@Entity`. Request: `name` + `Integer priceInr`. Response: `id`, `name`, `priceInr`. Getters / setters + no-arg constructor.
 
-**Try these (2 programs):**
-
-**Program 1 — Request fields**
+Print the request DTO fields: `name`, `priceInr`, and no id.
 
 ```java
 public class RequestFieldsPrint {
@@ -833,7 +817,7 @@ priceInr
 no id
 ```
 
-**Program 2 — Response fields**
+Print the response DTO fields: `id`, `name`, and `priceInr`.
 
 ```java
 public class ResponseFieldsPrint {
@@ -859,9 +843,7 @@ priceInr
 
 Fill `ProductMapper.toEntity` / `toResponse`. Switch list / get / add to **`ProductResponse`**. POST parameter becomes **`ProductRequest`**. `save` still takes a **`Product`**.
 
-**Try these (2 programs):**
-
-**Program 1 — save takes the entity**
+Print that `products.save` takes a `Product` entity, not a `ProductRequest`.
 
 ```java
 public class SaveTakesEntity {
@@ -879,7 +861,7 @@ products.save(Product)
 not products.save(ProductRequest)
 ```
 
-**Program 2 — POST still 201**
+Print that POST still uses `@ResponseStatus CREATED`, the body is `ProductResponse`, and id comes from `AUTO_INCREMENT`.
 
 ```java
 public class PostStill201 {
@@ -913,9 +895,7 @@ curl -X POST http://localhost:8080/products \
 
 Without advice you still get **400** (ugly). Next step shapes the body.
 
-**Try these (2 programs):**
-
-**Program 1 — Dependency artifact**
+Print the validation artifact `spring-boot-starter-validation` and the `jakarta.validation` import paths.
 
 ```java
 public class ValidationStarterName {
@@ -935,7 +915,7 @@ jakarta.validation.Valid
 jakarta.validation.constraints
 ```
 
-**Program 2 — TechMart blank name must not INSERT**
+Print a TechMart POST with empty name: 400 before `save`, and `campus_products` row count unchanged.
 
 ```java
 public class BlankNameNoInsert {
@@ -961,9 +941,7 @@ campus_products row count unchanged
 
 Implement `@RestControllerAdvice` as in the concept block. Re-send blank name. Body must include **`error`** and **`fields`**. GET `/products/99999` still **404**.
 
-**Try these (2 programs):**
-
-**Program 1 — Exception type**
+Print that validation failures are `MethodArgumentNotValidException`, handled with `@ExceptionHandler`, status 400.
 
 ```java
 public class ValidExceptionName {
@@ -983,7 +961,7 @@ MethodArgumentNotValidException
 400 bad request
 ```
 
-**Program 2 — Curl invalid POST**
+Print a curl POST with empty name and price 30, expect 400, and JSON keys `error` and `fields`.
 
 ```java
 public class CurlInvalidPost {
@@ -1009,9 +987,7 @@ JSON keys error and fields
 
 Import [CampusCart_Products_v1.postman_collection.json](../15_Lab_Assets/18_jpa_product_crud/CampusCart_Products_v1.postman_collection.json). Run the five requests. Green tests = ticket path. Commit the **file**; do not replace it with a screenshot.
 
-**Try these (2 programs):**
-
-**Program 1 — Import path**
+Print the CampusCart Postman file `CampusCart_Products_v1.postman_collection.json` at kit 18 root, then Import in Postman.
 
 ```java
 public class CollectionFileName {
@@ -1031,7 +1007,7 @@ kit 18 root
 Import in Postman
 ```
 
-**Program 2 — Postman vs curl**
+Print that curl is typed in the terminal, a collection is a shared JSON file, and both hit the same Boot API.
 
 ```java
 public class PostmanVsCurl {
@@ -1059,9 +1035,7 @@ Optional for Done when: `@CrossOrigin(origins = "http://localhost:5173")` on `Pr
 
 Do **not** add Security / JWT / MapStruct / Lombok to pass.
 
-**Try these (2 programs):**
-
-**Program 1 — Dev origin string**
+Print the Vite origin `http://localhost:5173` and that it is not required to pass Done when.
 
 ```java
 public class DevOriginString {
@@ -1079,7 +1053,7 @@ http://localhost:5173
 not required to pass Done when
 ```
 
-**Program 2 — Git hygiene**
+Print git hygiene: commit the collection JSON, do not commit `.env`, do not commit `target/`.
 
 ```java
 public class GitHygieneDto {

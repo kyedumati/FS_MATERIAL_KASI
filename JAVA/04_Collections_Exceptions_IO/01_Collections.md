@@ -173,9 +173,7 @@ classDiagram
 - Wrong: `ArrayList<String> cart` as the field/parameter type everywhere.
 - Prefer: `List<String> cart = new ArrayList<>();`.
 
-**Try these (2 programs):**
-
-**Program 1 — List on the left**
+Declare a `List<String>` cart as `new ArrayList<>()`, add Idli and Tea, and print `size()`.
 
 ```java
 import java.util.ArrayList;
@@ -197,7 +195,7 @@ public class ListOnTheLeft {
 2
 ```
 
-**Program 2 — Map on the left**
+Declare a `Map<String, Integer>` of prices as `new HashMap<>()`, put Tea at 15, and print `get("Tea")`.
 
 ```java
 import java.util.HashMap;
@@ -269,9 +267,7 @@ public class WrapperListDemo {
 
 **Common Error:** `Integer n = map.get("missing"); int x = n;` — `n` is `null`, unboxing throws `NullPointerException`. Guard with `containsKey`.
 
-**Try these (2 programs):**
-
-**Program 1 — Integer list**
+Store marks 88 and 92 in a `List<Integer>` and print the mark at index 1.
 
 ```java
 import java.util.ArrayList;
@@ -293,7 +289,7 @@ public class IntegerMarksList {
 92
 ```
 
-**Program 2 — get missing is null**
+Put stock for SKU P101, then print `get("P101")` and `get("P999")` so a missing key prints `null`.
 
 ```java
 import java.util.HashMap;
@@ -376,9 +372,7 @@ USB
 
 **Common Error:** `for (int i = 0; i <= cart.size(); i++)` — the `=` walks one past the end.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart cart first and last**
+Build a TechMart cart with Idli, Dosa, and Tea, then print the first item and the last item using `size() - 1`.
 
 ```java
 import java.util.ArrayList;
@@ -403,7 +397,7 @@ Idli
 Tea
 ```
 
-**Program 2 — TechMart insert at front of cart**
+Add Notebook to a TechMart cart, insert PROMO-Mug at index 0, and print the list.
 
 ```java
 import java.util.ArrayList;
@@ -489,9 +483,7 @@ Pen
 - Wrong: `remove` while that same enhanced-`for` is running — the list is structurally changed mid-walk. Build a second list, or remove by index in a classic `for` counting down.
 - Prefer: `if (names.contains("Priya")) { names.remove("Priya"); }` when the value might be absent (`remove` returns `false` if missing — it does not crash).
 
-**Try these (2 programs):**
-
-**Program 1 — replace a name**
+Add Ananya and Ravi to a list, replace index 1 with Ravi Kumar using `set`, and print the list.
 
 ```java
 import java.util.ArrayList;
@@ -514,7 +506,7 @@ public class ReplaceName {
 [Ananya, Ravi Kumar]
 ```
 
-**Program 2 — remove by index**
+Add three order IDs, remove index 1, and print the cancelled ID plus the remaining list.
 
 ```java
 import java.util.ArrayList;
@@ -596,9 +588,7 @@ Think of a club register that refuses a second stamp for the same ID.
 
 **Common Error:** Putting your own class in a `HashSet` without a matching `equals` / `hashCode`. Two `Item` objects with the same SKU still look different. This week: store **`String` SKUs / emails** in the set.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart duplicate SKU rejected**
+Add SKU P101 to a TechMart set twice and print whether the second `add` succeeded plus the set size.
 
 ```java
 import java.util.HashSet;
@@ -622,7 +612,7 @@ false
 1
 ```
 
-**Program 2 — contains before invite**
+Add Priya and Ravi to a guest set; if Meera is missing, print that she is a new guest.
 
 ```java
 import java.util.HashSet;
@@ -692,9 +682,7 @@ public class BatchOverlap {
 - Wrong: `batchA.retainAll(batchB)` when you still need the original `batchA`.
 - Prefer: `new HashSet<>(batchA)` first, then mutate the **copy**.
 
-**Try these (2 programs):**
-
-**Program 1 — union copy**
+Copy warehouse A's SKUs, `addAll` warehouse B, then print the union size and whether P103 is present.
 
 ```java
 import java.util.HashSet;
@@ -723,7 +711,7 @@ public class SkuUnion {
 true
 ```
 
-**Program 2 — intersection size**
+Copy batch A, `retainAll` batch B, and print how many students are in both batches.
 
 ```java
 import java.util.HashSet;
@@ -807,9 +795,7 @@ Second `put` on the same key **replaces** the value. Size stays `2`.
 
 **Common Error:** Using `==` to compare map keys that are `String` (`if (name == "Priya")`). Keys still need `equals`. `containsKey("Priya")` uses `equals` / `hashCode` for you.
 
-**Try these (2 programs):**
-
-**Program 1 — student map with getOrDefault**
+Put a student's name and roll in a map, print `get("name")`, and print `getOrDefault("phone", "N/A")`.
 
 ```java
 import java.util.HashMap;
@@ -833,7 +819,7 @@ Priya
 N/A
 ```
 
-**Program 2 — containsKey before print**
+Put price for P101; if P999 is missing, print `not found` instead of calling `get` blindly.
 
 ```java
 import java.util.HashMap;
@@ -891,9 +877,7 @@ Print order of a `HashMap` is **not** add-order. For a receipt in add-order, kee
 - Wrong: treating `HashMap` like a numbered register (`phones.get(0)`).
 - Prefer: `entrySet()` when you need key **and** value together (one lookup, not `get` inside a `keySet` loop).
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart print cart list**
+Add Notebook and Pen to a TechMart cart and print each item with an enhanced for-loop.
 
 ```java
 import java.util.ArrayList;
@@ -918,7 +902,7 @@ Notebook
 Pen
 ```
 
-**Program 2 — print map entries**
+Put Tea at ₹15 and print each map entry as key plus rupee value using `entrySet()`.
 
 ```java
 import java.util.HashMap;
@@ -991,9 +975,7 @@ Two teas in the **cart** (List). One email in the **set**. Stock qty from the **
 
 **Interview:** `LinkedHashMap` keeps insert order *and* lookup — Stretch / later reading. This week: `HashMap` + a `List` of keys when order matters.
 
-**Try these (2 programs):**
-
-**Program 1 — when List (duplicates kept)**
+Add Tea twice to a `List` and print `size()` to show duplicates are kept.
 
 ```java
 import java.util.ArrayList;
@@ -1015,7 +997,7 @@ public class TwoTeasInCart {
 2
 ```
 
-**Program 2 — when Map (lookup)**
+Put emp-id 101 and 102 salaries in a map and print the salary for 102 with `get`.
 
 ```java
 import java.util.HashMap;
@@ -1069,9 +1051,7 @@ items: 3
 
 No `count`. No `new String[20]`. `add` is Create; `set` is Update.
 
-**Try these (2 programs):**
-
-**Program 1 — three names**
+Add Priya, Ravi, and Meera to a list, then print `size()` and the name at index 1.
 
 ```java
 import java.util.ArrayList;
@@ -1096,7 +1076,7 @@ public class ThreeNamesList {
 Ravi
 ```
 
-**Program 2 — TechMart clear the cart**
+Add Tea to a TechMart cart, call `clear()`, and print `isEmpty()`.
 
 ```java
 import java.util.ArrayList;
@@ -1155,9 +1135,7 @@ skipped: 1
 
 `add` returning `false` is the duplicate signal — no extra `contains` required.
 
-**Try these (2 programs):**
-
-**Program 1 — skip duplicate rolls**
+Add roll 2026001 to a set, add it again, and print the boolean from the second `add`.
 
 ```java
 import java.util.HashSet;
@@ -1178,7 +1156,7 @@ public class UniqueRolls {
 false
 ```
 
-**Program 2 — unique count from a list**
+Copy a list of SKUs that includes a duplicate into a `HashSet` and print both sizes.
 
 ```java
 import java.util.ArrayList;
@@ -1242,9 +1220,7 @@ public class ContactBookDemo {
 not found: Ravi
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — replace a phone**
+Put Dev's phone twice with a new number and print the stored phone plus map `size()`.
 
 ```java
 import java.util.HashMap;
@@ -1268,7 +1244,7 @@ public class ReplacePhone {
 1
 ```
 
-**Program 2 — delete if present**
+Put Anita's phone; if Ravi is missing, print not found and then print the map size.
 
 ```java
 import java.util.HashMap;
@@ -1406,9 +1382,7 @@ Why three structures?
 
 Lab kit: [15_Lab_Assets/12_collections_inventory/](../15_Lab_Assets/12_collections_inventory/).
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart three maps vs one Item**
+Store a TechMart Notebook on SKU P101 in two parallel maps (name and price) and print both together.
 
 ```java
 import java.util.HashMap;
@@ -1433,7 +1407,7 @@ Notebook ₹40
 
 Parallel maps work for a tiny demo. They drift apart (name without price). Prefer one `Item` in one map — as in Step 4.
 
-**Program 2 — TechMart add-order list next to a map**
+Keep a TechMart add-order `List` of SKUs next to a price `Map` and print each SKU with its price in list order.
 
 ```java
 import java.util.ArrayList;
@@ -1617,9 +1591,7 @@ class Inventory {
 
 Do **not** type into this sketch during `javac` checks; compile-only is enough.
 
-**Try these (2 programs):**
-
-**Program 1 — empty list message**
+If a SKU-order list is empty, print `(empty)`.
 
 ```java
 import java.util.ArrayList;
@@ -1641,7 +1613,7 @@ public class EmptyListMessage {
 (empty)
 ```
 
-**Program 2 — TechMart parse price like the menu**
+Parse a typed TechMart price `"55"` with `Integer.parseInt` after `trim` and print the int.
 
 ```java
 public class ParsePriceLite {

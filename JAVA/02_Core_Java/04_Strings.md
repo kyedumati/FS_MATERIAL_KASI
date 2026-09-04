@@ -109,9 +109,7 @@ Priya
 5
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Empty vs blank**
+Print the length of an empty string, a string of three spaces, and that same string after `trim`.
 
 ```java
 public class EmptyString {
@@ -133,7 +131,7 @@ public class EmptyString {
 0
 ```
 
-**Program 2 — Concatenation**
+Store first name Ravi and last name Kumar, then print them joined with a space.
 
 ```java
 public class ConcatName {
@@ -169,9 +167,7 @@ clean: [ravi@gmail.com]
 - Wrong: Calling `trim()` and not storing the result.
 - Prefer: `email = email.trim();` or a new variable.
 
-**Try these (2 programs):**
-
-**Program 1 — Replace ignored**
+Call `replace` on `dosa` without storing the result, then print the original string.
 
 ```java
 public class ReplaceIgnore {
@@ -189,7 +185,7 @@ public class ReplaceIgnore {
 dosa
 ```
 
-**Program 2 — Replace kept**
+Assign `s = s.replace("dosa", "idli")` and print the new string.
 
 ```java
 public class ReplaceKept {
@@ -233,9 +229,7 @@ p
 
 **Common Error:** `charAt(5)` on `"Java"` → `StringIndexOutOfBoundsException` (length is 4).
 
-**Try these (2 programs):**
-
-**Program 1 — Last character**
+Print the last character of `Pune` using `charAt` and `length() - 1`.
 
 ```java
 public class LastChar {
@@ -246,7 +240,7 @@ public class LastChar {
 }
 ```
 
-**Program 2 — First three**
+Print the first three characters of roll `2026001` with `substring`.
 
 ```java
 public class FirstThree {
@@ -284,9 +278,7 @@ If the user types `1234`, `==` is often **false** (different objects). `equals` 
 
 **Interview:** Always `equals` for `String` content. `==` is reference identity.
 
-**Try these (2 programs):**
-
-**Program 1 — Ignore case login**
+Compare stored name `Priya` with typed `priya` using `equals` and `equalsIgnoreCase`, then print both results.
 
 ```java
 public class IgnoreCase {
@@ -306,7 +298,7 @@ false
 true
 ```
 
-**Program 2 — contains**
+Check UPI ID `ravi@okaxis` with `contains("@")` and `startsWith("ravi")`, then print both booleans.
 
 ```java
 public class ContainsDemo {
@@ -363,9 +355,7 @@ public class DigitsOnly {
 
 Lab kit: [15_Lab_Assets/06_string_parser](../15_Lab_Assets/06_string_parser/).
 
-**Try these (2 programs):**
-
-**Program 1 — trim + lower**
+Trim and lower-case `  Hello `, then print it inside square brackets.
 
 ```java
 public class Normalize {
@@ -376,7 +366,7 @@ public class Normalize {
 }
 ```
 
-**Program 2 — SecureBank mask last 4**
+Mask a SecureBank account number `123456789012` so only the last four digits show after asterisks.
 
 ```java
 public class MaskFour {

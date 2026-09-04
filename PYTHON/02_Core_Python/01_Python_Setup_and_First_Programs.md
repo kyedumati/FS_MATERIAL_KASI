@@ -165,9 +165,7 @@ python3 env_check.py
 - Wrong: VS Code running a different interpreter than the one you installed.
 - Prefer: Pick the correct Interpreter from the status bar.
 
-**Try these (2 programs):**
-
-**Program 1 — Print version and ready line**
+Print the installed Python version and a ready line that includes Priya's name.
 
 ```python
 import sys
@@ -176,7 +174,7 @@ print(sys.version)
 print("Ready for KSR Python — Priya")
 ```
 
-**Program 2 — Ready line with city**
+Print the Python version and a ready line that includes Priya's name and the city Hyderabad.
 
 ```python
 import sys
@@ -202,9 +200,7 @@ Hello from REPL
 
 REPL is great for testing one line; scripts are for programs you keep.
 
-**Try these (2 programs):**
-
-**Program 1 — Greeting and TechMart canteen sum**
+Print a greeting for Ravi and the sum of two TechMart canteen prices (₹450 and ₹120).
 
 ```python
 print("Hello, Ravi")
@@ -218,7 +214,7 @@ Hello, Ravi
 570
 ```
 
-**Program 2 — Name, batch, Python OK**
+Print the learner name, the batch name, and a line that confirms Python 3 is OK.
 
 ```python
 print("Priya")
@@ -255,9 +251,7 @@ python3 hello.py
 - Wrong: Running without saving (tab still shows a dot) — you see old output; or `print(Hello)` without quotes.
 - Prefer: Save (`Ctrl+S` / `Cmd+S`) before run; strings need `'...'` or `"..."`.
 
-**Try these (2 programs):**
-
-**Program 1 — Name and career goal**
+Print Priya's name and one-line career goal.
 
 ```python
 print("Priya")
@@ -271,7 +265,7 @@ Priya
 Become a full-stack Python developer
 ```
 
-**Program 2 — Same with author and date comments**
+Print the same name and career goal, and add author and date comments above the code.
 
 ```python
 # Author: Priya
@@ -306,9 +300,7 @@ Please use registered email.
 ========================================
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank ATM welcome banner**
+Print a SecureBank ATM welcome banner using repeated `=` lines around the title and welcome text.
 
 ```python
 print("=" * 24)
@@ -328,7 +320,7 @@ print("=" * 24)
 ========================
 ```
 
-**Program 2 — Student marks portal banner**
+Print a student marks portal banner: title, a blank line, then a prompt to enter a roll number.
 
 ```python
 print("STUDENT MARKS PORTAL")
@@ -361,9 +353,7 @@ Check keywords in REPL:
 - Wrong: Using a keyword as a variable name (`if = 10`) → `SyntaxError`.
 - Prefer: Rename (`is_valid`, `if_flag`).
 
-**Try these (2 programs):**
-
-**Program 1 — Count Python keywords**
+Print how many Python keywords this interpreter has, and show the first five names from `keyword.kwlist`.
 
 ```python
 import keyword
@@ -381,7 +371,7 @@ print(keyword.kwlist[:5])  # first five as a peek
 
 **Remember:** Keyword count can grow slightly across Python versions — always print `keyword.kwlist` on *your* machine in lab.
 
-**Program 2 — Invalid vs valid names (commented)**
+Keep invalid keyword assignments commented out, then print valid renamed variables (`if_flag`, `class_name`, `for_count`).
 
 ```python
 # INVALID (would cause SyntaxError if uncommented):
@@ -414,9 +404,7 @@ employee id = "E1"       # SyntaxError — space not allowed
 - Wrong: CamelCase everywhere for variables (`FullName`) — works but un-Pythonic.
 - Prefer: `snake_case` for variables and functions.
 
-**Try these (2 programs):**
-
-**Program 1 — Clear student identifiers**
+Store a student name, roll number, and pass flag with clear `snake_case` names, then print each value.
 
 ```python
 student_name = "Priya"
@@ -435,7 +423,7 @@ Priya
 True
 ```
 
-**Program 2 — Rename poor expense names**
+Replace vague names like `x` / `nm` / `amt` with clear expense names and print the category with the amount in rupees.
 
 ```python
 # Poor: x, nm, amt  → clear snake_case
@@ -463,9 +451,7 @@ print("Batch:", batch_name)
 print(f"Hello, {trainer_name}! You are teaching {batch_name}.")
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Greet Ravi**
+Store Ravi's name and print a welcome message with an f-string.
 
 ```python
 name = "Ravi"
@@ -478,7 +464,7 @@ print(f"Hello, {name} — welcome to KSR")
 Hello, Ravi — welcome to KSR
 ```
 
-**Program 2 — Name and city f-string**
+Store a name and city, then print `{name} from {city}` using an f-string.
 
 ```python
 name = "Priya"
@@ -507,15 +493,13 @@ print("Module: Setup — no amounts yet")
 - Wrong: Running a script from the wrong folder → `FileNotFoundError`.
 - Prefer: `cd` to the folder that contains the script, or use a full path.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart canteen banner one line**
+Print a one-line TechMart canteen bill title.
 
 ```python
 print("TechMart Canteen Bill")
 ```
 
-**Program 2 — TechMart canteen banner two lines**
+Print the same TechMart canteen title, then a second line that says to pay at the counter.
 
 ```python
 print("TechMart Canteen Bill")

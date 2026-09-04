@@ -92,20 +92,22 @@ After teaching a concept (syntax + short demo), add a short note block — not a
 
 ## Try these — live type-along (keep the energy)
 
-After every major concept block (`### 1. …` / `### Step N: …`), students type **at least one** complete runnable program (not a prompt only):
+After every major concept block (`### 1. …` / `### Step N: …`), students type **at least one** complete runnable program (not a prompt only).
+
+Do **not** use a `**Try these:**` heading or `**Program N — Short title**` labels. Instead, write a **1–2 sentence requirement** immediately before each code fence — what the learner must build (imperative voice: *Print…*, *Store…*, *Write a function that…*).
 
 ```markdown
-**Try these:**
-
-**Program 1 — Short title**
+Store Ravi's roll number, name, and two subject marks, then print his average to two decimal places.
 
 ```python
 # complete runnable Python 3
-print(...)
+roll = "2026002"
+name = "Ravi"
+...
 ```
 ```
 
-Add a **second** program only when it shows a *different* case (success vs fail, a second exception type, `finally` after `return`) — not Program 1 with new variable names. Then the heading is `**Try these (2 programs):**`.
+Add a **second** program only when it shows a *different* case (success vs fail, a second exception type, `finally` after `return`) — not Program 1 with new variable names. Put a separate requirement line before each program; no shared heading.
 
 - Short (typically 5–20 lines), copy-paste runnable.
 - India-relevant examples OK (INR, student marks, ATM, names like Priya/Ravi).
@@ -121,7 +123,7 @@ Priya
 ```
 ```
 
-**Program titles** must be one bold line: `**Program 1 — Book with info()**` (do not split around inline code).
+**Requirement lines** must stand alone as plain paragraphs (one or two sentences). Do not wrap them in bold labels.
 
 Core/Advanced Python: avoid Django/framework forward-selling; introduce frameworks in their own phase modules.
 
@@ -264,7 +266,7 @@ A kit attached to calendar session **S** may only require syntax/APIs taught in 
 - [ ] No Bloom Learning Outcomes list and no Teaching note paragraph  
 - [ ] Ticket / lab starter+solution stay within calendar teaching order (no forward concepts)  
 - [ ] Definition/Purpose before first big table (no “Beginner-Friendly” heading)  
-- [ ] **Try these** after each topic / Step — one program; two only when the case differs  
+- [ ] After each topic / Step — one runnable program with a **requirement line** before the fence; two only when the case differs (no `Try these` heading or `Program N` titles)  
 - [ ] Step-by-Step is **one assemble** (no Example 1–6 recap; no pasted `solution/`)  
 - [ ] **Note** next to each major sub-topic (no standalone Common Mistakes)  
 - [ ] Practice: 4–6 transfer items, **Model answer:** each; no Interview-style block  

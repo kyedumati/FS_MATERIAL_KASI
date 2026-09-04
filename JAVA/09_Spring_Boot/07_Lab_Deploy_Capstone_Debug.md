@@ -141,9 +141,7 @@ Do not rewrite SecurityFilterChain
 
 **Interview:** What does “protected lab” mean here? Time to **host and debug** the freeze, not a new framework.
 
-**Try these (2 programs):**
-
-**Program 1 — Glue not rewrite**
+Print that this lab glues what is already taught: 01 yml env JAR Tomcat, 05 JWT BCrypt chain, 06 freeze statuses — it is not a rewrite.
 
 ```java
 public class GlueNotRewriteDeploy {
@@ -163,7 +161,7 @@ public class GlueNotRewriteDeploy {
 06 freeze statuses - already taught
 ```
 
-**Program 2 — One kit**
+Print that you use kit 19 starter/broken or your freeze clone, and there is no kit 20.
 
 ```java
 public class OneKitDeployPrint {
@@ -236,9 +234,7 @@ Chain **add** (module 05 taught the rest — **do not rewrite**; confirm GET pro
 
 **Interview:** Why not keep only `/health`? Because a controller you wrote does not run Boot’s DataSource health indicator.
 
-**Try these (2 programs):**
-
-**Program 1 — Liar vs probe**
+Print liar vs probe: handmade GET `/health` is always UP; GET `/actuator/health` is UP or DOWN; PaaS should curl the probe.
 
 ```java
 public class LiarVsProbe {
@@ -258,7 +254,7 @@ GET /actuator/health -> UP or DOWN
 PaaS should curl the probe
 ```
 
-**Program 2 — Permit health**
+Print health matchers: without one `/actuator/health` is 401, with `permitAll` it is 200, and you must not `permitAll` the whole `/actuator`.
 
 ```java
 public class PermitHealthPrint {
@@ -347,9 +343,7 @@ export SPRING_PROFILES_ACTIVE=prod
 
 **Interview:** Does Boot read `.env`? No. OS / IDE / PaaS env. You `export` or paste keys in the host UI.
 
-**Try these (2 programs):**
-
-**Program 1 — Keys on the host**
+Print the host env keys: `MYSQL_HOST`, `MYSQL_PASSWORD`, `JWT_SECRET`, and `SPRING_PROFILES_ACTIVE`.
 
 ```java
 public class HostEnvKeysPrint {
@@ -369,7 +363,7 @@ JWT_SECRET
 SPRING_PROFILES_ACTIVE
 ```
 
-**Program 2 — Never commit `.env`**
+Print git rules: `.env.example` yes, `.env` no, and the PaaS dashboard holds the real values.
 
 ```java
 public class NeverCommitEnvDeploy {
@@ -432,9 +426,7 @@ curl -s http://localhost:8080/actuator/health
 
 **Interview:** First line of a Boot crash? Scroll to **APPLICATION FAILED TO START** / **Description:** — not a random `Caused by` at the bottom.
 
-**Try these (2 programs):**
-
-**Program 1 — Five smells**
+Print five deploy smells: will not start, DataSource, 401 after deploy, missing env, DEBUG leak.
 
 ```java
 public class FiveDeploySmells {
@@ -458,7 +450,7 @@ missing env
 DEBUG leak
 ```
 
-**Program 2 — Localhost on PaaS**
+Print that `MYSQL_HOST=localhost` on Render points at the PaaS box, not your laptop MySQL.
 
 ```java
 public class LocalhostOnPaas {
@@ -517,9 +509,7 @@ Typical host settings (names vary — match **your** `.env.example`):
 
 **Interview:** What if the platform refuses Java? Document it. Prove the JAR locally. Do not invent Kubernetes to look senior.
 
-**Try these (2 programs):**
-
-**Program 1 — Two ways to pass**
+Print the two ways to pass: live URL plus health 200, or a blocked note plus local JAR health — both need `.env.example`.
 
 ```java
 public class TwoWaysToPass {
@@ -539,7 +529,7 @@ OR blocked note + local JAR health
 both need .env.example
 ```
 
-**Program 2 — JAR not WAR**
+Print JAR `java -jar` with embedded Tomcat versus WAR on external Tomcat, and that this course Done-when is JAR.
 
 ```java
 public class JarNotWarDeploy {
@@ -601,9 +591,7 @@ curl -s http://localhost:8080/products
 
 **Interview:** Walk M0 in 30 seconds: clone, env, `java -jar`, health, public GET, Bearer POST.
 
-**Try these (2 programs):**
-
-**Program 1 — M0 checklist print**
+Print Milestone 0: public GitHub, Maven pom JDK 17, README env table.
 
 ```java
 public class MilestoneZeroPrint {
@@ -623,7 +611,7 @@ Maven pom JDK 17
 README env table
 ```
 
-**Program 2 — Not cart yet**
+Print that M0 is not cart, not orders, and React is not required.
 
 ```java
 public class NotCartYet {
@@ -693,9 +681,7 @@ curl -s http://localhost:8080/actuator/health
 
 If you still have a module 01-style `/health` mapping, you may curl both — **Lab 07 evidence is Actuator**.
 
-**Try these (2 programs):**
-
-**Program 1 — Health path**
+Print that this lab’s health path is `/actuator/health`, not `/health`.
 
 ```java
 public class HealthPathPrint {
@@ -713,7 +699,7 @@ public class HealthPathPrint {
 not /health for this lab
 ```
 
-**Program 2 — Jakarta still**
+Print Boot 3 `jakarta.servlet.http.HttpServletRequest` and that `javax.servlet` will not compile.
 
 ```java
 public class JakartaStillPrint {
@@ -759,9 +745,7 @@ SPRING_PROFILES_ACTIVE=prod on host
 
 `git grep` must **not** find a real MySQL password or a committed JWT string.
 
-**Try these (2 programs):**
-
-**Program 1 — Port env**
+Print port env: laptop `SERVER_PORT`, PaaS often `PORT`, YAML maps PORT then SERVER_PORT then 8080.
 
 ```java
 public class PortEnvPrint {
@@ -781,7 +765,7 @@ PaaS often PORT
 yml maps PORT then SERVER_PORT then 8080
 ```
 
-**Program 2 — Git ignore deploy**
+Print the deploy ignore list: `target/`, `.env`, `*.class`.
 
 ```java
 public class GitIgnoreDeploy {
@@ -830,9 +814,7 @@ java -jar target/campus-auth-catalog-0.0.1-SNAPSHOT.jar
 
 Keep freeze POST **401** without Bearer. Deploy must not unlock writes.
 
-**Try these (2 programs):**
-
-**Program 1 — First crash line**
+Print the first crash lines: `APPLICATION FAILED TO START` and a Description about missing env or DataSource.
 
 ```java
 public class FirstCrashLine {
@@ -850,7 +832,7 @@ APPLICATION FAILED TO START
 Description: missing env or DataSource
 ```
 
-**Program 2 — Do not unfreeze**
+Print do-not-unfreeze: health `permitAll`, POST still authenticated, `permitAll` everything is a fail.
 
 ```java
 public class DoNotUnfreeze {
@@ -880,9 +862,7 @@ If the platform blocks you: save a screenshot, write the blocked paragraph, keep
 
 If it starts: curl `https://YOUR-HOST/actuator/health` and `https://YOUR-HOST/products`. Register on the **host** before a Bearer POST — a token from localhost will **401** if secrets differ.
 
-**Try these (2 programs):**
-
-**Program 1 — Token host mismatch**
+Print that a localhost token on PaaS is 401 — register again on that host, and share `JWT_SECRET` only if you share users.
 
 ```java
 public class TokenHostMismatch {
@@ -902,7 +882,7 @@ register again on that host
 same JWT_SECRET both places if you share users
 ```
 
-**Program 2 — Blocked note**
+Print what a blocked note must list: platform name, why blocked, and local curl health 200.
 
 ```java
 public class BlockedNotePrint {
@@ -928,9 +908,7 @@ local curl health 200
 
 Create **CampusCart** (public). Copy your freeze + Lab 07 edits (not `solution/` from the student pack). README: problem, features (IN/OUT), stack, setup, env table, screenshots, demo video, **Live:** URL **or** Lab 07 proof. Follow [Standard Project Deliverables](../Standard_Project_Deliverables.md). One-pager milestones: [Capstone CampusCart One-Pager](../Capstone_CampusCart_One_Pager.md) — stop at **M0**.
 
-**Try these (2 programs):**
-
-**Program 1 — README Live line**
+Print the README Live line: a https URL, or `Live: Lab 07 blocked` plus local health.
 
 ```java
 public class ReadmeLiveLine {
@@ -948,7 +926,7 @@ Live: https://...
 or Live: Lab 07 blocked + local health
 ```
 
-**Program 2 — What not to push**
+Print what not to push: no `.env`, no JWT literal, no cart milestone claim.
 
 ```java
 public class WhatNotToPush {

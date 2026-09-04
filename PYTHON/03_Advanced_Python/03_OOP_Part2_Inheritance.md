@@ -181,9 +181,7 @@ classDiagram
 - Always initialise the parent before adding child-only fields.
 - Inheritance is for **specialisation**, not for “I want to reuse one helper method” (a plain function or composition may be enough).
 
-**Try these (3 project examples):**
-
-**Program 1 — SecureBank SavingsAccount inherits BankAccount**
+Write SecureBank `SavingsAccount` that inherits `BankAccount`, calls `super().__init__`, and adds `apply_interest()`. Print balance before and after interest.
 
 ```python
 class BankAccount:
@@ -227,7 +225,7 @@ Interest ₹500.00 added. Balance: ₹10500.00
 Holder still: Priya
 ```
 
-**Program 2 — AcmeHR Intern is an Employee**
+Write AcmeHR `Intern` as a subclass of `Employee`. Override `badge()` using `super().badge()` plus college. Print two intern badges.
 
 ```python
 class Employee:
@@ -257,7 +255,7 @@ Anita (801) — intern from KSR
 Ravi (802) — intern from NIT Trichy
 ```
 
-**Program 3 — MedCare Inpatient is a Patient**
+Write MedCare `Inpatient` as a subclass of `Patient` with a ward on the card. Print the card and `isinstance(..., Patient)`.
 
 ```python
 class Patient:
@@ -472,9 +470,7 @@ Which skills() wins alone? ['driving']
 
 **Common Error:** using multiple inheritance just to “mix features” when `self.engine = Engine()` would be clearer.
 
-**Try these (3 project examples):**
-
-**Program 1 — SecureBank hierarchical accounts under BankAccount**
+Write SecureBank `SavingsAccount` and `CurrentAccount` under `BankAccount`, each with `kind()`. Loop a mixed list and print holder, kind, and balance.
 
 ```python
 class BankAccount:
@@ -504,7 +500,7 @@ Priya savings 1000.0
 Ravi current 500.0
 ```
 
-**Program 2 — AcmeHR multilevel: Person → Employee → Manager**
+Write AcmeHR multilevel inheritance `Person` → `Employee` → `Manager`, each extending `label()` via `super()`. Print a manager’s label.
 
 ```python
 class Person:
@@ -539,7 +535,7 @@ print(Manager("Meera", 900, 6).label())
 Meera (900) — team of 6
 ```
 
-**Program 3 — TechMart hierarchical catalogue (Product → Grocery / Electronics)**
+Write TechMart `Grocery` and `Electronics` under `Product`, each prefixing `tag()`. Loop a mixed catalogue and print tags.
 
 ```python
 class Product:
@@ -626,9 +622,7 @@ flowchart LR
 
 **Common Error:** overriding `__init__` or `info` and forgetting `super()` when the parent still owns required setup.
 
-**Try these (3 project examples):**
-
-**Program 1 — AcmeHR override payslip on Manager**
+Override AcmeHR `Manager.net()` (add bonus) and `payslip()`. Print an employee payslip and a manager payslip.
 
 ```python
 class Employee:
@@ -664,7 +658,7 @@ Ravi net ₹27000
 Meera (Mgr) net ₹35000
 ```
 
-**Program 2 — SecureBank override withdraw (current allows overdraft)**
+Override SecureBank `CurrentAccount.withdraw` to allow overdraft up to ₹1000. Compare a savings-style `BankAccount` withdraw with a current-account withdraw.
 
 ```python
 class BankAccount:
@@ -705,7 +699,7 @@ Priya: 500.0
 Ravi: -300.0
 ```
 
-**Program 3 — TechMart override ship() for COD vs prepaid**
+Override TechMart `CodOrder.ship()` so prepaid and COD orders print different dispatch messages. Print both.
 
 ```python
 class Order:
@@ -821,9 +815,7 @@ classDiagram
 - Composition keeps parts swappable (`SmsNotifier` vs `EmailNotifier`) without a messy parent list.
 - Richer design patterns live in optional [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md).
 
-**Try these (3 project examples):**
-
-**Program 1 — TechMart OrderService HAS-A notifier**
+Write TechMart `OrderService` that HAS-A notifier. Place an order with `SmsNotifier` and another with `EmailNotifier`.
 
 ```python
 class SmsNotifier:
@@ -852,7 +844,7 @@ SMS: Order ORD-101 placed
 EMAIL: Order ORD-102 placed
 ```
 
-**Program 2 — AcmeHR Employee HAS-A Laptop (not IS-A Laptop)**
+Write AcmeHR `Employee` that HAS-A `Laptop` (do not inherit Laptop). Print `desk()` and `isinstance(employee, Laptop)`.
 
 ```python
 class Laptop:
@@ -881,7 +873,7 @@ Priya uses Laptop Dell Latitude
 Employee IS-A Laptop? False
 ```
 
-**Program 3 — MedCare Appointment HAS-A Doctor and Patient**
+Write a MedCare `Appointment` that HAS-A `Doctor` and `Patient`. Print `slip()` for one booking.
 
 ```python
 class Person:
@@ -964,9 +956,7 @@ for creature in [Dog(), Cat()]:
 - `type(obj) is Dog` rejects subclasses; `isinstance(obj, Dog)` accepts them — usually what you want for IS-A checks.
 - If you find yourself writing `if isinstance(...): ... elif isinstance(...):` for business behaviour, you probably want override / duck typing instead.
 
-**Try these (3 project examples):**
-
-**Program 1 — SecureBank: reject a dict, accept a real account**
+Write SecureBank `print_balance` that accepts only a `BankAccount` (`isinstance`). Print a real account’s balance and reject a dict.
 
 ```python
 class BankAccount:
@@ -993,7 +983,7 @@ Balance: 500
 Need a BankAccount
 ```
 
-**Program 2 — MedCare: Inpatient counts as Patient (`type` vs `isinstance`)**
+For a MedCare `Inpatient`, print `type(p) is Patient` vs `isinstance(p, Patient)` so students see why `isinstance` accepts subclasses.
 
 ```python
 class Patient:
@@ -1014,7 +1004,7 @@ type is Patient? False
 isinstance Patient? True
 ```
 
-**Program 3 — TechMart: don't switch on type for shipping — call the method**
+Write TechMart `dispatch` that checks `isinstance(order, Order)` then calls `order.ship()` (no type switch). Dispatch a standard order, an express order, and a string.
 
 ```python
 class Order:

@@ -272,9 +272,7 @@ sequenceDiagram
 - If you omit `__init__`, Python still creates the object (empty shell); you can add attributes later (usually not ideal for real entities).
 - Over-engineering OOP (five classes for hello world) — use functions until complexity grows.
 
-**Try these (3 project examples):**
-
-**Program 1 — SecureBank savings account (deposit + mini statement)**
+Write a SecureBank `SavingsAccount` with deposit (reject non-positive amounts) and `statement()`. Create two accounts, deposit, and print both statements.
 
 ```python
 class SavingsAccount:
@@ -308,7 +306,7 @@ SB-1001 | Priya Shah | ₹6500
 SB-1002 | Ravi Menon | ₹1200
 ```
 
-**Program 2 — TechMart checkout line (SKU, qty, line total)**
+Write a TechMart `OrderLine` with `line_total()` and `label()`. Print each line in a cart and the cart total.
 
 ```python
 class OrderLine:
@@ -341,7 +339,7 @@ PEN-01 Gel pen x5 = ₹50
 Cart total: 170
 ```
 
-**Program 3 — MedCare appointment slip (patient, doctor, slot)**
+Write a MedCare `Appointment` with `confirm()` and `slip()`. Confirm one booking and print both slips.
 
 ```python
 class Appointment:
@@ -464,9 +462,7 @@ flowchart TB
 - Prefer `ClassName.attr` when you mean the shared value (clearer than `self.attr` for class data).
 - Locals are fine for temporary calculations; do not invent `self.tmp` for values you never need later.
 
-**Try these (3 project examples):**
-
-**Program 1 — AcmeHR shared company name + per-employee id**
+Give AcmeHR `Employee` a class attribute `company` plus per-object `emp_id`, `name`, and `city`. Print badges, change `Employee.company`, and print again so both employees pick up the new value.
 
 ```python
 class Employee:
@@ -499,7 +495,7 @@ Priya Shah (501) — AcmeHR India, Bengaluru
 Ravi Menon (502) — AcmeHR India, Mumbai
 ```
 
-**Program 2 — TechMart shared-cart trap (spot the bug, then the fix)**
+Show the TechMart bug of a class-level `items` list leaking between carts, then fix it with a per-object `items` list in `__init__`. Print both carts.
 
 ```python
 class CartBroken:
@@ -537,7 +533,7 @@ Broken Ravi cart: ['NB-A4']
 Fixed Ravi cart: []
 ```
 
-**Program 3 — SecureBank shared IFSC + local fee inside a method**
+Write SecureBank `BranchAccount` with a class-level IFSC. `transfer_out` should use a local fee of ₹5, print the transfer, and leave `fee` undefined after the method ends.
 
 ```python
 class BranchAccount:
@@ -652,9 +648,7 @@ flowchart LR
 - Alternate constructors (`from_pair`, `from_dict`) keep `__init__` simple and give callers a clear name for each creation path.
 - Calling `Order.gst_amount(100)` or `o.gst_amount(100)` both work for static methods; prefer the class name when it is a pure utility.
 
-**Try these (3 project examples):**
-
-**Program 1 — TechMart order counter + build-from-CSV**
+Write a TechMart `Order` with a class counter, `from_csv_row`, and `how_many()`. Create one order normally, one from a CSV row, and print labels plus today’s count.
 
 ```python
 class Order:
@@ -693,7 +687,7 @@ ORD-102: PEN-01 x5
 orders today: 2
 ```
 
-**Program 2 — SecureBank GST / UPI fee (static utilities)**
+Write SecureBank `BankMath` with `@staticmethod` helpers `with_gst` and `upi_fee`. Print GST on ₹1000 and UPI fees for ₹200 and ₹2500.
 
 ```python
 class BankMath:
@@ -720,7 +714,7 @@ UPI fee on ₹200: 0
 UPI fee on ₹2500: 2.0
 ```
 
-**Program 3 — MedCare Patient from Aadhaar CSV row**
+Write a MedCare `Patient` with `from_csv_row` that splits a comma-separated Aadhaar-style row. Print cards for a normal construct and a CSV-built patient.
 
 ```python
 class Patient:
@@ -1092,9 +1086,7 @@ still: Anita Sharma
 
 **Common Error:** treating `__balance` as encryption / security. It only renames the attribute (`_BankAccount__balance`).
 
-**Try these (3 project examples):**
-
-**Program 1 — SecureBank UPIWallet with** `__balance` **+ getter (lab style)**
+Write a SecureBank `UPIWallet` that stores `__balance`, with `credit`, `debit`, and `get_balance()`. Credit, debit, reject an oversize debit, and show that `__balance` is not a public attribute.
 
 ```python
 class UPIWallet:
@@ -1138,7 +1130,7 @@ Direct '__balance' visible? False
 Mangled peek (don't do this in apps): 600.0
 ```
 
-**Program 2 — MedCare vitals:** `@property` **read-only + computed band**
+Write a MedCare `Vitals` class with a read-only `@property` for Celsius plus computed Fahrenheit and fever band. Print C, F, and fever for 37°C.
 
 ```python
 class Vitals:
@@ -1174,7 +1166,7 @@ fever? False
 celsius is read-only — change only via a setter or a method (later design)
 ```
 
-**Program 3 — TechMart stock cannot go negative (public API only)**
+Write a TechMart `Product` that hides `__stock`. Expose `sell`, `restock`, and `get_stock()` so stock cannot go negative through the public API.
 
 ```python
 class Product:

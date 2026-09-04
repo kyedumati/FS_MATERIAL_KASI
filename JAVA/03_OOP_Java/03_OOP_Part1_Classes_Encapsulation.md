@@ -254,9 +254,7 @@ sequenceDiagram
 - The constructor runs automatically on `new` — you rarely call it by name like a method.
 - Over-engineering OOP (five classes for hello world) — use static methods until the data has a clear owner.
 
-**Try these (2 programs):**
-
-**Program 1 — Book with info()**
+Write a `Book` with `info()` and `priceAfterDiscount()`. Create two books, print both info lines, then print 10% off on the first.
 
 ```java
 public class BookInfo {
@@ -298,7 +296,7 @@ Wings of Fire by A.P.J. Abdul Kalam — ₹350
 10% off: ₹449.1
 ```
 
-**Program 2 — Student isPass and updateName**
+Write a `Student` with `isPass` (pass at 40+) and `updateName` that trims and rejects a blank name. Print pass/fail for 35 and 72, update Anita's name, then try an empty name.
 
 ```java
 public class StudentUpdate {
@@ -434,9 +432,7 @@ PEN-01 @ ₹10
 - Initialise **all** required fields in the constructor. Do not rely on “I will set them later” unless you have a second constructor for that path.
 - Constructors can call **instance methods**, but keep them simple — the object is still being built.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart canteen item with constructor**
+Write a TechMart canteen `Item` constructed with name and price. Print line totals for 2 teas and 1 samosa.
 
 ```java
 public class CanteenItemCtor {
@@ -470,7 +466,7 @@ Tea x2 = ₹30.0
 Samosa x1 = ₹20.0
 ```
 
-**Program 2 — SecureBank wallet opening balance**
+Write a SecureBank `Wallet` that takes holder and opening balance in the constructor, then print Priya's wallet.
 
 ```java
 public class WalletOpen {
@@ -569,9 +565,7 @@ flowchart LR
 - A no-arg constructor is useful when you want `new Student()` then setters — still validate in those setters.
 - Do not write five constructors that each copy the same five assignments. Chain with `this(...)`.
 
-**Try these (2 programs):**
-
-**Program 1 — Student with optional email**
+Write a `Student` with overloaded constructors so email defaults to `not-set`. Print cards for Anita (no email) and Vikram (with email).
 
 ```java
 public class StudentEmail {
@@ -611,7 +605,7 @@ class Student {
 102 Vikram <vikram@ksr.edu>
 ```
 
-**Program 2 — TechMart product default GST flag**
+Write a TechMart `Product` that defaults `gstApplies` to true via `this(...)`. Print a pen (default GST) and a book with GST off.
 
 ```java
 public class ProductGstFlag {
@@ -730,9 +724,7 @@ flowchart LR
 - Keep `Math`-style helpers `static` (`gstAmount`, `isValidMark`).
 - `static` is not “better.” It is “no object needed.”
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart ticket label (instance) + GST (static)**
+Write a TechMart `Ticket` with instance `label()` and `priceWithGst()`, plus a static `gstAmount`. Print seat A1's label and price with 5% GST.
 
 ```java
 public class TicketGst {
@@ -773,7 +765,7 @@ Seat A1 — ₹250
 with GST: ₹262.5
 ```
 
-**Program 2 — Fare math stays static**
+Write a `FareMath` class of static helpers: GST at 5% and equal split. Print `withGst(1000)` and `splitEqual(900, 3)`.
 
 ```java
 public class FareMathDemo {
@@ -887,9 +879,7 @@ flowchart TB
 - Prefer `ClassName.count` when you mean the shared counter (clearer than `this.count`).
 - Locals are fine for temporary calculations; do not invent `this.tmp` for values you never need later.
 
-**Try these (2 programs):**
-
-**Program 1 — Shared college name + per-student roll**
+Write a `Student` with a shared `college` static field and per-student roll and name. Print both cards, change the college, then print again.
 
 ```java
 public class CollegeShare {
@@ -929,7 +919,7 @@ Anita (1) — KSR Institute of Technology
 Vikram (2) — KSR Institute of Technology
 ```
 
-**Program 2 — Static counter vs per-object marks**
+Write a `MarksEntry` that counts creations in a static field while keeping marks per object. Print Priya and Ravi, then the entry count.
 
 ```java
 public class MarksCounter {
@@ -1144,9 +1134,7 @@ Java **`private` is real** (unlike Python’s `_name` convention). Another class
 - Getters are explicit in this course. **Do not require Lombok.** Records are optional Stretch — not in Done when.
 - **Later — Exceptions week:** the same checks can `throw` instead of `print` + `return`.
 
-**Try these (2 programs):**
-
-**Program 1 — Marks must stay 0–100**
+Write an `ExamMark` with private fields and `setMarks` that rejects values outside 0–100. Attempt 150, then set 90 and print Priya's marks.
 
 ```java
 public class EncapsulatedMarks {
@@ -1193,7 +1181,7 @@ Mark must be 0–100
 Priya 90
 ```
 
-**Program 2 — SecureBank UPI wallet deposit only**
+Write a SecureBank UPI `Wallet` that hides `balance`, deposits only positive amounts, and exposes `getBalance()`. Deposit 50, reject −10, then print the balance.
 
 ```java
 public class UpiWallet {
@@ -1299,9 +1287,7 @@ flowchart LR
 - Unused objects become eligible for **garbage collection**. You do not call `delete`. Interview one-liner: the JVM reclaims objects with no remaining references.
 - Passing an object into a method still passes the **reference value** (a copy of the arrow). The method can change fields on that same object.
 
-**Try these (2 programs):**
-
-**Program 1 — Two tickets, two objects**
+Create two `Ticket` objects with the same seat string and alias a third name to the first. Print `==` for the two `new` tickets, then for the alias.
 
 ```java
 public class TwoTickets {
@@ -1330,7 +1316,7 @@ false
 true
 ```
 
-**Program 2 — SecureBank method changes the same account**
+Write a SecureBank `BankAccount` and a `bonus` method that deposits 100 into the same object passed in. Print Ravi's balance after the bonus.
 
 ```java
 public class PassObject {

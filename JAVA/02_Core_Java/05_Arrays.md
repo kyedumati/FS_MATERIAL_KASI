@@ -98,9 +98,7 @@ public class CreateArray {
 - Wrong: `marks[3]` on a length-3 array → `ArrayIndexOutOfBoundsException`.
 - Prefer: last index `marks.length - 1`.
 
-**Try these (2 programs):**
-
-**Program 1 — Names**
+Store names Priya, Ravi, and Meera in a `String` array, then print index 1 and the length.
 
 ```java
 public class NamesArray {
@@ -112,7 +110,7 @@ public class NamesArray {
 }
 ```
 
-**Program 2 — Default zeros**
+Create an `int` array of length 3, print the default value at index 0, set index 1 to 90, and print it.
 
 ```java
 public class EmptySlots {
@@ -161,9 +159,7 @@ Sum: 251
 
 Enhanced `for` cannot easily **update by index**. Use classic `for` when you need `i`.
 
-**Try these (2 programs):**
-
-**Program 1 — Print all expenses**
+Store three INR amounts (`45.0`, `120.0`, `80.5`) and print each with an enhanced `for`.
 
 ```java
 public class Expenses {
@@ -176,7 +172,7 @@ public class Expenses {
 }
 ```
 
-**Program 2 — Average**
+Average marks 80, 70, and 90 and print the result with two decimal places.
 
 ```java
 public class MarksAvg {
@@ -226,9 +222,7 @@ Max: 91
 Found at: 2
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Min**
+Find and print the minimum of marks 78, 91, and 65.
 
 ```java
 public class MinMark {
@@ -245,7 +239,7 @@ public class MinMark {
 }
 ```
 
-**Program 2 — Count toppers (≥ 90)**
+Count how many marks in `{90, 88, 95, 70}` are 90 or above, then print the count.
 
 ```java
 public class Toppers {
@@ -297,9 +291,7 @@ Student 0 total: 240
 Student 1 total: 220
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Print row 0**
+Print every element of row 0 in a 2-by-2 table `{{1, 2}, {3, 4}}`.
 
 ```java
 public class PrintRow {
@@ -312,7 +304,7 @@ public class PrintRow {
 }
 ```
 
-**Program 2 — Seat grid size**
+Create a 2-by-3 boolean lab-seat grid and print the number of rows and the length of row 0.
 
 ```java
 public class SeatGrid {

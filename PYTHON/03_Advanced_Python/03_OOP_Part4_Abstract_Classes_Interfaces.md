@@ -63,9 +63,7 @@ Child classes are responsible for providing the implementation.
 
 **Remember:** Abstract method = “I know the name. I do not know the body yet.”
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR declares net_pay(), intern writes it**
+Write an AcmeHR abstract `JobRole` with `net_pay()`. Implement it on `Intern` and print `Intern().net_pay()`.
 
 ```python
 from abc import ABC, abstractmethod
@@ -91,7 +89,7 @@ print(Intern().net_pay())
 15000
 ```
 
-**Program 2 — SecureBank children fill kind()**
+Write a SecureBank abstract `Account` with `kind()`. Implement it on `SavingsAccount` and `WalletAccount` and print both kinds.
 
 ```python
 from abc import ABC, abstractmethod
@@ -354,9 +352,7 @@ classDiagram
 
 **Common Error:** `class Account(ABC):` with no `@abstractmethod`. Then `Account("Campus")` still works — Case-2.
 
-**Try these (2 programs):**
-
-**Program 1 — Shared deposit, abstract kind() (SecureBank)**
+Write a SecureBank abstract `Account` with shared `deposit`/`get_balance` and abstract `kind()`. Construct `SavingsAccount`, deposit, and print kind, holder, and balance. Leave the parent unconstructed.
 
 ```python
 from abc import ABC, abstractmethod
@@ -398,7 +394,7 @@ print(acct.kind(), acct.holder, int(acct.get_balance()))
 savings Priya 1200
 ```
 
-**Program 2 — MedCare abstract report + shared header**
+Write a MedCare abstract `Report` with shared `header()` and abstract `title()`. Implement `LabReport` and `InvoiceReport` and print header plus title for each.
 
 ```python
 from abc import ABC, abstractmethod
@@ -513,9 +509,7 @@ A class may take **two** interface-style parents: `class WalletAccount(Account, 
 - Duck typing (Part 3) fails when we **call** a missing method. ABC fails when we **construct** an incomplete child.
 - Wrong: `DBInterface()` — Case-3. Construct `MySQL()` or `Postgres()`.
 
-**Try these (2 programs):**
-
-**Program 1 — Notifier interface, SMS vs email**
+Write a `Notifier` interface (`ABC` + only `send`). Implement `Sms` and `Email` and loop both to send “Order shipped”.
 
 ```python
 from abc import ABC, abstractmethod
@@ -548,7 +542,7 @@ SMS: Order shipped
 EMAIL: Order shipped
 ```
 
-**Program 2 — Two contracts on one wallet**
+Write `CampusWallet` that implements both `Printable` and `Payable`. Print a slip, pay ₹120, then print the slip again.
 
 ```python
 from abc import ABC, abstractmethod
@@ -675,9 +669,7 @@ m3 method implementation
 
 **Common Error:** calling `ABC` “Python’s interface keyword.” `ABC` is the abstract-class tool. Using it with **only** abstract methods is how we **simulate** an interface.
 
-**Try these (2 programs):**
-
-**Program 1 — Keep pay off Account; only wallet is Payable**
+Keep `pay` off abstract `Account`. Make only `WalletAccount` also `Payable`. Loop accounts and call `pay` only when `isinstance(a, Payable)`.
 
 ```python
 from abc import ABC, abstractmethod
@@ -727,7 +719,7 @@ wallet Ravi
 pay ₹80 from Ravi
 ```
 
-**Program 2 — AcmeHR interface + abstract class + concrete intern**
+Write AcmeHR `Onboarding` (interface), `StaffOnboarding` (implements `register`), and `InternOnboarding` (implements `activate`). Register and activate intern Anita.
 
 ```python
 from abc import ABC, abstractmethod

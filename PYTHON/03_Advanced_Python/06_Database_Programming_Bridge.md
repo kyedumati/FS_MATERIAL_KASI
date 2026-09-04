@@ -71,9 +71,7 @@ So far you saved data in **files** (CSV, JSON). That works for one user on one m
 [students, orders, ... tables]
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Architecture diagram in comments**
+Put a labelled ASCII (and Mermaid) diagram of Python app → connector → MySQL server → table in a docstring, then print a pointer to it.
 
 ```python
 """
@@ -100,7 +98,7 @@ print("See docstring above for labelled arrows.")
 See docstring above for labelled arrows.
 ```
 
-**Program 2 — Why a connector still talks to a DB server**
+Write `why_apps_still_need_mysql()` whose docstring explains that a connector still talks to a DB server, and print that docstring.
 
 ```python
 def why_apps_still_need_mysql():
@@ -125,9 +123,7 @@ pip install mysql-connector-python
 pip freeze > requirements.txt
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Prove `mysql.connector` import**
+In an activated venv with `mysql-connector-python` installed, import `mysql.connector` and print its version.
 
 ```python
 # Terminal first:
@@ -148,7 +144,7 @@ mysql.connector version: <installed version>
 Import OK — connector installed in this venv
 ```
 
-**Program 2 — Compare connectors (document choice)**
+Print that this lab uses `mysql-connector-python` and the docstring comparing it with PyMySQL (pick one connector; do not mix).
 
 ```python
 # Optional: second throwaway venv with PyMySQL
@@ -199,9 +195,7 @@ config = {
 
 **Remember:** Lifecycle = connect → cursor → execute → (`commit` for writes) → close. Skip `commit` and INSERT/UPDATE vanish.
 
-**Try these (2 programs):**
-
-**Program 1 — Connect, `SELECT DATABASE()`, close**
+Connect with the lab config, `SELECT DATABASE()`, print the current DB, then close cursor and connection.
 
 ```python
 import mysql.connector
@@ -226,7 +220,7 @@ conn.close()
 print("Closed cleanly")
 ```
 
-**Program 2 — Password from environment**
+Read `MYSQL_PASSWORD` from the environment (exit if missing), connect without a hardcoded password, then close.
 
 ```python
 import os
@@ -269,9 +263,7 @@ Both `mysql-connector-python` and `PyMySQL` use `%s` placeholders (not `?` like 
 
 **Common Error:** Building SQL with f-strings from user input (`f"... {roll}"`) — that is the classic injection hole. Always `execute(sql, (value,))`.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR parameterized INSERT**
+Insert one AcmeHR student with `%s` placeholders and a tuple, `commit()`, and print `cursor.rowcount`.
 
 ```python
 import mysql.connector
@@ -296,7 +288,7 @@ cursor.close()
 conn.close()
 ```
 
-**Program 2 — Safe `%s` vs unsafe f-string**
+Print a safe `WHERE roll = %s` pattern next to an unsafe f-string that expands `1 OR 1=1`, and state the lesson.
 
 ```python
 # Illustrative — run against lab kit 20_sql_injection_demo with a real table.
@@ -339,9 +331,7 @@ Lesson: f-string injection broke row filtering — always use %s.
 
 **Interview:** Parameterized queries send SQL template and values separately so user input cannot change the query structure — the #1 SQL-injection defence in Python + MySQL.
 
-**Try these (2 programs):**
-
-**Program 1 — Mini CRUD for one roll**
+For one roll, parameterized INSERT / SELECT / UPDATE / DELETE with `commit` after each write, and print the row after insert and after update.
 
 ```python
 import mysql.connector
@@ -381,7 +371,7 @@ cur.close()
 conn.close()
 ```
 
-**Program 2 — Parameterized library filter**
+Connect to the library seed DB and `SELECT title, author FROM books WHERE author = %s` using a tuple, then print the rows.
 
 ```python
 # Assumes lab seed 02_mysql_library_seed (adjust table/column names to match seed)

@@ -177,9 +177,7 @@ Check your laptop specs (Settings → About):
 - Wrong: Skipping OS / hardware basics and jumping straight to `javac`.
 - Prefer: One day on CPU, RAM, storage, and files — it saves weeks of confusion later.
 
-**Try these (2 programs):**
-
-**Program 1 — Specs checklist note**
+Write a short checklist note listing RAM, storage, and OS version you need for this course.
 
 ```markdown
 # My Laptop Specs — Priya (Hyderabad)
@@ -191,7 +189,7 @@ Check your laptop specs (Settings → About):
 - Ready for course? YES / NO
 ```
 
-**Program 2 — Hardware vs software table**
+Create a markdown table classifying common laptop items as hardware or software.
 
 ```markdown
 | Item              | Hardware or Software? |
@@ -226,9 +224,7 @@ dir
 - Wrong: Saving course files randomly on the Desktop; using spaces in folder names (`my project`).
 - Prefer: One root folder (`ksr_java_fullstack`) and `snake_case` / `kebab-case` names (`my_project`).
 
-**Try these (2 programs):**
-
-**Program 1 — Full course tree (macOS/Linux)**
+Create the full course folder tree with notes, projects, and labs subfolders, then confirm your location with pwd and ls.
 
 ```bash
 mkdir -p ~/ksr_java_fullstack/{notes,projects,labs}
@@ -246,7 +242,7 @@ notes
 projects
 ```
 
-**Program 2 — Nested lab folder**
+Create a nested lab folder for day01_workspace and navigate into it.
 
 ```bash
 cd ~/ksr_java_fullstack
@@ -267,9 +263,7 @@ ls
 - Wrong: Opening a single file, then wondering why paths and terminals feel broken.
 - Prefer: Always open the **project folder** as the root.
 
-**Try these (2 programs):**
-
-**Program 1 — First notes file**
+Write your Day 01 foundations notes covering what you learned about computers, the OS, and the terminal.
 
 ```markdown
 # Day 01 Foundations — Ravi
@@ -280,7 +274,7 @@ What I learned:
 3. Terminal is how developers talk to the OS
 ```
 
-**Program 2 — Glossary starter**
+Start a glossary with definitions for path, extension, and IDE.
 
 ```markdown
 # Glossary
@@ -327,9 +321,7 @@ ls                               # list contents (may be empty)
 - Wrong: Avoiding the terminal because it looks like “hacking” movies.
 - Prefer: Run only the commands shown in class — `ls` / `cd` are safe navigation tools.
 
-**Try these (2 programs):**
-
-**Program 1 — Navigate and confirm path**
+Practice navigating from home into ksr_java_fullstack/notes and confirm your path at each step.
 
 ```bash
 cd ~
@@ -341,7 +333,7 @@ pwd
 ls
 ```
 
-**Program 2 — Up one level drill**
+Drill moving up one directory level with cd .. and verify where you land.
 
 ```bash
 cd ~/ksr_java_fullstack/notes
@@ -397,9 +389,7 @@ You will write the Java version after Flow Control. Today, focus on *logic*, not
 - Wrong: Mixing up *algorithm* (English steps) with *code* (Java syntax).
 - Prefer: Write steps in plain English / pseudocode first; code comes later.
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank ATM withdraw algorithm**
+Write pseudocode for a SecureBank ATM withdraw flow that checks PIN and balance before dispensing cash.
 
 ```
 START
@@ -420,7 +410,7 @@ START
 END
 ```
 
-**Program 2 — Exam pass/fail algorithm**
+Write pseudocode that reads marks and displays Pass or Fail based on a 35 cutoff.
 
 ```
 START
@@ -456,9 +446,7 @@ Browser                    Server (Java)                 Database (MySQL)
 - Wrong: Treating client and server as the same kind of “computer” with no distinction.
 - Prefer: Client = *your* browser; server = the company’s remote machine.
 
-**Try these (2 programs):**
-
-**Program 1 — Label the parts**
+Label the client, request, server, database, and response for a campus canteen app.
 
 ```markdown
 # Campus canteen app (client–server)
@@ -470,7 +458,7 @@ Browser                    Server (Java)                 Database (MySQL)
 - Response: JSON list of dosa, idli, chai with prices in ₹
 ```
 
-**Program 2 — Expense sync story**
+Describe the expense tracker sync story showing why the server and database are the source of truth.
 
 ```markdown
 # Expense tracker sync
@@ -499,9 +487,7 @@ Create `notes/my_roadmap.md` in the IDE:
 - Portfolio target: CampusCart (college shop / booking)
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — Role match note**
+Write a short note describing your target role, city preference, and first portfolio app.
 
 ```markdown
 # Role I want
@@ -512,7 +498,7 @@ Why: Build both UI and APIs for campus/startup products
 First portfolio app: Student marks CLI, then a small REST API later
 ```
 
-**Program 2 — Weekly habit plan**
+Draft a weekly habit plan with study schedule and Naukri keywords to watch.
 
 ```markdown
 # Weekly habit (India IST)

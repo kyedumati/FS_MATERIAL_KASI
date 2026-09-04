@@ -142,9 +142,7 @@ Both: MySQL 8 + Connector/J + no password in git
 
 **Interview:** ORM? Object–relational mapping — Java object to table row.
 
-**Try these (2 programs):**
-
-**Program 1 — Who writes the SQL?**
+Print who writes SQL this week versus JDBC week: you wrote INSERT/SELECT then; Hibernate writes it now, and you still read it with `show-sql`.
 
 ```java
 public class WhoWritesSql {
@@ -164,7 +162,7 @@ JPA week: Hibernate writes INSERT / SELECT
 You still read the SQL in the log (show-sql)
 ```
 
-**Program 2 — Same secrets habit**
+Print the same secrets habit as JDBC: `MYSQL_PASSWORD` from env, YAML `${MYSQL_PASSWORD}`, `.env.example` in git, `.env` not in git.
 
 ```java
 public class SameSecretsHabit {
@@ -266,9 +264,7 @@ This is the **same snack idea** as module 02’s `CanteenItem` and the FS bridge
 
 **Interview:** `@GeneratedValue` IDENTITY vs SEQUENCE? IDENTITY = MySQL auto-increment. SEQUENCE is common on Oracle / PostgreSQL. This course uses IDENTITY.
 
-**Try these (2 programs):**
-
-**Program 1 — Annotation checklist**
+Print the entity annotation checklist: `@Entity`, `@Table(name = "campus_products")`, `@Id`, and `@GeneratedValue IDENTITY`.
 
 ```java
 public class EntityAnnotationPrint {
@@ -290,7 +286,7 @@ public class EntityAnnotationPrint {
 @GeneratedValue IDENTITY
 ```
 
-**Program 2 — jakarta not javax**
+Print Boot 3 `jakarta.persistence.Entity` versus old `javax.persistence.Entity`, and that `javax` will not compile on this pom.
 
 ```java
 public class JakartaNotJavax {
@@ -360,9 +356,7 @@ You do **not** write `findByName` query methods this module (**Later —** if th
 
 **Interview:** Why an interface? Spring Data builds a proxy. You declare *what*; Boot supplies *how*.
 
-**Try these (2 programs):**
-
-**Program 1 — Four methods**
+Print the four repository methods you call: `save`, `findAll`, `findById`, and `deleteById`.
 
 ```java
 public class RepoFourMethods {
@@ -384,7 +378,7 @@ findById(id)
 deleteById(id)
 ```
 
-**Program 2 — Generics reminder**
+Print `JpaRepository<Product, Long>` and what each type argument means: entity class and `@Id` type.
 
 ```java
 public class RepoGenericsPrint {
@@ -441,9 +435,7 @@ Optional lite validation (topic 7) adds **`spring-boot-starter-validation`** —
 
 **Remember:** Parent POM still pins versions. You rarely type a Hibernate version.
 
-**Try these (2 programs):**
-
-**Program 1 — Three artifacts**
+Print the three Maven artifacts this week: `spring-boot-starter-web`, `spring-boot-starter-data-jpa`, and `mysql-connector-j`.
 
 ```java
 public class JpaPomArtifacts {
@@ -463,7 +455,7 @@ spring-boot-starter-data-jpa
 mysql-connector-j
 ```
 
-**Program 2 — What JPA starter pulls**
+Print what the JPA starter pulls: Hibernate, Spring Data JPA, and HikariCP via `starter-jdbc`.
 
 ```java
 public class JpaStarterPulls {
@@ -552,9 +544,7 @@ Boot **does not** read `.env` automatically — export or IDE Run Configuration 
 
 **Interview:** Why a pool? Opening a TCP connection per HTTP request is slow. Hikari reuses connections. Tuning is **Later —** / ops.
 
-**Try these (2 programs):**
-
-**Program 1 — Yml keys**
+Print the datasource URL, username, password `${MYSQL_PASSWORD}`, and `spring.jpa.hibernate.ddl-auto=update` keys.
 
 ```java
 public class DatasourceYmlKeys {
@@ -576,7 +566,7 @@ spring.datasource.password=${MYSQL_PASSWORD}
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-**Program 2 — Lab vs production schema**
+Print that lab uses `ddl-auto=update`, `create-drop` wipes data, and production schema stays Later.
 
 ```java
 public class DdlAutoLabOnly {
@@ -683,9 +673,7 @@ Pani puri must still be there. That is the whole point.
 
 **Interview:** `Optional` from `findById`? Empty means no row. Map that to **404**, not `null` with **200**.
 
-**Try these (2 programs):**
-
-**Program 1 — HTTP to repository**
+Print HTTP-to-repository mapping: GET list `findAll`, GET by id `findById`, POST `save` with null id and 201.
 
 ```java
 public class HttpToRepoPrint {
@@ -705,7 +693,7 @@ GET  /products/{id} -> findById
 POST /products      -> save (id null) -> 201
 ```
 
-**Program 2 — Restart keeps the row**
+Print that POST Pani puri lands in MySQL `campus_products`, a Tomcat restart still shows it, and that failed with ArrayList in module 02.
 
 ```java
 public class RestartKeepsRow {
@@ -774,9 +762,7 @@ Default 400 body from Boot is **ugly JSON**. Designing that body is **Later —*
 
 **Remember:** Filename includes Validation. Depth of `@Valid` + error bodies is the **next** module.
 
-**Try these (2 programs):**
-
-**Program 1 — What lite checks**
+Print the lite checks: `@NotBlank` on name, `@NotNull` on the price wrapper, and `@Valid` on the POST body.
 
 ```java
 public class LiteValidPrint {
@@ -796,7 +782,7 @@ public class LiteValidPrint {
 @Valid on POST body
 ```
 
-**Program 2 — What stays Later**
+Print what stays Later: DTO mapping, Postman collection, and a designed error JSON body.
 
 ```java
 public class ValidLaterPrint {
@@ -834,9 +820,7 @@ Create `training_db` if needed (`CREATE DATABASE IF NOT EXISTS training_db;` —
 
 Open `starter/pom.xml`. You need **`starter-web`**, **`starter-data-jpa`**, and **`mysql-connector-j`**.
 
-**Try these (2 programs):**
-
-**Program 1 — Database name**
+Print database `training_db`, table `campus_products`, and that you must not drop the MYSQL products homework table.
 
 ```java
 public class TrainingDbName {
@@ -856,7 +840,7 @@ table: campus_products
 do not drop MYSQL products homework
 ```
 
-**Program 2 — Three dependencies**
+Print the three dependencies again: `starter-web`, `starter-data-jpa`, and `mysql-connector-j`.
 
 ```java
 public class StarterPomCheck {
@@ -890,9 +874,7 @@ mvn spring-boot:run
 
 If MySQL is down or the password is wrong, Boot **fails at start** — fix env, do not paste the password into yml.
 
-**Try these (2 programs):**
-
-**Program 1 — Export reminder**
+Print `export MYSQL_PASSWORD=...`, then `mvn spring-boot:run`, and that Boot does not read `.env` by itself.
 
 ```java
 public class ExportMysqlPassword {
@@ -912,7 +894,7 @@ mvn spring-boot:run
 Boot does not read .env by itself
 ```
 
-**Program 2 — Hikari name only**
+Print that the pool name is HikariCP, Boot auto-configures it, and you do not set `maximum-pool-size` this module.
 
 ```java
 public class HikariNameOnly {
@@ -938,9 +920,7 @@ Do not set maximum-pool-size this module
 
 Annotate `Product` with `@Entity`, `@Table(name = "campus_products")`, `@Id`, `@GeneratedValue(IDENTITY)`, `@Column(name = "price_inr")`. No-arg constructor + getters / setters. **`jakarta.persistence`**.
 
-**Try these (2 programs):**
-
-**Program 1 — Field list**
+Print the Product fields: `id` Long IDENTITY, `name` String, and `priceInr` mapped to column `price_inr`.
 
 ```java
 public class ProductFieldsPrint {
@@ -960,7 +940,7 @@ name String
 priceInr -> column price_inr
 ```
 
-**Program 2 — Constructors**
+Print why you need a no-arg constructor (JPA + Jackson), a name+price constructor for demos, and that MySQL assigns `id` on save.
 
 ```java
 public class EntityConstructorsPrint {
@@ -986,9 +966,7 @@ id assigned by MySQL on save
 
 Empty interface `extends JpaRepository<Product, Long>`. Same package as the entity so component scan finds it (`@SpringBootApplication` already scans `in.ksr.campuscatalog`).
 
-**Try these (2 programs):**
-
-**Program 1 — Interface is enough**
+Print that `ProductRepository` extending `JpaRepository<Product, Long>` with an empty body is enough — no method bodies required.
 
 ```java
 public class EmptyRepoOk {
@@ -1008,7 +986,7 @@ extends JpaRepository<Product, Long> { }
 no method body required
 ```
 
-**Program 2 — Scan package**
+Print that `CampusCatalog` application, entity, repo, and controller share `in.ksr.campuscatalog`, and a wrong package means bean not found.
 
 ```java
 public class SamePackageScan {
@@ -1045,9 +1023,7 @@ curl -X POST http://localhost:8080/products \
 
 Watch the terminal: **`show-sql: true`** prints Hibernate SQL. That is your JDBC week in the log.
 
-**Try these (2 programs):**
-
-**Program 1 — Curl list**
+Print curl for `GET http://localhost:8080/products` and that the body is a JSON array from `findAll`.
 
 ```java
 public class CurlListPrint {
@@ -1065,7 +1041,7 @@ curl http://localhost:8080/products
 JSON array from findAll
 ```
 
-**Program 2 — Curl POST**
+Print that POST JSON `name` plus `priceInr` returns 201 and an id from `AUTO_INCREMENT`.
 
 ```java
 public class CurlPostPrint {
@@ -1091,9 +1067,7 @@ Stop the app. Start it again. GET `/products` must still include Pani puri. `git
 
 Do **not** add Security, DTOs, Postman, or Lombok to pass. `@Valid` is Stretch only.
 
-**Try these (2 programs):**
-
-**Program 1 — Ignore list reminder**
+Print what to ignore (`target/`, `.env`) and what to keep (`pom.xml`, `src/`, `.env.example`).
 
 ```java
 public class JpaGitignorePrint {
@@ -1113,7 +1087,7 @@ ignore: .env
 keep: pom.xml src/ .env.example
 ```
 
-**Program 2 — Core ticket**
+Print the core ticket: `Product` entity plus `ProductRepository`, GET list / GET by id / POST create, stored in MySQL not an ArrayList.
 
 ```java
 public class Kit18CoreTicket {

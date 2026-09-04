@@ -156,9 +156,7 @@ java EnvCheck
 - Wrong: `JAVA_HOME` pointing at Java 8 while class requires 17.
 - Prefer: `java -version` shows **17**.
 
-**Try these (2 programs):**
-
-**Program 1 — Ready line**
+Print a ready line that includes Priya's name.
 
 ```java
 public class ReadyLine {
@@ -174,7 +172,7 @@ public class ReadyLine {
 Ready for KSR Java — Priya
 ```
 
-**Program 2 — Ready line with city**
+Print a ready line that includes Priya's name and the city Hyderabad.
 
 ```java
 public class ReadyCity {
@@ -206,9 +204,7 @@ jshell> /exit
 
 jshell is great for one expression. **Assignments are `.java` files.** If `jshell` is missing, skip it — scripts still count.
 
-**Try these (2 programs):**
-
-**Program 1 — Greeting and TechMart canteen sum (save as script)**
+Print a greeting for Ravi and the sum of two TechMart canteen prices (₹450 and ₹120).
 
 ```java
 public class CanteenSum {
@@ -226,7 +222,7 @@ Hello, Ravi
 570
 ```
 
-**Program 2 — Name, batch, Java OK**
+Print the learner name, the batch name, and a line that confirms Java 17 is OK.
 
 ```java
 public class BatchOk {
@@ -272,9 +268,7 @@ java HelloJava
 - Prefer: File `HelloJava.java` and `public class HelloJava`.
 - Wrong: `java HelloJava.class` → error. Use `java HelloJava`.
 
-**Try these (2 programs):**
-
-**Program 1 — Name and career goal**
+Print Priya's name and one-line career goal.
 
 ```java
 public class MyGoal {
@@ -292,7 +286,7 @@ Priya
 Become a full-stack Java developer
 ```
 
-**Program 2 — Same with author comments**
+Print the same name and career goal, and add author and date comments above the code.
 
 ```java
 // Author: Priya
@@ -331,9 +325,7 @@ Please use registered email.
 ========================================
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — SecureBank ATM welcome banner**
+Print a SecureBank ATM welcome banner using repeated `=` lines around the title and welcome text.
 
 ```java
 public class AtmBanner {
@@ -357,7 +349,7 @@ public class AtmBanner {
 ========================
 ```
 
-**Program 2 — Student marks portal banner**
+Print a student marks portal banner: title, a blank line, then a prompt to enter a roll number.
 
 ```java
 public class MarksBanner {
@@ -397,9 +389,7 @@ public class KeywordDemo {
 - Wrong: `int class = 10;` → compile error.
 - Prefer: `classCount`, `isPublic`.
 
-**Try these (2 programs):**
-
-**Program 1 — Valid renames**
+Store `if`, `class`, and `for` as legal identifier names (`ifFlag`, `className`, `forCount`) and print each value.
 
 ```java
 public class ValidNames {
@@ -414,7 +404,7 @@ public class ValidNames {
 }
 ```
 
-**Program 2 — Print a few keywords as text (not as names)**
+Print a few Java keywords as text (not as variable names), then a line that says they are reserved.
 
 ```java
 public class KeywordList {
@@ -455,9 +445,7 @@ true
 
 **Common Error:** Space in a name (`int employee id = 101`) → compile error. Use `employeeId`.
 
-**Try these (2 programs):**
-
-**Program 1 — Clear student identifiers**
+Store a student name, roll number, and pass flag with clear `camelCase` names, then print each value.
 
 ```java
 public class StudentIds {
@@ -480,7 +468,7 @@ Priya
 true
 ```
 
-**Program 2 — Rename poor expense names**
+Store food expense as `foodExpense` and category as `categoryName`, then print `food: ₹250`.
 
 ```java
 public class ExpenseNames {
@@ -510,9 +498,7 @@ public static void main(String[] args)
 
 **Remember:** Misspell `Main` or drop `static` and the program will not start the way you expect.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart canteen banner one line**
+Print a one-line TechMart canteen bill title.
 
 ```java
 public class CanteenBill {
@@ -522,7 +508,7 @@ public class CanteenBill {
 }
 ```
 
-**Program 2 — TechMart canteen banner two lines**
+Print the same TechMart canteen title, then a second line that says to pay at the counter.
 
 ```java
 public class CanteenBillTwo {
@@ -543,16 +529,14 @@ public class CanteenBillTwo {
 - Wrong: Running from the wrong folder → `error: file not found`.
 - Prefer: `cd` to the folder that contains the `.java` file.
 
-**Try these (2 programs):**
-
-**Program 1 — Confirm class file exists (commands)**
+Compile `HelloJava.java` and list the generated `HelloJava.class` to confirm the class file exists.
 
 ```bash
 javac HelloJava.java
 ls HelloJava.class
 ```
 
-**Program 2 — Run after compile**
+Run the compiled `HelloJava` class after `javac` succeeds.
 
 ```bash
 java HelloJava

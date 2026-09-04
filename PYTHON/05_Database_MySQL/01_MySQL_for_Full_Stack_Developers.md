@@ -105,9 +105,7 @@ This module teaches **full-stack essentials**. For aggregations, subqueries, win
 | **Employee** | departments, employees | HRMS, payroll |
 | **Ecommerce** | customers, products, orders, order_items | CampusCart |
 
-**Try these (2 programs):**
-
-**Program 1 — Named-product domain sketch note**
+Sketch which domain CampusCart belongs to and list its core tables in SQL comments.
 
 ```sql
 -- Which domain? CampusCart canteen = Ecommerce
@@ -126,7 +124,7 @@ SELECT 'Ecommerce domain for CampusCart' AS note;
 +----------------------------------+
 ```
 
-**Program 2 — List tables you will need**
+List the tables a student portal needs using a UNION query.
 
 ```sql
 -- Student portal needs:
@@ -246,9 +244,7 @@ One customer → many orders; one order → many line items; each line item poin
 - No FOREIGN KEY — define FK in DDL.
 - No UNIQUE on email — add a UNIQUE constraint.
 
-**Try these (2 programs):**
-
-**Program 1 — Courses table for LMS**
+Create a courses table with title and credits constraints, then show its columns.
 
 ```sql
 USE training_db;
@@ -262,7 +258,7 @@ CREATE TABLE IF NOT EXISTS courses (
 SHOW COLUMNS FROM courses;
 ```
 
-**Program 2 — Enrollments with FKs**
+Create an enrollments table with foreign keys to students and courses.
 
 ```sql
 USE training_db;
@@ -297,9 +293,7 @@ DELETE FROM students WHERE email = 'rahul@campus.in';  -- always use WHERE!
 **Note:**
 - `DELETE FROM students` without WHERE — always use WHERE; test with SELECT first.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart seed canteen products (INR)**
+Insert canteen products with INR prices and list them ordered by price.
 
 ```sql
 USE training_db;
@@ -312,7 +306,7 @@ INSERT INTO products (name, price) VALUES
 SELECT product_id, name, price FROM products ORDER BY price;
 ```
 
-**Program 2 — Safe update then check**
+Preview a row, update Notebook price safely, then verify the change.
 
 ```sql
 USE training_db;
@@ -340,9 +334,7 @@ SELECT name, price FROM products WHERE price BETWEEN 40 AND 150;
 **Note:**
 - `SELECT *` in APIs — name columns explicitly.
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart products under ₹100**
+Query products priced under ₹100 sorted ascending.
 
 ```sql
 USE training_db;
@@ -353,7 +345,7 @@ WHERE price < 100
 ORDER BY price ASC;
 ```
 
-**Program 2 — TechMart Hyderabad customers**
+Select customers located in Hyderabad.
 
 ```sql
 USE training_db;
@@ -374,9 +366,7 @@ COMMIT;
 
 **Go deeper:** [`MYSQL/09_Transactions_and_Indexes.md`](../../MYSQL/09_Transactions_and_Indexes.md)
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart rollback a bad price cut**
+Start a transaction, apply a bad price cut, then rollback to restore the original price.
 
 ```sql
 USE training_db;
@@ -388,7 +378,7 @@ ROLLBACK;
 SELECT name, price FROM products WHERE name = 'Veg Thali';  -- restored
 ```
 
-**Program 2 — TechMart commit a real discount**
+Apply a ₹5 discount on Filter Coffee inside a transaction and commit.
 
 ```sql
 USE training_db;
@@ -430,9 +420,7 @@ INNER JOIN products p ON oi.product_id = p.product_id;
 **Note:**
 - JOIN without ON → Cartesian product — always write an explicit ON.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR employees with department names**
+Join employees to departments and list names with salary ordered by department.
 
 ```sql
 USE training_db;
@@ -443,7 +431,7 @@ INNER JOIN departments d ON e.dept_id = d.dept_id
 ORDER BY d.dept_name, e.full_name;
 ```
 
-**Program 2 — TechMart customers with or without orders**
+Add a customer with no orders and use LEFT JOIN to show all customers.
 
 ```sql
 USE training_db;
@@ -469,9 +457,7 @@ ORDER BY c.name;
 **Note:**
 - Comma-separated values in one column — use a junction table (1NF).
 
-**Try these (2 programs):**
-
-**Program 1 — Fix a 1NF violation (sketch as SQL comments + create)**
+Fix a 1NF violation by inserting courses and enrollments rows instead of comma-separated values.
 
 ```sql
 -- BAD: courses_csv VARCHAR storing "Math,Physics"
@@ -487,7 +473,7 @@ INNER JOIN enrollments e ON s.student_id = e.student_id
 INNER JOIN courses c ON e.course_id = c.course_id;
 ```
 
-**Program 2 — Spot the 3NF issue**
+Identify the 3NF issue with dept_head in students and note the fix in a SELECT comment.
 
 ```sql
 -- BAD idea (do not create long-term):

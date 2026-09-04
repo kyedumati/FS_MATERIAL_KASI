@@ -120,9 +120,7 @@ null
 
 **Interview:** `java.io.File` still works. Interviews expect **`Path` / `Files`** for modern Java.
 
-**Try these (2 programs):**
-
-**Program 1 — folder plus file name**
+Build a `Path` with folder `data` and file `expenses.csv`, then print name count, file name, and the first segment.
 
 ```java
 import java.nio.file.Path;
@@ -145,7 +143,7 @@ expenses.csv
 data
 ```
 
-**Program 2 — `resolve` a child**
+Start from folder `logs` and `resolve` child `visits.txt`; print the file name and name count.
 
 ```java
 import java.nio.file.Path;
@@ -211,9 +209,7 @@ Always pass **`StandardCharsets.UTF_8`** so Windows and macOS agree on Indian na
 
 **Common Error:** Opening with a default write when you meant append — same trap as Python `"w"` vs `"a"`.
 
-**Try these (2 programs):**
-
-**Program 1 — two lines in one write**
+Write `Namaste` and `Line 2` in one `writeString` and print the file contents.
 
 ```java
 import java.io.IOException;
@@ -241,7 +237,7 @@ Namaste
 Line 2
 ```
 
-**Program 2 — `writeString` needs a `Path`**
+Pass `Path.of("batch_demo.txt")` to `writeString` with `PFS Hyderabad`, then read it back and print.
 
 ```java
 import java.io.IOException;
@@ -317,9 +313,7 @@ The first `writeString` (no extra options) **creates or replaces**. The next two
 
 **Interview:** Name the two options you pass to append safely on a new file: `CREATE` and `APPEND`.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR two expense lines**
+Write AcmeHR expense `Tea,45`, append `Bus,30`, and print both lines.
 
 ```java
 import java.io.IOException;
@@ -350,7 +344,7 @@ Tea,45
 Bus,30
 ```
 
-**Program 2 — append after a wipe**
+Overwrite a file with `fresh start`, then append `kept`, and print the result.
 
 ```java
 import java.io.IOException;
@@ -439,9 +433,7 @@ Kukatpally
 
 **Remember:** Whole file for tiny notes. Line loop for logs and CSV.
 
-**Try these (2 programs):**
-
-**Program 1 — `readAllLines` is a `List`**
+Write three lines, read them with `readAllLines`, and print the list size plus the line at index 1.
 
 ```java
 import java.io.IOException;
@@ -472,7 +464,7 @@ public class ReadAllLinesList {
 b
 ```
 
-**Program 2 — why a loop beats `readString` for huge logs**
+Compare `readString` character count with a `BufferedReader` line count on the same tiny log.
 
 ```java
 import java.io.BufferedReader;
@@ -609,9 +601,7 @@ File not found: no_such_expenses.csv
 
 **Common Error:** `throws Exception` on `main` to “make it compile” — too broad. Prefer `throws IOException` or a specific `catch`.
 
-**Try these (2 programs):**
-
-**Program 1 — writer in try-with-resources**
+Write `PFS Hyderabad` with a `BufferedWriter` in try-with-resources, then read the file and print it.
 
 ```java
 import java.io.BufferedWriter;
@@ -644,7 +634,7 @@ public class WriterTryWith {
 PFS Hyderabad
 ```
 
-**Program 2 — `exists` before you read**
+If `still_missing.csv` does not exist, print that there is no file yet and return.
 
 ```java
 import java.nio.file.Files;
@@ -735,9 +725,7 @@ Index `0` is the header. The loop starts at `1`.
 
 **Where used?** Fees, expenses, attendance exports, inventory dumps (Stretch).
 
-**Try these (2 programs):**
-
-**Program 1 — TechMart canteen menu CSV**
+Write a TechMart canteen CSV (`item,price`), skip the header, and print each item with its rupee price.
 
 ```java
 import java.io.IOException;
@@ -772,7 +760,7 @@ Idli: ₹30
 Filter Coffee: ₹25
 ```
 
-**Program 2 — TechMart CSV header only when the file is new**
+Call a helper twice after deleting the file so the TechMart CSV header is written only when the file is missing.
 
 ```java
 import java.io.IOException;
@@ -883,9 +871,7 @@ Namaste from the Java Full Stack batch!
 Line 2
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — `readString` then print**
+Write `Hello KSR batch`, `readString` the file, and print it.
 
 ```java
 import java.io.IOException;
@@ -912,7 +898,7 @@ public class ReadStringGreeting {
 Hello KSR batch
 ```
 
-**Program 2 — count characters**
+Write `UPI` plus a newline, `readString` it, and print `length()`.
 
 ```java
 import java.io.IOException;
@@ -988,9 +974,7 @@ ravi
 
 `w.newLine()` is safer than `"\n"` if you ever move the file between OS families. UTF-8 text + `newLine()` is the classroom habit.
 
-**Try these (2 programs):**
-
-**Program 1 — three visits**
+Write priya, then append ravi and meera, and print how many lines are in the visit log.
 
 ```java
 import java.io.IOException;
@@ -1022,7 +1006,7 @@ public class ThreeVisits {
 3
 ```
 
-**Program 2 — `CREATE` + `APPEND` on a new file**
+Delete the file if it exists, then `writeString` `first` with `CREATE` and `APPEND`, and print the contents.
 
 ```java
 import java.io.IOException;
@@ -1105,9 +1089,7 @@ date,category,amount,note
 2026-08-23,Travel,30,Bus
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — split one data row**
+Split one expense CSV data row on commas and print the column count plus the amount column.
 
 ```java
 public class CsvSplitRow {
@@ -1127,7 +1109,7 @@ public class CsvSplitRow {
 45
 ```
 
-**Program 2 — skip the header when summing**
+Write a two-row expense CSV, skip the header, sum the amount column, and print the total.
 
 ```java
 import java.io.IOException;
@@ -1228,9 +1210,7 @@ public class ExpenseMenuSketch {
 
 `javac ExpenseMenuSketch.java` then `java ExpenseMenuSketch`. Compile-only in automated checks (it waits for the keyboard).
 
-**Try these (2 programs):**
-
-**Program 1 — reject a non-integer amount**
+Parse `45` then `abc` as amounts; catch `NumberFormatException` and print that amount must be an integer.
 
 ```java
 public class ParseAmountSafe {
@@ -1252,7 +1232,7 @@ public class ParseAmountSafe {
 amount must be an integer
 ```
 
-**Program 2 — reject a blank category**
+Trim a blank category string; if the length is 0, print that category is required.
 
 ```java
 public class RejectBlankCategory {

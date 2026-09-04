@@ -100,9 +100,7 @@ text = json.dumps(data)           # dict → JSON string
 parsed = json.loads(text)         # JSON string → dict
 ```
 
-**Try these (2 programs):**
-
-**Program 1 — dumps / loads**
+Serialize a product dict to a JSON string with `json.dumps`, parse it back with `json.loads`, and print the string and the price field.
 
 ```python
 import json
@@ -121,7 +119,7 @@ print(parsed["price"])  # 45000
 45000
 ```
 
-**Program 2 — Pretty print product**
+Pretty-print a product dict with `json.dumps(..., indent=2)` so nested keys are easy to read.
 
 ```python
 import json
@@ -158,9 +156,7 @@ print(json.dumps(product, indent=2))
 - POST without a JSON `Content-Type` header → 415 or empty data. Set it in Postman.
 - Bad JSON (e.g. Decimal as a bare number in invalid payloads) → parse errors; send valid JSON — DRF often accepts string decimals like `"45.00"`.
 
-**Try these (2 programs):**
-
-**Program 1 — Collection checklist**
+Write a short Postman collection checklist covering the base URL variable, GET/POST requests, and status-code assertions.
 
 ```markdown
 # Postman — Product API
@@ -172,7 +168,7 @@ print(json.dumps(product, indent=2))
 5. Assert status 200 / 201 in Tests tab
 ```
 
-**Program 2 — Sample POST body**
+Draft a sample POST JSON body for creating a product with name, price string, and in_stock flag.
 
 ```json
 {
@@ -194,9 +190,7 @@ Model → Serializer → ViewSet → Router → URL /api/products/
 
 ---
 
-**Try these (2 programs):**
-
-**Program 1 — Tiny serializer**
+Define a `ProductSerializer` ModelSerializer that exposes id, name, price, and in_stock from the Product model.
 
 ```python
 from rest_framework import serializers
@@ -208,7 +202,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ["id", "name", "price", "in_stock"]
 ```
 
-**Program 2 — Router wiring**
+Register a `ProductViewSet` on the default DRF router under the `products` basename.
 
 ```python
 from rest_framework.routers import DefaultRouter

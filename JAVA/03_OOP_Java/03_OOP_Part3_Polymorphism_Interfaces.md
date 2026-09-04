@@ -259,9 +259,7 @@ classDiagram
 - An abstract method cannot be `private` or `static` (the child must be able to override it).
 - Prefer abstract when children **share fields** (`holder`, `balance`) and some real methods (`deposit`). Prefer an interface when you only need a **capability** (`pay`, `printSlip`) — next topic.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR abstract Employee net pay**
+Write an AcmeHR abstract `Staff` with `net()` implemented by `Intern` (full basic) and `Faculty` (90%). Print both nets.
 
 ```java
 public class AbstractStaffNet {
@@ -315,7 +313,7 @@ Anita net ₹15000
 Vikram net ₹36000
 ```
 
-**Program 2 — Abstract shape area**
+Write an abstract `Shape` with `Circle` and `Rect` areas. Print a circle of radius 2 (rounded to 2 decimals) and a 3×4 rectangle.
 
 ```java
 public class AbstractShapeArea {
@@ -498,9 +496,7 @@ classDiagram
 - `static` methods on an interface are utilities (`Payable.maxAmount()`), not object behaviour.
 - **Later — Collections week** you will see `List`, `Set`, `Map` as interfaces. The idea is the same: code to the contract.
 
-**Try these (2 programs):**
-
-**Program 1 — AcmeHR printable ID cards**
+Write an AcmeHR `Printable` interface. Loop a student card and a staff card and print both slips.
 
 ```java
 public class PrintableCards {
@@ -557,7 +553,7 @@ Student 101 Anita
 Staff HR Meera
 ```
 
-**Program 2 — Two contracts on one class**
+Write a `CampusUpi` that implements both `Payable` and `Printable`. Print the slip, then pay ₹80.
 
 ```java
 public class TwoContracts {
@@ -734,9 +730,7 @@ flowchart LR
 - `Payable p = new WalletAccount(...)` works when `WalletAccount implements Payable`.
 - Casting `Account` → `Payable` is fine only if that object really implements `Payable` (the wallet, not savings).
 
-**Try these (2 programs):**
-
-**Program 1 — MedCare several notifiers, one loop**
+Write a MedCare `Notifier` array of SMS, email, and push. Loop once and send "Order shipped" on every channel.
 
 ```java
 public class NotifyAllPoly {
@@ -782,7 +776,7 @@ EMAIL: Order shipped
 PUSH: Order shipped
 ```
 
-**Program 2 — TechMart pay methods without `instanceof`**
+Write TechMart `Payable` UPI and cash classes. Loop mixed methods and pay ₹100 each without `instanceof`.
 
 ```java
 public class MixerPoly {
@@ -920,9 +914,7 @@ flowchart TB
 - Two public classes still mean two files — even in the same package.
 - Lab kits 09–11 stay default-package so the ticket is one `javac`. Moving to `campus.wallet` is Stretch, not the core path.
 
-**Try these (2 programs):**
-
-**Program 1 — `import java.util.Arrays` from a named package**
+From package `campus.wallet`, import `java.util.Arrays`, sort three marks, and print them in order.
 
 Save as `campus/wallet/ImportArraysDemo.java`.
 
@@ -946,7 +938,7 @@ public class ImportArraysDemo {
 50 80 90
 ```
 
-**Program 2 — Import a class from another package (two files)**
+Write `Kind` in `campus.wallet` and import it from `campus.app`. Print `type=` plus `Kind.savings()`.
 
 Save as `campus/wallet/Kind.java`:
 
