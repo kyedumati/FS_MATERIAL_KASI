@@ -12,7 +12,7 @@
 **Module Outcome:**
 
 - Replace a painful array with `List` / `Set` / `Map` — code to the interface
-- Pick ArrayList vs HashSet vs HashMap the way TechMart picks a cart vs a SKU index
+- Pick ArrayList vs HashSet vs HashMap the way Swiggy picks a cart vs a SKU index
 - Push an inventory / contacts lab that would have exploded as a raw array
 
 **Teach order today:** array pain → code to the interface → `List` / `ArrayList` → `Set` / `HashSet` → `Map` / `HashMap` → choose the structure → inventory / contacts push.
@@ -89,11 +89,12 @@ flowchart TB
 **Icons:** Order · Employee · Bank · Payroll · Laptop
 
 **Where used?**
-- **TechMart** — cart lines, SKU catalog, unique coupon codes
+- **Swiggy** — cart lines, SKU catalog, unique coupon codes
 - College apps — growing student lists, unique roll numbers, contact book
-- **AcmeHR** — employee roster, emp-id → salary lookup
-- **SecureBank** — recent txn list, unique UPI IDs, account-id → balance
-- **MedCare** — appointment queues, unique MRNs, phone → patient
+- **Employee Management Portal** — employee roster, emp-id → salary lookup
+- **HDFC Bank** — recent txn list, account-id → balance
+- **PhonePe** — unique UPI IDs
+- **Apollo Hospitals** — appointment queues, unique MRNs, phone → patient
 
 ---
 
@@ -372,7 +373,7 @@ USB
 
 **Common Error:** `for (int i = 0; i <= cart.size(); i++)` — the `=` walks one past the end.
 
-Build a TechMart cart with Idli, Dosa, and Tea, then print the first item and the last item using `size() - 1`.
+Build a Swiggy cart with Idli, Dosa, and Tea, then print the first item and the last item using `size() - 1`.
 
 ```java
 import java.util.ArrayList;
@@ -397,7 +398,7 @@ Idli
 Tea
 ```
 
-Add Notebook to a TechMart cart, insert PROMO-Mug at index 0, and print the list.
+Add Notebook to a Swiggy cart, insert PROMO-Mug at index 0, and print the list.
 
 ```java
 import java.util.ArrayList;
@@ -588,7 +589,7 @@ Think of a club register that refuses a second stamp for the same ID.
 
 **Common Error:** Putting your own class in a `HashSet` without a matching `equals` / `hashCode`. Two `Item` objects with the same SKU still look different. This week: store **`String` SKUs / emails** in the set.
 
-Add SKU P101 to a TechMart set twice and print whether the second `add` succeeded plus the set size.
+Add SKU P101 to a Swiggy set twice and print whether the second `add` succeeded plus the set size.
 
 ```java
 import java.util.HashSet;
@@ -877,7 +878,7 @@ Print order of a `HashMap` is **not** add-order. For a receipt in add-order, kee
 - Wrong: treating `HashMap` like a numbered register (`phones.get(0)`).
 - Prefer: `entrySet()` when you need key **and** value together (one lookup, not `get` inside a `keySet` loop).
 
-Add Notebook and Pen to a TechMart cart and print each item with an enhanced for-loop.
+Add Notebook and Pen to a Swiggy cart and print each item with an enhanced for-loop.
 
 ```java
 import java.util.ArrayList;
@@ -1076,7 +1077,7 @@ public class ThreeNamesList {
 Ravi
 ```
 
-Add Tea to a TechMart cart, call `clear()`, and print `isEmpty()`.
+Add Tea to a Swiggy cart, call `clear()`, and print `isEmpty()`.
 
 ```java
 import java.util.ArrayList;
@@ -1382,7 +1383,7 @@ Why three structures?
 
 Lab kit: [15_Lab_Assets/12_collections_inventory/](../15_Lab_Assets/12_collections_inventory/).
 
-Store a TechMart Notebook on SKU P101 in two parallel maps (name and price) and print both together.
+Store a Swiggy Notebook on SKU P101 in two parallel maps (name and price) and print both together.
 
 ```java
 import java.util.HashMap;
@@ -1407,7 +1408,7 @@ Notebook ₹40
 
 Parallel maps work for a tiny demo. They drift apart (name without price). Prefer one `Item` in one map — as in Step 4.
 
-Keep a TechMart add-order `List` of SKUs next to a price `Map` and print each SKU with its price in list order.
+Keep a Swiggy add-order `List` of SKUs next to a price `Map` and print each SKU with its price in list order.
 
 ```java
 import java.util.ArrayList;
@@ -1613,7 +1614,7 @@ public class EmptyListMessage {
 (empty)
 ```
 
-Parse a typed TechMart price `"55"` with `Integer.parseInt` after `trim` and print the int.
+Parse a typed Swiggy price `"55"` with `Integer.parseInt` after `trim` and print the int.
 
 ```java
 public class ParsePriceLite {
@@ -1849,7 +1850,7 @@ public class ExpenseCountMap {
 
 ---
 
-## Mini-Project (Assignment): TechMart Inventory + Contact Book
+## Mini-Project (Assignment): Swiggy Inventory + Contact Book
 
 **Lab kit:** [15_Lab_Assets/12_collections_inventory/](../15_Lab_Assets/12_collections_inventory/)
 
@@ -1986,7 +1987,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** A growable object in `java.util` that holds other objects — `List`, `Set`, `Map` and the classes that implement them.
 
 **Q2. Why `List<String> cart = new ArrayList<>();`?**  
-**A:** Code to the interface. A **TechMart** cart uses `List` methods. The class on the right can change later.
+**A:** Code to the interface. A **Swiggy** cart uses `List` methods. The class on the right can change later.
 
 **Q3. Array vs `ArrayList`?**  
 **A:** Array size is fixed; `length` is a field. `ArrayList` grows; you call `size()`. Arrays can hold primitives; lists hold wrappers / objects.
@@ -2004,13 +2005,13 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** `get` → value or `null`. `getOrDefault` → value or a fallback (no NPE from a missing key if the fallback is a real value). `containsKey` → boolean “is this key there?” — use it before unboxing `Integer`.
 
 **Q8. Why a `List` of SKUs *and* a `Map` of SKU → Item?**  
-**A:** **TechMart** map looks up price. The list remembers add-order. `HashMap` iteration order is not a contract.
+**A:** **Swiggy** map looks up price. The list remembers add-order. `HashMap` iteration order is not a contract.
 
 **Q9. `remove(int)` vs `remove(Object)` on `List<Integer>`?**  
 **A:** `remove(0)` is index. `remove(Integer.valueOf(20))` is value. `remove(20)` on a short list is “index 20” and blows the bounds.
 
 **Q10. May we `throw` on a missing SKU this week?**  
-**A:** No. Exception Handling is next. Print a message and `return`. Same rule as SecureBank `BankAccount` / Campus Wallet.
+**A:** No. Exception Handling is next. Print a message and `return`. Same rule as HDFC Bank `BankAccount` / Campus Wallet.
 
 ---
 

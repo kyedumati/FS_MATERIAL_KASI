@@ -59,10 +59,10 @@ flowchart TB
 **Icons:** Bank · UPI · Order · Hospital · Payroll
 
 **Where used?**
-- **SecureBank** / UPI — wrong PIN, insufficient funds, invalid amount
+- **HDFC Bank** / **PhonePe** — wrong PIN, insufficient funds, invalid amount
 - Forms & CLI — bad age, non-numeric marks, missing fields
 - Collections — `parseInt` on menu input; unboxing `null` from `Map.get`
-- **TechMart** / **MedCare** — order capacity, appointment slot out of range
+- **Swiggy** / **Apollo Hospitals** — order capacity, appointment slot out of range
 - **Later — Files / JDBC:** missing file, closed connection (try-with-resources)
 
 ---
@@ -108,7 +108,7 @@ still running
 
 **Common Error:** Catching `Exception` and returning `-1` so the caller thinks `-1` is a real age. Throw or print — do not invent a magic number.
 
-Try parsing SecureBank UPI PIN attempts `ab12` then `1234`; catch `NumberFormatException`, print that the PIN must be digits, and break when a PIN is accepted.
+Try parsing PhonePe PIN attempts `ab12` then `1234`; catch `NumberFormatException`, print that the PIN must be digits, and break when a PIN is accepted.
 
 ```java
 public class PinRetry {
@@ -134,7 +134,7 @@ PIN must be digits only
 PIN accepted: 1234
 ```
 
-Split a TechMart bill of ₹500 among 4 friends then among 0; catch `ArithmeticException` when dividing by zero.
+Split a Swiggy bill of ₹500 among 4 friends then among 0; catch `ArithmeticException` when dividing by zero.
 
 ```java
 public class SplitBill {
@@ -391,7 +391,7 @@ Discount set to 15%
 - Wrong: `throw new Exception("bad")` from every setter — that forces every caller to declare `throws Exception`.
 - Prefer: `IllegalArgumentException` / `IllegalStateException` for “you passed garbage”; **custom** types when callers must distinguish domain failures.
 
-Book MedCare seats when 2 of 5 are available, then throw `IllegalArgumentException` when 5 are requested of only 3.
+Book Apollo Hospitals seats when 2 of 5 are available, then throw `IllegalArgumentException` when 5 are requested of only 3.
 
 ```java
 public class ThrowSeats {
@@ -420,7 +420,7 @@ Booked 2 seat(s). Left: 3
 Booking failed: Not enough seats
 ```
 
-Call a SecureBank helper that throws `IllegalArgumentException` when the amount is -10, and print the message.
+Call an HDFC Bank helper that throws `IllegalArgumentException` when the amount is -10, and print the message.
 
 ```java
 public class ThrowAmount {
@@ -667,7 +667,7 @@ Anita
 Error: Roll not found: 999
 ```
 
-Withdraw ₹800 from a SecureBank balance of ₹500; throw unchecked `InsufficientFundsException` and catch it in `main`.
+Withdraw ₹800 from an HDFC Bank balance of ₹500; throw unchecked `InsufficientFundsException` and catch it in `main`.
 
 ```java
 public class CustomFunds {
@@ -1095,7 +1095,7 @@ Anita ₹500
 
 Balance is unchanged. That is the same rule as print + return — now the **caller cannot miss it**.
 
-Throw `IllegalArgumentException` when a SecureBank amount of -5 is not positive, and print the message.
+Throw `IllegalArgumentException` when an HDFC Bank amount of -5 is not positive, and print the message.
 
 ```java
 public class BankBadAmount {
@@ -1117,7 +1117,7 @@ public class BankBadAmount {
 amount must be positive
 ```
 
-Subtract a successful SecureBank withdraw of ₹100 from ₹500 and print the new balance.
+Subtract a successful HDFC Bank withdraw of ₹100 from ₹500 and print the new balance.
 
 ```java
 public class BankOkWithdraw {
@@ -1430,7 +1430,7 @@ done
 
 ---
 
-## Mini-Project (Assignment): MedCare Safe Age Input CLI
+## Mini-Project (Assignment): Apollo Hospitals Safe Age Input CLI
 
 **Lab kit:** [15_Lab_Assets/13_safe_input_exceptions/](../15_Lab_Assets/13_safe_input_exceptions/)
 

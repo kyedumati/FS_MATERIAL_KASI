@@ -1,6 +1,6 @@
 # Ticket: Mini ATM Menu
 
-**Customer:** SecureBank training ATM  
+**Customer:** HDFC Bank training ATM  
 **Need:** Console ATM: check balance, deposit, withdraw, quit. Wrong choice must not exit.
 
 ## Starter

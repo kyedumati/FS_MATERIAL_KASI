@@ -95,7 +95,7 @@ Circle the best option.
 // your code
 ```
 
-2. Write `CanteenCsv` for **AcmeHR** expenses. Use `Path.of("canteen_expenses.csv")` and UTF-8. If the file is missing, write header `item,amount`. Method `appendRow(item, amount)` **throws** `IllegalArgumentException` if `amount <= 0`; otherwise **append** `item,amount` with `CREATE` + `APPEND`. In `main`: append `Tea` at `45`, `Bus` at `30`, then try amount `0` (catch and print). Then `Files.readString` and print the file. Catch `IOException`. No JDBC. No Git.
+2. Write `CanteenCsv` for **Employee Management Portal** expenses. Use `Path.of("canteen_expenses.csv")` and UTF-8. If the file is missing, write header `item,amount`. Method `appendRow(item, amount)` **throws** `IllegalArgumentException` if `amount <= 0`; otherwise **append** `item,amount` with `CREATE` + `APPEND`. In `main`: append `Tea` at `45`, `Bus` at `30`, then try amount `0` (catch and print). Then `Files.readString` and print the file. Catch `IOException`. No JDBC. No Git.
 
 ```java
 // your code
@@ -105,6 +105,6 @@ Circle the best option.
 
 ## C. Short answer (1)
 
-In 3–6 sentences, explain a **campus library** ER sketch (or **TechMart** Customer / Product / Order): which boxes you draw, which 1:N line, why a **PRIMARY KEY**, and why this is safer than one Excel sheet. Do **not** write JOIN SQL.
+In 3–6 sentences, explain a **campus library** ER sketch (or **Swiggy** Customer / Product / Order): which boxes you draw, which 1:N line, why a **PRIMARY KEY**, and why this is safer than one Excel sheet. Do **not** write JOIN SQL.
 
 _(Write 3–6 sentences.)_

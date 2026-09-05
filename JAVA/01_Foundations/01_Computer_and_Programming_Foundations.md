@@ -20,10 +20,10 @@ A **computer** is a machine that takes **input**, processes it using rules, and 
 
 **Where used?**
 - College apps — student portal login, marks screens, lab machines
-- **TechMart** / CampusCart — checkout flow (browser client → server → DB)
-- **SecureBank** / UPI — ATM withdrawal; app request → bank server
-- **AcmeHR** — employee tools that run on company laptops
-- **MedCare** — appointment desks using folders, terminals, and web portals
+- **Swiggy** / CampusCart — checkout flow (browser client → server → DB)
+- **HDFC Bank** / **PhonePe** — ATM withdrawal; app request → bank server
+- **Employee Management Portal** — employee tools that run on company laptops
+- **Apollo Hospitals** — appointment desks using folders, terminals, and web portals
 
 Think of it like a kitchen:
 
@@ -389,7 +389,7 @@ You will write the Java version after Flow Control. Today, focus on *logic*, not
 - Wrong: Mixing up *algorithm* (English steps) with *code* (Java syntax).
 - Prefer: Write steps in plain English / pseudocode first; code comes later.
 
-Write pseudocode for a SecureBank ATM withdraw flow that checks PIN and balance before dispensing cash.
+Write pseudocode for an HDFC Bank ATM withdraw flow that checks PIN and balance before dispensing cash.
 
 ```
 START

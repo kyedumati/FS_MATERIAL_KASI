@@ -2,7 +2,7 @@
 
 **Module Outcome:**
 
-- Filter TechMart products with WHERE, comparison, LIKE, and IN
+- Filter Swiggy products with WHERE, comparison, LIKE, and IN
 - Sort and limit so a catalogue page is not 10,000 rows
 - Write a SELECT you could paste into Workbench and trust
 

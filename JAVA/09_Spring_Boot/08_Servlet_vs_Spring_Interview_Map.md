@@ -39,10 +39,10 @@
 **Icons:** Bank · Order · Laptop · Employee · UPI
 
 **Where used?**
-- CampusCart / **TechMart** — JSON catalog you already shipped; interviews still ask “Servlet vs Spring”
-- **SecureBank** — seniors say “filter chain” meaning the same Servlet filters under Boot
-- **AcmeHR** — staff APIs on JAR + embedded Tomcat, not a WAR dropped into office Tomcat
-- **MedCare** — public doctor list GET still hits `DispatcherServlet` after security filters
+- CampusCart / **Swiggy** — JSON catalog you already shipped; interviews still ask “Servlet vs Spring”
+- **HDFC Bank** — seniors say “filter chain” meaning the same Servlet filters under Boot
+- **Employee Management Portal** — staff APIs on JAR + embedded Tomcat, not a WAR dropped into office Tomcat
+- **Apollo Hospitals** — public doctor list GET still hits `DispatcherServlet` after security filters
 - Service-company JDs — copy “Servlets/JSP” from old syllabi while the desk work is Boot REST
 
 **Visual — interview map (not a new app):**
@@ -275,7 +275,7 @@ Boot registers the front controller
 
 **Remember:** Homework is **five bullets**, oral + written. No new endpoint.
 
-**Where used?** Same five lines work for CampusCart, TechMart catalog, AcmeHR staff API, MedCare list, SecureBank ping — the **path** does not change.
+**Where used?** Same five lines work for CampusCart, Swiggy catalog, Employee Management Portal staff API, Apollo Hospitals list, HDFC Bank ping — the **path** does not change.
 
 Print the five interview labels: Servlet-JSP vs Boot REST, web.xml vs annotations plus auto-config, WAR plus external Tomcat vs JAR plus embedded, javax vs jakarta, and still Servlet API without writing an HttpServlet class.
 
@@ -787,7 +787,7 @@ Struts JSF OAuth2 Docker
 
 **Lab kit:** [15_Lab_Assets/19_spring_auth_tasks/](../15_Lab_Assets/19_spring_auth_tasks/) — **point only**. Do **not** add endpoints. Do **not** create kit 20. Do **not** add a folder under `15_Lab_Assets/` for Servlets.
 
-This assignment is the **interview note**, not a product build. CampusCart / TechMart JSON you already shipped is the example. Write five bullets. Say the oral path. No new API.
+This assignment is the **interview note**, not a product build. CampusCart / Swiggy JSON you already shipped is the example. Write five bullets. Say the oral path. No new API.
 
 ### What to build
 
@@ -843,7 +843,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Same container. `SecurityFilterChain` / `JwtAuthFilter` reject anonymous POST → **401** before a successful create. Taught in module 05 / Lab 06.
 
 **Q7. Servlet/JSP vs Spring Boot REST?**  
-**A:** Old shape: `HttpServlet` / JSP pages, often HTML. This course: `@RestController` JSON for CampusCart / TechMart. Thymeleaf was one overview page, not the backbone.
+**A:** Old shape: `HttpServlet` / JSP pages, often HTML. This course: `@RestController` JSON for CampusCart / Swiggy. Thymeleaf was one overview page, not the backbone.
 
 **Q8. `web.xml` vs Boot?**  
 **A:** Old apps listed servlets and filters in `web.xml` (plus XML beans). We use **annotations** and **auto-configuration** from starters. No `web.xml` homework.

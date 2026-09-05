@@ -1,6 +1,6 @@
 # Ticket: Never Crash on Bad Input
 
-**Customer:** MedCare registration desk  
+**Customer:** Apollo Hospitals registration desk  
 **Need:** Read an int age. Non-numeric input is `ValueError`. Age outside 1–120 is custom `InvalidAgeError`. Expected cases must not print a traceback.
 
 **Teaching-order:** `try` / `except` / `raise`, custom exception class. No type hints required. No `raise ... from e` and no `assert` in the core path.

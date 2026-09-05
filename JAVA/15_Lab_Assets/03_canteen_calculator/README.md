@@ -1,6 +1,6 @@
-# Ticket: TechMart Canteen Calculator
+# Ticket: Swiggy Canteen Calculator
 
-**Customer:** TechMart canteen counter (CampusCart stall)  
+**Customer:** Swiggy canteen counter (CampusCart stall)  
 **Need:** Staff still use paper for `price × qty + GST`. Build a CLI calculator.
 
 **Teaching-order:** Linear `main` only — no `if` / `while` / `for` / extra methods.

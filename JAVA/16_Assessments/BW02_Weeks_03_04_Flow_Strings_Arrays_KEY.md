@@ -19,7 +19,7 @@
 
 ## B. Coding — model points
 
-1. Mini **SecureBank** ATM menu (balance 1000): Balance / Deposit / Withdraw / Quit. Block overdraft. `while`/`if` only — **no extra methods**.
+1. Mini **HDFC Bank** ATM menu (balance 1000): Balance / Deposit / Withdraw / Quit. Block overdraft. `while`/`if` only — **no extra methods**.
    - Award marks for correctness + teaching-order constraints.
 
 2. Marks in `int[]` + `count`. Add / list / average (safe if empty) / toppers ≥90 / quit. No extra methods, no `ArrayList`.

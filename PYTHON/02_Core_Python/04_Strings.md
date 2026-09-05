@@ -20,11 +20,11 @@ A **string** (`str`) is a sequence of characters — letters, digits, symbols, s
 **Icons:** Bank · UPI · Employee · Order · Hospital
 
 **Where used?**
-- **SecureBank** / UPI — mask account/phone digits, parse UPI IDs
+- **HDFC Bank** / **PhonePe** — mask account/phone digits, parse UPI IDs
 - College apps — roll numbers, email normalize for login
-- **TechMart** — product titles, URL slugs, invoice lines
-- **AcmeHR** — offer-letter templates, employee name formatting
-- **MedCare** — patient phone masking, ticket subject cleanup
+- **Swiggy** — product titles, URL slugs, invoice lines
+- **Employee Management Portal** — offer-letter templates, employee name formatting
+- **Apollo Hospitals** — patient phone masking, ticket subject cleanup
 
 ### Why do we need strings?
 
@@ -691,7 +691,7 @@ print(reversed_s)  # loop
 
 ---
 
-## Mini-Project (Assignment): AcmeHR / Student Text Utilities CLI
+## Mini-Project (Assignment): Employee Management Portal / Student Text Utilities CLI
 
 **Title:** Menu-driven text cleaner for registration fields  
 **Lab kit (build here):** [15_Lab_Assets/09_string_parser/](../15_Lab_Assets/09_string_parser/)

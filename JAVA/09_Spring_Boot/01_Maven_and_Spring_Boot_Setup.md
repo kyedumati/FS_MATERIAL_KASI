@@ -35,10 +35,10 @@
 **Icons:** Bank · Order · Laptop · Employee · UPI
 
 **Where used?**
-- CampusCart / **TechMart** — first `/hello` and `/health` before catalog APIs
-- **SecureBank** / UPI — a JSON health ping before any money movement
-- **MedCare** — “is the API up?” before booking screens
-- **AcmeHR** — a Boot service that later returns payslip JSON
+- CampusCart / **Swiggy** — first `/hello` and `/health` before catalog APIs
+- **HDFC Bank** / **PhonePe** — a JSON health ping before any money movement
+- **Apollo Hospitals** — “is the API up?” before booking screens
+- **Employee Management Portal** — a Boot service that later returns payslip JSON
 - Ecommerce — the same `starter-web` shape for product APIs (**Later —** JPA)
 
 **Visual — Maven then Boot:**
@@ -1135,7 +1135,7 @@ APP_MESSAGE=Hello from Ravi laptop
 
 ---
 
-## Mini-Project (Assignment): CampusCart / TechMart Hello Boot API
+## Mini-Project (Assignment): CampusCart / Swiggy Hello Boot API
 
 There is **no lab-kit folder** this module — generate **`campus-hello`** from [start.spring.io](https://start.spring.io) (Maven, Java 17, Boot **3.5.x**, **Spring Web** only) or paste the `pom.xml` from this chapter. Push a public repo. No secrets in git.
 

@@ -12,11 +12,11 @@
 
 - Listen to a click, read a field, and rewrite the page without a full reload
 - Validate a form in the browser before it hits Django or Spring
-- See “Add to cart” as DOM + data — the same pattern as MedCare book-slot
+- See “Add to cart” as DOM + data — the same pattern as Apollo Hospitals book-slot
 
 **JavaScript** makes pages **interactive**. HTML = skeleton; CSS = skin; JS = muscles — clicks, validation, fetching data from Django API without full reload.
 
-CampusCart is the college **TechMart** storefront. "Add to cart" flow (same pattern for AcmeHR leave submit, MedCare book slot, SecureBank transfer):
+CampusCart is the college **Swiggy** storefront. "Add to cart" flow (same pattern for Employee Management Portal leave submit, Apollo Hospitals book slot, HDFC Bank transfer):
 
 1. Event listener hears click
 2. JS updates **DOM** (browser's live HTML tree)
@@ -115,7 +115,7 @@ cartCount = cartCount + 1;
 
 **Try these (2 programs):**
 
-**Program 1 — TechMart cart counter**
+**Program 1 — Swiggy cart counter**
 
 ```javascript
 "use strict";
@@ -126,7 +126,7 @@ cartCount += 1;
 console.log(APP_NAME, "items:", cartCount);
 ```
 
-**Program 2 — TechMart INR totals**
+**Program 2 — Swiggy INR totals**
 
 ```javascript
 "use strict";
@@ -149,7 +149,7 @@ const double = (n) => n * 2;
 
 **Try these (2 programs):**
 
-**Program 1 — TechMart formatPrice**
+**Program 1 — Swiggy formatPrice**
 
 ```javascript
 "use strict";
@@ -209,7 +209,7 @@ Prefer `classList` over inline `style`.
 </script>
 ```
 
-**Program 2 — TechMart style product cards**
+**Program 2 — Swiggy style product cards**
 
 ```javascript
 "use strict";
@@ -400,7 +400,7 @@ async function createOrder(data) {
 
 **Try these (2 programs):**
 
-**Program 1 — AcmeHR load employees into a list**
+**Program 1 — Employee Management Portal load employees into a list**
 
 ```javascript
 "use strict";

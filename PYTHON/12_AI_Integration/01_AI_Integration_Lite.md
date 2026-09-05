@@ -32,10 +32,10 @@ Most **junior Python full-stack** roles want you to:
 **Icons:** Order · Laptop · Employee · Bank · Payroll
 
 **Where used?**
-- **TechMart** — canteen review sentiment / spam filter behind a Flask route
+- **Swiggy** — canteen review sentiment / spam filter behind a Flask route
 - College apps — simple chatbot FAQ endpoint on the student portal
 - CRM / support — summarize tickets via remote model API
-- **SecureBank** — fraud/risk scores consumed as JSON (you wire the call, not train GPT)
+- **HDFC Bank** — fraud/risk scores consumed as JSON (you wire the call, not train GPT)
 - Resume — one honest “AI-integrated demo” after Django deploy is solid
 
 Employers do **not** expect you to publish research papers or build GPT from scratch. This module matches **brochure "AI Integration Lite"** — practical wiring.

@@ -5,26 +5,26 @@ Three end-to-end database projects for hands-on practice. Each project includes 
 **Setup:** Create a separate database for each project.
 
 ```sql
-CREATE DATABASE acmehr;
-CREATE DATABASE techmart;
-CREATE DATABASE medcare;   -- Hospital project
+CREATE DATABASE employee_portal;
+CREATE DATABASE swiggy;
+CREATE DATABASE apollo;   -- Hospital project
 -- or
-CREATE DATABASE securebank; -- Banking project
+CREATE DATABASE hdfc_bank; -- Banking project
 ```
 
 ---
 
 **Module Outcome:**
 
-- Stand up AcmeHR, TechMart, or MedCare as a real schema + sample data
+- Stand up Employee Management Portal, Swiggy, or Apollo Hospitals as a real schema + sample data
 - Answer the project queries from tables you created, not screenshots
 - Reuse these schemas in Python/Java labs instead of inventing column names
 
-## Project 1: AcmeHR — Employee Management System
+## Project 1: Employee Management Portal — Employee Management System
 
 ### Overview
 
-AcmeHR manages employees, departments, salaries, and leave records for a mid-size company.
+Employee Management Portal manages employees, departments, salaries, and leave records for a mid-size company.
 
 ### Schema Design
 
@@ -39,7 +39,7 @@ AcmeHR manages employees, departments, salaries, and leave records for a mid-siz
 ### CREATE TABLES
 
 ```sql
-USE acmehr;
+USE employee_portal;
 
 CREATE TABLE department (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -80,11 +80,11 @@ INSERT INTO department (name, location) VALUES
 ('Sales', 'Delhi');
 
 INSERT INTO employee (name, email, department_id, manager_id, salary, hire_date) VALUES
-('Arun Kumar', 'arun@acme.com', 1, NULL, 120000, '2020-01-15'),
-('Priya Shah', 'priya@acme.com', 1, 1, 90000, '2021-06-01'),
-('Ravi Menon', 'ravi@acme.com', 1, 1, 85000, '2022-03-10'),
-('Sneha Rao', 'sneha@acme.com', 2, NULL, 75000, '2019-08-20'),
-('Kiran Das', 'kiran@acme.com', 3, NULL, 80000, '2021-11-05');
+('Arun Kumar', 'arun@company.com', 1, NULL, 120000, '2020-01-15'),
+('Priya Shah', 'priya@company.com', 1, 1, 90000, '2021-06-01'),
+('Ravi Menon', 'ravi@company.com', 1, 1, 85000, '2022-03-10'),
+('Sneha Rao', 'sneha@company.com', 2, NULL, 75000, '2019-08-20'),
+('Kiran Das', 'kiran@company.com', 3, NULL, 80000, '2021-11-05');
 
 INSERT INTO leave_record (employee_id, leave_type, start_date, end_date) VALUES
 (2, 'casual', '2024-01-10', '2024-01-12'),
@@ -104,11 +104,11 @@ INSERT INTO leave_record (employee_id, leave_type, start_date, end_date) VALUES
 
 ---
 
-## Project 2: TechMart — E-Commerce Database
+## Project 2: Swiggy — Food Delivery Database
 
 ### Overview
 
-TechMart is an online store selling electronics, clothing, and food. Builds on the e-commerce model from [Modeling Databases](06_Modeling_Databases.md).
+Swiggy is a food-delivery app: restaurants, menu items, carts, and orders. Builds on the order/cart model from [Modeling Databases](06_Modeling_Databases.md).
 
 ### Schema Design
 
@@ -125,7 +125,7 @@ TechMart is an online store selling electronics, clothing, and food. Builds on t
 ### CREATE TABLES
 
 ```sql
-USE techmart;
+USE swiggy;
 
 CREATE TABLE customer (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -198,16 +198,16 @@ INSERT INTO customer (name, email, phone) VALUES
 ('Meera Nair', 'meera@email.com', '9876543211');
 
 INSERT INTO product (name, category, price, brand, rating, stock) VALUES
-('Smart Watch', 'Gadgets', 17000, 'Apple', 4.9, 50),
-('Blue Shirt', 'clothing', 750, 'Denim', 3.8, 200),
-('Chocolate Cake', 'Food', 25, 'Britannia', 3.7, 100),
-('Smart TV', 'Gadgets', 40000, 'Sony', 4.0, 30);
+('Masala Dosa', 'South Indian', 80, 'Udupi Kitchen', 4.6, 50),
+('Paneer Butter Masala', 'North Indian', 220, 'Punjab Dhaba', 4.4, 40),
+('Chocolate Cake', 'Dessert', 90, 'Bake House', 4.2, 100),
+('Chicken Biryani', 'Biryani', 280, 'Paradise', 4.7, 30);
 
-INSERT INTO cart (customer_id, total_price) VALUES (1, 17750);
+INSERT INTO cart (customer_id, total_price) VALUES (1, 300);
 INSERT INTO cart_product (cart_id, product_id, quantity) VALUES (1, 1, 1), (1, 2, 1);
 
-INSERT INTO orders (customer_id, status, total_amount) VALUES (1, 'delivered', 17750);
-INSERT INTO order_item (order_id, product_id, quantity, unit_price) VALUES (1, 1, 1, 17000), (1, 2, 1, 750);
+INSERT INTO orders (customer_id, status, total_amount) VALUES (1, 'delivered', 300);
+INSERT INTO order_item (order_id, product_id, quantity, unit_price) VALUES (1, 1, 1, 80), (1, 2, 1, 220);
 ```
 
 ### Practice Queries
@@ -222,16 +222,16 @@ INSERT INTO order_item (order_id, product_id, quantity, unit_price) VALUES (1, 1
 
 ---
 
-## Project 3A: MedCare — Hospital Management System
+## Project 3A: Apollo Hospitals — Hospital Management System
 
 ### Overview
 
-MedCare manages patients, doctors, appointments, and prescriptions.
+Apollo Hospitals manages patients, doctors, appointments, and prescriptions.
 
 ### CREATE TABLES
 
 ```sql
-USE medcare;
+USE apollo;
 
 CREATE TABLE doctor (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -281,16 +281,16 @@ CREATE TABLE prescription (
 
 ---
 
-## Project 3B: SecureBank — Banking System
+## Project 3B: HDFC Bank — Banking System
 
 ### Overview
 
-SecureBank manages accounts, transactions, and loans. Use this as an alternative to MedCare.
+HDFC Bank manages accounts, transactions, and loans. Use this as an alternative to Apollo Hospitals.
 
 ### CREATE TABLES
 
 ```sql
-USE securebank;
+USE hdfc_bank;
 
 CREATE TABLE customer (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -346,8 +346,8 @@ CREATE TABLE loan (
 
 ## Project Completion Checklist
 
-| Task | AcmeHR | TechMart | MedCare / SecureBank |
-|------|--------|----------|----------------------|
+| Task | Employee Management Portal | Swiggy | Apollo Hospitals / HDFC Bank |
+|------|----------------------------|--------|------------------------------|
 | Create database | ☐ | ☐ | ☐ |
 | Run CREATE TABLE scripts | ☐ | ☐ | ☐ |
 | Insert sample data | ☐ | ☐ | ☐ |

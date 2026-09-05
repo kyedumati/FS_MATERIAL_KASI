@@ -89,7 +89,7 @@ Circle the best option.
 
 ## B. Coding (2)
 
-1. Write a mini **SecureBank** ATM menu (balance starts 1000): options Balance / Deposit / Withdraw / Quit. Block overdraft. Use `while`/`if` only — **no `def`**.
+1. Write a mini **HDFC Bank** ATM menu (balance starts 1000): options Balance / Deposit / Withdraw / Quit. Block overdraft. Use `while`/`if` only — **no `def`**.
 
 ```python
 # your code

@@ -37,11 +37,11 @@
 **Icons:** Bank · Order · Laptop · Employee · UPI
 
 **Where used?**
-- CampusCart / **TechMart** — catalog JSON that **survives restart**
+- CampusCart / **Swiggy** — catalog JSON that **survives restart**
 - Canteen / mess — snacks in MySQL, not in the JVM
-- **SecureBank** / UPI — account rows behind a JSON list (**no money movement here**)
-- **MedCare** — medicine / token catalog
-- **AcmeHR** — employee master (**Later —** relations)
+- **HDFC Bank** / **PhonePe** — account rows behind a JSON list (**no money movement here**)
+- **Apollo Hospitals** — medicine / token catalog
+- **Employee Management Portal** — employee master (**Later —** relations)
 
 **Visual — REST to MySQL:**
 
@@ -1291,7 +1291,7 @@ Later — migrations / DBA DDL
 
 ---
 
-## Mini-Project (Assignment): TechMart / CampusCart JPA Product Catalog
+## Mini-Project (Assignment): Swiggy / CampusCart JPA Product Catalog
 
 **Lab kit:** [15_Lab_Assets/18_jpa_product_crud/](../15_Lab_Assets/18_jpa_product_crud/)
 

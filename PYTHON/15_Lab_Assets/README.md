@@ -44,7 +44,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 | [29_ai_review_stub](29_ai_review_stub/) | optional after S95 | Ticket: Optional AI Recommend Endpoint |
 | [30_ksr_utils_toolkit](30_ksr_utils_toolkit/) | ~28–35 | Ticket: Ship `ksr_utils` (validators, formatters, decorators, generators) |
 | [31_email_id_dedup](31_email_id_dedup/) | ~21–22 | Ticket: Clean Duplicate IDs Before Import |
-| [32_campus_wallet_abc](32_campus_wallet_abc/) | ~40 | Ticket: SecureBank Campus Wallet |
+| [32_campus_wallet_abc](32_campus_wallet_abc/) | ~40 | Ticket: HDFC Bank Campus Wallet |
 
 ### Shared topic labs (outside this folder)
 

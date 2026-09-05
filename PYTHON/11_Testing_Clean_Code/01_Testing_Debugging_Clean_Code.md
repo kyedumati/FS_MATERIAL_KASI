@@ -22,9 +22,9 @@ In Indian IT interviews and on the job, you will:
 **Icons:** Laptop · Order · Employee · Bank · Payroll
 
 **Where used?**
-- **TechMart** — discount / GST helpers must not ship wrong ₹ amounts
+- **Swiggy** — discount / GST helpers must not ship wrong ₹ amounts
 - College apps — marks averages and login validators covered by unit tests
-- **SecureBank** / **AcmeHR** — money math needs tests before production merges
+- **HDFC Bank** / **Employee Management Portal** — money math needs tests before production merges
 - Service companies — PR reviews expect tests + clear function names
 - Capstone — prove CRUD edge cases (empty list, bad percent) before demo
 

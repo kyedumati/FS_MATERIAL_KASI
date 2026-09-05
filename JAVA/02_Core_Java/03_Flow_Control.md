@@ -20,11 +20,11 @@ Programs rarely run in one straight line. A **student portal** must check login,
 **Icons:** Bank · UPI · Employee · Order · Payroll
 
 **Where used?**
-- **SecureBank** ATM — PIN retries, withdraw only if balance allows
+- **HDFC Bank** ATM — PIN retries, withdraw only if balance allows
 - College apps — pass/fail grades, marks menus
-- **TechMart** — stock checks, checkout loops
-- **AcmeHR** — overtime flags, salary slabs
-- **MedCare** — appointment / ticket priority menus
+- **Swiggy** — stock checks, checkout loops
+- **Employee Management Portal** — overtime flags, salary slabs
+- **Apollo Hospitals** — appointment / ticket priority menus
 
 **Flow control** lets you:
 
@@ -180,7 +180,7 @@ public class EvenOdd {
 Odd
 ```
 
-Store a SecureBank ATM amount of `-50` and print whether it is OK to process or ask for a positive amount.
+Store an HDFC Bank ATM amount of `-50` and print whether it is OK to process or ask for a positive amount.
 
 ```java
 public class AmountValid {
@@ -226,7 +226,7 @@ public class GradeCalc {
 B
 ```
 
-Check a SecureBank UPI amount of ₹60000 against a ₹100000 demo limit and print Above bank demo limit, Within limit, or Invalid amount.
+Check a PhonePe amount of ₹60000 against a ₹100000 demo limit and print Above bank demo limit, Within limit, or Invalid amount.
 
 ```java
 public class UpiLimit {
@@ -243,7 +243,7 @@ public class UpiLimit {
 }
 ```
 
-For a SecureBank withdraw of ₹1200 from balance ₹1000, nest ifs to print Invalid amount, Insufficient balance, or Dispense.
+For an HDFC Bank withdraw of ₹1200 from balance ₹1000, nest ifs to print Invalid amount, Insufficient balance, or Dispense.
 
 ```java
 public class WithdrawCheck {
@@ -559,7 +559,7 @@ Lab kit: [15_Lab_Assets/05_atm_menu](../15_Lab_Assets/05_atm_menu/).
 
 ---
 
-## Mini-Project (Assignment): SecureBank Mini ATM Menu
+## Mini-Project (Assignment): HDFC Bank Mini ATM Menu
 
 **Lab kit:** [15_Lab_Assets/05_atm_menu](../15_Lab_Assets/05_atm_menu/)
 
@@ -597,5 +597,5 @@ Shared with students after concepts and the mini-project. Use for review and int
 **Q4. Why is `while (true)` dangerous?**  
 **A:** If you forget an exit path, the program never ends. Always pair it with Quit/`break`.
 
-**Q5. Nested `if` example from a SecureBank ATM?**  
-**A:** Outer: amount > 0. Inner: amount ≤ balance before subtracting. Same shape as a TechMart checkout (qty > 0, then stock).
+**Q5. Nested `if` example from an HDFC Bank ATM?**  
+**A:** Outer: amount > 0. Inner: amount ≤ balance before subtracting. Same shape as a Swiggy checkout (qty > 0, then stock).

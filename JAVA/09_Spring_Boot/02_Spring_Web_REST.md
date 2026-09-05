@@ -37,11 +37,11 @@
 **Icons:** Bank · Order · Laptop · Employee · UPI
 
 **Where used?**
-- CampusCart / **TechMart** — catalog JSON before a database
-- Canteen / mess — stall menu as a JSON array (college skin of TechMart)
-- **SecureBank** / UPI — a list of recent pings (still no money movement)
-- **MedCare** token display — GET list of counters
-- **AcmeHR** — a stub list of payslip ids (**Later —** JPA)
+- CampusCart / **Swiggy** — catalog JSON before a database
+- Canteen / mess — stall menu as a JSON array (college skin of Swiggy)
+- **HDFC Bank** / **PhonePe** — a list of recent pings (still no money movement)
+- **Apollo Hospitals** token display — GET list of counters
+- **Employee Management Portal** — a stub list of payslip ids (**Later —** JPA)
 
 **Visual — request to JSON:**
 
@@ -289,7 +289,7 @@ Map  -> JSON object { ... }
 CanteenItem getters -> {"id":1,"name":"Idli",...}
 ```
 
-Print a TechMart canteen seed of three snacks — Idli ₹40, Filter coffee ₹25, Masala dosa ₹60 — stored in an ArrayList in the controller.
+Print a Swiggy canteen seed of three snacks — Idli ₹40, Filter coffee ₹25, Masala dosa ₹60 — stored in an ArrayList in the controller.
 
 ```java
 public class CanteenSeedPrint {
@@ -479,7 +479,7 @@ Code @GetMapping("/{id}") @PathVariable int id
 id is 2
 ```
 
-Print a TechMart 404 line for a missing snack id.
+Print a Swiggy 404 line for a missing snack id.
 
 ```java
 public class MissingSnackPrint {
@@ -1144,7 +1144,7 @@ Controller outside component scan
 
 ---
 
-## Mini-Project (Assignment): TechMart Hello REST (In-Memory Catalog)
+## Mini-Project (Assignment): Swiggy Hello REST (In-Memory Catalog)
 
 **Lab kit:** [15_Lab_Assets/17_spring_hello_rest/](../15_Lab_Assets/17_spring_hello_rest/)
 
@@ -1228,7 +1228,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** To practise HTTP without opening JDBC or JPA this module. Data vanishes on restart. Next module persists with Spring Data JPA.
 
 **Q5. What is `@PathVariable`?**  
-**A:** It binds a `{name}` segment in the URL to a method parameter. `GET /canteen/items/2` (CampusCart / **TechMart**) → `id == 2`. Names in the path and the parameter must match (or you pass the name explicitly).
+**A:** It binds a `{name}` segment in the URL to a method parameter. `GET /canteen/items/2` (CampusCart / **Swiggy**) → `id == 2`. Names in the path and the parameter must match (or you pass the name explicitly).
 
 **Q6. What is `@RequestBody`?**  
 **A:** It binds the HTTP **body** (JSON) to a parameter. Used on POST (and later PUT). Requires `Content-Type: application/json`.

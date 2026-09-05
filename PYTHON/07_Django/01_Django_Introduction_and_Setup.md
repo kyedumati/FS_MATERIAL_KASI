@@ -28,7 +28,7 @@
 
 **Where used?**
 - Campus / student portal — login, marks, announcements (MTV + admin)
-- **TechMart** / CampusCart catalog, orders, staff admin for products
+- **Swiggy** / CampusCart catalog, orders, staff admin for products
 - Blog / Task Manager / Booking — course theme apps on the same Django project
 - IT services — internal HR / inventory portals with built-in admin
 - Capstone — full CRUD + auth stack recruiters expect on GitHub

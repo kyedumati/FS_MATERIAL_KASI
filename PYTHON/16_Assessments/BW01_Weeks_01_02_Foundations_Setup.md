@@ -1,7 +1,7 @@
 # Biweekly Assessment BW01 — Weeks 1–2
 
 **Sessions covered:** S01–10  
-**Topics:** Computer foundations, terminal, Python setup, variables, operators, I/O, f-strings, casting, TechMart canteen calculator
+**Topics:** Computer foundations, terminal, Python setup, variables, operators, I/O, f-strings, casting, Swiggy canteen calculator
 
 **Timebox:** 45–60 minutes (homework or Friday of the even week).  
 **Rules:** Closed notes unless your trainer allows open notes. No copying.  
@@ -89,7 +89,7 @@ Circle the best option.
 
 ## B. Coding (2)
 
-1. Ask for a **TechMart** canteen item **price** and **qty** (use `float` and `int`). Compute total with **5% GST** and print `Total: ₹…` with 2 decimals. Linear script only (no `if`/`def`).
+1. Ask for a **Swiggy** canteen item **price** and **qty** (use `float` and `int`). Compute total with **5% GST** and print `Total: ₹…` with 2 decimals. Linear script only (no `if`/`def`).
 
 ```python
 # your code

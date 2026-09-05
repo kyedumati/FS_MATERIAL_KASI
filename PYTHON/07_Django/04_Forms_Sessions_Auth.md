@@ -19,7 +19,7 @@ Browsers submit **HTML forms** with **GET** (read/search) or **POST** (create/up
 
 **Where used?**
 - Campus portal — register / login / profile forms
-- **TechMart** — add-to-cart session count; checkout ModelForms
+- **Swiggy** — add-to-cart session count; checkout ModelForms
 - Task Manager / Blog — create/edit forms with owner = `request.user`
 - Admin workflows — staff still use `/admin/`; users use your forms
 - Capstone — CSRF-protected POST + `@login_required` CRUD

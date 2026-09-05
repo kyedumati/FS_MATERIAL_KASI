@@ -154,10 +154,10 @@ flowchart LR
 
 **Where used?**
 
-- **SecureBank** (accounts, UPI wallets)
-- **TechMart** (orders, products, carts)
-- **MedCare** (patients, appointments)
-- **AcmeHR** (employees, salary slips)
+- **HDFC Bank** (accounts), **PhonePe** (UPI wallets)
+- **Swiggy** (orders, products, carts)
+- **Apollo Hospitals** (patients, appointments)
+- **Employee Management Portal** (employees, salary slips)
 - CRM (customers, tickets)
 
 | Idea          | Meaning                                              |
@@ -191,7 +191,7 @@ Classic pillars (Part 1 focuses on encapsulation; Parts 2–3 cover inheritance 
 
 ### 1. Class, object, `self`, `__init__`
 
-**Real-world analogy:** An **ATM card slot** is the class — one machine design. Priya's debit card is one **object**; Ravi's card is another. Same fields (`holder`, `balance`), different values. `__init__` is the branch printing *this* card with *this* account number. `self` is “the card in the slot right now.” **SecureBank** mints millions of `Account` objects from one class. **TechMart** does the same for `Order`. **MedCare** does the same for `Patient`.
+**Real-world analogy:** An **ATM card slot** is the class — one machine design. Priya's debit card is one **object**; Ravi's card is another. Same fields (`holder`, `balance`), different values. `__init__` is the branch printing *this* card with *this* account number. `self` is “the card in the slot right now.” **HDFC Bank** mints millions of `Account` objects from one class. **Swiggy** does the same for `Order`. **Apollo Hospitals** does the same for `Patient`.
 
 **Icons:** Employee · Order · Bank
 
@@ -272,7 +272,7 @@ sequenceDiagram
 - If you omit `__init__`, Python still creates the object (empty shell); you can add attributes later (usually not ideal for real entities).
 - Over-engineering OOP (five classes for hello world) — use functions until complexity grows.
 
-Write a SecureBank `SavingsAccount` with deposit (reject non-positive amounts) and `statement()`. Create two accounts, deposit, and print both statements.
+Write an HDFC Bank `SavingsAccount` with deposit (reject non-positive amounts) and `statement()`. Create two accounts, deposit, and print both statements.
 
 ```python
 class SavingsAccount:
@@ -306,7 +306,7 @@ SB-1001 | Priya Shah | ₹6500
 SB-1002 | Ravi Menon | ₹1200
 ```
 
-Write a TechMart `OrderLine` with `line_total()` and `label()`. Print each line in a cart and the cart total.
+Write a Swiggy `OrderLine` with `line_total()` and `label()`. Print each line in a cart and the cart total.
 
 ```python
 class OrderLine:
@@ -339,7 +339,7 @@ PEN-01 Gel pen x5 = ₹50
 Cart total: 170
 ```
 
-Write a MedCare `Appointment` with `confirm()` and `slip()`. Confirm one booking and print both slips.
+Write a Apollo Hospitals `Appointment` with `confirm()` and `slip()`. Confirm one booking and print both slips.
 
 ```python
 class Appointment:
@@ -373,7 +373,7 @@ Vikram Rao → Dr Kiran Das @ 11:15 [scheduled]
 
 ### 2. Three kinds of variables (instance / class / local)
 
-**Real-world analogy:** A **college ID card**. The college name is printed the same on every card — that is a **class** variable (one shared value). Your roll number is only yours — **instance**. The ink drying while the printer runs is **local**: it exists during that print job and disappears. **AcmeHR** shares `company` across employees. **SecureBank** shares `IFSC` across accounts at one branch. **TechMart** must *not* share one cart list across every customer (that is the mutable-class trap below).
+**Real-world analogy:** A **college ID card**. The college name is printed the same on every card — that is a **class** variable (one shared value). Your roll number is only yours — **instance**. The ink drying while the printer runs is **local**: it exists during that print job and disappears. **Employee Management Portal** shares `company` across employees. **HDFC Bank** shares `IFSC` across accounts at one branch. **Swiggy** must *not* share one cart list across every customer (that is the mutable-class trap below).
 
 **Icons:** Employee · Payroll · Order
 
@@ -462,11 +462,11 @@ flowchart TB
 - Prefer `ClassName.attr` when you mean the shared value (clearer than `self.attr` for class data).
 - Locals are fine for temporary calculations; do not invent `self.tmp` for values you never need later.
 
-Give AcmeHR `Employee` a class attribute `company` plus per-object `emp_id`, `name`, and `city`. Print badges, change `Employee.company`, and print again so both employees pick up the new value.
+Give Employee Management Portal `Employee` a class attribute `company` plus per-object `emp_id`, `name`, and `city`. Print badges, change `Employee.company`, and print again so both employees pick up the new value.
 
 ```python
 class Employee:
-    company = "AcmeHR Bengaluru"
+    company = "Employee Management Portal Bengaluru"
 
     def __init__(self, emp_id, name, city):
         self.emp_id = emp_id
@@ -481,7 +481,7 @@ e2 = Employee(502, "Ravi Menon", "Mumbai")
 print(e1.badge())
 print(e2.badge())
 
-Employee.company = "AcmeHR India"
+Employee.company = "Employee Management Portal India"
 print(e1.badge())
 print(e2.badge())  # both pick up the shared class value
 ```
@@ -489,13 +489,13 @@ print(e2.badge())  # both pick up the shared class value
 **Expected Output:**
 
 ```
-Priya Shah (501) — AcmeHR Bengaluru, Bengaluru
-Ravi Menon (502) — AcmeHR Bengaluru, Mumbai
-Priya Shah (501) — AcmeHR India, Bengaluru
-Ravi Menon (502) — AcmeHR India, Mumbai
+Priya Shah (501) — Employee Management Portal Bengaluru, Bengaluru
+Ravi Menon (502) — Employee Management Portal Bengaluru, Mumbai
+Priya Shah (501) — Employee Management Portal India, Bengaluru
+Ravi Menon (502) — Employee Management Portal India, Mumbai
 ```
 
-Show the TechMart bug of a class-level `items` list leaking between carts, then fix it with a per-object `items` list in `__init__`. Print both carts.
+Show the Swiggy bug of a class-level `items` list leaking between carts, then fix it with a per-object `items` list in `__init__`. Print both carts.
 
 ```python
 class CartBroken:
@@ -533,7 +533,7 @@ Broken Ravi cart: ['NB-A4']
 Fixed Ravi cart: []
 ```
 
-Write SecureBank `BranchAccount` with a class-level IFSC. `transfer_out` should use a local fee of ₹5, print the transfer, and leave `fee` undefined after the method ends.
+Write HDFC Bank `BranchAccount` with a class-level IFSC. `transfer_out` should use a local fee of ₹5, print the transfer, and leave `fee` undefined after the method ends.
 
 ```python
 class BranchAccount:
@@ -568,7 +568,7 @@ Balance left: 795.0
 
 ### 3. Three kinds of methods (instance / class / static)
 
-**Real-world analogy:** A **canteen counter**. `bill()` uses *your* tray (instance method — needs `self`). `today_menu()` is the same board for every student (class method — needs the class, not one tray). `gst(amount)` is a calculator anyone can tap without taking a token (static method — no `self` / `cls`). **TechMart** counts orders with `@classmethod`. **SecureBank** computes GST with `@staticmethod`. **MedCare** builds a `Patient` from an Aadhaar CSV row with an alternate constructor.
+**Real-world analogy:** A **canteen counter**. `bill()` uses *your* tray (instance method — needs `self`). `today_menu()` is the same board for every student (class method — needs the class, not one tray). `gst(amount)` is a calculator anyone can tap without taking a token (static method — no `self` / `cls`). **Swiggy** counts orders with `@classmethod`. **HDFC Bank** computes GST with `@staticmethod`. **Apollo Hospitals** builds a `Patient` from an Aadhaar CSV row with an alternate constructor.
 
 **Icons:** Order · Bank · UPI · Payroll
 
@@ -648,7 +648,7 @@ flowchart LR
 - Alternate constructors (`from_pair`, `from_dict`) keep `__init__` simple and give callers a clear name for each creation path.
 - Calling `Order.gst_amount(100)` or `o.gst_amount(100)` both work for static methods; prefer the class name when it is a pure utility.
 
-Write a TechMart `Order` with a class counter, `from_csv_row`, and `how_many()`. Create one order normally, one from a CSV row, and print labels plus today’s count.
+Write a Swiggy `Order` with a class counter, `from_csv_row`, and `how_many()`. Create one order normally, one from a CSV row, and print labels plus today’s count.
 
 ```python
 class Order:
@@ -687,7 +687,7 @@ ORD-102: PEN-01 x5
 orders today: 2
 ```
 
-Write SecureBank `BankMath` with `@staticmethod` helpers `with_gst` and `upi_fee`. Print GST on ₹1000 and UPI fees for ₹200 and ₹2500.
+Write PhonePe `BankMath` with `@staticmethod` helpers `with_gst` and `upi_fee`. Print GST on ₹1000 and UPI fees for ₹200 and ₹2500.
 
 ```python
 class BankMath:
@@ -714,7 +714,7 @@ UPI fee on ₹200: 0
 UPI fee on ₹2500: 2.0
 ```
 
-Write a MedCare `Patient` with `from_csv_row` that splits a comma-separated Aadhaar-style row. Print cards for a normal construct and a CSV-built patient.
+Write a Apollo Hospitals `Patient` with `from_csv_row` that splits a comma-separated Aadhaar-style row. Print cards for a normal construct and a CSV-built patient.
 
 ```python
 class Patient:
@@ -748,11 +748,11 @@ Ravi Menon, 41y, ward ICU
 
 ### 4. Encapsulation — definition, problem, then `_` / `__` / `@property`
 
-**Real-world analogy:** You cannot open an **ATM vault** with a screwdriver. You press **Withdraw**. The machine checks PIN and balance, then dispenses cash. Encapsulation is that locked vault plus the buttons. If anyone could type `acct.balance = -50000`, **SecureBank** would be bankrupt on paper. **TechMart** stock cannot go negative because a tired intern edited a field. **MedCare** vitals cannot be overwritten with `"N/A"` from a random script.
+**Real-world analogy:** You cannot open an **ATM vault** with a screwdriver. You press **Withdraw**. The machine checks PIN and balance, then dispenses cash. Encapsulation is that locked vault plus the buttons. If anyone could type `acct.balance = -50000`, **HDFC Bank** would be bankrupt on paper. **Swiggy** stock cannot go negative because a tired intern edited a field. **Apollo Hospitals** vitals cannot be overwritten with `"N/A"` from a random script.
 
 **Icons:** Bank · UPI
 
-**Where used?** **SecureBank** balances, UPI wallets, passwords, **TechMart** inventory stock — anything with a rule that must stay true after every change.
+**Where used?** **HDFC Bank** balances, **PhonePe** wallets, passwords, **Swiggy** menu stock — anything with a rule that must stay true after every change.
 
 ---
 
@@ -1086,7 +1086,7 @@ still: Anita Sharma
 
 **Common Error:** treating `__balance` as encryption / security. It only renames the attribute (`_BankAccount__balance`).
 
-Write a SecureBank `UPIWallet` that stores `__balance`, with `credit`, `debit`, and `get_balance()`. Credit, debit, reject an oversize debit, and show that `__balance` is not a public attribute.
+Write a PhonePe `UPIWallet` that stores `__balance`, with `credit`, `debit`, and `get_balance()`. Credit, debit, reject an oversize debit, and show that `__balance` is not a public attribute.
 
 ```python
 class UPIWallet:
@@ -1130,7 +1130,7 @@ Direct '__balance' visible? False
 Mangled peek (don't do this in apps): 600.0
 ```
 
-Write a MedCare `Vitals` class with a read-only `@property` for Celsius plus computed Fahrenheit and fever band. Print C, F, and fever for 37°C.
+Write a Apollo Hospitals `Vitals` class with a read-only `@property` for Celsius plus computed Fahrenheit and fever band. Print C, F, and fever for 37°C.
 
 ```python
 class Vitals:
@@ -1166,7 +1166,7 @@ fever? False
 celsius is read-only — change only via a setter or a method (later design)
 ```
 
-Write a TechMart `Product` that hides `__stock`. Expose `sell`, `restock`, and `get_stock()` so stock cannot go negative through the public API.
+Write a Swiggy `Product` that hides `__stock`. Expose `sell`, `restock`, and `get_stock()` so stock cannot go negative through the public API.
 
 ```python
 class Product:

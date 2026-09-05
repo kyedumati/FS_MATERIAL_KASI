@@ -20,11 +20,11 @@
 **Icons:** Bank · Order · Laptop · Payroll
 
 **Where used?**
-- **SecureBank** / UPI — welcome banners, balance printouts in training labs
+- **HDFC Bank** / **PhonePe** — welcome banners, balance printouts in training labs
 - College apps — student portal banners, marks entry CLIs (syntax first — no named product required)
-- **TechMart** — order labels and first checkout demos
-- **AcmeHR** — employee welcome scripts and HR training labs
-- **MedCare** — appointment “hello” scripts before real CRUD
+- **Swiggy** — order labels and first checkout demos
+- **Employee Management Portal** — employee welcome scripts and HR training labs
+- **Apollo Hospitals** — appointment “hello” scripts before real CRUD
 
 **Why companies in India hire Java developers:**
 
@@ -204,7 +204,7 @@ jshell> /exit
 
 jshell is great for one expression. **Assignments are `.java` files.** If `jshell` is missing, skip it — scripts still count.
 
-Print a greeting for Ravi and the sum of two TechMart canteen prices (₹450 and ₹120).
+Print a greeting for Ravi and the sum of two Swiggy canteen prices (₹450 and ₹120).
 
 ```java
 public class CanteenSum {
@@ -325,7 +325,7 @@ Please use registered email.
 ========================================
 ```
 
-Print a SecureBank ATM welcome banner using repeated `=` lines around the title and welcome text.
+Print an HDFC Bank ATM welcome banner using repeated `=` lines around the title and welcome text.
 
 ```java
 public class AtmBanner {
@@ -498,22 +498,22 @@ public static void main(String[] args)
 
 **Remember:** Misspell `Main` or drop `static` and the program will not start the way you expect.
 
-Print a one-line TechMart canteen bill title.
+Print a one-line Swiggy canteen bill title.
 
 ```java
 public class CanteenBill {
     public static void main(String[] args) {
-        System.out.println("TechMart Canteen Bill");
+        System.out.println("Swiggy Canteen Bill");
     }
 }
 ```
 
-Print the same TechMart canteen title, then a second line that says to pay at the counter.
+Print the same Swiggy canteen title, then a second line that says to pay at the counter.
 
 ```java
 public class CanteenBillTwo {
     public static void main(String[] args) {
-        System.out.println("TechMart Canteen Bill");
+        System.out.println("Swiggy Canteen Bill");
         System.out.println("Pay at counter");
     }
 }

@@ -1,6 +1,6 @@
 # Ticket: Optional AI Recommend Endpoint
 
-**Customer:** CampusCart / TechMart stretch goal  
+**Customer:** CampusCart / Swiggy stretch goal  
 **Need:** Given a short text review, return a tiny “sentiment” score using a simple sklearn pipeline (or a stub if sklearn not installed).
 
 **Note:** Optional — never blocks placement sessions.

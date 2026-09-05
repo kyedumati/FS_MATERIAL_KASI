@@ -1,6 +1,6 @@
-# Ticket: SecureBank Wallet Types
+# Ticket: HDFC Bank Wallet Types
 
-**Customer:** SecureBank campus wallet desk  
+**Customer:** HDFC Bank campus wallet desk  
 **Need:** One **Account** blueprint that cannot be constructed. Savings and wallet **IS-A** account. Same loop prints both. Wallet can **pay** through a `Payable` contract.
 
 **Teaching-order:** `abstract`, `implements`, polymorphism (`Account[]`). Arrays already taught — **no `ArrayList`**. Validate with `print` + `return` — **no `throw` / `try` / `catch`**. No Spring. No Lombok.

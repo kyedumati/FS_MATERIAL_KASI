@@ -13,7 +13,7 @@
 
 **Module Outcome:**
 
-- Sketch an ER for AcmeHR / TechMart before touching Django models
+- Sketch an ER for Employee Management Portal / Swiggy before touching Django models
 - Open the real SQL labs in `MYSQL/` — this file is the bridge, not the course
 - Normalise enough that one fact does not live in three columns
 
@@ -48,11 +48,11 @@ A **full-stack application** has three layers: **frontend** (browser), **backend
 **Icons:** Order · Employee · Bank · Payroll · Laptop
 
 **Where used?**
-- **TechMart** / CampusCart customers, products, orders, order_items
+- **Swiggy** / CampusCart customers, products, orders, order_items
 - College apps — students, courses, enrollments in LMS / portals
-- **AcmeHR** — departments and employees tables
-- **SecureBank** — accounts and transactions (PK/FK integrity matters)
-- **MedCare** — patients, appointments, tickets stored as related rows
+- **Employee Management Portal** — departments and employees tables
+- **HDFC Bank** — accounts and transactions (PK/FK integrity matters)
+- **Apollo Hospitals** — patients, appointments, tickets stored as related rows
 
 **Visual — three layers talking:**
 
@@ -601,7 +601,7 @@ LEFT JOIN enrollments e ON s.student_id = e.student_id;
    **Model answer:**
    FLOAT is binary approximate and can produce rounding errors in money. DECIMAL stores exact base-10 values, so totals and invoices stay accurate.
 
-## Mini-Project (Assignment): Schema Design (Library, TechMart / CampusCart, or AcmeHR)
+## Mini-Project (Assignment): Schema Design (Library, Swiggy / CampusCart, or Employee Management Portal)
 
 **Lab kit (build here):** [15_Lab_Assets/02_mysql_library_seed/](../15_Lab_Assets/02_mysql_library_seed/)  
 **SQL depth (SoT):** Weeks 10–11 · follow [`MYSQL/`](../../MYSQL/) + the **Required MySQL labs** table in this module
@@ -660,8 +660,8 @@ WHERE o.order_date >= '2026-07-01';
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why can't we store app data in a Python list after restart?
-2. When does LEFT JOIN show NULL? **TechMart** ecommerce example?
-3. Is normalization always good? When might **TechMart** denormalize read reports?
+2. When does LEFT JOIN show NULL? **Swiggy** ecommerce example?
+3. Is normalization always good? When might **Swiggy** denormalize read reports?
 4. How does Django ORM relate to today's SQL?
 5. foreign key ≈ hyperlink between spreadsheets?
 
@@ -669,7 +669,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Data in tables with rows/columns linked by keys; MySQL is open-source RDBMS for Python/Django backends.
 
 **Q2. INNER JOIN vs LEFT JOIN?**  
-**A:** INNER = matching rows only; LEFT = all left rows + matches or NULL on right (**TechMart** customers with no orders; **AcmeHR** employees with no leave).
+**A:** INNER = matching rows only; LEFT = all left rows + matches or NULL on right (**Swiggy** customers with no orders; **Employee Management Portal** employees with no leave).
 
 **Q3. What is normalization? Why 3NF?**  
 **A:** Reduces redundancy; 3NF removes transitive dependencies preventing update anomalies.

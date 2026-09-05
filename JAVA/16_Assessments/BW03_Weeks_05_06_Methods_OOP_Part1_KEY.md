@@ -48,7 +48,7 @@ public class LineItem {
 }
 ```
 
-2. Encapsulated **SecureBank** `BankAccount`. After +200 −100, balance `1100`; overdraft `5000` prints a message and leaves `1100`. `private` fields. No `setBalance`. `print` + `return` only.
+2. Encapsulated **HDFC Bank** `BankAccount`. After +200 −100, balance `1100`; overdraft `5000` prints a message and leaves `1100`. `private` fields. No `setBalance`. `print` + `return` only.
 
 ```java
 public class BankAccount {

@@ -20,11 +20,11 @@ Programs rarely run in one straight line. A **student portal** must check login,
 **Icons:** Bank · UPI · Employee · Order · Payroll
 
 **Where used?**
-- **SecureBank** ATM — PIN retries, withdraw only if balance allows
+- **HDFC Bank** ATM — PIN retries, withdraw only if balance allows
 - College apps — pass/fail grades, marks menus
-- **TechMart** — cart checkout loops, stock checks
-- **AcmeHR** — overtime flags, salary slab branches
-- **MedCare** — ticket priority menus, appointment status
+- **Swiggy** — cart checkout loops, stock checks
+- **Employee Management Portal** — overtime flags, salary slab branches
+- **Apollo Hospitals** — ticket priority menus, appointment status
 
 **Flow control** lets you:
 
@@ -774,7 +774,7 @@ ELSE:
 
 ---
 
-## Mini-Project (Assignment): SecureBank ATM Simulator (Console)
+## Mini-Project (Assignment): HDFC Bank ATM Simulator (Console)
 
 **Title:** Console ATM with balance + mini statement  
 **Lab kit (build here):** [15_Lab_Assets/08_atm_menu/](../15_Lab_Assets/08_atm_menu/)
@@ -809,10 +809,10 @@ ELSE:
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why is menu-driven design still used in training if real apps have GUIs?
-2. Could you use `for` instead of `while` for a **SecureBank** ATM menu? What would be awkward?
-3. How does nested if map to **AcmeHR** approval workflows (employee → manager → HR)?
+2. Could you use `for` instead of `while` for a **HDFC Bank** ATM menu? What would be awkward?
+3. How does nested if map to **Employee Management Portal** approval workflows (employee → manager → HR)?
 4. What real-world system might run an infinite loop intentionally?
-5. How would you add "confirm before **SecureBank** withdraw" using flow control only?
+5. How would you add "confirm before **HDFC Bank** withdraw" using flow control only?
 
 **Q1. Explain if/elif/else execution order.**  
 **A:** Python tests top to bottom; first true branch runs; rest skipped; else runs if none true.

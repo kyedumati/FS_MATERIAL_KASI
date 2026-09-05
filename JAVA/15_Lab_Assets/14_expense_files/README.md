@@ -1,6 +1,6 @@
-# Ticket: AcmeHR Expense CSV Append
+# Ticket: Employee Management Portal Expense CSV Append
 
-**Customer:** AcmeHR accounts team  
+**Customer:** Employee Management Portal accounts team  
 **Need:** Record travel / stationery / canteen spends in **`expenses.csv`**. Rows must **survive** after the program exits. A second run must **add**, not wipe yesterday.
 
 **Teaching-order:** `Path` / `Files`, UTF-8 text, `CREATE` + `APPEND`, simple CSV header, try-with-resources on a writer/reader, `catch (IOException e)`. No Git as a topic. No Spring. No Lombok. No JDBC. No MySQL.

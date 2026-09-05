@@ -120,7 +120,7 @@ Expected on a **missing** file: `input: amount must be positive`, then file text
 
 ## C. Short answer — model
 
-Boxes first: Member, Book, Loan (or **TechMart** / CampusCart: Customer, Product, Order). A member has many loans (1:N); a book has many loans. Draw that, then `CREATE TABLE`. PRIMARY KEY uniquely identifies one row so a loan can point at **one** member id and **one** book id. One Excel sheet mixes people and copies with no types or uniqueness — anyone can type text in a “due date” cell. Do not require JOIN SQL; naming the relationship is enough. `README.md` / Git are not the point of this item.
+Boxes first: Member, Book, Loan (or **Swiggy** / CampusCart: Customer, Product, Order). A member has many loans (1:N); a book has many loans. Draw that, then `CREATE TABLE`. PRIMARY KEY uniquely identifies one row so a loan can point at **one** member id and **one** book id. One Excel sheet mixes people and copies with no types or uniqueness — anyone can type text in a “due date” cell. Do not require JOIN SQL; naming the relationship is enough. `README.md` / Git are not the point of this item.
 
 ## Suggested scoring
 

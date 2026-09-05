@@ -6,6 +6,6 @@ Python FS uses the **same four teaching brands** as Java FS. Do not duplicate th
 
 **Canonical schemas / sample people:** [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md)
 
-CampusCart remains the default Python capstone (college storefront). Teaching examples may say: *CampusCart uses the same patterns as TechMart.*
+CampusCart remains the default Python capstone (college storefront). Teaching examples may say: *CampusCart uses the same patterns as Swiggy (orders, cart, menu/catalog).*
 
-Soft-apply in Django / Flask / DRF notes the same way: name AcmeHR, TechMart, MedCare, or SecureBank when the example is business-shaped; leave syntax-only drills generic.
+Soft-apply in Django / Flask / DRF notes the same way: name Employee Management Portal, Swiggy, Apollo Hospitals, HDFC Bank, or PhonePe when the example is business-shaped; leave syntax-only drills generic.

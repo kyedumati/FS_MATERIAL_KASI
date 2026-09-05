@@ -2,7 +2,7 @@
 
 **Module Outcome:**
 
-- Wrap a SecureBank transfer in a transaction — both rows or neither
+- Wrap an HDFC Bank transfer in a transaction — both rows or neither
 - Say ACID in examples, not slogans
 - Add an index where a lookup is slow — and not on every column “just in case”
 
@@ -167,7 +167,7 @@ FLUSH PRIVILEGES;
 **Example 3:** Give all privileges on a database.
 
 ```sql
-GRANT ALL PRIVILEGES ON acmehr.* TO 'admin'@'localhost';
+GRANT ALL PRIVILEGES ON employee_portal.* TO 'admin'@'localhost';
 FLUSH PRIVILEGES;
 ```
 

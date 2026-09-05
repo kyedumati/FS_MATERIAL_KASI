@@ -1,6 +1,6 @@
-# Ticket: AcmeHR / Admissions Field Cleaner
+# Ticket: Employee Management Portal / Admissions Field Cleaner
 
-**Customer:** AcmeHR onboarding + admissions portal  
+**Customer:** Employee Management Portal onboarding + admissions portal  
 **Need:** Clean email/phone from messy user input; mask phone for display.
 
 **Teaching-order:** String methods + `for` / `if`. No extra methods. No `throw`.

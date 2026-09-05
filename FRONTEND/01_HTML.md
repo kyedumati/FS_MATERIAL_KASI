@@ -11,7 +11,7 @@
 **Module Outcome:**
 
 - Build the skeleton of a page: headings, lists, links, images, a real form
-- Mark up CampusCart / TechMart meaning — not just “make it look like a site”
+- Mark up CampusCart / Swiggy meaning — not just “make it look like a site”
 - Know HTML is structure; CSS and JS come next, Django/Spring will emit this later
 
 **HTML** describes the **structure and meaning** of a web page — not Python, not CSS. The browser renders HTML; **CSS** styles it (next module); **JavaScript** makes it interactive.
@@ -21,12 +21,12 @@ Full-stack flow: `Browser (HTML/CSS/JS) → Django/Python → MySQL`
 When you open a login page, the server sends **HTML**. **Django** will generate HTML from templates; **React** builds HTML-like JSX — concepts start here.
 
 **Where used?**
-- CampusCart / **TechMart** — home, product cards, checkout form
-- **AcmeHR** — leave request form (`from_date`, `to_date`, `leave_type`)
-- **MedCare** — appointment booking (`doctor`, `patient`, `appointment_date`)
-- **SecureBank** — transfer form (`from_account`, `to_account`, `amount`)
+- CampusCart / **Swiggy** — home, product cards, checkout form
+- **Employee Management Portal** — leave request form (`from_date`, `to_date`, `leave_type`)
+- **Apollo Hospitals** — appointment booking (`doctor`, `patient`, `appointment_date`)
+- **HDFC Bank** — transfer form (`from_account`, `to_account`, `amount`)
 
-CampusCart stays the **capstone skin** (college storefront). Same tags work for TechMart.
+CampusCart stays the **capstone skin** (college storefront). Same tags work for Swiggy.
 
 Elements: `<tagname attribute="value">Content</tagname>`  
 Example: `<a href="/home">Home</a>`
@@ -357,7 +357,7 @@ Django adds `{% csrf_token %}` to POST forms later.
 
 **Try these (2 programs):**
 
-**Program 1 — TechMart search (GET)**
+**Program 1 — Swiggy search (GET)**
 
 ```html
 <!DOCTYPE html>
@@ -373,7 +373,7 @@ Django adds `{% csrf_token %}` to POST forms later.
 </html>
 ```
 
-**Program 2 — AcmeHR mini registration (POST)**
+**Program 2 — Employee Management Portal mini registration (POST)**
 
 ```html
 <!DOCTYPE html>
@@ -426,14 +426,14 @@ Django adds `{% csrf_token %}` to POST forms later.
 </html>
 ```
 
-**Program 2 — TechMart product heading hierarchy**
+**Program 2 — Swiggy product heading hierarchy**
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><title>Headings</title></head>
 <body>
-  <h1>TechMart</h1>
+  <h1>Swiggy</h1>
   <h2>Today's catalog</h2>
   <h3>Electronics</h3>
   <p>Same heading rules as CampusCart — do not jump from h1 to h3.</p>

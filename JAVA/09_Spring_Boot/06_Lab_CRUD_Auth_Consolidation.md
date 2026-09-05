@@ -39,11 +39,11 @@
 **Icons:** Bank · Order · Laptop · Employee · UPI
 
 **Where used?**
-- CampusCart — college TechMart-style menu: public read, protected create
-- TechMart — catalog freeze before a storefront (React is **Later —**)
-- SecureBank — prove identity before a write (**no money movement here**)
-- AcmeHR — staff login before a leave POST (**Later —** roles)
-- MedCare — public doctor list; booking needs a token (**Later —**)
+- CampusCart — college Swiggy-style menu: public read, protected create
+- Swiggy — catalog freeze before a storefront (React is **Later —**)
+- HDFC Bank — prove identity before a write (**no money movement here**)
+- Employee Management Portal — staff login before a leave POST (**Later —** roles)
+- Apollo Hospitals — public doctor list; booking needs a token (**Later —**)
 
 **Visual — freeze path (one API):**
 

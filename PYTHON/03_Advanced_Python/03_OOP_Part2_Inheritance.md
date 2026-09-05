@@ -107,11 +107,11 @@ class SavingsAccount(BankAccount):
 
 ### 1. Inheritance basics — IS-A, parent / child, `super()`
 
-**Real-world analogy:** A **smartphone IS-A phone**. It still makes calls (parent behaviour). It adds camera and apps (child extras). You do not rebuild dialling from scratch. `super()` is “first set up the phone part, then add the smartphone part.” **SecureBank** `SavingsAccount` **is a** `BankAccount`. **AcmeHR** `Manager` **is an** `Employee`. **MedCare** `Inpatient` **is a** `Patient`.
+**Real-world analogy:** A **smartphone IS-A phone**. It still makes calls (parent behaviour). It adds camera and apps (child extras). You do not rebuild dialling from scratch. `super()` is “first set up the phone part, then add the smartphone part.” **HDFC Bank** `SavingsAccount` **is a** `BankAccount`. **Employee Management Portal** `Manager` **is an** `Employee`. **Apollo Hospitals** `Inpatient` **is a** `Patient`.
 
 **Icons:** Bank · Employee · Order
 
-**Where used?** **SecureBank** `SavingsAccount` is a `BankAccount`; **AcmeHR** `Manager` is an `Employee`; `Car` is a `Vehicle`.
+**Where used?** **HDFC Bank** `SavingsAccount` is a `BankAccount`; **Employee Management Portal** `Manager` is an `Employee`; `Car` is a `Vehicle`.
 
 **Definition:** **Inheritance** lets a **child class** reuse and extend a **parent class**.  
 In plain English: the child **IS-A** specialised kind of the parent.
@@ -181,7 +181,7 @@ classDiagram
 - Always initialise the parent before adding child-only fields.
 - Inheritance is for **specialisation**, not for “I want to reuse one helper method” (a plain function or composition may be enough).
 
-Write SecureBank `SavingsAccount` that inherits `BankAccount`, calls `super().__init__`, and adds `apply_interest()`. Print balance before and after interest.
+Write HDFC Bank `SavingsAccount` that inherits `BankAccount`, calls `super().__init__`, and adds `apply_interest()`. Print balance before and after interest.
 
 ```python
 class BankAccount:
@@ -225,7 +225,7 @@ Interest ₹500.00 added. Balance: ₹10500.00
 Holder still: Priya
 ```
 
-Write AcmeHR `Intern` as a subclass of `Employee`. Override `badge()` using `super().badge()` plus college. Print two intern badges.
+Write Employee Management Portal `Intern` as a subclass of `Employee`. Override `badge()` using `super().badge()` plus college. Print two intern badges.
 
 ```python
 class Employee:
@@ -255,7 +255,7 @@ Anita (801) — intern from KSR
 Ravi (802) — intern from NIT Trichy
 ```
 
-Write MedCare `Inpatient` as a subclass of `Patient` with a ward on the card. Print the card and `isinstance(..., Patient)`.
+Write Apollo Hospitals `Inpatient` as a subclass of `Patient` with a ward on the card. Print the card and `isinstance(..., Patient)`.
 
 ```python
 class Patient:
@@ -289,7 +289,7 @@ IS-A Patient? True
 
 ### 2. Types of inheritance (with diagrams)
 
-**Real-world analogy:** Family-tree **shapes**, not extra magic. **Single:** one parent, one child — savings is a bank account. **Multilevel:** grandparent → parent → child — Person → Employee → Manager. **Hierarchical:** one parent, many children — Vehicle → Car and Bike; Account → Savings and Current. **Multiple:** one child, two parents — “driver + cook” on one person; useful, easy to abuse. Real products mostly use **single** and **hierarchical**. **SecureBank**, **AcmeHR**, and **TechMart** almost never need a spaghetti of five parents.
+**Real-world analogy:** Family-tree **shapes**, not extra magic. **Single:** one parent, one child — savings is a bank account. **Multilevel:** grandparent → parent → child — Person → Employee → Manager. **Hierarchical:** one parent, many children — Vehicle → Car and Bike; Account → Savings and Current. **Multiple:** one child, two parents — “driver + cook” on one person; useful, easy to abuse. Real products mostly use **single** and **hierarchical**. **HDFC Bank**, **Employee Management Portal**, and **Swiggy** almost never need a spaghetti of five parents.
 
 **Icons:** Employee · Bank · Order
 
@@ -470,7 +470,7 @@ Which skills() wins alone? ['driving']
 
 **Common Error:** using multiple inheritance just to “mix features” when `self.engine = Engine()` would be clearer.
 
-Write SecureBank `SavingsAccount` and `CurrentAccount` under `BankAccount`, each with `kind()`. Loop a mixed list and print holder, kind, and balance.
+Write HDFC Bank `SavingsAccount` and `CurrentAccount` under `BankAccount`, each with `kind()`. Loop a mixed list and print holder, kind, and balance.
 
 ```python
 class BankAccount:
@@ -500,7 +500,7 @@ Priya savings 1000.0
 Ravi current 500.0
 ```
 
-Write AcmeHR multilevel inheritance `Person` → `Employee` → `Manager`, each extending `label()` via `super()`. Print a manager’s label.
+Write Employee Management Portal multilevel inheritance `Person` → `Employee` → `Manager`, each extending `label()` via `super()`. Print a manager’s label.
 
 ```python
 class Person:
@@ -535,7 +535,7 @@ print(Manager("Meera", 900, 6).label())
 Meera (900) — team of 6
 ```
 
-Write TechMart `Grocery` and `Electronics` under `Product`, each prefixing `tag()`. Loop a mixed catalogue and print tags.
+Write Swiggy `Grocery` and `Dish` under `Product`, each prefixing `tag()`. Loop a mixed catalogue and print tags.
 
 ```python
 class Product:
@@ -550,11 +550,11 @@ class Grocery(Product):
     def tag(self):
         return f"GROCERY {super().tag()}"
 
-class Electronics(Product):
+class Dish(Product):
     def tag(self):
-        return f"ELECTRONICS {super().tag()}"
+        return f"DISH {super().tag()}"
 
-for p in [Grocery("ATTA-5KG", 280), Electronics("USB-C", 199)]:
+for p in [Grocery("ATTA-5KG", 280), Dish("MASALA-DOSA", 80)]:
     print(p.tag())
 ```
 
@@ -562,14 +562,14 @@ for p in [Grocery("ATTA-5KG", 280), Electronics("USB-C", 199)]:
 
 ```
 GROCERY ATTA-5KG ₹280
-ELECTRONICS USB-C ₹199
+DISH MASALA-DOSA ₹80
 ```
 
 ---
 
 ### 3. Method overriding
 
-**Real-world analogy:** Company **leave policy**. The default form says “12 days.” Managers fill the *same form* but write “18 days.” Same question (`leaves()` / `net()` / `info()`), different answer. You still *are* an employee — you just specialise the rule. **AcmeHR** overrides `payslip()`. **SecureBank** overrides `withdraw()` for a current-account overdraft. **TechMart** overrides `ship()` for COD vs prepaid.
+**Real-world analogy:** Company **leave policy**. The default form says “12 days.” Managers fill the *same form* but write “18 days.” Same question (`leaves()` / `net()` / `info()`), different answer. You still *are* an employee — you just specialise the rule. **Employee Management Portal** overrides `payslip()`. **HDFC Bank** overrides `withdraw()` for a current-account overdraft. **Swiggy** overrides `ship()` for COD vs prepaid.
 
 **Definition:** The child defines a method with the **same name** as the parent, with a new body.  
 **Purpose:** Specialise behaviour while keeping the same call site (`obj.info()`, `obj.net_salary()`).
@@ -622,7 +622,7 @@ flowchart LR
 
 **Common Error:** overriding `__init__` or `info` and forgetting `super()` when the parent still owns required setup.
 
-Override AcmeHR `Manager.net()` (add bonus) and `payslip()`. Print an employee payslip and a manager payslip.
+Override Employee Management Portal `Manager.net()` (add bonus) and `payslip()`. Print an employee payslip and a manager payslip.
 
 ```python
 class Employee:
@@ -658,7 +658,7 @@ Ravi net ₹27000
 Meera (Mgr) net ₹35000
 ```
 
-Override SecureBank `CurrentAccount.withdraw` to allow overdraft up to ₹1000. Compare a savings-style `BankAccount` withdraw with a current-account withdraw.
+Override HDFC Bank `CurrentAccount.withdraw` to allow overdraft up to ₹1000. Compare a savings-style `BankAccount` withdraw with a current-account withdraw.
 
 ```python
 class BankAccount:
@@ -699,7 +699,7 @@ Priya: 500.0
 Ravi: -300.0
 ```
 
-Override TechMart `CodOrder.ship()` so prepaid and COD orders print different dispatch messages. Print both.
+Override Swiggy `CodOrder.ship()` so prepaid and COD orders print different dispatch messages. Print both.
 
 ```python
 class Order:
@@ -725,11 +725,11 @@ Packed — collect cash, then dispatch
 
 ### 4. HAS-A (composition) — when *not* to inherit
 
-**Real-world analogy:** A college **HAS** departments. A student **HAS** an ID card. The student is **not** an ID card — so do not inherit `IdCard`. A car **HAS** an engine; a car is not an engine. Inheritance is “is a specialised kind of.” Composition is “owns / uses a collaborator.” **AcmeHR** `Employee` has a `Laptop`. **TechMart** `OrderService` has a notifier. **MedCare** `Appointment` has a `Doctor` and a `Patient`.
+**Real-world analogy:** A college **HAS** departments. A student **HAS** an ID card. The student is **not** an ID card — so do not inherit `IdCard`. A car **HAS** an engine; a car is not an engine. Inheritance is “is a specialised kind of.” Composition is “owns / uses a collaborator.” **Employee Management Portal** `Employee` has a `Laptop`. **Swiggy** `OrderService` has a notifier. **Apollo Hospitals** `Appointment` has a `Doctor` and a `Patient`.
 
 **Icons:** Employee · Laptop · Order
 
-**Where used?** **AcmeHR** `Employee` **has a** `Laptop`; **TechMart** `OrderService` **has a** notifier; `Car` **has an** `Engine`.
+**Where used?** **Employee Management Portal** `Employee` **has a** `Laptop`; **Swiggy** `OrderService` **has a** notifier; `Car` **has an** `Engine`.
 
 Teach this **after** inheritance types: first learn IS-A trees, then learn when a tree is the wrong tool.
 
@@ -815,7 +815,7 @@ classDiagram
 - Composition keeps parts swappable (`SmsNotifier` vs `EmailNotifier`) without a messy parent list.
 - Richer design patterns live in optional [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md).
 
-Write TechMart `OrderService` that HAS-A notifier. Place an order with `SmsNotifier` and another with `EmailNotifier`.
+Write Swiggy `OrderService` that HAS-A notifier. Place an order with `SmsNotifier` and another with `EmailNotifier`.
 
 ```python
 class SmsNotifier:
@@ -844,7 +844,7 @@ SMS: Order ORD-101 placed
 EMAIL: Order ORD-102 placed
 ```
 
-Write AcmeHR `Employee` that HAS-A `Laptop` (do not inherit Laptop). Print `desk()` and `isinstance(employee, Laptop)`.
+Write Employee Management Portal `Employee` that HAS-A `Laptop` (do not inherit Laptop). Print `desk()` and `isinstance(employee, Laptop)`.
 
 ```python
 class Laptop:
@@ -873,7 +873,7 @@ Priya uses Laptop Dell Latitude
 Employee IS-A Laptop? False
 ```
 
-Write a MedCare `Appointment` that HAS-A `Doctor` and `Patient`. Print `slip()` for one booking.
+Write a Apollo Hospitals `Appointment` that HAS-A `Doctor` and `Patient`. Print `slip()` for one booking.
 
 ```python
 class Person:
@@ -908,7 +908,7 @@ Anita → Dr Meera Iyer @ 10:30
 
 ### 5. `isinstance` and when *not* to switch on types
 
-**Real-world analogy:** Campus **security** asks “Are you staff?” A professor **is** staff (subclass counts). A visitor is not. `isinstance` is that gate question. `type(obj) is Staff` is the rude version that rejects professors because they are a *kind* of staff. Use the gate for **guards** (don’t print a balance on a dict). Do **not** build a giant “if savings elif current elif wallet” tree — that is Part 3 polymorphism’s job. **SecureBank** rejects a raw dict in `print_balance`. **MedCare** accepts `Inpatient` where `Patient` is required.
+**Real-world analogy:** Campus **security** asks “Are you staff?” A professor **is** staff (subclass counts). A visitor is not. `isinstance` is that gate question. `type(obj) is Staff` is the rude version that rejects professors because they are a *kind* of staff. Use the gate for **guards** (don’t print a balance on a dict). Do **not** build a giant “if savings elif current elif wallet” tree — that is Part 3 polymorphism’s job. **HDFC Bank** rejects a raw dict in `print_balance`. **Apollo Hospitals** accepts `Inpatient` where `Patient` is required.
 
 **Definition:** `isinstance(obj, Class)` asks “is this object this type (or a subclass)?”  
 **Purpose:** Useful for guards — dangerous as a giant `if/elif` tree that recreates the problem polymorphism solves (Part 3).
@@ -956,7 +956,7 @@ for creature in [Dog(), Cat()]:
 - `type(obj) is Dog` rejects subclasses; `isinstance(obj, Dog)` accepts them — usually what you want for IS-A checks.
 - If you find yourself writing `if isinstance(...): ... elif isinstance(...):` for business behaviour, you probably want override / duck typing instead.
 
-Write SecureBank `print_balance` that accepts only a `BankAccount` (`isinstance`). Print a real account’s balance and reject a dict.
+Write HDFC Bank `print_balance` that accepts only a `BankAccount` (`isinstance`). Print a real account’s balance and reject a dict.
 
 ```python
 class BankAccount:
@@ -983,7 +983,7 @@ Balance: 500
 Need a BankAccount
 ```
 
-For a MedCare `Inpatient`, print `type(p) is Patient` vs `isinstance(p, Patient)` so students see why `isinstance` accepts subclasses.
+For a Apollo Hospitals `Inpatient`, print `type(p) is Patient` vs `isinstance(p, Patient)` so students see why `isinstance` accepts subclasses.
 
 ```python
 class Patient:
@@ -1004,7 +1004,7 @@ type is Patient? False
 isinstance Patient? True
 ```
 
-Write TechMart `dispatch` that checks `isinstance(order, Order)` then calls `order.ship()` (no type switch). Dispatch a standard order, an express order, and a string.
+Write Swiggy `dispatch` that checks `isinstance(order, Order)` then calls `order.ship()` (no type switch). Dispatch a standard order, an express order, and a string.
 
 ```python
 class Order:

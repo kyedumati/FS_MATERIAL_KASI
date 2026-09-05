@@ -23,7 +23,7 @@
 
 **Where used?**
 - Campus portal — home, about, announcements pages with shared `base.html`
-- **TechMart** — product list / detail templates + CSS for CampusCart
+- **Swiggy** — product list / detail templates + CSS for CampusCart
 - Blog / Task Manager — multi-page nav via `{% url %}` and `{% extends %}`
 - Admin-facing staff sites — same URL → view → template pattern
 - Capstone — reusable layout so every page shares navbar/footer

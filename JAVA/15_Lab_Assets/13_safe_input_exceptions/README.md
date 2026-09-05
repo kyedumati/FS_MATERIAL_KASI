@@ -1,6 +1,6 @@
-# Ticket: MedCare — Never Crash on Bad Input
+# Ticket: Apollo Hospitals — Never Crash on Bad Input
 
-**Customer:** MedCare registration desk  
+**Customer:** Apollo Hospitals registration desk  
 **Need:** Read a **patient age** from text. Non-integers are a format error. Age outside **1–120** is a domain error (`InvalidAgeException`). The program must **not** dump a traceback for those cases.
 
 **Teaching-order:** `try` / `catch` / `finally`, `throw`, `throws`, custom exceptions, try-with-resources on **`Scanner`**. **No files** (File Handling is next). No Spring. No Lombok. No JDBC.

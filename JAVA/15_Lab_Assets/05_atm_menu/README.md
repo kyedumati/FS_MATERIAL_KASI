@@ -1,6 +1,6 @@
-# Ticket: SecureBank Mini ATM Menu
+# Ticket: HDFC Bank Mini ATM Menu
 
-**Customer:** SecureBank training ATM  
+**Customer:** HDFC Bank training ATM  
 **Need:** Console ATM: check balance, deposit, withdraw, quit. Wrong choice must not exit.
 
 **Teaching-order:** `while` / `if` (or `switch`) in `main` only — **no extra methods**. No `throw`.

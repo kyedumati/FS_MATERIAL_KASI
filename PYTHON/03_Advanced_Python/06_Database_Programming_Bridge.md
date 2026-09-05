@@ -50,8 +50,8 @@ So far you saved data in **files** (CSV, JSON). That works for one user on one m
 **Where used?**
 - College / fee apps — `students` table shared by many users
 - Library systems — parameterized search by author or title
-- **SecureBank** / UPI-style backends — balances must survive concurrent writes
-- **MedCare** / CRM records — structured queries, not one CSV per clerk
+- **HDFC Bank** / **PhonePe**-style backends — balances must survive concurrent writes
+- **Apollo Hospitals** / CRM records — structured queries, not one CSV per clerk
 - Any multi-user app — connect → cursor → execute → commit → close
 
 ---
@@ -263,7 +263,7 @@ Both `mysql-connector-python` and `PyMySQL` use `%s` placeholders (not `?` like 
 
 **Common Error:** Building SQL with f-strings from user input (`f"... {roll}"`) — that is the classic injection hole. Always `execute(sql, (value,))`.
 
-Insert one AcmeHR student with `%s` placeholders and a tuple, `commit()`, and print `cursor.rowcount`.
+Insert one Employee Management Portal student with `%s` placeholders and a tuple, `commit()`, and print `cursor.rowcount`.
 
 ```python
 import mysql.connector
@@ -700,10 +700,10 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Database cursor executes SQL and retrieves results row by row or in batches; intermediary between connection and data.
 
 **Q3. Parameterized query vs string formatting?**  
-**A:** Parameters send values separately from SQL, blocking injection (typed **AcmeHR** name or library title never becomes a command).
+**A:** Parameters send values separately from SQL, blocking injection (typed **Employee Management Portal** name or library title never becomes a command).
 
 **Q4. commit vs rollback?**  
-**A:** commit makes transaction changes permanent; rollback undoes them — **SecureBank** transfer or **TechMart** checkout + stock must succeed or fail together.
+**A:** commit makes transaction changes permanent; rollback undoes them — **HDFC Bank** transfer or **Swiggy** checkout + stock must succeed or fail together.
 
 **Q5. ORM vs raw SQL?**  
 **A:** An ORM maps Python classes/objects to tables and generates SQL, which reduces boilerplate and some injection risk; raw SQL is still useful for complex reports or performance tuning.

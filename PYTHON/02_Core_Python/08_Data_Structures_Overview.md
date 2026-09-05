@@ -9,7 +9,7 @@
 **Module Outcome:**
 
 - Pick list vs tuple vs set vs dict the way a shop picks a bag vs a filing cabinet
-- Say *why* TechMart cart is a list and SKU lookup is a dict — in one sentence
+- Say *why* Swiggy cart is a list and SKU lookup is a dict — in one sentence
 - Spot the wrong container before it makes the next module painful
 
 Python gives you four built-in **containers** for grouping data. Choosing the wrong one makes code slower, bug-prier, or harder to read — like using a shopping bag when you need a labelled filing cabinet.
@@ -17,11 +17,11 @@ Python gives you four built-in **containers** for grouping data. Choosing the wr
 **Icons:** Order · Employee · Bank · UPI · Laptop
 
 **Where used?**
-- **TechMart** — cart (list), SKU lookup (dict), unique tags (set), GPS drop (tuple)
-- **SecureBank** / UPI — transaction history list, account dict by ID
-- **AcmeHR** — employee-by-id dict, unique active-ID set
+- **Swiggy** — cart (list), SKU lookup (dict), unique tags (set), GPS drop (tuple)
+- **HDFC Bank** / **PhonePe** — transaction history list, account dict by ID
+- **Employee Management Portal** — employee-by-id dict, unique active-ID set
 - College apps — undo stack for form edits, ticket queues
-- **MedCare** — support ticket FIFO queue, banned-user set
+- **Apollo Hospitals** — support ticket FIFO queue, banned-user set
 
 **Quick decision guide:**
 
@@ -125,7 +125,7 @@ employee-by-id → dict
 
 **Interview:** Start answers with the decision guide — key→value? dict · unique? set · fixed row? tuple · ordered mutable? list.
 
-Create list, tuple, set, and dict examples for a TechMart canteen and print all four.
+Create list, tuple, set, and dict examples for a Swiggy canteen and print all four.
 
 ```python
 cart = ["Chai", "Samosa"]                 # list

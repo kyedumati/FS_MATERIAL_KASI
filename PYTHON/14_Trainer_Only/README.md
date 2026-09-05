@@ -18,6 +18,6 @@ Private ops, rubrics, answer keys, and author standards. Excluded from `./script
 | [09_External_Dependencies.md](09_External_Dependencies.md) | `FRONTEND/` / `MYSQL/` contract |
 | [10_Module_Writing_Standard.md](10_Module_Writing_Standard.md) | Authoring standard for modules |
 | [11_Master_Course_Guide.md](11_Master_Course_Guide.md) | Full journey, capstone roadmap, placement |
-| [12_Named_Product_Domains.md](12_Named_Product_Domains.md) | Pointer to AcmeHR / TechMart / MedCare / SecureBank overlay |
+| [12_Named_Product_Domains.md](12_Named_Product_Domains.md) | Pointer to Employee Management Portal / Swiggy / Apollo Hospitals / HDFC Bank overlay |
 
 **Policy:** Do not share this folder with learners. Graded `*_KEY.md` files stay private. Module notes (including Practice Model answers) are shared as the same PDF you teach from — after that module is done.

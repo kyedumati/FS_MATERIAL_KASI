@@ -19,7 +19,7 @@
 
 **Where used?**
 - Campus portal / Blog — public deploy must hide stack traces (`DEBUG=False`)
-- **TechMart** — CSRF on checkout forms; never commit CampusCart `.env`
+- **Swiggy** — CSRF on checkout forms; never commit CampusCart `.env`
 - Admin — only staff on production; rotate leaked `SECRET_KEY`
 - Capstone demo — Render/Railway/PythonAnywhere with env vars + `collectstatic`
 - Interviews — explain why `DEBUG=True` online is a resume red flag

@@ -20,10 +20,10 @@ An **API (Application Programming Interface)** is a agreed way for programs to t
 **Icons:** Order · Laptop · Employee · Bank · Payroll
 
 **Where used?**
-- **TechMart** — React / mobile apps call `/api/products/` for CampusCart
+- **Swiggy** — React / mobile apps call `/api/products/` for CampusCart
 - College apps — student portal SPA fetching enrollments as JSON
-- **SecureBank** / UPI — apps talk to bank APIs, never the DB directly
-- **AcmeHR** — HR mobile clients consume employee/leave REST endpoints
+- **HDFC Bank** / **PhonePe** — apps talk to bank APIs, never the DB directly
+- **Employee Management Portal** — HR mobile clients consume employee/leave REST endpoints
 - Postman / QA — manual API checks before frontend is ready
 
 **Restaurant analogy:** You (client) read the menu (API docs), tell the waiter your order (HTTP request), kitchen prepares food (server logic), waiter brings plate (JSON response). You never enter the kitchen.
@@ -487,7 +487,7 @@ def validate_price(self, value):
    **Model answer:**
    Mobile apps need structured data to render their own UI. JSON is compact and language-neutral; HTML is meant for browsers, not for native clients to parse as data.
 
-## Mini-Project (Assignment): TechMart Product Catalog API + Client Script
+## Mini-Project (Assignment): Swiggy Product Catalog API + Client Script
 
 **Lab kit (build here):** [15_Lab_Assets/04_drf_products/](../15_Lab_Assets/04_drf_products/)  
 **Deliverables:** follow [`Standard_Project_Deliverables.md`](../Standard_Project_Deliverables.md)

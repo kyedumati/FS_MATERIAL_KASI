@@ -108,8 +108,8 @@
 
 ### 13. Real-Time Projects
 
-1. **AcmeHR** — Employee Management
-2. **TechMart** — E-Commerce
-3. **MedCare** — Hospital Management
-4. **SecureBank** — Banking
+1. **Employee Management Portal** — Employee Management
+2. **Swiggy** — Food Delivery
+3. **Apollo Hospitals** — Hospital Management
+4. **HDFC Bank** — Banking
 

@@ -19,7 +19,7 @@
 
 ## B. Coding — model points
 
-1. Write a mini **SecureBank** ATM menu (balance starts 1000): options Balance / Deposit / Withdraw / Quit. Block overdraft. Use `while`/`if` only — **no `def`**.
+1. Write a mini **HDFC Bank** ATM menu (balance starts 1000): options Balance / Deposit / Withdraw / Quit. Block overdraft. Use `while`/`if` only — **no `def`**.
    - Award marks for correctness + teaching-order constraints respected.
 
 2. Keep a list of marks. Menu: add mark (0–100), list, average (safe if empty), toppers (≥90), quit. No `def`.

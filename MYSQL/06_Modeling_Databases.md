@@ -4,7 +4,7 @@
 
 - Draw entities and relationships before CREATE TABLE
 - Pick a primary key and a foreign key so orders know their customer
-- Normalise enough that AcmeHR does not store the same phone three times
+- Normalise enough that Employee Management Portal does not store the same phone three times
 
 ## Core Concepts of ER Model
 

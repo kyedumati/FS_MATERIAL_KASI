@@ -915,7 +915,7 @@ jakarta.validation.Valid
 jakarta.validation.constraints
 ```
 
-Print a TechMart POST with empty name: 400 before `save`, and `campus_products` row count unchanged.
+Print a Swiggy POST with empty name: 400 before `save`, and `campus_products` row count unchanged.
 
 ```java
 public class BlankNameNoInsert {

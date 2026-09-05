@@ -1,7 +1,7 @@
 # Ticket: Campus Library JDBC CRUD
 
 **Customer:** Campus library desk  
-**Need:** Clerks must **list**, **add**, **update copies**, and **remove** books in MySQL from a **Java CLI** — not Workbench, not a CSV. User-typed titles must never become SQL commands. (Library stays the kit. Same `?` pattern later maps to **AcmeHR** `employee` CRUD.)
+**Need:** Clerks must **list**, **add**, **update copies**, and **remove** books in MySQL from a **Java CLI** — not Workbench, not a CSV. User-typed titles must never become SQL commands. (Library stays the kit. Same `?` pattern later maps to **Employee Management Portal** `employee` CRUD.)
 
 **Teaching-order:** `DriverManager` + `Connection` try-with-resources, `PreparedStatement` `?` for SELECT / INSERT / UPDATE / DELETE, `SQLException`, password from env / `.env` (never committed). PK/FK, JOIN, and TCL were already taught in [`MYSQL/`](../../../MYSQL/) — this kit **uses** `books` (seed). No Spring Boot. No JPA / Hibernate. No Lombok. No `DataSource` / Hikari. No `application.yml` (that is Spring). No `Statement` + string-concat SQL on the core path.
 

@@ -22,12 +22,12 @@
 - A local DRF Product API (or equivalent) you can call from the browser
 
 **Where used?**
-- CampusCart / **TechMart** — product list `useEffect` + `/api/products`
-- **AcmeHR** — employee directory fetch
-- **MedCare** — appointment calendar routes
-- **SecureBank** — protected transfer route after login
+- CampusCart / **Swiggy** — product list `useEffect` + `/api/products`
+- **Employee Management Portal** — employee directory fetch
+- **Apollo Hospitals** — appointment calendar routes
+- **HDFC Bank** — protected transfer route after login
 
-CampusCart remains the capstone skin (college TechMart).
+CampusCart remains the capstone skin (college Swiggy).
 
 ---
 
@@ -208,7 +208,7 @@ export async function listProducts() {
 }
 ```
 
-**Program 2 — TechMart createProduct**
+**Program 2 — Swiggy createProduct**
 
 ```javascript
 export async function createProduct(payload) {

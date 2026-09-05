@@ -1,6 +1,6 @@
 # Ticket: Clean Duplicate IDs Before Import
 
-**Customer:** TechMart ops importing product / email lists  
+**Customer:** Swiggy ops importing product / email lists  
 **Need:** Remove duplicates from a comma-separated list; preserve first-seen order.
 
 ## Starter

@@ -14,7 +14,7 @@
 **Module Outcome:**
 
 - Turn loose fields + static methods into a class with `new`, `this`, and a constructor
-- Hide balance so nobody sets SecureBank to `-10` from `main`
+- Hide balance so nobody sets HDFC Bank to `-10` from `main`
 - Start the BankAccount lab as objects
 
 ## Motivation — Feel the pain of loose data + static methods
@@ -141,10 +141,10 @@ That shift — from “bags of data + floating methods” to “objects that kno
 
 **Where used?**
 
-- **SecureBank** (accounts, UPI wallets)
-- **TechMart** (orders, products, carts)
-- **MedCare** (patients, appointments)
-- **AcmeHR** (employees, salary slips)
+- **HDFC Bank** (accounts), **PhonePe** (UPI wallets)
+- **Swiggy** (orders, products, carts)
+- **Apollo Hospitals** (patients, appointments)
+- **Employee Management Portal** (employees, salary slips)
 - CRM (customers, tickets)
 
 | Idea | Meaning |
@@ -432,7 +432,7 @@ PEN-01 @ ₹10
 - Initialise **all** required fields in the constructor. Do not rely on “I will set them later” unless you have a second constructor for that path.
 - Constructors can call **instance methods**, but keep them simple — the object is still being built.
 
-Write a TechMart canteen `Item` constructed with name and price. Print line totals for 2 teas and 1 samosa.
+Write a Swiggy canteen `Item` constructed with name and price. Print line totals for 2 teas and 1 samosa.
 
 ```java
 public class CanteenItemCtor {
@@ -466,7 +466,7 @@ Tea x2 = ₹30.0
 Samosa x1 = ₹20.0
 ```
 
-Write a SecureBank `Wallet` that takes holder and opening balance in the constructor, then print Priya's wallet.
+Write an HDFC Bank `Wallet` that takes holder and opening balance in the constructor, then print Priya's wallet.
 
 ```java
 public class WalletOpen {
@@ -605,7 +605,7 @@ class Student {
 102 Vikram <vikram@ksr.edu>
 ```
 
-Write a TechMart `Product` that defaults `gstApplies` to true via `this(...)`. Print a pen (default GST) and a book with GST off.
+Write a Swiggy `Product` that defaults `gstApplies` to true via `this(...)`. Print a pen (default GST) and a book with GST off.
 
 ```java
 public class ProductGstFlag {
@@ -724,7 +724,7 @@ flowchart LR
 - Keep `Math`-style helpers `static` (`gstAmount`, `isValidMark`).
 - `static` is not “better.” It is “no object needed.”
 
-Write a TechMart `Ticket` with instance `label()` and `priceWithGst()`, plus a static `gstAmount`. Print seat A1's label and price with 5% GST.
+Write a Swiggy `Ticket` with instance `label()` and `priceWithGst()`, plus a static `gstAmount`. Print seat A1's label and price with 5% GST.
 
 ```java
 public class TicketGst {
@@ -963,7 +963,7 @@ entries: 2
 
 **Icons:** Bank · UPI
 
-**Where used?** **SecureBank** balances, UPI wallets, passwords, **TechMart** inventory stock — anything with a rule that must stay true after every change.
+**Where used?** **HDFC Bank** balances, **PhonePe** wallets, passwords, **Swiggy** menu stock — anything with a rule that must stay true after every change.
 
 #### Definition (say this in class)
 
@@ -1181,7 +1181,7 @@ Mark must be 0–100
 Priya 90
 ```
 
-Write a SecureBank UPI `Wallet` that hides `balance`, deposits only positive amounts, and exposes `getBalance()`. Deposit 50, reject −10, then print the balance.
+Write a PhonePe `Wallet` that hides `balance`, deposits only positive amounts, and exposes `getBalance()`. Deposit 50, reject −10, then print the balance.
 
 ```java
 public class UpiWallet {
@@ -1316,7 +1316,7 @@ false
 true
 ```
 
-Write a SecureBank `BankAccount` and a `bonus` method that deposits 100 into the same object passed in. Print Ravi's balance after the bonus.
+Write an HDFC Bank `BankAccount` and a `bonus` method that deposits 100 into the same object passed in. Print Ravi's balance after the bonus.
 
 ```java
 public class PassObject {
@@ -1964,7 +1964,7 @@ Balance: 1300.0
 
 ---
 
-## Mini-Project (Assignment): SecureBank BankAccount Class
+## Mini-Project (Assignment): HDFC Bank BankAccount Class
 
 **Lab kit:** [15_Lab_Assets/09_bank_account_oop/](../15_Lab_Assets/09_bank_account_oop/)
 
@@ -2019,13 +2019,13 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Bundle data with the methods that use it, and hide fields (`private`) so callers must use a validating API.
 
 **Q6. Why not `public double balance` plus a careful `withdraw`?**  
-**A:** In **SecureBank**, anyone could skip `withdraw` and assign a nonsense balance. `private` makes the compiler enforce the door.
+**A:** In **HDFC Bank**, anyone could skip `withdraw` and assign a nonsense balance. `private` makes the compiler enforce the door.
 
 **Q7. Instance field vs static field?**  
-**A:** Instance = per object (`balance` on one SecureBank account). Static = one shared copy (`college`, `count`).
+**A:** Instance = per object (`balance` on one HDFC Bank account). Static = one shared copy (`college`, `count`).
 
 **Q8. Can `main` call an instance method directly?**  
-**A:** No. `main` is `static`. Create an object first: `BankAccount a = new BankAccount(...); a.deposit(100);` — same as a TechMart `Product` before `lineTotal()`.
+**A:** No. `main` is `static`. Create an object first: `BankAccount a = new BankAccount(...); a.deposit(100);` — same as a Swiggy `Product` before `lineTotal()`.
 
 **Q9. What happens if you write any constructor?**  
 **A:** Java no longer provides the default no-arg constructor.

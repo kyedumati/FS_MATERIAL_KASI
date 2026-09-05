@@ -163,9 +163,9 @@ Map of modules: [MYSQL README](../README.md).
 
 Complete at least **one** full project from [Real-Time Projects](../12_Real_Time_Projects.md):
 
-- **AcmeHR** — all 7 practice queries + challenge
-- **TechMart** — all 7 practice queries + challenge
-- **MedCare** or **SecureBank** — all 6 practice queries + challenge
+- **Employee Management Portal** — all 7 practice queries + challenge
+- **Swiggy** — all 7 practice queries + challenge
+- **Apollo Hospitals** or **HDFC Bank** — all 6 practice queries + challenge
 
 ---
 

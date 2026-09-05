@@ -269,7 +269,7 @@ CREATE TABLE employee (
 
 ```sql
 INSERT INTO employee (name, email, salary)
-VALUES ('Ravi', 'ravi@acme.com', 50000);
+VALUES ('Ravi', 'ravi@email.com', 50000);
 -- status defaults to 'active', created_at defaults to current timestamp
 ```
 

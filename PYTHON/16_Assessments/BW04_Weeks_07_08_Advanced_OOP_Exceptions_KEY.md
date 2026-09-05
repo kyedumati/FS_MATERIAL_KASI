@@ -22,7 +22,7 @@
 1. Write a generator `read_rows(rows)` that `yield`s each dict from an in-memory list (do not return a full new list).
    - Award marks for correctness + teaching-order constraints respected.
 
-2. Create **SecureBank** `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance`. Reject bad amounts with print+return (no `raise` / `try` / `except`).
+2. Create **HDFC Bank** `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance`. Reject bad amounts with print+return (no `raise` / `try` / `except`).
    - Award marks for correctness + teaching-order constraints respected.
 
 ## C. Short answer — model

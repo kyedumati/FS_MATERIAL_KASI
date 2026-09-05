@@ -6,7 +6,7 @@
 
 **CampusCart** — College E-Commerce & Booking Portal
 
-CampusCart is the college storefront; it uses the same catalog / cart / order patterns as **TechMart**. Batch alts: MediBook Clinic → **MedCare**, teller portal → **SecureBank**.
+CampusCart is the college storefront; it uses the same catalog / cart / order patterns as **Swiggy**. Batch alts: MediBook Clinic → **Apollo Hospitals**, teller portal → **HDFC Bank**.
 
 ## Stack
 

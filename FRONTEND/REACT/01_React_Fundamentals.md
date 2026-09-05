@@ -36,12 +36,12 @@ Product UIs and many admin dashboards use React (or similar) because:
 - **Pairs with Django:** Django/DRF backend + React frontend is a common junior stack
 
 **Where used?**
-- CampusCart / **TechMart** — `<ProductCard />` list and cart count
-- **AcmeHR** — leave request form with `useState`
-- **MedCare** — appointment status list (`scheduled` / `completed` / `cancelled`)
-- **SecureBank** — transfer amount field + confirmation
+- CampusCart / **Swiggy** — `<ProductCard />` list and cart count
+- **Employee Management Portal** — leave request form with `useState`
+- **Apollo Hospitals** — appointment status list (`scheduled` / `completed` / `cancelled`)
+- **HDFC Bank** — transfer amount field + confirmation
 
-CampusCart stays the default demo skin (college TechMart).
+CampusCart stays the default demo skin (college Swiggy).
 
 **Note:**
 - Comparing React to Django MVC literally causes confusion — React is the view layer only.
@@ -105,7 +105,7 @@ export default function App() {
   return (
     <main>
       <Hello />
-      <p>Hyderabad TechMart / CampusCart UI</p>
+      <p>Hyderabad Swiggy / CampusCart UI</p>
     </main>
   );
 }
@@ -160,15 +160,15 @@ function ProductCard({ name, price }) {
 ```mermaid
 flowchart TD
   App["App"] --> List["ProductList"]
-  List --> C1["ProductCard<br/>name=Mouse price=899"]
-  List --> C2["ProductCard<br/>name=Hub price=1299"]
+  List --> C1["ProductCard<br/>name=Idli price=30"]
+  List --> C2["ProductCard<br/>name=Filter Coffee price=25"]
 ```
 
 Props are **read-only**. To change data, lift state up (next section).
 
 **Try these (2 programs):**
 
-**Program 1 — TechMart ProductCard props**
+**Program 1 — Swiggy ProductCard props**
 
 ```jsx
 function ProductCard({ name, price }) {
@@ -208,7 +208,7 @@ return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
 
 **Try these (2 programs):**
 
-**Program 1 — TechMart cart counter**
+**Program 1 — Swiggy cart counter**
 
 ```jsx
 import { useState } from "react";
@@ -223,7 +223,7 @@ export default function CartButton() {
 }
 ```
 
-**Program 2 — TechMart toggle sold out**
+**Program 2 — Swiggy toggle sold out**
 
 ```jsx
 import { useState } from "react";
@@ -255,7 +255,7 @@ Use stable unique `key` (prefer id over index when list changes).
 
 **Try these (2 programs):**
 
-**Program 1 — TechMart map products**
+**Program 1 — Swiggy map products**
 
 ```jsx
 const products = [
@@ -325,7 +325,7 @@ export default function NameForm() {
 }
 ```
 
-**Program 2 — TechMart price field**
+**Program 2 — Swiggy price field**
 
 ```jsx
 import { useState } from "react";

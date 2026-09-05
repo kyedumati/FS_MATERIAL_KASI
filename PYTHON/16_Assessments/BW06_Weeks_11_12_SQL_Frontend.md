@@ -95,7 +95,7 @@ Circle the best option.
 # your code
 ```
 
-2. Write a SQL JOIN query (library style, or **AcmeHR** employee + leave_record): list member name + book title for active loans (invent sensible table/column names).
+2. Write a SQL JOIN query (library style, or **Employee Management Portal** employee + leave_record): list member name + book title for active loans (invent sensible table/column names).
 
 ```python
 # your code

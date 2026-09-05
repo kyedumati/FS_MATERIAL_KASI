@@ -95,7 +95,7 @@ Circle the best option.
 // your code
 ```
 
-2. Write **SecureBank** `BankAccount` with **private** `holder` and `balance`, constructor `(String, double)`, `deposit`, `withdraw`, `getBalance`. Reject `amount <= 0` and overdraft with a printed message (`print` + `return`). In `main`: opening `1000`, deposit `200`, withdraw `100`, withdraw `5000`, print the balance. No `setBalance`. No `extends`. No `throw`.
+2. Write **HDFC Bank** `BankAccount` with **private** `holder` and `balance`, constructor `(String, double)`, `deposit`, `withdraw`, `getBalance`. Reject `amount <= 0` and overdraft with a printed message (`print` + `return`). In `main`: opening `1000`, deposit `200`, withdraw `100`, withdraw `5000`, print the balance. No `setBalance`. No `extends`. No `throw`.
 
 ```java
 // your code

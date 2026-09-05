@@ -19,11 +19,11 @@ A **tuple** is like a printed receipt or Aadhaar-linked record: once created, yo
 **Icons:** Employee · Order · Bank · Payroll · Laptop
 
 **Where used?**
-- **AcmeHR** — fixed employee row `(emp_id, name, dept)` snapshots
-- **TechMart** — product catalog rows, shipping status tuples
-- **SecureBank** — immutable transaction snapshots (date, type, ₹ amount)
+- **Employee Management Portal** — fixed employee row `(emp_id, name, dept)` snapshots
+- **Swiggy** — product catalog rows, shipping status tuples
+- **HDFC Bank** — immutable transaction snapshots (date, type, ₹ amount)
 - College apps — GPS campus coords, exam slot `(date, room)`
-- **MedCare** — appointment keys, unique tag sets for departments
+- **Apollo Hospitals** — appointment keys, unique tag sets for departments
 
 **Use tuples when:**
 
@@ -86,7 +86,7 @@ print(employee[1:3])        # ('Ananya Sharma', 'Engineering')
 - Wrong: Writing `(42)` and thinking it is a 1-tuple — it is just an int.
 - Prefer: Always use a trailing comma for a 1-tuple: `(42,)`.
 
-Create an AcmeHR employee tuple and print each field by index.
+Create an Employee Management Portal employee tuple and print each field by index.
 
 ```python
 emp = ("EMP-204", "Priya Nair", "HR")

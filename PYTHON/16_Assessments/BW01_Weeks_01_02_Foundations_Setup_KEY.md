@@ -19,7 +19,7 @@
 
 ## B. Coding — model points
 
-1. Ask for a **TechMart** canteen item **price** and **qty** (use `float` and `int`). Compute total with **5% GST** and print `Total: ₹…` with 2 decimals. Linear script only (no `if`/`def`).
+1. Ask for a **Swiggy** canteen item **price** and **qty** (use `float` and `int`). Compute total with **5% GST** and print `Total: ₹…` with 2 decimals. Linear script only (no `if`/`def`).
    - Award marks for correctness + teaching-order constraints respected.
 
 2. Read three subject marks with `float(input(...))` and print their average with 2 decimals (f-string). No loops/`def`.

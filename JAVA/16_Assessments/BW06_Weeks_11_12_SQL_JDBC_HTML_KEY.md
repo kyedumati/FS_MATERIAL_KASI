@@ -81,11 +81,11 @@ If `MYSQL_PASSWORD` is unset: `Set MYSQL_PASSWORD first`. With MySQL + table + C
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CampusCart / TechMart Canteen Order</title>
+  <title>CampusCart / Swiggy Canteen Order</title>
 </head>
 <body>
   <header>
-    <h1>CampusCart / TechMart Canteen</h1>
+    <h1>CampusCart / Swiggy Canteen</h1>
   </header>
   <main>
     <form action="/canteen/order" method="post">

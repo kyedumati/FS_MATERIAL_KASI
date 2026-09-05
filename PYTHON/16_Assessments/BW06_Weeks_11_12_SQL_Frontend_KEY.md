@@ -22,7 +22,7 @@
 1. Write an HTML profile page with a form: name, email, phone; labels associated with inputs; submit button.
    - Award marks for correctness + teaching-order constraints respected.
 
-2. Write a SQL JOIN query (library style, or **AcmeHR** employee + leave_record): list member name + book title for active loans (invent sensible table/column names).
+2. Write a SQL JOIN query (library style, or **Employee Management Portal** employee + leave_record): list member name + book title for active loans (invent sensible table/column names).
    - Award marks for correctness + teaching-order constraints respected.
 
 ## C. Short answer — model

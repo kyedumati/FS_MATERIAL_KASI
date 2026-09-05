@@ -17,17 +17,17 @@
 - Abstract class (`ABC`, when we can / cannot construct)
 - Interface in Python (ABC with only abstract methods)
 - Concrete class vs abstract class vs interface
-- SecureBank campus wallet (lab)
+- HDFC Bank campus wallet (lab)
 
 
 
 ## 1. Abstract method
 
-**Real-world analogy:** A **job posting** says “must treat patients.” It does not write the treatment. Each doctor fills that in. An **abstract method** is the must-have skill with **no recipe yet**. **SecureBank** declares `kind()` before savings or wallet exists. **AcmeHR** declares `net()` before intern vs faculty. **TechMart** declares `pay()` before UPI vs card.
+**Real-world analogy:** A **job posting** says “must treat patients.” It does not write the treatment. Each doctor fills that in. An **abstract method** is the must-have skill with **no recipe yet**. **HDFC Bank** declares `kind()` before savings or current exists. **Employee Management Portal** declares `net()` before intern vs faculty. **Swiggy** declares `pay()` before UPI vs card.
 
 **Icons:** Bank · Employee · Order
 
-**Where used?** **SecureBank** `kind()`, **AcmeHR** `net()`, **TechMart** `pay()` — the parent names the method; the child writes the body.
+**Where used?** **HDFC Bank** `kind()`, **Employee Management Portal** `net()`, **Swiggy** `pay()` — the parent names the method; the child writes the body.
 
 **Definition:** Sometimes we don't know the implementation yet, but we still want to declare the method. Such a method is an **abstract method**. It has only a **declaration**, not the real code.
 
@@ -63,7 +63,7 @@ Child classes are responsible for providing the implementation.
 
 **Remember:** Abstract method = “I know the name. I do not know the body yet.”
 
-Write an AcmeHR abstract `JobRole` with `net_pay()`. Implement it on `Intern` and print `Intern().net_pay()`.
+Write an Employee Management Portal abstract `JobRole` with `net_pay()`. Implement it on `Intern` and print `Intern().net_pay()`.
 
 ```python
 from abc import ABC, abstractmethod
@@ -89,7 +89,7 @@ print(Intern().net_pay())
 15000
 ```
 
-Write a SecureBank abstract `Account` with `kind()`. Implement it on `SavingsAccount` and `WalletAccount` and print both kinds.
+Write an HDFC Bank abstract `Account` with `kind()`. Implement it on `SavingsAccount` and `WalletAccount` and print both kinds.
 
 ```python
 from abc import ABC, abstractmethod
@@ -135,7 +135,7 @@ wallet
 
 **Icons:** Bank · Employee · Laptop
 
-**Where used?** **SecureBank** `Account` (savings vs wallet), **MedCare** `Report` (lab vs invoice).
+**Where used?** **HDFC Bank** `Account` (savings vs wallet), **Apollo Hospitals** `Report` (lab vs invoice).
 
 **Definition:** Sometimes the implementation of a class is **not complete**. Such a partially implemented class is an **abstract class**.
 
@@ -352,7 +352,7 @@ classDiagram
 
 **Common Error:** `class Account(ABC):` with no `@abstractmethod`. Then `Account("Campus")` still works — Case-2.
 
-Write a SecureBank abstract `Account` with shared `deposit`/`get_balance` and abstract `kind()`. Construct `SavingsAccount`, deposit, and print kind, holder, and balance. Leave the parent unconstructed.
+Write an HDFC Bank abstract `Account` with shared `deposit`/`get_balance` and abstract `kind()`. Construct `SavingsAccount`, deposit, and print kind, holder, and balance. Leave the parent unconstructed.
 
 ```python
 from abc import ABC, abstractmethod
@@ -394,7 +394,7 @@ print(acct.kind(), acct.holder, int(acct.get_balance()))
 savings Priya 1200
 ```
 
-Write a MedCare abstract `Report` with shared `header()` and abstract `title()`. Implement `LabReport` and `InvoiceReport` and print header plus title for each.
+Write a Apollo Hospitals abstract `Report` with shared `header()` and abstract `title()`. Implement `LabReport` and `InvoiceReport` and print header plus title for each.
 
 ```python
 from abc import ABC, abstractmethod
@@ -405,7 +405,7 @@ class Report(ABC):
         self.patient = patient
 
     def header(self):
-        return "MedCare | " + self.patient
+        return "Apollo Hospitals | " + self.patient
 
     @abstractmethod
     def title(self):
@@ -431,8 +431,8 @@ print(inv.header(), "-", inv.title())
 **Expected Output:**
 
 ```
-MedCare | Anita - Blood test
-MedCare | Ravi - Pharmacy bill
+Apollo Hospitals | Anita - Blood test
+Apollo Hospitals | Ravi - Pharmacy bill
 ```
 
 ---
@@ -445,7 +445,7 @@ MedCare | Ravi - Pharmacy bill
 
 **Icons:** Bank · UPI · Order
 
-**Where used?** Database drivers (**MySQL** vs **Postgres**), **TechMart** pay methods, **MedCare** SMS vs email.
+**Where used?** Database drivers (**MySQL** vs **Postgres**), **Swiggy** pay methods, **Apollo Hospitals** SMS vs email.
 
 **Definition:** If an abstract class contains **only abstract methods**, we consider it an **interface**.
 
@@ -597,11 +597,11 @@ Ravi ₹380
 
 ## 4. Concrete class vs abstract class vs interface
 
-**Real-world analogy:** Three documents on a campus project. The **requirement PDF** lists steps only — **interface**. The **half-built floor** has wiring but no shutter — **abstract class**. The **open canteen** is ready to serve — **concrete class**. **SecureBank** `Payable` is the PDF. `Account` is the half-built floor. `SavingsAccount` is the open branch.
+**Real-world analogy:** Three documents on a campus project. The **requirement PDF** lists steps only — **interface**. The **half-built floor** has wiring but no shutter — **abstract class**. The **open canteen** is ready to serve — **concrete class**. **HDFC Bank** `Payable` is the PDF. `Account` is the half-built floor. `SavingsAccount` is the open branch.
 
 **Icons:** Bank · Employee · UPI
 
-**Where used?** Interview staple: “When interface, when abstract class?” **SecureBank** `Payable` vs `Account`.
+**Where used?** Interview staple: “When interface, when abstract class?” **HDFC Bank** `Payable` vs `Account`.
 
 1. Know **only** the requirement → **interface**.
 2. Some real code, some holes → **abstract class**.
@@ -663,7 +663,7 @@ m2 method implementation
 m3 method implementation
 ```
 
-**AcmeHR** onboarding is the same chain: interface lists `register` / `activate`; abstract class writes `register`; intern vs faculty finish `activate`.
+**Employee Management Portal** onboarding is the same chain: interface lists `register` / `activate`; abstract class writes `register`; intern vs faculty finish `activate`.
 
 **Interview:** Why not put `pay` on abstract `Account`? Not every account pays. `Payable` is the requirement for types that **can** pay.
 
@@ -719,7 +719,7 @@ wallet Ravi
 pay ₹80 from Ravi
 ```
 
-Write AcmeHR `Onboarding` (interface), `StaffOnboarding` (implements `register`), and `InternOnboarding` (implements `activate`). Register and activate intern Anita.
+Write Employee Management Portal `Onboarding` (interface), `StaffOnboarding` (implements `register`), and `InternOnboarding` (implements `activate`). Register and activate intern Anita.
 
 ```python
 from abc import ABC, abstractmethod
@@ -764,7 +764,7 @@ Anita activated as intern
 
 
 
-## Step-by-Step: SecureBank campus wallet
+## Step-by-Step: HDFC Bank campus wallet
 
 **Icons:** Bank · UPI · Order
 
@@ -958,11 +958,11 @@ print(int(Rect(3, 4).area()))
 
 
 
-## Mini-Project (Assignment): SecureBank Campus Wallet
+## Mini-Project (Assignment): HDFC Bank Campus Wallet
 
 **Lab kit:** [15_Lab_Assets/32_campus_wallet_abc/](../15_Lab_Assets/32_campus_wallet_abc/)
 
-**Business request:** SecureBank campus desk needs savings and wallet on one slip loop. Wallet can **pay**. A generic `Account(...)` must not be allowed.
+**Business request:** HDFC Bank campus desk needs savings and wallet on one slip loop. Wallet can **pay**. A generic `Account(...)` must not be allowed.
 
 ### What to build
 

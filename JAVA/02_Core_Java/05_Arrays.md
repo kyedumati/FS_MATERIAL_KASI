@@ -25,10 +25,10 @@ An **array** is a numbered row of boxes of the **same type**. Index `0` is the f
 
 **Where used?**
 - College apps — marks per subject, attendance flags (syntax — keep generic)
-- **TechMart** — prices for a few SKUs in a demo
-- **AcmeHR** — three allowances in a row
-- **SecureBank** — last few transaction amounts
-- **MedCare** — a short queue of token numbers
+- **Swiggy** — prices for a few SKUs in a demo
+- **Employee Management Portal** — three allowances in a row
+- **HDFC Bank** — last few transaction amounts
+- **Apollo Hospitals** — a short queue of token numbers
 
 ```
 marks:  [ 78 | 82 | 91 | 65 | 88 ]

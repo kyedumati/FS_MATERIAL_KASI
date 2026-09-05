@@ -105,6 +105,6 @@ Circle the best option.
 
 ## C. Short answer (1)
 
-Why wrap **SecureBank** ATM logic in functions instead of one giant script? Two concrete benefits.
+Why wrap **HDFC Bank** ATM logic in functions instead of one giant script? Two concrete benefits.
 
 _(Write 3–6 sentences.)_

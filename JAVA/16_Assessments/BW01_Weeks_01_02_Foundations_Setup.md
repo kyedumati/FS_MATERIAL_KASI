@@ -1,7 +1,7 @@
 # Biweekly Assessment BW01 — Weeks 1–2
 
 **Sessions covered:** S01–10  
-**Topics:** Computer foundations, terminal, JDK 17, `javac`/`java`, `main`, variables, primitives, operators, `Scanner`, casting, TechMart canteen calculator
+**Topics:** Computer foundations, terminal, JDK 17, `javac`/`java`, `main`, variables, primitives, operators, `Scanner`, casting, Swiggy canteen calculator
 
 **Timebox:** 45–60 minutes (homework or Friday of the even week).  
 **Rules:** Closed notes unless your trainer allows open notes. No copying.  
@@ -89,7 +89,7 @@ Circle the best option.
 
 ## B. Coding (2)
 
-1. Ask for a **TechMart** canteen item **price** (`double`) and **qty** (`int`). Compute total with **5% GST** and print `Total: ₹…` with 2 decimals. Linear `main` only (no `if` / extra methods).
+1. Ask for a **Swiggy** canteen item **price** (`double`) and **qty** (`int`). Compute total with **5% GST** and print `Total: ₹…` with 2 decimals. Linear `main` only (no `if` / extra methods).
 
 ```java
 // your code

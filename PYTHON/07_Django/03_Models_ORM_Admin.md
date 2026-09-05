@@ -19,7 +19,7 @@ A **model** is a Python class describing **database table structure**. Each **at
 
 **Where used?**
 - Campus portal — Student / Course models synced to MySQL
-- **TechMart** — Product, Order models + Django admin for staff
+- **Swiggy** — Product, Order models + Django admin for staff
 - Blog — Post / Author / Tag with FK and M2M
 - Task Manager — Task rows owned by User (FK later with auth)
 - Capstone — replace hardcoded template lists with ORM queries
@@ -197,7 +197,7 @@ class Post(models.Model):
         return self.title
 ```
 
-Give a TechMart Product a `__str__` that includes name and rupee price.
+Give a Swiggy Product a `__str__` that includes name and rupee price.
 
 ```python
 class Product(models.Model):

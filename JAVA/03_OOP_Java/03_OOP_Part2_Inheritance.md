@@ -149,7 +149,7 @@ class SavingsAccount extends BankAccount {
 
 **Icons:** Bank · Employee · Order
 
-**Where used?** **SecureBank** `SavingsAccount` is a `BankAccount`; **AcmeHR** `Manager` is an `Employee`; `Car` is a `Vehicle`.
+**Where used?** **HDFC Bank** `SavingsAccount` is a `BankAccount`; **Employee Management Portal** `Manager` is an `Employee`; `Car` is a `Vehicle`.
 
 **Definition:** **Inheritance** lets a **child class** reuse and extend a **parent class**.  
 In plain English: the child **IS-A** specialised kind of the parent.
@@ -243,7 +243,7 @@ Java rule: a class may extend **only one** class. There is no `extends A, B`.
 - Inheritance is for **specialisation**, not for “I want to reuse one helper method” (a plain static method or composition may be enough).
 - Private parent fields stay hidden. The child uses getters / methods, or `protected` (next topics).
 
-Write a SecureBank `SavingsAccount` that extends `BankAccount`, deposits, and applies interest via `getBalance()`. Print Priya's holder and balance after interest.
+Write an HDFC Bank `SavingsAccount` that extends `BankAccount`, deposits, and applies interest via `getBalance()`. Print Priya's holder and balance after interest.
 
 ```java
 public class SavingsInherit {
@@ -552,7 +552,7 @@ That diagram is **illegal** as two `extends` in Java.
 
 **Common Error:** using inheritance just to “mix features” when `this.engine = new Engine()` would be clearer.
 
-Write SecureBank `SavingsAccount` and `CurrentAccount` as siblings under `BankAccount`. Print each holder's kind and balance.
+Write HDFC Bank `SavingsAccount` and `CurrentAccount` as siblings under `BankAccount`. Print each holder's kind and balance.
 
 ```java
 public class AccountKinds {
@@ -671,7 +671,7 @@ Meera (900) — team of 6
 
 **Icons:** Employee · Bank · Order
 
-**Where used?** **AcmeHR** `Manager` prints a richer payslip; `Car` starts differently from `Bike`; `toString` on each campus role.
+**Where used?** **Employee Management Portal** `Manager` prints a richer payslip; `Car` starts differently from `Bike`; `toString` on each campus role.
 
 **Definition:** The child defines a method with the **same name, same parameter list, and compatible return type** as the parent, with a new body.  
 **Purpose:** Specialise behaviour while keeping the same call site (`obj.info()`, `obj.netSalary()`).
@@ -767,7 +767,7 @@ flowchart LR
 - `final` methods cannot be overridden. `final` classes cannot be extended. Useful interview bite; you do not need it in the lab core path.
 - `toString` is an override of `Object.toString` — see topic 6.
 
-Write an AcmeHR `Manager` that overrides `net()` and `payslip()`. Print Ravi's employee slip and Meera's manager slip.
+Write an Employee Management Portal `Manager` that overrides `net()` and `payslip()`. Print Ravi's employee slip and Meera's manager slip.
 
 ```java
 public class PayslipOverride {
@@ -1014,7 +1014,7 @@ class Child extends Parent {
 
 **Icons:** Employee · Laptop · Order
 
-**Where used?** **AcmeHR** `Employee` **has a** `Laptop`; **TechMart** `OrderService` **has a** notifier; `Car` **has an** `Engine`.
+**Where used?** **Employee Management Portal** `Employee` **has a** `Laptop`; **Swiggy** `OrderService` **has a** notifier; `Car` **has an** `Engine`.
 
 Teach this **after** inheritance types: first learn IS-A trees, then learn when a tree is the wrong tool.
 
@@ -1124,7 +1124,7 @@ classDiagram
 - Composition keeps parts swappable (`SmsNotifier` vs `EmailNotifier`) without a messy parent list.
 - Do not make `Car extends Engine`. A car **has** an engine.
 
-Write a TechMart `OrderService` that HAS-A SMS or email notifier. Place ORD-101 by SMS and ORD-102 by email.
+Write a Swiggy `OrderService` that HAS-A SMS or email notifier. Place ORD-101 by SMS and ORD-102 by email.
 
 ```java
 public class OrderNotify {
@@ -1315,7 +1315,7 @@ e is Manager? false
 - Prefer `display()` / `toString()` overrides over switching on types.
 - You do not need `getClass().getName()` in the core path.
 
-Write AcmeHR `Faculty` extending `Staff`. Print `instanceof` against `Staff`, `Faculty`, and `Object`.
+Write Employee Management Portal `Faculty` extending `Staff`. Print `instanceof` against `Staff`, `Faculty`, and `Object`.
 
 ```java
 public class RoleCheck {
@@ -1353,7 +1353,7 @@ true
 true
 ```
 
-Write a TechMart `Product` that overrides `toString()`. Print the product with `System.out.println(p)`.
+Write a Swiggy `Product` that overrides `toString()`. Print the product with `System.out.println(p)`.
 
 ```java
 public class ProductToString {
@@ -1882,7 +1882,7 @@ class SavingsAccount extends BankAccount {
 
 ---
 
-## Mini-Project (Assignment): AcmeHR Staff Hierarchy
+## Mini-Project (Assignment): Employee Management Portal Staff Hierarchy
 
 **Lab kit:** [15_Lab_Assets/10_employee_inheritance/](../15_Lab_Assets/10_employee_inheritance/)
 
@@ -1920,7 +1920,7 @@ The bigger Campus Wallet push (multiple account types + interfaces) is [Part 3](
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 **Q1. What is inheritance?**  
-**A:** A child class reuses and extends a parent. The child **IS-A** specialised parent. Syntax: `class Child extends Parent`. **AcmeHR:** `Manager extends Employee`. **SecureBank:** `SavingsAccount extends BankAccount`.
+**A:** A child class reuses and extends a parent. The child **IS-A** specialised parent. Syntax: `class Child extends Parent`. **Employee Management Portal:** `Manager extends Employee`. **HDFC Bank:** `SavingsAccount extends BankAccount`.
 
 **Q2. Name the inheritance shapes Java uses, and the one it refuses for classes.**  
 **A:** Single (A←B), multilevel (A←B←C), hierarchical (A←B and A←C). Multiple class parents (`extends A, B`) is **illegal**. Interfaces come in Part 3.
@@ -1935,7 +1935,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Overloading = different parameter lists (compile time). Overriding = same signature in a child (runtime object type).
 
 **Q6. Inheritance vs composition?**  
-**A:** Inherit when the child **is a** specialised parent (`Manager` **is an** AcmeHR `Employee`). Compose when an object **has a** collaborator (`TechMart` `OrderService` **has a** notifier). Prefer composition when unsure.
+**A:** Inherit when the child **is a** specialised parent (`Manager` **is an** Employee Management Portal `Employee`). Compose when an object **has a** collaborator (`Swiggy` `OrderService` **has a** notifier). Prefer composition when unsure.
 
 **Q7. Can the child read a `private` parent field?**  
 **A:** No. Use a getter, or declare the field `protected` if the child truly must see it.

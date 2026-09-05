@@ -10,7 +10,7 @@ Private ops, rubrics, and author standards. Excluded from `./scripts/pack_studen
 | [09_External_Dependencies.md](09_External_Dependencies.md) | `FRONTEND/` / `MYSQL/` contract |
 | [10_Module_Writing_Standard.md](10_Module_Writing_Standard.md) | Authoring standard for Java modules |
 | [11_Master_Course_Guide.md](11_Master_Course_Guide.md) | Full journey, capstone roadmap, placement |
-| [12_Named_Product_Domains.md](12_Named_Product_Domains.md) | AcmeHR / TechMart / MedCare / SecureBank teaching overlay |
+| [12_Named_Product_Domains.md](12_Named_Product_Domains.md) | Employee Management Portal / Swiggy / Apollo Hospitals / HDFC Bank teaching overlay |
 
 Same habits as Python FS: daily 75-minute shape, Definition/Purpose before syntax, share the module PDF after it is taught.
 

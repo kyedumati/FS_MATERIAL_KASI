@@ -149,9 +149,9 @@ In other languages the same idea may be called a *method*, *procedure*, or *subr
 **Icons:** Bank · UPI · Order · Payroll · Laptop
 
 **Where used?**
-- **SecureBank** / UPI — validate amount once, reuse in deposit / withdraw / transfer
-- **TechMart** — GST map, cart totals, login-gated checkout helpers
-- **AcmeHR** — bill / salary calculators with defaults and `*args` for allowances
+- **HDFC Bank** / **PhonePe** — validate amount once, reuse in deposit / withdraw / transfer
+- **Swiggy** — GST map, cart totals, login-gated checkout helpers
+- **Employee Management Portal** — bill / salary calculators with defaults and `*args` for allowances
 - Reporting — generators stream large attendance or expense rows without loading everything
 - Toolkits — shared `ksr_utils` validators and formatters imported across scripts
 
@@ -581,7 +581,7 @@ passed = [m for m in marks if m >= 75]
 - `reduce` lives in `functools` (not a built-in). The function takes **(accumulator, next_item)**.
 - Do not force `reduce` for a simple sum — `sum(prices)` is better. Use `reduce` when the fold is custom (e.g. merge dicts, running max with a twist).
 
-For TechMart canteen prices, use `map` to add 5% GST, then `filter` for prices ≥ 50. Print both lists.
+For Swiggy canteen prices, use `map` to add 5% GST, then `filter` for prices ≥ 50. Print both lists.
 
 ```python
 prices = [40, 25, 60, 15, 120]
@@ -598,7 +598,7 @@ print(big)
 [63.0, 126.0]
 ```
 
-Use `functools.reduce` to total a TechMart bill, then print `sum(bill)` beside it to show they match.
+Use `functools.reduce` to total a Swiggy bill, then print `sum(bill)` beside it to show they match.
 
 ```python
 from functools import reduce
@@ -887,7 +887,7 @@ print(sum(passed_gen))   # 303 — consumes the generator
 - Need the full collection, reuse, or indexing → **list** comprehension.
 - One-pass filter/transform (especially large) → **generator** expression or `yield` function.
 
-Build a TechMart GST generator expression (5% on each price) and print each value one at a time.
+Build a Swiggy GST generator expression (5% on each price) and print each value one at a time.
 
 ```python
 prices = [40, 25, 60, 15, 120]

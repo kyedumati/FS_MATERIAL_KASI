@@ -1,6 +1,6 @@
-# Ticket: SecureBank BankAccount Class
+# Ticket: HDFC Bank BankAccount Class
 
-**Customer:** SecureBank campus branch  
+**Customer:** HDFC Bank campus branch  
 **Need:** `BankAccount` with deposit / withdraw; balance **not** settable from outside.
 
 **Teaching-order:** Classes, constructors, `this`, `private` + getters, instance methods. Validate with `print` + `return` — **no `throw` / `try` / `catch`**. **No `extends`** (inheritance is the next part). No `ArrayList`. No Lombok.

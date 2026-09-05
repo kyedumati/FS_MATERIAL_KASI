@@ -105,6 +105,6 @@ Circle the best option.
 
 ## C. Short answer (1)
 
-In 3–6 sentences, explain when you choose a **List**, a **Set**, and a **Map** in a **TechMart** canteen. Why keep a `List` of SKUs next to a `Map` of SKU → price instead of looping `HashMap.keySet()` for the receipt?
+In 3–6 sentences, explain when you choose a **List**, a **Set**, and a **Map** in a **Swiggy** canteen. Why keep a `List` of SKUs next to a `Map` of SKU → price instead of looping `HashMap.keySet()` for the receipt?
 
 _(Write 3–6 sentences.)_

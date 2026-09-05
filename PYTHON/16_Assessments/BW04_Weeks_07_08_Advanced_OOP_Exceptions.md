@@ -95,7 +95,7 @@ Circle the best option.
 # your code
 ```
 
-2. Create **SecureBank** `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance`. Reject bad amounts with print+return (no `raise` / `try` / `except`).
+2. Create **HDFC Bank** `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance`. Reject bad amounts with print+return (no `raise` / `try` / `except`).
 
 ```python
 # your code

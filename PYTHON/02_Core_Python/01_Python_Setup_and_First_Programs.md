@@ -18,11 +18,11 @@
 **Icons:** Bank · Order · Laptop · Payroll
 
 **Where used?**
-- **SecureBank** / UPI scripts — small tools that print balances, receipts, or job status
+- **HDFC Bank** / **PhonePe** scripts — small tools that print balances, receipts, or job status
 - College apps — student portal banners, marks entry CLIs
-- **TechMart** — canteen/order labels and first checkout demos
-- **AcmeHR** — employee welcome scripts and HR training labs
-- **MedCare** — appointment or ticket “hello” scripts before real CRUD
+- **Swiggy** — canteen/order labels and first checkout demos
+- **Employee Management Portal** — employee welcome scripts and HR training labs
+- **Apollo Hospitals** — appointment or ticket “hello” scripts before real CRUD
 
 **Why companies in India hire Python developers:**
 
@@ -200,7 +200,7 @@ Hello from REPL
 
 REPL is great for testing one line; scripts are for programs you keep.
 
-Print a greeting for Ravi and the sum of two TechMart canteen prices (₹450 and ₹120).
+Print a greeting for Ravi and the sum of two Swiggy canteen prices (₹450 and ₹120).
 
 ```python
 print("Hello, Ravi")
@@ -300,7 +300,7 @@ Please use registered email.
 ========================================
 ```
 
-Print a SecureBank ATM welcome banner using repeated `=` lines around the title and welcome text.
+Print an HDFC Bank ATM welcome banner using repeated `=` lines around the title and welcome text.
 
 ```python
 print("=" * 24)
@@ -493,16 +493,16 @@ print("Module: Setup — no amounts yet")
 - Wrong: Running a script from the wrong folder → `FileNotFoundError`.
 - Prefer: `cd` to the folder that contains the script, or use a full path.
 
-Print a one-line TechMart canteen bill title.
+Print a one-line Swiggy canteen bill title.
 
 ```python
-print("TechMart Canteen Bill")
+print("Swiggy Canteen Bill")
 ```
 
-Print the same TechMart canteen title, then a second line that says to pay at the counter.
+Print the same Swiggy canteen title, then a second line that says to pay at the counter.
 
 ```python
-print("TechMart Canteen Bill")
+print("Swiggy Canteen Bill")
 print("Pay at counter")
 ```
 

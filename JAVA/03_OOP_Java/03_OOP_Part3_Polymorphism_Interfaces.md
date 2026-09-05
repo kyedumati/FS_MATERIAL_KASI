@@ -141,7 +141,7 @@ That already beats strings. Two gaps remain:
 
 **Icons:** Bank · Employee · Order
 
-**Where used?** **SecureBank** `Account` (savings vs wallet vs current), `Shape` (circle vs rectangle), `Notifier` (SMS vs email) — shared fields + rules, missing one method each child must fill.
+**Where used?** **HDFC Bank** `Account` (savings vs wallet vs current), `Shape` (circle vs rectangle), `Notifier` (SMS vs email) — shared fields + rules, missing one method each child must fill.
 
 **Definition:** An **abstract class** is a class marked `abstract`. It may mix **concrete** methods (with a body) and **abstract** methods (name + signature only). You **cannot** `new` it.  
 **Purpose:** Share real code (fields, constructors, `deposit`) while forcing every child to provide the specialised piece (`kind()`, `area()`). Callers never get a vague “generic account”.
@@ -259,7 +259,7 @@ classDiagram
 - An abstract method cannot be `private` or `static` (the child must be able to override it).
 - Prefer abstract when children **share fields** (`holder`, `balance`) and some real methods (`deposit`). Prefer an interface when you only need a **capability** (`pay`, `printSlip`) — next topic.
 
-Write an AcmeHR abstract `Staff` with `net()` implemented by `Intern` (full basic) and `Faculty` (90%). Print both nets.
+Write an Employee Management Portal abstract `Staff` with `net()` implemented by `Intern` (full basic) and `Faculty` (90%). Print both nets.
 
 ```java
 public class AbstractStaffNet {
@@ -496,7 +496,7 @@ classDiagram
 - `static` methods on an interface are utilities (`Payable.maxAmount()`), not object behaviour.
 - **Later — Collections week** you will see `List`, `Set`, `Map` as interfaces. The idea is the same: code to the contract.
 
-Write an AcmeHR `Printable` interface. Loop a student card and a staff card and print both slips.
+Write an Employee Management Portal `Printable` interface. Loop a student card and a staff card and print both slips.
 
 ```java
 public class PrintableCards {
@@ -730,7 +730,7 @@ flowchart LR
 - `Payable p = new WalletAccount(...)` works when `WalletAccount implements Payable`.
 - Casting `Account` → `Payable` is fine only if that object really implements `Payable` (the wallet, not savings).
 
-Write a MedCare `Notifier` array of SMS, email, and push. Loop once and send "Order shipped" on every channel.
+Write a Apollo Hospitals `Notifier` array of SMS, email, and push. Loop once and send "Order shipped" on every channel.
 
 ```java
 public class NotifyAllPoly {
@@ -776,7 +776,7 @@ EMAIL: Order shipped
 PUSH: Order shipped
 ```
 
-Write TechMart `Payable` UPI and cash classes. Loop mixed methods and pay ₹100 each without `instanceof`.
+Write Swiggy `Payable` UPI and cash classes. Loop mixed methods and pay ₹100 each without `instanceof`.
 
 ```java
 public class MixerPoly {
@@ -1554,7 +1554,7 @@ UPI ₹50
 
 ---
 
-## Mini-Project (Assignment): SecureBank Wallet CLI
+## Mini-Project (Assignment): HDFC Bank Wallet CLI
 
 **Lab kit:** [15_Lab_Assets/11_campus_wallet/](../15_Lab_Assets/11_campus_wallet/)
 
@@ -1787,7 +1787,7 @@ Use the lab-kit classes in the same file as the menu, or keep `CampusWallet.java
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 **Q1. What is polymorphism?**  
-**A:** Same operation name, different behaviour depending on the object — so one loop can handle many types (`a.kind()` on SecureBank accounts, `p.pay(amount)` on TechMart pay methods).
+**A:** Same operation name, different behaviour depending on the object — so one loop can handle many types (`a.kind()` on HDFC Bank accounts, `p.pay(amount)` on Swiggy pay methods).
 
 **Q2. What is an abstract class? Can you instantiate it?**  
 **A:** A class marked `abstract` may mix real methods and abstract methods. You cannot `new` it. Children implement the abstract methods (or stay abstract).
@@ -1796,7 +1796,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Shared fields (`holder`, `balance`) still need setup. `new SavingsAccount(...)` calls `super(...)` first. The abstract type itself is never constructed.
 
 **Q4. What is an interface?**  
-**A:** A contract: method names a class promises to implement. Syntax: `class WalletAccount implements Payable` (SecureBank wallet). Methods are `public`. A class may implement **many** interfaces.
+**A:** A contract: method names a class promises to implement. Syntax: `class WalletAccount implements Payable` (HDFC Bank wallet). Methods are `public`. A class may implement **many** interfaces.
 
 **Q5. Abstract class vs interface?**  
 **A:** Abstract class = one parent, can hold instance fields and constructors — use for shared IS-A guts. Interface = many contracts, capability / CAN-DO. Java forbids two class parents; interfaces are how you mix extra behaviour.

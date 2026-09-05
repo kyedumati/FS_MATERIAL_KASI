@@ -20,11 +20,11 @@ A **method** is a named block of code that does one job. You **call** it when yo
 **Icons:** Bank · UPI · Employee · Order · Payroll
 
 **Where used?**
-- **SecureBank** — `deposit`, `withdraw` as separate jobs
+- **HDFC Bank** — `deposit`, `withdraw` as separate jobs
 - College apps — `average`, `isPass`
-- **TechMart** — `lineTotal(price, qty)`
-- **AcmeHR** — `netPay(basic)`
-- **MedCare** — `formatPhone`
+- **Swiggy** — `lineTotal(price, qty)`
+- **Employee Management Portal** — `netPay(basic)`
+- **Apollo Hospitals** — `formatPhone`
 
 **Purpose:** Stop copy-paste. Name the idea (`gstTotal`) instead of repeating the formula.
 
@@ -166,7 +166,7 @@ public class AvgTwo {
 75.0
 ```
 
-Write a TechMart `withGst` helper that multiplies a subtotal by 1.05, then print `withGst(80)` as rupees with two decimals.
+Write a Swiggy `withGst` helper that multiplies a subtotal by 1.05, then print `withGst(80)` as rupees with two decimals.
 
 ```java
 public class GstHelper {
@@ -280,7 +280,7 @@ public static double deposit(double balance, double amount) {
 
 **Interview:** Java passes primitives by value. (Arrays are a reference copy — the method can change **elements**. Return is still clearer for ATM balance.)
 
-Write a SecureBank `deposit` that returns the new balance; start at 1000, deposit 200, and print the result.
+Write an HDFC Bank `deposit` that returns the new balance; start at 1000, deposit 200, and print the result.
 
 ```java
 public class DepositReturn {
@@ -302,7 +302,7 @@ public class DepositReturn {
 1200.0
 ```
 
-Write a SecureBank `withdraw` that prints Insufficient balance and returns the old balance on overdraft; call it with 1200 then 200 from 1000.
+Write an HDFC Bank `withdraw` that prints Insufficient balance and returns the old balance on overdraft; call it with 1200 then 200 from 1000.
 
 ```java
 public class WithdrawReturn {
@@ -416,7 +416,7 @@ Lab kit: [15_Lab_Assets/08_methods_refactor](../15_Lab_Assets/08_methods_refacto
 
 ---
 
-## Mini-Project (Assignment): Refactor SecureBank ATM Into Methods
+## Mini-Project (Assignment): Refactor HDFC Bank ATM Into Methods
 
 **Lab kit:** [15_Lab_Assets/08_methods_refactor](../15_Lab_Assets/08_methods_refactor/)
 

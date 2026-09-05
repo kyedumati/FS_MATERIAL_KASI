@@ -9,7 +9,7 @@
 **Module Outcome:**
 
 - Look up a contact, SKU, or roll number by **key** — not by scanning a list
-- Add, update, and guard missing keys so a MedCare form does not explode
+- Add, update, and guard missing keys so a Apollo Hospitals form does not explode
 - Nest a dict when one person has many fields (name, marks, phone)
 
 A **dictionary** is like a real dictionary or phone contacts app:
@@ -21,11 +21,12 @@ A **dictionary** is like a real dictionary or phone contacts app:
 **Icons:** Employee · Order · Bank · Payroll · CRM
 
 **Where used?**
-- **AcmeHR** — `{emp_id: profile}` lookups
-- **TechMart** — product by SKU, order JSON with nested items
-- **SecureBank** — account record fields, UPI txn metadata
+- **Employee Management Portal** — `{emp_id: profile}` lookups
+- **Swiggy** — product by SKU, order JSON with nested items
+- **HDFC Bank** — account record fields
+- **PhonePe** — UPI txn metadata
 - College apps — student dict (`roll`, `marks`, `grade`)
-- **MedCare** — contact book, ticket fields from APIs
+- **Apollo Hospitals** — contact book, ticket fields from APIs
 
 **Examples from daily work:**
 
@@ -104,7 +105,7 @@ N/A
 
 **Remember:** Prefer `.get("key", default)` when a field might be missing — brackets `d["key"]` raise `KeyError`.
 
-Create a TechMart product with `dict()` and print its price.
+Create a Swiggy product with `dict()` and print its price.
 
 ```python
 product = dict(sku="P10", name="Chai Mug", price=299)
@@ -670,7 +671,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 2. How is a Python dict similar to a MySQL row + column names?
 3. What happens if two API clients send the same JSON key twice?
 4. When would nested dict become hard to maintain? (Preview: classes and methods.)
-5. Can dict values be lists? Give a **TechMart** order example.
+5. Can dict values be lists? Give a **Swiggy** order example.
 
 1. **Dict vs list for lookup by ID?**  
    **A:** Dict O(1) average vs list O(n) scan.

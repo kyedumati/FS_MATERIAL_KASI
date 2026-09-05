@@ -13,7 +13,7 @@
 
 - Tell AuthN from AuthZ in one sentence
 - Register / login, hash with BCrypt, and send a JWT
-- Protect POST so a stranger cannot create TechMart products
+- Protect POST so a stranger cannot create Swiggy products
 
 **Teach order today:** AuthN vs AuthZ → BCrypt → `SecurityFilterChain` → `AppUser` + register/login → JWT Bearer → protect POST.
 
@@ -42,10 +42,10 @@
 
 **Where used?**
 - CampusCart — public menu, logged-in add-snack
-- TechMart — public catalog, signed-in cart (**Later —** cart)
-- SecureBank — you must prove who you are before a transfer (**no money movement here**)
-- AcmeHR — staff login before leave apply
-- MedCare — public doctor list; booking needs a login (**Later —**)
+- Swiggy — public catalog, signed-in cart (**Later —** cart)
+- HDFC Bank — you must prove who you are before a transfer (**no money movement here**)
+- Employee Management Portal — staff login before leave apply
+- Apollo Hospitals — public doctor list; booking needs a login (**Later —**)
 
 **Visual — public GET, protected POST:**
 

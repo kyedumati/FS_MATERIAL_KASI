@@ -18,10 +18,10 @@
 **Icons:** Order · Laptop · Employee · Bank · Payroll
 
 **Where used?**
-- **TechMart** — tiny Notes / product JSON APIs for hackathons and microservices
+- **Swiggy** — tiny Notes / product JSON APIs for hackathons and microservices
 - College apps — quick campus tools without full Django admin
 - Startups — Flask/FastAPI-style API roles next to React
-- **SecureBank** / **AcmeHR** — internal microservices that only need a few routes
+- **HDFC Bank** / **Employee Management Portal** — internal microservices that only need a few routes
 - Prototypes — prove an endpoint before wiring Django/DRF
 
 **Analogy:** Django is a furnished apartment (kitchen, bed, wardrobe included). Flask is an empty studio — you bring furniture as required. For a 2-day hackathon API, Flask is faster to start. For a full HR portal with login and admin, Django wins.

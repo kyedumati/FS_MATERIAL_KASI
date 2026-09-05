@@ -15,7 +15,7 @@
 
 **Module Outcome:**
 
-- Sketch an ER for AcmeHR / TechMart before JDBC
+- Sketch an ER for Employee Management Portal / Swiggy before JDBC
 - Open the real SQL labs in `MYSQL/` — this file is the bridge, not the course
 - Normalise enough that one fact does not live in three columns
 
@@ -62,11 +62,11 @@ SQL is a **core placement skill**. Deep notes live in [`MYSQL/`](../../MYSQL/); 
 **Icons:** Order · Employee · Bank · Payroll · Laptop
 
 **Where used?**
-- **TechMart** / CampusCart — customers, products, orders, order_items
+- **Swiggy** / CampusCart — customers, products, orders, order_items
 - College apps — students, courses, enrollments in LMS / portals
-- **AcmeHR** — `department` and `employee` tables
-- **SecureBank** — accounts and `transaction_log` (PK/FK integrity matters)
-- **MedCare** — patients, appointments, prescriptions as related rows
+- **Employee Management Portal** — `department` and `employee` tables
+- **HDFC Bank** — accounts and `transaction_log` (PK/FK integrity matters)
+- **Apollo Hospitals** — patients, appointments, prescriptions as related rows
 
 **Visual — three layers talking:**
 
@@ -117,17 +117,17 @@ This module is the **bridge**. For syntax labs, open **`MYSQL/`** from the check
 
 ### 1. Three domains (reuse all course)
 
-**Definition:** Course examples sit in named **products** so the same PK/FK/JOIN skills transfer to LMS, **AcmeHR**, and CampusCart / **TechMart**. Full DDL lives in [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md).
+**Definition:** Course examples sit in named **products** so the same PK/FK/JOIN skills transfer to LMS, **Employee Management Portal**, and CampusCart / **Swiggy**. Full DDL lives in [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md).
 
 **Purpose:** One schema language covers college, office, store, clinic, and bank. You stop inventing a new table style for every ticket.
 
 | Domain | Named product | Core tables | Full-stack use |
 |--------|---------------|-------------|----------------|
 | **Student** | (college LMS — keep generic) | students, courses, enrollments | LMS, college portals |
-| **Employee** | **AcmeHR** | department, employee, leave_record | HRMS, payroll |
-| **Ecommerce** | **TechMart** (CampusCart = college skin) | customer, product, cart, orders, order_item | CampusCart / store APIs |
-| **Hospital** | **MedCare** | doctor, patient, appointment, prescription | Clinic booking |
-| **Banking** | **SecureBank** | customer, account, transaction_log, loan | Teller / wallet |
+| **Employee** | **Employee Management Portal** | department, employee, leave_record | HRMS, payroll |
+| **Ecommerce** | **Swiggy** (CampusCart = college skin) | customer, product, cart, orders, order_item | CampusCart / store APIs |
+| **Hospital** | **Apollo Hospitals** | doctor, patient, appointment, prescription | Clinic booking |
+| **Banking** | **HDFC Bank** | customer, account, transaction_log, loan | Teller / wallet |
 
 **Note:**
 - Wrong: one giant `campus_data` spreadsheet with mixed students and orders.
@@ -737,15 +737,15 @@ LEFT JOIN enrollments e ON s.student_id = e.student_id;
 
 ---
 
-## Mini-Project (Assignment): Schema Design (Library, TechMart / CampusCart, or AcmeHR)
+## Mini-Project (Assignment): Schema Design (Library, Swiggy / CampusCart, or Employee Management Portal)
 
 **SQL depth (source of truth):** Weeks 10–11 · follow [`MYSQL/`](../../MYSQL/) + the **Required MySQL labs** table in this module.
 
 **No Java lab kit this week.** Kit `16_jdbc_library_crud` is reserved for JDBC (next module). MySQL seed practice stays in [`MYSQL/`](../../MYSQL/). Do not invent a second SQL textbook inside this file.
 
 **Option A — Library:** members, books, copies, loans, fines  
-**Option B — TechMart / CampusCart:** users, vendors, products, orders, order_items  
-**Option C — AcmeHR:** department, employee, leave_record
+**Option B — Swiggy / CampusCart:** users, vendors, products, orders, order_items  
+**Option C — Employee Management Portal:** department, employee, leave_record
 
 ### What to build
 
@@ -806,7 +806,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Data in tables with rows/columns linked by keys. MySQL is an open-source RDBMS. The Java backend (JDBC, later JPA) reads and writes those tables.
 
 **Q2. INNER JOIN vs LEFT JOIN?**  
-**A:** INNER = matching rows only. LEFT = all left rows + matches, or NULL on the right when there is no match (e.g. **TechMart** customers with no orders; **AcmeHR** employees with no leave rows).
+**A:** INNER = matching rows only. LEFT = all left rows + matches, or NULL on the right when there is no match (e.g. **Swiggy** customers with no orders; **Employee Management Portal** employees with no leave rows).
 
 **Q3. What is normalization? Why 3NF?**  
 **A:** Normalization reduces redundancy. 3NF removes transitive dependencies (store `dept_head` on `departments`, not on every student) so one fact is updated in one place.
@@ -818,7 +818,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Persistent storage. Browser / Postman → Java API → SQL against MySQL. The frontend never issues SQL.
 
 **Q6. Why not keep CampusCart in an `ArrayList` or a CSV after File Handling week?**  
-**A:** RAM dies when `main` ends. A CSV lives on one laptop, has no PK/FK, and cannot safely share concurrent **TechMart** / CampusCart orders. MySQL is the shared source of truth.
+**A:** RAM dies when `main` ends. A CSV lives on one laptop, has no PK/FK, and cannot safely share concurrent **Swiggy** / CampusCart orders. MySQL is the shared source of truth.
 
 **Q7. PRIMARY KEY vs UNIQUE?**  
 **A:** PK identifies the row and disallows NULL (`student_id`). UNIQUE enforces uniqueness on another column (`email`) and may allow NULL depending on engine.
@@ -827,7 +827,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** FLOAT is approximate binary. DECIMAL stores exact base-10 INR amounts, so invoice totals do not drift.
 
 **Q9. When do you use a TRANSACTION?**  
-**A:** When several statements must succeed or fail together — **SecureBank** money transfer, **TechMart** checkout + stock decrement. `START TRANSACTION` … `COMMIT` / `ROLLBACK`.
+**A:** When several statements must succeed or fail together — **HDFC Bank** money transfer, **Swiggy** checkout + stock decrement. `START TRANSACTION` … `COMMIT` / `ROLLBACK`.
 
 **Q10. What does a foreign key actually do?**  
 **A:** It is a database-enforced pointer: `orders.customer_id` must match an existing `customers.customer_id`. Orphan orders are rejected. Think of it as a hyperlink between tables, with rules.
@@ -836,6 +836,6 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** Placeholders (`?`) separate commands from data, which blocks SQL injection from typed names. Concatenating quotes into SQL is unsafe. The Java syntax is the **next** module — the idea is this week's exit ticket.
 
 **Q12. Is normalization always good? When might teams denormalize?**  
-**A:** 3NF is the default for OLTP (**TechMart** / CampusCart orders). Teams sometimes denormalize read-heavy reports (copy a product name onto `order_items`) to avoid JOINs — that is a measured trade-off, not a first design.
+**A:** 3NF is the default for OLTP (**Swiggy** / CampusCart orders). Teams sometimes denormalize read-heavy reports (copy a product name onto `order_items`) to avoid JOINs — that is a measured trade-off, not a first design.
 
 ---

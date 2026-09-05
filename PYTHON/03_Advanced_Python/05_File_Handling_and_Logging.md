@@ -69,15 +69,15 @@ flowchart TD
 
 - RAM dies with the process; a **file** survives
 - This module is one story: **make Python remember**
-- We will build toward one app: an **AcmeHR expense tracker**
+- We will build toward one app: an **Employee Management Portal expense tracker**
 
 **Where used?**
 
-- **AcmeHR** / payroll — append expense rows, export a CSV, keep a daily limit in config
-- **TechMart** — import a product table, load `config.json` at startup
+- **Employee Management Portal** / payroll — append expense rows, export a CSV, keep a daily limit in config
+- **Swiggy** — import a product table, load `config.json` at startup
 - Attendance and audit — append-only text that survives a restart
 - Servers — `logging` to `app.log` when nobody is watching the terminal
-- **MedCare** / **SecureBank** — never log passwords, OTPs, or card numbers
+- **Apollo Hospitals** / **HDFC Bank** — never log passwords, OTPs, or card numbers
 
 We will use the **same** three paths in almost every demo:
 
@@ -177,7 +177,7 @@ with open("data/expenses.txt", "w", encoding="utf-8") as f:
 
 **Remember:** Prefer `with open(...) as f:` — the file closes even if an exception fires inside the block.
 
-Create the `data/` folder, write one AcmeHR expense line with `with open`, then read it back and print it.
+Create the `data/` folder, write one Employee Management Portal expense line with `with open`, then read it back and print it.
 
 ```python
 import os
@@ -714,7 +714,7 @@ In-place overwrite needs a read-and-write mode (`r+`) and replacement text that 
 Write a status line, read it, `seek` to `PENDING`, overwrite it, then read from the start again.
 
 ```python
-data = "AcmeHR status: PENDING"
+data = "Employee Management Portal status: PENDING"
 with open("data/status.txt", "w", encoding="utf-8") as f:
     f.write(data)
 
@@ -731,10 +731,10 @@ with open("data/status.txt", "r+", encoding="utf-8") as f:
 **Expected Output:**
 
 ```
-AcmeHR status: PENDING
+Employee Management Portal status: PENDING
 Cursor after read: 22
 Cursor after seek: 15
-AcmeHR status: CLEARED
+Employee Management Portal status: CLEARED
 ```
 
 **Interview:** `tell()` reports where you are; `seek()` moves there.
@@ -794,7 +794,7 @@ Suffix `b` for binary: `rb`, `wb`, `ab`, `r+b`, …
 
 For tables and config you share with humans or other languages, prefer **JSON** or **CSV**.
 
-Pickle an AcmeHR employee dict to `data/emp.dat`, then unpickle and print name and salary.
+Pickle an Employee Management Portal employee dict to `data/emp.dat`, then unpickle and print name and salary.
 
 ```python
 import os
@@ -850,7 +850,7 @@ for dirpath, dirnames, filenames in os.walk("data"):
 
 ---
 
-## Step-by-Step: one assemble — AcmeHR expense slice
+## Step-by-Step: one assemble — Employee Management Portal expense slice
 
 Type this with the class. It stitches **today’s** must-knows on **one** product: folders, `with`, UTF-8, CSV `newline=""`, `DictWriter` / `DictReader`, JSON config, `logging` to `logs/app.log`. The overnight assignment is the **full** tracker kit — same product, more complete ticket.
 
@@ -917,7 +917,7 @@ Check logs/app.log
 
 ## Practice Exercises
 
-1. MedCare stores a short ward note in `ward.txt`. Write `"Bed 12: stable\n"` with `w`, then **append** `"Bed 14: observation\n"` with `a`. Read and print the file. If you used `w` the second time, what would be missing?
+1. Apollo Hospitals stores a short ward note in `ward.txt`. Write `"Bed 12: stable\n"` with `w`, then **append** `"Bed 14: observation\n"` with `a`. Read and print the file. If you used `w` the second time, what would be missing?
 
 **Model answer:**
 
@@ -941,7 +941,7 @@ with open("source.txt", encoding="utf-8") as src, open("backup.txt", "w", encodi
     dst.write(src.read())
 ```
 
-3. TechMart has `products.txt` (one product name per line). Count lines **without** calling `readlines()`. Print the count.
+3. Swiggy has `products.txt` (one product name per line). Count lines **without** calling `readlines()`. Print the count.
 
 **Model answer:**
 
@@ -971,7 +971,7 @@ except FileNotFoundError:
     print("appointments.csv not found")
 ```
 
-5. Load or create TechMart preferences in `prefs.json`. If the file exists, load it; otherwise start from `{"theme": "light", "lang": "en"}`. Set `theme` to `"dark"` and save.
+5. Load or create Swiggy preferences in `prefs.json`. If the file exists, load it; otherwise start from `{"theme": "light", "lang": "en"}`. Set `theme` to `"dark"` and save.
 
 **Model answer:**
 
@@ -1012,10 +1012,10 @@ logger.info("ATM session started")
 logger.warning("Cash drawer low")
 ```
 
-## Mini-Project (Assignment): AcmeHR Expense Tracker with File + Logging
+## Mini-Project (Assignment): Employee Management Portal Expense Tracker with File + Logging
 
 **Title:** DailyExpenseLogger  
-**Customer:** AcmeHR finance. Clerks add daily expenses. Closing Python must not wipe the month. A bad CSV row must not dump a traceback on the desk screen.  
+**Customer:** Employee Management Portal finance. Clerks add daily expenses. Closing Python must not wipe the month. A bad CSV row must not dump a traceback on the desk screen.  
 **Lab kit (build here):** [15_Lab_Assets/01_python_expense_tracker/](../15_Lab_Assets/01_python_expense_tracker/)  
 **Also use:** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) — now wire `yield` to `csv.DictReader` (Files-week stretch)
 

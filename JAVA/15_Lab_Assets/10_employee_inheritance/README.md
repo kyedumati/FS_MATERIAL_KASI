@@ -1,6 +1,6 @@
-# Ticket: AcmeHR Staff Hierarchy
+# Ticket: Employee Management Portal Staff Hierarchy
 
-**Customer:** AcmeHR (college HR demo)  
+**Customer:** Employee Management Portal (college HR demo)  
 **Need:** `Employee` plus `Manager` that **IS-A** employee (bonus on net pay). No copy-paste of name / id fields.
 
 **Teaching-order:** `extends`, `super()`, `@Override`. Core path is **single** class inheritance. Validate with `print` + `return` if needed — **no `throw`**. **No `abstract` / `implements`** (Part 3). No `ArrayList`. No Lombok.

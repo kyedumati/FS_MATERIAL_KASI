@@ -24,11 +24,11 @@ A **variable** is a named box in memory that holds a value. The label is `studen
 **Icons:** Bank · UPI · Employee · Payroll · Order
 
 **Where used?**
-- **SecureBank** / UPI — balance, transfer amount
+- **HDFC Bank** / **PhonePe** — balance, transfer amount
 - College apps — roll, marks, fees
-- **AcmeHR** — basic salary, HRA
-- **TechMart** — line price × qty, GST totals
-- **MedCare** — patient age, ticket amount, `isActive` flags
+- **Employee Management Portal** — basic salary, HRA
+- **Swiggy** — line price × qty, GST totals
+- **Apollo Hospitals** — patient age, ticket amount, `isActive` flags
 
 Java is **statically typed**: you declare the type. You cannot put `"hello"` into an `int` box.
 
@@ -215,7 +215,7 @@ true
 B
 ```
 
-Store a SecureBank UPI ID `priya@okaxis` and a transfer of ₹120.00 as `double`, then print both.
+Store a PhonePe ID `priya@okaxis` and a transfer of ₹120.00 as `double`, then print both.
 
 ```java
 public class UpiAmount {
@@ -491,7 +491,7 @@ public class AvgFormat {
 }
 ```
 
-Print a TechMart GST line of ₹4.00 using `printf` with two decimal places.
+Print a Swiggy GST line of ₹4.00 using `printf` with two decimal places.
 
 ```java
 public class GstLine {
@@ -609,7 +609,7 @@ public class BasicVars {
 
 ---
 
-## Mini-Project (Assignment): TechMart Canteen Calculator
+## Mini-Project (Assignment): Swiggy Canteen Calculator
 
 **Lab kits:** [03_canteen_calculator](../15_Lab_Assets/03_canteen_calculator/) · [04_casting_bugs](../15_Lab_Assets/04_casting_bugs/)
 

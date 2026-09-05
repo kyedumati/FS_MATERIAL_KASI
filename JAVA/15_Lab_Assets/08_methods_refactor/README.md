@@ -1,6 +1,6 @@
-# Ticket: Refactor SecureBank ATM Into Methods
+# Ticket: Refactor HDFC Bank ATM Into Methods
 
-**Customer:** SecureBank tech lead  
+**Customer:** HDFC Bank tech lead  
 **Need:** Same ATM behaviour, but logic in **static methods** (no giant `main`).
 
 **Teaching-order:** One class. Static methods + `return`. Validate with `print` + `return` — **no `throw`**. No `new` account object.

@@ -1,4 +1,4 @@
-"""SOLUTION — MedCare safe age. No type hints. No exception chaining."""
+"""SOLUTION — Apollo Hospitals safe age. No type hints. No exception chaining."""
 
 class InvalidAgeError(Exception):
     pass

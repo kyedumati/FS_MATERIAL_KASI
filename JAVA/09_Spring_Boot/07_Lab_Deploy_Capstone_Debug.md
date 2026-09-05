@@ -41,11 +41,11 @@
 **Icons:** Bank · Order · Laptop · Employee · UPI
 
 **Where used?**
-- CampusCart — college TechMart-style API: prove the JAR is alive before promising a storefront
-- TechMart — catalog host env (`MYSQL_*`) before a React listing (**Later —**)
-- SecureBank — health probe before anyone trusts a write (**no money movement here**)
-- AcmeHR — staff API on a PaaS; JWT secret stays in the dashboard, not in git
-- MedCare — public doctor list still 200; booking still needs a token after the host changes
+- CampusCart — college Swiggy-style API: prove the JAR is alive before promising a storefront
+- Swiggy — catalog host env (`MYSQL_*`) before a React listing (**Later —**)
+- HDFC Bank — health probe before anyone trusts a write (**no money movement here**)
+- Employee Management Portal — staff API on a PaaS; JWT secret stays in the dashboard, not in git
+- Apollo Hospitals — public doctor list still 200; booking still needs a token after the host changes
 
 **Visual — Lab 07 path (same API):**
 
@@ -283,9 +283,9 @@ do not permitAll the whole /actuator
 **Purpose:** `show-sql: true` is fine in class. On a public URL it **leaks queries**. The same yml password literal that “helped the video” is a **git secret**. Module 01 already said Boot **does not** load `.env` by itself — that is still true on PaaS. You set **dashboard env** (or `export`), matching [`.env.example`](../15_Lab_Assets/19_spring_auth_tasks/.env.example).
 
 **Where used?**
-- CampusCart / TechMart — `MYSQL_HOST` on the PaaS is the **cloud** MySQL, not `localhost`
-- SecureBank — `JWT_SECRET` rotated in the dashboard; old tokens die (expected)
-- AcmeHR — `SPRING_PROFILES_ACTIVE=prod` turns off SQL echo
+- CampusCart / Swiggy — `MYSQL_HOST` on the PaaS is the **cloud** MySQL, not `localhost`
+- HDFC Bank — `JWT_SECRET` rotated in the dashboard; old tokens die (expected)
+- Employee Management Portal — `SPRING_PROFILES_ACTIVE=prod` turns off SQL echo
 
 Keys this lab (dummy values in git only):
 
@@ -478,7 +478,7 @@ not your laptop MySQL
 
 **Purpose:** Recruiters like a live URL. Batches also hit **paywalls**. This course grades **hygiene + health**, same spirit as Python’s `check --deploy`: success is **not** only a public URL. Capstone extras in [Standard Project Deliverables](../Standard_Project_Deliverables.md) are **deploy URL or Lab 07 proof**.
 
-**Where used?** CampusCart / TechMart demo README “Live:” line; AcmeHR internship repos that say “blocked: student card” **and** still show `java -jar` + curl.
+**Where used?** CampusCart / Swiggy demo README “Live:” line; Employee Management Portal internship repos that say “blocked: student card” **and** still show `java -jar` + curl.
 
 Typical host settings (names vary — match **your** `.env.example`):
 

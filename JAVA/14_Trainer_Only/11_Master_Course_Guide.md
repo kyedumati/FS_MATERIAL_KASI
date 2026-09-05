@@ -173,8 +173,8 @@ flowchart TD
 ### Project title
 
 **CampusCart** — College E-Commerce & Booking Portal  
-CampusCart is the college storefront; it uses the same catalog / cart / order patterns as **TechMart**. Teaching brands across the course: **AcmeHR**, **TechMart**, **MedCare**, **SecureBank** — see [12_Named_Product_Domains.md](12_Named_Product_Domains.md).  
-*(Alternate titles for batches: TechMart storefront, MediBook Clinic → **MedCare**, SecureBank teller portal, TaskFlow Pro, LearnBlog CMS — same architecture.)*
+CampusCart is the college storefront; it uses the same catalog / cart / order patterns as **Swiggy**. Teaching brands across the course: **Employee Management Portal**, **Swiggy**, **Apollo Hospitals**, **HDFC Bank** — see [12_Named_Product_Domains.md](12_Named_Product_Domains.md).  
+*(Alternate titles for batches: Swiggy storefront, MediBook Clinic → **Apollo Hospitals**, HDFC Bank teller portal, TaskFlow Pro, LearnBlog CMS — same architecture.)*
 
 ### Problem statement
 
@@ -266,7 +266,7 @@ categories ──< products
 
 ## 4. Project Portfolio Plan
 
-Teaching brands in labs and notes (soft-apply): **AcmeHR**, **TechMart**, **MedCare**, **SecureBank**. CampusCart remains the major capstone.
+Teaching brands in labs and notes (soft-apply): **Employee Management Portal**, **Swiggy**, **Apollo Hospitals**, **HDFC Bank**. CampusCart remains the major capstone.
 
 | # | Project | Stack | When | Resume one-liner |
 |---|---------|-------|------|------------------|

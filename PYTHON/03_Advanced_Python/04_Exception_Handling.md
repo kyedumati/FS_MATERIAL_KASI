@@ -115,10 +115,10 @@ flowchart TD
 
 **Where used?**
 
-- **SecureBank** / UPI — wrong PIN, insufficient balance, invalid amount
+- **HDFC Bank** / **PhonePe** — wrong PIN, insufficient balance, invalid amount
 - Forms & CLI — bad age, non-numeric input, missing required fields
 - File / CSV jobs — missing file, bad row converted with `int(...)`
-- **TechMart** / **MedCare** — order capacity, appointment slot out of range
+- **Swiggy** / **Apollo Hospitals** — order capacity, appointment slot out of range
 - Payments — domain errors (`PaymentError`) callers can catch separately
 
 ---
@@ -162,7 +162,7 @@ Cannot divide by zero.
 
 **Common Error:** Bare `except:` (or empty `except: pass`) hides real bugs and can block Ctrl+C. Catch specific types and log or re-raise.
 
-Try `int()` on SecureBank PIN attempts `"ab12"` then `"1234"`. Catch `ValueError`, print a digits-only message, and accept the valid PIN.
+Try `int()` on HDFC Bank PIN attempts `"ab12"` then `"1234"`. Catch `ValueError`, print a digits-only message, and accept the valid PIN.
 
 ```python
 attempts = ["ab12", "1234"]
@@ -183,7 +183,7 @@ PIN must be digits only — invalid literal for int() with base 10: 'ab12'
 PIN accepted: 1234
 ```
 
-Split a TechMart bill of ₹500 among 4 friends and among 0 friends. Catch `ZeroDivisionError` for the zero case.
+Split a Swiggy bill of ₹500 among 4 friends and among 0 friends. Catch `ZeroDivisionError` for the zero case.
 
 ```python
 bill = 500
@@ -232,7 +232,7 @@ except ValueError:
 - Over-broad `except Exception` masks real bugs — catch narrow types first.
 - Wrong: `except ValueError, KeyError:` (old Python 2) — that is not a tuple. Use `except (ValueError, KeyError):`.
 
-Write AcmeHR `load_marks` that raises `FileNotFoundError` or `ValueError`. In one `except` tuple, print a clear message for good marks, a non-numeric file, and a missing file.
+Write Employee Management Portal `load_marks` that raises `FileNotFoundError` or `ValueError`. In one `except` tuple, print a clear message for good marks, a non-numeric file, and a missing file.
 
 ```python
 def load_marks(path, files):
@@ -323,7 +323,7 @@ Split attempt finished
 
 **Interview:** “`else` vs putting code in `try`” — `else` stops the success path from being swallowed by `except`.
 
-For SecureBank PINs `ab12`, `0000`, and `1234`, use `except` / `else` / `finally` so denied vs welcome is clear and “Please remove your card” always prints.
+For HDFC Bank PINs `ab12`, `0000`, and `1234`, use `except` / `else` / `finally` so denied vs welcome is clear and “Please remove your card” always prints.
 
 ```python
 CORRECT = 1234
@@ -335,7 +335,7 @@ for pin in ("ab12", "0000", "1234"):
     except ValueError as e:
         print("Access denied:", e)
     else:
-        print("Welcome to SecureBank")
+        print("Welcome to HDFC Bank")
     finally:
         print("Please remove your card")
     print("---")
@@ -350,7 +350,7 @@ Please remove your card
 Access denied: Wrong PIN
 Please remove your card
 ---
-Welcome to SecureBank
+Welcome to HDFC Bank
 Please remove your card
 ---
 ```
@@ -411,7 +411,7 @@ Withdraw failed: Not enough balance
 - Raise a specific type (`ValueError`, or your custom class) — not a bare string (`raise "oops"` is invalid).
 - After `raise`, the rest of that function does not run.
 
-Write MedCare `book_seat` that `raise ValueError("Not enough seats")` when requested > available. Try a valid booking and an overbook.
+Write Apollo Hospitals `book_seat` that `raise ValueError("Not enough seats")` when requested > available. Try a valid booking and an overbook.
 
 ```python
 def book_seat(available, requested):
@@ -576,7 +576,7 @@ ValueError
 
 ---
 
-## Step-by-Step: one assemble — SecureBank UPI
+## Step-by-Step: one assemble — PhonePe
 
 Type this with the class. Read it in order: `try` → `except` → `else` → `finally`. `finally` still runs when `except` or `else` **returns**.
 
@@ -634,7 +634,7 @@ Returned: 1000
 
 ## Practice Exercises
 
-1. AcmeHR roll call: for each name, print the first letter. One name is `""` — catch `IndexError` so the loop continues.
+1. Employee Management Portal roll call: for each name, print the first letter. One name is `""` — catch `IndexError` so the loop continues.
 
 **Model answer:**
 
@@ -655,7 +655,7 @@ Priya → P
 Ravi → R
 ```
 
-2. Parse a TechMart price written as `"₹1,200"`. Strip `₹` and commas, then `int`. Bad strings raise `ValueError` at the call site.
+2. Parse a Swiggy price written as `"₹1,200"`. Strip `₹` and commas, then `int`. Bad strings raise `ValueError` at the call site.
 
 **Model answer:**
 
@@ -672,7 +672,7 @@ for raw in ("₹1,200", "n/a"):
         print(raw, "→ not a price")
 ```
 
-3. TechMart stock: raise custom `OutOfStockError` when requested qty is greater than stock. Catch it at the call site (this is not the UPI PIN demo).
+3. Swiggy stock: raise custom `OutOfStockError` when requested qty is greater than stock. Catch it at the call site (this is not the UPI PIN demo).
 
 **Model answer:**
 
@@ -694,7 +694,7 @@ for qty in (2, 10):
         print("Shelf:", e)
 ```
 
-4. MedCare OTP: `try` `int(otp)`, `else` print accepted, `finally` print `"sms slot released"`. Use `"12ab"` and `"4321"` — not the SecureBank PIN story.
+4. Apollo Hospitals OTP: `try` `int(otp)`, `else` print accepted, `finally` print `"sms slot released"`. Use `"12ab"` and `"4321"` — not the HDFC Bank PIN story.
 
 **Model answer:**
 
@@ -712,9 +712,9 @@ for otp in ("12ab", "4321"):
         print("sms slot released")
 ```
 
-## Mini-Project (Assignment): MedCare Safe Age Input CLI
+## Mini-Project (Assignment): Apollo Hospitals Safe Age Input CLI
 
-**Customer:** MedCare registration desk. A clerk types an age. `"abc"` must not dump a traceback on the counter screen. `"0"` and `"200"` are not valid patients. `"21"` must go through.
+**Customer:** Apollo Hospitals registration desk. A clerk types an age. `"abc"` must not dump a traceback on the counter screen. `"0"` and `"200"` are not valid patients. `"21"` must go through.
 
 **Lab kit:** [15_Lab_Assets/18_safe_input_exceptions/](../15_Lab_Assets/18_safe_input_exceptions/)
 
@@ -724,7 +724,7 @@ for otp in ("12ab", "4321"):
 | `broken/safe_age.py` | Bare `except:` returns `-1`; `"0"` looks successful. Fix both bugs. |
 | `solution/` | Do **not** copy this. Use it only if you are stuck after you have tried. |
 
-This is **not** the SecureBank UPI assemble from class. Same tools (`try` / `raise` / custom exception), different ticket.
+This is **not** the PhonePe assemble from class. Same tools (`try` / `raise` / custom exception), different ticket.
 
 ### What to build
 
@@ -773,7 +773,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** `except Exception` catches application errors but not `KeyboardInterrupt`/`SystemExit`. Bare `except:` catches those too — hides bugs and can block Ctrl+C. Catch specific types.
 
 **Q4. When create a custom exception?**  
-**A:** When callers must distinguish a domain failure (**MedCare** `SlotNotAvailableError`, **SecureBank** `InsufficientBalanceError`) from a generic `ValueError`.
+**A:** When callers must distinguish a domain failure (**Apollo Hospitals** `SlotNotAvailableError`, **HDFC Bank** `InsufficientBalanceError`) from a generic `ValueError`.
 
 **Q5. EAFP vs LBYL?**  
 **A:** EAFP: try the operation, handle failure. LBYL: Look Before You Leap — check conditions first. Python culture favours EAFP for many I/O cases.
@@ -787,7 +787,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **Q8. Error vs exception in everyday language vs Python?**  
 **A:** Everyday “error” covers syntax problems, runtime crashes, and wrong answers. In Python, **syntax errors** are parse-time (not for `try`/`except`), **exceptions** are runtime objects you can catch, and **logical errors** produce no traceback.
 
-**Q9. How would you handle errors in a SecureBank payment API?**  
+**Q9. How would you handle errors in an HDFC Bank payment API?**  
 **A:** Catch specific types (timeout vs invalid amount vs insufficient balance), map them to clear messages, log, and re-raise or return a safe result. Use a small hierarchy (`PaymentError` / `GatewayTimeoutError`) so callers can treat “any payment issue” or one subtype.
 
 ---

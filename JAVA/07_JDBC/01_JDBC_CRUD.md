@@ -40,10 +40,10 @@
 
 **Where used?**
 - Campus library — list / add / update copies / remove titles from a CLI (kit stays library)
-- **TechMart** / CampusCart — the same `?` pattern later inserts orders (still JDBC under Spring)
-- **SecureBank** — balances must not be built from concatenated SQL
-- **AcmeHR** — parameterized SELECT by employee id (optional second story)
-- **MedCare** — search by patient name without turning the name into a command
+- **Swiggy** / CampusCart — the same `?` pattern later inserts orders (still JDBC under Spring)
+- **HDFC Bank** — balances must not be built from concatenated SQL
+- **Employee Management Portal** — parameterized SELECT by employee id (optional second story)
+- **Apollo Hospitals** — search by patient name without turning the name into a command
 
 **Visual — Java to MySQL:**
 
@@ -1387,7 +1387,7 @@ Every branch: PreparedStatement and ?
 
 **Lab kit:** [15_Lab_Assets/16_jdbc_library_crud/](../15_Lab_Assets/16_jdbc_library_crud/)
 
-MySQL weeks designed Library / CampusCart / **TechMart** tables. File Handling could not share them. This assignment is the **portfolio push**: Java **CRUD** against `books` with **`PreparedStatement` `?`**, try-with-resources, and **no password in git**. Library stays the kit domain. **Stretch story:** the same `?` CRUD against an **AcmeHR** `employee` table (do not replace the library kit).
+MySQL weeks designed Library / CampusCart / **Swiggy** tables. File Handling could not share them. This assignment is the **portfolio push**: Java **CRUD** against `books` with **`PreparedStatement` `?`**, try-with-resources, and **no password in git**. Library stays the kit domain. **Stretch story:** the same `?` CRUD against an **Employee Management Portal** `employee` table (do not replace the library kit).
 
 Bring forward `SQLException` handling from Exceptions and `.env` hygiene from Git. SQL syntax stays in [`MYSQL/`](../../MYSQL/) — do not copy JOIN/TCL chapters into this repo folder. Do **not** start Spring Boot, JPA, Lombok, or `DataSource`.
 
@@ -1493,7 +1493,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** `PreparedStatement` uses `?` and bound values. `Statement` runs a finished SQL string — easy to concatenate user input. Core path uses only `PreparedStatement`.
 
 **Q5. What is SQL injection?**  
-**A:** Untrusted input glued into SQL changes the command (`OR 1=1`). A typed **AcmeHR** employee name or library title must never become a command. Defence: parameterized queries, never `"'" + input + "'"`.
+**A:** Untrusted input glued into SQL changes the command (`OR 1=1`). A typed **Employee Management Portal** employee name or library title must never become a command. Defence: parameterized queries, never `"'" + input + "'"`.
 
 **Q6. Why `?` and not `%s`?**  
 **A:** Python’s `mysql.connector` uses `%s`. JDBC / Connector/J uses `?`. Mixing them is a driver error or a false sense of safety.

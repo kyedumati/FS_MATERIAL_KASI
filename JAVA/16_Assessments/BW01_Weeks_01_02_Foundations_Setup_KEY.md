@@ -19,7 +19,7 @@
 
 ## B. Coding — model points
 
-1. Ask for a **TechMart** canteen item **price** and **qty**. Compute total with **5% GST** and print `Total: ₹…` with 2 decimals. Linear `main` only.
+1. Ask for a **Swiggy** canteen item **price** and **qty**. Compute total with **5% GST** and print `Total: ₹…` with 2 decimals. Linear `main` only.
    - Award marks for correctness + teaching-order constraints respected (`Scanner` + `parseDouble`/`parseInt`, `* 1.05` or equivalent, `printf` `%.2f`).
 
 2. Read three subject marks with `Double.parseDouble` and print average with 2 decimals. No loops / extra methods.

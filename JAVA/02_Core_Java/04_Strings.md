@@ -20,11 +20,11 @@ A **string** is a sequence of characters — names, emails, UPI IDs, error messa
 **Icons:** Bank · UPI · Employee · Order · Hospital
 
 **Where used?**
-- **SecureBank** / UPI — mask account/phone, parse UPI IDs
+- **HDFC Bank** / **PhonePe** — mask account/phone, parse UPI IDs
 - College apps — roll numbers, email normalize for login
-- **TechMart** — product titles, invoice lines
-- **AcmeHR** — employee name / email formatting
-- **MedCare** — phone masking, appointment subject cleanup
+- **Swiggy** — product titles, invoice lines
+- **Employee Management Portal** — employee name / email formatting
+- **Apollo Hospitals** — phone masking, appointment subject cleanup
 
 ### Why do we need strings?
 
@@ -366,7 +366,7 @@ public class Normalize {
 }
 ```
 
-Mask a SecureBank account number `123456789012` so only the last four digits show after asterisks.
+Mask an HDFC Bank account number `123456789012` so only the last four digits show after asterisks.
 
 ```java
 public class MaskFour {
@@ -459,7 +459,7 @@ Priya Nair
 
 ---
 
-## Mini-Project (Assignment): AcmeHR / Admissions Field Cleaner
+## Mini-Project (Assignment): Employee Management Portal / Admissions Field Cleaner
 
 **Lab kit:** [15_Lab_Assets/06_string_parser](../15_Lab_Assets/06_string_parser/)
 

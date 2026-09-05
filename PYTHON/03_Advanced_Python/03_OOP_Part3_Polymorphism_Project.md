@@ -13,7 +13,7 @@
 
 - Polymorphism — override, duck typing, no Java-style overloading
 - Readable objects with `__str__`
-- SecureBank BankAccount CLI (mini-project)
+- HDFC Bank BankAccount CLI (mini-project)
 
 ## Motivation — Feel the pain of `if payment_type == ...`
 
@@ -96,11 +96,11 @@ Paid ₹999 via Card
 
 ### 1. Polymorphism (override → duck typing → “no overloading”)
 
-**Real-world analogy:** **You.** At home you are a child. In class you are a student. At the internship you are an intern. Same person, different behaviour — that is polymorphism. In code, `pay(amount)` on UPI, card, and cash is the same *call*; each object does its own work. **TechMart** checkout loops over payment methods. **SecureBank** prints statements for savings and current with one `print(acct)`. **AcmeHR** runs `payslip()` on intern and manager in one list. Do not write `if payment_type == "upi"` forever.
+**Real-world analogy:** **You.** At home you are a child. In class you are a student. At the internship you are an intern. Same person, different behaviour — that is polymorphism. In code, `pay(amount)` on UPI, card, and cash is the same *call*; each object does its own work. **Swiggy** checkout loops over payment methods. **HDFC Bank** prints statements for savings and current with one `print(acct)`. **Employee Management Portal** runs `payslip()` on intern and manager in one list. Do not write `if payment_type == "upi"` forever.
 
 **Icons:** Bank · UPI · Order · Employee
 
-**Where used?** Payment methods, shapes/areas, notification channels, **SecureBank** account types printing a statement — one loop, many behaviours.
+**Where used?** Payment methods, shapes/areas, notification channels, **HDFC Bank** account types printing a statement — one loop, many behaviours.
 
 **Definition:** “Many forms” — the same operation name behaves differently depending on the object.  
 **Purpose:** Write one loop/helper without giant `if type == ...` chains.
@@ -236,7 +236,7 @@ flowchart LR
 - Shared base classes help when you need shared fields / default behaviour (Part 2 Vehicles).
 - Operator overloading (`__add__`, `__len__`, …) is powerful — use sparingly so code stays readable.
 
-Write TechMart `UPI`, `Card`, and `Cash` with the same `pay` method. Loop them through one `checkout` function.
+Write Swiggy `UPI`, `Card`, and `Cash` with the same `pay` method. Loop them through one `checkout` function.
 
 ```python
 class UPI:
@@ -266,7 +266,7 @@ Paid ₹100 via Card
 Paid ₹100 in Cash
 ```
 
-Write AcmeHR `Intern` and `Manager` with `pay()`. Loop one list and print each person’s pay.
+Write Employee Management Portal `Intern` and `Manager` with `pay()`. Loop one list and print each person’s pay.
 
 ```python
 class Intern:
@@ -297,7 +297,7 @@ Anita: ₹15000
 Meera: ₹48000
 ```
 
-Write MedCare `SmsAlert` and `WhatsAppAlert` with `notify()`. Send “Lab report ready” through one `send_report_ready` function for both channels.
+Write Apollo Hospitals `SmsAlert` and `WhatsAppAlert` with `notify()`. Send “Lab report ready” through one `send_report_ready` function for both channels.
 
 ```python
 class SmsAlert:
@@ -326,11 +326,11 @@ WhatsApp to Ravi: Lab report ready
 
 ### 2. Readable objects with `__str__`
 
-**Real-world analogy:** A **name badge** vs a locker number. `print(account)` should look like `Priya — savings ₹5,000`, not `<Account object at 0x...>`. The hex address is the locker number — useful to the OS, useless to a support engineer. **SecureBank** statements, **TechMart** cart lines, and **MedCare** appointment slips all override `__str__` so logs and CLIs are readable.
+**Real-world analogy:** A **name badge** vs a locker number. `print(account)` should look like `Priya — savings ₹5,000`, not `<Account object at 0x...>`. The hex address is the locker number — useful to the OS, useless to a support engineer. **HDFC Bank** statements, **Swiggy** cart lines, and **Apollo Hospitals** appointment slips all override `__str__` so logs and CLIs are readable.
 
 **Icons:** Bank · Order · Employee · CRM
 
-**Where used?** Debugging **SecureBank** accounts, logging **TechMart** orders, printing **AcmeHR** employee cards, showing cart lines in a CLI.
+**Where used?** Debugging **HDFC Bank** accounts, logging **Swiggy** orders, printing **Employee Management Portal** employee cards, showing cart lines in a CLI.
 
 **Definition:** `__str__` controls what you see when you `print(obj)` or convert it with `str(obj)`.  
 **Purpose:** Default object text (`<__main__.Student object at 0x...>`) is useless when debugging; a clear string saves time.
@@ -385,7 +385,7 @@ sequenceDiagram
 
 **Common Error:** putting side effects (network calls, file writes) inside `__str__` — keep it a pure, cheap description.
 
-Give SecureBank `BankAccount` a `__str__` so `print(account)` shows holder and balance, not a memory address.
+Give HDFC Bank `BankAccount` a `__str__` so `print(account)` shows holder and balance, not a memory address.
 
 ```python
 class BankAccount:
@@ -407,7 +407,7 @@ Priya's account — ₹1000.00
 Ravi's account — ₹250.50
 ```
 
-Give TechMart `Product` a `__str__` and print a cart as SKU/price labels joined with ` | `.
+Give Swiggy `Product` a `__str__` and print a cart as SKU/price labels joined with ` | `.
 
 ```python
 class Product:
@@ -428,7 +428,7 @@ print(" | ".join(str(p) for p in cart))
 NB-A4 @ ₹40 | PEN-01 @ ₹10
 ```
 
-Give MedCare `Appointment` a `__str__` and print a queue of slips in a `for` loop.
+Give Apollo Hospitals `Appointment` a `__str__` and print a queue of slips in a `for` loop.
 
 ```python
 class Appointment:
@@ -591,7 +591,7 @@ balance: 1100.0
 
 ---
 
-## Mini-Project (Assignment): SecureBank BankAccount OOP CLI
+## Mini-Project (Assignment): HDFC Bank BankAccount OOP CLI
 
 **Title:** Encapsulated account demo  
 **Lab kit (build here):** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
@@ -823,10 +823,10 @@ Shared with students after concepts and the mini-project. Use for review and int
 **A:** No. Name mangling renames it to `_ClassName__balance`. It prevents *accidental* access, not determined access. Real security is auth, permissions, and server-side checks.
 
 **Q9. Why might a class variable for** `tax_rate` **be useful?**  
-**A:** One shared rate for all **AcmeHR** employees; change `Employee.tax_rate` once and every instance’s net-pay logic can pick it up (unless shadowed).
+**A:** One shared rate for all **Employee Management Portal** employees; change `Employee.tax_rate` once and every instance’s net-pay logic can pick it up (unless shadowed).
 
 **Q10. Polymorphism in one sentence?**  
-**A:** Same operation name, different behaviour depending on the object — so one loop can handle **SecureBank** account types or **TechMart** pay methods.
+**A:** Same operation name, different behaviour depending on the object — so one loop can handle **HDFC Bank** account types or **Swiggy** pay methods.
 
 ---
 

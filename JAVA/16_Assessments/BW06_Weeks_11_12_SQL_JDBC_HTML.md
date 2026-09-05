@@ -25,7 +25,7 @@ Circle the best option.
    c) A Git commit
    d) HTML `<form>` fields
 
-3. To list **every** **TechMart** canteen stall, including stalls with **no** orders yet:
+3. To list **every** **Swiggy** canteen stall, including stalls with **no** orders yet:
    a) INNER JOIN stalls to orders only
    b) `DELETE FROM stalls`
    c) `LEFT JOIN` stalls to orders (unmatched order columns are NULL)
@@ -79,7 +79,7 @@ Circle the best option.
     c) `<main>`
     d) `<script>`
 
-12. A CampusCart / **TechMart** UPI / order form should:
+12. A CampusCart / **Swiggy** UPI / order form should:
     a) Use `<label for="...">` matching each input `id`, and `method="post"` so payment data is not stuck in the URL
     b) Skip labels; use GET for the UPI PIN
     c) Need Flexbox and media queries
@@ -104,7 +104,7 @@ Circle the best option.
 // your code
 ```
 
-2. Write a **CampusCart / TechMart canteen order** HTML page (no CSS, no JS). Semantic `header` / `main` / `footer`. One `h1`. A **POST** form (`action="/canteen/order"`) with labeled fields: student name, item, quantity. Each `<label for>` matches the input `id` and `name`. Include **one** accessible group: `fieldset` + `legend` with radio **UPI** / **Cash**. Submit with `<button type="submit">`. No Flex, no media queries, no `fetch`.
+2. Write a **CampusCart / Swiggy canteen order** HTML page (no CSS, no JS). Semantic `header` / `main` / `footer`. One `h1`. A **POST** form (`action="/canteen/order"`) with labeled fields: student name, item, quantity. Each `<label for>` matches the input `id` and `name`. Include **one** accessible group: `fieldset` + `legend` with radio **UPI** / **Cash**. Submit with `<button type="submit">`. No Flex, no media queries, no `fetch`.
 
 ```html
 <!-- your code -->
@@ -114,6 +114,6 @@ Circle the best option.
 
 ## C. Short answer (1)
 
-In 3–6 sentences, explain **INNER JOIN vs LEFT JOIN** for a campus library (`members` and `loans`) or **AcmeHR** (`employee` and `leave_record`): who disappears, what NULL means, and why Java still binds the id with `PreparedStatement` `?` (not string-concat SQL). You may name the `ON` columns; you do **not** need a full three-table query.
+In 3–6 sentences, explain **INNER JOIN vs LEFT JOIN** for a campus library (`members` and `loans`) or **Employee Management Portal** (`employee` and `leave_record`): who disappears, what NULL means, and why Java still binds the id with `PreparedStatement` `?` (not string-concat SQL). You may name the `ON` columns; you do **not** need a full three-table query.
 
 _(Write 3–6 sentences.)_

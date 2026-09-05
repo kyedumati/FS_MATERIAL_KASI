@@ -1,6 +1,6 @@
 # Ticket: Expense Tracker CSV Export
 
-**Customer:** AcmeHR accounts team  
+**Customer:** Employee Management Portal accounts team  
 **Request:** CLI that records expenses and can export to CSV. Errors must be logged, not crash silently.
 
 ## Your job (starter)

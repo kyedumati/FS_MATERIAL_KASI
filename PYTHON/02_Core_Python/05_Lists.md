@@ -8,7 +8,7 @@
 
 **Module Outcome:**
 
-- Keep a TechMart cart or attendance register in order — add, swap, remove
+- Keep a Swiggy cart or attendance register in order — add, swap, remove
 - Index from `0`, loop items, and know when a list is the right bag
 - Mutate in place without accidentally aliasing two carts together
 
@@ -21,11 +21,11 @@ Think of a **list** like a numbered shopping cart or a attendance register:
 **Icons:** Order · Employee · Bank · Payroll · Laptop
 
 **Where used?**
-- **TechMart** — cart items, order line rows
+- **Swiggy** — cart items, order line rows
 - College apps — marks per subject, attendance registers
-- **AcmeHR** — employee name rosters, salary line items
-- **SecureBank** — recent transactions (ordered history)
-- **MedCare** — appointment queues, task lists
+- **Employee Management Portal** — employee name rosters, salary line items
+- **HDFC Bank** — recent transactions (ordered history)
+- **Apollo Hospitals** — appointment queues, task lists
 
 **Real-life parallels:**
 
@@ -77,7 +77,7 @@ print(len(products))     # 3 — number of items
 - Wrong: Indexing past the end (`lst[10]` on a short list) → `IndexError`.
 - Prefer: Check `len(lst)` first.
 
-Print first item, last item, and length of a TechMart cart list.
+Print first item, last item, and length of a Swiggy cart list.
 
 ```python
 cart = ["Notebook", "Pen", "USB"]
@@ -597,10 +597,10 @@ while True:
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
 1. Why does Python use index `0` for the first element? How is that different from "row 1" in Excel?
-2. When would you use a list of strings vs a list of dictionaries for **AcmeHR** employee data? (Preview of dict module.)
+2. When would you use a list of strings vs a list of dictionaries for **Employee Management Portal** employee data? (Preview of dict module.)
 3. Is `[1, 2, 3] + [4, 5]` the same as extending? What does each return?
 4. Why might modifying a list while iterating over it cause bugs?
-5. In a **TechMart** order, what part would be a list vs a single value?
+5. In a **Swiggy** order, what part would be a list vs a single value?
 
 1. **Is Python list thread-safe?**  
    **A:** Not for concurrent writes; for entry-level interviews: lists are fine in single-threaded scripts; multi-user apps usually store shared data in a database.

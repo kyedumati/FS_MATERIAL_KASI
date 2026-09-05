@@ -1,6 +1,6 @@
-# Ticket: TechMart Canteen Inventory
+# Ticket: Swiggy Canteen Inventory
 
-**Customer:** TechMart / CampusCart canteen  
+**Customer:** Swiggy / CampusCart canteen  
 **Need:** Track items by **SKU**. Lookup must be instant. Duplicate SKUs must be rejected. Listing must follow **add-order**, not hash-bucket order.
 
 **Teaching-order:** `List` / `ArrayList`, `Set` / `HashSet`, `Map` / `HashMap`. Code to the **interface**. Validate with `print` + `return` — **no `throw` / `try` / `catch`**. No files. No Spring. No Lombok. No JDBC.

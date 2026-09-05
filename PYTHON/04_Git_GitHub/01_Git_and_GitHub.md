@@ -28,10 +28,10 @@
 
 **Where used?**
 - College apps — version student portal / CampusCart code across lab days
-- **TechMart** — team feature branches for cart, checkout, product pages
-- **SecureBank** / **AcmeHR** — audit trail of who changed what (commit history)
+- **Swiggy** — team feature branches for cart, checkout, product pages
+- **HDFC Bank** / **Employee Management Portal** — audit trail of who changed what (commit history)
 - Freelancer / internship — GitHub portfolio recruiters open before calls
-- **MedCare** — shared repos so teammates do not overwrite each other
+- **Apollo Hospitals** — shared repos so teammates do not overwrite each other
 
 **Workflow in one line:**
 

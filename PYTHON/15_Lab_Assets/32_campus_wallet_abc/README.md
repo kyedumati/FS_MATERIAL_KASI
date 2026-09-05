@@ -1,6 +1,6 @@
-# Ticket: SecureBank Campus Wallet
+# Ticket: HDFC Bank Campus Wallet
 
-**Customer:** SecureBank campus wallet desk  
+**Customer:** HDFC Bank campus wallet desk  
 **Need:** One **Account** blueprint that cannot be constructed. Savings and wallet **IS-A** account. Same loop prints both. Wallet can **pay** through a `Payable` contract.
 
 **Teaching-order:** `ABC`, `@abstractmethod`, interface-style ABC (`Payable`). Validate with `print` + `return` — **no `raise` / `try` / `except`**. No type hints required.

@@ -71,9 +71,9 @@ flowchart LR
 **Icons:** Bank · Order · Payroll · Laptop · CRM
 
 **Where used?**
-- **AcmeHR** / payroll — append CSV expense rows, then total by category
+- **Employee Management Portal** / payroll — append CSV expense rows, then total by category
 - Attendance — append-only text that survives restart
-- **TechMart** inventory — later save SKUs to a `.csv` (Stretch)
+- **Swiggy** menu — later save items to a `.csv` (Stretch)
 - Config / notes — small UTF-8 text files
 - **Later — JDBC / Spring:** the same try-with-resources shape wraps connections and uploads
 
@@ -313,7 +313,7 @@ The first `writeString` (no extra options) **creates or replaces**. The next two
 
 **Interview:** Name the two options you pass to append safely on a new file: `CREATE` and `APPEND`.
 
-Write AcmeHR expense `Tea,45`, append `Bus,30`, and print both lines.
+Write Employee Management Portal expense `Tea,45`, append `Bus,30`, and print both lines.
 
 ```java
 import java.io.IOException;
@@ -725,7 +725,7 @@ Index `0` is the header. The loop starts at `1`.
 
 **Where used?** Fees, expenses, attendance exports, inventory dumps (Stretch).
 
-Write a TechMart canteen CSV (`item,price`), skip the header, and print each item with its rupee price.
+Write a Swiggy canteen CSV (`item,price`), skip the header, and print each item with its rupee price.
 
 ```java
 import java.io.IOException;
@@ -760,7 +760,7 @@ Idli: ₹30
 Filter Coffee: ₹25
 ```
 
-Call a helper twice after deleting the file so the TechMart CSV header is written only when the file is missing.
+Call a helper twice after deleting the file so the Swiggy CSV header is written only when the file is missing.
 
 ```java
 import java.io.IOException;
@@ -1486,7 +1486,7 @@ File not found: missing_practice.csv
 
 ---
 
-## Mini-Project (Assignment): AcmeHR Expense CSV Logger
+## Mini-Project (Assignment): Employee Management Portal Expense CSV Logger
 
 **Lab kit:** [15_Lab_Assets/14_expense_files/](../15_Lab_Assets/14_expense_files/)
 

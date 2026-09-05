@@ -111,7 +111,7 @@ Add a **second** program only when it shows a *different* case (success vs fail,
 
 - Short (typically 5–20 lines), copy-paste runnable.
 - India-relevant examples OK (INR, student marks, ATM, names like Priya/Ravi).
-- **Named products (soft-apply):** when the example is business-shaped, prefer **AcmeHR**, **TechMart**, **MedCare**, or **SecureBank** in `**Where used?**`, program titles, Interview Q&A, and mini-project tickets. Do not force syntax-only drills. See [12_Named_Product_Domains.md](12_Named_Product_Domains.md). Canonical schemas: [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md). CampusCart stays the capstone (college TechMart-style storefront).
+- **Named products (soft-apply):** when the example is business-shaped, prefer **Employee Management Portal**, **Swiggy**, **Apollo Hospitals**, **HDFC Bank**, or **PhonePe** in `**Where used?**`, program titles, Interview Q&A, and mini-project tickets. Do not force syntax-only drills. See [12_Named_Product_Domains.md](12_Named_Product_Domains.md). Canonical schemas: [`MYSQL/12_Real_Time_Projects.md`](../../MYSQL/12_Real_Time_Projects.md). CampusCart stays the capstone (college Swiggy-style storefront).
 - Point to a lab kit when the exercise matches a ticket.
 - After a program that prints, prefer an **Expected Output:** fence so PDF learners can self-check:
 
@@ -165,7 +165,7 @@ Use these exact bold labels (standalone paragraphs). They render as coloured box
 | `**Interview:**` | Short interview cue |
 | `**Common Error:**` | Classic trap (mutable class list, etc.) |
 | `**Module Outcome:**` | High-level **topic list** at the **module start** (after header) — names of concepts inside this file, not Bloom “can do” skills |
-| `**Where used?**` | 3–5 real domains that **name** AcmeHR / TechMart / MedCare / SecureBank when business-shaped — **not** a big Use Cases table |
+| `**Where used?**` | 3–5 real domains that **name** Employee Management Portal / Swiggy / Apollo Hospitals / HDFC Bank / PhonePe when business-shaped — **not** a big Use Cases table |
 | `**Icons:** Bank · UPI · Employee · Laptop · Order` | Optional chip strip (also Hospital · Payroll · CRM) |
 | `**Key takeaways:**` | 2–4 bullets **immediately after** a Mermaid diagram (paired beside it in PDF). Major ideas only — not every sub-topic |
 

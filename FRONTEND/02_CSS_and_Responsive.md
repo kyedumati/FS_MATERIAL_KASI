@@ -11,7 +11,7 @@
 
 - Style a card and a form without inline `style=` soup
 - Make a layout that still works on a phone (flex / media queries)
-- Separate look from HTML so TechMart and AcmeHR can share a palette
+- Separate look from HTML so Swiggy and Employee Management Portal can share a palette
 
 **CSS** controls **how HTML looks**: colors, fonts, spacing, layout. HTML says "this is a button"; CSS says "blue, rounded, centered."
 
@@ -26,12 +26,12 @@
 Full-stack: `HTML + CSS + JS → Django/React`. Django serves CSS from `static/css/`. React uses component CSS or Tailwind — **Flexbox and selectors transfer directly**.
 
 **Where used?**
-- CampusCart / **TechMart** — product card grid, promo banner, responsive nav
-- **AcmeHR** — employee directory cards, payslip layout
-- **MedCare** — appointment board, doctor cards
-- **SecureBank** — account summary tiles, transfer confirmation
+- CampusCart / **Swiggy** — product card grid, promo banner, responsive nav
+- **Employee Management Portal** — employee directory cards, payslip layout
+- **Apollo Hospitals** — appointment board, doctor cards
+- **HDFC Bank** — account summary tiles, transfer confirmation
 
-CampusCart remains the landing-page lab skin. Treat it as the college **TechMart** storefront.
+CampusCart remains the landing-page lab skin. Treat it as the college **Swiggy** storefront.
 
 ---
 
@@ -180,7 +180,7 @@ DevTools → Computed → box diagram.
 
 **Try these (2 programs):**
 
-**Program 1 — TechMart product card box**
+**Program 1 — Swiggy product card box**
 
 ```css
 .card {
@@ -311,7 +311,7 @@ p { font-size: 1rem; }
 }
 ```
 
-**Program 2 — TechMart product grid**
+**Program 2 — Swiggy product grid**
 
 ```css
 .product-grid {
@@ -414,7 +414,7 @@ Style with Flexbox header, flex-wrap card grid, responsive nav column→row at 7
 </section>
 ```
 
-**Program 2 — TechMart three cards**
+**Program 2 — Swiggy three cards**
 
 ```html
 <section id="menu" class="product-grid">

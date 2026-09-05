@@ -20,11 +20,11 @@ A **variable** is a name that points to a value stored in memory. Think of it as
 **Icons:** Bank · UPI · Employee · Payroll · Order
 
 **Where used?**
-- **SecureBank** / UPI — balance, transfer amount, PIN flags
+- **HDFC Bank** / **PhonePe** — balance, transfer amount, PIN flags
 - College apps — roll, marks, fees as `int` / `float`
-- **AcmeHR** — basic salary, HRA, CTC in lakhs
-- **TechMart** — cart line price × qty, GST totals
-- **MedCare** — patient age, ticket amount, `is_active` flags
+- **Employee Management Portal** — basic salary, HRA, CTC in lakhs
+- **Swiggy** — cart line price × qty, GST totals
+- **Apollo Hospitals** — patient age, ticket amount, `is_active` flags
 
 ```python
 student_name = "Ravi Kumar"   # str
@@ -198,7 +198,7 @@ print(manager_id is None)    # True — preferred None check
 - Wrong: Checking None with `if x == None`.
 - Prefer: `if x is None`.
 
-Define AcmeHR employee fields for Priya Shah and print the type of each value.
+Define Employee Management Portal employee fields for Priya Shah and print the type of each value.
 
 ```python
 emp_id = "E2048"
@@ -492,7 +492,7 @@ print(f"{'Food':<15}{450.5:>10.2f}")
 - Wrong: Concatenating str + int (`"Age: " + 22`) → `TypeError`.
 - Prefer: `f"Age: {22}"` or `str(22)`.
 
-Print an AcmeHR offer line with name, role, and comma-formatted monthly salary.
+Print an Employee Management Portal offer line with name, role, and comma-formatted monthly salary.
 
 ```python
 name = "Ravi"
@@ -501,7 +501,7 @@ salary = 25000
 print(f"{name} — {role} — ₹{salary:,}/month")
 ```
 
-Print a TechMart canteen receipt with left-aligned items and right-aligned prices.
+Print a Swiggy canteen receipt with left-aligned items and right-aligned prices.
 
 ```python
 print(f"{'Item':<10}{'Price':>8}")
@@ -538,7 +538,7 @@ print(f"Average: {average:.2f}")
 print("Pass:", average >= 35)
 ```
 
-Calculate TechMart line total for price × qty with 18% GST and print the result.
+Calculate Swiggy line total for price × qty with 18% GST and print the result.
 
 ```python
 price = 499.0
@@ -675,7 +675,7 @@ print(f"{'TOTAL':<12}{grand:>8.2f}")
 
 ---
 
-## Mini-Project (Assignment): TechMart CLI Canteen Calculator
+## Mini-Project (Assignment): Swiggy CLI Canteen Calculator
 
 **Title:** One-session calculator with GST + validation  
 **Lab kit (build here):** [15_Lab_Assets/06_cli_calculator/](../15_Lab_Assets/06_cli_calculator/)  

@@ -1,6 +1,6 @@
-# Ticket: TechMart Hello REST (in-memory catalog)
+# Ticket: Swiggy Hello REST (in-memory catalog)
 
-**Customer:** CampusCart / TechMart canteen screen  
+**Customer:** CampusCart / Swiggy canteen screen  
 **Need:** Two JSON pings (`GET /hello`, `GET /health`) **plus** an in-memory canteen **list**, **GET by id**, and **POST**. No database this ticket.
 
 **Teaching-order:** `@RestController`, `@GetMapping` / `@PostMapping`, JSON `Map` / `List`, `HttpStatus` / `@ResponseStatus` / `ResponseEntity` lite (200 / 201 / 404), `@PathVariable`, `@RequestBody`, in-memory `ArrayList`. `spring-boot-starter-web` only. `jakarta.*` if you import servlet types. No JPA / `@Entity`. No Security / JWT. No DTO layer / `@Valid` / Postman collection. No Lombok. No `DataSource` / Hikari / MySQL. Thymeleaf is **not** required (optional one-pager is Stretch in the module).
