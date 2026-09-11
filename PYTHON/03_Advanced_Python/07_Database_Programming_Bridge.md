@@ -1,4 +1,4 @@
-# Module 06 — Database Programming Bridge (Python ↔ MySQL)
+# Module 07 — Database Programming Bridge (Python ↔ MySQL)
 
 **Phase:** Advanced Python
 

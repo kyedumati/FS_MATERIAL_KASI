@@ -3,7 +3,7 @@
 > **Not a standard teaching module.** Optional enrichment — use after core Advanced Python, Saturday labs, or interview prep only.  
 > Does **not** follow full Try these shape — optional enrichment, not on the critical path.
 
-**Previous:** [File Handling & Logging](05_File_Handling_and_Logging.md) (finish core Advanced first)  
+**Previous:** [Logging Module](06_Logging_Module.md) (finish core Advanced first)  
 **Next:** Continue calendar — [Git & GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) or MySQL phase as scheduled
 
 **Module Outcome:**

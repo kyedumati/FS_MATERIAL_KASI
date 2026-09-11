@@ -2,7 +2,7 @@
 
 **SQL material (source of truth):** [`MYSQL/README.md`](../../MYSQL/README.md) — open those files on lab days.  
 **Schedule:** [Session Calendar](../Session_Calendar_100.md) — Weeks 10–11 / Sessions 46–55.  
-**Python connectivity:** [`../03_Advanced_Python/06_Database_Programming_Bridge.md`](../03_Advanced_Python/06_Database_Programming_Bridge.md)
+**Python connectivity:** [`../03_Advanced_Python/07_Database_Programming_Bridge.md`](../03_Advanced_Python/07_Database_Programming_Bridge.md)
 
 > **Note:** This FS module is the **bridge** (ER, normalization, Django context). Placement-ready SQL depth is taught from **`MYSQL/`** during **Weeks 10–11** (setup → CRUD → joins → transactions → practice). Do not treat SQL as optional.
 
@@ -37,7 +37,7 @@ SQL is a **core placement skill**. Deep notes live in [`MYSQL/`](../../MYSQL/); 
 | ☐ | W11 | [`MYSQL/07_Joins.md`](../../MYSQL/07_Joins.md) | INNER + LEFT JOIN multi-table reports |
 | ☐ | W11 | [`MYSQL/09_Transactions_and_Indexes.md`](../../MYSQL/09_Transactions_and_Indexes.md) | COMMIT/ROLLBACK; when index helps |
 | ☐ | W11 | [`MYSQL/homework/10_Practice_Exercises.md`](../../MYSQL/homework/10_Practice_Exercises.md) | Complete exercises for ch. 02, 03, 07 |
-| ☐ | W11 | [Python bridge](../03_Advanced_Python/06_Database_Programming_Bridge.md) | Parameterized INSERT/SELECT/UPDATE/DELETE from Python |
+| ☐ | W11 | [Python bridge](../03_Advanced_Python/07_Database_Programming_Bridge.md) | Parameterized INSERT/SELECT/UPDATE/DELETE from Python |
 
 **Strongly recommended before placement mocks:** [`MYSQL/04`](../../MYSQL/04_Aggregations_and_Group_By.md) · [`MYSQL/05`](../../MYSQL/05_Common_Concepts.md) · [`MYSQL/08`](../../MYSQL/08_Views_and_Subqueries.md) · one project from [`MYSQL/12`](../../MYSQL/12_Real_Time_Projects.md). Window functions ([`MYSQL/11`](../../MYSQL/11_Window_Functions_and_CTEs.md)) only if the required set is solid.
 
@@ -653,7 +653,7 @@ WHERE o.order_date >= '2026-07-01';
 | Transactions, indexes | `MYSQL/09_Transactions_and_Indexes.md` |
 | Practice + projects | `MYSQL/homework/10_Practice_Exercises.md`, `MYSQL/12_Real_Time_Projects.md` |
 
-**Python bridge:** `03_Advanced_Python/06_Database_Programming_Bridge.md` → **Next:** Django ORM maps to these tables.
+**Python bridge:** `03_Advanced_Python/07_Database_Programming_Bridge.md` → **Next:** Django ORM maps to these tables.
 
 ## Interview Q&A
 

@@ -3,7 +3,7 @@
 **Phase:** Advanced Python
 
 **Previous module:** [OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md)
-**Next module:** [File Handling and Logging](05_File_Handling_and_Logging.md)
+**Next module:** [File Handling](05_File_Handling.md)
 
 ---
 

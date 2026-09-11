@@ -1,9 +1,9 @@
-# Module 05 — File Handling and Logging
+# Module 05 — File Handling
 
 **Phase:** Advanced Python
 
 **Previous module:** [Exception Handling](04_Exception_Handling.md)
-**Next module:** [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md)
+**Next module:** [Logging Module](06_Logging_Module.md)
 
 ---
 
@@ -16,94 +16,29 @@
 - Writing and reading text
 - Handling missing files — `FileNotFoundError`
 - CSV for tables, JSON for config
-- Logging — levels and file handlers
 - Advanced awareness — cursor, binary, pickle, directories
-
-Your Python program forgets everything when it stops. This module is how you make it remember.
-
-Last module, a missing file raised `FileNotFoundError`. You could catch it. You could not yet **create** the file, **append** a row, or **read** last month’s expenses back. That is the job now.
 
 ---
 
-### The problem: where does data go?
+**What is File Handling?**
 
-**Definition:** A **file** is data stored on disk. It is still there after the program closes.  
-**Purpose:** Variables live in RAM. When the program ends, that RAM is released. Student records, expense rows, and settings cannot live only in a list.
+**File handling** is the process of performing operations on files, such as:
 
-### Before this module
+- Creating new files
+- Reading existing files
+- Writing or updating data
+- Deleting files
 
-```python
-expenses = []
-expenses.append("Tea ₹120")
-# Program stops → that list is gone.
-```
+Python provides a built-in `open()` function and additional modules like `os` and `pathlib` to make file handling simple and efficient.
 
-```text
-Python running  →  expenses = ["Tea ₹120"]   (RAM)
-Python stops    →  💥 data gone
-```
+**Where do we use in realtime?**
 
-### After this module
-
-```text
-Python application
-       │
-       ├── data/expenses.csv     (the rows)
-       ├── data/config.json      (categories, daily limit)
-       └── logs/app.log          (what happened)
-```
-
-```text
-Python stops    →  data remains ✅
-```
-
-```mermaid
-flowchart TD
-  V["Variable in RAM"] --> End["Program ends"]
-  End --> Gone["Data disappears"]
-  Gone --> Need["We need permanent storage"]
-  Need --> File["A file on disk"]
-```
-
-**Key takeaways:**
-
-- RAM dies with the process; a **file** survives
-- This module is one story: **make Python remember**
-- We will build toward one app: an **Employee Management Portal expense tracker**
-
-**Where used?**
-
-- **Employee Management Portal** / payroll — append expense rows, export a CSV, keep a daily limit in config
+- **Employee Management Portal** / payroll — append expense rows, export a CSV, keep a daily expenses limit in a config file such as JSON
 - **Swiggy** — import a product table, load `config.json` at startup
 - Attendance and audit — append-only text that survives a restart
-- Servers — `logging` to `app.log` when nobody is watching the terminal
-- **Apollo Hospitals** / **HDFC Bank** — never log passwords, OTPs, or card numbers
+- Reports and backups — copy files, walk folders, read large CSVs line by line
 
-We will use the **same** three paths in almost every demo:
 
-```text
-expense_tracker/
-│
-├── data/
-│   ├── expenses.txt    ← first: plain text
-│   ├── expenses.csv    ← then: a table
-│   └── config.json     ← settings
-│
-└── logs/
-    └── app.log         ← what the app did
-```
-
-You are not collecting random filenames. You are growing **one** application.
-
-### What you must remember vs what you only need to recognise
-
-Not every API in this file is equal. Use this map while you read.
-
-**Must know** (tonight’s tracker): `open()`, `with open()`, modes `r` / `w` / `a`, `write()`, `read()`, `readline()`, `for line in f`, CSV, JSON, `logging`, `FileNotFoundError`.
-
-**Should know** (you will see these): `readlines()`, `read(n)`, `tell()` / `seek()`, `Path.exists()`, binary `rb` / `wb`, `os.makedirs()`.
-
-**Awareness** (interview / later): `r+` `w+` `a+` `x`, pickle, `os.walk()`, `RotatingFileHandler`.
 
 ### Types of files
 
@@ -138,7 +73,9 @@ flowchart LR
   B -->|"with open + rb"| V
 ```
 
-**Key takeaways:**
+
+
+**Note:**
 
 - **Text** = characters (always set `encoding="utf-8"`)
 - **Binary** = bytes (`rb` / `wb`) — no encoding
@@ -146,12 +83,9 @@ flowchart LR
 
 ---
 
-## Important Concepts
-
 ### 1. Opening a file — `open()` and `with open()`
 
-**Definition:** Before any read or write, the file must be **opened**. `open()` returns a file object.  
-**Purpose:** Opening a file borrows a **system resource** (an OS handle). When you are finished, that resource should be released.
+Before you can interact(i.e read/write) with a file, you need to **open it**. Python’s The `open()` function allows you to do this:
 
 ```python
 f = open("data/expenses.txt", "w", encoding="utf-8")
@@ -161,73 +95,14 @@ f.close()
 
 `f.close()` flushes leftover data and releases the handle.
 
-**But** remembering `close()` is easy to forget — especially when an exception fires in the middle. That is why Python gives us **`with`**. The file closes when the block ends, even if the last module’s `ValueError` shows up.
 
-**From today, this is the habit:**
 
-```python
-with open("data/expenses.txt", "w", encoding="utf-8") as f:
-    f.write("2026-09-04 | food | 120 | Tea\n")
-# file is already closed here
-```
+The `open()` function takes two main arguments:
 
-**Note:**
-- Manual `f = open(...)` / `f.close()` is the *reason* `with` exists — it is not the style you practise.
-- Always pass `encoding="utf-8"` for text. Skipping it → `UnicodeDecodeError` on some Windows machines.
+1. **Filename** — The file you want to open.
+2. **Mode** — Determines how the file will be used:
 
-**Remember:** Prefer `with open(...) as f:` — the file closes even if an exception fires inside the block.
-
-Create the `data/` folder, write one Employee Management Portal expense line with `with open`, then read it back and print it.
-
-```python
-import os
-
-os.makedirs("data", exist_ok=True)
-
-with open("data/expenses.txt", "w", encoding="utf-8") as f:
-    f.write("2026-09-04 | food | 120 | Tea\n")
-
-with open("data/expenses.txt", "r", encoding="utf-8") as f:
-    print(f.read())
-```
-
-**Expected Output:**
-
-```
-2026-09-04 | food | 120 | Tea
-
-```
-
-Inside `with open`, write a line then raise `ValueError`. After catching it, reopen the file — it closed cleanly, so a new `with` works.
-
-```python
-import os
-
-os.makedirs("data", exist_ok=True)
-
-try:
-    with open("data/expenses.txt", "w", encoding="utf-8") as f:
-        f.write("partial row\n")
-        raise ValueError("deliberate crash after write")
-except ValueError as e:
-    print("Caught:", e)
-
-with open("data/expenses.txt", "a", encoding="utf-8") as f:
-    f.write("appended after crash\n")
-
-with open("data/expenses.txt", "r", encoding="utf-8") as f:
-    print(f.read())
-```
-
-**Expected Output:**
-
-```
-Caught: deliberate crash after write
-partial row
-appended after crash
-```
-
-That is the bridge from Exception Handling: `with` is the `finally` for files, without writing `finally` yourself.
+*Note: Always close your files using* `file.close()` *or, better, use the* `with` *statement to handle files automatically.*
 
 ### 2. File modes — read, replace, or append
 
@@ -248,11 +123,13 @@ For this course you need **three** modes first:
            r           w           a
 ```
 
-| Mode | Plain English | Missing file? | Existing content? |
-|------|---------------|---------------|-------------------|
-| `r` | I want to **read** what is already there | `FileNotFoundError` | Left as-is |
-| `w` | I want to **create / replace** the file | Creates it | **Cleared** (truncated) |
-| `a` | I want to **add** without deleting the old lines | Creates it | Kept; new writes go at the **end** |
+
+| Mode | Plain English                                    | Missing file?       | Existing content?                  |
+| ---- | ------------------------------------------------ | ------------------- | ---------------------------------- |
+| `r`  | I want to **read** what is already there         | `FileNotFoundError` | Left as-is                         |
+| `w`  | I want to **create / replace** the file          | Creates it          | **Cleared** (truncated)            |
+| `a`  | I want to **add** without deleting the old lines | Creates it          | Kept; new writes go at the **end** |
+
 
 `r` is the **default** if you omit the mode.
 
@@ -260,97 +137,20 @@ Python has other modes (`r+`, `w+`, `a+`, `x`). We will name them in Advanced. Y
 
 **Common Error:** Opening with `"w"` when you meant `"a"` — `w` empties the file before you write.
 
-**Pause. Do not run yet.** What will `data/expenses.txt` contain after this program?
-
-```python
-import os
-
-os.makedirs("data", exist_ok=True)
-
-with open("data/expenses.txt", "w", encoding="utf-8") as f:
-    f.write("2026-09-04 | food | 120 | Tea\n")
-
-with open("data/expenses.txt", "w", encoding="utf-8") as f:
-    f.write("2026-09-04 | travel | 50 | Metro\n")
-```
-
-A. Both lines (Tea and Metro)  
-B. Only Metro  
-C. Only Tea  
-D. Error
-
-Now run it, then read the file.
-
-```python
-import os
-
-os.makedirs("data", exist_ok=True)
-
-with open("data/expenses.txt", "w", encoding="utf-8") as f:
-    f.write("2026-09-04 | food | 120 | Tea\n")
-
-with open("data/expenses.txt", "w", encoding="utf-8") as f:
-    f.write("2026-09-04 | travel | 50 | Metro\n")
-
-with open("data/expenses.txt", "r", encoding="utf-8") as f:
-    print(repr(f.read()))
-```
-
-**Expected Output:**
-
-```
-'2026-09-04 | travel | 50 | Metro\n'
-```
-
-The answer is **B**. The second `"w"` **replaced** the file. Tea is gone.
-
-**Remember:** `w` means replace. For a running log or a growing expense list, you almost always want `a`.
-
-Write the first expense with `w` (create the file), append two more with `a`, then read so all three lines remain.
-
-```python
-import os
-
-os.makedirs("data", exist_ok=True)
-
-with open("data/expenses.txt", "w", encoding="utf-8") as f:
-    f.write("2026-09-04 | food | 120 | Tea\n")
-
-with open("data/expenses.txt", "a", encoding="utf-8") as f:
-    f.write("2026-09-04 | travel | 50 | Metro\n")
-    f.write("2026-09-04 | food | 40 | Samosa\n")
-
-with open("data/expenses.txt", "r", encoding="utf-8") as f:
-    print(f.read())
-```
-
-**Expected Output:**
-
-```
-2026-09-04 | food | 120 | Tea
-2026-09-04 | travel | 50 | Metro
-2026-09-04 | food | 40 | Samosa
-
-```
-
-**Note:**
-- `w` is the **mode**. `write()` is the **method**. Opening with `w` does not write anything by itself.
-- `r` is the mode. `read()` is the method.
-- `write()` does **not** add `\n` for you. Omit it → the next write sticks to the same line.
-- `writelines(list)` writes a list of strings. It also does **not** add `\n`. Prefer a loop with `write(line + "\n")`.
-
 ### 3. Reading data from text files
 
 **Definition:** After you open for read, you pull characters (or lines) from the file.  
 **Purpose:** The tracker has to show last week’s expenses, not only the ones still in RAM.
 
-| Method | Returns | When to use |
-|--------|---------|-------------|
-| `read()` | Entire file as **one string** | Small files |
-| `read(n)` | Next `n` characters | Peek / should-know |
-| `readline()` | **One** line | Line-by-line protocols |
-| `readlines()` | **List** of all lines | Medium files — whole list in RAM |
-| `for line in f` | One line at a time | **Large files** — this is the habit |
+
+| Method          | Returns                       | When to use                         |
+| --------------- | ----------------------------- | ----------------------------------- |
+| `read()`        | Entire file as **one string** | Small files                         |
+| `read(n)`       | Next `n` characters           | Peek / should-know                  |
+| `readline()`    | **One** line                  | Line-by-line protocols              |
+| `readlines()`   | **List** of all lines         | Medium files — whole list in RAM    |
+| `for line in f` | One line at a time            | **Large files** — this is the habit |
+
 
 **What if the file is huge?** A 2 GB server log must not be loaded with `read()`. Iterate:
 
@@ -363,6 +163,7 @@ with open("logs/app.log", "r", encoding="utf-8") as f:
 The file pointer moves as you read. A second `read()` without reopening (or `seek` — Advanced) often returns empty.
 
 **Note:**
+
 - `readlines()` vs `for line in f`: the first builds a **list in memory**; the second yields **one line at a time**.
 - Reading a huge file with `read()` → `MemoryError`. Iterate.
 
@@ -423,6 +224,8 @@ line: Metro
 line: Samosa
 ```
 
+
+
 ### 4. Handling missing files
 
 **Definition:** A path might not exist yet. `open(..., "r")` then raises `FileNotFoundError`.  
@@ -441,6 +244,7 @@ except FileNotFoundError:
 `pathlib.Path.exists()` asks first (Look Before You Leap). After Exceptions week, `try` / `except FileNotFoundError` is the usual Python style (EAFP).
 
 **Note:**
+
 - Both styles are valid. Do not skip handling.
 - `"w"` / `"a"` *create* a missing file — you do not get `FileNotFoundError` in those modes.
 
@@ -478,17 +282,20 @@ Checking: data/missing.txt
 File not found: data/missing.txt
 ```
 
+
+
 ### 5. CSV — when the data is a table
 
 **Definition:** CSV means **Comma Separated Values** — a text table Excel and Sheets understand.  
 **Purpose:** `Tea | 120` as free text is fine for two lines. A month of expenses needs **columns**: date, category, amount, note.
 
-Python’s **`csv`** module:
+Python’s `csv` module:
 
 - `csv.writer` / `csv.reader` — rows as lists
 - `csv.DictWriter` / `csv.DictReader` — rows as dicts keyed by the header (prefer this when columns have names)
 
 **Note:**
+
 - Open CSV with `newline=""` (Python 3 / Windows extra blank lines otherwise).
 - Do not open CSV as `"wb"`.
 - Amounts in CSV are **strings** until you convert: `int(row["amount"])`.
@@ -531,19 +338,21 @@ Total: 210
 
 **Interview:** `DictReader` uses the header row as keys. `reader` gives lists — you remember column indexes yourself.
 
-Plain `expenses.txt` was the learning wheel. From here, the tracker’s data file is **`data/expenses.csv`**.
+Plain `expenses.txt` was the learning wheel. From here, the tracker’s data file is `data/expenses.csv`.
 
 ### 6. JSON — when the data is config (or nested)
 
 **Definition:** JSON is nested data as text — the language of APIs and config files.  
 **Purpose:** Categories, daily limit, and currency belong in `data/config.json`, not hardcoded in the middle of `main`.
 
-| Function | Reads / writes |
-|----------|----------------|
-| `json.dump(obj, file)` | Object → **file** |
-| `json.load(file)` | **File** → object |
-| `json.dumps(obj)` | Object → **string** (`s` = string) |
-| `json.loads(s)` | **String** → object |
+
+| Function               | Reads / writes                     |
+| ---------------------- | ---------------------------------- |
+| `json.dump(obj, file)` | Object → **file**                  |
+| `json.load(file)`      | **File** → object                  |
+| `json.dumps(obj)`      | Object → **string** (`s` = string) |
+| `json.loads(s)`        | **String** → object                |
+
 
 ```text
 Is my data basically a table?
@@ -590,107 +399,11 @@ Categories: ['food', 'travel', 'rent']
 
 **Remember:** `json.load` → file. `json.loads` → string. The extra **s** is “string”.
 
-### 7. Logging — when nobody is watching the terminal
-
-**Definition:** Logging writes messages with a **level**, a timestamp, and a destination (console, file, or both).  
-**Purpose:** `print` is for learning. A real application runs on a server. Nobody is staring at that terminal.
-
-A clerk says: **“My expense wasn’t saved.”** You need answers:
-
-```text
-When did it happen?
-What operation was running?
-Was it a warning, or did something fail?
-```
-
-```text
-print()     →  good for class / quick debug
-logging     →  good for real applications
-```
-
-**Remember the meaning, not the numbers.**
-
-| Level | Think of it as | Expense Tracker example |
-|-------|----------------|-------------------------|
-| DEBUG | Developer detail | Reading row 25 |
-| INFO | Normal event | Expense added |
-| WARNING | Something unusual | Daily limit almost reached |
-| ERROR | Something failed | CSV could not be read |
-| CRITICAL | Serious failure | Application cannot start |
-
-The numbers (you will see them in docs): DEBUG=10, INFO=20, WARNING=30, ERROR=40, CRITICAL=50. A logger set to INFO **hides** DEBUG.
-
-```python
-import logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-logging.info("Expense added: ₹120 Tea")
-logging.error("Could not open expenses.csv")
-```
-
-**Note:**
-- `print` in production → no levels, no timestamps, gone when the console is gone. Use `logging`.
-- Configure logging in `main`, not at import time inside a library.
-- `basicConfig` runs **once** per process. Restart the interpreter if a second call seems to do nothing.
-
-**Interview:** `print` is for quick demos; `logging` gives levels, timestamps, and file/console handlers you can filter.
-
-Configure logging at INFO. Log DEBUG, INFO, and ERROR so DEBUG is filtered out.
-
-```python
-import logging
-
-logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-
-logging.debug("Reading row 25 — this will NOT appear at INFO level")
-logging.info("Expense added: ₹120 Tea")
-logging.warning("Daily limit almost reached")
-logging.error("Failed to parse amount: 'abc'")
-```
-
-**Expected Output:**
-
-```
-INFO Expense added: ₹120 Tea
-WARNING Daily limit almost reached
-ERROR Failed to parse amount: 'abc'
-```
-
-Attach a file handler (`logs/app.log`) and a console handler on logger `expense`, then log INFO and ERROR to both.
-
-```python
-import logging
-import os
-
-os.makedirs("logs", exist_ok=True)
-
-logger = logging.getLogger("expense")
-logger.setLevel(logging.DEBUG)
-logger.handlers.clear()
-
-fmt = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
-
-file_handler = logging.FileHandler("logs/app.log", encoding="utf-8")
-file_handler.setFormatter(fmt)
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(fmt)
-
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
-
-logger.info("Expense tracker started")
-logger.error("Could not open data/expenses.csv")
-print("Also check logs/app.log on disk")
-```
-
-You should see the same INFO and ERROR lines on the console **and** inside `logs/app.log`.
-
-**Awareness:** When a log file grows forever, production uses `RotatingFileHandler` (size) or `TimedRotatingFileHandler` (time). You do not need that for tonight’s tracker.
-
-**Note:** Never log passwords, OTPs, full card numbers, Aadhaar, or session tokens (GDPR / India DPDP). Log that an auth attempt failed, not the secret.
+**Next session:** Writing application flow and errors to `logs/app.log` is covered in [Logging Module](06_Logging_Module.md) — levels, `basicConfig`, custom loggers, and handlers.
 
 ---
 
-### 8. Advanced file handling (awareness)
+### 7. Advanced file handling (awareness)
 
 You do **not** need this section to finish tonight’s tracker. Skim once. Come back when a job (or an interview) names the tool.
 
@@ -704,8 +417,8 @@ FILE   2 0 2 6 - 0 9 - 0 4 ...
      cursor
 ```
 
-- **`tell()`** — “Where am I?” (index from the start; first character is **0**)
-- **`seek(offset)`** — “Move me there.”
+- `tell()` — “Where am I?” (index from the start; first character is **0**)
+- `seek(offset)` — “Move me there.”
 
 For **text** files in Python 3, `seek` is used from the **beginning**. Passing a random non-zero offset that did not come from `tell()` can error. Binary files can also seek from the current position or the end.
 
@@ -775,12 +488,14 @@ The same pattern copies a real `.jpg`: `open("photo.jpg", "rb")` → `open("newp
 
 #### Other modes — `r+`, `w+`, `a+`, `x`
 
-| Mode | Meaning | Use when |
-|------|---------|----------|
+
+| Mode | Meaning                                      | Use when                             |
+| ---- | -------------------------------------------- | ------------------------------------ |
 | `r+` | Read and write; file must exist; no truncate | In-place edit (`seek` example above) |
-| `w+` | Write and read; **truncates** like `w` | Rare; easy to wipe data |
-| `a+` | Append and read | Read a log you are also appending |
-| `x` | Create exclusive; error if the file exists | “Create only if new” |
+| `w+` | Write and read; **truncates** like `w`       | Rare; easy to wipe data              |
+| `a+` | Append and read                              | Read a log you are also appending    |
+| `x`  | Create exclusive; error if the file exists   | “Create only if new”                 |
+
 
 Suffix `b` for binary: `rb`, `wb`, `ab`, `r+b`, …
 
@@ -821,14 +536,16 @@ To write several objects, `dump` in a loop. To read them back, `load` in a loop 
 
 #### Directories
 
-You already used **`os.makedirs(path, exist_ok=True)`** to create `data/` and `logs/`. That is the should-know piece.
+You already used `os.makedirs(path, exist_ok=True)` to create `data/` and `logs/`. That is the should-know piece.
 
-| Need | Function |
-|------|----------|
-| Current folder | `os.getcwd()` |
-| Create nested folders | `os.makedirs(path, exist_ok=True)` |
-| List one folder | `os.listdir(path)` — **not** nested files |
-| List folder **and** subfolders | `os.walk(path)` — awareness |
+
+| Need                           | Function                                  |
+| ------------------------------ | ----------------------------------------- |
+| Current folder                 | `os.getcwd()`                             |
+| Create nested folders          | `os.makedirs(path, exist_ok=True)`        |
+| List one folder                | `os.listdir(path)` — **not** nested files |
+| List folder **and** subfolders | `os.walk(path)` — awareness               |
+
 
 **Interview:** `listdir()` is one directory. `walk()` yields `(dirpath, dirnames, filenames)` for that directory **and** every subdirectory.
 
@@ -850,24 +567,18 @@ for dirpath, dirnames, filenames in os.walk("data"):
 
 ---
 
+
+
 ## Step-by-Step: one assemble — Employee Management Portal expense slice
 
-Type this with the class. It stitches **today’s** must-knows on **one** product: folders, `with`, UTF-8, CSV `newline=""`, `DictWriter` / `DictReader`, JSON config, `logging` to `logs/app.log`. The overnight assignment is the **full** tracker kit — same product, more complete ticket.
+Type this with the class. It stitches **today’s** must-knows on **one** product: folders, `with`, UTF-8, CSV `newline=""`, `DictWriter` / `DictReader`, JSON config. Logging to `logs/app.log` comes in the [next module](06_Logging_Module.md).
 
 ```python
 import csv
 import json
-import logging
 import os
 
 os.makedirs("data", exist_ok=True)
-os.makedirs("logs", exist_ok=True)
-
-logging.basicConfig(
-    filename="logs/app.log",
-    level=logging.INFO,
-    format="%(levelname)s %(message)s",
-)
 
 config = {
     "app_name": "ExpenseTracker",
@@ -886,7 +597,7 @@ with open("data/expenses.csv", "w", newline="", encoding="utf-8") as f:
     writer = csv.DictWriter(f, fieldnames=["date", "category", "amount", "note"])
     writer.writeheader()
     writer.writerows(rows)
-logging.info("Wrote data/expenses.csv")
+print("Wrote data/expenses.csv")
 
 total = 0
 with open("data/expenses.csv", newline="", encoding="utf-8") as f:
@@ -897,23 +608,23 @@ with open("data/expenses.csv", newline="", encoding="utf-8") as f:
 with open("data/config.json", "r", encoding="utf-8") as f:
     limit = json.load(f)["max_daily_limit"]
 
-logging.info("Day total ₹%s (limit ₹%s)", total, limit)
 print("Day total ₹%s (limit ₹%s)" % (total, limit))
-print("Check logs/app.log")
 ```
 
 **Expected Output:**
 
 ```
+Wrote data/expenses.csv
 Tea: ₹120
 Metro: ₹50
 Day total ₹170 (limit ₹5000)
-Check logs/app.log
 ```
 
-**Then open the kit** (lab / tonight): [`01_python_expense_tracker`](../15_Lab_Assets/01_python_expense_tracker/) — add expenses, export CSV, log to a file. Type it — do not paste `solution/`. **Also use:** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) — now wire `yield` to `csv.DictReader` (stretch).
+**Then open the kit** (lab / tonight): [01_python_expense_tracker](../15_Lab_Assets/01_python_expense_tracker/) — add expenses, export CSV. Type it — do not paste `solution/`. Wire logging in the [Logging Module](06_Logging_Module.md). **Also use:** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) — now wire `yield` to `csv.DictReader` (stretch).
 
 ---
+
+
 
 ## Practice Exercises
 
@@ -932,7 +643,7 @@ with open("ward.txt", "r", encoding="utf-8") as f:
 
 A second `"w"` would replace the file — Bed 12 would be gone.
 
-2. Copy `source.txt` to `backup.txt` using `with open` on both files.
+1. Copy `source.txt` to `backup.txt` using `with open` on both files.
 
 **Model answer:**
 
@@ -941,7 +652,7 @@ with open("source.txt", encoding="utf-8") as src, open("backup.txt", "w", encodi
     dst.write(src.read())
 ```
 
-3. Swiggy has `products.txt` (one product name per line). Count lines **without** calling `readlines()`. Print the count.
+1. Swiggy has `products.txt` (one product name per line). Count lines **without** calling `readlines()`. Print the count.
 
 **Model answer:**
 
@@ -954,7 +665,7 @@ with open("products.txt", encoding="utf-8") as f:
 print(count)
 ```
 
-4. Read `appointments.csv` with columns `patient` and `fee`. Print the total fee. If the file is missing, print a clear message instead of crashing.
+1. Read `appointments.csv` with columns `patient` and `fee`. Print the total fee. If the file is missing, print a clear message instead of crashing.
 
 **Model answer:**
 
@@ -971,7 +682,7 @@ except FileNotFoundError:
     print("appointments.csv not found")
 ```
 
-5. Load or create Swiggy preferences in `prefs.json`. If the file exists, load it; otherwise start from `{"theme": "light", "lang": "en"}`. Set `theme` to `"dark"` and save.
+1. Load or create Swiggy preferences in `prefs.json`. If the file exists, load it; otherwise start from `{"theme": "light", "lang": "en"}`. Set `theme` to `"dark"` and save.
 
 **Model answer:**
 
@@ -989,49 +700,29 @@ prefs["theme"] = "dark"
 path.write_text(json.dumps(prefs, indent=2), encoding="utf-8")
 ```
 
-6. Configure a logger named `atm` that writes INFO+ to `atm.log` and WARNING+ to the console. Log one INFO and one WARNING.
 
-**Model answer:**
 
-```python
-import logging
+## Mini-Project (Assignment): Employee Management Portal Expense Tracker (Files)
 
-logger = logging.getLogger("atm")
-logger.setLevel(logging.INFO)
-logger.handlers.clear()
-fmt = logging.Formatter("%(levelname)s %(message)s")
-fh = logging.FileHandler("atm.log", encoding="utf-8")
-fh.setLevel(logging.INFO)
-ch = logging.StreamHandler()
-ch.setLevel(logging.WARNING)
-fh.setFormatter(fmt)
-ch.setFormatter(fmt)
-logger.addHandler(fh)
-logger.addHandler(ch)
-logger.info("ATM session started")
-logger.warning("Cash drawer low")
-```
-
-## Mini-Project (Assignment): Employee Management Portal Expense Tracker with File + Logging
-
-**Title:** DailyExpenseLogger  
+**Title:** DailyExpenseFiles  
 **Customer:** Employee Management Portal finance. Clerks add daily expenses. Closing Python must not wipe the month. A bad CSV row must not dump a traceback on the desk screen.  
 **Lab kit (build here):** [15_Lab_Assets/01_python_expense_tracker/](../15_Lab_Assets/01_python_expense_tracker/)  
 **Also use:** [15_generator_csv_stream](../15_Lab_Assets/15_generator_csv_stream/) — now wire `yield` to `csv.DictReader` (Files-week stretch)
 
-This is **not** the in-class slice above. Same product and tools (`with`, CSV, JSON, logging), fuller ticket.
+This is **not** the in-class slice above. Same product and tools (`with`, CSV, JSON), fuller ticket. Add `logging` in the [Logging Module](06_Logging_Module.md).
 
 ### What to build
 
-| Piece | Detail |
-|-------|--------|
-| `data/expenses.csv` | Append: date, category, amount, note |
-| `data/config.json` | Categories + daily limit |
-| `logs/app.log` | All operations via `logging` |
-| Summary | Total by category from CSV |
-| Resilience | Missing file / bad CSV row → clear message, no crash |
 
-**Folder layout:** `main.py`, `data/config.json`, `data/expenses.csv`, `logs/app.log`
+| Piece               | Detail                                               |
+| ------------------- | ---------------------------------------------------- |
+| `data/expenses.csv` | Append: date, category, amount, note                 |
+| `data/config.json`  | Categories + daily limit                             |
+| Summary             | Total by category from CSV                           |
+| Resilience          | Missing file / bad CSV row → clear message, no crash |
+
+
+**Folder layout:** `main.py`, `data/config.json`, `data/expenses.csv`
 
 ### Stretch
 
@@ -1039,63 +730,58 @@ This is **not** the in-class slice above. Same product and tools (`with`, CSV, J
 - Add a “export month report” that writes a new CSV.  
 - Stream a large seed file with a generator instead of `readlines()`.
 
+
+
 ### Done when
 
 - [ ] Starter kit / your CLI can add expense and show category totals  
-- [ ] Logging writes to a log file (not only `print`)  
 - [ ] Bad/missing files handled without traceback for expected cases  
 - [ ] Pushed to GitHub with sample `config.json` (no secrets)
+
+
 
 ## Interview Q&A
 
 Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
 
-**Q1. Difference between `read()` and iterating the file object?**  
+**Q1. Difference between** `read()` **and iterating the file object?**  
 **A:** `read()` loads the entire file into memory. Iteration reads one line at a time — constant memory for large files.
 
-**Q2. Purpose of the logging module vs `print`?**  
-**A:** Logging provides levels, timestamps, handlers (file/console), configurable format, and production-ready filtering. `print` is ad-hoc debugging only. On a server, nobody is watching the terminal.
-
-**Q3. What is a context manager?**  
+**Q2. What is a context manager?**  
 **A:** An object used with `with` that defines `__enter__` and `__exit__` for setup/cleanup. `open()` closes the file in `__exit__`, even if an exception occurred.
 
-**Q4. CSV vs JSON — how do you choose?**  
+**Q3. CSV vs JSON — how do you choose?**  
 **A:** If the data is a **table** (Excel, import/export, reports) → CSV. If it is **config** or a nested structure (APIs, preferences) → JSON.
 
-**Q5. How do you handle a missing file?**  
+**Q4. How do you handle a missing file?**  
 **A:** `try` / `except FileNotFoundError`, or `pathlib.Path.exists()` / `os.path.isfile` first; return a default or prompt the user.
 
-**Q6. Difference between `json.load` and `json.loads`?**  
+**Q5. Difference between** `json.load` **and** `json.loads`**?**  
 **A:** `json.load` reads from a file-like object. `json.loads` parses a JSON **string** already in memory (`s` for string).
 
-**Q7. Why is `with open` preferred over manual `close()`?**  
+**Q6. Why is** `with open` **preferred over manual** `close()`**?**  
 **A:** The context manager closes the file even if an exception occurs, avoiding resource leaks and ensuring data is flushed. Manual `close()` is easy to skip on error paths.
 
-**Q8. When use CSV vs JSON vs a database?**  
+**Q7. When use CSV vs JSON vs a database?**  
 **A:** CSV suits flat tabular exports and spreadsheets. JSON fits nested config/API payloads. A database is better for concurrent writes, queries, relationships, and integrity in multi-user apps.
 
-**Q9. `tell()` vs `seek()`?**  
+**Q8.** `tell()` **vs** `seek()`**?**  
 **A:** `tell()` returns the current cursor index (0-based). `seek(offset)` moves the cursor. Text mode in Python 3 seeks from the start; use a value from `tell()` if the offset is not 0.
 
-**Q10. `listdir()` vs `walk()`?**  
+**Q9.** `listdir()` **vs** `walk()`**?**  
 **A:** `listdir` lists one directory (not nested contents). `walk` visits that directory and all subdirectories, yielding path, subdir names, and file names.
 
-**Q11. What is pickling? When would you not use it?**  
+**Q10. What is pickling? When would you not use it?**  
 **A:** Pickling serializes a Python object to bytes (`pickle.dump` / `load`). Do not unpickle untrusted files. For data you share with other languages or humans, prefer JSON or CSV.
 
-**Q12. Why is append mode safer than read-modify-write for log files?**  
+**Q11. Why is append mode safer than read-modify-write for audit / expense files?**  
 **A:** Append adds at the end without loading or rewriting the whole file, so a crash is less likely to wipe earlier lines. Read-modify-write can truncate or corrupt if the rewrite fails halfway.
 
-**Q13. Binary vs text mode — when does each matter?**  
+**Q12. Binary vs text mode — when does each matter?**  
 **A:** Text mode decodes characters (`encoding="utf-8"`) and translates newlines. Binary (`rb`/`wb`) is for images, zip, pickle, and any bytes you must not decode as text.
 
-**Q14. What sensitive data should never go in log files?**  
-**A:** Passwords, OTPs, full card numbers, Aadhaar, session tokens — GDPR / India DPDP. Log that an auth attempt failed, not the secret itself.
-
-**Q15. How would you rotate log files when they grow too large?**  
-**A:** Use `logging.handlers.RotatingFileHandler` (size) or `TimedRotatingFileHandler` (time) so old logs are renamed and a fresh file starts.
-
-**Q16. What is the difference between mode `w` and method `write()`?**  
+**Q13. What is the difference between mode** `w` **and method** `write()`**?**  
 **A:** `w` is *how you opened* the file (create/replace; it truncates). `write()` is *the call* that sends a string. Opening with `w` does not write data by itself — but it has already cleared the file.
 
 ---
+

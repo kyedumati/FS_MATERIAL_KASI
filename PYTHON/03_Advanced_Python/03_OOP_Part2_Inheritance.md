@@ -813,7 +813,7 @@ classDiagram
 
 - Deep inheritance trees get brittle — prefer composition when unsure.
 - Composition keeps parts swappable (`SmsNotifier` vs `EmailNotifier`) without a messy parent list.
-- Richer design patterns live in optional [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md).
+- Richer design patterns live in optional [Professional Python Deep Dive](08_Professional_Python_Deep_Dive.md).
 
 Write Swiggy `OrderService` that HAS-A notifier. Place an order with `SmsNotifier` and another with `EmailNotifier`.
 

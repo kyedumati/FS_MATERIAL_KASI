@@ -27,4 +27,4 @@ This module is split for slow-pace teaching (Functions-style depth: Motivation �
 
 **Course order note:** Exception Handling is **after** OOP (including Part 4). All OOP demos/labs validate with **`print` + `return`** (no `raise` / `try` / `except` required in OOP).
 
-**Optional enrichment:** [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md) (composition patterns, `__repr__` — ABC is taught in Part 4)
+**Optional enrichment:** [Professional Python Deep Dive](08_Professional_Python_Deep_Dive.md) (composition patterns, `__repr__` — ABC is taught in Part 4)

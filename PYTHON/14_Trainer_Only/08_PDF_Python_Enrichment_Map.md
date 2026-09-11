@@ -15,10 +15,11 @@ Do **not** add a second Python curriculum beside this folder.
 | List / Tuple / Set / Dict | `02_Core_Python/05`–`07` (+ `08` DS overview) |
 | Functions | `03_Advanced_Python/01_…` |
 | Modules / Packages | `03_Advanced_Python/02_…` |
-| OOP | `03_Advanced_Python/03_OOP.md` + Parts 1–4 + optional `07_Professional_Python_Deep_Dive.md` |
+| OOP | `03_Advanced_Python/03_OOP.md` + Parts 1–4 + optional `08_Professional_Python_Deep_Dive.md` |
 | Exceptions | `03_Advanced_Python/04_…` |
-| Files · Logging | `03_Advanced_Python/05_…` |
-| Database programming | `03_Advanced_Python/06_…` + Required MySQL labs (`MYSQL/`) |
+| Files | `03_Advanced_Python/05_File_Handling.md` |
+| Logging | `03_Advanced_Python/06_Logging_Module.md` |
+| Database programming | `03_Advanced_Python/07_Database_Programming_Bridge.md` + Required MySQL labs (`MYSQL/`) |
 
 ## Why one pack
 

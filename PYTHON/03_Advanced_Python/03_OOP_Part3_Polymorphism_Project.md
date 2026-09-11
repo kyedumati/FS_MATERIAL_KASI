@@ -381,7 +381,7 @@ sequenceDiagram
 - Default = class name + memory address (hard to debug)
 - Keep `__str__` short and human-readable
 
-**Note:** `__repr__` is the unambiguous/debug form (`repr(obj)`). Prefer implementing `__str__` first; dig into `__repr__` in [Professional Python Deep Dive](07_Professional_Python_Deep_Dive.md) if needed.
+**Note:** `__repr__` is the unambiguous/debug form (`repr(obj)`). Prefer implementing `__str__` first; dig into `__repr__` in [Professional Python Deep Dive](08_Professional_Python_Deep_Dive.md) if needed.
 
 **Common Error:** putting side effects (network calls, file writes) inside `__str__` — keep it a pure, cheap description.
 

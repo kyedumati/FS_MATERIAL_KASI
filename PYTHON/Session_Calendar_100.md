@@ -95,8 +95,8 @@
 | 39 | 8 | Polymorphism lab | [03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) | Push OOP app (BankAccount CLI) |
 | 40 | 8 | ABC / interfaces | [03_Advanced_Python/03_OOP_Part4_Abstract_Classes_Interfaces.md](03_Advanced_Python/03_OOP_Part4_Abstract_Classes_Interfaces.md) | Campus Wallet lab |
 | 41 | 9 | Exceptions try/except + custom | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Safe input lab |
-| 42 | 9 | Files + `with` + CSV/JSON | [03_Advanced_Python/05_File_Handling_and_Logging.md](03_Advanced_Python/05_File_Handling_and_Logging.md) | CSV append |
-| 43 | 9 | Logging levels | same | Logger in expense app |
+| 42 | 9 | Files + `with` + CSV/JSON | [03_Advanced_Python/05_File_Handling.md](03_Advanced_Python/05_File_Handling.md) | CSV append |
+| 43 | 9 | Logging levels | [03_Advanced_Python/06_Logging_Module.md](03_Advanced_Python/06_Logging_Module.md) | Logger in expense app |
 | 44 | 9 | Git local: add/commit/branch | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Daily commit habit |
 | 45 | 9 | GitHub push + README | same | Public repo live |
 
@@ -115,7 +115,7 @@
 | 52 | 11 | INNER JOIN | [MYSQL/07](../MYSQL/07_Joins.md) | Join drills |
 | 53 | 11 | LEFT JOIN + multi-table | [MYSQL/07](../MYSQL/07_Joins.md) | Customers w/o orders |
 | 54 | 11 | TCL + indexes lite | [MYSQL/09](../MYSQL/09_Transactions_and_Indexes.md) | Rollback demo |
-| 55 | 11 | Python↔MySQL CRUD | [03_Advanced_Python/06_Database_Programming_Bridge.md](03_Advanced_Python/06_Database_Programming_Bridge.md) | Parameterized CRUD push |
+| 55 | 11 | Python↔MySQL CRUD | [03_Advanced_Python/07_Database_Programming_Bridge.md](03_Advanced_Python/07_Database_Programming_Bridge.md) | Parameterized CRUD push |
 
 ## Phase D — Frontend (Sessions 56–62)
 
@@ -179,7 +179,7 @@
 
 **AI Integration ([12_AI_Integration](12_AI_Integration/01_AI_Integration_Lite.md)):** optional after S95 — never displaces S93–S100.
 
-**Optional Deep Dive ([07_Professional_Python_Deep_Dive](03_Advanced_Python/07_Professional_Python_Deep_Dive.md)):** after S45 or as Saturday enrichment — not required for Django path.
+**Optional Deep Dive ([08_Professional_Python_Deep_Dive](03_Advanced_Python/08_Professional_Python_Deep_Dive.md)):** after S45 or as Saturday enrichment — not required for Django path.
 
 ---
 

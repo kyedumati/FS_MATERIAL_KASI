@@ -2,7 +2,7 @@
 
 **Phase:** Tools & Portfolio
 
-**Previous module:** File Handling and Logging
+**Previous module:** [Logging Module](../03_Advanced_Python/06_Logging_Module.md)
 **Next module:** MySQL for Full Stack Developers
 
 ---

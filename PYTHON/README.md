@@ -19,7 +19,7 @@
 3. [**Lab Assets**](15_Lab_Assets/) · [**Biweekly Assessments**](16_Assessments/)  
 4. [Course Contents (syllabus map)](Course_Contents.md)  
 5. Open the **same** module files in Session Calendar order  
-6. Optional: [Professional Python Deep Dive](03_Advanced_Python/07_Professional_Python_Deep_Dive.md)  
+6. Optional: [Professional Python Deep Dive](03_Advanced_Python/08_Professional_Python_Deep_Dive.md)  
 
 ### Typical class shape (75 min)
 
@@ -51,29 +51,30 @@
 | 11 | [03_Advanced_Python/02_Modules_and_Packages.md](03_Advanced_Python/02_Modules_and_Packages.md) | Modules & packages |
 | 12 | [03_Advanced_Python/03_OOP.md](03_Advanced_Python/03_OOP.md) | OOP (index) → [Part 1](03_Advanced_Python/03_OOP_Part1_Classes_Encapsulation.md) · [Part 2](03_Advanced_Python/03_OOP_Part2_Inheritance.md) · [Part 3](03_Advanced_Python/03_OOP_Part3_Polymorphism_Project.md) · [Part 4](03_Advanced_Python/03_OOP_Part4_Abstract_Classes_Interfaces.md) |
 | 13 | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Exception handling |
-| 14 | [03_Advanced_Python/05_File_Handling_and_Logging.md](03_Advanced_Python/05_File_Handling_and_Logging.md) | Files & logging |
-| 15 | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub |
-| 16 | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs — map: [`MYSQL/README.md`](../MYSQL/README.md) |
-| 17 | [03_Advanced_Python/06_Database_Programming_Bridge.md](03_Advanced_Python/06_Database_Programming_Bridge.md) | Python ↔ MySQL |
-| 18 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
-| 19 | [../FRONTEND/02_CSS_and_Responsive.md](../FRONTEND/02_CSS_and_Responsive.md) | CSS & responsive *(shared)* |
-| 20 | [../FRONTEND/03_JavaScript_DOM_Forms.md](../FRONTEND/03_JavaScript_DOM_Forms.md) | JavaScript, DOM, forms *(shared)* |
-| 21 | [07_Django/01_Django_Introduction_and_Setup.md](07_Django/01_Django_Introduction_and_Setup.md) | Django setup |
-| 22 | [07_Django/02_URLs_Views_Templates_Static.md](07_Django/02_URLs_Views_Templates_Static.md) | URLs, views, templates, static |
-| 23 | [07_Django/03_Models_ORM_Admin.md](07_Django/03_Models_ORM_Admin.md) | Models, ORM, admin |
-| 24 | [07_Django/04_Forms_Sessions_Auth.md](07_Django/04_Forms_Sessions_Auth.md) | Forms, sessions, auth |
-| 25 | [07_Django/05_Security_and_Deployment.md](07_Django/05_Security_and_Deployment.md) | Security & deployment (`load_dotenv`, `STORAGES`, `check --deploy`) |
-| 26 | [07_Django/06_Lab_CRUD_Auth_Consolidation.md](07_Django/06_Lab_CRUD_Auth_Consolidation.md) | **Protected lab:** CRUD + auth |
-| 27 | [07_Django/07_Lab_Deploy_Capstone_Debug.md](07_Django/07_Lab_Deploy_Capstone_Debug.md) | **Protected lab:** deploy + debug |
-| 28 | [08_Flask/01_Flask_Overview.md](08_Flask/01_Flask_Overview.md) | Flask overview |
-| 29 | [09_APIs_REST/01_APIs_JSON_Postman_DRF.md](09_APIs_REST/01_APIs_JSON_Postman_DRF.md) | APIs, JSON, Postman, DRF (**full CRUD code in-module**) |
-| 30 | [../FRONTEND/REACT/01_React_Fundamentals.md](../FRONTEND/REACT/01_React_Fundamentals.md) | React fundamentals *(shared)* |
-| 31 | [../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md](../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | Hooks, routing, API, deploy *(shared)* |
-| 32 | [11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md](11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md) | Testing, debugging, clean code |
-| 33 | [13_Placement/01_Career_Resume_Interview.md](13_Placement/01_Career_Resume_Interview.md) | Resume, interview, placement |
-| 34 | [12_AI_Integration/01_AI_Integration_Lite.md](12_AI_Integration/01_AI_Integration_Lite.md) | AI lite — **optional stretch only** |
+| 14 | [03_Advanced_Python/05_File_Handling.md](03_Advanced_Python/05_File_Handling.md) | File handling |
+| 15 | [03_Advanced_Python/06_Logging_Module.md](03_Advanced_Python/06_Logging_Module.md) | Logging module |
+| 16 | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub |
+| 17 | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs — map: [`MYSQL/README.md`](../MYSQL/README.md) |
+| 18 | [03_Advanced_Python/07_Database_Programming_Bridge.md](03_Advanced_Python/07_Database_Programming_Bridge.md) | Python ↔ MySQL |
+| 19 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
+| 20 | [../FRONTEND/02_CSS_and_Responsive.md](../FRONTEND/02_CSS_and_Responsive.md) | CSS & responsive *(shared)* |
+| 21 | [../FRONTEND/03_JavaScript_DOM_Forms.md](../FRONTEND/03_JavaScript_DOM_Forms.md) | JavaScript, DOM, forms *(shared)* |
+| 22 | [07_Django/01_Django_Introduction_and_Setup.md](07_Django/01_Django_Introduction_and_Setup.md) | Django setup |
+| 23 | [07_Django/02_URLs_Views_Templates_Static.md](07_Django/02_URLs_Views_Templates_Static.md) | URLs, views, templates, static |
+| 24 | [07_Django/03_Models_ORM_Admin.md](07_Django/03_Models_ORM_Admin.md) | Models, ORM, admin |
+| 25 | [07_Django/04_Forms_Sessions_Auth.md](07_Django/04_Forms_Sessions_Auth.md) | Forms, sessions, auth |
+| 26 | [07_Django/05_Security_and_Deployment.md](07_Django/05_Security_and_Deployment.md) | Security & deployment (`load_dotenv`, `STORAGES`, `check --deploy`) |
+| 27 | [07_Django/06_Lab_CRUD_Auth_Consolidation.md](07_Django/06_Lab_CRUD_Auth_Consolidation.md) | **Protected lab:** CRUD + auth |
+| 28 | [07_Django/07_Lab_Deploy_Capstone_Debug.md](07_Django/07_Lab_Deploy_Capstone_Debug.md) | **Protected lab:** deploy + debug |
+| 29 | [08_Flask/01_Flask_Overview.md](08_Flask/01_Flask_Overview.md) | Flask overview |
+| 30 | [09_APIs_REST/01_APIs_JSON_Postman_DRF.md](09_APIs_REST/01_APIs_JSON_Postman_DRF.md) | APIs, JSON, Postman, DRF (**full CRUD code in-module**) |
+| 31 | [../FRONTEND/REACT/01_React_Fundamentals.md](../FRONTEND/REACT/01_React_Fundamentals.md) | React fundamentals *(shared)* |
+| 32 | [../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md](../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | Hooks, routing, API, deploy *(shared)* |
+| 33 | [11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md](11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md) | Testing, debugging, clean code |
+| 34 | [13_Placement/01_Career_Resume_Interview.md](13_Placement/01_Career_Resume_Interview.md) | Resume, interview, placement |
+| 35 | [12_AI_Integration/01_AI_Integration_Lite.md](12_AI_Integration/01_AI_Integration_Lite.md) | AI lite — **optional stretch only** |
 
-**Optional enrichment (not numbered above):** [Professional Python Deep Dive](03_Advanced_Python/07_Professional_Python_Deep_Dive.md) — after Git / Saturday; not on the critical path to Django.
+**Optional enrichment (not numbered above):** [Professional Python Deep Dive](03_Advanced_Python/08_Professional_Python_Deep_Dive.md) — after Git / Saturday; not on the critical path to Django.
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Shared topic** (Python FS + Java FS).
 
-**Previous (Python FS):** [Database Programming Bridge](../PYTHON/03_Advanced_Python/06_Database_Programming_Bridge.md)  
+**Previous (Python FS):** [Database Programming Bridge](../PYTHON/03_Advanced_Python/07_Database_Programming_Bridge.md)  
 **Previous (Java FS):** [JDBC CRUD](../JAVA/07_JDBC/01_JDBC_CRUD.md)  
 **Next:** [CSS and Responsive](02_CSS_and_Responsive.md)
 
