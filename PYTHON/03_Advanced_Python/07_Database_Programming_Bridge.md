@@ -646,27 +646,3 @@ close()                     → cursor and connection
 ```
 
 Never `f"SELECT ... {user_input}"`. Pick one of `mysql-connector-python` or PyMySQL.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can explain why apps outgrow files
-[ ] I know connect → cursor → execute → commit → close
-[ ] I can import the connector and describe config keys
-[ ] I can write a %s query and a tuple of values
-[ ] I can fetch rows and commit writes
-[ ] I never build SQL with f-strings from user input
-[ ] I completed the lab against the seed (or students table)
-[ ] I attempted the student CLI mini-project
-[ ] I can explain parameterized queries in an interview
-```
-
----
-
-## What's Next?
-
-You can now let Python talk to a shared MySQL database without handing attackers the SQL string.
-
-Next, [HTML (shared FRONTEND)](../../FRONTEND/01_HTML.md) is the page the user sees. Later, a web app will call the same connect → cursor → parameterized CRUD behind that page.

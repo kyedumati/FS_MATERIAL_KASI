@@ -892,30 +892,3 @@ propagate = False            → do not duplicate up to parent/root
 ```
 
 Default threshold is WARNING. Never log secrets.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can explain why logging beats print
-[ ] I can set levels and see DEBUG filtered at INFO
-[ ] I can use basicConfig with filename, format, filemode
-[ ] I can call logging.exception inside except
-[ ] I know a second basicConfig is usually ignored
-[ ] I can attach a named logger + handler + formatter (Advanced)
-[ ] I can choose RotatingFileHandler (size) vs TimedRotatingFileHandler (midnight)
-[ ] I completed the lab
-[ ] I attempted DailyExpenseLogger
-[ ] I can explain Logger vs Handler vs Formatter
-```
-
----
-
-## What's Next?
-
-You can now keep a timestamped trail of success and failure — including stack traces — without relying on the terminal.
-
-Next on the calendar is [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) so this code and its `logs/` / `data/` layout can be versioned. Database work (Python talking to MySQL) is a later bridge after the MySQL phase.
-
-Optional, not this week: [Professional Python Deep Dive](08_Professional_Python_Deep_Dive.md).

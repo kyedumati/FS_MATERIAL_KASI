@@ -873,26 +873,3 @@ self.other = Other(...)  → HAS-A composition
 isinstance(obj, Cls)     → True for subclasses too
 type(obj) is Cls         → too strict for IS-A gates
 ```
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can write Child(Parent) and call super().__init__
-[ ] I can name the four inheritance shapes
-[ ] I can override a method and use super()
-[ ] I can compose HAS-A instead of inheriting unrelated types
-[ ] I use isinstance as a guard, not a type-switch tree
-[ ] I completed the lab
-[ ] I added SavingsAccount on the BankAccount kit (no CLI yet)
-[ ] I can explain IS-A vs HAS-A in an interview
-```
-
----
-
-## What's Next?
-
-You can now reuse a parent and own a collaborator.
-
-Next, [OOP Part 3: Polymorphism and Project](03_OOP_Part3_Polymorphism_Project.md) puts **one loop** over many types (`pay()`, `__str__`) and finishes the BankAccount **CLI**.

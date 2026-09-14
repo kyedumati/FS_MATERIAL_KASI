@@ -866,31 +866,3 @@ json.dumps / json.loads             → object ↔ string
 ```
 
 Text = characters + UTF-8. Binary = bytes (`rb` / `wb`) — no encoding.
-
----
-
-
-
-## Completion Checklist
-
-```text
-[ ] I can open a text file with with and UTF-8
-[ ] I can choose r / w / a and I know w truncates
-[ ] I can write, append, and iterate lines
-[ ] I can catch FileNotFoundError on a missing path
-[ ] I can write and read a CSV with DictWriter / DictReader
-[ ] I can save and load a JSON config
-[ ] I completed the lab
-[ ] I attempted the expense-tracker mini-project
-[ ] I can explain CSV vs JSON in an interview
-```
-
----
-
-
-
-## What's Next?
-
-You can now keep data after the program closes — text, tables, and config.
-
-Next, [Logging](06_Logging_Module.md) writes **what happened** (levels, timestamps, exceptions) to `logs/app.log`. `print` is not enough once the app runs without anyone watching the terminal.

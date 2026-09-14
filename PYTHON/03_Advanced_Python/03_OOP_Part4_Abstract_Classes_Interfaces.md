@@ -764,26 +764,3 @@ isinstance(x, Payable)     → opt-in contract; not if kind == ...
 ```
 
 Validate with print + return. Exception Handling is next.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can declare @abstractmethod and import from abc
-[ ] I know ABC + abstract method together block Class()
-[ ] I know a child that skips the method is still abstract
-[ ] I can tell interface vs abstract class vs concrete class
-[ ] I keep pay off Account and use Payable for types that pay
-[ ] I completed the lab
-[ ] I attempted the Campus Wallet kit
-[ ] I can explain ABC vs duck typing vs Protocol in an interview
-```
-
----
-
-## What's Next?
-
-You can now lock incomplete blueprints and swap implementations behind a contract.
-
-Finish the [Campus Wallet lab kit](../15_Lab_Assets/32_campus_wallet_abc/), then continue with **[Exception Handling](04_Exception_Handling.md)** — that is where `try` / `except` / `raise` belong, including safer CLI input.

@@ -511,24 +511,3 @@ wrong: list for fixed config someone might append to
 combine: list of dicts + set of ids + dict of totals
 undo:    list append / pop  (LIFO stack)
 ```
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can pick list vs tuple vs set vs dict for a job
-[ ] I can name one anti-pattern for each container
-[ ] I can combine a list of dicts with a set and a totals dict
-[ ] I completed the lab report
-[ ] I attempted the structure-chooser kit
-[ ] I can justify a choice in one sentence in an interview
-```
-
----
-
-## What's Next?
-
-You can now **choose** a container, not only remember its syntax.
-
-Next, [Functions, Decorators, and Generators](../03_Advanced_Python/01_Functions_Decorators_Generators.md) wrap the logic you have been writing at the top level into reusable `def` blocks — menus and reports without copy-paste.

@@ -963,18 +963,6 @@ Conceptual and practical interview preparation.
 # Cheat Sheet
 
 Compact revision reference.
-
----
-
-# Completion Checklist
-
-Student self-check.
-
----
-
-# What's Next?
-
-Explain how the next module connects.
 ```
 
 This is a **default structure**, not a rigid template.
@@ -1052,22 +1040,9 @@ Do not introduce new concepts in the cheat sheet.
 
 # 34. COMPLETION CHECKLIST
 
-End with a short student self-check.
+Do **not** add a Completion Checklist section to student modules.
 
-Example:
-
-```text
-[ ] I understand the concept.
-[ ] I can write basic code using it.
-[ ] I can solve basic exercises.
-[ ] I can solve a combined problem.
-[ ] I understand the real-world use.
-[ ] I completed the lab.
-[ ] I attempted the challenge.
-[ ] I can explain the concept in an interview.
-```
-
-The checklist should reflect the actual module.
+The lab **Done when** list and the cheat sheet already cover self-check. A second checklist at the end is repetition.
 
 ---
 
@@ -1080,6 +1055,8 @@ Do NOT automatically create:
 * Trainer Demo Plan
 * Discussion Questions
 * Assessment sections
+* Completion Checklist
+* What's Next
 * Revision Maps
 * large real-world use-case tables
 * Bloom's Taxonomy learning outcomes
@@ -1139,17 +1116,9 @@ The outcomes should be practical and student-readable.
 
 # 38. NEXT-TOPIC CONNECTION
 
-End the module by answering:
+Do **not** add a What's Next section to student modules.
 
-> **Why are we learning the next topic?**
-
-The connection should be short.
-
-Example:
-
-> "You can now store related information in structured data. Next, we will learn how to control the flow of a program so that it can make decisions and repeat actions."
-
-The student should understand where the learning journey is going.
+The header **Previous** / **Next** links are enough. Do not end the file with a paragraph that retells the next module.
 
 ---
 
@@ -1361,7 +1330,6 @@ Before finalizing a module, ask:
 * Does the material feel like trainer-designed material?
 * Does the student know what they need to learn?
 * Does the student know what to practice?
-* Does the student know what comes next?
 
 If the answer is no:
 
@@ -1429,8 +1397,8 @@ When generating a module from existing material:
 12. Use realistic software-development scenarios.
 13. Keep labs and projects achievable using taught concepts.
 14. Keep interview content at the end.
-15. Provide compact revision support.
-16. Explain the connection to the next topic.
+15. Provide compact revision support (cheat sheet).
+16. Do not add Completion Checklist or What's Next sections.
 17. Verify every learner-facing code example technically.
 18. Do not add content merely to make the module longer.
 19. Do not force sections that do not improve learning.

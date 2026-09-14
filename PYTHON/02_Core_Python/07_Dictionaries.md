@@ -748,27 +748,3 @@ d.copy()            → shallow copy (nested objects may be shared)
 ```
 
 Keys must be unique and hashable. Duplicate keys in a literal: last value wins.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can create a dict and read a required field with []
-[ ] I can read an optional field with .get
-[ ] I can add, update, merge, and delete pairs
-[ ] I can loop .items() and list keys / values
-[ ] I can read and update one nested dict
-[ ] I know `in` checks keys, and .copy() is shallow
-[ ] I completed the lab
-[ ] I attempted the contact-book mini-project
-[ ] I can explain dict vs list for lookup in an interview
-```
-
----
-
-## What's Next?
-
-You can now store related information as named fields and look up by key.
-
-Next, [Data Structures Overview](08_Data_Structures_Overview.md) compares **list vs tuple vs set vs dict** so you can **choose** the right container for a problem — not only remember the syntax.

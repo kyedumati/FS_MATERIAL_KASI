@@ -682,28 +682,3 @@ json.dumps / loads      → dict ↔ JSON string
 os.path.join(...)       → portable path
 random.choice / sample  → demo picks (seed for class)
 ```
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can create, activate, and freeze a venv
-[ ] I can import a stdlib module and my own .py file
-[ ] I can explain ModuleNotFoundError (folder / name)
-[ ] I can layout a package with __init__.py
-[ ] I can use a relative import inside the package
-[ ] I can guard demos with if __name__ == "__main__"
-[ ] I can round-trip a dict with json.dumps / loads
-[ ] I completed the two-file lab
-[ ] I attempted the venv + campus_utils mini-project
-[ ] I can explain module vs package in an interview
-```
-
----
-
-## What's Next?
-
-You can now split functions across files and keep each project’s libraries in a sandbox.
-
-Next, [OOP](03_OOP.md) groups **data and behaviour** into classes — an account is no longer a loose `balance` plus functions; it becomes an object with methods.

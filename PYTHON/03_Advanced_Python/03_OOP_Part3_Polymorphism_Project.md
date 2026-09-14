@@ -685,24 +685,3 @@ super().__str__()     → parent text plus child prefix
 ```
 
 Validate CLI amounts with print + return this week.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can loop mixed objects with one method name (override or duck typing)
-[ ] I know Python does not overload by signature
-[ ] I can write __str__ and print a list of objects
-[ ] I completed the lab
-[ ] I finished the BankAccount CLI on the kit
-[ ] I can explain polymorphism vs if-type trees in an interview
-```
-
----
-
-## What's Next?
-
-You can now write one loop over many types and print objects that make sense.
-
-Next, [OOP Part 4: Abstract Classes and Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md) **forces** children to implement the method (`ABC`, abstract methods, interface-style contracts) — then [Exception Handling](04_Exception_Handling.md).

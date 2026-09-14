@@ -689,27 +689,3 @@ s.startswith / .endswith
 ```
 
 Strings are immutable. Methods return new strings.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can create strings, including a multi-line banner
-[ ] I can index and slice (stop excluded; negatives from the end)
-[ ] I know strings are immutable and I must rebind
-[ ] I can strip / lower / title before comparing
-[ ] I can split a line and join pieces
-[ ] I can replace, mask digits, and check with in / startswith / endswith
-[ ] I completed the lab
-[ ] I attempted the field-cleaner mini-project
-[ ] I can explain immutability in an interview
-```
-
----
-
-## What's Next?
-
-You can now clean and slice text, and pull fields out of one line.
-
-Next, [Lists](05_Lists.md) store **many** values in order — carts, marks, and the pieces that `split` already handed you — and let you add, change, and remove them.

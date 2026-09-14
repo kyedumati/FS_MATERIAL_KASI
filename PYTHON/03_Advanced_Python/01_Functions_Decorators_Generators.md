@@ -954,25 +954,3 @@ next(g) / for       → pull values; one pass exhausts g
 ```
 
 Prefer pass-in / return-out over `global`. Mutable defaults (`history=[]`) are shared across calls.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can write def / return and capture the result
-[ ] I can use positional, keyword, default, *args, and **kwargs
-[ ] I can explain local vs global and UnboundLocalError
-[ ] I can use lambda with sorted, map, and filter
-[ ] I can explain @dec as wrapping
-[ ] I can write a yield generator and show that it exhausts
-[ ] I completed the ATM functions lab
-[ ] I attempted the ksr_utils mini-project
-[ ] I can answer the interview questions in my own words
-```
-
----
-
-## What's Next?
-
-You can now name a piece of logic and reuse it. Next, [Modules and Packages](02_Modules_and_Packages.md) puts those functions into **files** you `import`, isolates libraries with a **venv**, and shows `if __name__ == "__main__"` so demos do not run on import.

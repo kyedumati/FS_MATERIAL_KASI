@@ -736,27 +736,3 @@ lst.copy()             → shallow copy (nested rows may be shared)
 ```
 
 Order matters. Duplicates are allowed. Lists are mutable.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can create a list and read with index / slice / len
-[ ] I can replace, append, extend, and insert
-[ ] I can remove, pop, and clear
-[ ] I know sort() mutates and sorted() does not
-[ ] I can loop a list, use zip, and read a nested row
-[ ] I know b = a is an alias and .copy() is shallow
-[ ] I completed the lab
-[ ] I attempted the marks-manager mini-project
-[ ] I can explain alias vs copy in an interview
-```
-
----
-
-## What's Next?
-
-You can now store an ordered, editable collection and avoid the alias trap.
-
-Next, [Tuples and Sets](06_Tuples_and_Sets.md) cover two other bags: a **tuple** when the row must stay sealed, and a **set** when you only care about unique values.

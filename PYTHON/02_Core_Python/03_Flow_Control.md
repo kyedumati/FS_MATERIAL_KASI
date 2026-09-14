@@ -877,27 +877,3 @@ choice == "1"        → input() is str
 ```
 
 Nested `if`: validate amount, then check balance.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can write if / elif / else and explain why order matters
-[ ] I can combine login checks with and, or split failures with elif
-[ ] I can loop with for and range (stop excluded)
-[ ] I can retry with while and exit with break
-[ ] I know continue vs break
-[ ] I can nest a withdraw check
-[ ] I completed the result-card lab
-[ ] I attempted the ATM menu mini-project
-[ ] I can explain for vs while and choice == "1" in an interview
-```
-
----
-
-## What's Next?
-
-You can now decide and repeat — the skeleton of every console menu.
-
-Next, [Strings](04_Strings.md) treats text as a sequence you can index, slice, clean (`strip`, `lower`), split, and format — so names, emails, and PIN strings become data you can work with, not only values you compare.

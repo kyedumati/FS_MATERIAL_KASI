@@ -691,27 +691,3 @@ sorted(s)           → stable display
 ```
 
 Sets drop duplicates. Use `sorted` when output order must be stable. First-seen unique lists: `list(dict.fromkeys(items))` — preview only.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can create a tuple and read by index
-[ ] I know (42,) vs (42)
-[ ] I can unpack and swap
-[ ] I can convert list ↔ tuple
-[ ] I can build a set with set() not {}
-[ ] I can dedupe, test in, and use | / &
-[ ] I completed the lab
-[ ] I attempted the dedup mini-project
-[ ] I can explain list vs tuple vs set in an interview
-```
-
----
-
-## What's Next?
-
-You can now seal a record and drop duplicates.
-
-Next, [Dictionaries](07_Dictionaries.md) store **named** fields — lookup by key (`emp_id`, SKU, name) instead of by position.

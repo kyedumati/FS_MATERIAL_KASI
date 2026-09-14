@@ -832,27 +832,3 @@ except: pass        → hides bugs
 ```
 
 Syntax errors are not catchable in the same file. Logical errors produce no traceback — do not `except` them.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can tell syntax vs runtime vs logical errors apart
-[ ] I can write try / except for a named type
-[ ] I can stack except blocks or use a tuple
-[ ] I can use else for success and finally for cleanup
-[ ] I can raise a built-in and a custom exception
-[ ] I never use a bare except:
-[ ] I completed the lab
-[ ] I attempted the safe-age mini-project
-[ ] I can explain else vs putting success code in try
-```
-
----
-
-## What's Next?
-
-You can now stop a bad value from killing the whole program, and you can name business failures so callers recover cleanly.
-
-Next, [File Handling](05_File_Handling.md) puts data on disk. A missing file is a `FileNotFoundError` — the same `try` / `except` pattern, now around `open()`.

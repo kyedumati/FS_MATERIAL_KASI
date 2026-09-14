@@ -789,27 +789,3 @@ f"{n:.2f}"  f"{n:,}"  → 2 decimals / thousands
 ```
 
 Python 3: `5 / 2` is `2.5`. IDs stay `str`.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can store values and reuse them in later lines
-[ ] I can pick int / float / str / bool / None and check with type()
-[ ] I can use / // % and +=
-[ ] I can print comparison and and/or results without if
-[ ] I can cast input() before math
-[ ] I can print ₹ amounts with f-strings
-[ ] I completed the bill-split lab
-[ ] I attempted the canteen calculator and casting-bugs kits
-[ ] I can explain / vs // and is None in an interview
-```
-
----
-
-## What's Next?
-
-You can now remember values, compute, and read typed input.
-
-Next, [Flow Control](03_Flow_Control.md) wraps these `True`/`False` expressions in **`if` / `elif` / `else`**, and teaches **`for` / `while`**, so a program can choose a path and repeat — menus, PIN retries, pass/fail — instead of running in a straight line.

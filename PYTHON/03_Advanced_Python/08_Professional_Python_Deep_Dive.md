@@ -291,9 +291,3 @@ ABC + @abstractmethod         → shared contract (recap)
 __str__ / __repr__            → human / debug
 class E(Exception): ...       → domain error with fields
 ```
-
----
-
-## What's Next?
-
-These are professional defaults — not a new phase. Continue the calendar: [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md), or the MySQL phase, as scheduled.

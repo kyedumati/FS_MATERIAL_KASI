@@ -1000,26 +1000,3 @@ get_balance()            → lab-kit getter (same goal as @property)
 ```
 
 Validate bad input with print + return in this phase — not `raise`.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can define a class, create objects, and use self / __init__
-[ ] I can choose instance vs class vs local variables
-[ ] I can write instance, class, and static methods
-[ ] I know _ is convention, __ is name mangling, and neither is security
-[ ] I can hide balance and change it only through methods / a property
-[ ] I completed the lab
-[ ] I attempted the BankAccount warm-up (no CLI yet)
-[ ] I can explain class vs object and encapsulation in an interview
-```
-
----
-
-## What's Next?
-
-You can now bundle data with behaviour and protect important state.
-
-Next, [OOP Part 2: Inheritance and Composition](03_OOP_Part2_Inheritance.md) teaches **IS-A** reuse (`SavingsAccount` is a `BankAccount`) and **HAS-A** collaboration (an employee **has a** laptop) — without copy-pasting whole classes.

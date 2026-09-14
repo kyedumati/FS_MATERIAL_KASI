@@ -651,26 +651,3 @@ import sys            → sys.version for an env check
 ```
 
 Save before you run. `cd` into the folder that contains the file.
-
----
-
-## Completion Checklist
-
-```text
-[ ] I can show Python 3.x from the terminal
-[ ] I can run a line in the REPL and the same idea in a .py file
-[ ] I can print text, a sum, and a = banner
-[ ] I can choose snake_case names and avoid keywords
-[ ] I can write a simple f-string greeting
-[ ] I completed the welcome-card lab
-[ ] I attempted the terminal-workspace mini-project
-[ ] I can explain REPL vs script in an interview
-```
-
----
-
-## What's Next?
-
-You can now install Python, save a script, and print a welcome.
-
-Next, [Variables, Datatypes, Operators, and I/O](02_Variables_Datatypes_Operators_IO.md) teaches **labelled boxes** for values, math, `input()`, and clearer f-strings — so a script can remember a name and an amount, not only print fixed text.
