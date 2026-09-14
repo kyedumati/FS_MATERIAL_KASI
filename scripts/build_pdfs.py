@@ -18,6 +18,7 @@ import markdown
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import TextLexer, get_lexer_by_name, guess_lexer
+from pypdf import PdfReader, PdfWriter
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -681,6 +682,28 @@ def html_to_pdf(html_path: Path, pdf_path: Path, chrome: Path) -> None:
             "Chrome failed to create PDF.\n"
             f"stdout: {result.stdout}\nstderr: {result.stderr}"
         )
+    normalize_pdf(pdf_path)
+
+
+def normalize_pdf(pdf_path: Path) -> None:
+    """Rewrite Chrome/Skia PDFs so GitHub's pdf.js preview can open them.
+
+    Headless Chrome writes a nested page tree plus tagged-PDF structure.
+    GitHub then shows "Unable to render code block" instead of the document.
+    """
+    reader = PdfReader(pdf_path)
+    writer = PdfWriter()
+    for page in reader.pages:
+        writer.add_page(page)
+    title = None
+    if reader.metadata:
+        title = reader.metadata.get("/Title")
+    if title:
+        writer.add_metadata({"/Title": title})
+    tmp_path = pdf_path.with_suffix(".pdf.norm")
+    with tmp_path.open("wb") as fh:
+        writer.write(fh)
+    tmp_path.replace(pdf_path)
 
 
 def convert_file(
