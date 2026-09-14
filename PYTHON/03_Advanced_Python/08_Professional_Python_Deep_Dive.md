@@ -1,53 +1,30 @@
-# Optional Enrichment: Professional Python Design Choices
+# Module 08 — Professional Python Deep Dive (Optional)
 
-> **Not a standard teaching module.** Optional enrichment — use after core Advanced Python, Saturday labs, or interview prep only.  
-> Does **not** follow full Try these shape — optional enrichment, not on the critical path.
+> **Optional enrichment** — not on the critical path. Use after core Advanced Python, Saturday labs, or interview prep.  
+> No full lab. Skip if you are still finishing Exceptions → Files → Logging.
 
-**Previous:** [Logging Module](06_Logging_Module.md) (finish core Advanced first)  
-**Next:** Continue calendar — [Git & GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) or MySQL phase as scheduled
+**Phase:** Advanced Python
 
-**Module Outcome:**
+**Previous:** Optional after [OOP](03_OOP.md) — not on the Logging → Git path  
+**Next:** Return to the calendar: [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) after Logging, or MySQL as scheduled
 
-- Function design — mutable default trap
-- Composition before inheritance
-- Abstract base classes (recap)
-- `__str__` vs `__repr__`
-- Custom exceptions with context
+---
 
-**Icons:** Order · Bank · Laptop
+## Module Outcome
 
-**Where used?**
-- Order / notification flows — swap Email vs SMS without rewriting the service
-- Inventory — reject oversell with a clear custom exception
-- Payment demos — shared `pay()` contract (taught in [OOP Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md))
-- Library APIs — `__str__` for humans, `__repr__` for debugging dumps
+Avoid a few design traps: shared mutable defaults, HAS-A vs IS-A, a shared `pay()` contract, `__str__` vs `__repr__`, and exceptions that carry context.
 
-## 1. Function design: avoid the mutable default trap
+You do not need this file to start Git or MySQL. Come back when a lab or interview names these traps.
 
-This is more useful in real projects than memorising many argument varieties.
+---
 
-```python
-# Wrong: the same list is reused between calls.
-def add_skill(skill, skills=[]):
-    skills.append(skill)
-    return skills
+## 1. Mutable default arguments
 
-# Correct: create a fresh list when no list was supplied.
-def add_skill(skill, skills=None):
-    if skills is None:
-        skills = []
-    skills.append(skill)
-    return skills
+### Understand
 
-print(add_skill("Python"))  # ['Python']
-print(add_skill("SQL"))     # ['SQL'], not ['Python', 'SQL']
-```
+Default values are evaluated **once**, when the function is **defined**. A default `[]` is the **same list** on every call. Later calls keep leftover items.
 
-**Interview explanation:** Default argument values are evaluated once when the function is defined. A mutable default can therefore leak state into later calls.
-
-**Remember:** Mutable defaults (`skills=[]`) are shared across calls — use `None` and create a fresh list inside.
-
-Call `add_skill` twice with a mutable default list `skills=[]` and print both results so the leak is visible.
+### How It Works
 
 ```python
 def add_skill(skill, skills=[]):
@@ -55,7 +32,7 @@ def add_skill(skill, skills=[]):
     return skills
 
 print(add_skill("Python"))
-print(add_skill("SQL"))  # leaks prior call
+print(add_skill("SQL"))
 ```
 
 **Expected Output:**
@@ -65,7 +42,7 @@ print(add_skill("SQL"))  # leaks prior call
 ['Python', 'SQL']
 ```
 
-Fix `add_skill` by defaulting `skills=None` and creating a new list inside. Print two independent calls.
+Fix: default to `None`, create a new list inside.
 
 ```python
 def add_skill(skill, skills=None):
@@ -85,9 +62,23 @@ print(add_skill("SQL"))
 ['SQL']
 ```
 
+### ⚠️ WATCH OUT
+
+The same trap applies to `dict` and `set` defaults. Immutable defaults (`None`, `0`, `""`, `()`) are safe.
+
+### Try It
+
+Call the broken `add_skill` twice, then the `None` version twice. Print all four results.
+
+---
+
 ## 2. Composition before inheritance
 
-Use inheritance only when the child genuinely **is a** specialised version of the parent. Use composition when an object **has a** collaborator.
+### Understand
+
+Use inheritance when the child genuinely **is a** specialised parent. Use composition when an object **has a** collaborator it can swap. `OrderService` is not an email sender — it **has** a notifier.
+
+### How It Works
 
 ```python
 class EmailNotifier:
@@ -96,67 +87,39 @@ class EmailNotifier:
 
 class OrderService:
     def __init__(self, notifier):
-        self.notifier = notifier  # OrderService HAS-A notifier
-
-    def place_order(self, order_id):
-        self.notifier.send(f"Order {order_id} placed")
-
-service = OrderService(EmailNotifier())
-service.place_order("ORD-101")
-```
-
-`OrderService` is not an `EmailNotifier`; it uses one. This design is easier to change later—for example, to SMS or WhatsApp notifications.
-
-**Common Error:** Forcing inheritance when the relationship is only HAS-A — you end up with a rigid tree that is hard to swap (Email → SMS). Prefer composition.
-
-Write `OrderService` that HAS-A `SmsNotifier` and call `place_order("ORD-202")`.
-
-```python
-class SmsNotifier:
-    def send(self, message):
-        print(f"SMS: {message}")
-
-class OrderService:
-    def __init__(self, notifier):
         self.notifier = notifier
 
     def place_order(self, order_id):
         self.notifier.send(f"Order {order_id} placed")
 
-OrderService(SmsNotifier()).place_order("ORD-202")
+OrderService(EmailNotifier()).place_order("ORD-101")
 ```
 
 **Expected Output:**
 
 ```
-SMS: Order ORD-202 placed
+EMAIL: Order ORD-101 placed
 ```
 
-Start `OrderService` with `EmailNotifier`, place an order, then replace `svc.notifier` at runtime and place a second order.
+### ⚠️ WATCH OUT
 
-```python
-class EmailNotifier:
-    def send(self, message):
-        print(f"EMAIL: {message}")
+Forcing inheritance for HAS-A gives a rigid tree. Pass the helper in so Email can become SMS without rewriting the service.
 
-class OrderService:
-    def __init__(self, notifier):
-        self.notifier = notifier
+### Try It
 
-    def place_order(self, order_id):
-        self.notifier.send(f"Order {order_id} placed")
+Write `SmsNotifier` with `send`. Construct `OrderService(SmsNotifier())` and call `place_order("ORD-202")`.
 
-svc = OrderService(EmailNotifier())
-svc.place_order("ORD-1")
-svc.notifier = type("N", (), {"send": staticmethod(lambda m: print("LOG:", m))})()
-svc.place_order("ORD-2")
-```
+---
 
-## 3. Abstract base classes: recap (full notes in OOP Part 4)
+## 3. Abstract base classes (recap)
 
-ABC is taught in [OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md). This is a short Saturday recap only.
+Short recap of [OOP Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md). `raise` is allowed (this file sits after Exceptions).
 
-Use an abstract base class when multiple implementations must offer the same behaviour. This enrichment file is **after** Exceptions, so `raise` is allowed here.
+### Understand
+
+When several classes must offer the same behaviour (`pay`), an ABC names the method. You cannot construct the ABC itself.
+
+### How It Works
 
 ```python
 from abc import ABC, abstractmethod
@@ -175,7 +138,25 @@ class DemoGateway(PaymentGateway):
 print(DemoGateway().pay(499))
 ```
 
+**Expected Output:**
+
+```
+{'status': 'success', 'amount': 499}
+```
+
+### ⚠️ WATCH OUT
+
+A subclass that does not implement `pay` cannot be constructed (`TypeError`). That is the point of the contract.
+
+---
+
 ## 4. `__str__` vs `__repr__`
+
+### Understand
+
+`__str__` is for humans (`print`). `__repr__` is for developers (debug, logs). If `__str__` is missing, Python falls back to `__repr__`.
+
+### How It Works
 
 ```python
 class Product:
@@ -202,7 +183,19 @@ Mouse (₹799)
 Product('P1', 'Mouse', 799)
 ```
 
+### ⚠️ WATCH OUT
+
+`!r` in an f-string uses `repr` of the value so names show quotes in `__repr__`.
+
+---
+
 ## 5. Custom exceptions with context
+
+### Understand
+
+A domain error can store fields (`sku`, `requested`, `available`) so callers see **why**, not only `"Error"`.
+
+### How It Works
 
 ```python
 class InsufficientStockError(Exception):
@@ -210,40 +203,97 @@ class InsufficientStockError(Exception):
         self.sku = sku
         self.requested = requested
         self.available = available
-        super().__init__(
-            f"{sku}: need {requested}, only {available} left"
-        )
+        super().__init__(f"{sku}: need {requested}, only {available} left")
 
 try:
     raise InsufficientStockError("P1", 5, 2)
 except InsufficientStockError as e:
     print(e)
+    print("sku:", e.sku)
 ```
+
+**Expected Output:**
+
+```
+P1: need 5, only 2 left
+sku: P1
+```
+
+### ⚠️ WATCH OUT
+
+Always inherit `Exception`. Put extra data on `self` **and** pass a clear string to `super().__init__`.
+
+---
 
 ## Mini-Project (Assignment): Stock reserve + notify
 
-**Business request:** A shop needs to reserve stock and notify a customer after an order is accepted.
+Reserve stock, reject oversell with a named exception, and notify through a collaborator.
 
-**Must build**
+### Objective
 
-- `Product` with name, price, and stock.
-- `reserve(quantity)` that rejects invalid or unavailable quantities.
-- `InsufficientStockError` with a clear message.
-- `ConsoleNotifier` used through composition by `OrderService`.
-- `__str__` or `__repr__` useful during debugging.
+Reserve units from a product and notify after an accepted order.
+
+### Story / Scenario
+
+A shop must not oversell. Notification is a HAS-A helper (`ConsoleNotifier`), not a parent class.
+
+### Requirements
+
+- `Product` with name, price, and stock
+- `reserve(quantity)` rejects invalid or unavailable quantities
+- `InsufficientStockError` with a clear message (and useful fields)
+- `ConsoleNotifier` used through composition by `OrderService`
+- `__str__` or `__repr__` useful during debugging
+
+### Expected Behavior
+
+- Reserve two from stock five → remaining three
+- Oversell → clear message; stock unchanged
+- Zero or negative → rejected
+- Importing the file must not auto-place an order
+
+### Bonus Challenges
+
+- `PaymentGateway` ABC + `DemoGateway` ([OOP Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md))
+- Two unit tests for `reserve` — kit [26_unittest_utils](../15_Lab_Assets/26_unittest_utils/)
 
 ### Done when
 
-- [ ] Reserve two units from stock five; remaining stock is three  
-- [ ] Reserve more than stock; clear message; stock unchanged  
-- [ ] Reserve zero or negative; rejected  
-- [ ] Run file directly; import without auto-placing an order  
+- [ ] Reserve two from five; remaining is three
+- [ ] Oversell: message; stock unchanged
+- [ ] Zero or negative rejected
+- [ ] Import does not place an order
 
-### Stretch
+---
 
-- Add a `PaymentGateway` abstract base class and a `DemoGateway` implementation (see [OOP Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md) if this is new).
-- Write two unit tests for `reserve` (kit [26_unittest_utils](../15_Lab_Assets/26_unittest_utils/) ideas).
+## Interview Q&A
 
-## How to run this session
+**Q1. Why is `def f(items=[])` a bug?**  
+The default list is created once at definition time and reused. Use `None` and create a new list inside.
 
-Show a long `if/elif` program first, then ask what breaks when the business adds a second payment method or notification channel — then refactor toward composition.
+**Q2. Composition vs inheritance?**  
+IS-A → inherit. HAS-A (notifier, gateway) → pass the helper in.
+
+**Q3. `__str__` vs `__repr__`?**  
+`str` is readable for users. `repr` is unambiguous for developers.
+
+**Q4. Why put fields on a custom exception?**  
+Callers can log `e.sku` without parsing the message string.
+
+---
+
+## Cheat Sheet
+
+```text
+skills=None + if None: []     → avoid mutable defaults
+service(notifier)             → composition (HAS-A)
+ABC + @abstractmethod         → shared contract (recap)
+__str__ / __repr__            → human / debug
+class E(Exception): ...       → domain error with fields
+```
+
+---
+
+## What's Next?
+
+These are professional defaults — not a new phase. Continue the calendar: [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md), or the MySQL phase, as scheduled.

@@ -1,21 +1,33 @@
-# Module 03c — OOP Part 3: Polymorphism & Project
+# Module 03c — OOP Part 3: Polymorphism and Project
 
 **Phase:** Advanced Python
 
-**Previous module:** [OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)  
-**Next module:** [OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md)
+**Previous:** [OOP Part 2: Inheritance and Composition](03_OOP_Part2_Inheritance.md)  
+**Next:** [OOP Part 4: Abstract Classes and Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md)
 
 **Series:** [OOP overview](03_OOP.md) · [Part 1](03_OOP_Part1_Classes_Encapsulation.md) · [Part 2](03_OOP_Part2_Inheritance.md) · Part 3 (this file) · [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md)
 
+**Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/) — this part is the **CLI** push (class warm-up was Part 1; `SavingsAccount` was Part 2).
+
 ---
 
-**Module Outcome:**
+## Module Outcome
 
-- Polymorphism — override, duck typing, no Java-style overloading
-- Readable objects with `__str__`
-- HDFC Bank BankAccount CLI (mini-project)
+Write one call site that works for many objects, print readable objects with `__str__`, and drive an encapsulated account from a menu.
 
-## Motivation — Feel the pain of `if payment_type == ...`
+By the end of this module you will be able to:
+
+- Use override polymorphism (shared parent) and duck typing (shared method name)
+- Avoid Java-style overloading (last `def` wins; use defaults or `*args`)
+- Override `__str__` so `print(obj)` is useful
+- Loop mixed payments or accounts without `if type == ...`
+- Finish the BankAccount **CLI** on the existing kit
+
+Part 2 already taught override and hierarchical children. This part **uses** that in a loop. It does not reteach `class` / `self` / inheritance types.
+
+---
+
+## 1. Why This Concept Matters
 
 Checkout code without polymorphism often looks like this:
 
@@ -32,40 +44,24 @@ def checkout(payment_type, amount):
 
 checkout("upi", 250)
 checkout("card", 999)
-checkout("wallet", 100)  # forgotten branch → "Unknown"
+checkout("wallet", 100)
+```
+
+**Expected Output:**
+
+```
+Paid ₹250 via UPI
+Paid ₹999 via Card
+Unknown payment type
 ```
 
 Problems:
 
 1. Every new payment mode needs a new `elif`.
-2. Easy to miss a branch (silent “Unknown”).
-3. Business logic and type switching live in one growing function.
+2. Easy to miss a branch (silent `"Unknown"`).
+3. Type switching and business logic live in one growing function.
 
-**Visual — type switch vs same call, different objects:**
-
-```mermaid
-flowchart TB
-  subgraph Pain["if / elif type switch"]
-    C1["checkout checks strings"]
-  end
-  subgraph Better["Polymorphism"]
-    P["method.pay(amount)"]
-    U["UPI.pay"]
-    Card["Card.pay"]
-    Cash["Cash.pay"]
-    P --> U
-    P --> Card
-    P --> Cash
-  end
-```
-
-**Key takeaways:**
-
-- Giant `if type == ...` trees grow brittle
-- Same method name on different objects = polymorphism
-- Add a new class with `pay()` — old checkout loop still works
-
-With duck typing (same method name, no shared parent required):
+Same method name on different objects — **polymorphism** — lets the old checkout loop keep working when you add a class:
 
 ```python
 class UPI:
@@ -90,22 +86,29 @@ Paid ₹250 via UPI
 Paid ₹999 via Card
 ```
 
+Add `Cash` with `pay()` later. `checkout` does not change.
+
 ---
 
-## Important Concepts
+## 2. Polymorphism — override, duck typing, no overloading
 
-### 1. Polymorphism (override → duck typing → “no overloading”)
+### Understand
 
-**Real-world analogy:** **You.** At home you are a child. In class you are a student. At the internship you are an intern. Same person, different behaviour — that is polymorphism. In code, `pay(amount)` on UPI, card, and cash is the same *call*; each object does its own work. **Swiggy** checkout loops over payment methods. **HDFC Bank** prints statements for savings and current with one `print(acct)`. **Employee Management Portal** runs `payslip()` on intern and manager in one list. Do not write `if payment_type == "upi"` forever.
+**Polymorphism** = “many forms.” The same operation name behaves differently depending on the object. Purpose: write one loop or helper without giant `if type == ...` chains.
 
-**Icons:** Bank · UPI · Order · Employee
+Three Python tastes:
 
-**Where used?** Payment methods, shapes/areas, notification channels, **HDFC Bank** account types printing a statement — one loop, many behaviours.
+| Path | What you need | When |
+|------|----------------|------|
+| **Override** | Shared parent; child redefines the method | Shared fields / default behaviour (Part 2 Vehicles) |
+| **Duck typing** | Same method name — no shared parent required | Day-to-day Python: if it has `pay()`, it works |
+| **Overloading** | Java-style same name, different signatures | **Not supported.** Last `def` wins. Use defaults or `*args` |
 
-**Definition:** “Many forms” — the same operation name behaves differently depending on the object.  
-**Purpose:** Write one loop/helper without giant `if type == ...` chains.
+Python: *if it walks like a duck and quacks like a duck…*
 
-**Path A — Override polymorphism (shared hierarchy):** same method name on parent/children (see Vehicle / Car / Bike in [Part 2](03_OOP_Part2_Inheritance.md)).
+### How It Works
+
+**Override** — same call site, hierarchy from Part 2:
 
 ```python
 class Vehicle:
@@ -121,7 +124,7 @@ class Bike(Vehicle):
         return "Bike"
 
 for v in [Car(), Bike(), Car()]:
-    print(v.info())   # same call site
+    print(v.info())
 ```
 
 **Expected Output:**
@@ -132,111 +135,7 @@ Bike
 Car
 ```
 
-**Path B — Duck typing:** no shared parent required — if it has `pay()`, it works:
-
-```python
-class UPI:
-    def pay(self, amount):
-        print(f"Paid ₹{amount} via UPI")
-
-class Card:
-    def pay(self, amount):
-        print(f"Paid ₹{amount} via Card")
-
-def checkout(method, amount):
-    method.pay(amount)
-
-checkout(UPI(), 250)
-checkout(Card(), 999)
-```
-
-Python: *if it walks like a duck and quacks like a duck…*
-
-**Path C — “Overloading” in Python:** Java-style method/constructor overloading (same name, different signatures) is **not** supported. The last definition wins. Use defaults or `*args` instead:
-
-```python
-class Adder:
-    def add(self, *nums):
-        return sum(nums)
-
-print(Adder().add(1, 2))
-print(Adder().add(1, 2, 3, 4))
-```
-
-**Expected Output:**
-
-```
-3
-10
-```
-
-What goes wrong with “fake” overloading:
-
-```python
-class Broken:
-    def add(self, a, b):
-        return a + b
-
-    def add(self, a, b, c):   # replaces the previous add
-        return a + b + c
-
-# Broken().add(1, 2)  → TypeError: missing c
-print(Broken().add(1, 2, 3))
-```
-
-**Expected Output:**
-
-```
-6
-```
-
-**Stretch — operator overloading:** customise `+` via `__add__` (optional demo, not core):
-
-```python
-class BookStack:
-    def __init__(self, pages):
-        self.pages = pages
-
-    def __add__(self, other):
-        return BookStack(self.pages + other.pages)
-
-    def __str__(self):
-        return f"BookStack({self.pages} pages)"
-
-print(BookStack(100) + BookStack(200))
-```
-
-**Expected Output:**
-
-```
-BookStack(300 pages)
-```
-
-**Visual — one call site, many forms:**
-
-```mermaid
-flowchart LR
-  Loop["for obj in items:<br/>obj.action()"]
-  Loop --> A["TypeA.action"]
-  Loop --> B["TypeB.action"]
-  Loop --> C["TypeC.action"]
-```
-
-**Key takeaways:**
-
-- Override poly = shared parent + redefined methods
-- Duck typing = shared method name is enough
-- No Java-style overload — last `def` wins; use defaults / `*args`
-
-**Common Error:** writing three methods named `add` with different arity and expecting Python to pick by argument count — it will not.
-
-**Note:**
-
-- Prefer duck typing + clear method names in Python for many day-to-day cases.
-- Shared base classes help when you need shared fields / default behaviour (Part 2 Vehicles).
-- Operator overloading (`__add__`, `__len__`, …) is powerful — use sparingly so code stays readable.
-
-Write Swiggy `UPI`, `Card`, and `Cash` with the same `pay` method. Loop them through one `checkout` function.
+**Duck typing** — no shared parent:
 
 ```python
 class UPI:
@@ -266,74 +165,76 @@ Paid ₹100 via Card
 Paid ₹100 in Cash
 ```
 
-Write Employee Management Portal `Intern` and `Manager` with `pay()`. Loop one list and print each person’s pay.
+**No Java-style overload** — a class body runs top to bottom; a second `def add` **replaces** the first:
 
 ```python
-class Intern:
-    def __init__(self, name, stipend):
-        self.name = name
-        self.stipend = stipend
+class Adder:
+    def add(self, *nums):
+        return sum(nums)
 
-    def pay(self):
-        return self.stipend
-
-class Manager:
-    def __init__(self, name, basic, bonus):
-        self.name = name
-        self.basic = basic
-        self.bonus = bonus
-
-    def pay(self):
-        return self.basic + self.bonus
-
-for person in [Intern("Anita", 15000), Manager("Meera", 40000, 8000)]:
-    print(f"{person.name}: ₹{person.pay()}")
+print(Adder().add(1, 2))
+print(Adder().add(1, 2, 3, 4))
 ```
 
 **Expected Output:**
 
 ```
-Anita: ₹15000
-Meera: ₹48000
+3
+10
 ```
 
-Write Apollo Hospitals `SmsAlert` and `WhatsAppAlert` with `notify()`. Send “Lab report ready” through one `send_report_ready` function for both channels.
+What goes wrong with “fake” overloading:
 
 ```python
-class SmsAlert:
-    def notify(self, patient, msg):
-        print(f"SMS to {patient}: {msg}")
+class Broken:
+    def add(self, a, b):
+        return a + b
 
-class WhatsAppAlert:
-    def notify(self, patient, msg):
-        print(f"WhatsApp to {patient}: {msg}")
+    def add(self, a, b, c):   # replaces the previous add
+        return a + b + c
 
-def send_report_ready(channel, patient):
-    channel.notify(patient, "Lab report ready")
-
-send_report_ready(SmsAlert(), "Anita")
-send_report_ready(WhatsAppAlert(), "Ravi")
+print(Broken().add(1, 2, 3))
 ```
 
 **Expected Output:**
 
 ```
-SMS to Anita: Lab report ready
-WhatsApp to Ravi: Lab report ready
+6
 ```
+
+`Broken().add(1, 2)` would be `TypeError: missing c` — Python did not pick by argument count.
+
+Operator overloading (`__add__`, `__len__`) can customise `+` and `len()`. Powerful — use sparingly so code stays readable. Optional extra: [Professional Python Deep Dive](08_Professional_Python_Deep_Dive.md).
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — three methods named add; expect Python to pick by arity
+def add(self, a, b): ...
+def add(self, a, b, c): ...   # this is the only add that remains
+
+# Prefer
+def add(self, *nums):
+    return sum(nums)
+```
+
+### Try It
+
+Write `Intern` and `Manager` each with `pay()` (stipend vs basic+bonus). Loop one list and print `name: ₹pay` for each. No shared parent required.
 
 ---
 
-### 2. Readable objects with `__str__`
+## 3. Readable objects with `__str__`
 
-**Real-world analogy:** A **name badge** vs a locker number. `print(account)` should look like `Priya — savings ₹5,000`, not `<Account object at 0x...>`. The hex address is the locker number — useful to the OS, useless to a support engineer. **HDFC Bank** statements, **Swiggy** cart lines, and **Apollo Hospitals** appointment slips all override `__str__` so logs and CLIs are readable.
+### Understand
 
-**Icons:** Bank · Order · Employee · CRM
+`print(account)` should look like `Priya — savings ₹5,000`, not `<Account object at 0x...>`. The hex address is a locker number — useful to the OS, useless to you.
 
-**Where used?** Debugging **HDFC Bank** accounts, logging **Swiggy** orders, printing **Employee Management Portal** employee cards, showing cart lines in a CLI.
+`__str__` controls what you see when you `print(obj)` or convert with `str(obj)`. Keep it short and free of side effects (no network, no files).
 
-**Definition:** `__str__` controls what you see when you `print(obj)` or convert it with `str(obj)`.  
-**Purpose:** Default object text (`<__main__.Student object at 0x...>`) is useless when debugging; a clear string saves time.
+`__repr__` is the unambiguous debug form. Implement `__str__` first; dig into `__repr__` in [Professional Python Deep Dive](08_Professional_Python_Deep_Dive.md) if needed.
+
+### How It Works
 
 ```python
 class Student:
@@ -355,37 +256,9 @@ Student(101, Anita)
 Label: Student(102, Vikram)
 ```
 
-Without `__str__`:
+Without `__str__`, `print(Bare("Anita"))` shows `<__main__.Bare object at 0x...>`.
 
-```python
-class Bare:
-    def __init__(self, name):
-        self.name = name
-
-print(Bare("Anita"))  # <__main__.Bare object at 0x...>
-```
-
-**Visual — print asks the object for its string form:**
-
-```mermaid
-sequenceDiagram
-  participant Main as print(obj)
-  participant Obj as obj.__str__
-  Main->>Obj: need text
-  Obj-->>Main: "Student(101, Anita)"
-```
-
-**Key takeaways:**
-
-- `print(obj)` → `obj.__str__()` if defined
-- Default = class name + memory address (hard to debug)
-- Keep `__str__` short and human-readable
-
-**Note:** `__repr__` is the unambiguous/debug form (`repr(obj)`). Prefer implementing `__str__` first; dig into `__repr__` in [Professional Python Deep Dive](08_Professional_Python_Deep_Dive.md) if needed.
-
-**Common Error:** putting side effects (network calls, file writes) inside `__str__` — keep it a pure, cheap description.
-
-Give HDFC Bank `BankAccount` a `__str__` so `print(account)` shows holder and balance, not a memory address.
+A realistic account:
 
 ```python
 class BankAccount:
@@ -407,59 +280,21 @@ Priya's account — ₹1000.00
 Ravi's account — ₹250.50
 ```
 
-Give Swiggy `Product` a `__str__` and print a cart as SKU/price labels joined with ` | `.
+`print(obj)` → `obj.__str__()` if defined. Children can override `__str__` and call `super().__str__()` for a typed statement line.
 
-```python
-class Product:
-    def __init__(self, sku, price):
-        self.sku = sku
-        self.price = price
+### ⚠️ WATCH OUT
 
-    def __str__(self):
-        return f"{self.sku} @ ₹{self.price}"
+Do not put deposits, file writes, or network calls inside `__str__`. It must be a cheap description — `print` in a loop should be safe.
 
-cart = [Product("NB-A4", 40), Product("PEN-01", 10)]
-print(" | ".join(str(p) for p in cart))
-```
+### Try It
 
-**Expected Output:**
-
-```
-NB-A4 @ ₹40 | PEN-01 @ ₹10
-```
-
-Give Apollo Hospitals `Appointment` a `__str__` and print a queue of slips in a `for` loop.
-
-```python
-class Appointment:
-    def __init__(self, patient, doctor, slot):
-        self.patient = patient
-        self.doctor = doctor
-        self.slot = slot
-
-    def __str__(self):
-        return f"{self.slot} | {self.patient} → Dr {self.doctor}"
-
-queue = [
-    Appointment("Anita", "Meera Iyer", "10:30"),
-    Appointment("Ravi", "Kiran Das", "11:00"),
-]
-for slip in queue:
-    print(slip)
-```
-
-**Expected Output:**
-
-```
-10:30 | Anita → Dr Meera Iyer
-11:00 | Ravi → Dr Kiran Das
-```
+Give `Product` a `__str__` of `sku @ ₹price`. Put two products in a list and print them joined with ` | `.
 
 ---
 
-## Step-by-Step Annotated Python 3 Code
+## Step-by-Step: Build It
 
-### Example 1 — Payment checkout (duck typing + totals)
+One assemble: duck typing checkout **plus** hierarchical accounts printing via `__str__`. These are the two loops the CLI will need — not the menu itself.
 
 ```python
 class UPI:
@@ -475,34 +310,13 @@ class Card:
         print(f"Card paid ₹{amount:.2f}")
         return True
 
-def run_checkout(methods_and_amounts):
-    ok = 0
-    for method, amount in methods_and_amounts:
-        if method.pay(amount):
-            ok += 1
-    print(f"Successful payments: {ok}/{len(methods_and_amounts)}")
+ok = 0
+payments = [(UPI(), 250), (Card(), 999), (Card(), 60000)]
+for method, amount in payments:
+    if method.pay(amount):
+        ok += 1
+print(f"Successful payments: {ok}/{len(payments)}")
 
-run_checkout([
-    (UPI(), 250),
-    (Card(), 999),
-    (Card(), 60000),  # rejected
-])
-```
-
-**Expected Output:**
-
-```
-UPI paid ₹250.00
-Card paid ₹999.00
-Card limit exceeded
-Successful payments: 2/3
-```
-
----
-
-### Example 2 — Hierarchical accounts printing statements (`__str__` + override)
-
-```python
 class BankAccount:
     def __init__(self, holder, balance=0):
         self.holder = holder
@@ -532,184 +346,33 @@ accounts = [
 ]
 accounts[1].apply_interest()
 for acct in accounts:
-    print(acct)   # polymorphic print via __str__
+    print(acct)
 ```
 
 **Expected Output:**
 
 ```
+UPI paid ₹250.00
+Card paid ₹999.00
+Card limit exceeded
+Successful payments: 2/3
 Anita: ₹1000.00
 Savings | Priya: ₹10500.00 | rate=5%
 ```
 
----
-
-### Example 3 — Mini CLI core (no menu yet) for the lab class
-
-```python
-class BankAccount:
-    def __init__(self, owner, opening=0.0):
-        self.owner = owner
-        self.__balance = float(opening)
-
-    def deposit(self, amount):
-        if amount <= 0:
-            print("amount must be positive")
-            return
-        self.__balance += amount
-
-    def withdraw(self, amount):
-        if amount <= 0:
-            print("amount must be positive")
-            return
-        if amount > self.__balance:
-            print("insufficient funds")
-            return
-        self.__balance -= amount
-
-    def get_balance(self):
-        return self.__balance
-
-    def __str__(self):
-        return f"{self.owner}: ₹{self.__balance:.2f}"
-
-acct = BankAccount("Anita", 1000)
-acct.deposit(200)
-acct.withdraw(100)
-acct.withdraw(5000)
-print(acct)
-print("balance:", acct.get_balance())
-```
-
-**Expected Output:**
-
-```
-insufficient funds
-Anita: ₹1100.00
-balance: 1100.0
-```
-
----
-
-## Mini-Project (Assignment): HDFC Bank BankAccount OOP CLI
-
-**Title:** Encapsulated account demo  
-**Lab kit (build here):** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
-
-### What to build
-
-| Piece         | Detail                                                                       |
-| ------------- | ---------------------------------------------------------------------------- |
-| `BankAccount` | `__balance` (or `_balance` + property); `deposit`, `withdraw`, `get_balance` |
-| Rules         | Reject amount ≤ 0; reject withdraw over balance                              |
-| CLI menu      | 1 Deposit · 2 Withdraw · 3 Balance · 4 Exit                                  |
-| Nice to have  | `__str__` for a one-line status print                                        |
-
-**Starter idea (class):**
-
-```python
-class BankAccount:
-    def __init__(self, owner, opening=0.0):
-        self.owner = owner
-        self.__balance = float(opening)
-
-    def deposit(self, amount):
-        if amount <= 0:
-            print("amount must be positive")
-            return
-        self.__balance += amount
-
-    def withdraw(self, amount):
-        if amount <= 0:
-            print("amount must be positive")
-            return
-        if amount > self.__balance:
-            print("insufficient funds")
-            return
-        self.__balance -= amount
-
-    def get_balance(self):
-        return self.__balance
-
-    def __str__(self):
-        return f"{self.owner}: ₹{self.__balance:.2f}"
-```
-
-**Starter idea (menu loop):**
-
-Assume the user types numbers for now. Bad `input` that cannot become a float may crash — that is fine in OOP week; [Exception Handling](04_Exception_Handling.md) teaches safe `try` / `except` next.
-
-```python
-def run_menu(account):
-    while True:
-        print("\n1) Deposit  2) Withdraw  3) Balance  4) Exit")
-        choice = input("Choose: ").strip()
-        if choice == "1":
-            amount = float(input("Amount: "))
-            account.deposit(amount)
-        elif choice == "2":
-            amount = float(input("Amount: "))
-            account.withdraw(amount)
-        elif choice == "3":
-            print(account)  # uses __str__
-            print("Balance:", account.get_balance())
-        elif choice == "4":
-            print("Bye")
-            break
-        else:
-            print("Invalid choice")
-
-if __name__ == "__main__":
-    holder = input("Account holder name: ").strip() or "Student"
-    opening = float(input("Opening balance: ") or "0")
-    run_menu(BankAccount(holder, opening))
-```
-
-**Sample session (what your README can show):**
-
-```
-Account holder name: Anita
-Opening balance: 1000
-
-1) Deposit  2) Withdraw  3) Balance  4) Exit
-Choose: 1
-Amount: 200
-
-1) Deposit  2) Withdraw  3) Balance  4) Exit
-Choose: 2
-Amount: 100
-
-1) Deposit  2) Withdraw  3) Balance  4) Exit
-Choose: 3
-Anita: ₹1100.00
-Balance: 1100.0
-
-1) Deposit  2) Withdraw  3) Balance  4) Exit
-Choose: 4
-Bye
-```
-
-### Stretch
-
-- Add `SavingsAccount(BankAccount)` with `apply_interest(rate)` **or** a `CurrentAccount` with a different minimum-balance / overdraft rule.
-- Log each successful deposit/withdraw as a list of tuples `(action, amount, balance)`.
-- **Later (Exceptions week):** switch validation to `raise ValueError` and catch it in the menu loop.
-
-### Done when
-
-- [ ] Lab kit BankAccount ticket passes
-- [ ] Menu options 1–3 work; 4 exits
-- [ ] Balance is not casually overwritten from outside (`account.__balance` fails / mangled)
-- [ ] Repo pushed with a short README of a sample session
+Same `print(acct)` call; each object supplies its own string. Same `method.pay(amount)` call; each method supplies its own behaviour.
 
 ---
 
 ## Practice Exercises
 
-### Advanced / interview-style coding
+Attempt each problem before reading the model answer.
 
 1. Write three notifier classes (`Sms`, `Email`, `Push`) each with `send(msg)`. Write `notify_all(notifiers, msg)` that loops once.
-  **Model answer:**
+
+**Hint:** Duck typing — no shared parent required.
+
+**Model answer:**
 
 ```python
 class Sms:
@@ -739,8 +402,9 @@ EMAIL: Order shipped
 PUSH: Order shipped
 ```
 
-1. Add `__str__` to `Employee(emp_id, name)` and print a list of employees joined by commas.
-  **Model answer:**
+2. Add `__str__` to `Employee(emp_id, name)` and print a list of employees joined by commas.
+
+**Model answer:**
 
 ```python
 class Employee:
@@ -761,8 +425,9 @@ print(", ".join(str(e) for e in team))
 Ravi#1, Meera#2
 ```
 
-1. Show that “overloading” fails: define `show` twice on a class and explain what happens.
-  **Model answer:**
+3. Show that “overloading” fails: define `show` twice on a class. Call `show(5)` and comment what `show()` with no args would do.
+
+**Model answer:**
 
 ```python
 class Demo:
@@ -772,7 +437,6 @@ class Demo:
     def show(self, x):   # replaces previous show
         print("two", x)
 
-# Demo().show()  → TypeError (missing x)
 Demo().show(5)
 ```
 
@@ -782,54 +446,263 @@ Demo().show(5)
 two 5
 ```
 
-1. Difference between `@staticmethod` and `@classmethod`? (review from Part 1)
-  **Model answer:**  
-   `@staticmethod` is a plain function living on the class (no automatic first argument). `@classmethod` receives the class as `cls` and is used for alternate constructors or class-level helpers.
-2. When inheritance vs composition?
-  **Model answer:**  
-   Inheritance when the child **is a** specialised parent. Composition when an object **has a** collaborator it uses. Prefer composition when unsure.
-3. Why override `__str__`? What do you see if you skip it?
-  **Model answer:**  
-   `__str__` returns a human-readable description used by `print` and `str()`. Without it, Python shows a default like `<__main__.Student object at 0x...>`, which is hard to debug.
+`Demo().show()` would raise `TypeError` (missing `x`). The first `show` is gone.
+
+4. `SmsAlert` and `WhatsAppAlert` each have `notify(patient, msg)`. Write `send_report_ready(channel, patient)` and send `"Lab report ready"` through both.
+
+**Model answer:**
+
+```python
+class SmsAlert:
+    def notify(self, patient, msg):
+        print(f"SMS to {patient}: {msg}")
+
+class WhatsAppAlert:
+    def notify(self, patient, msg):
+        print(f"WhatsApp to {patient}: {msg}")
+
+def send_report_ready(channel, patient):
+    channel.notify(patient, "Lab report ready")
+
+send_report_ready(SmsAlert(), "Anita")
+send_report_ready(WhatsAppAlert(), "Ravi")
+```
+
+**Expected Output:**
+
+```
+SMS to Anita: Lab report ready
+WhatsApp to Ravi: Lab report ready
+```
+
+5. Give `Appointment` a `__str__` of `slot | patient → Dr doctor`. Print a two-item queue in a `for` loop.
+
+**Model answer:**
+
+```python
+class Appointment:
+    def __init__(self, patient, doctor, slot):
+        self.patient = patient
+        self.doctor = doctor
+        self.slot = slot
+
+    def __str__(self):
+        return f"{self.slot} | {self.patient} → Dr {self.doctor}"
+
+queue = [
+    Appointment("Anita", "Meera Iyer", "10:30"),
+    Appointment("Ravi", "Kiran Das", "11:00"),
+]
+for slip in queue:
+    print(slip)
+```
+
+**Expected Output:**
+
+```
+10:30 | Anita → Dr Meera Iyer
+11:00 | Ravi → Dr Kiran Das
+```
+
+6. Override `__str__` on `SavingsAccount` so a mixed list prints a typed line for savings and a plain line for `BankAccount`. Deposit interest on savings first.
+
+**Hint:** `super().__str__()` plus a `savings` prefix. Same idea as Step-by-Step.
+
+**Model answer:**
+
+```python
+class BankAccount:
+    def __init__(self, holder, balance=0):
+        self.holder = holder
+        self._balance = float(balance)
+
+    def __str__(self):
+        return f"{self.holder}: ₹{self._balance:.0f}"
+
+class SavingsAccount(BankAccount):
+    def __str__(self):
+        return f"savings | {super().__str__()}"
+
+for acct in [BankAccount("Anita", 1000), SavingsAccount("Priya", 10000)]:
+    print(acct)
+```
+
+**Expected Output:**
+
+```
+Anita: ₹1000
+savings | Priya: ₹10000
+```
+
+---
+
+## Lab
+
+Combine duck typing, one helper function, and `__str__`. Not the BankAccount menu.
+
+### Problem
+
+A helpdesk sends the same message through SMS and email. Each channel should print a readable label when you `print` it.
+
+### What to Build
+
+`Sms` and `Email` with `send(msg)` and `__str__`. A `notify_all` loop. A short demo.
+
+### Requirements
+
+- Both classes implement `send(self, msg)` that prints a prefixed line
+- `__str__` returns `"SMS channel"` / `"EMAIL channel"` (or similar)
+- `notify_all(channels, msg)` loops once — no `if type == ...`
+- Demo: print each channel, then notify `"Ticket T-12 updated"`
+
+### Expected Behavior
+
+One function, two behaviours. `print(channel)` is readable, not a memory address.
+
+### Sample Run
+
+```text
+SMS channel
+EMAIL channel
+SMS: Ticket T-12 updated
+EMAIL: Ticket T-12 updated
+```
+
+### Constraints
+
+No `raise` / `try` / `except`. No files. No BankAccount CLI here — that is the Mini-Project.
+
+### Bonus
+
+Add `Push` with the same `send` / `__str__` contract and drop it into the same list.
+
+---
+
+## Mini-Project (Assignment): HDFC Bank BankAccount OOP CLI
+
+**Why this matters:** Encapsulation, inheritance (optional savings), and `__str__` meet a real menu — the same shape as every ATM / UPI demo.
+
+**Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/) — finish `starter/`. Do **not** copy `solution/`.
+
+This is **not** the helpdesk lab. Same kit as Parts 1–2, now with a menu.
+
+### Objective
+
+Drive one encapsulated `BankAccount` from a CLI: deposit, withdraw, balance, exit.
+
+### Story / Scenario
+
+Campus desk staff type a choice and an amount. They expect a clear message on bad amounts — never a traceback from your validation. (Typing a non-number into `float(input(...))` may still crash this week; [Exception Handling](04_Exception_Handling.md) covers `try` / `except` next.)
+
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| `BankAccount` | `__balance` (or `_balance` + property); `deposit`, `withdraw`, `get_balance` |
+| Rules | Reject amount ≤ 0; reject withdraw over balance — **print + return** |
+| CLI menu | **1** Deposit · **2** Withdraw · **3** Balance · **4** Exit |
+| Nice to have | `__str__` for a one-line status print |
+
+Do not paste a finished class or menu from notes. Use your Part 1–2 starter.
+
+### Expected Behavior
+
+- Menu options 1–3 work; 4 exits
+- Balance is not casually overwritten from outside
+- Overdraft / non-positive amounts print a message and leave balance unchanged
+
+### Sample Run
+
+```text
+Account holder name: Anita
+Opening balance: 1000
+
+1) Deposit  2) Withdraw  3) Balance  4) Exit
+Choose: 1
+Amount: 200
+
+1) Deposit  2) Withdraw  3) Balance  4) Exit
+Choose: 2
+Amount: 100
+
+1) Deposit  2) Withdraw  3) Balance  4) Exit
+Choose: 3
+Anita: ₹1100.00
+Balance: 1100.0
+
+1) Deposit  2) Withdraw  3) Balance  4) Exit
+Choose: 4
+Bye
+```
+
+### Bonus Challenges
+
+- Add `SavingsAccount(BankAccount)` with `apply_interest` **or** a `CurrentAccount` overdraft rule (menu option)
+- Log successful deposit/withdraw as a list of tuples `(action, amount, balance)`
+- **Later (Exceptions week):** switch validation to `raise ValueError` and catch it in the menu
+
+### Done when
+
+- [ ] Lab kit BankAccount ticket passes
+- [ ] Menu options 1–3 work; 4 exits
+- [ ] Balance is not casually overwritten from outside
+- [ ] No `try` / `except` / `raise` required on the core path
 
 ---
 
 ## Interview Q&A
 
-Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
+**Q1. Polymorphism in one sentence?**  
+Same operation name, different behaviour depending on the object — so one loop can handle account types or pay methods.
 
-**Q1. What is OOP? Pillars?**  
-**A:** Programming around objects. Pillars: encapsulation (bundle + hide), inheritance (reuse via IS-A), polymorphism (same interface, different behaviour), abstraction (show essentials). Composition (HAS-A) is the practical partner to inheritance.
+**Q2. Override polymorphism vs duck typing?**  
+Override: shared parent, child redefines the method. Duck typing: shared method name is enough; no parent required. Python uses both.
 
-**Q2. What is** `self` **in Python?**  
-**A:** Reference to the current instance. Must be first parameter of instance methods; passed implicitly on call `obj.method()`.
+**Q3. Why doesn’t Python support method overloading like Java?**  
+A class body is executed top to bottom; a second `def add(...)` replaces the first. Use default arguments or `*args` / `**kwargs`.
 
-**Q3. Difference class method vs static method?**  
-**A:** Class method receives `cls`, can access/modify class state or act as alternate constructor; static method has no implicit first arg — a utility namespaced on the class.
+**Q4. `__str__` vs default object print?**  
+Default print shows class name and memory address. Override `__str__` to return a clear, human-readable summary for logs and CLIs.
 
-**Q4. Multiple inheritance in Python?**  
-**A:** Supported (`class C(A, B)`); MRO decides lookup order. Prefer composition when possible.
+**Q5. Why not `if payment_type == "upi":` forever?**  
+Every new mode needs a new branch; missing branches fail silently. A `pay()` method on each type lets checkout stay one loop.
 
-**Q5.** `__str__` **vs default object print?**  
-**A:** Default print shows class name and memory address. Override `__str__` to return a clear, human-readable summary for logs and debugging.
-
-**Q6.** `@property` **vs public attribute?**  
-**A:** `@property` lets you expose a clean attribute-like API while running validation or computing a value — callers write `obj.balance` instead of `obj.get_balance()`.
-
-**Q7. Why doesn’t Python support method overloading like Java?**  
-**A:** A class body is executed top to bottom; a second `def add(...)` simply replaces the first. Use default arguments or `*args` / `**kwargs` for flexible signatures.
-
-**Q8. Is** `__balance` **truly private?**  
-**A:** No. Name mangling renames it to `_ClassName__balance`. It prevents *accidental* access, not determined access. Real security is auth, permissions, and server-side checks.
-
-**Q9. Why might a class variable for** `tax_rate` **be useful?**  
-**A:** One shared rate for all **Employee Management Portal** employees; change `Employee.tax_rate` once and every instance’s net-pay logic can pick it up (unless shadowed).
-
-**Q10. Polymorphism in one sentence?**  
-**A:** Same operation name, different behaviour depending on the object — so one loop can handle **HDFC Bank** account types or **Swiggy** pay methods.
+**Q6. Where do `self`, `@property`, and `__balance` fit?**  
+Those are Part 1. Polymorphism does not replace encapsulation — the CLI still hides balance and validates in methods.
 
 ---
 
-## Next
+## Cheat Sheet
 
-Continue with **[OOP Part 4 — Abstract Classes & Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md)** after the BankAccount push. Then [Exception Handling](04_Exception_Handling.md).
+```text
+polymorphism          → same name, different behaviour
+override + loop       → for obj in items: obj.action()
+duck typing           → if it has pay(), checkout can call it
+no overloading        → last def wins; use defaults / *args
+__str__               → print(obj) / str(obj) text
+default print         → <Class object at 0x...>
+super().__str__()     → parent text plus child prefix
+```
+
+Validate CLI amounts with print + return this week.
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can loop mixed objects with one method name (override or duck typing)
+[ ] I know Python does not overload by signature
+[ ] I can write __str__ and print a list of objects
+[ ] I completed the lab
+[ ] I finished the BankAccount CLI on the kit
+[ ] I can explain polymorphism vs if-type trees in an interview
+```
+
+---
+
+## What's Next?
+
+You can now write one loop over many types and print objects that make sense.
+
+Next, [OOP Part 4: Abstract Classes and Interfaces](03_OOP_Part4_Abstract_Classes_Interfaces.md) **forces** children to implement the method (`ABC`, abstract methods, interface-style contracts) — then [Exception Handling](04_Exception_Handling.md).

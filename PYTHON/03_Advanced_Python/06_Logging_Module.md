@@ -1,50 +1,30 @@
-# Module 06 — Logging Module
+# Module 06 — Logging
 
 **Phase:** Advanced Python
 
-**Previous module:** [File Handling](05_File_Handling.md)
-**Next module:** [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md)
+**Previous:** [File Handling](05_File_Handling.md)  
+**Next:** [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md)
 
 ---
 
-**Module Outcome:**
+## Module Outcome
 
-- Why logging beats `print` in real apps
-- Logging levels — DEBUG → CRITICAL (and NOTSET)
-- `logging.basicConfig` — file, level, format, datefmt, filemode
-- Writing exceptions with `logging.exception`
-- Problems with the root logger
-- **Advanced:** Logger → Handler → Formatter → Filter architecture
-- Named loggers, file + console handlers, different levels per handler
-- Propagation, reusable `logging_config.py`, rotating / timed handlers
-- Awareness — never log secrets; path to Django / FastAPI logging
+Replace `print` with `logging` so a real app records **when**, **what**, and **how serious** — including exception tracebacks — in a file you can open after the crash.
+
+By the end of this module you will be able to:
+
+- Explain why logging beats `print` once nobody is watching the terminal
+- Choose a level (DEBUG → CRITICAL) and filter with `basicConfig`
+- Set `filename`, `format`, `datefmt`, and `filemode`
+- Record failures with `logging.exception` inside `except`
+- (Advanced) Attach a named logger with a handler and formatter
+- (Advanced) Rotate logs by size (`RotatingFileHandler`) or by time (`TimedRotatingFileHandler`)
 
 ---
 
-**What is Logging?**
+## 1. Why This Concept Matters
 
-It is highly recommended to store **complete application flow** and **exception information** in a file. That process is called **logging**.
-
-**Main advantages:**
-
-1. Log files help while **debugging** (“when did it fail?”)
-2. You can collect **statistics** (requests per day, error counts, …)
-3. A real app runs on a server — **nobody is staring at the terminal**
-
-Python provides the built-in module `logging`.
-
-**Where do we use in realtime?**
-
-- **Employee Management Portal** — every expense add / CSV error in `logs/app.log`
-- Servers / Django / Flask — request flow and exceptions without a live console
-- **Apollo Hospitals** / **HDFC Bank** — audit-style events; **never** log passwords, OTPs, or card numbers
-
-```text
-print()     →  good for class / quick debug
-logging     →  good for real applications
-```
-
-A clerk says: **“My expense wasn’t saved.”** You need answers:
+A clerk says: **“My expense wasn’t saved.”** `print` is gone when the window closes. You need answers:
 
 ```text
 When did it happen?
@@ -52,191 +32,32 @@ What operation was running?
 Was it a warning, or did something fail?
 ```
 
----
+```text
+print()     →  good for class / quick debug
+logging     →  good for real applications
+```
 
-### 1. Logging levels
-
-Depending on the type of information, logging data is divided into **six** levels:
-
-
-| Level    | Value | Think of it as                         | Expense Tracker example    |
-| -------- | ----- | -------------------------------------- | -------------------------- |
-| CRITICAL | 50    | Very serious — needs high attention    | Application cannot start   |
-| ERROR    | 40    | Serious error                          | CSV could not be read      |
-| WARNING  | 30    | Caution / unusual                      | Daily limit almost reached |
-| INFO     | 20    | Important normal information           | Expense added              |
-| DEBUG    | 10    | Developer detail                       | Reading row 25             |
-| NOTSET   | 0     | Level not set                          | —                          |
-
-
-**Remember the meaning, not only the numbers.**
-
-By default, while executing a Python program, only **WARNING and higher** messages are shown (if you do not configure a lower level).
-
-A logger set to **INFO** **hides** DEBUG.
-
-**Interview:** `print` is for quick demos; `logging` gives levels, timestamps, and file/console handlers you can filter.
+The built-in `logging` module writes **application flow** and **exception information** to a file (and optionally the console). Support can replay what happened. Never log passwords, OTPs, or card numbers — log that an auth attempt failed, not the secret.
 
 ---
 
-### 2. How to implement logging — `basicConfig`
+## 2. Logging levels
 
-To perform logging you typically:
+### Understand
 
-1. Create / name a **log file**
-2. Specify **which level** (and higher) to store
+Messages have a **severity**. A logger set to INFO **hides** DEBUG. The default threshold is **WARNING** if you do not configure a lower level.
 
-Use `logging.basicConfig(...)`.
+| Level | Value | Think of it as | Expense tracker example |
+|-------|-------|----------------|-------------------------|
+| CRITICAL | 50 | Needs high attention | Application cannot start |
+| ERROR | 40 | Serious failure | CSV could not be read |
+| WARNING | 30 | Caution / unusual | Daily limit almost reached |
+| INFO | 20 | Important normal event | Expense added |
+| DEBUG | 10 | Developer detail | Reading row 25 |
 
-```python
-import logging
+Remember the **meaning**, not only the numbers. NOTSET (0) means “level not set” — you will not use it in this module.
 
-logging.basicConfig(filename="log.txt", level=logging.WARNING)
-```
-
-That creates `log.txt` and stores **WARNING or higher**.
-
-After configuration, write messages with:
-
-```python
-logging.debug("...")
-logging.info("...")
-logging.warning("...")
-logging.error("...")
-logging.critical("...")
-```
-
-**Program — WARNING and higher only:**
-
-```python
-import logging
-
-logging.basicConfig(filename="log.txt", level=logging.WARNING)
-print("Logging Demo")
-logging.debug("Debug Information")
-logging.info("info Information")
-logging.warning("warning Information")
-logging.error("error Information")
-logging.critical("critical Information")
-```
-
-**`log.txt`:**
-
-```text
-WARNING:root:warning Information
-ERROR:root:error Information
-CRITICAL:root:critical Information
-```
-
-If you set `level=logging.DEBUG`, **all** messages are written.
-
-```python
-import logging
-
-logging.basicConfig(filename="log.txt", level=logging.DEBUG)
-print("Logging Demo")
-logging.debug("Debug Information")
-logging.info("info Information")
-logging.warning("warning Information")
-logging.error("error Information")
-logging.critical("critical Information")
-```
-
-**`log.txt`:**
-
-```text
-DEBUG:root:Debug Information
-INFO:root:info Information
-WARNING:root:warning Information
-ERROR:root:error Information
-CRITICAL:root:critical Information
-```
-
-**Note:**
-
-- If you omit `level`, the default is **WARNING (30)**.
-- If you omit `filename`, messages go to the **console**.
-- `basicConfig` runs **once** per process. Restart the interpreter if a second call seems to do nothing.
-- Configure logging in `main`, not at import time inside a library.
-
----
-
-### 3. Append vs overwrite — `filemode`
-
-By default, data is **appended** to the log file. To overwrite previous data, use `filemode='w'`.
-
-```python
-# append (default)
-logging.basicConfig(filename="log786.txt", level=logging.WARNING)
-logging.basicConfig(filename="log786.txt", level=logging.WARNING, filemode="a")
-
-# overwrite previous data
-logging.basicConfig(filename="log786.txt", level=logging.WARNING, filemode="w")
-```
-
----
-
-### 4. Formatting log messages
-
-Use the `format` keyword.
-
-**Level name only:**
-
-```python
-logging.basicConfig(format="%(levelname)s")
-```
-
-```text
-WARNING
-ERROR
-CRITICAL
-```
-
-**Level + message:**
-
-```python
-logging.basicConfig(format="%(levelname)s:%(message)s")
-```
-
-```text
-WARNING:warning Information
-ERROR:error Information
-CRITICAL:critical Information
-```
-
-**Add timestamp:**
-
-```python
-logging.basicConfig(format="%(asctime)s:%(levelname)s:%(message)s")
-```
-
-```text
-2018-06-15 11:50:08,325:WARNING:warning Information
-2018-06-15 11:50:08,372:ERROR:error Information
-2018-06-15 11:50:08,372:CRITICAL:critical Information
-```
-
-**Change date/time format — `datefmt`:**
-
-```python
-logging.basicConfig(
-    format="%(asctime)s:%(levelname)s:%(message)s",
-    datefmt="%d/%m/%Y %I:%M:%S %p",
-)
-```
-
-```text
-15/06/2018 12:04:31 PM:WARNING:warning Information
-```
-
-| Token | Meaning        |
-| ----- | -------------- |
-| `%I`  | 12-hour clock  |
-| `%H` | 24-hour clock  |
-
-Docs: [LogRecord attributes](https://docs.python.org/3/library/logging.html#logrecord-attributes) · [strftime](https://docs.python.org/3/library/time.html#time.strftime)
-
-Class-friendly expense style:
+### How It Works
 
 ```python
 import logging
@@ -251,304 +72,39 @@ logging.error("Failed to parse amount: 'abc'")
 
 **Expected Output:**
 
-```text
+```
 INFO Expense added: ₹120 Tea
 WARNING Daily limit almost reached
 ERROR Failed to parse amount: 'abc'
 ```
 
----
+DEBUG is filtered. Raise the threshold to `WARNING` and INFO disappears too.
 
-### 5. Writing exceptions to the log — `logging.exception`
+### ⚠️ WATCH OUT
 
-Use `logging.exception(msg)` inside an `except` block. It logs at **ERROR** and includes the **traceback**.
+If you do not pass `level=`, only **WARNING and higher** appear. Students often think “I called `logging.info` so it must show” — it will not, until you set `level=logging.INFO` (or DEBUG).
 
-```python
-import logging
+### Try It
 
-logging.basicConfig(
-    filename="mylog.txt",
-    level=logging.INFO,
-    format="%(asctime)s:%(levelname)s:%(message)s",
-    datefmt="%d/%m/%Y %I:%M:%S %p",
-)
-
-logging.info("A new Request Came")
-try:
-    x = int(input("Enter First Number:"))
-    y = int(input("Enter Second Number:"))
-    print("The Result:", x / y)
-except ZeroDivisionError as msg:
-    print("cannot divide with zero")
-    logging.exception(msg)
-except ValueError as msg:
-    print("Please provide int values only")
-    logging.exception(msg)
-logging.info("Request Processing Completed")
-```
-
-Successful run prints the result; bad input prints a clear message. `mylog.txt` keeps INFO lines plus ERROR + traceback for failures.
-
-**Remember:** Call `logging.exception` only inside an exception handler (so a traceback exists).
+Set `basicConfig` to `DEBUG` and log one line at DEBUG, INFO, WARNING, ERROR, and CRITICAL. How many lines appear? Then set the level to `WARNING` and run again. Which two disappear?
 
 ---
 
-### 6. Problems with the root logger
+## 3. `basicConfig` — file, level, format
 
-If you do not define your own logger, the **root** logger is used.
+### Understand
 
-Once you call `basicConfig` on the root logger, that configuration is **fixed** for the process — a later `basicConfig` usually does nothing.
+`logging.basicConfig(...)` configures the **root** logger once per process:
 
-**Demo:**
+- `filename` — log file (omit it → console)
+- `level` — lowest level to keep
+- `format` — how each line looks
+- `datefmt` — how `%(asctime)s` is rendered
+- `filemode` — `'a'` append (default) or `'w'` overwrite
 
-`student.py`:
+After configuration, write with `logging.debug` / `info` / `warning` / `error` / `critical`.
 
-```python
-import logging
-
-logging.basicConfig(filename="student.log", level=logging.INFO)
-logging.info("info message from student module")
-```
-
-`test.py`:
-
-```python
-import logging
-import student
-
-logging.basicConfig(filename="test.log", level=logging.DEBUG)
-logging.debug("debug message from test module")
-```
-
-Only `student.log` gets the INFO line. The `basicConfig` in `test.py` does **not** take effect — root was already configured in `student`.
-
-**Problems with root / `basicConfig` alone:**
-
-1. Configuration is final once set — hard to change later
-2. Often one destination at a time (console **or** file), not both easily
-3. Hard to use different configs at different levels / modules
-4. Cannot cleanly give each module its own log file
-
-**Solution:** create your **own** customized loggers — the rest of this module.
-
----
-
-## Advanced Logging — Creating Custom Loggers
-
-Basic `logging.info(...)` is enough for a tiny script. A Python Full Stack app has many parts — you need **Logger**, **Handler**, **Formatter**, and (optionally) **Filter**.
-
-### 7. WHY — Why create a custom logger?
-
-In a small program, this is enough:
-
-```python
-import logging
-
-logging.info("User logged in")
-```
-
-Real applications have different parts:
-
-```text
-Application
-│
-├── User Service
-├── Payment Service
-├── Order Service
-└── Database Service
-```
-
-You may want **separate logging behaviour** for each part — for example:
-
-```text
-app.log
-payment.log
-database.log
-```
-
-That is where **custom loggers** are useful.
-
----
-
-### 8. UNDERSTAND — The logging architecture
-
-Python logging is built around four important components:
-
-```text
-Logger
-   ↓
-Handler
-   ↓
-Formatter
-   ↓
-Output
-```
-
-| Component   | Job                                              | Example                                      |
-| ----------- | ------------------------------------------------ | -------------------------------------------- |
-| **Logger**  | Creates the log record                           | `logger.info("User logged in")`              |
-| **Handler** | Decides **where** the log goes                   | Console (`StreamHandler`), file (`FileHandler`) |
-| **Formatter** | Decides **how** the log looks                  | `2026-09-10 23:30:10 - INFO - User logged in` |
-| **Filter**  | Controls which records are allowed through       | Drop DEBUG from one handler; keep secrets out |
-
-**Interview line to remember:** *A Logger creates log records, Handlers determine where they go, and Formatters determine how those records are displayed.*
-
----
-
-### 9. SEE — Creating a custom logger
-
-Instead of the root logger (`logging.info("Hello")`), create your own:
-
-```python
-import logging
-
-logger = logging.getLogger("my_app")
-logger.setLevel(logging.DEBUG)
-
-logger.info("Application started")
-logger.warning("Something unusual happened")
-```
-
-`logging.getLogger("my_app")` creates or **retrieves** a logger named `my_app`.
-
-**Note:** Calling `getLogger` with the same name twice returns the **same** logger object — that is how modules share configuration.
-
----
-
-### 10. Why logger names matter
-
-In a larger application:
-
-```python
-user_logger = logging.getLogger("app.user")
-payment_logger = logging.getLogger("app.payment")
-database_logger = logging.getLogger("app.database")
-```
-
-Now you can see **where** a message came from:
-
-```text
-app.user
-app.payment
-app.database
-```
-
-That is very useful when debugging large applications (and later Django / FastAPI services).
-
-Use a class name when it helps:
-
-```python
-logger = logging.getLogger(PaymentService.__name__)
-```
-
----
-
-### 11. Creating a File Handler
-
-A logger itself does **not** decide where the message goes. A **handler** does.
-
-```python
-import logging
-
-logger = logging.getLogger("app")
-logger.setLevel(logging.DEBUG)
-
-file_handler = logging.FileHandler("app.log", encoding="utf-8")
-logger.addHandler(file_handler)
-
-logger.info("Application started")
-logger.error("Something went wrong")
-```
-
-Now logs are written to `app.log`.
-
-**Note:** Logger level is the first gate. Handler levels must be **supported** by the logger level — set the logger to the **lowest** level you care about; handlers filter further.
-
-| Logger | Handler | Result                                    |
-| ------ | ------- | ----------------------------------------- |
-| DEBUG  | INFO    | Valid — INFO and higher reach the handler |
-| INFO   | DEBUG   | DEBUG never reaches the handler           |
-
----
-
-### 12. Adding a Formatter
-
-Without a formatter, logs are not very informative. Create one and attach it to the handler:
-
-```python
-import logging
-
-logger = logging.getLogger("app")
-logger.setLevel(logging.DEBUG)
-
-file_handler = logging.FileHandler("app.log", encoding="utf-8")
-formatter = logging.Formatter(
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
-
-logger.info("Application started")
-logger.warning("Low disk space")
-logger.error("Database connection failed")
-```
-
-**Example `app.log`:**
-
-```text
-2026-09-10 23:40:10,123 - app - INFO - Application started
-2026-09-10 23:40:10,125 - app - WARNING - Low disk space
-2026-09-10 23:40:10,126 - app - ERROR - Database connection failed
-```
-
----
-
-### 13. Logger + Handler + Formatter (relationship)
-
-Students should remember this chain:
-
-```text
-                 Logger
-                   │
-             creates record
-                   ↓
-                Handler
-                   │
-          decides destination
-                   ↓
-              Formatter
-                   │
-          decides appearance
-                   ↓
-             Log Output
-```
-
-Concrete path:
-
-```text
-Logger
-  ↓
-FileHandler
-  ↓
-Formatter
-  ↓
-app.log
-```
-
----
-
-### 14. Logging to console AND file
-
-Real applications often need both:
-
-```text
-              Logger
-              /    \
-             /      \
-            ↓        ↓
-       Console     File
-       Handler    Handler
-```
+### How It Works
 
 ```python
 import logging
@@ -556,37 +112,241 @@ import os
 
 os.makedirs("logs", exist_ok=True)
 
-logger = logging.getLogger("app")
-logger.setLevel(logging.DEBUG)
-logger.handlers.clear()  # avoid duplicate lines if re-run in the same process
-
-console_handler = logging.StreamHandler()
-file_handler = logging.FileHandler("logs/app.log", encoding="utf-8")
-
-formatter = logging.Formatter(
-    "%(asctime)s - %(levelname)s - %(message)s"
+logging.basicConfig(
+    filename="logs/demo.log",
+    level=logging.WARNING,
+    format="%(levelname)s:%(message)s",
+    filemode="w",
 )
-console_handler.setFormatter(formatter)
-file_handler.setFormatter(formatter)
 
-logger.addHandler(console_handler)
-logger.addHandler(file_handler)
+logging.debug("Debug Information")
+logging.info("info Information")
+logging.warning("warning Information")
+logging.error("error Information")
+logging.critical("critical Information")
 
-logger.info("Application started")
+with open("logs/demo.log", encoding="utf-8") as f:
+    print(f.read(), end="")
 ```
 
-The same message can appear on the **console** and in **`logs/app.log`**.
+**Expected Output:**
+
+```
+WARNING:warning Information
+ERROR:error Information
+CRITICAL:critical Information
+```
+
+Useful format pieces:
+
+```text
+%(levelname)s   →  INFO, WARNING, ...
+%(message)s     →  the text you passed
+%(asctime)s     →  timestamp (shape from datefmt)
+%(name)s        →  logger name (root unless you use getLogger)
+```
+
+Timestamp style (output times will differ on your machine):
+
+```python
+logging.basicConfig(
+    format="%(asctime)s:%(levelname)s:%(message)s",
+    datefmt="%d/%m/%Y %I:%M:%S %p",
+)
+```
+
+```text
+14/09/2026 06:30:08 PM:WARNING:Daily limit almost reached
+```
+
+`%I` is 12-hour clock; `%H` is 24-hour.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — second basicConfig in the same process usually does nothing
+logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(filename="other.log")   # ignored
+
+# Prefer — configure once in main, then only log
+# Restart the interpreter if a second call seems to do nothing
+```
+
+Configure logging in `main`, not at import time inside a library.
+
+### Try It
+
+Write WARNING and higher to `logs/try.log` with `filemode="w"` and format `%(levelname)s %(message)s`. Log DEBUG and ERROR. Open the file — only ERROR (and above) should be there. Why is DEBUG missing?
 
 ---
 
-### 15. Different levels for different handlers
+## 4. Append vs overwrite — `filemode`
 
-This is a powerful, production-style idea.
+### Understand
 
-Suppose you want:
+By default, data is **appended** to the log file. Yesterday’s trail stays. Use `filemode='w'` when you want a **fresh** file for a demo or a test run.
 
-- **Console** → WARNING and above  
-- **File** → DEBUG and above  
+### How It Works
+
+```python
+import logging
+import os
+
+os.makedirs("logs", exist_ok=True)
+
+# This snippet assumes a fresh interpreter (basicConfig once).
+logging.basicConfig(
+    filename="logs/session.log",
+    level=logging.INFO,
+    format="%(levelname)s %(message)s",
+    filemode="w",
+)
+logging.info("session started")
+
+with open("logs/session.log", encoding="utf-8") as f:
+    print(f.read(), end="")
+```
+
+**Expected Output:**
+
+```
+INFO session started
+```
+
+Change `filemode` to `"a"` (or omit it) and run the same script twice: you get two `session started` lines.
+
+### ⚠️ WATCH OUT
+
+`filemode='w'` on a shared `app.log` wipes production history. Everyday apps **append**.
+
+### Try It
+
+Run a tiny script that logs `INFO hello` with `filemode="a"` twice (two interpreter starts). How many lines in the file?
+
+---
+
+## 5. Writing exceptions — `logging.exception`
+
+### Understand
+
+`logging.exception(msg)` belongs **inside** an `except` block. It logs at **ERROR** and includes the **traceback**. The user can still see a short print; support gets the full stack in the file.
+
+Call it only where an exception is active (so a traceback exists).
+
+### How It Works
+
+```python
+import logging
+import os
+
+os.makedirs("logs", exist_ok=True)
+
+logging.basicConfig(
+    filename="logs/mylog.txt",
+    level=logging.INFO,
+    format="%(levelname)s:%(message)s",
+    filemode="w",
+)
+
+pairs = [("10", "2"), ("10", "0"), ("a", "2")]
+for x_raw, y_raw in pairs:
+    logging.info("A new request came")
+    try:
+        x = int(x_raw)
+        y = int(y_raw)
+        print("The Result:", x / y)
+    except ZeroDivisionError as msg:
+        print("cannot divide with zero")
+        logging.exception(msg)
+    except ValueError as msg:
+        print("Please provide int values only")
+        logging.exception(msg)
+    logging.info("Request processing completed")
+```
+
+**Expected Output (console):**
+
+```
+The Result: 5.0
+cannot divide with zero
+Please provide int values only
+```
+
+`logs/mylog.txt` keeps INFO lines plus ERROR and a traceback for each failure. Open the file after you run — you should see `ZeroDivisionError` and `ValueError` stacks.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — no active exception; traceback is missing or misleading
+logging.exception("something went wrong")
+
+# Prefer inside except
+except ValueError:
+    logging.exception("bad input")
+```
+
+`logging.error("...")` is ERROR **without** a traceback. Use `exception` when you are in `except`.
+
+### Try It
+
+Wrap `int("abc")` in `try` / `except ValueError`. Print a short message for the user. Call `logging.exception("bad input")`. Confirm the traceback is in the log file.
+
+---
+
+## 6. Why `basicConfig` “fails” the second time
+
+### Understand
+
+If you do not create your own logger, the **root** logger is used. The first `basicConfig` that actually installs a handler **wins**. A later call is ignored.
+
+If module `student` configures root at import, then `test.py` calls `basicConfig` again, only the first file gets lines. That is why tiny scripts are fine with `basicConfig`, and larger apps move to a **named** logger (next section).
+
+### How It Works
+
+```text
+student.py calls basicConfig → student.log     (root now has a handler)
+test.py    calls basicConfig → ignored
+test.py    logging.debug(...)  → still follows student.py's config
+```
+
+Configure once, in `main`, before other modules log.
+
+### ⚠️ WATCH OUT
+
+Do not call `basicConfig` at import time in a helper module. The import order will freeze the wrong file or level.
+
+### Try It
+
+In one interpreter session, call `basicConfig(level=logging.ERROR)` then `basicConfig(level=logging.DEBUG)` then `logging.info("hi")`. Does `hi` appear? Restart and put DEBUG first.
+
+---
+
+## 7. Advanced — named loggers (after `basicConfig` is solid)
+
+`logging.info(...)` is enough for a tiny script. A larger app has parts (user, payment, files). You may want a **name** on each line, a **file and the console**, or different levels per destination.
+
+### Understand
+
+```text
+Logger  →  creates the record
+Handler →  decides where it goes (console, file)
+Formatter →  decides how the line looks
+```
+
+`logging.getLogger("expense")` creates or **retrieves** a logger with that name. The same name twice → the **same** object (modules can share config).
+
+Logger level is the first gate. Set the logger to the **lowest** level you care about; each handler can filter further.
+
+| Logger | Handler | Result |
+|--------|---------|--------|
+| DEBUG | INFO | INFO and higher reach that handler |
+| INFO | DEBUG | DEBUG never reaches the handler |
+
+Child names (`app.payment`) form a hierarchy. Children **propagate** to parents (and root) unless `propagate = False`. Duplicate lines usually mean handlers added twice, or propagate still `True` while a parent also has handlers.
+
+### How It Works
+
+One named logger, file handler, formatter:
 
 ```python
 import logging
@@ -597,18 +357,50 @@ os.makedirs("logs", exist_ok=True)
 logger = logging.getLogger("app")
 logger.setLevel(logging.DEBUG)
 logger.handlers.clear()
+logger.propagate = False
+
+file_handler = logging.FileHandler("logs/app.log", mode="w", encoding="utf-8")
+file_handler.setFormatter(
+    logging.Formatter("%(name)s - %(levelname)s - %(message)s")
+)
+logger.addHandler(file_handler)
+
+logger.info("Application started")
+logger.error("Something went wrong")
+
+with open("logs/app.log", encoding="utf-8") as f:
+    print(f.read(), end="")
+```
+
+**Expected Output:**
+
+```
+app - INFO - Application started
+app - ERROR - Something went wrong
+```
+
+Console WARNING+ and file DEBUG+ (same logger, two handlers):
+
+```python
+import logging
+import os
+
+os.makedirs("logs", exist_ok=True)
+
+logger = logging.getLogger("app")
+logger.setLevel(logging.DEBUG)
+logger.handlers.clear()
+logger.propagate = False
+
+fmt = logging.Formatter("%(levelname)s - %(message)s")
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.WARNING)
+console_handler.setFormatter(fmt)
 
-file_handler = logging.FileHandler("logs/app.log", encoding="utf-8")
+file_handler = logging.FileHandler("logs/app.log", mode="w", encoding="utf-8")
 file_handler.setLevel(logging.DEBUG)
-
-formatter = logging.Formatter(
-    "%(asctime)s - %(levelname)s - %(message)s"
-)
-console_handler.setFormatter(formatter)
-file_handler.setFormatter(formatter)
+file_handler.setFormatter(fmt)
 
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
@@ -619,56 +411,16 @@ logger.warning("Low disk space")
 logger.error("Database error")
 ```
 
-**Console:**
+**Expected Output (console):**
 
-```text
+```
 WARNING - Low disk space
 ERROR - Database error
 ```
 
-**`logs/app.log`:**
+`logs/app.log` also has the DEBUG and INFO lines.
 
-```text
-DEBUG - Debug information
-INFO - Application started
-WARNING - Low disk space
-ERROR - Database error
-```
-
-ATM / expense style (same idea): INFO+ to file, WARNING+ to console.
-
----
-
-### 16. Preventing duplicate logs — propagation
-
-When working with custom loggers, students may accidentally see the **same message multiple times**. That is often **propagation**.
-
-Python loggers form a hierarchy:
-
-```text
-app
-│
-├── app.user
-├── app.payment
-└── app.database
-```
-
-Child loggers can **propagate** messages up to their parent (and eventually root). Disable it when a child has its own handlers:
-
-```python
-logger = logging.getLogger("app.payment")
-logger.propagate = False
-```
-
-**Remember:** If you see doubles, check (1) `logger.handlers` added twice, and (2) `propagate` still `True` while a parent also has handlers.
-
----
-
-### 17. Reusable logging configuration — `logging_config.py`
-
-Instead of configuring logging in every Python file, centralise it:
-
-`logging_config.py`:
+Reusable setup — attach handlers **once**:
 
 ```python
 import logging
@@ -678,110 +430,58 @@ import os
 def get_logger(name):
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
-
-    if not logger.handlers:  # attach once — avoid duplicates on re-import
+    if not logger.handlers:
         os.makedirs("logs", exist_ok=True)
-        file_handler = logging.FileHandler("logs/app.log", encoding="utf-8")
-        formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        handler = logging.FileHandler("logs/app.log", encoding="utf-8")
+        handler.setFormatter(
+            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
         )
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
+        logger.addHandler(handler)
         logger.propagate = False
-
     return logger
 ```
 
-Another file:
+Call `get_logger("user_service")` and `get_logger("payment_service")`. `%(name)s` shows which part wrote the line.
 
-```python
-from logging_config import get_logger
+**Privacy.** Never log passwords, OTPs, full card numbers, Aadhaar, or session tokens.
 
-logger = get_logger("user_service")
-logger.info("User created")
-```
-
-Payment module:
-
-```python
-from logging_config import get_logger
-
-logger = get_logger("payment_service")
-logger.info("Payment started")
-```
-
-**`logs/app.log` idea:**
+### ⚠️ WATCH OUT
 
 ```text
-... - user_service - INFO - User created
-... - payment_service - INFO - Payment started
+# Wrong — addHandler on every call duplicates every line
+logger.addHandler(file_handler)
+logger.addHandler(file_handler)
+
+# Prefer
+if not logger.handlers:
+    logger.addHandler(file_handler)
+logger.propagate = False
 ```
 
-This is the habit you want before Django / FastAPI — **one place** owns logging setup.
+### Try It
+
+Build logger `atm`: INFO+ → `atm.log`, WARNING+ → console. Log one INFO and one WARNING. Confirm INFO is in the file only.
 
 ---
 
-### 18. Rotating log files
+## 8. Rotating files — size vs midnight
 
-What if `app.log` grows for months? It can become huge. Use a **rotating** handler:
+### Understand
 
-```python
-import logging
-from logging.handlers import RotatingFileHandler
+The expense tracker writes a line on every add. Staff run it all week. A plain `FileHandler` (or `basicConfig(filename=...)`) **never starts a new file**. `logs/app.log` grows until the disk fills — and when someone asks “what happened yesterday?”, you have one giant file.
 
-logger = logging.getLogger("app")
-logger.setLevel(logging.INFO)
+Same Logger → Handler → Formatter chain. Swap the handler:
 
-handler = RotatingFileHandler(
-    "app.log",
-    maxBytes=1_000_000,
-    backupCount=3,
-    encoding="utf-8",
-)
-formatter = logging.Formatter(
-    "%(asctime)s - %(levelname)s - %(message)s"
-)
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+| Need | Handler |
+|------|---------|
+| Busy CLI / API — cap **size** | `RotatingFileHandler` |
+| Daily audit — one file per **day** | `TimedRotatingFileHandler` |
 
-logger.info("Application started")
-```
+**Scenario (expense desk):** Keep the last few chunks of `expense.log` so a busy day cannot fill the disk. Also keep **seven calendar days** of `daily.log` so support can open yesterday’s file without searching a month of mixed lines.
 
-Conceptually:
+### How It Works
 
-```text
-app.log
-app.log.1
-app.log.2
-app.log.3
-```
-
-When the main file reaches `maxBytes`, older logs rotate; only `backupCount` backups are kept.
-
----
-
-### 19. Timed rotating logs
-
-Sometimes apps rotate by **time**, not size:
-
-```python
-from logging.handlers import TimedRotatingFileHandler
-
-handler = TimedRotatingFileHandler(
-    "app.log",
-    when="midnight",
-    backupCount=7,
-    encoding="utf-8",
-)
-```
-
-That can produce daily log files while retaining a limited number of old files.
-
----
-
-### 20. Final advanced example (type with the class)
-
-One example that ties it together:
+**Size —** when `expense.log` would pass `maxBytes`, Python renames it to `expense.log.1` (old `.1` becomes `.2`, …) and starts a fresh `expense.log`. `backupCount=3` keeps three backups; older files are deleted.
 
 ```python
 import logging
@@ -790,61 +490,96 @@ from logging.handlers import RotatingFileHandler
 
 os.makedirs("logs", exist_ok=True)
 
-logger = logging.getLogger("student_app")
-logger.setLevel(logging.DEBUG)
+logger = logging.getLogger("expense_size")
+logger.setLevel(logging.INFO)
 logger.handlers.clear()
 logger.propagate = False
 
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.WARNING)
-
-file_handler = RotatingFileHandler(
-    "logs/student_app.log",
-    maxBytes=1_000_000,
+handler = RotatingFileHandler(
+    "logs/expense.log",
+    maxBytes=200,
     backupCount=3,
     encoding="utf-8",
 )
-file_handler.setLevel(logging.DEBUG)
+handler.setFormatter(logging.Formatter("%(levelname)s %(message)s"))
+logger.addHandler(handler)
 
-formatter = logging.Formatter(
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-console_handler.setFormatter(formatter)
-file_handler.setFormatter(formatter)
+for n in range(1, 21):
+    logger.info("Expense added: line %s", n)
 
-logger.addHandler(console_handler)
-logger.addHandler(file_handler)
-
-logger.debug("Debug information")
-logger.info("Student application started")
-logger.warning("Student not found")
-logger.error("Database operation failed")
+print(sorted(name for name in os.listdir("logs") if name.startswith("expense.log")))
 ```
 
-This single example demonstrates:
+**Expected Output:**
 
-- custom logger  
-- logging levels  
-- handlers (console + file)  
-- formatter  
-- rotating logs  
-- different levels per handler  
+```
+['expense.log', 'expense.log.1', 'expense.log.2']
+```
+
+(Class `maxBytes=200` is tiny so rotation happens in one run. Production uses something like `maxBytes=5_000_000` — about 5 MB.)
+
+**Time —** at midnight, today’s `daily.log` is renamed with a date suffix (`daily.log.2026-09-14`). New lines go to a fresh `daily.log`. `backupCount=7` keeps a week.
+
+```python
+import logging
+import os
+from logging.handlers import TimedRotatingFileHandler
+
+os.makedirs("logs", exist_ok=True)
+
+logger = logging.getLogger("expense_daily")
+logger.setLevel(logging.INFO)
+logger.handlers.clear()
+logger.propagate = False
+
+handler = TimedRotatingFileHandler(
+    "logs/daily.log",
+    when="midnight",
+    interval=1,
+    backupCount=7,
+    encoding="utf-8",
+)
+handler.setFormatter(logging.Formatter("%(levelname)s %(message)s"))
+logger.addHandler(handler)
+
+logger.info("Expense tracker started")
+
+with open("logs/daily.log", encoding="utf-8") as f:
+    print(f.read(), end="")
+```
+
+**Expected Output (this run — rotation has not happened yet):**
+
+```
+INFO Expense tracker started
+```
+
+After several midnights the folder looks like:
+
+```text
+daily.log                 ← today
+daily.log.2026-09-13      ← yesterday
+daily.log.2026-09-12
+...
+```
+
+(`when="midnight"` does not wait in class. The first snippet already proves rotation; this one is the audit-file pattern.)
+
+### ⚠️ WATCH OUT
+
+Do not attach a `FileHandler` and a rotating handler to the **same path**. They will fight over `expense.log`.
+
+`backupCount` is a **limit**, not a guarantee of forever. Size rotator: last N chunks. Timed rotator: last N intervals. Older files are deleted.
+
+### Try It
+
+Run the size example. Print `os.listdir("logs")`. Open `expense.log` and `expense.log.1` — newest lines are in `expense.log`.
 
 ---
 
-### 21. Awareness — config file and privacy
+## Step-by-Step: Build It
 
-Hard-coding handlers is fine for class. Larger apps may also load `logging.config.fileConfig("logging.conf")` or dictConfig — same ideas (loggers / handlers / formatters), different packaging.
-
-**Never** log passwords, OTPs, full card numbers, Aadhaar, or session tokens (GDPR / India DPDP). Log that an auth attempt failed, not the secret.
-
----
-
-## Step-by-Step: wire logging into the expense slice (basic → custom)
-
-You already have CSV + JSON from [File Handling](05_File_Handling.md). Start with `basicConfig`, then prefer a named logger for the lab.
-
-**A — Quick trail with `basicConfig`:**
+You already have CSV + JSON from [File Handling](05_File_Handling.md). Add a trail with `basicConfig`. (Named logger is stretch — section 7.)
 
 ```python
 import csv
@@ -860,6 +595,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
     datefmt="%d/%m/%Y %H:%M:%S",
+    filemode="w",
 )
 
 config = {
@@ -897,32 +633,73 @@ print("Check logs/app.log")
 
 **Expected Output (console):**
 
-```text
+```
 Tea: ₹120
 Metro: ₹50
 Day total ₹170 (limit ₹5000)
 Check logs/app.log
 ```
 
-**B — Same product, custom logger (stretch in class):** replace `basicConfig` with `getLogger("expense")` + file handler + formatter (sections 11–14). Console WARNING+ / file DEBUG+ if time allows (section 15).
-
-**Then open the kit:** [01_python_expense_tracker](../15_Lab_Assets/01_python_expense_tracker/) — add logging to the expense CLI. Type it — do not paste `solution/`.
+Open `logs/app.log` — you should see two INFO lines (write + day total). Then open the kit: [01_python_expense_tracker](../15_Lab_Assets/01_python_expense_tracker/) — add logging to the expense CLI. Do not copy `solution/`.
 
 ---
 
 ## Practice Exercises
 
-1. Configure `basicConfig` at DEBUG to `demo.log`. Log one message at each level. Open the file — how many lines?
+Attempt each problem before reading the model answer.
 
-**Model answer:** Five lines (DEBUG through CRITICAL).
+1. Configure `basicConfig` at DEBUG to `demo.log` with `filemode="w"` and format `%(levelname)s %(message)s`. Log one message at each of DEBUG, INFO, WARNING, ERROR, CRITICAL. How many lines?
+
+**Hint:** DEBUG as the threshold keeps every standard level.
+
+**Model answer:**
+
+```python
+import logging
+
+logging.basicConfig(
+    filename="demo.log",
+    level=logging.DEBUG,
+    format="%(levelname)s %(message)s",
+    filemode="w",
+)
+logging.debug("d")
+logging.info("i")
+logging.warning("w")
+logging.error("e")
+logging.critical("c")
+```
+
+**Expected Output** (`demo.log`): five lines (DEBUG through CRITICAL).
 
 2. Repeat with `level=logging.WARNING`. Which messages disappear?
 
-**Model answer:** DEBUG and INFO are filtered out.
+**Model answer:** DEBUG and INFO are filtered out. Three lines remain (WARNING, ERROR, CRITICAL).
 
-3. Format messages as `%(asctime)s | %(levelname)s | %(message)s` with `datefmt="%Y-%m-%d %H:%M:%S"`.
+3. Format messages as `%(asctime)s | %(levelname)s | %(message)s` with `datefmt="%Y-%m-%d %H:%M:%S"`. Log one WARNING. Confirm the line has a date, a level, and the message.
 
-4. Wrap `int(input(...))` in `try` / `except ValueError` and call `logging.exception` on failure. Confirm the traceback is in the log file.
+**Model answer:** Pass `format=` and `datefmt=` to `basicConfig`. The clock values will match **your** run time; the **shape** is `YYYY-MM-DD HH:MM:SS | WARNING | ...`.
+
+4. Wrap `int("xyz")` in `try` / `except ValueError` and call `logging.exception` on failure. Confirm the traceback is in the log file.
+
+**Model answer:**
+
+```python
+import logging
+
+logging.basicConfig(
+    filename="demo.log",
+    level=logging.INFO,
+    format="%(levelname)s:%(message)s",
+    filemode="w",
+)
+try:
+    int("xyz")
+except ValueError:
+    logging.exception("bad input")
+```
+
+`demo.log` starts with `ERROR:bad input` and then a `ValueError` traceback.
 
 5. Build logger `atm`: INFO+ → `atm.log`, WARNING+ → console. Log one INFO and one WARNING.
 
@@ -936,7 +713,7 @@ logger.setLevel(logging.INFO)
 logger.handlers.clear()
 logger.propagate = False
 fmt = logging.Formatter("%(levelname)s %(message)s")
-fh = logging.FileHandler("atm.log", encoding="utf-8")
+fh = logging.FileHandler("atm.log", mode="w", encoding="utf-8")
 fh.setLevel(logging.INFO)
 ch = logging.StreamHandler()
 ch.setLevel(logging.WARNING)
@@ -948,126 +725,197 @@ logger.info("ATM session started")
 logger.warning("Cash drawer low")
 ```
 
-6. Write `logging_config.py` with `get_logger(name)`. From two modules, log as `user_service` and `payment_service` into the same file. Confirm `%(name)s` differs on each line.
+**Expected Output (console):**
 
-7. Switch the file handler to `RotatingFileHandler(maxBytes=1000, backupCount=2)` and write in a loop until a backup file appears.
+```
+WARNING Cash drawer low
+```
+
+`atm.log` has both INFO and WARNING.
+
+6. Write `get_logger(name)` that attaches one file handler (once). From two names, log as `user_service` and `payment_service` into the same file. Confirm `%(name)s` differs on each line.
+
+**Hint:** `if not logger.handlers:` before `addHandler`. Set `propagate = False`.
+
+**Model answer:** Shared `get_logger` attaches one file handler per name (once). Callers use `get_logger("user_service")` and `get_logger("payment_service")` so `%(name)s` shows which module wrote the line. Both can point at `logs/app.log`.
 
 ---
 
-## Mini-Project (Assignment)
+## Lab
 
-### A — DailyExpenseLogger (core lab)
+Combine `basicConfig`, INFO for success, and `logging.exception` for a bad amount. This is not the full expense-tracker ticket.
 
-**Title:** DailyExpenseLogger  
-**Customer:** Employee Management Portal finance — same CSV/JSON tracker as File Handling; every operation leaves a trail in `logs/app.log`.  
+### Problem
+
+A one-function adder must leave a trail: success in the log, and a traceback when the amount is not an int.
+
+### What to Build
+
+A short script that tries two amounts (`"40"` and `"abc"`), prints a clear message for the user, and writes `logs/lab.log`.
+
+### Requirements
+
+- `os.makedirs("logs", exist_ok=True)`
+- `basicConfig` to `logs/lab.log`, level INFO, format `%(levelname)s %(message)s`, `filemode="w"`
+- For each raw amount: `int(...)` in `try`; on success `logging.info` and print `Added: <n>`
+- On `ValueError`: print `Bad amount` and `logging.exception("parse failed")`
+
+### Expected Behavior
+
+Console shows one added line and one `Bad amount`. The log file has INFO plus an ERROR traceback. No secrets in the log.
+
+### Sample Run
+
+```text
+Added: 40
+Bad amount
+```
+
+### Constraints
+
+Root `logging.info` / `logging.exception` is enough. Named loggers are optional bonus.
+
+### Bonus
+
+Switch to `getLogger("lab")` + `FileHandler` with the same format.
+
+---
+
+## Mini-Project (Assignment): DailyExpenseLogger
+
+**Why this matters:** The File Handling tracker already saves CSV/JSON. Support still cannot answer “when did the add fail?” until every operation leaves a line in `logs/app.log`.
+
 **Lab kit:** [15_Lab_Assets/01_python_expense_tracker/](../15_Lab_Assets/01_python_expense_tracker/)
 
+This is **not** the in-class assemble. Same product; now every path logs.
 
-| Piece          | Detail                               |
-| -------------- | ------------------------------------ |
-| `logs/app.log` | Prefer a **named** custom logger     |
-| Levels         | INFO for success; ERROR for failures |
-| Resilience     | Bad/missing files → log + clear msg  |
+### Objective
 
+Keep the expense CLI. Successful adds are INFO. Bad / missing files are ERROR (use `logging.exception` at least once). Logs go to a file, not only `print`.
 
-**Done when:**
+### Story / Scenario
 
-- [ ] Logging writes to a log file (not only `print`)
-- [ ] At least one `logging.exception` (or ERROR) path for bad input / missing file
-- [ ] No passwords / secrets in logs
-- [ ] Pushed to GitHub
+Employee Management Portal finance — same CSV/JSON tracker as File Handling; every operation leaves a trail so a clerk’s “it didn’t save” can be replayed.
 
-### B — Advanced: Student Management System logger
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| `logs/app.log` | Prefer a **named** custom logger once `basicConfig` works |
+| Levels | INFO for success; ERROR for failures |
+| Resilience | Bad / missing files → log + clear message |
+| Secrets | No passwords / OTPs / card numbers in logs |
+| `solution/` | Do **not** copy this |
+
+### Expected Behavior
+
+- Adding a valid expense writes INFO
+- Invalid amount does not crash; ERROR (or `exception`) is in the log
+- You can open `logs/app.log` after the run
+
+### Sample Run
+
+Use the kit’s CLI / `main` after you add logging. Check the log file, not only the console.
+
+### Bonus Challenges
+
+Advanced folder:
 
 ```text
 student_app/
-│
 ├── main.py
 ├── student_service.py
 ├── logging_config.py
-└── logs/
-    └── student_app.log
+└── logs/student_app.log
 ```
 
-**Requirements:**
+- `logging_config.py` — reusable `get_logger` (console WARNING+, file DEBUG+, optional rotating handler)
+- `student_service.py` — `add_student`, `find_student`, `delete_student` with INFO / WARNING / ERROR / DEBUG
+- `main.py` — call the three operations so you can compare console vs file
 
-- `logging_config.py` — reusable `get_logger` (console WARNING+, file DEBUG+, rotating file handler)
-- `student_service.py` — `add_student()`, `find_student()`, `delete_student()` each with appropriate logs  
-  - INFO → successful operations  
-  - WARNING → student not found  
-  - ERROR → unexpected failures  
-  - DEBUG → useful development detail  
-- `main.py` — call the three operations so students can verify console vs file behaviour
+### Done when
 
-**Done when:**
-
-- [ ] Central `logging_config.py` used by service + main  
-- [ ] Console shows WARNING+ only; file has DEBUG+  
-- [ ] Rotating handler configured  
-- [ ] Named loggers identify the service (`%(name)s`)
-
----
-
-## What you should know after this module
-
-You should understand:
-
-```text
-logging
-   ↓
-Logger
-   ↓
-Handler
-   ↓
-Formatter
-   ↓
-Output
-```
-
-and be comfortable explaining:
-
-> A Logger creates log records, Handlers determine where they go, and Formatters determine how those records are displayed.
-
-That is the advanced logging foundation expected before frameworks such as **Django** or **FastAPI**.
+- [ ] Logging writes to a log file (not only `print`)
+- [ ] At least one `logging.exception` (or ERROR) path for bad input / missing file
+- [ ] No secrets in logs
+- [ ] Named logger used if you took the stretch
 
 ---
 
 ## Interview Q&A
 
-**Q1. Purpose of the logging module vs** `print`**?**  
-**A:** Logging provides levels, timestamps, handlers (file/console), configurable format, and production-ready filtering. `print` is ad-hoc debugging only. On a server, nobody is watching the terminal.
+**Q1. Logging vs `print`?**  
+Logging gives levels, timestamps, handlers (file/console), and filtering. `print` is ad-hoc. On a server, nobody is watching the terminal.
 
-**Q2. What are the standard logging levels (high → low)?**  
-**A:** CRITICAL (50), ERROR (40), WARNING (30), INFO (20), DEBUG (10), plus NOTSET (0). Default threshold is WARNING if unset.
+**Q2. Standard levels (high → low)?**  
+CRITICAL (50), ERROR (40), WARNING (30), INFO (20), DEBUG (10). Default threshold is WARNING if unset.
 
-**Q3. What does** `basicConfig` **do? Why does a second call often fail?**  
-**A:** It configures the root logger (file, level, format, …). Once the root logger has handlers, later `basicConfig` calls are ignored.
+**Q3. What does `basicConfig` do? Why does a second call often fail?**  
+It configures the root logger (file, level, format, …). Once the root logger has handlers, later `basicConfig` calls are ignored.
 
-**Q4. Why prefer a custom logger (**`getLogger`**) over only root?**  
-**A:** You can attach multiple handlers, set per-module names, and avoid the “config is frozen after first import” trap of root `basicConfig`.
+**Q4. Why prefer `getLogger` over only root?**  
+You can attach multiple handlers, set per-module names, and avoid the “config is frozen after first import” trap of root `basicConfig`.
 
 **Q5. Logger vs Handler vs Formatter?**  
-**A:** Logger creates the record; Handler chooses destination (console/file); Formatter shapes the text. Optional Filter decides which records pass.
+Logger creates the record; Handler chooses destination; Formatter shapes the text.
 
-**Q6. Why do logger names like** `app.payment` **matter?**  
-**A:** They form a hierarchy and show which part of the system produced a line — essential when many modules share one log file.
+**Q6. `logging.error` vs `logging.exception`?**  
+Both are ERROR. `exception` also records the current traceback — use it inside `except`.
 
-**Q7.** `logging.error` **vs** `logging.exception`**?**  
-**A:** Both are ERROR level. `exception` also records the current exception traceback — use it inside `except`.
+**Q7. What is `propagate`? When set it to `False`?**  
+Child loggers forward records to parents by default. Set `propagate = False` when the child has its own handlers so lines are not duplicated.
 
-**Q8. What is** `propagate`**? When set it to** `False`**?**  
-**A:** Child loggers forward records to parents by default. Set `propagate = False` when the child has its own handlers so messages are not duplicated up the tree / root.
+**Q8. File handler DEBUG, console handler WARNING — what appears where?**  
+DEBUG and INFO go to the file only (if the logger allows them). WARNING and above go to both.
 
-**Q9. File handler DEBUG, console handler WARNING — what appears where?**  
-**A:** DEBUG and INFO go to the file only (if logger allows them). WARNING and above go to both.
+**Q9. What must never go in log files?**  
+Passwords, OTPs, full card numbers, Aadhaar, session tokens. Log that an auth attempt failed, not the secret.
 
-**Q10. What sensitive data should never go in log files?**  
-**A:** Passwords, OTPs, full card numbers, Aadhaar, session tokens — GDPR / India DPDP. Log that an auth attempt failed, not the secret itself.
-
-**Q11. How would you rotate log files when they grow too large?**  
-**A:** Use `logging.handlers.RotatingFileHandler` (size) or `TimedRotatingFileHandler` (time) so old logs are renamed and a fresh file starts.
-
-**Q12. Why put setup in** `logging_config.py`**?**  
-**A:** Centralised configuration — every module calls `get_logger("…")` once; handlers are not re-added on every import; consistent format across the app.
+**Q10. How do you rotate logs that grow too large?**  
+`RotatingFileHandler` when you cap **size** (`maxBytes` + `backupCount`). `TimedRotatingFileHandler` when you want one file per **interval** (`when="midnight"`, keep 7 days). Same logger chain — only the handler changes.
 
 ---
+
+## Cheat Sheet
+
+```text
+logging.basicConfig(...)     → configure root once (file, level, format, filemode)
+logging.info / warning / ... → write at that level
+logging.exception(msg)       → ERROR + traceback (inside except only)
+filemode "a" / "w"           → append (default) / overwrite
+getLogger("app")             → named logger (same name → same object)
+FileHandler / StreamHandler  → file / console
+RotatingFileHandler          → new file when size hits maxBytes
+TimedRotatingFileHandler     → new file at midnight (or other when=)
+Formatter("...")             → line shape
+propagate = False            → do not duplicate up to parent/root
+```
+
+Default threshold is WARNING. Never log secrets.
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can explain why logging beats print
+[ ] I can set levels and see DEBUG filtered at INFO
+[ ] I can use basicConfig with filename, format, filemode
+[ ] I can call logging.exception inside except
+[ ] I know a second basicConfig is usually ignored
+[ ] I can attach a named logger + handler + formatter (Advanced)
+[ ] I can choose RotatingFileHandler (size) vs TimedRotatingFileHandler (midnight)
+[ ] I completed the lab
+[ ] I attempted DailyExpenseLogger
+[ ] I can explain Logger vs Handler vs Formatter
+```
+
+---
+
+## What's Next?
+
+You can now keep a timestamped trail of success and failure — including stack traces — without relying on the terminal.
+
+Next on the calendar is [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) so this code and its `logs/` / `data/` layout can be versioned. Database work (Python talking to MySQL) is a later bridge after the MySQL phase.
+
+Optional, not this week: [Professional Python Deep Dive](08_Professional_Python_Deep_Dive.md).

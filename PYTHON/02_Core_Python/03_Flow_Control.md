@@ -1,41 +1,66 @@
-# Module: Flow Control
+# Module 03 — Flow Control
 
-**Phase:** Core Python  
+**Phase:** Core Python
 
-**Previous module:** Variables Datatypes Operators IO
-**Next module:** Strings
+**Previous:** [Variables, Datatypes, Operators, and I/O](02_Variables_Datatypes_Operators_IO.md)  
+**Next:** [Strings](04_Strings.md)
 
 ---
 
-**Module Outcome:**
+## Module Outcome
 
-- Decide like an ATM: withdraw only if the PIN and balance allow it
-- Repeat work with `while` / `for` instead of copy-pasting the same lines
-- Build a small menu (pass/fail, cart check, retry) that does not run in a straight line
+Decide with `if` / `elif` / `else`, repeat with `for` and `while`, skip or stop with `continue` / `break`, and drive a small console menu.
 
-### Why flow control?
+By the end of this module you will be able to:
 
-Programs rarely run in one straight line. A **student portal** must check login, an **ATM** repeats until user exits, and a **task manager** loops through tasks.
+- Branch with `if` / `elif` / `else` (first `True` wins; indent is syntax)
+- Combine login-style checks with `and` / `or`
+- Loop with `for` and `range()` (stop excluded)
+- Repeat with `while` until success or attempts run out
+- Use `break` vs `continue`
+- Nest one decision inside another (withdraw: positive **and** within balance)
+- Compare menu `choice` to `"1"`, not `1`
 
-**Icons:** Bank · UPI · Employee · Order · Payroll
+---
 
-**Where used?**
-- **HDFC Bank** ATM — PIN retries, withdraw only if balance allows
-- College apps — pass/fail grades, marks menus
-- **Swiggy** — cart checkout loops, stock checks
-- **Employee Management Portal** — overtime flags, salary slab branches
-- **Apollo Hospitals** — ticket priority menus, appointment status
+## 1. Why This Concept Matters
 
-**Flow control** lets you:
+Until now every line ran in order. Real programs **choose** and **repeat**.
 
-- **Decide** — run code only when a condition is true (`if`)
-- **Repeat** — run code many times (`for`, `while`)
-- **Jump** — leave early (`break`) or skip one round (`continue`)
+An ATM checks PIN and balance. A portal grades marks. A cart skips a bad amount and keeps going. Flow control is how Python does that: run a block only when a condition is true, loop until you are done, or jump early with `break` / `continue`.
 
-### if / elif / else
+You already have the expressions (`marks >= 35`, `and` / `or`). This module wraps them in decisions and loops.
+
+---
+
+## 2. `if` / `elif` / `else`
+
+### Understand
+
+Branching: run one block when a condition is true; otherwise try the next branch.
+
+- Colon `:` after the condition
+- Indent the block (4 spaces) — indentation **is** syntax
+- Checks run **top → bottom**; the first `True` branch wins
+- `else` is the safety net
+
+Order matters: check `>= 90` before `>= 75`, or a 92 would be labelled B.
+
+```mermaid
+flowchart TD
+  A[Enter marks] --> B{marks >= 90?}
+  B -->|Yes| C[Grade A]
+  B -->|No| D{marks >= 75?}
+  D -->|Yes| E[Grade B]
+  D -->|No| F{marks >= 35?}
+  F -->|Yes| G[Grade C]
+  F -->|No| H[Grade Fail]
+```
+
+### How It Works
 
 ```python
-marks = int(input("Enter marks: "))
+marks = 82
 
 if marks >= 90:
     grade = "A"
@@ -49,125 +74,16 @@ else:
 print(f"Grade: {grade}")
 ```
 
-**Rules:**
+**Expected Output:**
 
-- Colon `:` after condition
-- Indented block (usually 4 spaces) — **indentation is syntax in Python**
-- `elif` = else if; `else` catches everything not matched above
-
-**Visual — how Python chooses a branch (student grades):**
-
-```mermaid
-flowchart TD
-  A[Enter marks] --> B{marks >= 90?}
-  B -->|Yes| C[Grade A]
-  B -->|No| D{marks >= 75?}
-  D -->|Yes| E[Grade B]
-  D -->|No| F{marks >= 35?}
-  F -->|Yes| G[Grade C]
-  F -->|No| H[Grade Fail]
+```
+Grade: B
 ```
 
-**Key takeaways:**
-- Checks run **top → bottom**; first `True` branch wins
-- Later `elif`s are skipped once one branch runs
-- `else` is the safety net when nothing above matched
-- Same idea as ATM: check invalid amount → insufficient → then withdraw
-
-Only **one** box on the right runs — the first `True` condition wins; `else` is the last safety net.
-
-### for loop
-
-Use when you know **how many times** or want to visit **each item**.
+Range check before pass/fail:
 
 ```python
-for i in range(1, 6):      # 1, 2, 3, 4, 5
-    print(f"Task {i}: pending")
-```
-
-### while loop
-
-Use when repetition depends on a **condition** staying true.
-
-```python
-pin = ""
-while pin != "1234":
-    pin = input("Enter PIN: ")
-print("Access granted")
-```
-
-### range()
-
-```python
-range(5)        # 0, 1, 2, 3, 4
-range(2, 8)     # 2, 3, 4, 5, 6, 7  — stop excluded
-range(0, 10, 2) # 0, 2, 4, 6, 8
-```
-
-### break and continue
-
-```python
-for n in range(1, 11):
-    if n == 5:
-        continue    # skip printing 5
-    if n == 8:
-        break       # stop loop entirely
-    print(n)
-# prints 1 2 3 4 6 7
-```
-
-### Menu pattern (ATM / portals)
-
-Most CLI apps in training use:
-
-```
-while True:
-    show menu
-    read choice
-    if choice == 1: do action
-    elif choice == 2: do action
-    elif choice == 0: break
-    else: invalid
-```
-
-This is the skeleton for ATM, expense tracker, and task manager projects.
-
----
-
-## Important Concepts and Definitions
-
-| Term               | Definition                                    |
-| ------------------ | --------------------------------------------- |
-| **Condition**      | Boolean expression controlling branch or loop |
-| **Branch**         | One path of if/elif/else                      |
-| **Iteration**      | One execution of loop body                    |
-| **Infinite loop**  | Loop condition never becomes false            |
-| **Sentinel value** | Special input meaning "stop" (e.g. 0 to exit) |
-| **Nested loop**    | Loop inside another loop                      |
-| **Control flow**   | Order in which statements execute             |
-| **Block**          | Indented group of statements                  |
-| **Loop variable**  | Variable receiving each value in for-loop     |
-
-**Flowchart symbols (text):**
-
-```
-Decision:  <condition?> ----yes----> [action]
-              |
-             no
-              |
-           [other action]
-```
-
----
-
-## Step-by-Step Notes (With Annotated Code)
-
-### Step 1: Pass/fail — student management
-
-```python
-# pass_fail.py
-
-marks = float(input("Enter final marks (out of 100): "))
+marks = 28.0
 
 if marks < 0 or marks > 100:
     print("Invalid marks entered.")
@@ -177,97 +93,71 @@ else:
     print(f"Fail — scored {marks}. Minimum is 35.")
 ```
 
-Note: `or` combines invalid range checks.
-
-**Note:**
-- Wrong: Missing colon (`if x > 5`), inconsistent indentation, or putting `elif` after `else`.
-- Prefer: `if x > 5:` with 4 spaces; order is if → elif → else (else last).
-- Wrong: Leaving an empty block under `if`/`else`.
-- Prefer: Use `pass` as a placeholder when needed.
-
-Check marks 72 for invalid range, pass, or fail using if/elif/else.
-
-```python
-marks = 72
-if marks < 0 or marks > 100:
-    print("Invalid marks")
-elif marks >= 35:
-    print("Pass")
-else:
-    print("Fail")
-```
-
 **Expected Output:**
 
 ```
-Pass
+Fail — scored 28.0. Minimum is 35.
 ```
 
-Classify age 62 as Minor, Adult, or Senior with elif branches.
+### ⚠️ WATCH OUT
 
-```python
-age = 62
-if age < 18:
-    print("Minor")
-elif age < 60:
-    print("Adult")
+```text
+# Wrong
+if marks = 35:          # assignment, not comparison
+if marks >= 35          # missing colon
+else:                   # else cannot come before elif
+
+# Prefer
+if marks >= 35:
+    ...
+elif marks >= 0:
+    ...
 else:
-    print("Senior")
+    ...
 ```
 
-**Expected Output:**
+Wrong indent → `IndentationError` or the line silently belongs to the wrong block.
 
-```
-Senior
-```
+### Try It
 
-### Step 2: Employee login (simplified)
+Classify age `62` as Minor (`< 18`), Adult (`< 60`), or Senior.
+
+---
+
+## 3. Login check (`and` / `or`)
+
+### Understand
+
+Portals combine conditions: username **and** password must both match. Clearer failure messages use separate checks (`if` / `elif`) so the student sees *which* part failed.
+
+### How It Works
 
 ```python
-# login_demo.py — hard-coded credentials for lab only
+stored_user = "admin"
+stored_pass = "secret123"
+username = "admin"
+password = "secret123"
 
-VALID_USER = "admin"
-VALID_PASS = "secret123"
-
-username = input("Username: ")
-password = input("Password: ")
-
-if username == VALID_USER and password == VALID_PASS:
+if username == stored_user and password == stored_pass:
     print("Welcome to Employee Portal")
 else:
     print("Invalid credentials. Contact HR.")
 ```
 
-**Note:**
-- Wrong: Using `=` when you meant to compare — logic always wrong or SyntaxError.
-- Prefer: `==` to compare, `=` to assign.
-
-Compare entered credentials to stored username/password and print Welcome or Invalid.
-
-```python
-username = "priya"
-password = "ksr123"
-entered_user = "priya"
-entered_pass = "ksr123"
-if entered_user == username and entered_pass == password:
-    print("Welcome")
-else:
-    print("Invalid")
-```
-
 **Expected Output:**
 
 ```
-Welcome
+Welcome to Employee Portal
 ```
 
-Run separate username and PIN checks and print which check failed.
+Which field failed:
 
 ```python
 username = "priya"
 pin = "4321"
 entered_user = "priya"
 entered_pin = "0000"
+
 if entered_user != username:
     print("Username failed")
 elif entered_pin != pin:
@@ -282,157 +172,285 @@ else:
 PIN failed
 ```
 
-**Common Error:** Using `=` inside `if` (`if x = 5`) — that is assignment, not comparison. Use `==`.
+### ⚠️ WATCH OUT
 
-### Step 3: for loop — multiplication table
+```text
+# Wrong
+if user = "admin":
+
+# Prefer
+if user == "admin":
+```
+
+### Try It
+
+Hard-code stored user `"priya"` and password `"ksr123"`, with matching entered values. Print `Welcome` or `Invalid` using `and`.
+
+---
+
+## 4. `for` and `range()`
+
+### Understand
+
+`for` repeats over a sequence. `range(start, stop)` gives numbers; **stop is excluded**.
+
+Use `for` when you know how many times to repeat (table 1–10, even numbers, a short list of amounts).
+
+```text
+range(5)         →  0, 1, 2, 3, 4
+range(1, 11)     →  1 … 10
+range(0, 10, 2)  →  0, 2, 4, 6, 8
+```
+
+### How It Works
 
 ```python
-n = int(input("Table for which number? "))
-print(f"--- Multiplication table of {n} ---")
-
+n = 7
 for i in range(1, 11):
     print(f"{n} x {i} = {n * i}")
-```
-
-**Note:**
-- Wrong: Off-by-one with `range` (loop one short or one long).
-- Prefer: Remember the stop value is exclusive (`range(1, 11)` → 1…10).
-
-Print the multiplication table of 7 for 1 through 10.
-
-```python
-for i in range(1, 11):
-    print(f"7 x {i} = {7 * i}")
-```
-
-Print even numbers from 2 to 20 on one line using range with step 2.
-
-```python
-for n in range(2, 21, 2):
-    print(n, end=" ")
-print()
 ```
 
 **Expected Output:**
 
 ```
-2 4 6 8 10 12 14 16 18 20 
+7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70
 ```
 
-**Remember:** `range` stop is **exclusive** — `range(1, 11)` gives 1…10, not 11.
-
-### Step 4: while loop — PIN retries (max 3)
+Even numbers with a step:
 
 ```python
-CORRECT_PIN = "4321"
+for n in range(2, 21, 2):
+    print(n)
+```
+
+**Expected Output:**
+
+```
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+```
+
+A short list of amounts (the list is only something to walk — list methods come later):
+
+```python
+for amount in [120, 85, 40]:
+    print(f"Line: ₹{amount}")
+```
+
+**Expected Output:**
+
+```
+Line: ₹120
+Line: ₹85
+Line: ₹40
+```
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong expectation — range(1, 11) includes 11
+# Prefer — stop is exclusive → 1 … 10
+```
+
+### Try It
+
+Print the table of `9` for 1 through 5 (`9 x 1 = 9` …).
+
+---
+
+## 5. `while` loop — PIN retries
+
+### Understand
+
+`while` keeps going **while the condition is true**. Repeat until success or until attempts run out — ATM / login pattern.
+
+Something inside must change (counter, input, or `break`) or you get an **infinite loop**.
+
+`while` / `else`: the `else` runs if the loop ended **without** `break` (PIN never matched).
+
+### How It Works
+
+Countdown (the condition must move toward `False`):
+
+```python
+tries_left = 3
+while tries_left > 0:
+    print(f"Attempts left: {tries_left}")
+    tries_left -= 1
+print("Stopped.")
+```
+
+**Expected Output:**
+
+```
+Attempts left: 3
+Attempts left: 2
+Attempts left: 1
+Stopped.
+```
+
+PIN retries — walk three tries, `break` on success. (`else` on the `for` / `while` is the “never matched” path.)
+
+```python
+correct_pin = "4321"
+
+for pin in ["1111", "2222", "4321"]:
+    print(f"Enter ATM PIN: {pin}")
+    if pin == correct_pin:
+        print("PIN accepted.")
+        break
+    print("Wrong PIN.")
+else:
+    print("Card blocked. Visit branch.")
+```
+
+**Expected Output:**
+
+```
+Enter ATM PIN: 1111
+Wrong PIN.
+Enter ATM PIN: 2222
+Wrong PIN.
+Enter ATM PIN: 4321
+PIN accepted.
+```
+
+Live kit pattern (`input` + `while`). Type this in class; output depends on what you type:
+
+```python
+correct_pin = "4321"
 attempts = 0
 max_attempts = 3
 
 while attempts < max_attempts:
     pin = input("Enter ATM PIN: ")
-    if pin == CORRECT_PIN:
+    if pin == correct_pin:
         print("PIN accepted.")
         break
-    else:
-        attempts += 1
-        remaining = max_attempts - attempts
-        print(f"Wrong PIN. {remaining} attempt(s) left.")
+    attempts += 1
+    print(f"Wrong PIN. {max_attempts - attempts} attempt(s) left.")
 else:
-    # while-else: runs if loop ended without break
     print("Card blocked. Visit branch.")
 ```
 
-**Note:**
-- Wrong: Infinite `while` — the condition never moves toward exit.
-- Prefer: Ensure a variable in the condition changes (counter, flag, or `break`).
+**Sample Run** (wrong, wrong, correct):
 
-Simulate up to three PIN attempts with while-else; break on correct PIN or block the card.
+```text
+Enter ATM PIN: 1111
+Wrong PIN. 2 attempt(s) left.
+Enter ATM PIN: 2222
+Wrong PIN. 1 attempt(s) left.
+Enter ATM PIN: 4321
+PIN accepted.
+```
+
+If all three fail, `else` prints `Card blocked. Visit branch.`
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — never ends
+while True:
+    print("hi")          # no break, no changing condition
+
+# Prefer — update a counter, or break on success
+```
+
+In the kit you will use `while True:` **with** a `break` on Exit.
+
+### Try It
+
+Start `count = 1`. While `count <= 3`, print `Attempt {count}` with an f-string, then add 1. After the loop print `Ready.`
+
+---
+
+## 6. `break` and `continue`
+
+### Understand
+
+| Keyword | Effect |
+|---------|--------|
+| `continue` | Skip the rest of **this** iteration; loop continues |
+| `break` | Exit the loop **completely** |
+
+Skip bad data with `continue`. Stop when you are done with `break`.
+
+### How It Works
 
 ```python
-CORRECT_PIN = "2580"
-attempts = ["1111", "2222", "2580"]  # demo tries
-i = 0
-while i < 3:
-    pin = attempts[i]
-    i += 1
-    if pin == CORRECT_PIN:
-        print("Access granted")
-        break
-else:
-    print("Card blocked")
+for n in range(1, 11):
+    if n == 5:
+        continue    # skip 5
+    if n == 8:
+        break       # stop before printing 8 and after
+    print(n)
 ```
 
 **Expected Output:**
 
 ```
-Access granted
+1
+2
+3
+4
+6
+7
 ```
 
-Loop demo amounts until you find a positive value and print Accepted.
+Skip invalid (non-positive) amounts, add the rest:
 
 ```python
-amounts = [-50, 0, 250]  # demo inputs until positive
-for amount in amounts:
-    if amount > 0:
-        print(f"Accepted: ₹{amount}")
-        break
-```
-
-### Step 5: continue — skip invalid expenses
-
-```python
-total = 0
-for _ in range(3):   # _ means "I don't need loop variable name"
-    amt_str = input("Expense amount: ")
-    if not amt_str.replace(".", "", 1).isdigit():
-        print("Skipped invalid entry.")
-        continue
-    total += float(amt_str)
-
-print(f"Valid expense total: ₹{total:.2f}")
-```
-
-Sum only numeric expense strings from a list, skipping invalid entries with continue.
-
-```python
-raw = ["120", "abc", "85.5", "xx", "40"]
 total = 0.0
-for item in raw:
-    # String check now; try/except comes in Exceptions week
-    if not item.replace(".", "", 1).isdigit():
+for amount in [120, -5, 85.5, 0, 40]:
+    if amount <= 0:
         continue
-    total += float(item)
+    total += amount
 print(f"Sum of valid amounts: ₹{total}")
 ```
 
-Print numbers 1–15 skipping multiples of 3 using continue.
+**Expected Output:**
 
-```python
-for n in range(1, 16):
-    if n % 3 == 0:
-        continue
-    print(n, end=" ")
-print()
+```
+Sum of valid amounts: ₹245.5
 ```
 
-### Step 6: Nested if — task priority
+### ⚠️ WATCH OUT
 
-```python
-priority = int(input("Priority (1=high, 3=low): "))
-hours = float(input("Estimated hours: "))
-
-if priority == 1:
-    if hours > 8:
-        print("Split high-priority task across days.")
-    else:
-        print("Schedule today.")
-elif priority == 2:
-    print("Schedule this week.")
-else:
-    print("Backlog.")
+```text
+# Wrong — break when you only meant to skip one bad row
+# Prefer — continue to skip; break for “done / found”
 ```
 
-Use nested if to print Distinction, Pass, or Fail for marks 82.
+### Try It
+
+Print numbers 1 through 15, skipping multiples of 3 (use `%`).
+
+---
+
+## 7. Nested `if` (withdraw check)
+
+### Understand
+
+An `if` inside another `if` — decisions stack. Amount must be positive **and** within balance. Check the easy rejection first.
+
+### How It Works
 
 ```python
 marks = 82
@@ -451,8 +469,6 @@ else:
 Distinction
 ```
 
-Check a positive withdrawal amount against balance with nested if and print the outcome.
-
 ```python
 balance = 5000
 amount = 1200
@@ -465,34 +481,47 @@ else:
     print("Invalid amount")
 ```
 
-### Step 7: ATM menu skeleton (full pattern)
+**Expected Output:**
+
+```
+Withdrawal allowed
+```
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — a flat if that subtracts even when amount is negative
+# Prefer — check amount > 0 first, then amount <= balance
+```
+
+### Try It
+
+`balance = 5000`, `amount = 6000`. Print the correct withdraw message using nested `if`.
+
+---
+
+## Step-by-Step: Build It
+
+One ATM session assembled with the same branches the kit needs (1 Balance · 2 Deposit · 3 Withdraw · 4 Quit). Here the choices are prepared so the output is fixed. Tonight you will replace the prepared list with `while True` and `input(...)`.
 
 ```python
-# atm_menu.py — simplified balance demo
-
 balance = 5000.0
 
-while True:
-    print("\n===== ATM MENU =====")
-    print("1. Check Balance")
-    print("2. Deposit")
-    print("3. Withdraw")
-    print("0. Exit")
-    choice = input("Choose option: ")
+for choice in ["1", "2", "3", "4"]:
+    print("===== ATM MENU =====")
+    print("Choice:", choice)
 
     if choice == "1":
         print(f"Balance: ₹{balance:.2f}")
 
     elif choice == "2":
-        amount = float(input("Deposit amount: "))
+        amount = 1500.0
         if amount > 0:
             balance += amount
             print("Deposit successful.")
-        else:
-            print("Amount must be positive.")
 
     elif choice == "3":
-        amount = float(input("Withdraw amount: "))
+        amount = 2000.0
         if amount <= 0:
             print("Invalid amount.")
         elif amount > balance:
@@ -501,333 +530,374 @@ while True:
             balance -= amount
             print(f"Withdrawn ₹{amount:.2f}. New balance: ₹{balance:.2f}")
 
-    elif choice == "0":
+    elif choice == "4":
         print("Thank you. Remove card.")
         break
 
     else:
         print("Invalid choice. Try again.")
+
+print(f"Final balance: ₹{balance:.2f}")
 ```
 
-**Note:**
-- Wrong: Comparing menu `input()` to an int (`choice == 1`) when choice is still a string.
-- Prefer: Compare strings (`choice == "1"`) or convert deliberately with `int(choice)`.
+**Expected Output:**
 
-Demo deposit, withdraw, overdraft check, and print final ATM balance.
-
-```python
-balance = 5000
-balance += 1000
-print(f"After deposit: ₹{balance}")
-withdraw = 2000
-if withdraw <= balance:
-    balance -= withdraw
-    print(f"After withdraw: ₹{balance}")
-overdraft = 10000
-if overdraft > balance:
-    print("Overdraft blocked")
-print(f"Final balance: ₹{balance}")
+```
+===== ATM MENU =====
+Choice: 1
+Balance: ₹5000.00
+===== ATM MENU =====
+Choice: 2
+Deposit successful.
+===== ATM MENU =====
+Choice: 3
+Withdrawn ₹2000.00. New balance: ₹4500.00
+===== ATM MENU =====
+Choice: 4
+Thank you. Remove card.
+Final balance: ₹4500.00
 ```
 
-Track balance updates and record the last deposit or withdraw action.
+Menu skeleton for the kit (`input` returns a **string**):
 
-```python
-balance = 5000
-last_action = "None"
-balance += 500
-last_action = "Deposited ₹500"
-balance -= 200
-last_action = "Withdrew ₹200"
-print(f"Balance: ₹{balance}")
-print(f"Last action: {last_action}")
-```
-
-### Step 8: Task manager menu (add + list)
-
-```python
-# task_manager_v1.py
-
-tasks = []   # list comes in detail later — accept for now
-
+```text
 while True:
-    print("\n--- Task Manager ---")
-    print("1. Add task")
-    print("2. List tasks")
-    print("0. Exit")
-    choice = input("Option: ")
-
-    if choice == "1":
-        title = input("Task title: ")
-        if title.strip():          # strip() preview — strings module
-            tasks.append(title)
-            print("Task added.")
-        else:
-            print("Title cannot be empty.")
-
-    elif choice == "2":
-        if not tasks:
-            print("No tasks yet.")
-        else:
-            print("Your tasks:")
-            for index, task in enumerate(tasks, start=1):
-                print(f"  {index}. {task}")
-
-    elif choice == "0":
-        break
-
-    else:
-        print("Invalid option.")
+    show menu
+    read choice
+    if choice == "1":   action
+    elif choice == "2": action
+    elif choice == "4": break
+    else: invalid
 ```
 
-Pop the last task from a list if any exist and print what was deleted and what remains.
+```text
+# Wrong
+if choice == 1:          # input() is str — this never matches
 
-```python
-tasks = ["Login page", "API", "Deploy"]
-if tasks:
-    cancelled = tasks.pop()
-    print(f"Deleted: {cancelled}")
-print("Remaining:", tasks)
-```
-
-Simulate a mini student portal that adds names, lists them, and handles blank input.
-
-```python
-names = []
-actions = [("1", "Priya"), ("1", ""), ("1", "Ravi"), ("2", None), ("0", None)]
-for choice, value in actions:
-    if choice == "1":
-        if value and value.strip():
-            names.append(value.strip())
-            print(f"Added: {value.strip()}")
-        else:
-            print("Blank name rejected")
-    elif choice == "2":
-        print("Names:", names)
-    elif choice == "0":
-        print("Exit")
-        break
+# Prefer
+if choice == "1":
 ```
 
 ---
 
 ## Practice Exercises
 
-### Basic
+Attempt each problem before reading the model answer.
 
-1. Print whether a number is even or odd (`n % 2 == 0`).
+1. UPI limit: amount `25000`. Print `Above UPI limit` if amount `> 20000`, else `OK`.
 
-   **Model answer:**
+**Model answer:**
 
 ```python
-n = int(input("Number: "))
-if n % 2 == 0:
-    print("Even")
+amount = 25000
+if amount > 20000:
+    print("Above UPI limit")
 else:
-    print("Odd")
+    print("OK")
 ```
 
-2. Print numbers 1 to 20 using `for` and `range`.
+**Expected Output:**
 
-   **Model answer:**
-
-```python
-for i in range(1, 21):
-    print(i)
+```
+Above UPI limit
 ```
 
-3. Sum numbers 1 to 100 using a loop.
+2. Print odd numbers from 1 to 9 using `range` with a step.
 
-   **Model answer:**
+**Model answer:**
 
 ```python
-total = 0
-for i in range(1, 101):
-    total += i
-print(total)  # 5050
+for n in range(1, 10, 2):
+    print(n)
 ```
 
-4. Ask age; print "Minor" if `< 18` else "Adult".
+**Expected Output:**
 
-   **Model answer:**
-
-```python
-age = int(input("Age: "))
-if age < 18:
-    print("Minor")
-else:
-    print("Adult")
+```
+1
+3
+5
+7
+9
 ```
 
-### Intermediate
+3. Scores `[0, 12, 88]`: skip values `<= 0` with `continue`, print the first score `>= 50`, then `break`.
 
-1. Grade calculator: marks → A/B/C/Fail with `elif` chain.
+**Hint:** Two `if`s inside the loop — skip, then accept-and-stop.
 
-   **Model answer:**
-
-```python
-marks = int(input("Marks (0-100): "))
-if marks >= 90:
-    print("Grade: A")
-elif marks >= 75:
-    print("Grade: B")
-elif marks >= 50:
-    print("Grade: C")
-else:
-    print("Fail")
-```
-
-2. Number guessing: hard-code secret; 5 attempts with while; hints higher/lower.
-
-   **Model answer:**
+**Model answer:**
 
 ```python
-secret = 7
-attempts = 0
-while attempts < 5:
-    guess = int(input("Guess (1-10): "))
-    attempts += 1
-    if guess == secret:
-        print("Correct!")
+for score in [0, 12, 88]:
+    if score <= 0:
+        continue
+    if score >= 50:
+        print(score)
         break
-    elif guess < secret:
-        print("Higher")
-    else:
-        print("Lower")
+```
+
+**Expected Output:**
+
+```
+88
+```
+
+4. Stored user `"hr.admin"`, password `"secret"`. Entered user `"hr.admin"` and pass `"x"`. Print which check failed using `if` / `elif` / `else`.
+
+**Model answer:**
+
+```python
+user = "hr.admin"
+password = "secret"
+entered_user = "hr.admin"
+entered_pass = "x"
+if entered_user != user:
+    print("Username failed")
+elif entered_pass != password:
+    print("Password failed")
 else:
-    print("Out of attempts. Secret was", secret)
+    print("Welcome")
 ```
 
-3. Expense menu: add expense, show total, exit — use while True.
+**Expected Output:**
 
-   **Model answer:**
+```
+Password failed
+```
+
+5. Nested gate: `has_ticket = True`, `age = 15`. If no ticket, print `No ticket`. If ticket and age `>= 18`, print `Enter`. Otherwise print `Too young`.
+
+**Model answer:**
 
 ```python
-total = 0.0
-while True:
-    print("1 Add expense  2 Show total  3 Exit")
-    choice = input("Choice: ")
-    if choice == "1":
-        amount = float(input("Amount ₹: "))
-        total += amount
-        print("Added.")
-    elif choice == "2":
-        print(f"Total: ₹{total:.2f}")
-    elif choice == "3":
-        print("Bye")
-        break
+has_ticket = True
+age = 15
+if has_ticket:
+    if age >= 18:
+        print("Enter")
     else:
-        print("Invalid choice")
+        print("Too young")
+else:
+    print("No ticket")
 ```
 
-4. Print multiplication table only for even multipliers 2–10.
+**Expected Output:**
 
-   **Model answer:**
+```
+Too young
+```
+
+6. `while`: start `n = 3`. While `n > 0`, print `n`, then `n -= 1`. After the loop print `Go`.
+
+**Model answer:**
 
 ```python
-n = int(input("Table for: "))
-for m in range(2, 11, 2):
-    print(f"{n} x {m} = {n * m}")
+n = 3
+while n > 0:
+    print(n)
+    n -= 1
+print("Go")
 ```
 
-### Interview-Oriented
-
-1. When use `for` vs `while`?
-
-   **Model answer:** Use **`for`** when you know the sequence or count upfront (`range`, list items, string chars). Use **`while`** when you loop until a condition changes — menus, retries, “keep going until user exits,” reading until sentinel. Prefer `for` when either works cleanly; use `while` for open-ended control.
-
-2. What does `break` do inside nested loops? (Only innermost loop unless labeled — Python has no goto.)
-
-   **Model answer:** `break` exits only the **innermost** loop that contains it. Outer loops keep running. Python has no labeled break like some languages; to exit multiple levels, use a flag, `return` (once you know functions), or restructure.
-
-3. Write pseudocode for ATM withdraw with insufficient funds check.
-
-   **Model answer:**
+**Expected Output:**
 
 ```
-balance = 10000
-read amount
-IF amount <= 0:
-  show "Invalid amount"
-ELSE IF amount > balance:
-  show "Insufficient funds"
-ELSE:
-  balance = balance - amount
-  show "Withdrawn", amount, "New balance", balance
+3
+2
+1
+Go
 ```
-
-4. Explain while-else construct with PIN example.
-
-   **Model answer:** A `while` loop’s `else` runs when the loop ends **normally** (condition becomes false) — **not** when you `break` out. PIN example: loop up to 3 attempts; on correct PIN `break`; if all attempts fail without break, `else` prints “Card blocked.”
-
-   ```python
-   pin = "1234"
-   attempts = 0
-   while attempts < 3:
-       entered = input("PIN: ")
-       attempts += 1
-       if entered == pin:
-           print("Access granted")
-           break
-   else:
-       print("Card blocked")
-   ```
 
 ---
 
-## Mini-Project (Assignment): HDFC Bank ATM Simulator (Console)
+## Lab
 
-**Title:** Console ATM with balance + mini statement  
-**Lab kit (build here):** [15_Lab_Assets/08_atm_menu/](../15_Lab_Assets/08_atm_menu/)
+Combine `if` / `elif` / `else`, a `for` over a short list, `continue`, nested `if`, and a total. Not the ATM menu kit.
 
-### What to build
+### Problem
 
-1. Starting balance ₹10,000 (float)  
-2. Menu: balance, deposit, withdraw, mini statement (last 3 transactions as strings), exit  
-3. Validate: no negative deposit/withdraw; no overdraft  
-4. Use `while True` + `break` on exit  
-5. Use list `transactions = []` to append strings like `"Deposited ₹500"`  
+A trainer prints one student’s **result card** from a short list of subject marks. Invalid marks must not poison the average.
 
-**Sample transaction log line:**
+### What to Build
 
+A script `result_card.py`.
+
+### Requirements
+
+- `marks` as a simple list, e.g. `[88, -1, 76, 105, 91]`
+- `for` each mark:
+  - `continue` if the mark is `< 0` or `> 100`
+  - add valid marks into `total` and count them
+- If no valid marks, print `No valid marks` (use the count)
+- Else compute `average = total / count`
+- Grade with `if` / `elif` / `else`: A `>= 90`, B `>= 75`, C `>= 35`, else Fail
+- Nested: if the student passed (`average >= 35`), print `Distinction` when `average >= 75`, else `Pass`; if failed, print `Fail`
+
+### Expected Behavior
+
+`-1` and `105` are skipped. Average and grade use only `88`, `76`, `91`. No `KeyError` / traceback from missing keys — there are no dicts here.
+
+### Sample Run
+
+```text
+Valid count: 3
+Average: 85.00
+Grade: B
+Distinction
 ```
-[31-07-2026] Withdrawn ₹2000 | Balance ₹8000.00
+
+(Your list may differ; skipped invalid marks must not sit in the average.)
+
+### Constraints
+
+No `def`, no files, no dictionaries, no list methods (no `.append`). A list **literal** plus `for` is enough.
+
+### Bonus
+
+Also print each valid mark as you go. Use `break` only if you add a “stop at first fail below 35” stretch — keep it optional.
+
+---
+
+## Mini-Project (Assignment): Console ATM Menu
+
+**Why this matters:** Almost every CLI lab is this skeleton: `while True`, read a choice, branch, `break` on quit. Withdraw must never go below zero.
+
+**Lab kit:** [15_Lab_Assets/08_atm_menu/](../15_Lab_Assets/08_atm_menu/)
+
+| File | What you do |
+|------|-------------|
+| `starter/atm.py` | Complete Check Balance · Deposit · Withdraw · Quit |
+| `broken/atm.py` | Fix overdraft and the quit path that never `break`s |
+| `solution/` | Do **not** copy this |
+
+This is **not** the class assemble with a prepared list of choices. Same branches, full `input` + `while True` ticket.
+
+### Objective
+
+Drive an ATM from a repeating menu. Invalid menu choice must not exit. Withdraw must not exceed balance.
+
+### Story / Scenario
+
+Training ATM: staff pick 1–4, deposit and withdraw rupees, and quit cleanly.
+
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| Starting balance | Kit uses `1000.0` (you may keep it) |
+| Menu loop | `while True` until Quit |
+| Options | **1** Balance · **2** Deposit · **3** Withdraw · **4** Quit (match the starter) |
+| Deposit / withdraw | `float(amount)` then reject `amount <= 0`; block overdraft. Ignore the starter’s `.isdigit()` comment — that check is optional later (Strings) |
+| Display | Clear ₹ messages with 2 decimals |
+| Style | Top-level `while` / `if` only — no `def` |
+
+### Expected Behavior
+
+- Choice is compared as a **string** (`"1"`, not `1`)
+- Withdraw larger than balance prints a message and leaves the balance unchanged
+- Option 4 prints a goodbye line and **breaks**
+- Wrong choice prints invalid and shows the menu again
+
+### Sample Run
+
+```text
+1) Balance  2) Deposit  3) Withdraw  4) Quit
+> 1
+1000.0
+> 2
+Amount: 500
+> 3
+Amount: 2000
+Insufficient
+> 4
+Bye
 ```
 
-### Stretch
+(Print exactly as you like as long as overdraft is blocked and quit stops the loop. Prefer ₹ and 2 decimals in your version.)
 
-- Cap daily withdraw total at ₹20,000.  
-- Require PIN (`1234`) once before the menu loop.  
+### Bonus Challenges
+
+- Max 3 PIN attempts before the menu
+- Daily withdraw limit (e.g. ₹20,000)
+- Mini statement: last few actions as printed lines (still no files)
 
 ### Done when
 
-- [ ] Lab kit ATM ticket passes (menu does not crash / exit wrongly)  
-- [ ] Deposit and withdraw update balance correctly with validation  
-- [ ] Mini statement shows up to last 3 transactions  
-
-## Interview Q&A
-
-Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
-
-1. Why is menu-driven design still used in training if real apps have GUIs?
-2. Could you use `for` instead of `while` for a **HDFC Bank** ATM menu? What would be awkward?
-3. How does nested if map to **Employee Management Portal** approval workflows (employee → manager → HR)?
-4. What real-world system might run an infinite loop intentionally?
-5. How would you add "confirm before **HDFC Bank** withdraw" using flow control only?
-
-**Q1. Explain if/elif/else execution order.**  
-**A:** Python tests top to bottom; first true branch runs; rest skipped; else runs if none true.
-
-**Q2. Difference between break and continue?**  
-**A:** break exits loop; continue skips to next iteration of same loop.
-
-**Q3. What is range(2, 10, 3)?**  
-**A:** 2, 5, 8 — start 2, stop before 10, step 3.
-
-**Q4. How implement retry logic for login?**  
-**A:** while attempts < max: prompt; if valid break; else increment attempts.
-
-**Q5. Nested loops use case?**  
-**A:** Multiplication table (outer number, inner multiplier); grid rows/cols; batch processing per department.
+- [ ] Menu repeats until Quit
+- [ ] Non-positive amounts are rejected
+- [ ] Withdraw never exceeds balance
+- [ ] Quit `break`s (the broken kit prints Bye but kept looping)
+- [ ] Amounts print clearly (₹ and 2 decimals recommended)
 
 ---
 
+## Interview Q&A
+
+**Q1. `for` vs `while`?**  
+`for` when you know the sequence or count. `while` when you repeat until a condition changes (PIN, menu, retries).
+
+**Q2. What does `range(1, 5)` produce?**  
+`1, 2, 3, 4` — stop is exclusive.
+
+**Q3. `break` vs `continue`?**  
+`break` exits the loop. `continue` skips to the next iteration.
+
+**Q4. Why is indentation required?**  
+It defines blocks. Wrong indent → `IndentationError` or wrong logic.
+
+**Q5. What is an infinite loop?**  
+The condition never becomes false and you never `break` — e.g. `while True:` with no exit.
+
+**Q6. What is `while` / `else` (or `for` / `else`)?**  
+`else` runs when the loop finishes **without** `break` (useful for “PIN never matched”).
+
+**Q7. Why compare menu `choice` to `"1"` not `1`?**  
+`input()` returns a string. `choice == 1` is always false for normal menu typing.
+
+**Q8. Why does `elif` order matter?**  
+The first `True` branch wins. Check the tighter bound first (`>= 90` before `>= 75`).
+
+---
+
+## Cheat Sheet
+
+```text
+if / elif / else     → first True branch wins; else is the rest
+: and indent         → colon then 4 spaces; indent is syntax
+and  or  not         → combine conditions (login)
+for x in range(a, b) → a … b-1  (stop excluded)
+range(a, b, step)    → skip by step
+for x in [1, 2, 3]   → walk a short list of values
+while cond:          → repeat while True; change cond or break
+while True:          → menu loop — must break
+break                → leave the loop
+continue             → skip this iteration
+for/while else       → runs if there was no break
+choice == "1"        → input() is str
+```
+
+Nested `if`: validate amount, then check balance.
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can write if / elif / else and explain why order matters
+[ ] I can combine login checks with and, or split failures with elif
+[ ] I can loop with for and range (stop excluded)
+[ ] I can retry with while and exit with break
+[ ] I know continue vs break
+[ ] I can nest a withdraw check
+[ ] I completed the result-card lab
+[ ] I attempted the ATM menu mini-project
+[ ] I can explain for vs while and choice == "1" in an interview
+```
+
+---
+
+## What's Next?
+
+You can now decide and repeat — the skeleton of every console menu.
+
+Next, [Strings](04_Strings.md) treats text as a sequence you can index, slice, clean (`strip`, `lower`), split, and format — so names, emails, and PIN strings become data you can work with, not only values you compare.

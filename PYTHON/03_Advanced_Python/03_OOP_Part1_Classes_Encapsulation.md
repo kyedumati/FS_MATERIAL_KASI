@@ -1,28 +1,33 @@
-# Module 03a — OOP Part 1: Classes & Encapsulation
+# Module 03a — OOP Part 1: Classes and Encapsulation
 
 **Phase:** Advanced Python
 
-**Previous module:** [Modules and Packages](02_Modules_and_Packages.md)  
-**Next module:** [OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)
+**Previous:** [Modules and Packages](02_Modules_and_Packages.md)  
+**Next:** [OOP Part 2: Inheritance and Composition](03_OOP_Part2_Inheritance.md)
 
 **Series:** [OOP overview](03_OOP.md) · Part 1 (this file) · [Part 2](03_OOP_Part2_Inheritance.md) · [Part 3](03_OOP_Part3_Polymorphism_Project.md) · [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md)
 
-**Assignment (take-home):** The portfolio **Mini-Project (Assignment)** is in [Part 3 — BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli). This Part 1 file is class + lab drills; start the [lab kit](../15_Lab_Assets/17_bank_account_oop/) here and push in Part 3.
-
-**Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/)
+**Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/) — class warm-up Mini-Project below; full CLI is in [Part 3](03_OOP_Part3_Polymorphism_Project.md).
 
 ---
 
-**Module Outcome:**
+## Module Outcome
 
-- Class, object, `self`, `__init__`
-- Instance / class / local variables
-- Instance / class / static methods
-- Encapsulation (`_`, `__`, `@property`)
+Turn scattered dicts and free functions into a class that owns its data, choose the right kind of variable and method, and stop outside code from breaking the rules.
 
-## Motivation — Feel the pain of dicts + free functions
+By the end of this module you will be able to:
 
-Look at this student tracker. Data lives in a dict; behaviour lives in separate functions:
+- Define a class, create objects, and use `self` and `__init__`
+- Choose instance vs class vs local variables
+- Write instance, class, and static methods
+- Encapsulate state with `_`, `__`, and `@property` (lab kit may use `__balance` + `get_balance()` — both styles are acceptable)
+- Build a `BankAccount` class (no menu yet)
+
+---
+
+## 1. Why This Concept Matters
+
+A student tracker often starts as dicts plus free functions. Data lives in one place; behaviour lives somewhere else:
 
 ```python
 s1 = {"roll": 101, "name": "Anita", "marks": [72, 68, 81]}
@@ -47,42 +52,21 @@ def display(student):
 
 display(s1)
 display(s2)
-
-# Easy mistakes in a busy script:
-s1["marks"] = -10          # nonsense value, no guard
-del s2["name"]             # KeyError waiting to happen
-print(average({"marks": []}))  # ZeroDivisionError — not really a student
 ```
 
-**Expected Output (happy path only):**
+**Expected Output:**
 
 ```
 101: Anita — B
 102: Vikram — Fail
 ```
 
-Problems with this style:
+That style breaks as the program grows:
 
-1. Anyone can corrupt the dict (`marks = -10`, delete `name`).
-2. Related data and behaviour are **scattered** — easy to pass the wrong shape.
-3. Adding `college`, `email`, or `is_pass()` means hunting every function that touches a student.
-4. As the program grows, the same broken pattern repeats for Order, Account, Product — harder to test and reuse.
-
-**Visual — data here, logic there (easy to break):**
-
-```mermaid
-flowchart LR
-  D["dicts s1, s2"] -.-> F1["average()"]
-  D -.-> F2["grade()"]
-  D -.-> F3["display()"]
-  Bug["Wrong keys / bad values"] --> D
-```
-
-**Key takeaways:**
-
-- Dicts hold data; free functions hold behaviour — easy to desync
-- Callers can mutate or delete keys freely
-- Same pain repeats for Order / Account / Product as the app grows
+1. Anyone can corrupt the dict (`s1["marks"] = -10`, `del s2["name"]`).
+2. Data and behaviour are **scattered** — easy to pass the wrong shape.
+3. Adding `email` or `is_pass()` means hunting every function that touches a student.
+4. The same mess repeats for Order, Account, Product.
 
 Bundle **data + behaviour** into one unit — a **class**. Each filled form is an **object**:
 
@@ -126,79 +110,29 @@ print("Anita average:", round(s1.average(), 1))
 Anita average: 73.7
 ```
 
-That shift — from “bags of data + floating functions” to “objects that know how to behave” — is **Object-Oriented Programming (OOP)**.
-
-**Visual — one blueprint, many filled forms:**
-
-```mermaid
-flowchart LR
-  C["CLASS Student<br/>roll, name, marks<br/>average / grade / display"]
-  C --> O1["OBJECT<br/>Anita, 101"]
-  C --> O2["OBJECT<br/>Vikram, 102"]
-  C --> O3["OBJECT<br/>Asha, 103"]
+```text
+CLASS Student          OBJECT s1              OBJECT s2
+roll, name, marks      Anita, 101             Vikram, 102
+average / grade / display
 ```
 
-**Key takeaways:**
+That shift — from “bags of data + floating functions” to “objects that know how to behave” — is **Object-Oriented Programming (OOP)**.
 
-- **Class** = blueprint (form template)
-- **Object** = one filled form (Anita, Vikram, …)
-- Methods live **with** the data — call `s1.display()`, not `display(s1)` with a loose dict
+This part focuses on **classes** and **encapsulation**. Inheritance is [Part 2](03_OOP_Part2_Inheritance.md). Polymorphism is [Part 3](03_OOP_Part3_Polymorphism_Project.md). Abstract classes are [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md).
 
 ---
 
-## What is OOP? / Why do we need it?
+## 2. Class, object, `self`, `__init__`
 
-**Object-Oriented Programming** models software around **things** in the domain — a `Student`, a `BankAccount`, an `Order`.
+### Understand
 
-**Icons:** Bank · UPI · Employee · Laptop · Order
+A **class** is the blueprint (form template). An **object** is one filled form.
 
-**Where used?**
+`__init__` runs when you create an object and sets starting data. `self` is “the object being built or used right now” (like `this` in Java — Python makes you write it).
 
-- **HDFC Bank** (accounts), **PhonePe** (UPI wallets)
-- **Swiggy** (orders, products, carts)
-- **Apollo Hospitals** (patients, appointments)
-- **Employee Management Portal** (employees, salary slips)
-- CRM (customers, tickets)
+On `s1.display()`, Python secretly passes `s1` as `self`.
 
-| Idea          | Meaning                                              |
-| ------------- | ---------------------------------------------------- |
-| `class`       | Blueprint (like an Aadhaar form template)            |
-| `object`      | One filled form — Rahul, roll 101                    |
-| **Attribute** | Data on the object (`name`, `balance`)               |
-| `method`      | Behaviour on the object (`deposit()`, `get_grade()`) |
-
-| Without OOP (dicts + functions)      | With OOP (classes)                      |
-| ------------------------------------ | --------------------------------------- |
-| Data and rules in different places   | One type owns both                      |
-| Easy to pass the wrong shape         | Constructor sets a valid starting state |
-| Hard to reuse across scripts         | Import the class; create many objects   |
-| Growing apps become “dict spaghetti” | Clear nouns: Account, Order, Employee   |
-
-Classic pillars (Part 1 focuses on encapsulation; Parts 2–3 cover inheritance and polymorphism):
-
-| Pillar            | Plain English                                                                 | Python taste                                                                                          |
-| ----------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| **Encapsulation** | Bundle data + methods; **hide** state; force changes through a validating API | Exact problem: stop `acct.balance = -50000` bypassing `withdraw` — use `_`/`__` + methods/`@property` |
-| **Abstraction**   | Show essentials; hide messy internals                                         | Callers use `deposit()` / `withdraw()` without knowing balance rules; **ABC / interfaces →** [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md) |
-| `inheritance`     | Child reuses/extends parent (**IS-A**)                                        | → [Part 2](03_OOP_Part2_Inheritance.md)                                                               |
-| **Polymorphism**  | Same call, different behaviour                                                | → [Part 3](03_OOP_Part3_Polymorphism_Project.md)                                                      |
-
-**Composition (HAS-A)** is previewed here and practised in [Part 2](03_OOP_Part2_Inheritance.md): an `Employee` **has a** `Laptop`.
-
----
-
-## Important Concepts
-
-### 1. Class, object, `self`, `__init__`
-
-**Real-world analogy:** An **ATM card slot** is the class — one machine design. Priya's debit card is one **object**; Ravi's card is another. Same fields (`holder`, `balance`), different values. `__init__` is the branch printing *this* card with *this* account number. `self` is “the card in the slot right now.” **HDFC Bank** mints millions of `Account` objects from one class. **Swiggy** does the same for `Order`. **Apollo Hospitals** does the same for `Patient`.
-
-**Icons:** Employee · Order · Bank
-
-**Where used?** Any entity you create many of: students, products, tickets, employees, accounts.
-
-**Definition:** A **class** is the blueprint (data + behaviour together). An **object** is one concrete instance of that class. `__init__` runs when you create an object and sets starting data. `self` is the current object (like `this` in Java — but Python makes you write it).  
-**Purpose:** Real systems are easier as objects than as loose dicts passed through many free functions.
+### How It Works
 
 ```python
 class Student:
@@ -226,166 +160,60 @@ type(s1): Student
 same class? True
 ```
 
-**What happens on** `Student(101, "Anita")`**?**
+What happens on `Student(101, "Anita")`:
 
 1. Python creates a new empty object.
 2. `__init__(self, 101, "Anita")` runs — `self` is that new object.
 3. Attributes are attached to `self`.
-4. The name `s1` now **refers** to that object in memory.
+4. The name `s1` now **refers** to that object.
 
-**Visual — call →** `__init__` **fills the object → you use the reference:**
+| | Method | Constructor (`__init__`) |
+| --- | --- | --- |
+| Name | Any valid name | Always `__init__` |
+| When it runs | When you call it | Automatically on `ClassName(...)` |
+| How often per object | As many times as you call | Once (at creation) |
+| Typical job | Business logic | Declare and initialize instance data |
+| Return | Optional value | Should not return a useful value |
 
-```mermaid
-sequenceDiagram
-  participant Main as Your script
-  participant Init as Student.__init__
-  Main->>Init: Student(101, "Anita")
-  Init->>Init: self.roll = 101<br/>self.name = Anita
-  Init-->>Main: s1 refers to the object
-  Main->>Main: s1.display()
+`s1` is a **reference**. You rarely call `__init__` by name. If you omit `__init__`, Python still creates an empty object — usually a poor fit for real entities.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — forgot self in the method signature
+class Student:
+    def display():
+        print("hi")
+
+s1 = Student()
+s1.display()    # TypeError: display() takes 0 positional arguments but 1 was given
 ```
 
-**Key takeaways:**
+Python always passes the object as the first argument of an instance method. Name it `self`.
 
-- `ClassName(...)` creates an object and runs `__init__`
-- `self` = the **current** object (passed automatically on `s1.display()`)
-- Many objects can share one class; each has its own attribute values
+Do not invent five classes for a ten-line script. Use functions until the data and rules belong together.
 
-**Difference between Method and Constructor:**
+### Try It
 
-|                      | Method                    | Constructor (`__init__`)             |
-| -------------------- | ------------------------- | ------------------------------------ |
-| Name                 | Any valid name            | Always `__init__`                    |
-| When it runs         | When you call it          | Automatically on `ClassName(...)`    |
-| How often per object | As many times as you call | Once (at creation)                   |
-| Typical job          | Business logic            | Declare and initialize instance data |
-| Return               | Optional value            | Should not return a useful value     |
-
-**Remember:** `self` = the **current object**. First parameter of every instance method. On `s1.display()`, Python secretly passes `s1` as `self`.
-
-**Common Error:** forgetting `self` in the method signature → `TypeError: display() takes 0 positional arguments but 1 was given` when you call `s1.display()`.
-
-**Note:**
-
-- `s1` is a **reference** to the object — you use it to call methods and read attributes.
-- `__init__` runs automatically after object creation — you rarely call it by name.
-- If you omit `__init__`, Python still creates the object (empty shell); you can add attributes later (usually not ideal for real entities).
-- Over-engineering OOP (five classes for hello world) — use functions until complexity grows.
-
-Write an HDFC Bank `SavingsAccount` with deposit (reject non-positive amounts) and `statement()`. Create two accounts, deposit, and print both statements.
-
-```python
-class SavingsAccount:
-    def __init__(self, holder, account_no, balance=0):
-        self.holder = holder
-        self.account_no = account_no
-        self.balance = float(balance)
-
-    def deposit(self, amount):
-        if amount <= 0:
-            print("Deposit must be positive")
-            return
-        self.balance += amount
-
-    def statement(self):
-        print(f"{self.account_no} | {self.holder} | ₹{self.balance:.0f}")
-
-priya = SavingsAccount("Priya Shah", "SB-1001", 5000)
-ravi = SavingsAccount("Ravi Menon", "SB-1002", 1200)
-priya.deposit(1500)
-ravi.deposit(-10)  # rejected
-priya.statement()
-ravi.statement()
-```
-
-**Expected Output:**
-
-```
-Deposit must be positive
-SB-1001 | Priya Shah | ₹6500
-SB-1002 | Ravi Menon | ₹1200
-```
-
-Write a Swiggy `OrderLine` with `line_total()` and `label()`. Print each line in a cart and the cart total.
-
-```python
-class OrderLine:
-    def __init__(self, sku, name, unit_price, qty):
-        self.sku = sku
-        self.name = name
-        self.unit_price = float(unit_price)
-        self.qty = int(qty)
-
-    def line_total(self):
-        return self.unit_price * self.qty
-
-    def label(self):
-        return f"{self.sku} {self.name} x{self.qty} = ₹{self.line_total():.0f}"
-
-cart = [
-    OrderLine("NB-A4", "Notebook", 40, 3),
-    OrderLine("PEN-01", "Gel pen", 10, 5),
-]
-for line in cart:
-    print(line.label())
-print("Cart total:", sum(line.line_total() for line in cart))
-```
-
-**Expected Output:**
-
-```
-NB-A4 Notebook x3 = ₹120
-PEN-01 Gel pen x5 = ₹50
-Cart total: 170
-```
-
-Write a Apollo Hospitals `Appointment` with `confirm()` and `slip()`. Confirm one booking and print both slips.
-
-```python
-class Appointment:
-    def __init__(self, patient, doctor, slot):
-        self.patient = patient
-        self.doctor = doctor
-        self.slot = slot
-        self.status = "scheduled"
-
-    def confirm(self):
-        self.status = "confirmed"
-
-    def slip(self):
-        print(f"{self.patient} → Dr {self.doctor} @ {self.slot} [{self.status}]")
-
-a1 = Appointment("Anita Sharma", "Meera Iyer", "10:30")
-a2 = Appointment("Vikram Rao", "Kiran Das", "11:15")
-a1.confirm()
-a1.slip()
-a2.slip()
-```
-
-**Expected Output:**
-
-```
-Anita Sharma → Dr Meera Iyer @ 10:30 [confirmed]
-Vikram Rao → Dr Kiran Das @ 11:15 [scheduled]
-```
+Create a `Product` class with `sku`, `name`, and `price`, plus a `label()` method that returns `sku: name @ ₹price`. Create two products and print both labels.
 
 ---
 
-### 2. Three kinds of variables (instance / class / local)
+## 3. Instance, class, and local variables
 
-**Real-world analogy:** A **college ID card**. The college name is printed the same on every card — that is a **class** variable (one shared value). Your roll number is only yours — **instance**. The ink drying while the printer runs is **local**: it exists during that print job and disappears. **Employee Management Portal** shares `company` across employees. **HDFC Bank** shares `IFSC` across accounts at one branch. **Swiggy** must *not* share one cart list across every customer (that is the mutable-class trap below).
+### Understand
 
-**Icons:** Employee · Payroll · Order
+Three lifetimes, three jobs:
 
-**Where used?** Shared company / college / tax rate (class); per-person id and name (instance); temporary totals inside a method (local).
+| Kind | Where | Who owns it |
+|------|--------|-------------|
+| **Instance** | `self.emp_id` | One object |
+| **Class** | `Employee.company` | Shared by all objects of the class |
+| **Local** | `title = "Staff"` inside a method | Lives only while that call runs |
 
-**Definition:**
+Company name can be shared. Employee id must not. A temporary fee or title should not leak as an attribute.
 
-- **Instance** — unique per object (`self.emp_id`)
-- **Class** (sometimes called “static” in older notes) — one copy shared by all objects (`Employee.company`)
-- **Local** — temporary names inside a method; die when the method ends
-
-**Purpose:** Company name can be shared; employee id must not. Temporary totals should not leak as attributes.
+### How It Works
 
 ```python
 class Employee:
@@ -396,7 +224,7 @@ class Employee:
         self.name = name
 
     def label(self):
-        title = "Staff"         # local variable — method only
+        title = "Staff"         # local — method only
         return f"{title}: {self.name} @ {Employee.company}"
 
 e1 = Employee(1, "Ravi")
@@ -404,6 +232,11 @@ e2 = Employee(2, "Meera")
 print(e1.label())
 print(e2.label())
 print("company via class:", Employee.company)
+
+e1.company = "Acme"             # shadows on e1 only
+print(e1.company)
+print(e2.company)
+print(Employee.company)
 ```
 
 **Expected Output:**
@@ -412,90 +245,16 @@ print("company via class:", Employee.company)
 Staff: Ravi @ KSR Datavizon
 Staff: Meera @ KSR Datavizon
 company via class: KSR Datavizon
-```
-
-**Instance vs class — the shadowing trap:**
-
-```python
-e1 = Employee(1, "Ravi")
-e2 = Employee(2, "Meera")
-e1.company = "Acme"   # creates an *instance* attribute on e1 only
-
-print(e1.company)         # Acme
-print(e2.company)         # KSR Datavizon
-print(Employee.company)   # KSR Datavizon
-```
-
-**Expected Output:**
-
-```
 Acme
 KSR Datavizon
 KSR Datavizon
 ```
 
-To change the shared value for **everyone**, assign via the class: `Employee.company = "..."`.
+To change the shared value for **everyone**, assign via the class: `Employee.company = "..."`. Prefer `ClassName.attr` when you mean the shared value.
 
-**Visual — one shared class attribute, many instance attributes:**
+Locals disappear when the method ends — `print(title)` after `label()` would be a `NameError`.
 
-```mermaid
-flowchart TB
-  ClassAttr["Employee.company<br/>(one shared value)"]
-  E1["e1: emp_id, name<br/>(+ optional e1.company shadow)"]
-  E2["e2: emp_id, name"]
-  ClassAttr --> E1
-  ClassAttr --> E2
-```
-
-**Key takeaways:**
-
-- Instance attrs = per object (`self.x`)
-- Class attrs = shared (`Class.x`)
-- `obj.x = ...` on a class attr name **shadows** for that object only
-- Locals live only inside the method
-
-**Common Error:** putting `students = []` at **class** level — every batch shares one list. Always create the list in `__init__`.
-
-**Note:**
-
-- Mutable class attribute → shared state across objects — initialize lists/dicts in `__init__`, not at class level.
-- Prefer `ClassName.attr` when you mean the shared value (clearer than `self.attr` for class data).
-- Locals are fine for temporary calculations; do not invent `self.tmp` for values you never need later.
-
-Give Employee Management Portal `Employee` a class attribute `company` plus per-object `emp_id`, `name`, and `city`. Print badges, change `Employee.company`, and print again so both employees pick up the new value.
-
-```python
-class Employee:
-    company = "Employee Management Portal Bengaluru"
-
-    def __init__(self, emp_id, name, city):
-        self.emp_id = emp_id
-        self.name = name
-        self.city = city
-
-    def badge(self):
-        return f"{self.name} ({self.emp_id}) — {Employee.company}, {self.city}"
-
-e1 = Employee(501, "Priya Shah", "Bengaluru")
-e2 = Employee(502, "Ravi Menon", "Mumbai")
-print(e1.badge())
-print(e2.badge())
-
-Employee.company = "Employee Management Portal India"
-print(e1.badge())
-print(e2.badge())  # both pick up the shared class value
-```
-
-**Expected Output:**
-
-```
-Priya Shah (501) — Employee Management Portal Bengaluru, Bengaluru
-Ravi Menon (502) — Employee Management Portal Bengaluru, Mumbai
-Priya Shah (501) — Employee Management Portal India, Bengaluru
-Ravi Menon (502) — Employee Management Portal India, Mumbai
-```
-
-Show the Swiggy bug of a class-level `items` list leaking between carts, then fix it with a per-object `items` list in `__init__`. Print both carts.
+### ⚠️ WATCH OUT
 
 ```python
 class CartBroken:
@@ -510,77 +269,38 @@ class CartBroken:
 c1 = CartBroken("Priya")
 c2 = CartBroken("Ravi")
 c1.add("NB-A4")
-print("Broken Ravi cart:", c2.items)  # ['NB-A4'] — leaked!
-
-class Cart:
-    def __init__(self, customer):
-        self.customer = customer
-        self.items = []   # CORRECT — per object
-
-    def add(self, sku):
-        self.items.append(sku)
-
-ok1 = Cart("Priya")
-ok2 = Cart("Ravi")
-ok1.add("NB-A4")
-print("Fixed Ravi cart:", ok2.items)  # []
+print("Broken Ravi cart:", c2.items)
 ```
 
 **Expected Output:**
 
 ```
 Broken Ravi cart: ['NB-A4']
-Fixed Ravi cart: []
 ```
 
-Write HDFC Bank `BranchAccount` with a class-level IFSC. `transfer_out` should use a local fee of ₹5, print the transfer, and leave `fee` undefined after the method ends.
+Put lists and dicts in `__init__` (`self.items = []`), not at class level, unless you truly want one shared collection.
 
-```python
-class BranchAccount:
-    ifsc = "SBIN0001234"   # class — one branch code for every account here
+### Try It
 
-    def __init__(self, holder, balance):
-        self.holder = holder
-        self.balance = float(balance)
-
-    def transfer_out(self, amount):
-        fee = 5.0   # local — exists only during this transfer
-        if amount + fee > self.balance:
-            print("Not enough for amount + fee")
-            return
-        self.balance -= amount + fee
-        print(f"{self.holder} sent ₹{amount:.0f} (fee ₹{fee:.0f}) via {BranchAccount.ifsc}")
-
-a = BranchAccount("Priya", 1000)
-a.transfer_out(200)
-print("Balance left:", a.balance)
-# print(fee)  # NameError — local died when the method ended
-```
-
-**Expected Output:**
-
-```
-Priya sent ₹200 (fee ₹5) via SBIN0001234
-Balance left: 795.0
-```
+Give `Employee` a class attribute `company = "KSR Labs"` and instance attributes `emp_id` and `name`. Print two badges, change `Employee.company`, and print again so both pick up the new value.
 
 ---
 
-### 3. Three kinds of methods (instance / class / static)
+## 4. Instance, class, and static methods
 
-**Real-world analogy:** A **canteen counter**. `bill()` uses *your* tray (instance method — needs `self`). `today_menu()` is the same board for every student (class method — needs the class, not one tray). `gst(amount)` is a calculator anyone can tap without taking a token (static method — no `self` / `cls`). **Swiggy** counts orders with `@classmethod`. **HDFC Bank** computes GST with `@staticmethod`. **Apollo Hospitals** builds a `Patient` from an Aadhaar CSV row with an alternate constructor.
+### Understand
 
-**Icons:** Order · Bank · UPI · Payroll
+Not every helper needs an object’s data.
 
-**Where used?** Line totals and deposits (instance); object counters / “build from CSV row” (class); GST / fare math helpers (static).
+| Kind | Decorator | First arg | Typical job |
+|------|-----------|-----------|-------------|
+| **Instance** | (none) | `self` | Day-to-day behaviour — `deposit`, `label` |
+| **Class** | `@classmethod` | `cls` | Counters, alternate constructors (`from_row`) |
+| **Static** | `@staticmethod` | neither | Pure utility namespaced on the class (GST math) |
 
-**Definition:**
+In real apps you mostly write **instance** methods. Use the other two when the intent is clear — not for decoration.
 
-- **Instance method** — first arg `self`; uses object data
-- **Class method** — `@classmethod`, first arg `cls`; works with class-level data or alternate constructors
-- **Static method** — `@staticmethod`; utility namespaced on the class (no `self` / `cls`)
-
-**Purpose:** Not every helper needs an instance. Object counters and “build from dict/CSV” fit class methods; pure converters fit static methods.
+### How It Works
 
 ```python
 class Order:
@@ -622,161 +342,34 @@ GST on 100: 18.0
 product: Notebook
 ```
 
-**Visual — which method gets what?**
+`Order.gst_amount(100)` and `o.gst_amount(100)` both work for a static method. Prefer the class name when it is a pure utility.
 
-```mermaid
-flowchart LR
-  Inst["instance method<br/>needs self"]
-  Cls["classmethod<br/>needs cls"]
-  Stat["staticmethod<br/>needs neither"]
-  Inst --> Use1["deposit / label / line_total"]
-  Cls --> Use2["counters / from_row"]
-  Stat --> Use3["pure math helpers"]
-```
+Alternate constructors (`from_pair`, `from_dict`) keep `__init__` simple and give each creation path a clear name.
 
-**Key takeaways:**
+### ⚠️ WATCH OUT
 
-- Instance = normal day-to-day methods
-- `@classmethod` gets `cls` — class-level work / alternate constructors
-- `@staticmethod` is a plain utility living on the class
+A `@staticmethod` cannot read `self.qty` or `cls.order_count` unless you pass those values in. If the method needs object data, it is an instance method. If it needs the class, it is a class method.
 
-**Interview:** `@classmethod` gets `cls` (class-level / alternate constructors). `@staticmethod` is a plain utility on the class — no `self` / `cls`.
+### Try It
 
-**Note:**
-
-- In day-to-day apps you mostly write **instance** methods. Use `@classmethod` / `@staticmethod` when the intent is clear — not for decoration.
-- Alternate constructors (`from_pair`, `from_dict`) keep `__init__` simple and give callers a clear name for each creation path.
-- Calling `Order.gst_amount(100)` or `o.gst_amount(100)` both work for static methods; prefer the class name when it is a pure utility.
-
-Write a Swiggy `Order` with a class counter, `from_csv_row`, and `how_many()`. Create one order normally, one from a CSV row, and print labels plus today’s count.
-
-```python
-class Order:
-    count = 0
-
-    def __init__(self, order_id, sku, qty):
-        self.order_id = order_id
-        self.sku = sku
-        self.qty = int(qty)
-        Order.count += 1
-
-    def label(self):
-        return f"{self.order_id}: {self.sku} x{self.qty}"
-
-    @classmethod
-    def how_many(cls):
-        return cls.count
-
-    @classmethod
-    def from_csv_row(cls, row):
-        order_id, sku, qty = row.split(",")
-        return cls(order_id.strip(), sku.strip(), qty)
-
-o1 = Order("ORD-101", "NB-A4", 3)
-o2 = Order.from_csv_row("ORD-102,PEN-01,5")
-print(o1.label())
-print(o2.label())
-print("orders today:", Order.how_many())
-```
-
-**Expected Output:**
-
-```
-ORD-101: NB-A4 x3
-ORD-102: PEN-01 x5
-orders today: 2
-```
-
-Write PhonePe `BankMath` with `@staticmethod` helpers `with_gst` and `upi_fee`. Print GST on ₹1000 and UPI fees for ₹200 and ₹2500.
-
-```python
-class BankMath:
-    @staticmethod
-    def with_gst(amount, rate=0.18):
-        return amount * (1 + rate)
-
-    @staticmethod
-    def upi_fee(amount):
-        if amount <= 0:
-            return 0.0
-        return 0 if amount < 1000 else 2.0
-
-print("₹1000 + GST:", round(BankMath.with_gst(1000), 2))
-print("UPI fee on ₹200:", BankMath.upi_fee(200))
-print("UPI fee on ₹2500:", BankMath.upi_fee(2500))
-```
-
-**Expected Output:**
-
-```
-₹1000 + GST: 1180.0
-UPI fee on ₹200: 0
-UPI fee on ₹2500: 2.0
-```
-
-Write a Apollo Hospitals `Patient` with `from_csv_row` that splits a comma-separated Aadhaar-style row. Print cards for a normal construct and a CSV-built patient.
-
-```python
-class Patient:
-    def __init__(self, name, age, ward):
-        self.name = name
-        self.age = int(age)
-        self.ward = ward
-
-    def card(self):
-        return f"{self.name}, {self.age}y, ward {self.ward}"
-
-    @classmethod
-    def from_csv_row(cls, row):
-        name, age, ward = row.split(",")
-        return cls(name.strip(), age.strip(), ward.strip())
-
-p1 = Patient("Anita Sharma", 28, "OPD")
-p2 = Patient.from_csv_row("Ravi Menon, 41, ICU")
-print(p1.card())
-print(p2.card())
-```
-
-**Expected Output:**
-
-```
-Anita Sharma, 28y, ward OPD
-Ravi Menon, 41y, ward ICU
-```
+Add `@classmethod from_csv_row` to a small `Order` (`order_id`, `sku`, `qty`) that splits `"ORD-102,PEN-01,5"`. Create one order normally, one from the CSV row, and print both labels plus a class-level count.
 
 ---
 
-### 4. Encapsulation — definition, problem, then `_` / `__` / `@property`
+## 5. Encapsulation — the problem
 
-**Real-world analogy:** You cannot open an **ATM vault** with a screwdriver. You press **Withdraw**. The machine checks PIN and balance, then dispenses cash. Encapsulation is that locked vault plus the buttons. If anyone could type `acct.balance = -50000`, **HDFC Bank** would be bankrupt on paper. **Swiggy** stock cannot go negative because a tired intern edited a field. **Apollo Hospitals** vitals cannot be overwritten with `"N/A"` from a random script.
-
-**Icons:** Bank · UPI
-
-**Where used?** **HDFC Bank** balances, **PhonePe** wallets, passwords, **Swiggy** menu stock — anything with a rule that must stay true after every change.
-
----
-
-#### Definition (say this in class)
+### Understand
 
 **Encapsulation** means two things together:
 
-1. **Bundle** related data and the methods that use that data into one class (the object “owns” its state).
-2. **Hide and control** that state — outside code should not poke the raw fields; it must go through a **public API** (`deposit`, `withdraw`, `get_balance` / `@property`) that enforces the rules.
+1. **Bundle** related data and the methods that use it into one class.
+2. **Hide and control** that state — outside code should change money only through a public API (`deposit`, `withdraw`, `get_balance` / `@property`) that enforces the rules.
 
 Interview one-liner: *“Encapsulation = data + behaviour in one place, with controlled access so invariants cannot be broken from outside.”*
 
-It is **not** “putting underscores on variables.” Underscores and `@property` are *tools*. The *goal* is protecting the object’s rules.
+It is **not** “putting underscores on variables.” Underscores and `@property` are tools. The goal is protecting the object’s rules.
 
----
-
-#### Exact problem it solves
-
-Without encapsulation, the object’s important data is **naked**. Any line of code anywhere can assign nonsense and break the business rule — and the class never gets a chance to say “no”.
-
-**Business rule we care about (bank example):**  
-`balance` must never become negative by a casual assignment; money may change only through validated `deposit` / `withdraw`.
-
-**Broken — no encapsulation (the bug factory):**
+Without it, any line of code can skip `withdraw` and write nonsense:
 
 ```python
 class OpenAccount:
@@ -791,12 +384,10 @@ class OpenAccount:
         self.balance -= amount
 
 acct = OpenAccount("Priya", 1000)
-acct.withdraw(200)          # OK — uses the method
+acct.withdraw(200)
 print("after withdraw:", acct.balance)
-
-# Later… a tired teammate (or your own shortcut) skips the method:
-acct.balance = -50000       # accepted! rule destroyed
-acct.balance = "N/A"        # accepted! type destroyed
+acct.balance = -50000
+acct.balance = "N/A"
 print("corrupted balance:", acct.balance)
 ```
 
@@ -807,61 +398,44 @@ after withdraw: 800
 corrupted balance: N/A
 ```
 
-Problems this causes in real projects:
+`withdraw`’s rules are useless if callers can edit the field directly.
 
-| What goes wrong                                    | Why it hurts                                         |
-| -------------------------------------------------- | ---------------------------------------------------- |
-| Outside code writes `acct.balance = …`             | Rules in `withdraw` are **bypassed**                 |
-| Invalid values sneak in (`-50000`, `"N/A"`)        | Downstream math / UIs / reports crash or lie         |
-| Fixing the rule means hunting **every** assignment | Same pain as copy-paste functions — scattered writes |
-| You cannot change how balance is stored later      | Callers are glued to the raw field name              |
+### How It Works
 
-**Visual — naked field vs guarded API:**
+Keep the real value **inside**. Expose only safe operations.
 
-```mermaid
-flowchart LR
-  subgraph Broken["Without encapsulation"]
-    A1["Any code"] -->|"acct.balance = -50000"| B1["balance field"]
-  end
-  subgraph Safe["With encapsulation"]
-    A2["Any code"] --> API["deposit / withdraw / balance property"]
-    API -->|"validates"| B2["hidden _balance / __balance"]
-  end
-```
+| Style | Call site | Internals | Course note |
+|-------|-----------|-----------|-------------|
+| Getter method | `acct.get_balance()` | often `__balance` | **Lab kit** style |
+| `@property` | `acct.balance` | often `_balance` | Idiomatic notes / interviews |
 
-**Key takeaways:**
+Both are acceptable. Same goal: callers who follow the API cannot casually invent `-50000`.
 
-- Exact problem: **uncontrolled writes** to important state
-- Method rules are useless if callers can skip them and edit the field
-- Encapsulation forces “change money only through the door we control”
+### ⚠️ WATCH OUT
 
-**Fixed direction (idea first — syntax next):**
+If the field is public, methods cannot protect it. Naming (`_` / `__`) and `@property` come next — they express this design; they are not encryption.
 
-- Keep the real value **inside** (`_balance` or `__balance`)
-- Expose only safe operations: `deposit`, `withdraw`, and a read via `get_balance()` or `@property`
-- Callers who follow the API cannot casually invent `-50000`
+### Try It
 
-That is the problem encapsulation solves. Naming (`_` / `__`) and `@property` are how Python helps you express that design.
-
-Teach the tools in **three layers**:
-
-1. Naming: public vs `_name` vs `__name`
-2. Safe access: `get_balance()` **or** `@property`
-3. Optional controlled write: `@x.setter`
+On paper (or in a comment): list two ways a teammate could break `OpenAccount` without calling `withdraw`. Then write one sentence: what should callers be allowed to do instead?
 
 ---
 
-#### 4a. Public vs `_name` vs `__name` (naming)
+## 6. Public vs `_` vs `__`
 
-| Syntax   | Name people use                                  | What Python does             | What it means for you                                                           |
-| -------- | ------------------------------------------------ | ---------------------------- | ------------------------------------------------------------------------------- |
-| `name`   | **public**                                       | Normal attribute             | Part of the API — callers may read/write                                        |
-| `_name`  | **protected** (by convention)                    | Still a normal attribute     | “Internal — please don’t touch from outside.” Python does **not** block access  |
+### Understand
+
+Python has no true private fields. Naming tells teammates (and, for `__`, the interpreter) how to treat an attribute.
+
+| Syntax | Name people use | What Python does | What it means |
+|--------|-----------------|------------------|---------------|
+| `name` | **public** | Normal attribute | Part of the API — callers may read/write |
+| `_name` | **protected** (convention) | Still a normal attribute | “Internal — please don’t touch.” Python does **not** block access |
 | `__name` | **name-mangled** (often called private in notes) | Stored as `_ClassName__name` | Accidental `obj.__name` fails; determined access can still use the mangled name |
 
-**Important:** None of these is encryption or real security. Encapsulation is for **honest, clear code** — teammates follow the public API.
+None of these is security. Encapsulation is for **honest, clear code**.
 
-**Side-by-side demo —** `_balance` **vs** `__balance`**:**
+### How It Works
 
 ```python
 class AccountUnderscore:
@@ -875,13 +449,12 @@ class AccountDunder:
 u = AccountUnderscore(1000)
 d = AccountDunder(1000)
 
-print("public-style read of _balance:", u._balance)   # works — convention only
-u._balance = -50                                      # also works — dangerous
+print("public-style read of _balance:", u._balance)
+u._balance = -50.0
 print("after bad write:", u._balance)
 
-print("has '__balance' on d?", hasattr(d, "__balance"))           # False
-# print(d.__balance)   # do not uncomment — crashes (name is mangled)
-print("mangled name still exists:", d._AccountDunder__balance)    # works if you insist
+print("has '__balance' on d?", hasattr(d, "__balance"))
+print("mangled name still exists:", d._AccountDunder__balance)
 ```
 
 **Expected Output:**
@@ -893,72 +466,48 @@ has '__balance' on d? False
 mangled name still exists: 1000.0
 ```
 
-**Visual — three access styles:**
+`print(d.__balance)` would raise `AttributeError` — the name on the object is `_AccountDunder__balance`.
 
-```mermaid
-flowchart TB
-  Pub["holder = public<br/>normal API"]
-  One["_balance = convention<br/>still readable from outside"]
-  Two["__balance = mangled<br/>obj.__balance fails<br/>obj._Class__balance works"]
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — “__balance is private so nobody can read it”
+print(d.__balance)                      # AttributeError (name is mangled)
+
+# Still reachable if someone insists
+print(d._AccountDunder__balance)        # works — not security
 ```
 
-**Key takeaways:**
+Leading `__` on every field is noisy. Start with public + validated methods; add `_` / `__` when the API needs it.
 
-- `_balance` = polite “hands off” — Python does **not** stop you
-- `__balance` = renamed to `_ClassName__balance` — stops *accidental* access
-- Neither is true privacy / security
-- Prefer changing money only through `deposit` / `withdraw`
+### Try It
 
-**Which should students use?**
-
-| Style                         | When                                   | Course note                     |
-| ----------------------------- | -------------------------------------- | ------------------------------- |
-| `_balance` + `@property`      | Idiomatic modern Python                | Preferred in notes / interviews |
-| `__balance` + `get_balance()` | Clear “don’t touch” + Java-like getter | **Lab kit** style — both OK     |
-
-**Common Error:** saying “`__balance` is private so nobody can read it.” They can: `obj._BankAccount__balance`.
+Create `UPIWallet` with `__balance`, `credit`, `debit`, and `get_balance()`. Credit 200, debit 100, reject an oversize debit, print the balance, and print `hasattr(wallet, "__balance")`.
 
 ---
 
-#### 4b. `@property` — attribute-like read that runs a method
+## 7. `@property` and getters
 
-**Problem with a raw public attribute:**
+### Understand
 
-```python
-class BadAccount:
-    def __init__(self, balance):
-        self.balance = balance
+A getter method (`get_balance()`) and `@property` are two public reads over hidden storage.
 
-acct = BadAccount(1000)
-acct.balance = -999999   # no rule — nonsense accepted
-print(acct.balance)
-```
+`@property` turns a method into something you **read like an attribute** (no parentheses): `acct.balance`.
 
-**Expected Output:**
+Without a setter, `acct.balance = ...` fails — force changes through `deposit` / `withdraw`.
 
-```
--999999
-```
+A setter is optional: use it when assignment should be allowed **with rules** (renaming). For bank money, prefer methods, not `acct.balance = 500`.
 
-**Fix idea:** keep real money in `_balance` (or `__balance`), and expose a **safe read**.
-
-Two equivalent public APIs:
-
-| Style                     | Call site            | Internals         |
-| ------------------------- | -------------------- | ----------------- |
-| Getter method (lab style) | `acct.get_balance()` | often `__balance` |
-| `@property` (idiomatic)   | `acct.balance`       | often `_balance`  |
-
-`@property` turns a method into something you **read like an attribute** (no parentheses):
+### How It Works
 
 ```python
 class BankAccount:
     def __init__(self, holder, balance=0):
-        self.holder = holder          # public — OK to read
-        self._balance = float(balance)  # internal storage
+        self.holder = holder
+        self._balance = float(balance)
 
     @property
-    def balance(self):                # looks like attribute, runs method
+    def balance(self):
         return self._balance
 
     def deposit(self, amount):
@@ -979,10 +528,9 @@ class BankAccount:
 acct = BankAccount("Priya", 1000)
 acct.deposit(500)
 acct.withdraw(200)
-acct.withdraw(5000)                 # rejected
+acct.withdraw(5000)
 print("holder:", acct.holder)
-print("balance via @property:", acct.balance)   # no ()
-# acct.balance = 999999   # do not uncomment — crashes (read-only; no setter yet)
+print("balance via @property:", acct.balance)
 ```
 
 **Expected Output:**
@@ -993,7 +541,7 @@ holder: Priya
 balance via @property: 1300.0
 ```
 
-**Same idea with lab-style getter (**`__balance`**):**
+Same idea with **lab-kit** style (`__balance` + getter):
 
 ```python
 class BankAccountLabStyle:
@@ -1001,7 +549,7 @@ class BankAccountLabStyle:
         self.holder = holder
         self.__balance = float(balance)
 
-    def get_balance(self):            # must call with ()
+    def get_balance(self):
         return self.__balance
 
     def deposit(self, amount):
@@ -1019,28 +567,7 @@ print("balance via getter:", lab.get_balance())
 balance via getter: 1200.0
 ```
 
-**Visual — outside talks to API; inside holds real state:**
-
-```mermaid
-flowchart LR
-  Caller["Caller"] --> API["deposit / withdraw / balance or get_balance()"]
-  API --> Hidden["_balance or __balance"]
-```
-
-**Key takeaways:**
-
-- `@property` = read with `obj.balance` (no `()`)
-- Getter = read with `obj.get_balance()` (needs `()`)
-- Real money stays in `_balance` / `__balance`
-- Without a setter, `obj.balance = ...` fails — force changes through methods
-
-**Remember:** `@property` does **not** replace encapsulation by itself. You still store the real value in `_…` / `__…` and validate in `deposit` / `withdraw`.
-
----
-
-#### 4c. Optional — `@balance.setter` (controlled write)
-
-Use a setter only when assignment should be allowed **with rules**. For bank money, prefer `deposit` / `withdraw`. Setter fits things like renaming with validation:
+Optional controlled write — `@name.setter` — for fields where assignment is the natural API:
 
 ```python
 class Student:
@@ -1063,7 +590,7 @@ s = Student("Anita")
 print(s.name)
 s.name = "  Anita Sharma  "
 print(s.name)
-s.name = "   "            # rejected
+s.name = "   "
 print("still:", s.name)
 ```
 
@@ -1076,200 +603,21 @@ Name cannot be empty
 still: Anita Sharma
 ```
 
-**Note:**
+`@property` can also **compute** a value (`fahrenheit` from `_celsius`) without storing a second field.
 
-- Leading with `__` on every field is noisy. Start with public + validated methods; add `_` / `__` / `@property` when the API needs it.
-- Interview line: “`_name` is convention; `__name` is name mangling; `@property` gives a clean read API over internal storage.”
-- Course rule of thumb: **lab kit** may use `__balance` + `get_balance()`; **notes / interviews** prefer `_balance` + `@property`.
+### ⚠️ WATCH OUT
 
-**Lab vs note style:** Lab kit = `__balance` + `get_balance()`. Notes above = `_balance` + `@property`. Same goal — both acceptable in this course.
+`@property` does **not** replace encapsulation by itself. Store the real value in `_…` / `__…` and validate in methods. Uncommenting `acct.balance = 999999` with no setter raises `AttributeError`.
 
-**Common Error:** treating `__balance` as encryption / security. It only renames the attribute (`_BankAccount__balance`).
+### Try It
 
-Write a PhonePe `UPIWallet` that stores `__balance`, with `credit`, `debit`, and `get_balance()`. Credit, debit, reject an oversize debit, and show that `__balance` is not a public attribute.
-
-```python
-class UPIWallet:
-    def __init__(self, balance=0):
-        self.__balance = float(balance)
-
-    def credit(self, amount):
-        if amount <= 0:
-            print("Invalid credit amount")
-            return
-        self.__balance += amount
-
-    def debit(self, amount):
-        if amount <= 0:
-            print("Invalid debit amount")
-            return
-        if amount > self.__balance:
-            print("Insufficient balance")
-            return
-        self.__balance -= amount
-
-    def get_balance(self):
-        return self.__balance
-
-wallet = UPIWallet(500)
-wallet.credit(200)
-wallet.debit(100)
-wallet.debit(1000)  # rejected
-print("Balance:", wallet.get_balance())
-print("Direct '__balance' visible?", hasattr(wallet, "__balance"))  # False
-# print(wallet.__balance)  # do not uncomment — crashes; use get_balance()
-print("Mangled peek (don't do this in apps):", wallet._UPIWallet__balance)
-```
-
-**Expected Output:**
-
-```
-Insufficient balance
-Balance: 600.0
-Direct '__balance' visible? False
-Mangled peek (don't do this in apps): 600.0
-```
-
-Write a Apollo Hospitals `Vitals` class with a read-only `@property` for Celsius plus computed Fahrenheit and fever band. Print C, F, and fever for 37°C.
-
-```python
-class Vitals:
-    def __init__(self, celsius):
-        self._celsius = float(celsius)   # internal
-
-    @property
-    def celsius(self):                   # read-only public view
-        return self._celsius
-
-    @property
-    def fahrenheit(self):                # computed — no stored F
-        return self._celsius * 9 / 5 + 32
-
-    @property
-    def fever(self):
-        return self._celsius >= 38.0
-
-v = Vitals(37)
-print("C:", v.celsius)
-print("F:", round(v.fahrenheit, 1))
-print("fever?", v.fever)
-# v.celsius = 40   # do not uncomment — crashes (read-only property; no setter)
-print("celsius is read-only — change only via a setter or a method (later design)")
-```
-
-**Expected Output:**
-
-```
-C: 37.0
-F: 98.6
-fever? False
-celsius is read-only — change only via a setter or a method (later design)
-```
-
-Write a Swiggy `Product` that hides `__stock`. Expose `sell`, `restock`, and `get_stock()` so stock cannot go negative through the public API.
-
-```python
-class Product:
-    def __init__(self, sku, stock):
-        self.sku = sku
-        self.__stock = int(stock)
-
-    def sell(self, qty):
-        if qty <= 0:
-            print("Invalid qty")
-            return
-        if qty > self.__stock:
-            print(f"{self.sku}: not enough stock")
-            return
-        self.__stock -= qty
-
-    def restock(self, qty):
-        if qty <= 0:
-            print("Invalid qty")
-            return
-        self.__stock += qty
-
-    def get_stock(self):
-        return self.__stock
-
-p = Product("NB-A4", 10)
-p.sell(3)
-p.sell(20)   # rejected
-p.restock(5)
-print("Stock:", p.get_stock())
-print("Direct '__stock' visible?", hasattr(p, "__stock"))
-```
-
-**Expected Output:**
-
-```
-NB-A4: not enough stock
-Stock: 12
-Direct '__stock' visible? False
-```
+Build a tiny `Wallet` with `_balance`, a read-only `@property` `balance`, and `deposit` only. Deposit 50 into a wallet that opened at 100 and print `w.balance`.
 
 ---
 
-## Step-by-Step Annotated Python 3 Code
+## Step-by-Step: Build It
 
-Examples below deepen Part 1 ideas. Type them; predict the output; then run.
-
-### Example 1 — BankAccount with encapsulation (lab-shaped)
-
-This mirrors the lab kit style (`__balance` + `get_balance`).
-
-```python
-class BankAccount:
-    def __init__(self, holder, balance=0):
-        self.holder = holder
-        self.__balance = float(balance)
-
-    def deposit(self, amount):
-        if amount <= 0:
-            print("Invalid deposit amount")
-            return
-        self.__balance += amount
-        print(f"Deposited ₹{amount}. New balance: ₹{self.__balance}")
-
-    def withdraw(self, amount):
-        if amount <= 0:
-            print("Invalid withdraw amount")
-            return
-        if amount > self.__balance:
-            print("Insufficient funds")
-            return
-        self.__balance -= amount
-        print(f"Withdrew ₹{amount}. New balance: ₹{self.__balance}")
-
-    def get_balance(self):
-        return self.__balance
-
-acct = BankAccount("Priya", 1000)
-acct.deposit(500)
-acct.withdraw(200)
-acct.withdraw(-50)     # rejected
-acct.deposit(0)        # rejected
-print("Balance:", acct.get_balance())
-print("Holder:", acct.holder)
-# print(acct.__balance)  # do not uncomment — crashes (name mangling); use get_balance()
-```
-
-**Expected Output:**
-
-```
-Deposited ₹500. New balance: ₹1500.0
-Withdrew ₹200. New balance: ₹1300.0
-Invalid withdraw amount
-Invalid deposit amount
-Balance: 1300.0
-Holder: Priya
-```
-
-**Remember:** validation lives in methods; callers never set `__balance` directly.
-
----
-
-### Example 2 — Full Student (marks list as instance data)
+One assemble: a `Student` that uses instance data, a class attribute, validation, and methods together — the same skills the BankAccount kit needs, on a different domain.
 
 ```python
 class Student:
@@ -1278,7 +626,7 @@ class Student:
     def __init__(self, roll, name, marks):
         self.roll = roll
         self.name = name
-        self.marks = list(marks)   # own copy
+        self.marks = list(marks)
 
     def average(self):
         if not self.marks:
@@ -1307,7 +655,7 @@ class Student:
 
 s = Student(101, "Anita", [72, 68, 81])
 s.add_mark(90)
-s.add_mark(150)   # rejected
+s.add_mark(150)
 s.report()
 ```
 
@@ -1319,67 +667,19 @@ Mark must be 0–100
   marks=[72, 68, 81, 90] avg=77.8 grade=B
 ```
 
----
-
-### Example 3 — Product catalogue with classmethod + static GST
-
-```python
-class Product:
-    catalogue_count = 0
-
-    def __init__(self, sku, name, price):
-        self.sku = sku
-        self.name = name
-        self.price = float(price)
-        Product.catalogue_count += 1
-
-    def label(self):
-        return f"{self.sku}: {self.name} @ ₹{self.price:.0f}"
-
-    def price_with_gst(self):
-        return self.price + Product.gst_amount(self.price)
-
-    @classmethod
-    def how_many(cls):
-        return cls.catalogue_count
-
-    @classmethod
-    def from_dict(cls, data):
-        return cls(data["sku"], data["name"], data["price"])
-
-    @staticmethod
-    def gst_amount(amount, rate=0.18):
-        return amount * rate
-
-p1 = Product("PEN-01", "Blue Pen", 10)
-p2 = Product.from_dict({"sku": "NB-A4", "name": "Notebook", "price": 40})
-print(p1.label())
-print(p2.label())
-print("GST on pen:", Product.gst_amount(p1.price))
-print("Pen with GST:", p1.price_with_gst())
-print("products created:", Product.how_many())
-```
-
-**Expected Output:**
-
-```
-PEN-01: Blue Pen @ ₹10
-NB-A4: Notebook @ ₹40
-GST on pen: 1.8
-Pen with GST: 11.8
-products created: 2
-```
+Validation lives in methods. `college` is shared. Each student owns its own `marks` list.
 
 ---
 
 ## Practice Exercises
 
-*(Each Practice item includes a filled **Model answer** and **Expected Output** where the demo prints.)*
+Attempt each problem before reading the model answer.
 
-### Basic
+1. Create `Laptop` with `brand`, `ram_gb`, and a `specs()` method that prints both. Create two objects and call `specs()` on each.
 
-1. Create `Laptop` with `brand`, `ram_gb`, and a `specs()` method that prints both.
-  **Model answer:**
+**Hint:** `__init__` stores the fields; `specs` uses `self`.
+
+**Model answer:**
 
 ```python
 class Laptop:
@@ -1390,34 +690,22 @@ class Laptop:
     def specs(self):
         print(f"{self.brand} — {self.ram_gb} GB RAM")
 
-Laptop("Dell", 16).specs()
-```
-
-   **Expected Output:**
-
-```
-Dell — 16 GB RAM
-```
-
-1. Create two `Laptop` objects and call `specs()` on each.
-  **Model answer:**
-
-```python
 l1 = Laptop("Dell", 16)
 l2 = Laptop("Lenovo", 8)
 l1.specs()
 l2.specs()
 ```
 
-   **Expected Output:**
+**Expected Output:**
 
 ```
 Dell — 16 GB RAM
 Lenovo — 8 GB RAM
 ```
 
-1. Add `upgrade_ram(extra_gb)` that increases `ram_gb` only when `extra_gb > 0`.
-  **Model answer:**
+2. Add `upgrade_ram(extra_gb)` that increases `ram_gb` only when `extra_gb > 0`. Upgrade 8 → 16, reject `-2`, print specs.
+
+**Model answer:**
 
 ```python
 class Laptop:
@@ -1440,15 +728,16 @@ lap.upgrade_ram(-2)
 lap.specs()
 ```
 
-   **Expected Output:**
+**Expected Output:**
 
 ```
 extra_gb must be positive
 Dell — 16 GB RAM
 ```
 
-1. Create `Product` with `sku`, `price`, and `display()` (do **not** use `__str__` yet — that is Part 3).
-  **Model answer:**
+3. Create `Product` with `sku`, `price`, and `display()` (do **not** use `__str__` yet — that is Part 3). Add `apply_discount(percent)` that **returns** the discounted price.
+
+**Model answer:**
 
 ```python
 class Product:
@@ -1459,37 +748,25 @@ class Product:
     def display(self):
         print(f"{self.sku} @ ₹{self.price}")
 
-Product("PEN-01", 10).display()
-```
-
-   **Expected Output:**
-
-```
-PEN-01 @ ₹10
-```
-
-1. Add `apply_discount(percent)` returning the discounted price (do not mutate unless you choose to).
-  **Model answer:**
-
-```python
-class Product:
-    def __init__(self, sku, price):
-        self.sku, self.price = sku, price
-
     def apply_discount(self, percent):
         return self.price * (1 - percent / 100)
 
-print(Product("X", 1000).apply_discount(10))  # 900.0
+Product("PEN-01", 10).display()
+print(Product("X", 1000).apply_discount(10))
 ```
 
-   **Expected Output:**
+**Expected Output:**
 
 ```
+PEN-01 @ ₹10
 900.0
 ```
 
-1. Create `Employee` with a **class** attribute `company = "KSR Datavizon"` and instance attributes `emp_id`, `name`. Print both employees after changing `Employee.company`.
-  **Model answer:**
+4. Create `Employee` with class attribute `company = "KSR Datavizon"` and instance attributes `emp_id`, `name`. Change `Employee.company` to `"KSR Labs"` and print both cards.
+
+**Hint:** Read the shared value as `Employee.company`.
+
+**Model answer:**
 
 ```python
 class Employee:
@@ -1509,15 +786,16 @@ e1.card()
 e2.card()
 ```
 
-   **Expected Output:**
+**Expected Output:**
 
 ```
 1: Ravi @ KSR Labs
 2: Meera @ KSR Labs
 ```
 
-1. Build a tiny `Wallet` with `_balance`, `@property` `balance`, and `deposit` only (no direct write to balance).
-  **Model answer:**
+5. Build a tiny `Wallet` with `_balance`, `@property` `balance`, and `deposit` only (no direct write to balance).
+
+**Model answer:**
 
 ```python
 class Wallet:
@@ -1534,58 +812,214 @@ class Wallet:
 
 w = Wallet(100)
 w.deposit(50)
-print(w.balance)  # 150.0
+print(w.balance)
 ```
 
-   **Expected Output:**
+**Expected Output:**
 
 ```
 150.0
 ```
 
-1. Lab warm-up: write `BankAccount` with `__balance`, `deposit`, `withdraw`, `get_balance` — reject amount ≤ 0 and overdraft. Then open the lab kit and finish it properly.
-  **Model answer:**
+6. Add `@staticmethod gst_amount(amount, rate=0.18)` to `Product` and print GST on ₹100 plus a line total for qty 3 at ₹40.
+
+**Hint:** Static methods do not use `self`. Call `Product.gst_amount(...)`.
+
+**Model answer:**
 
 ```python
-class BankAccount:
-    def __init__(self, holder, balance=0):
-        self.holder = holder
-        self.__balance = float(balance)
+class Product:
+    def __init__(self, sku, price):
+        self.sku = sku
+        self.price = price
 
-    def deposit(self, amount):
-        if amount <= 0:
-            print("Invalid deposit amount")
-            return
-        self.__balance += amount
+    def line_total(self, qty):
+        return self.price * qty
 
-    def withdraw(self, amount):
-        if amount <= 0:
-            print("Invalid withdraw amount")
-            return
-        if amount > self.__balance:
-            print("Insufficient funds")
-            return
-        self.__balance -= amount
+    @staticmethod
+    def gst_amount(amount, rate=0.18):
+        return amount * rate
 
-    def get_balance(self):
-        return self.__balance
-
-acct = BankAccount("Priya", 1000)
-acct.deposit(500)
-acct.withdraw(200)
-acct.withdraw(5000)
-print("Balance:", acct.get_balance())
+p = Product("NB-A4", 40)
+print(Product.gst_amount(100))
+print(p.line_total(3))
 ```
 
-   **Expected Output:**
+**Expected Output:**
 
 ```
-Insufficient funds
-Balance: 1300.0
+18.0
+120
 ```
 
-## Next
+---
 
-**Assignment reminder:** portfolio push is **[Mini-Project (Assignment): BankAccount OOP CLI](03_OOP_Part3_Polymorphism_Project.md#mini-project-assignment-bankaccount-oop-cli)** in Part 3. Keep building the [lab kit](../15_Lab_Assets/17_bank_account_oop/).
+## Lab
 
-Continue with **[OOP Part 2 — Inheritance & Composition](03_OOP_Part2_Inheritance.md)**.
+Combine a class, hidden stock, validated methods, and a class-level shop name. No files, no JSON, no `try` / `except`.
+
+### Problem
+
+A campus store tracks one product. Stock must not go negative through the public API. The shop name is shared.
+
+### What to Build
+
+A short script with one `Product` class and a small demo.
+
+### Requirements
+
+- Class attribute `shop = "KSR Store"`
+- `__init__(self, sku, stock)` — store stock as `__stock` (or `_stock` + `@property`)
+- `sell(qty)` — reject qty ≤ 0 or qty larger than stock (print + return)
+- `restock(qty)` — reject qty ≤ 0; otherwise add
+- `get_stock()` or a `stock` property — return current stock
+- Demo: create one product, sell, reject an oversell, restock, print shop name and stock
+
+### Expected Behavior
+
+Oversell prints a message and leaves stock unchanged. `hasattr(p, "__stock")` is `False` if you used name mangling.
+
+### Sample Run
+
+```text
+KSR Store
+NB-A4: not enough stock
+Stock: 12
+```
+
+(Your print wording may differ; the **rules** must match.)
+
+### Constraints
+
+No `raise` / `try` / `except`. No files. `__str__` is optional — save it for Part 3 if you prefer a `label()` method.
+
+### Bonus
+
+Add `@staticmethod` `gst_on(amount)` at 18% and print GST on a ₹40 item.
+
+---
+
+## Mini-Project (Assignment): HDFC Bank Account Class Warm-Up
+
+**Why this matters:** An account is the classic encapsulated object: the balance is not a public field; deposit and withdraw are the door.
+
+**Lab kit:** [15_Lab_Assets/17_bank_account_oop/](../15_Lab_Assets/17_bank_account_oop/) — work in `starter/`. Do **not** copy `solution/`.
+
+This is **not** the Student assemble from class. Same OOP tools, bank ticket. Full menu CLI stays in [Part 3](03_OOP_Part3_Polymorphism_Project.md).
+
+### Objective
+
+Build a `BankAccount` that deposits, withdraws, and reports balance without letting callers set the balance field directly.
+
+### Story / Scenario
+
+An HDFC Bank campus desk needs a simple account object — rules first, menu later.
+
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| `BankAccount` | `__init__(holder, opening=0)`; store balance as `__balance` (or `_balance` + `@property`) |
+| `deposit(amount)` | Reject amount ≤ 0; otherwise add |
+| `withdraw(amount)` | Reject amount ≤ 0 or overdraft; otherwise subtract |
+| `get_balance()` | Return current balance (kit style). A `balance` property is also fine |
+| Demo | Create one account, deposit, withdraw, print balance — **no menu loop yet** |
+
+Validate with **print + return**. Exception Handling is after [Part 4](03_OOP_Part4_Abstract_Classes_Interfaces.md).
+
+### Expected Behavior
+
+- Positive deposit increases balance
+- Overdraft and non-positive amounts print a message and leave balance unchanged
+- `account.__balance` is not a casual public attribute (mangled name if you used `__balance`)
+
+### Sample Run
+
+```text
+Opening: Priya @ ₹1000
+After deposit 500: ₹1500.0
+After withdraw 200: ₹1300.0
+Overdraft attempt: Insufficient funds
+```
+
+### Bonus Challenges
+
+- Add a `@property` `balance` that reads the hidden field without a setter
+- Print a one-line `status()` (save `__str__` for Part 3)
+
+### Done when
+
+- [ ] Deposit and withdraw rules work (print + return — no `raise`)
+- [ ] Balance is not casually overwritten from outside
+- [ ] Kit starter ticket for the **class** portion passes
+- [ ] Full CLI menu stays for [Part 3](03_OOP_Part3_Polymorphism_Project.md)
+
+---
+
+## Interview Q&A
+
+**Q1. What is a class? What is an object?**  
+A class is the blueprint (attributes + methods). An object is one concrete instance — many `BankAccount` objects from one `BankAccount` class.
+
+**Q2. What is `self` in Python?**  
+The reference to the current instance. It must be the first parameter of instance methods; Python passes it automatically on `obj.method()`.
+
+**Q3. Why do we need `__init__`?**  
+It sets each new object’s starting state when you call `BankAccount("Priya", 1000)`. You rarely call it by name.
+
+**Q4. Instance attribute vs class attribute?**  
+Instance attributes live on `self` (each object has its own `holder`). Class attributes live on the class (one shared `company` / `tax_rate`) unless an instance shadows the name.
+
+**Q5. `@classmethod` vs `@staticmethod`?**  
+`@classmethod` receives `cls` — class-level data or alternate constructors. `@staticmethod` has no automatic first argument; it is a utility namespaced on the class.
+
+**Q6. What does `_balance` mean? What does `__balance` do?**  
+`_balance` is a convention: “internal — prefer not to touch.” Python does not enforce it. `__balance` is name-mangled to `_ClassName__balance`, which reduces accidental access. It is not true security.
+
+**Q7. Why use `@property`?**  
+Expose a clean read API (`account.balance`) while keeping storage internal. Callers do not write `get_balance()` for every read. The lab kit’s `get_balance()` is the same idea with a method call.
+
+---
+
+## Cheat Sheet
+
+```text
+class Name:              → blueprint
+obj = Name(...)          → object; runs __init__
+self                     → current instance (first param of instance methods)
+self.x                   → instance attribute
+Class.x                  → class attribute (shared)
+local                    → name inside a method; dies when the method ends
+def meth(self, ...):     → instance method
+@classmethod             → first arg cls; counters / from_row
+@staticmethod            → no self/cls; pure utility
+_name                    → convention: internal
+__name                   → mangled to _ClassName__name
+@property                → read like an attribute (no ())
+get_balance()            → lab-kit getter (same goal as @property)
+```
+
+Validate bad input with print + return in this phase — not `raise`.
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can define a class, create objects, and use self / __init__
+[ ] I can choose instance vs class vs local variables
+[ ] I can write instance, class, and static methods
+[ ] I know _ is convention, __ is name mangling, and neither is security
+[ ] I can hide balance and change it only through methods / a property
+[ ] I completed the lab
+[ ] I attempted the BankAccount warm-up (no CLI yet)
+[ ] I can explain class vs object and encapsulation in an interview
+```
+
+---
+
+## What's Next?
+
+You can now bundle data with behaviour and protect important state.
+
+Next, [OOP Part 2: Inheritance and Composition](03_OOP_Part2_Inheritance.md) teaches **IS-A** reuse (`SavingsAccount` is a `BankAccount`) and **HAS-A** collaboration (an employee **has a** laptop) — without copy-pasting whole classes.

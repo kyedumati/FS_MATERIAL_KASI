@@ -1,210 +1,159 @@
-# Module: Python Setup and First Programs
+# Module 01 — Python Setup and First Programs
 
-**Previous module:** Computer and Programming Foundations
-**Next module:** Variables Datatypes Operators IO
+**Phase:** Core Python
+
+**Previous:** [Computer and Programming Foundations](../01_Foundations/01_Computer_and_Programming_Foundations.md)  
+**Next:** [Variables, Datatypes, Operators, and I/O](02_Variables_Datatypes_Operators_IO.md)
 
 ---
 
-**Module Outcome:**
+## Module Outcome
 
-- Run Python on your machine (REPL and a `.py` file) without guessing
-- Print, comment, and save a tiny script you can show a classmate
-- Know why Python is the language this course builds on
+Install Python 3, run code in the REPL and in a `.py` file, and ship a short welcome script with `print`, comments, clear names, and a simple f-string.
 
-### Why Python?
+By the end of this module you will be able to:
 
-**Python** is a programming language created by Guido van Rossum (first released 1991). It reads almost like English, which helps learners learn faster than lower-level languages.
+- Verify Python 3 from the terminal and pick that interpreter in VS Code
+- Choose REPL for a one-line check and a script for work you keep
+- Print text, numbers, and a banner with `"=" * n`
+- Name values with `snake_case` and avoid keywords
+- Write a one-line f-string greeting
 
-**Icons:** Bank · Order · Laptop · Payroll
+---
 
-**Where used?**
-- **HDFC Bank** / **PhonePe** scripts — small tools that print balances, receipts, or job status
-- College apps — student portal banners, marks entry CLIs
-- **Swiggy** — canteen/order labels and first checkout demos
-- **Employee Management Portal** — employee welcome scripts and HR training labs
-- **Apollo Hospitals** — appointment or ticket “hello” scripts before real CRUD
+## 1. Why This Concept Matters
 
-**Why companies in India hire Python developers:**
+Every later lab is a **file you run**. If Python is missing, or you only type in an unsaved tab, nothing in this course will work on your laptop.
 
-- **Web backends & APIs:** server-side apps and services (Instagram, Zomato-scale stacks often use Python)
-- **Automation & scripting:** Reports, file processing, testing
-- **Data & AI:** pandas, machine learning libraries
-- **Full stack:** Python API + React frontend is a common startup stack
+Python is a **high-level** language: you write readable lines; the **interpreter** runs them. One language covers small scripts now and APIs / Django later, so class time goes to **logic**, not boilerplate.
 
-Python is **interpreted**: the computer runs your code line by line through the **Python interpreter**, without a separate compile step like C or Java (Java compiles to bytecode for JVM).
-
-### Installing Python 3
-
-Download from [https://www.python.org/downloads/](https://www.python.org/downloads/) — choose **Python 3.12+** (not Python 2; it is obsolete).
-
-**Windows:** Check **"Add python.exe to PATH"** during install.
-
-Verify in terminal:
-
-```bash
-# macOS / Linux
-python3 --version
-# Example output: Python 3.12.4
-
-# Windows
-python --version
-```
-
-### VS Code for Python
-
-1. Install **Python** extension (Microsoft)
-2. **Command Palette** (`Ctrl+Shift+P` / `Cmd+Shift+P`) → **Python: Select Interpreter** → choose Python 3.x
-3. Open your course folder: `ksr_python_fullstack`
-4. Create `projects/hello.py`
-
-### Running your first program
-
-**Two ways:**
-
-| Mode | How | When to use |
-|------|-----|-------------|
-| **REPL** (Read-Eval-Print Loop) | Type `python3` in terminal, see `>>>` | Quick experiments, calculator |
-| **Script** | Save `.py` file, run `python3 hello.py` | Real projects, assignments |
-
-### Keywords and identifiers
-
-**Keywords** are reserved words Python uses for grammar — you cannot name a variable `if` or `class`.
-
-**Identifiers** are names you choose: variables, functions, files (for variables).
-
-Rules:
-
-- Start with letter (a–z, A–Z) or underscore `_`
-- Rest can be letters, digits, underscore
-- **Case-sensitive:** `name` and `Name` are different
-- No spaces: use `student_name` not `student name`
-- Convention: **snake_case** for variables and functions in Python
-
-### Python vs Java vs C (brief)
-
-| Feature | C | Java | Python |
-|---------|---|------|--------|
-| Hello World lines | Many (includes boilerplate) | Class + main method | 1 line |
-| Semicolon | Required | Required | Not required |
-| Blocks | `{ }` braces | `{ }` braces | Indentation |
-| Type declaration | Explicit | Explicit | Dynamic (type decided at runtime) |
-| Run | Compile then execute | Compile to bytecode, JVM | Direct interpret |
-
-**C — Hello World (conceptual):**
-
-```c
-#include <stdio.h>
-int main() {
-    printf("Hello, World!\n");
-    return 0;
-}
-```
-
-**Java — Hello World:**
-
-```java
-public class Hello {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-
-**Python — Hello World:**
+A campus portal splash screen is the same idea as `Hello, World!`: text on the screen, no database yet.
 
 ```python
 print("Hello, World!")
 ```
 
-For a **student management** CLI you will build over coming weeks, Python lets you focus on logic (add student, list students) instead of boilerplate.
+**Expected Output:**
+
+```
+Hello, World!
+```
+
+That one line is a complete program.
 
 ---
 
-## Important Concepts and Definitions
+## 2. Install Python 3 and verify
 
-| Term | Definition |
-|------|------------|
-| **Python 3** | Current major version of Python (use this, not Python 2) |
-| **Interpreter** | Program that executes Python code line by line |
-| **REPL** | Interactive shell: type code, see result immediately |
-| **Script** | `.py` file saved and run as a whole |
-| **Statement** | Instruction that does something (`print("Hi")`) |
-| **Keyword** | Reserved word with special meaning to Python |
-| **Identifier** | Name given to variable, function, class, module |
-| **snake_case** | Naming style: `employee_id`, `total_marks` |
-| **Comment** | Text ignored by Python — notes for humans (`#`) |
-| **PATH** | OS list of folders where terminal finds `python` executable |
-| **Shebang** | Optional first line `#!/usr/bin/env python3` on Unix scripts |
+### Understand
 
----
+Your machine needs a **Python 3** interpreter and an editor that can run it. Without that pair, later modules cannot run on your laptop.
 
-## Step-by-Step Notes (With Annotated Code)
+### How It Works
 
-### Step 1: Environment checklist
+1. Download **Python 3.12+** from [python.org/downloads](https://www.python.org/downloads/).  
+   Windows: tick **Add python.exe to PATH**.
+2. In VS Code, install the **Python** extension.
+3. Command Palette → **Python: Select Interpreter** → pick Python 3.x.
+4. Open your course folder. Create a `projects/` folder for scripts.
 
-Create `projects/env_check.py`:
+```bash
+# macOS / Linux
+python3 --version
+
+# Windows (often)
+python --version
+```
+
+You should see `Python 3.12.x` (or another 3.x). Save that line — the mini-project asks for it.
+
+A tiny script proves the editor is using the same interpreter:
 
 ```python
-# env_check.py — run once after install
-import sys  # sys module gives Python version info (modules come later)
+import sys
 
 print("Python version:", sys.version)
 print("Setup OK — ready for Core Python!")
 ```
 
-Run:
+**Expected Output:** (the version text will match *your* machine)
 
-```bash
-cd ~/ksr_python_fullstack/projects
-python3 env_check.py
+```
+Python version: 3.12.x ...
+Setup OK — ready for Core Python!
 ```
 
-**Note:**
-- Wrong: Using Python 2 style (`print "hi"`) or a terminal where `python` is not found / PATH missing.
-- Prefer: Install Python 3, use `python3` on Mac/Linux, and tick “Add to PATH” on Windows.
-- Wrong: VS Code running a different interpreter than the one you installed.
-- Prefer: Pick the correct Interpreter from the status bar.
+### ⚠️ WATCH OUT
 
-Print the installed Python version and a ready line that includes Priya's name.
-
-```python
-import sys
-
-print(sys.version)
-print("Ready for KSR Python — Priya")
+```text
+# Wrong — VS Code running a different Python than the one you installed
+# Prefer — status bar → select the Python 3.x you just verified in the terminal
 ```
 
-Print the Python version and a ready line that includes Priya's name and the city Hyderabad.
+Python 2 `print "hi"` is obsolete. This course uses `print("hi")` on Python 3.
 
-```python
-import sys
+### Try It
 
-city = "Hyderabad"
-print(sys.version)
-print(f"Ready for KSR Python — Priya ({city})")
-```
+In the terminal, print your Python version. Then create `projects/env_check.py` with the two `print` lines above and run it.
 
-### Step 2: REPL — try before you save
+---
+
+## 3. REPL vs script
+
+### Understand
+
+Two places to run Python:
+
+- **REPL** — interactive prompt (`>>>`). Type a line, see the result. Good for a quick check.
+- **Script** — a saved `.py` file. You run it with `python3 file.py`. Good for assignments you keep and submit.
+
+Habit: try a line in the REPL → copy working lines into a `.py` file → run the script.
+
+### How It Works
+
+| Mode | How | When |
+|------|-----|------|
+| REPL | Type `python3` → see `>>>` | One-line checks, calculator |
+| Script | Save `.py`, run `python3 hello.py` | Assignments, projects |
 
 ```bash
 python3
 ```
 
-```python
+```text
 >>> print("Hello from REPL")
 Hello from REPL
 >>> 2 + 3
 5
->>> exit()   # or Ctrl+D (macOS/Linux) / Ctrl+Z Enter (Windows)
+>>> exit()
 ```
 
-REPL is great for testing one line; scripts are for programs you keep.
+Script (`projects/hello.py`):
 
-Print a greeting for Ravi and the sum of two Swiggy canteen prices (₹450 and ₹120).
+```python
+# hello.py
+# Purpose: First Python program
+
+print("Hello, World!")
+print("Welcome to Python Full Stack training.")
+```
+
+```bash
+python3 hello.py
+```
+
+**Expected Output:**
+
+```
+Hello, World!
+Welcome to Python Full Stack training.
+```
+
+`print` can show a calculated number too — the REPL-style check, saved in a file:
 
 ```python
 print("Hello, Ravi")
-print(450 + 120)  # ₹570 for two canteen items
+print(450 + 120)
 ```
 
 **Expected Output:**
@@ -214,46 +163,40 @@ Hello, Ravi
 570
 ```
 
-Print the learner name, the batch name, and a line that confirms Python 3 is OK.
+### ⚠️ WATCH OUT
 
-```python
-print("Priya")
-print("Full Stack Python Batch")
-print("Python 3 OK")
+```text
+# Wrong — run without saving (tab still has a dot) → old output
+# Prefer — Save (Cmd+S / Ctrl+S) before you run
+
+# Wrong — terminal is in the wrong folder → FileNotFoundError
+# Prefer — cd into the folder that contains the script
+
+# Wrong
+print(Hello)          # NameError — Hello looks like a variable
+
+# Prefer
+print("Hello")
 ```
 
-### Step 3: First script — hello world
+### Try It
 
-`projects/hello.py`:
+Create `projects/hello.py`. Print a greeting for your name and the sum of `199 + 49`.
 
-```python
-# hello.py
-# Author: Your Name
-# Purpose: First Python program for KSR Full Stack course
+---
 
-print("Hello, World!")
-print("Welcome to Python Full Stack training.")
-```
+## 4. Comments and banners
 
-Run:
+### Understand
 
-```bash
-python3 hello.py
-```
+`#` starts a **comment** — Python ignores it. Comments explain *why* for humans.
 
-**Annotation:**
+Repeating a character with `"=" * 40` draws a border. Several `print` lines stacked together look like a portal or ATM screen.
 
-- `#` starts a **comment** — Python skips it
-- `print(...)` is a **function** that displays text on screen
-- Text in quotes is a **string literal**
-
-**Note:**
-- Wrong: Running without saving (tab still shows a dot) — you see old output; or `print(Hello)` without quotes.
-- Prefer: Save (`Ctrl+S` / `Cmd+S`) before run; strings need `'...'` or `"..."`.
-
-Print Priya's name and one-line career goal.
+### How It Works
 
 ```python
+# Purpose: Career intro line
 print("Priya")
 print("Become a full-stack Python developer")
 ```
@@ -265,23 +208,8 @@ Priya
 Become a full-stack Python developer
 ```
 
-Print the same name and career goal, and add author and date comments above the code.
-
 ```python
-# Author: Priya
-# Date: 03-08-2026
-print("Priya")
-print("Become a full-stack Python developer")
-```
-
-### Step 4: Multi-line output — training centre welcome
-
-`projects/welcome_student.py`:
-
-```python
-# Simulates welcome banner for student management system (future module)
-
-print("=" * 40)          # repeat = character 40 times
+print("=" * 40)
 print("   KSR STUDENT PORTAL")
 print("=" * 40)
 print("Login page loading...")
@@ -289,7 +217,7 @@ print("Please use registered email.")
 print("=" * 40)
 ```
 
-Output:
+**Expected Output:**
 
 ```
 ========================================
@@ -300,371 +228,449 @@ Please use registered email.
 ========================================
 ```
 
-Print an HDFC Bank ATM welcome banner using repeated `=` lines around the title and welcome text.
+### ⚠️ WATCH OUT
+
+Do not put passwords or secrets in comments you will commit. Keep comments short: `# Purpose: …`
+
+`"=" * 40` is 40 equal signs — change the number if the title is shorter or longer.
+
+### Try It
+
+Print a 4-line canteen banner: `=` border, title `CAMPUS CANTEEN`, a welcome line, `=` border.
+
+---
+
+## 5. Keywords and identifiers
+
+### Understand
+
+**Keywords** are reserved words (`if`, `class`, `for`, `True`, …). You cannot use them as names.
+
+**Identifiers** are names you choose. This week they label values (later they will also name functions).
+
+Rules:
+
+- Start with a letter or `_`
+- Then letters, digits, `_`
+- Case-sensitive: `name` is not `Name`
+- No spaces → `student_name`
+- Style: **snake_case** for variables
+
+### How It Works
 
 ```python
-print("=" * 24)
-print("    SECUREBANK ATM")
-print("=" * 24)
-print("  Welcome, customer")
-print("=" * 24)
-```
+# INVALID — SyntaxError if you uncomment these
+# if = 10
+# class = "A"
 
-**Expected Output:**
-
-```
-========================
-    SECUREBANK ATM
-========================
-  Welcome, customer
-========================
-```
-
-Print a student marks portal banner: title, a blank line, then a prompt to enter a roll number.
-
-```python
-print("STUDENT MARKS PORTAL")
-print()
-print("Enter roll to continue")
-```
-
-### Step 5: Keywords — what you cannot use as names
-
-```python
-# INVALID — will cause SyntaxError
-# if = 10        # 'if' is a keyword
-# class = "A"    # 'class' is a keyword
-
-# VALID identifiers
+# VALID
 student_count = 45
 employee_id = "EMP001"
-_private_note = "internal use"   # leading _ convention: "internal"
-```
-
-Check keywords in REPL:
-
-```python
->>> import keyword
->>> print(keyword.kwlist)
-# Long list including: False, None, True, and, as, assert, break, class, ...
-```
-
-**Note:**
-- Wrong: Using a keyword as a variable name (`if = 10`) → `SyntaxError`.
-- Prefer: Rename (`is_valid`, `if_flag`).
-
-Print how many Python keywords this interpreter has, and show the first five names from `keyword.kwlist`.
-
-```python
-import keyword
-
-print(len(keyword.kwlist))
-print(keyword.kwlist[:5])  # first five as a peek
-```
-
-**Expected Output:**
-
-```
-35
-['False', 'None', 'True', 'and', 'as']
-```
-
-**Remember:** Keyword count can grow slightly across Python versions — always print `keyword.kwlist` on *your* machine in lab.
-
-Keep invalid keyword assignments commented out, then print valid renamed variables (`if_flag`, `class_name`, `for_count`).
-
-```python
-# INVALID (would cause SyntaxError if uncommented):
-# if = 1
-# class = "A"
-# for = 5
-
-# VALID renames:
-if_flag = 1
-class_name = "A"
-for_count = 5
-print(if_flag, class_name, for_count)
-```
-
-### Step 6: Identifier naming — employee portal style
-
-```python
-# Good names (clear, snake_case)
 full_name = "Ananya Sharma"
-department_code = "HR"
 is_active = True
 
-# Poor names (avoid in production code)
-x = "Ananya Sharma"      # too vague
-FullName = "Ananya"      # PascalCase reserved mostly for classes
-employee id = "E1"       # SyntaxError — space not allowed
-```
-
-**Note:**
-- Wrong: CamelCase everywhere for variables (`FullName`) — works but un-Pythonic.
-- Prefer: `snake_case` for variables and functions.
-
-Store a student name, roll number, and pass flag with clear `snake_case` names, then print each value.
-
-```python
-student_name = "Priya"
-roll_number = "2026001"
-is_pass = True
-print(student_name)
-print(roll_number)
-print(is_pass)
+print(full_name)
+print(employee_id)
+print(is_active)
 ```
 
 **Expected Output:**
 
 ```
-Priya
-2026001
+Ananya Sharma
+EMP001
 True
 ```
 
-Replace vague names like `x` / `nm` / `amt` with clear expense names and print the category with the amount in rupees.
+### ⚠️ WATCH OUT
 
-```python
-# Poor: x, nm, amt  → clear snake_case
-food_expense = 250
-category_name = "food"
-amount_inr = 250
-print(f"{category_name}: ₹{amount_inr}")
+```text
+# Wrong
+class = "Python"       # keyword
+employee id = 101      # space
+FullName = "Ananya"    # works, but not snake_case for a variable
+
+# Prefer
+course_name = "Python"
+employee_id = 101
+full_name = "Ananya"
 ```
 
-**Common Error:** Putting a space in a name (`employee id = 101`) → `SyntaxError`. Use `employee_id`.
+### Try It
 
-### Step 7: Simple formatted greeting (preview of f-strings)
+Store a student name, a roll number, and a pass flag (`True` or `False`) with `snake_case` names. Print each.
 
-`projects/greet_trainer.py`:
+---
+
+## 6. Formatted greeting (f-string preview)
+
+### Understand
+
+An **f-string** embeds values inside `{ }` in a string that starts with `f`. Next module covers formatting in more depth — today you only need “put this name in this sentence.”
+
+### How It Works
 
 ```python
 trainer_name = "Kasi"
-batch_name = "Python Full Stack July 2026"
+batch_name = "Python Full Stack"
 
-# Comma print adds space between items automatically
 print("Hello,", trainer_name)
-print("Batch:", batch_name)
-
-# f-string (preferred from Python 3.6+) — full detail in Module 02
-print(f"Hello, {trainer_name}! You are teaching {batch_name}.")
-```
-
-Store Ravi's name and print a welcome message with an f-string.
-
-```python
-name = "Ravi"
-print(f"Hello, {name} — welcome to KSR")
+print(f"Hello, {trainer_name}! Batch: {batch_name}.")
 ```
 
 **Expected Output:**
 
 ```
-Hello, Ravi — welcome to KSR
+Hello, Kasi
+Hello, Kasi! Batch: Python Full Stack.
 ```
 
-Store a name and city, then print `{name} from {city}` using an f-string.
+`print("Hello,", trainer_name)` joins pieces with a space. The f-string keeps the whole sentence in one string.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — missing f  →  the braces print as text
+print("Hello, {trainer_name}")
+
+# Prefer
+print(f"Hello, {trainer_name}")
+```
+
+### Try It
+
+Store a name and a city. Print `{name} from {city}` with an f-string.
+
+---
+
+## Step-by-Step: Build It
+
+One day-1 intro card: purpose comment, `snake_case` values, banner, and an f-string. Type the file. Do not paste.
 
 ```python
-name = "Priya"
-city = "Pune"
-print(f"{name} from {city}")
+# Purpose: Day 1 intro card
+
+student_name = "Priya Sharma"
+city = "Hyderabad"
+goal = "Become a full-stack Python developer"
+
+print("=" * 36)
+print("  KSR — Day 1 Intro")
+print("=" * 36)
+print(f"Name: {student_name}")
+print(f"City: {city}")
+print(f"Goal: {goal}")
+print("=" * 36)
 ```
 
-### Step 8: Script vs REPL workflow (recommended habit)
+**Expected Output:**
 
 ```
-[Think] → [Try in REPL] → [Copy working lines to .py] → [Run script] → [Git commit later]
+====================================
+  KSR — Day 1 Intro
+====================================
+Name: Priya Sharma
+City: Hyderabad
+Goal: Become a full-stack Python developer
+====================================
 ```
 
-Example flow for expense tracker label:
+Save as `projects/my_intro.py` and run `python3 my_intro.py`. Swap in your own name, city, and goal.
 
-```python
-# REPL experiment:
->>> print("Expense Tracker v0.1")
-
-# Saved as projects/expense_banner.py:
-print("Expense Tracker v0.1")
-print("Module: Setup — no amounts yet")
-```
-
-**Note:**
-- Wrong: Running a script from the wrong folder → `FileNotFoundError`.
-- Prefer: `cd` to the folder that contains the script, or use a full path.
-
-Print a one-line Swiggy canteen bill title.
-
-```python
-print("Swiggy Canteen Bill")
-```
-
-Print the same Swiggy canteen title, then a second line that says to pay at the counter.
-
-```python
-print("Swiggy Canteen Bill")
-print("Pay at counter")
-```
+Tonight’s kit also asks you to prove the install and keep a hello script — same tools, a small **folder pack**, not this one file.
 
 ---
 
 ## Practice Exercises
 
-### Basic
+Attempt each problem before reading the model answer.
 
-1. Install Python 3 and paste terminal output of `python3 --version` into `notes/setup_proof.txt`.
+1. Print a 3-line train ticket stub: passenger `Meera Rao`, route `Pune → Hyderabad`, date `14-09-2026`.
 
-   **Model answer:** After install, run:
+**Hint:** Three `print` calls. The date can be a string.
 
-   ```bash
-   python3 --version
-   ```
-
-   Example output: `Python 3.12.x`. Create `notes/setup_proof.txt` and paste that exact line. On some Windows setups the command is `python --version` — either is fine if it shows 3.x.
-
-2. Write `hello.py` that prints your name and city on two lines.
-
-   **Model answer:**
+**Model answer:**
 
 ```python
-print("Priya Sharma")
-print("Hyderabad")
+print("Meera Rao")
+print("Pune → Hyderabad")
+print("14-09-2026")
 ```
 
-   Run: `python3 hello.py`
+**Expected Output:**
 
-3. In REPL, print the result of `10 * 5` and `100 / 4`.
+```
+Meera Rao
+Pune → Hyderabad
+14-09-2026
+```
 
-   **Model answer:** Start REPL with `python3`, then:
+2. Store `book = "Atomic Habits"` and `desk = 12`. Print `Hold: Atomic Habits — desk 12` with an f-string.
 
-   ```python
-   >>> 10 * 5
-   50
-   >>> 100 / 4
-   25.0
-   ```
-
-   Note: `/` always returns a float in Python 3.
-
-4. List 10 Python keywords from `keyword.kwlist`.
-
-   **Model answer:**
+**Model answer:**
 
 ```python
-import keyword
-print(keyword.kwlist[:10])
+book = "Atomic Habits"
+desk = 12
+print(f"Hold: {book} — desk {desk}")
 ```
 
-   Example first ten: `False`, `None`, `True`, `and`, `as`, `assert`, `async`, `await`, `break`, `class` (exact order can vary slightly by version — print the list on your machine).
+**Expected Output:**
 
-### Intermediate
+```
+Hold: Atomic Habits — desk 12
+```
 
-1. Write `training_banner.py` that prints a 5-line banner for "Employee Portal Training".
+3. Print a 5-line library banner: `"=" * 28` borders, title `KSR LIBRARY`, then `Quiet zone`.
 
-   **Model answer:**
+**Model answer:**
 
 ```python
-print("==============================")
-print("  Employee Portal Training")
-print("  KSR Full Stack Python")
-print("  Welcome, learners!")
-print("==============================")
+print("=" * 28)
+print("      KSR LIBRARY")
+print("=" * 28)
+print("  Quiet zone")
+print("=" * 28)
 ```
 
-2. Fix this code (find 3 errors):
+**Expected Output:**
 
-   ```python
-   Print("Hello")
-   class = "Python"
-   employee id = 101
-   ```
+```
+============================
+      KSR LIBRARY
+============================
+  Quiet zone
+============================
+```
 
-   **Model answer:** Errors: (1) `Print` must be `print` (case-sensitive). (2) `class` is a keyword — cannot be an identifier. (3) `employee id` has a space — use underscore.
+4. Invent valid `snake_case` names for the invalid ideas `for`, `roll no`, and `BatchName`. Assign a course, a roll, and a batch, then print all three.
 
-   ```python
-   print("Hello")
-   course = "Python"
-   employee_id = 101
-   ```
+**Hint:** `for` is a keyword. Spaces are not allowed. Variables use `snake_case`, not `PascalCase`.
 
-3. Create identifiers for: student roll number, monthly salary, is_logged_in flag.
+**Model answer:**
 
-   **Model answer:** Prefer `snake_case`: `student_roll_number` (or `roll_no`), `monthly_salary`, `is_logged_in`. Avoid spaces, starting with a digit, or keywords.
+```python
+loop_count = 3
+roll_no = "2026001"
+batch_name = "PFS-A"
+print(loop_count)
+print(roll_no)
+print(batch_name)
+```
 
-4. Write same greeting in REPL and in script; note differences in workflow.
+**Expected Output:**
 
-   **Model answer:**
-   - **REPL:** type `print("Namaste")` → see result immediately; good for experiments; lost when you quit unless you save history.
-   - **Script:** save `greeting.py` with the same `print`, run `python3 greeting.py` anytime; reusable and shareable. Industry work almost always uses scripts/files, not only REPL.
+```
+3
+2026001
+PFS-A
+```
 
-### Interview-Oriented
+5. Using only `print` and arithmetic (no variables required), print remaining seats: `120 - 47`.
 
-1. Is Python compiled or interpreted? Explain in 2–3 sentences for an interviewer.
+**Model answer:**
 
-   **Model answer:** Python is primarily an **interpreted** language: the CPython interpreter reads source (or bytecode) and executes it. Source is compiled to bytecode (`.pyc`) behind the scenes, then run on the Python Virtual Machine — so it is not “compiled to machine code like C,” but also not purely line-by-line with no bytecode. In interviews, “interpreted / high-level” is the expected short answer, with bytecode as a bonus detail.
+```python
+print(120 - 47)
+```
 
-2. Why is `snake_case` preferred over `camelCase` in Python community?
+**Expected Output:**
 
-   **Model answer:** PEP 8 (Python style guide) recommends `snake_case` for functions and variables. Consistent style makes code readable across teams and matches the standard library. `camelCase` is common in Java/JavaScript; mixing styles in Python looks non-idiomatic in reviews.
-
-3. Compare one advantage and one limitation of Python vs Java for enterprise backends.
-
-   **Model answer:** **Advantage:** Python usually has faster development and clearer syntax for APIs, scripting, and data work. **Limitation:** raw CPU-heavy workloads and some large enterprise ecosystems still lean on Java’s performance, strict typing culture, and long-standing tooling — Python can be slower for tight loops unless you use libraries (NumPy) or other services.
-
-4. What happens if you name a variable `True`? (Try in REPL.)
-
-   **Model answer:** `True` is a keyword / built-in constant. Assignment like `True = 1` raises `SyntaxError: cannot assign to True`. You cannot use keywords as variable names — choose `is_true` or `flag` instead.
+```
+73
+```
 
 ---
 
-## Mini-Project (Assignment): Environment & Greeting Pack
+## Lab
 
-**Title:** Prove your workspace + first greeting scripts  
-**Lab kit (build here):** [15_Lab_Assets/27_terminal_workspace/](../15_Lab_Assets/27_terminal_workspace/)
+Combine comments, `snake_case` names, a banner, an f-string, and a printed total. One file — not the folder pack from the kit.
 
-### What to build
+### Problem
 
-1. `projects/env_check.py` — prints Python version  
-2. `projects/hello.py` — hello world  
-3. `projects/my_intro.py` — prints your name, career goal, and one reason you chose Python full stack  
-4. `notes/python_vs_java.md` — table comparing 5 syntax features (from this module)  
-5. Screenshot: VS Code running `my_intro.py` with output in terminal  
+A campus desk needs a **welcome card** on screen: who the student is, which batch, and what they owe for the week.
 
-### Stretch
+### What to Build
 
-- Add a shebang line and make `my_intro.py` executable on macOS/Linux (`chmod +x my_intro.py`).  
-- Add `projects/welcome_batch.py` that prints a 5-line KSR batch banner.  
+A script `welcome_card.py`.
+
+### Requirements
+
+- A `# Purpose:` comment at the top
+- Variables: `student_name`, `batch_name`, `course_fee`, `lab_fee` (`snake_case`)
+- A banner with `"=" * n` around a short title
+- An f-string that greets the student and shows the batch
+- Print the **sum** of the two fees
+
+### Expected Behavior
+
+Running the script prints a bordered card. The fee line is a calculated total, not a typed-in number you already added by hand in your head only — let Python add them.
+
+### Sample Run
+
+```text
+========================
+  CAMPUS WELCOME
+========================
+Hello, Dev Kumar — batch PFS-A
+Fees due: 4500
+========================
+```
+
+(Your name, batch, and amounts may differ; the **shape** should match.)
+
+### Constraints
+
+Top-level statements only — no `if`, no loops, no `def`. This is one `.py` file, not a folder layout.
+
+### Bonus
+
+Add a city variable and a second f-string line: `{student_name} from {city}`.
+
+---
+
+## Mini-Project (Assignment): Environment and Greeting Pack
+
+**Why this matters:** Mentors need proof that your machine runs Python 3 and that you can save and run scripts — the same habit every later lab uses.
+
+**Lab kit:** [15_Lab_Assets/27_terminal_workspace/](../15_Lab_Assets/27_terminal_workspace/)
+
+| File / area | What you do |
+|-------------|-------------|
+| Kit checklist | Follow `starter/CHECKLIST.md` — create the standard folders |
+| `notes/day1.txt` | Paste `pwd` + listing, plus `python3 --version` (or `python --version`) |
+| `projects/env_check.py` | Print Python version + ready message |
+| `projects/hello.py` | Hello World + welcome line |
+| `projects/my_intro.py` | Your name, career goal, why Python full stack |
+| `solution/` | Do **not** copy this |
+
+This is a **folder pack** — not the single welcome-card lab. No `if` / loops yet.
+
+### Objective
+
+Create the course workspace folders and three small scripts that prove install + `print`.
+
+### Story / Scenario
+
+Day 1 of training. A classmate should see that your laptop runs Python 3 and that you can ship a tiny splash screen.
+
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| Folders | Match the kit checklist (`projects/`, `notes/`, `labs/`) |
+| `env_check.py` | Uses `sys.version` (or equivalent) and prints clearly |
+| `hello.py` | At least two `print` lines |
+| `my_intro.py` | At least three clear lines about you; optional `=` banner |
+| Proof | `notes/day1.txt` plus a screenshot of `my_intro.py` running |
+
+### Expected Behavior
+
+- Terminal shows Python **3.x**
+- Each script runs with no errors
+- `my_intro.py` is about **you**, not a pasted sample name
+
+### Sample Run
+
+```text
+Python version: 3.12.x ...
+Setup OK — ready for Core Python!
+```
+
+```text
+Hello, World!
+Welcome to Python Full Stack training.
+```
+
+```text
+====================================
+  KSR — Day 1 Intro
+====================================
+Name: Priya Sharma
+Goal: Become a full-stack Python developer
+Why Python: Short syntax, strong for APIs later
+====================================
+```
+
+### Bonus Challenges
+
+- Add a shebang (`#!/usr/bin/env python3`) and `chmod +x` on macOS/Linux
+- Add `projects/welcome_batch.py` — 5-line KSR banner for your batch name
+- Optional: `import keyword` then `print(len(keyword.kwlist))` — how many keywords your Python has
 
 ### Done when
 
-- [ ] Lab kit ticket folders/scripts prove a clean workspace  
-- [ ] `env_check.py`, `hello.py`, and `my_intro.py` all run without errors  
-- [ ] Comparison notes file exists with at least 5 rows  
-
-## Interview Q&A
-
-Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
-
-1. Why did Python become popular for beginners but also for companies like Instagram?
-2. If indentation replaces braces, what could go wrong when copy-pasting code from the web?
-3. what feels easier in Python compared to anything you tried before?
-4. Should every `.py` file start with `import` statements? When is bare `print` enough?
-5. How is selecting "Python interpreter" in VS Code similar to choosing which translator reads your book?
-
-**Q1. What is Python? What is it used for?**  
-**A:** High-level, interpreted language known for readability; used in web backends, APIs, automation, data science, and scripting.
-
-**Q2. Difference between interpreted and compiled languages?**  
-**A:** Interpreted (Python) runs via interpreter line-by-line; compiled (C) translates to machine code first. Java is hybrid: compile to bytecode, run on JVM.
-
-**Q3. What are Python keywords? Example of invalid use?**  
-**A:** Reserved words like `if`, `def`, `class`; cannot use as variable names — `class = 5` is invalid.
-
-**Q4. How do you run a Python file from command line?**  
-**A:** `python3 filename.py` (or `python filename.py` on Windows) from directory containing file or with full path.
-
-**Q5. Why is Python popular for startups in India?**  
-**A:** Fast development, rich libraries, easier hiring/training, and a strong fit for MVPs, automation, and APIs.
+- [ ] Terminal shows Python **3.x**
+- [ ] Folder layout matches the kit checklist
+- [ ] `env_check.py` and `hello.py` run with no errors
+- [ ] `my_intro.py` prints at least three clear lines about you
+- [ ] `notes/day1.txt` exists with listing + version output
+- [ ] Screenshot of running `my_intro.py` is ready to show
 
 ---
 
+## Interview Q&A
+
+**Q1. What is Python used for?**  
+A high-level, readable language — scripts, automation, APIs, and web backends (this course’s path).
+
+**Q2. Is Python compiled or interpreted?**  
+Mainly **interpreted**: the interpreter runs your code. Behind the scenes it may use bytecode — for interviews, “interpreted / high-level” is enough.
+
+**Q3. What is a keyword? Give an invalid example.**  
+A reserved word (`if`, `def`, `class`). Invalid: `class = 5` → `SyntaxError`.
+
+**Q4. How do you run a `.py` file?**  
+`python3 filename.py` from the folder that contains the file (`python` on many Windows setups).
+
+**Q5. REPL vs script — when do you use each?**  
+REPL for a quick experiment. Scripts for work you keep, share, and submit.
+
+**Q6. Why `snake_case`?**  
+PEP 8 style for variables and functions — matches the standard library and team reviews.
+
+**Q7. What does `"=" * 24` do?**  
+Repeats the character `=` twenty-four times — handy for banner borders.
+
+---
+
+## Cheat Sheet
+
+```text
+python3 --version     → prove Python 3 is installed
+python3               → open the REPL (>>> )
+exit()                → leave the REPL
+python3 file.py       → run a script
+print("hi")           → show text
+print(2 + 3)          → show a calculated number
+# comment             → ignored by Python
+"=" * 40              → repeat a character (banner)
+snake_case            → variable names (no spaces, no keywords)
+f"Hi, {name}"         → embed a value in a string
+import sys            → sys.version for an env check
+```
+
+Save before you run. `cd` into the folder that contains the file.
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can show Python 3.x from the terminal
+[ ] I can run a line in the REPL and the same idea in a .py file
+[ ] I can print text, a sum, and a = banner
+[ ] I can choose snake_case names and avoid keywords
+[ ] I can write a simple f-string greeting
+[ ] I completed the welcome-card lab
+[ ] I attempted the terminal-workspace mini-project
+[ ] I can explain REPL vs script in an interview
+```
+
+---
+
+## What's Next?
+
+You can now install Python, save a script, and print a welcome.
+
+Next, [Variables, Datatypes, Operators, and I/O](02_Variables_Datatypes_Operators_IO.md) teaches **labelled boxes** for values, math, `input()`, and clearer f-strings — so a script can remember a name and an amount, not only print fixed text.

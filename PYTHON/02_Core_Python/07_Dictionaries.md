@@ -1,99 +1,141 @@
-# Dictionaries in Python 3
+# Module 07 — Dictionaries
 
-**Module:** Core Python · Collections  
-**Previous module:** Tuples and Sets
-**Next module:** Data Structures Overview
+**Phase:** Core Python
 
----
-
-**Module Outcome:**
-
-- Look up a contact, SKU, or roll number by **key** — not by scanning a list
-- Add, update, and guard missing keys so a Apollo Hospitals form does not explode
-- Nest a dict when one person has many fields (name, marks, phone)
-
-A **dictionary** is like a real dictionary or phone contacts app:
-
-- You look up a **word (key)** and get a **meaning (value)**.
-- Keys must be **unique** — one phone number cannot map to two different people in the same dict.
-- Values can be anything: string, number, list, or even another dictionary.
-
-**Icons:** Employee · Order · Bank · Payroll · CRM
-
-**Where used?**
-- **Employee Management Portal** — `{emp_id: profile}` lookups
-- **Swiggy** — product by SKU, order JSON with nested items
-- **HDFC Bank** — account record fields
-- **PhonePe** — UPI txn metadata
-- College apps — student dict (`roll`, `marks`, `grade`)
-- **Apollo Hospitals** — contact book, ticket fields from APIs
-
-**Examples from daily work:**
-
-| Key | Value | Scenario |
-|-----|-------|----------|
-| `"emp_id"` | `101` | Employee record |
-| `"email"` | `"aisha@company.com"` | Login profile |
-| `"price"` | `1499.00` | E-commerce product |
-| `"items"` | `[{"sku": "P1", "qty": 2}]` | Order JSON from API |
-
-When you fetch data from a REST API, you almost always handle **dicts** (and lists of dicts).
+**Previous:** [Tuples and Sets](06_Tuples_and_Sets.md)  
+**Next:** [Data Structures Overview](08_Data_Structures_Overview.md)
 
 ---
 
-## Concepts and Definitions
+## Module Outcome
 
-| Term | Definition |
-|------|------------|
-| **Dictionary (`dict`)** | Mutable mapping of unique keys to values. |
-| **Key** | Lookup identifier — str, int, tuple (hashable), etc. |
-| **Value** | Data stored for a key — any type. |
-| **Key-value pair** | One entry: `"name": "Ananya"`. |
-| **Hashable** | Can be used as dict key (not list/dict). |
-| **Nested dict** | Dict inside dict — models JSON documents. |
-| **`.get(key, default)`** | Safe read; no KeyError if missing. |
-| **JSON** | JavaScript Object Notation — text format; Python dict ↔ JSON in APIs. |
+Create, update, search, and delete dictionary data, nest one level, and apply dictionaries to simple application-style problems.
+
+By the end of this module you will be able to:
+
+- Create a dict and look up values by key
+- Choose `[]` vs `.get()` when a key might be missing
+- Add, update, merge (`update`), and delete (`del` / `pop`)
+- Loop with `.keys()`, `.values()`, and `.items()`
+- Nest one level (address inside employee)
+- Check membership (`in` checks keys) and avoid the shallow-copy trap
 
 ---
 
-## Step-by-Step Notes with Annotated Python 3 Code
+## 1. Why This Concept Matters
 
-### Step 1 — Create and read (CRUD: Create, Read)
+A list stores related facts by **position**. That works until someone has to remember what index 0 means:
 
 ```python
-# CREATE — literal or dict()
+student = ["Rahul", 22, "Hyderabad"]
+print(student[0])   # name? age? city? — you must remember the order
+```
+
+We want one bag where each piece of information has a **name**:
+
+```text
+name → Rahul
+age  → 22
+city → Hyderabad
+```
+
+That labelled bag is a **dictionary**. You look up a contact, a SKU, or a roll number by **key** — you do not walk the whole list.
+
+A phone book is the same idea: you go to the name. You do not read every page.
+
+---
+
+## 2. Create and read
+
+### Understand
+
+A dictionary maps **key → value**.
+
+- Keys must be **unique** and **hashable** (`str`, `int`, or a tuple of immutables — not a `list`).
+- Values can be anything: a string, a number, a list, even another dict.
+- Write a dict with `{ }`. Read a required field with `d["key"]`.
+
+```text
+employee
+  "emp_id"     →  101
+  "name"       →  Ananya Sharma
+  "department" →  Engineering
+  "salary"     →  85000
+```
+
+### How It Works
+
+```python
 employee = {
     "emp_id": 101,
     "name": "Ananya Sharma",
     "department": "Engineering",
     "salary": 85000,
 }
-
-empty_cart = {}
-product = dict(sku="P001", name="Wireless Mouse", price=799)
-
-# READ — bracket notation
-print(employee["name"])             # Ananya Sharma
-print(product["price"])             # 799
-
-# READ — safe with .get()
-print(employee.get("email"))          # None — key missing, no crash
-print(employee.get("email", "N/A"))   # N/A — default provided
-
-# KeyError if missing with brackets:
-# print(employee["email"])          # KeyError
+print(employee["name"])
 ```
 
-**Note:**
-- Wrong: Using a list as a key → `TypeError: unhashable type: 'list'`; `d["missing"]` without a check → `KeyError`; duplicate keys in a literal (last value wins silently).
-- Prefer: String or tuple keys; `.get()` or `if key in d`; avoid duplicate keys (`{"a": 1, "a": 2}` → `a` is 2).
+**Expected Output:**
 
-Create a student dict, print name by key, and use `.get` for a missing phone with a default.
+```
+Ananya Sharma
+```
+
+You may also build with `dict(...)` when the keys are simple names:
+
+```python
+product = dict(sku="P001", name="Wireless Mouse", price=799)
+print(product["price"])
+```
+
+**Expected Output:**
+
+```
+799
+```
+
+`{ }` is the everyday form.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — a list is not a valid key
+{[1, 2]: "nope"}          # TypeError
+
+# Duplicate keys: last value wins (no error)
+{"a": 1, "a": 2}          # {"a": 2}
+```
+
+Prefer unique, hashable keys.
+
+### Try It
+
+Create a product dict with `sku`, `name`, and `price`. Print the name, then the price.
+
+---
+
+## 3. `.get()` vs `[]`
+
+### Understand
+
+Not every record has every field. A student may have no phone yet.
+
+- `[]` is for a key that **must** exist. Missing → `KeyError`.
+- `.get()` is for an **optional** field. Missing → `None`, or a default you choose.
+
+### How It Works
+
+| Style | Missing key |
+|-------|-------------|
+| `d["email"]` | `KeyError` |
+| `d.get("email")` | `None` |
+| `d.get("email", "N/A")` | `"N/A"` |
 
 ```python
 student = {"name": "Priya", "roll": "2026001", "marks": 88}
 print(student["name"])
 print(student.get("phone", "N/A"))
+print(student.get("email"))
 ```
 
 **Expected Output:**
@@ -101,83 +143,92 @@ print(student.get("phone", "N/A"))
 ```
 Priya
 N/A
+None
 ```
 
-**Remember:** Prefer `.get("key", default)` when a field might be missing — brackets `d["key"]` raise `KeyError`.
+### ⚠️ WATCH OUT
 
-Create a Swiggy product with `dict()` and print its price.
+```text
+# Wrong — assume every key exists
+print(student["email"])     # KeyError
+
+# Prefer when the field might be absent
+print(student.get("email", "N/A"))
+```
+
+### Try It
+
+Make `{"name": "Dev", "department": "Engineering"}`. Print `name` with `[]`. Print `email` with `.get(..., "Not set")`.
+
+---
+
+## 4. Add, update, and merge
+
+### Understand
+
+The same assignment does two jobs:
+
+- Existing key → **update**
+- New key → **add**
+
+`update(other)` merges another dict. Overlapping keys are overwritten with **no warning**.
+
+Contacts change numbers. Profiles gain an email and a city. Same syntax either way.
+
+### How It Works
 
 ```python
-product = dict(sku="P10", name="Chai Mug", price=299)
-print(product["price"])
+contact = {"name": "Dev Kumar", "phone": "9876543210"}
+contact["phone"] = "9876500000"
+contact["email"] = "dev@example.com"
+contact["city"] = "Bengaluru"
+print(contact)
+
+contact.update({"role": "Intern", "company": "KSR Tech"})
+print(contact)
 ```
 
 **Expected Output:**
 
 ```
-299
+{'name': 'Dev Kumar', 'phone': '9876500000', 'email': 'dev@example.com', 'city': 'Bengaluru'}
+{'name': 'Dev Kumar', 'phone': '9876500000', 'email': 'dev@example.com', 'city': 'Bengaluru', 'role': 'Intern', 'company': 'KSR Tech'}
 ```
 
-### Step 2 — Update and add (CRUD: Update)
+### ⚠️ WATCH OUT
 
-```python
-contact = {"name": "Dev Kumar", "phone": "9876543210"}
+`update` overwrites overlapping keys without asking. If you must protect an existing value, check first: `if key in contact:`.
 
-# UPDATE existing key
-contact["phone"] = "9876500000"
+### Try It
 
-# ADD new key
-contact["email"] = "dev@example.com"
-contact["city"] = "Bengaluru"
+Start with `{"name": "Ravi", "phone": "9876543210"}`. Change the phone, add `city`, then `update` with `{"role": "Student"}`. Print the dict.
 
-print(contact)
-# {'name': 'Dev Kumar', 'phone': '9876500000', 'email': 'dev@example.com', 'city': 'Bengaluru'}
+---
 
-# update() — merge another dict
-extra = {"company": "KSR Tech", "role": "Developer"}
-contact.update(extra)
-```
+## 5. Delete and `pop`
 
-Update phone, add email and city to a contact dict, and print the full dict.
+### Understand
 
-```python
-contact = {"name": "Ravi", "phone": "9876543210"}
-contact["phone"] = "9876500000"
-contact["email"] = "ravi@example.com"
-contact["city"] = "Bengaluru"
-print(contact)
-```
+Remove a field you no longer need — a wrong category on an expense, or a contact who left.
 
-Merge role and company into a contact dict with `update()` and print the result.
+| Call | Effect |
+|------|--------|
+| `del d["key"]` | Remove key (`KeyError` if missing) |
+| `d.pop("key")` | Remove and **return** the value |
+| `d.pop("key", default)` | Safe if missing |
+| `d.clear()` | Empty the dict |
 
-```python
-contact = {"name": "Ravi", "phone": "9876543210"}
-contact.update({"role": "Intern", "company": "KSR Tech"})
-print(contact)
-```
+Use `pop` when you still need the removed value. Use `del` when you only need it gone.
 
-### Step 3 — Delete (CRUD: Delete)
-
-```python
-expense = {"date": "2025-07-01", "category": "Food", "amount": 450}
-
-# DELETE one key
-del expense["category"]
-
-# pop — remove and return value
-amount = expense.pop("amount", 0)     # 450; default 0 if missing
-print(amount, expense)                # 450 {'date': '2025-07-01'}
-
-# clear all
-expense.clear()                       # {}
-```
-
-Pop the amount from an expense dict and print the returned value and remaining dict.
+### How It Works
 
 ```python
 expense = {"date": "01-08-2026", "category": "Food", "amount": 450}
 amount = expense.pop("amount")
 print(amount)
+print(expense)
+
+del expense["category"]
 print(expense)
 ```
 
@@ -186,42 +237,51 @@ print(expense)
 ```
 450
 {'date': '01-08-2026', 'category': 'Food'}
+{'date': '01-08-2026'}
 ```
 
-Delete category from an expense, clear all keys, and print the empty dict.
+### ⚠️ WATCH OUT
 
-```python
-expense = {"date": "01-08-2026", "category": "Food", "amount": 450}
-del expense["category"]
-expense.clear()
-print(expense)
+```text
+# Wrong
+d.pop("missing")            # KeyError
+
+# Prefer when the key might be absent
+d.pop("missing", None)
 ```
 
-**Expected Output:**
+`del d["missing"]` raises `KeyError` the same way.
 
-```
-{}
-```
+### Try It
 
-### Step 4 — Keys, values, items
+From `{"item": "Chai", "qty": 2, "price": 20}`, `pop` `"price"`. Print the returned value, then print what remains.
 
-```python
-product = {"sku": "P002", "name": "Keyboard", "price": 1499, "stock": 25}
+---
 
-print(list(product.keys()))           # ['sku', 'name', 'price', 'stock']
-print(list(product.values()))         # ['P002', 'Keyboard', 1499, 25]
+## 6. Keys, values, and items
 
-# items() — pairs for looping
-for key, value in product.items():
-    print(f"{key}: {value}")
-```
+### Understand
 
-Loop subject-score pairs in a marks dict and print each line.
+Menus and printouts need every field without hard-coding each name.
+
+- `.keys()` — the labels
+- `.values()` — the data
+- `.items()` — `(key, value)` pairs — the everyday report loop
+
+These are **views** of the live dict. Wrap with `list(...)` when you need a snapshot.
+
+Since Python 3.7, dictionaries keep **insertion order**. Still use a dict for **mapping**, not as a replacement for a list.
+
+### How It Works
 
 ```python
 marks = {"Python": 88, "SQL": 76}
 for subject, score in marks.items():
     print(f"{subject}: {score}")
+
+product = {"sku": "P10", "name": "Chai Mug", "price": 299}
+print(list(product.keys()))
+print(list(product.values()))
 ```
 
 **Expected Output:**
@@ -229,96 +289,36 @@ for subject, score in marks.items():
 ```
 Python: 88
 SQL: 76
+['sku', 'name', 'price']
+['P10', 'Chai Mug', 299]
 ```
 
-Print lists of keys and values from a product dict.
+### ⚠️ WATCH OUT
 
-```python
-product = {"sku": "P10", "name": "Chai Mug", "price": 299}
-print(list(product.keys()))
-print(list(product.values()))
+Do not add or remove keys while looping the **same** dict. If you must change it, loop a snapshot: `for k, v in list(d.items()):`.
+
+### Try It
+
+Loop `{"Chai": 20, "Samosa": 25}` with `.items()` and print each line as `item: ₹price`.
+
+---
+
+## 7. Nested dict — one level
+
+### Understand
+
+A value can be another dict (or a list). One nesting level models most student, employee, and order shapes:
+
+```text
+employee
+  "name"    →  Meera
+  "address" →  { "city" → Pune,  "pincode" → 411001 }
+  "skills"  →  ["Python", "SQL"]
 ```
 
-### Step 5 — Iterate and build new dicts
+Read nested data with two lookups: `employee["address"]["city"]`.
 
-```python
-# Word frequency from review text (e-commerce)
-reviews = ["good", "fast", "good", "quality", "fast", "good"]
-frequency = {}
-
-for word in reviews:
-    frequency[word] = frequency.get(word, 0) + 1
-
-print(frequency)                      # {'good': 3, 'fast': 2, 'quality': 1}
-
-# Dict comprehension — 10% discount prices
-prices = {"mouse": 799, "keyboard": 1499, "hub": 599}
-sale_prices = {k: round(v * 0.9, 2) for k, v in prices.items()}
-print(sale_prices)
-```
-
-**Note:**
-- Wrong: Modifying a dict while iterating — RuntimeError or skipped keys.
-- Prefer: Iterate over a copy: `list(d.items())`.
-
-Count word frequency in a list using `.get` and print the frequency dict.
-
-```python
-words = ["good", "fast", "good", "ok", "fast"]
-frequency = {}
-for word in words:
-    frequency[word] = frequency.get(word, 0) + 1
-print(frequency)
-```
-
-**Expected Output:**
-
-```
-{'good': 2, 'fast': 2, 'ok': 1}
-```
-
-Build discounted prices at 10% off with a dict comprehension and print the result.
-
-```python
-prices = {"mouse": 799, "hub": 599}
-discounted = {k: round(v * 0.9, 2) for k, v in prices.items()}
-print(discounted)
-```
-
-**Expected Output:**
-
-```
-{'mouse': 719.1, 'hub': 539.1}
-```
-
-### Step 6 — Nested dictionaries
-
-```python
-# Employee with nested address
-employee = {
-    "emp_id": 101,
-    "name": "Meera Iyer",
-    "address": {
-        "city": "Chennai",
-        "pincode": "600001",
-        "country": "India",
-    },
-    "skills": ["Python", "SQL", "Git"],
-}
-
-# READ nested
-print(employee["address"]["city"])    # Chennai
-print(employee["skills"][0])          # Python
-
-# UPDATE nested
-employee["address"]["pincode"] = "600002"
-```
-
-**Note:**
-- Wrong: Shared nested dict reference — changing a shallow copy affects the original.
-- Prefer: `copy.deepcopy()` for nested structures.
-
-Read nested city and first skill from an employee dict and print them.
+### How It Works
 
 ```python
 employee = {
@@ -328,365 +328,447 @@ employee = {
 }
 print(employee["address"]["city"])
 print(employee["skills"][0])
-```
 
-Update a nested address pincode and print the address sub-dict.
-
-```python
-employee = {
-    "name": "Meera",
-    "address": {"city": "Pune", "pincode": "411001"},
-}
-employee["address"]["pincode"] = "411014"
+employee["address"]["city"] = "Bengaluru"
 print(employee["address"])
 ```
 
-### Step 7 — JSON-like order structure (API shape)
+**Expected Output:**
 
-```python
-order = {
-    "order_id": "ORD-9001",
-    "customer": {
-        "name": "Ravi Patel",
-        "email": "ravi@example.com",
-    },
-    "items": [
-        {"sku": "P001", "name": "Notebook", "qty": 2, "price": 120},
-        {"sku": "P003", "name": "Pen", "qty": 5, "price": 15},
-    ],
-    "status": "confirmed",
-    "total": 315,
-}
-
-# Loop line items
-for item in order["items"]:
-    line_total = item["qty"] * item["price"]
-    print(f"{item['name']}: ₹{line_total}")
+```
+Pune
+Python
+{'city': 'Bengaluru', 'pincode': '411001'}
 ```
 
-Loop order items and print each line's total (qty × price).
+### ⚠️ WATCH OUT
 
-```python
-order = {
-    "customer": {"name": "Ravi", "email": "ravi@example.com"},
-    "items": [
-        {"sku": "P001", "qty": 2, "price": 120},
-        {"sku": "P002", "qty": 1, "price": 499},
-    ],
-}
-for item in order["items"]:
-    print(f"₹{item['qty'] * item['price']}")
-```
+`employee.copy()` does **not** deep-copy nested dicts. Changing a nested field on the copy can change the original too. Update nested fields on purpose. Full cloning with `copy.deepcopy` is an interview topic — not required for the lab.
 
-Print the customer's email from a nested order dict.
+### Try It
 
-```python
-order = {
-    "customer": {"name": "Ravi", "email": "ravi@example.com"},
-    "items": [],
-}
-print(order["customer"]["email"])
-```
+Create `{"name": "Ravi", "address": {"city": "Hyderabad", "pincode": "500001"}}`. Print the city. Change pincode to `"500081"` and print the address dict.
 
-### Step 8 — Check membership and copy
+---
 
-```python
-user = {"username": "aisha", "role": "staff", "active": True}
+## 8. Membership and copy
 
-print("username" in user)             # True — checks keys
-print("admin" in user)                # False
+### Understand
 
-# Shallow copy
-user_backup = user.copy()
-user_backup["role"] = "admin"
-print(user["role"])                   # staff — original unchanged
-```
+`"phone" in contact` checks **keys**, not values.
 
-**Note:**
-- Wrong: Using `in` as if it checks values (`"aisha" in d` checks **keys** only).
-- Prefer: `if "aisha" in d.values():` when you mean values.
+Lists already taught this: `backup = user` is an **alias** (same object, two names). `user.copy()` is a **shallow** copy — top-level keys are separate; nested objects may still be shared.
 
-Check if the email key exists in a contact dict and print Found or Missing.
+Menus check “does this name exist?” before update. A backup must not silently rewrite the live contact.
+
+### How It Works
 
 ```python
 contact = {"name": "Ravi", "phone": "9876543210"}
 print("Found" if "email" in contact else "Missing")
+print("Ravi" in contact)
+print("Ravi" in contact.values())
+
+user = {"username": "aisha", "role": "staff"}
+backup = user.copy()
+backup["role"] = "admin"
+print(user["role"])
+print(backup["role"])
 ```
 
 **Expected Output:**
 
 ```
 Missing
+False
+True
+staff
+admin
 ```
 
-**Common Error:** `"Ravi" in contact` checks **keys**, not values — that expression is `False` even though `"Ravi"` is stored as a value.
-
-Copy a user dict, change role on the copy, and show the original role unchanged.
+Flat copies are independent. Nested dicts are not:
 
 ```python
-user = {"username": "aisha", "role": "staff"}
-backup = user.copy()
-backup["role"] = "admin"
-print(user["role"])    # staff
-print(backup["role"])  # admin
+original = {"name": "Meera", "address": {"city": "Pune"}}
+snapshot = original.copy()
+snapshot["address"]["city"] = "Bengaluru"
+print(original["address"]["city"])
 ```
 
-### Step 9 — Python dict ↔ JSON (preview for APIs)
+**Expected Output:**
+
+```
+Bengaluru
+```
+
+`.copy()` is enough for a **flat** backup (name → phone). Nested trees share the inner dict unless you deep-copy.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — thinking `in` searches values
+"Ravi" in contact           # False  (Ravi is a value, not a key)
+
+# Prefer
+"Ravi" in contact.values()
+```
+
+### Try It
+
+Given `{"name": "Priya", "phone": "9123456780"}`, print whether `"email"` is in the dict. Then print whether `"Priya"` is in `.values()`.
+
+---
+
+## Step-by-Step: Build It
+
+One assemble: seed two contacts (name → phone), search safely, list with `.items()`, update, add, and delete — the menu skills for tonight’s kit.
 
 ```python
-import json
+contacts = {
+    "Ravi": "9876543210",
+    "Priya": "9123456780",
+}
 
-# Python dict → JSON string (for API response)
-product = {"sku": "P001", "name": "Mouse", "price": 799}
-json_text = json.dumps(product)
-print(json_text)                      # {"sku": "P001", "name": "Mouse", "price": 799}
+# Safe search
+print(contacts.get("Ravi", "Not found"))
+print(contacts.get("Dev", "Not found"))
 
-# JSON string → Python dict (from API request body)
-parsed = json.loads(json_text)
-print(parsed["name"])                 # Mouse
+# List
+for name, phone in contacts.items():
+    print(f"{name}: {phone}")
+
+# Update + add
+contacts["Ravi"] = "9876500000"
+contacts["Dev"] = "9000000001"
+
+# Delete safely
+removed = contacts.pop("Priya", None)
+print("Removed:", removed)
+print("Left:", contacts)
 ```
 
-**Note:**
-- Wrong: Assuming JSON allows a tuple — JSON has no tuple type.
-- Prefer: Convert tuples to lists before `json.dumps`.
+**Expected Output:**
 
-Convert a product dict to a JSON string with `json.dumps` and print it.
-
-```python
-import json
-
-product = {"sku": "P001", "name": "Mouse", "price": 799}
-print(json.dumps(product))
+```
+9876543210
+Not found
+Ravi: 9876543210
+Priya: 9123456780
+Removed: 9123456780
+Left: {'Ravi': '9876500000', 'Dev': '9000000001'}
 ```
 
-Parse JSON back to a dict with `json.loads` and print the product name.
-
-```python
-import json
-
-text = json.dumps({"sku": "P001", "name": "Mouse", "price": 799})
-product = json.loads(text)
-print(product["name"])
-```
+Using the same key twice overwrites the previous contact. Check `if name in contacts:` before add if you want “already exists” behaviour.
 
 ---
 
 ## Practice Exercises
 
-### Basic
+Attempt each problem before reading the model answer.
 
-1. Create a dict for one student: `name`, `roll`, `marks`. Print each field using `.items()`.
+1. Course hours `{"Python": 40, "SQL": 20, "Git": 10}`. Print Python hours with `[]`. Print `"Django"` hours with `.get(..., 0)`.
 
-   **Model answer:**
+**Hint:** Required key → `[]`. Missing key → `.get`.
 
-```python
-student = {"name": "Dev", "roll": 21, "marks": 88}
-for key, value in student.items():
-    print(f"{key}: {value}")
-```
-
-2. Add key `"grade"` based on marks (A if ≥90, B if ≥75, else C).
-
-   **Model answer:**
+**Model answer:**
 
 ```python
-student = {"name": "Dev", "roll": 21, "marks": 88}
-marks = student["marks"]
-if marks >= 90:
-    student["grade"] = "A"
-elif marks >= 75:
-    student["grade"] = "B"
-else:
-    student["grade"] = "C"
-print(student)
+hours = {"Python": 40, "SQL": 20, "Git": 10}
+print(hours["Python"])
+print(hours.get("Django", 0))
 ```
 
-3. Use `.get()` to read `"phone"` with default `"Not provided"`.
+**Expected Output:**
 
-   **Model answer:**
+```
+40
+0
+```
+
+2. Start with `{"id": "T-12", "status": "Open"}`. Change status to `"Closed"`, add `"agent": "Meera"`, print the dict.
+
+**Model answer:**
 
 ```python
-student = {"name": "Dev", "roll": 21, "marks": 88}
-phone = student.get("phone", "Not provided")
-print(phone)  # Not provided
+ticket = {"id": "T-12", "status": "Open"}
+ticket["status"] = "Closed"
+ticket["agent"] = "Meera"
+print(ticket)
 ```
 
-### Intermediate
+**Expected Output:**
 
-4. Build a product catalog: `{sku: {"name": ..., "price": ...}}` for 3 products. Lookup by SKU from user input.
+```
+{'id': 'T-12', 'status': 'Closed', 'agent': 'Meera'}
+```
 
-   **Model answer:**
+3. From `{"Pen": 10, "Notebook": 40, "USB": 199}`, `pop` `"USB"` and print the returned price and what remains. Then `pop("Mug", 0)` and print that result.
+
+**Hint:** The second `pop` must use a default so a missing key does not crash.
+
+**Model answer:**
 
 ```python
-catalog = {
-    "P101": {"name": "Notebook", "price": 80.0},
-    "P102": {"name": "Pen Set", "price": 120.0},
-    "P103": {"name": "USB Drive", "price": 499.0},
-}
-sku = input("Enter SKU: ").strip().upper()
-product = catalog.get(sku)
-if product:
-    print(f"{product['name']} — ₹{product['price']}")
-else:
-    print("SKU not found")
+prices = {"Pen": 10, "Notebook": 40, "USB": 199}
+usb = prices.pop("USB")
+print(usb)
+print(prices)
+print(prices.pop("Mug", 0))
 ```
 
-5. Count how many expenses per category: `[{"cat":"Food","amt":450}, ...]`.
+**Expected Output:**
 
-   **Model answer:**
+```
+199
+{'Pen': 10, 'Notebook': 40}
+0
+```
+
+4. Loop `{"Priya": 88, "Ravi": 76, "Dev": 95}` with `.items()` and print only names whose marks are **≥ 80**.
+
+**Hint:** Combine `.items()` with `if` — same idea as filtering a list.
+
+**Model answer:**
 
 ```python
-expenses = [
-    {"cat": "Food", "amt": 450},
-    {"cat": "Travel", "amt": 120},
-    {"cat": "Food", "amt": 200},
-    {"cat": "Utilities", "amt": 900},
-    {"cat": "Travel", "amt": 80},
-]
-counts = {}
-for row in expenses:
-    cat = row["cat"]
-    counts[cat] = counts.get(cat, 0) + 1
-print(counts)  # {'Food': 2, 'Travel': 2, 'Utilities': 1}
+marks = {"Priya": 88, "Ravi": 76, "Dev": 95}
+for name, score in marks.items():
+    if score >= 80:
+        print(name, score)
 ```
 
-6. Update nested dict: change customer city inside an order dict.
+**Expected Output:**
 
-   **Model answer:**
+```
+Priya 88
+Dev 95
+```
+
+5. Nested order:
 
 ```python
 order = {
-    "order_id": "ORD-901",
+    "id": "ORD-1",
     "customer": {"name": "Meera", "city": "Pune"},
-    "total": 2499.0,
+    "total": 499,
 }
-order["customer"]["city"] = "Bengaluru"
+```
+
+Print the customer name. Change city to `"Hyderabad"`. Add `"status": "Paid"` at the top level. Print `order["customer"]` and `order["status"]`.
+
+**Model answer:**
+
+```python
+order = {
+    "id": "ORD-1",
+    "customer": {"name": "Meera", "city": "Pune"},
+    "total": 499,
+}
+print(order["customer"]["name"])
+order["customer"]["city"] = "Hyderabad"
+order["status"] = "Paid"
 print(order["customer"])
+print(order["status"])
 ```
 
-### Interview-style
+**Expected Output:**
 
-7. Merge two dicts; if same key, **sum** numeric values (assume int/float).
-
-   **Model answer:**
-
-```python
-def merge_sum(a, b):
-    result = dict(a)
-    for key, value in b.items():
-        if key in result:
-            result[key] = result[key] + value
-        else:
-            result[key] = value
-    return result
-
-left = {"Food": 450, "Travel": 120}
-right = {"Food": 200, "Utilities": 900}
-print(merge_sum(left, right))
-# {'Food': 650, 'Travel': 120, 'Utilities': 900}
+```
+Meera
+{'name': 'Meera', 'city': 'Hyderabad'}
+Paid
 ```
 
-8. Invert dict `{101: "Ananya", 102: "Dev"}` → `{"Ananya": 101, "Dev": 102}` (assume unique values).
+---
 
-   **Model answer:**
+## Lab
 
-```python
-original = {101: "Ananya", 102: "Dev"}
-inverted = {value: key for key, value in original.items()}
-print(inverted)
+Combine create, `.get()`, nested values, update, add, list, and safe delete. No `def`, no files, no JSON.
+
+### Problem
+
+A trainer keeps batch records as **roll → profile**. Lookup must not crash when a roll is missing.
+
+### What to Build
+
+A short script that seeds two students, looks up, updates, adds, lists, and deletes.
+
+### Requirements
+
+- `students = {}` — roll string → `{"name": ..., "marks": ...}`
+- Seed two rolls
+- Lookup an existing roll and print the **name**
+- Lookup a missing roll with `.get` and print `"Not found"`
+- Update one student’s marks
+- Add a third student
+- Delete one roll with `pop(..., None)` and print `Removed: <name>`
+- List what remains as `roll: name — marks`
+
+### Expected Behavior
+
+Missing lookup prints a message — never a `KeyError`. After delete, the listed rolls are only the ones still in the dict.
+
+### Sample Run
+
+```text
+Priya
+Not found
+Removed: Priya
+2026002: Ravi — 81
+2026003: Dev — 95
 ```
 
-9. Flatten one level: `{"a": 1, "b": {"c": 2, "d": 3}}` → keys `a`, `b.c`, `b.d` (optional stretch).
+(Your seed data may differ; the **shape** of the output should match.)
 
-   **Model answer:**
+### Constraints
 
-```python
-def flatten_one_level(data):
-    flat = {}
-    for key, value in data.items():
-        if isinstance(value, dict):
-            for inner_key, inner_val in value.items():
-                flat[f"{key}.{inner_key}"] = inner_val
-        else:
-            flat[key] = value
-    return flat
+Top-level statements only — no `def`, no type hints, no `json`.
 
-print(flatten_one_level({"a": 1, "b": {"c": 2, "d": 3}}))
-# {'a': 1, 'b.c': 2, 'b.d': 3}
-```
+### Bonus
+
+Print the name of whoever has the highest marks (loop `.items()`, track the max).
 
 ---
 
 ## Mini-Project (Assignment): Contact Book CLI
 
-**Title:** Phone-keyed contact book with CRUD  
-**Lab kit (build here):** [15_Lab_Assets/11_contact_book/](../15_Lab_Assets/11_contact_book/)
+**Why this matters:** A contacts app is a dictionary: name → phone. Add, lookup, list, and delete are the same operations every CRUD screen uses — employee directories, product catalogs, ticket stores.
 
-### What to build
+**Lab kit:** [15_Lab_Assets/11_contact_book/](../15_Lab_Assets/11_contact_book/)
 
-```python
-contacts = {}   # key: phone (str), value: dict with name, email
+| File | What you do |
+|------|-------------|
+| `starter/contact_book.py` | Build the `while True` menu. **No `def` required.** Prefer `name.title()` as the key |
+| `broken/contact_book.py` | `KeyError` on missing lookup — fix with `.get` / `in` |
+| `solution/` | Do **not** copy this |
 
-def add_contact():
-    phone = input("Phone: ").strip()
-    if phone in contacts:
-        print("Contact exists. Use update.")
-        return
-    name = input("Name: ").strip()
-    email = input("Email: ").strip()
-    contacts[phone] = {"name": name, "email": email}
-    print("Added.")
+This is **not** the Step-by-Step assemble from class. Same dict tools, full menu ticket.
 
-def search_contact():
-    phone = input("Phone to search: ").strip()
-    info = contacts.get(phone)
-    if info:
-        print(f"{info['name']} | {info['email']}")
-    else:
-        print("Not found.")
+### Objective
 
-def list_contacts():
-    for phone, info in contacts.items():
-        print(f"{phone}: {info['name']} ({info['email']})")
+Store contacts as **name → phone** and drive add, lookup, delete, and list from a menu. Missing names must not crash.
 
-# Menu: 1 Add  2 Search  3 List  4 Update  5 Delete  6 Exit
+### Story / Scenario
+
+Placement cell keeps student phone numbers. Staff type a name and expect the number — or a clear “not found”, never a traceback.
+
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| Data | Single `contacts = {}` — name → phone string |
+| Menu | **1** Add · **2** Lookup · **3** Delete · **4** List · **5** Quit |
+| Safe lookup | `.get` or `in` — never dump a traceback on a missing name |
+| Add | Warn if the name already exists (optional but good) |
+| Style | Top-level statements only — no `def`, no type hints, no `json` yet |
+
+### Expected Behavior
+
+- Add stores `name.title()` → phone
+- Lookup of a missing name prints a message
+- List prints every `name: phone`
+- Quit exits cleanly
+
+### Sample Run
+
+```text
+1 Add  2 Lookup  3 Delete  4 List  5 Quit
+Choice: 1
+Name: ravi
+Phone: 9876543210
+Added.
+Choice: 2
+Name: Ravi
+9876543210
+Choice: 4
+Ravi: 9876543210
+Choice: 5
+Bye.
 ```
 
-### Stretch
+### Bonus Challenges
 
-- Search by name (scan values) when phone is unknown.  
-- Export contacts as a JSON string with `json.dumps`.  
+- Search by phone (scan `.items()` / `.values()`) when the name is unknown
+- Update phone for an existing name
+- **Later — Files / JSON week:** save and load `contacts.json`
 
 ### Done when
 
-- [ ] Lab kit contact-book ticket add/search/list works  
-- [ ] Update and delete by phone work without KeyError  
-- [ ] Menu exits cleanly on option 6  
-
-## Interview Q&A
-
-Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
-
-1. Why are dict lookups often preferred over scanning a list for a matching ID?
-2. How is a Python dict similar to a MySQL row + column names?
-3. What happens if two API clients send the same JSON key twice?
-4. When would nested dict become hard to maintain? (Preview: classes and methods.)
-5. Can dict values be lists? Give a **Swiggy** order example.
-
-1. **Dict vs list for lookup by ID?**  
-   **A:** Dict O(1) average vs list O(n) scan.
-
-2. **Are dict keys ordered?**  
-   **A:** Insertion order preserved since Python 3.7; still treat order as a bonus, not the main reason to use a dict.
-
-3. **Copy dict?**  
-   **A:** `.copy()` shallow; `copy.deepcopy()` for nested.
-
-4. **dict comprehension example?**  
-   **A:** `{k: v*2 for k, v in d.items()}`.
-
-5. **Can we sort a dict?**  
-   **A:** Sort keys: `sorted(d)`; items: `sorted(d.items(), key=...)`.
+- [ ] Lookup missing name does not crash (use `.get` or `in`)
+- [ ] Add / delete / list work from the menu
+- [ ] Quit exits cleanly
+- [ ] No `def` / type hints / JSON on the core path
 
 ---
 
+## Interview Q&A
+
+**Q1. Dict vs list for lookup by ID?**  
+A dict finds the value by key (average O(1)). A list must scan row by row (O(n)). Use a dict when you have a natural key — `emp_id`, SKU, name.
+
+**Q2. `.get` vs `[]`?**  
+`[]` raises `KeyError` if the key is missing. `.get(key, default)` returns the default (`None` if you omit it). Required field → `[]`. Optional field → `.get`.
+
+**Q3. Are dict keys ordered?**  
+Insertion order is preserved since Python 3.7. Still use a dict for **mapping**, not as a primary ordered list.
+
+**Q4. What does `"x" in d` check?**  
+Keys only — not values. Use `"x" in d.values()` when you mean values.
+
+**Q5. What is a shallow copy?**  
+`.copy()` copies top-level pairs. Nested mutable values may still be shared. Use `copy.deepcopy` for a nested tree when you truly need a full clone.
+
+**Q6. Can values be lists or dicts?**  
+Yes. An order can hold `"items": [{"sku": "P1", "qty": 2}]`. An employee can hold `"address": {"city": "Pune"}`.
+
+**Q7. Why prefer a dict over a list of pairs for contacts?**  
+Name → phone is a natural key lookup. You avoid scanning every row, and the code reads as “get this name.”
+
+**Q8. How do APIs often ship this shape?**  
+JSON objects become Python dicts. `json.dumps` / `json.loads` come in Files week — not required for this lab.
+
+---
+
+## Cheat Sheet
+
+```text
+{}                  → create a dict
+d["k"]              → read / write (KeyError if missing on read)
+d.get("k", default) → safe read
+d["k"] = v          → add or update
+d.update(other)     → merge (overwrites overlap)
+del d["k"]          → remove (KeyError if missing)
+d.pop("k", default) → remove and return
+d.clear()           → empty the dict
+d.keys()            → key view
+d.values()          → value view
+d.items()           → (key, value) view — everyday loop
+"k" in d            → key membership (not values)
+d.copy()            → shallow copy (nested objects may be shared)
+```
+
+Keys must be unique and hashable. Duplicate keys in a literal: last value wins.
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can create a dict and read a required field with []
+[ ] I can read an optional field with .get
+[ ] I can add, update, merge, and delete pairs
+[ ] I can loop .items() and list keys / values
+[ ] I can read and update one nested dict
+[ ] I know `in` checks keys, and .copy() is shallow
+[ ] I completed the lab
+[ ] I attempted the contact-book mini-project
+[ ] I can explain dict vs list for lookup in an interview
+```
+
+---
+
+## What's Next?
+
+You can now store related information as named fields and look up by key.
+
+Next, [Data Structures Overview](08_Data_Structures_Overview.md) compares **list vs tuple vs set vs dict** so you can **choose** the right container for a problem — not only remember the syntax.

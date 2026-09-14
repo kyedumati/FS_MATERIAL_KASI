@@ -2,88 +2,114 @@
 
 **Phase:** Advanced Python
 
-**Previous module:** Functions, Decorators & Generators  
-**Next module:** [OOP (Part 1 — Classes & Encapsulation)](03_OOP_Part1_Classes_Encapsulation.md)
+**Previous:** [Functions, Decorators, and Generators](01_Functions_Decorators_Generators.md)  
+**Next:** [OOP](03_OOP.md)
 
 ---
 
-**Module Outcome:**
+## Module Outcome
 
-- Import forms
-- Module search path
-- `if __name__ == "__main__"`
-- Package structure and relative vs absolute imports
-- pip / venv workflow
-- Standard library highlights
+Split reusable functions into importable files, isolate libraries with a virtual environment, structure a small package, and use a few standard-library modules.
 
-### What is a module? What is a package?
+By the end of this module you will be able to:
 
-- A **module** is one Python file (`.py`) that holds related names: variables, functions, classes.  
-- A **package** is a **folder** of modules. An `__init__.py` file (even empty) tells Python: “this folder is importable.”
-
-**Function → module → library (big picture):**
-
-| Unit              | Plain meaning                                          |
-| ----------------- | ------------------------------------------------------ |
-| Function          | A named group of statements                            |
-| Module            | A group of related functions/classes in one `.py` file |
-| Package / library | A group of modules (folder or installable project)     |
-
-### Why do we need them?
-
-Without modules, one script becomes thousands of lines — hard to read, hard to reuse, impossible to share. Real team codebases split work across many files. `import` lets you use that work without copy-paste.
-
-**Virtual environment (`venv`)** is a private Python sandbox per project so Project A (library set X) and Project B (library set Y) do not fight on the same machine. Required on shared lab PCs and for clean deploy.
-
-When you write `import math`, Python loads the standard-library `math` module and exposes its tools. When you `pip install requests`, that package lands in `site-packages` for the active environment.
-
-**Icons:** Laptop · Order · CRM · Payroll
-
-**Where used?**
-- Shared lab PCs — each project gets its own `venv` so library versions do not collide
-- Team repos — `campus_utils` / `ksr_utils` packages imported by many scripts
-- Capstone apps — split `main.py`, helpers, and `data/` instead of one giant file
-- API clients — `pip install requests` (or similar) inside an activated venv
-- Config / reports — `json`, `datetime`, `os` from the standard library with no extra install
+- Create and activate a `venv`, then freeze installs to `requirements.txt`
+- Import a module (`import math`, `from math import sqrt`, aliases)
+- Build a folder package with `__init__.py` and import helpers from `main.py`
+- Guard demos with `if __name__ == "__main__"`
+- Use `datetime`, `json` (strings), `os.path.join`, and `random` for small jobs
 
 ---
 
-## Important Concepts
+## 1. Why This Concept Matters
 
-### 1. Import forms
+You can now write functions. Leave them all in one file and the script grows until nobody can find `is_positive`. A **module** is one `.py` file of related names. A **package** is a **folder** of modules (usually with `__init__.py`).
 
-**Definition:** Ways to bring another file’s names into the current file.  
-**Purpose:** Reuse without duplication; keep call sites readable.
+| Unit | Meaning |
+|------|---------|
+| Function | A named group of statements |
+| Module | Related functions in one `.py` file |
+| Package | A folder of modules you import as a group |
 
-```python
-import math                          # whole module — use math.sqrt
-print(math.sqrt(16))
+`import` reuses that work without copy-paste. Two projects on one lab PC also need their **own** library versions — that sandbox is a **venv**.
 
-from math import sqrt, pi            # specific names — shorter calls
-print(sqrt(16))
+Tonight’s mini-project kit ([venv package bootstrap](../15_Lab_Assets/16_venv_package_bootstrap/)) is this layout: a small `campus_utils` package plus an isolated environment.
 
-import datetime as dt                 # alias — shorter module name
-now = dt.datetime.now()
+---
 
-from os import path as osp           # alias for one imported name
+## 2. Virtual environment (`venv`)
+
+### Understand
+
+A **venv** is a project-private copy of Python plus whatever you `pip install`. Project A and Project B can then use different library versions on the same machine.
+
+**pip** installs packages from PyPI into the **active** environment. Teammates recreate that set from `requirements.txt`.
+
+### How It Works
+
+```bash
+python -m venv venv
+
+# Activate (pick your OS):
+source venv/bin/activate          # macOS / Linux
+# venv\Scripts\activate           # Windows Command Prompt
+# venv\Scripts\Activate.ps1       # Windows PowerShell
+
+pip install requests
+pip freeze > requirements.txt
+pip install -r requirements.txt   # teammate / new machine
+deactivate
 ```
 
-**Note:**
+After activate, `pip` and `python` point at `venv/`, not the system Python. You do not need a live HTTP call to prove the venv works — `pip freeze` listing what you installed is enough.
 
-- Avoid `from math import *` — star imports pollute the namespace and hide where names came from. Prefer `import math` or `from math import sqrt`.
+### ⚠️ WATCH OUT
 
-**Remember:** Prefer `import math` or named imports — `from math import *` hides where names came from and invites clashes.
+```text
+# Wrong — commit the venv folder (huge, OS-specific paths)
+git add venv/
 
-Print `ceil(4.2)` and `sqrt(81)` twice: once with `import math` (prefix) and once with `from math import ceil, sqrt` (no prefix).
+# Prefer
+# add venv/ to .gitignore
+# commit requirements.txt only
+
+# Wrong — pip install with no venv active (pollutes the machine)
+# Prefer — activate first, then pip install
+```
+
+### Try It
+
+In an empty practice folder: create a venv, activate it, run `pip freeze`, then `deactivate`. Confirm the prompt changes when the venv is on.
+
+---
+
+## 3. Import
+
+### Understand
+
+`import` loads another module’s names into the current file.
+
+| Form | Call style |
+|------|------------|
+| `import math` | `math.sqrt(16)` — prefix shows where it came from |
+| `from math import sqrt, pi` | `sqrt(16)` — shorter |
+| `import datetime as dt` | alias for a long module name |
+| `from math import *` | **avoid** — hides where names came from |
+
+Python searches, in order: the current directory, `PYTHONPATH`, the standard library, then `site-packages` (pip installs). Wrong folder or a typo → `ModuleNotFoundError`. Run from the project root; match the filename exactly (Linux is case-sensitive).
+
+`import sys` then `sys.path` is the debug list if an import fails — you do not need it for everyday work.
+
+### How It Works
 
 ```python
 import math
-print(math.ceil(4.2))   # 5
-print(math.sqrt(81))    # 9.0
+print(math.ceil(4.2))
+print(math.sqrt(81))
 
 from math import ceil, sqrt
-print(ceil(4.2))        # 5 — no prefix
-print(sqrt(81))         # 9.0
+print(ceil(4.2))
+print(sqrt(81))
 ```
 
 **Expected Output:**
@@ -95,96 +121,125 @@ print(sqrt(81))         # 9.0
 9.0
 ```
 
-Import `datetime as dt` and print today’s date in a Hyderabad attendance header using `strftime('%d-%m-%Y')`.
-
 ```python
 import datetime as dt
 
-today = dt.date.today()
-print(f"Hyderabad Attendance — {today.strftime('%d-%m-%Y')}")
+stamp = dt.datetime(2026, 9, 14, 18, 30)
+print(stamp.strftime("%d-%m-%Y %H:%M"))
 ```
 
-### 2. Module search path
+**Expected Output:**
 
-**Definition:** The ordered list of folders Python checks when you `import`.  
-**Purpose:** Explains `ModuleNotFoundError` and why `venv` / project layout matter.
+```
+14-09-2026 18:30
+```
 
-Python looks in:
+Your own `greetings.py` in the same folder imports the same way (`from greetings import namaste`). If the file is missing or you run from the wrong folder: `ModuleNotFoundError`.
 
-1. Current directory
-2. Directories in `PYTHONPATH`
-3. Standard library
-4. `site-packages` (pip installs)
+### ⚠️ WATCH OUT
+
+```text
+# Wrong
+from math import *
+
+# Prefer
+import math
+from math import sqrt
+```
+
+### Try It
+
+Print `math.floor(4.9)` with a module prefix, then import `floor` by name and print `floor(4.9)` with no prefix.
+
+---
+
+## 4. Packages
+
+### Understand
+
+A **package** is a folder you import. `__init__.py` (even empty) marks it as a package and can re-export names so `main.py` stays short.
+
+```text
+my_project/
+├── venv/                 # not committed
+├── requirements.txt
+├── main.py
+└── campus_utils/
+    ├── __init__.py
+    └── formatters.py
+```
+
+- **Absolute** import — full path from the project: `from campus_utils.formatters import format_inr`
+- **Relative** import — from **inside** the package: `from .formatters import format_inr` (`.` = this package)
+
+Use absolute imports from `main.py`. Use relative imports in `__init__.py` and sibling package files. Relative imports fail if you run the file as a loose script (`python formatters.py`).
+
+### How It Works
 
 ```python
-import sys
-print(sys.path)  # debugging import errors
+# campus_utils/formatters.py
+def format_inr(n):
+    return f"₹{n:,.2f}"
 ```
-
-**Note:**
-
-- Wrong working directory → `ModuleNotFoundError` — run from the project root or fix `PYTHONPATH`.
-- Typo in module name → `ModuleNotFoundError` — match the filename exactly (case-sensitive on Linux).
-
-Print each `sys.path` entry with an index, and tag the current folder and `site-packages` entries.
 
 ```python
-import sys
-import os
+# campus_utils/__init__.py
+from .formatters import format_inr
 
-print("sys.path entries:")
-for i, entry in enumerate(sys.path):
-    tag = ""
-    if entry == "" or entry == os.getcwd():
-        tag = "  # ← current folder"
-    elif "site-packages" in entry.replace("\\", "/"):
-        tag = "  # ← site-packages (pip installs)"
-    print(f"{i}: {entry!r}{tag}")
+__all__ = ["format_inr"]
 ```
-
-Save `namaste` in `greetings.py`, import it from `main.py`, and note the `ModuleNotFoundError` you get if that file is missing.
 
 ```python
-# Save as greetings.py (same folder), then run this as main.py
-# --- greetings.py ---
-# def namaste(name):
-#     return f"Namaste, {name}!"
+# main.py  (project root — run: python main.py)
+from campus_utils import format_inr
 
-# --- main.py ---
-from greetings import namaste
-
-print(namaste("Priya"))  # Namaste, Priya!
-
-# After rename/move greetings.py away and re-run:
-# ModuleNotFoundError: No module named 'greetings'
+print(format_inr(1250))
 ```
 
-### 3. `if __name__ == "__main__":`
+**Expected Output:**
 
-**Definition:** A guard that runs a block **only when this file is executed as a script**, not when another file imports it.  
-**Purpose:** Put demos / CLI entry points here so `import greetings` does not print or run side effects.
+```
+₹1,250.00
+```
+
+Without the re-export you would write `from campus_utils.formatters import format_inr` — also correct, just longer.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — relative import from a loose script
+python formatters.py          # from .x import y  fails
+
+# Prefer
+python main.py                # main uses absolute imports
+
+# Missing folder marker (older tools / some layouts)
+# add campus_utils/__init__.py
+```
+
+Circular imports (`a` imports `b` imports `a`) fail or partially initialize. Move shared helpers to a third module.
+
+### Try It
+
+Create `campus_utils/formatters.py` with `format_inr`. Re-export it from `__init__.py` with a relative import. From `main.py` print `format_inr(99)`.
+
+---
+
+## 5. `if __name__ == "__main__"`
+
+### Understand
+
+Every module has a `__name__`.
+
+- You **run** the file (`python greetings.py`) → `__name__` is `"__main__"`
+- Another file **imports** it → `__name__` is `"greetings"`
+
+Put demos and CLI entry points under `if __name__ == "__main__":` so `import greetings` does not print or wait for `input`.
+
+### How It Works
 
 ```python
 # greetings.py
-def namaste(name):
-    return f"Namaste, {name}!"
-
-if __name__ == "__main__":
-    print(namaste("Priya"))   # runs only: python greetings.py
-```
-
-When you `import greetings` from `main.py`, `__name__` inside `greetings` is `"greetings"` — the demo block is skipped.
-
-**Note:**
-
-- Top-level `print` / `input` outside the guard runs on every import — keep importable modules quiet; put demos under `if __name__ == "__main__":`.
-
-**Common Error:** Leaving `print` / `input` at module top level — every `import` triggers side effects. Guard demos with `if __name__ == "__main__":`.
-
-Put `namaste` and a demo `print` under `if __name__ == "__main__":` in `greetings.py`. From `main.py`, import it and call `namaste` so the demo line does not run.
-
-```python
-# save as greetings.py
 def namaste(name):
     return f"Namaste, {name}!"
 
@@ -193,231 +248,74 @@ if __name__ == "__main__":
 ```
 
 ```python
-# save as main.py (same folder) — run: python main.py
+# main.py
 import greetings
 
 print(greetings.namaste("Priya"))
-# No "Running as script" line — guard blocked the demo
 ```
 
-Run `python greetings.py` so the `__main__` guard prints `Running as script: Namaste, Ravi!`.
-
-```bash
-python greetings.py
-# prints: Running as script: Namaste, Ravi!
-```
-
-### 4. Package structure
-
-**Definition:** A folder of modules you own (e.g. `ksr_utils/` / `campus_utils/`).  
-**Purpose:** Capstone and multi-file apps both expect this layout.
+Run `python main.py`:
 
 ```
-my_project/
-├── venv/                 # not committed to Git
-├── requirements.txt
-├── main.py
-└── mypackage/
-    ├── __init__.py       # package marker + optional exports
-    ├── core.py
-    └── helpers/
-        ├── __init__.py
-        └── strings.py
+Namaste, Priya!
 ```
 
-**Note:**
+No `"Running as script"` line — the guard skipped the demo.
 
-- Circular imports → `ImportError` / partial init — restructure; move shared code to a third module.
-- Missing `__init__.py` (older Python / some tools) → package not recognized — add `__init__.py` in each package folder.
+Run `python greetings.py`:
 
-Create `campus_utils/formatters.py` with `format_inr` and import it from `main.py` as `from campus_utils.formatters import format_inr`. Print `format_inr(1250)`.
+```
+Running as script: Namaste, Ravi!
+```
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — top-level print / input runs on every import
+print(namaste("Priya"))
+
+# Prefer
+if __name__ == "__main__":
+    print(namaste("Priya"))
+```
+
+### Try It
+
+Move a demo `print` under the guard in `greetings.py`. Import `namaste` from `main.py` and confirm the demo line does **not** appear.
+
+---
+
+## 6. Standard library highlights
+
+### Understand
+
+The **standard library** ships with Python — no `pip` needed. Prefer it before adding a third-party package for a simple job.
+
+| Module | Job | Typical calls |
+|--------|-----|----------------|
+| `math` | Numbers | `sqrt`, `ceil`, `floor` (already used above) |
+| `datetime` | Dates / times | `datetime(...)`, `strftime`, `timedelta` |
+| `random` | Demo picks / OTPs | `randint`, `choice`, `sample` — not for real secrets |
+| `json` | Dict ↔ JSON **string** | `dumps`, `loads` |
+| `os` | Folders / env | `getcwd`, `path.join`, `environ.get` |
+
+JSON **files** (`dump` / `load` with `open`) wait for Files week. Here you only round-trip a **string**.
+
+### How It Works
 
 ```python
-# Folder layout:
-#   campus_utils/__init__.py   (can be empty for Program 1)
-#   campus_utils/formatters.py
-#   main.py
+from datetime import datetime, timedelta
 
-# --- campus_utils/formatters.py ---
-def format_inr(n):
-    return f"₹{n:,.2f}"
-
-# --- main.py ---
-from campus_utils.formatters import format_inr
-
-print(format_inr(1250))  # ₹1,250.00
+start = datetime(2026, 9, 14, 18, 30)
+expiry = start + timedelta(days=30)
+print("Expires on:", expiry.date())
 ```
 
 **Expected Output:**
 
 ```
-₹1,250.00
+Expires on: 2026-10-14
 ```
-
-Re-export `format_inr` from `campus_utils/__init__.py` so `main.py` can use `from campus_utils import format_inr`.
-
-```python
-# --- campus_utils/formatters.py ---
-def format_inr(n):
-    return f"₹{n:,.2f}"
-
-# --- campus_utils/__init__.py ---
-from campus_utils.formatters import format_inr
-
-__all__ = ["format_inr"]
-
-# --- main.py ---
-from campus_utils import format_inr  # short import via package init
-
-print(format_inr(1250))  # ₹1,250.00
-```
-
-**Expected Output:**
-
-```
-₹1,250.00
-```
-
-### 5. Relative vs absolute imports
-
-**Definition:**  
-
-- **Absolute** — full path from the top package: `from campus_utils.formatters import format_inr`  
-- **Relative** — path relative to the **current** package file: `from .formatters import format_inr` (`.` = this package)
-
-**Purpose:** Inside a package, relative imports stay correct if you rename the top folder later; absolute imports are clearer from `main.py` outside the package.
-
-```python
-# campus_utils/__init__.py  (inside the package — relative OK)
-from .formatters import format_inr
-from .validators import is_email
-
-__all__ = ["format_inr", "is_email"]
-```
-
-```python
-# main.py  (outside the package — use absolute)
-from campus_utils import format_inr
-```
-
-**Note:**
-
-- Relative imports (`from .x import y`) only work **inside** a package — not in a loose script you run as `python formatters.py`.
-- Prefer absolute imports from project entry points (`main.py`); use relative imports inside package modules / `__init__.py`.
-
-In `campus_utils/__init__.py`, use a relative import (`from .formatters import format_inr`) and print `format_inr(99)` from `main.py`.
-
-```python
-# campus_utils/formatters.py
-def format_inr(n):
-    return f"₹{n:,.2f}"
-
-# campus_utils/__init__.py
-from .formatters import format_inr
-
-__all__ = ["format_inr"]
-
-# main.py
-from campus_utils import format_inr
-print(format_inr(99))
-```
-
-In `campus_utils/report.py`, import `is_email` from `campus_utils.validators` with an absolute import and wrap it in `check(user)`.
-
-```python
-# campus_utils/validators.py
-def is_email(text):
-    return "@" in text
-
-# campus_utils/report.py
-from campus_utils.validators import is_email  # absolute inside package also fine
-
-def check(user):
-    return is_email(user)
-```
-
-### 6. pip and venv workflow
-
-**Definition:** A **venv** is a project-private copy of Python + installed libraries. **pip** installs packages from PyPI into the *active* environment.  
-**Purpose:** Shared lab PCs and two projects on one laptop need isolation — otherwise package versions collide.
-
-```bash
-python -m venv venv
-
-# Activate (pick your OS):
-source venv/bin/activate          # macOS / Linux
-# venv\Scripts\activate           # Windows (Command Prompt)
-# venv\Scripts\Activate.ps1       # Windows (PowerShell)
-
-pip install requests
-pip freeze > requirements.txt
-pip install -r requirements.txt   # teammate / new machine
-deactivate                        # leave the sandbox
-```
-
-**Note:**
-
-- Committing `venv/` → huge repo and OS-specific paths — add `venv/` to `.gitignore`; commit `requirements.txt` instead.
-- `pip install` globally (no venv) → version conflicts — always use a venv per project.
-
-**Interview:** A module is one `.py` file; a package is a folder of modules (usually with `__init__.py`). `venv` isolates each project's pip installs.
-
-Inside an activated venv with `requests` installed, import it and print `requests.__version__`.
-
-```python
-# First (in terminal):
-#   python -m venv venv
-#   source venv/bin/activate          # Windows: venv\Scripts\activate
-#   pip install requests
-#   pip freeze > requirements.txt
-
-import requests
-
-print("requests version:", requests.__version__)
-```
-
-Call `requests.get` on `https://httpbin.org/get` (timeout 10) and print the status code and JSON `url`.
-
-```python
-import requests
-
-response = requests.get("https://httpbin.org/get", timeout=10)
-print("Status:", response.status_code)
-print("URL:", response.json()["url"])
-# Deactivate venv first → ModuleNotFoundError: No module named 'requests'
-```
-
-If the lab PC has no internet, stop after Program 1 — that alone proves the venv works.
-
-### 7. Standard library highlights
-
-**Definition:** Modules that ship with Python — no `pip` needed.  
-**Purpose:** Prefer these before adding third-party packages for simple tasks.
-
-| Module     | Purpose           | Common functions                                              |
-| ---------- | ----------------- | ------------------------------------------------------------- |
-| `math`     | Numeric functions | `sqrt`, `ceil`, `floor`, `pow`                                |
-| `datetime` | Dates and times   | `datetime.now()`, `strftime`, `timedelta`                     |
-| `random`   | Pseudo-random     | `randint`, `choice`, `shuffle`, `sample`                      |
-| `json`     | JSON ↔ Python     | `loads`, `dumps` (strings); `load`, `dump` (files — homework) |
-| `os`       | OS interface      | `getcwd`, `listdir`, `path.join`, `environ`                   |
-
-**Note:**
-
-- Demo OTPs with `random` are fine in class — for real security use `secrets` later.
-- Build paths with `os.path.join(...)`, not string `"folder/" + "file"` (Windows vs macOS).
-- Prefer in-memory `json.dumps` / `json.loads` first. File `json.dump` / `json.load` is OK for the JSON file homework; deep `open` / CSV mastery comes in the Files module.
-
-Use `random.choice` on a list of lunch spots and print today’s pick.
-
-```python
-import random
-
-spots = ["Canteen", "Mess", "Tiffin centre", "Home"]
-print("Today's lunch:", random.choice(spots))
-```
-
-Dump a small dict with `json.dumps`, print the JSON string, then `json.loads` it back and print the city.
 
 ```python
 import json
@@ -425,9 +323,8 @@ import json
 batch = {"city": "Pune", "batch": "PFS-01"}
 text = json.dumps(batch)
 print("JSON string:", text)
-
 data = json.loads(text)
-print("City:", data["city"])  # Pune
+print("City:", data["city"])
 ```
 
 **Expected Output:**
@@ -437,337 +334,376 @@ JSON string: {"city": "Pune", "batch": "PFS-01"}
 City: Pune
 ```
 
----
-
-## Step-by-Step Annotated Python 3 Code
-
-### Example 1 — math module
-
-```python
-import math
-
-radius = 7
-area = math.pi * math.pow(radius, 2)
-print(f"Area: {area:.2f}")
-
-print(math.ceil(4.2))    # 5
-print(math.floor(4.9))   # 4
-print(math.sqrt(81))     # 9.0
-```
-
-### Example 2 — datetime module
-
-```python
-from datetime import datetime, timedelta
-
-now = datetime.now()
-print(now.strftime("%d-%m-%Y %H:%M"))   # Indian date format common in UIs
-
-# 30 days from today (e.g., subscription expiry)
-expiry = now + timedelta(days=30)
-print("Expires on:", expiry.date())
-
-# Parse string to datetime
-dob = datetime.strptime("15-08-1995", "%d-%m-%Y")
-print("Birth year:", dob.year)
-```
-
-### Example 3 — random module
-
-```python
-import random
-
-# OTP for demo only — use secrets module in production
-otp = random.randint(100000, 999999)
-print("OTP:", otp)
-
-colors = ["red", "green", "blue"]
-print("Lucky color:", random.choice(colors))
-
-nums = [10, 20, 30, 40]
-random.shuffle(nums)
-print("Shuffled:", nums)
-```
-
-### Example 4 — json module (strings first; files below)
-
-```python
-import json
-
-# Python dict → JSON string
-user = {"id": 1, "name": "Ananya", "city": "Chennai", "active": True}
-json_str = json.dumps(user, indent=2)
-print(json_str)
-
-# JSON string → Python dict
-parsed = json.loads(json_str)
-print(parsed["city"])
-```
-
-**Write/read a JSON file** (JSON file homework; full Files deep-dive later):
-
-```python
-import json
-
-user = {"id": 1, "name": "Ananya", "city": "Chennai", "active": True}
-
-with open("user.json", "w", encoding="utf-8") as f:
-    json.dump(user, f, indent=2)
-
-with open("user.json", "r", encoding="utf-8") as f:
-    loaded = json.load(f)
-    print(loaded)
-```
-
-### Example 5 — os module
+`json.dumps` / `loads` are the **string** pair. `dump` / `load` need a file object — later.
 
 ```python
 import os
 
-print("Current folder:", os.getcwd())
-print("Files here:", os.listdir("."))
-
-# Cross-platform path (important for Windows + Mac labs)
-data_path = os.path.join("data", "students.csv")
-print("Data path:", data_path)
-
-# Environment variable (common for config / secrets)
-db_host = os.environ.get("DB_HOST", "localhost")
-print("DB host:", db_host)
+print(os.environ.get("DB_HOST", "localhost"))
+print(os.path.join("data", "reports"))  # `\` on Windows, `/` on macOS/Linux
 ```
 
-### Example 6 — Creating and importing your own module
+**Expected Output** (first line; the path shape follows your OS):
 
-**File:** `greetings.py`
+```
+localhost
+```
 
 ```python
-def say_hello(name):
-    return f"Namaste, {name}!"
+import random
 
-APP_VERSION = "1.0.0"
-
-if __name__ == "__main__":
-    print(say_hello("KSR Batch"))
+print(random.randint(100000, 999999))
+print(random.choice(["Canteen", "Mess", "Home"]))
 ```
 
-**File:** `main.py`
+The numbers change each run. That is fine for a class demo. Real login OTPs belong in `secrets` later — not this module.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — glue paths with +
+"data/" + "reports"           # breaks on Windows vs macOS
+
+# Prefer
+os.path.join("data", "reports")
+
+# Wrong — treat classroom random OTP as security
+# Prefer secrets for anything real (later)
+```
+
+### Try It
+
+Dump `{"city": "Hyderabad", "batch": "PFS-01"}` with `json.dumps`. Load it back and print the city.
+
+---
+
+## Step-by-Step: Build It
+
+One assemble: a quiet helper module, a `__main__` demo, and a `main.py` that imports it. Create both files in the **same folder**, then run from that folder.
+
+**File `greetings.py`:**
+
+```python
+APP_VERSION = "1.0.0"
+
+def namaste(name):
+    return f"Namaste, {name}!"
+
+if __name__ == "__main__":
+    print("Running as script:", namaste("Ravi"))
+```
+
+**File `main.py`:**
 
 ```python
 import greetings
 
-print(greetings.say_hello("KSR Batch"))
+print(greetings.namaste("Priya"))
 print("Version:", greetings.APP_VERSION)
 ```
 
-### Example 7 — Package with `__init__.py` + relative imports
-
-**File:** `ksr_tools/__init__.py`
-
-```python
-"""KSR training utility package."""
-from .validators import is_email
-from .formatters import format_inr
-
-__all__ = ["is_email", "format_inr"]
-```
-
-**File:** `ksr_tools/validators.py`
-
-```python
-def is_email(text):
-    return "@" in text and "." in text.split("@")[-1]
-```
-
-**File:** `ksr_tools/formatters.py`
-
-```python
-def format_inr(amount):
-    return f"₹{amount:,.2f}"
-```
-
-**File:** `demo.py`
-
-```python
-from ksr_tools import is_email, format_inr
-
-print(is_email("student@ksr.com"))
-print(format_inr(125000.5))
-```
-
-**Expected Output:**
+**Expected Output** (`python main.py`):
 
 ```
-True
-₹125,000.50
+Namaste, Priya!
+Version: 1.0.0
 ```
+
+**Expected Output** (`python greetings.py`):
+
+```
+Running as script: Namaste, Ravi!
+```
+
+Next step in the mini-project: the same idea as a **package** (`campus_utils/`) inside a **venv**.
 
 ---
 
 ## Practice Exercises
 
-### Basic
+Attempt each problem before reading the model answer.
 
-1. Use `math` to compute EMI: `emi = P * r * (1+r)**n / ((1+r)**n - 1)`.
-  **Model answer:**
+1. Import `math`. Print `math.pow(2, 3)` and `math.pi` rounded to 2 decimals with `round(math.pi, 2)`.
 
-```python
-P, annual_rate, years = 500000, 0.10, 5
-r = annual_rate / 12
-n = years * 12
-emi = P * r * (1 + r) ** n / ((1 + r) ** n - 1)
-print(round(emi, 2))
-```
-
-2. Print today's date in `DD/MM/YYYY` using `datetime`.
-  **Model answer:**
+**Model answer:**
 
 ```python
-from datetime import date
-print(date.today().strftime("%d/%m/%Y"))
+import math
+
+print(math.pow(2, 3))
+print(round(math.pi, 2))
 ```
 
-3. Generate a list of 6 unique lottery numbers (1–49) using `random`.
-  **Model answer:**
+**Expected Output:**
+
+```
+8.0
+3.14
+```
+
+2. Round-trip a dict with `json.dumps` / `json.loads` (no file). Print the JSON string and then `data["batch"]`.
+
+```python
+record = {"city": "Hyderabad", "batch": "PFS-01"}
+```
+
+**Hint:** `loads` parses a **string**, not a file.
+
+**Model answer:**
+
+```python
+import json
+
+record = {"city": "Hyderabad", "batch": "PFS-01"}
+text = json.dumps(record)
+print(text)
+data = json.loads(text)
+print(data["batch"])
+```
+
+**Expected Output:**
+
+```
+{"city": "Hyderabad", "batch": "PFS-01"}
+PFS-01
+```
+
+3. Print 6 unique lottery numbers from `1` through `49` with `random.sample`, then sort them. (Values change each run.)
+
+**Hint:** `random.sample(range(1, 50), 6)`.
+
+**Model answer:**
 
 ```python
 import random
+
 print(sorted(random.sample(range(1, 50), 6)))
 ```
 
-4. Round-trip a dictionary with `json.dumps` / `json.loads` (no file).
-  **Model answer:**
+4. `date_utils.py` defines `format_iso(year, month, day)` and prints a demo under `if __name__ == "__main__":`. Another file does `from date_utils import format_iso` and prints `format_iso(2026, 9, 14)`. What extra line appears, if any, when you run the **importing** file?
 
-```python
-import json
-d = {"city": "Hyderabad", "batch": "PFS-01"}
-text = json.dumps(d)
-print(json.loads(text)["city"])
+**Hint:** Same idea as the `greetings` guard.
+
+**Model answer:**
+
+No demo line. `__name__` inside `date_utils` is `"date_utils"`, not `"__main__"`. The print is `2026-09-14` only.
+
+5. Sketch the folders for a package `inventory/` with `products.py` (`make_product(sku, name, price)` returning a dict) and `__init__.py` that relative-imports `make_product`. Write the one import line `main.py` should use.
+
+**Hint:** No classes — a product is a dict, as in Core Python.
+
+**Model answer:**
+
+```text
+inventory/
+  __init__.py      # from .products import make_product
+  products.py
+main.py            # from inventory import make_product
 ```
 
-5. Save and load a dictionary to `config.json` using `json.dump` / `json.load`.
-  **Model answer:**
-
 ```python
-import json
-cfg = {"theme": "light"}
-with open("config.json", "w", encoding="utf-8") as f:
-    json.dump(cfg, f)
-with open("config.json", "r", encoding="utf-8") as f:
-    print(json.load(f))
+def make_product(sku, name, price):
+    return {"sku": sku, "name": name, "price": price}
 ```
 
-### Intermediate
+6. A teammate cloned your repo and has no `venv`. List the commands (macOS/Linux **or** Windows) to create a venv, activate it, and install from `requirements.txt`. Why is `venv/` not in Git?
 
-1. Create module `date_utils.py` with `days_until(date_str)` and a `__main__` demo.
-  **Model answer:**
-
-```python
-# date_utils.py
-from datetime import datetime, date
-
-def days_until(date_str):
-    target = datetime.strptime(date_str, "%d-%m-%Y").date()
-    return (target - date.today()).days
-
-if __name__ == "__main__":
-    print(days_until("31-12-2026"))
-```
-
-2. Build package `inventory/` with `products.py` and `stock.py` (functions + dicts — no classes yet).
-  **Model answer:**
-  `inventory/__init__.py` (can re-export), `products.py` with `make_product(sku, name, price)`, `stock.py` with `add_stock(db, sku, qty)` using a dict as the store.
-
-3. Write script listing all `.py` files in current directory using `os`.
-  **Model answer:**
-
-```python
-import os
-print([f for f in os.listdir(".") if f.endswith(".py")])
-```
-
-4. Create venv, install `python-dotenv`, freeze to `requirements.txt`.
-  **Model answer:**
+**Model answer:**
 
 ```bash
 python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-pip install python-dotenv
-pip freeze > requirements.txt
+source venv/bin/activate          # Windows: venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
-### Interview-style
-
-1. Difference between module and package?
-  **Model answer:**
-   A module is a single `.py` file you import. A package is a directory with `__init__.py` (or a namespace package) that groups related modules so you can write `from inventory.products import make_product`.
-2. What is `if __name__ == "__main__":` used for?
-  **Model answer:**
-   It runs a block only when the file is executed as a script, not when imported. Put demos/CLI entry points there so importing the module does not side-effect.
-3. How does Python find modules when you `import requests`?
-   **Model answer:**
-   Python searches `sys.path` in order: the script directory, `PYTHONPATH`, site-packages (where pip installs packages), then standard library locations. The first matching package wins.
-4. Absolute vs relative import — when use each?
-  **Model answer:**
-   Absolute (`from campus_utils.formatters import format_inr`) from entry scripts and for clarity. Relative (`from .formatters import format_inr`) inside package files / `__init__.py` so the package stays movable. Relative imports fail in a loose script run as `python formatters.py`.
-
-## Mini-Project (Assignment): Project Bootstrap Template
-
-**Title:** `py_starter` — Reusable Project Skeleton  
-**Lab kit (build here):** [15_Lab_Assets/16_venv_package_bootstrap/](../15_Lab_Assets/16_venv_package_bootstrap/)  
-**Also use:** [30_ksr_utils_toolkit](../15_Lab_Assets/30_ksr_utils_toolkit/) (optional polish)
-
-### What to build
-
-| Piece                        | Requirement                                           |
-| ---------------------------- | ----------------------------------------------------- |
-| `venv/` + `requirements.txt` | Isolated env; freeze after installs                   |
-| `campus_utils/` package      | `__init__.py` + at least one helper module            |
-| `main.py`                    | Imports package helpers; prints a short demo          |
-| `data/sample.json`           | Defaults loaded by a small `config`/`settings` module |
-| `README.md`                  | Activate, install, run steps for a teammate           |
-
-### Stretch
-
-- Add a second helper module (e.g. `validators.py`) and re-export it from `__init__.py` with a **relative** import.  
-- Pin versions in `requirements.txt` (`requests==…`).  
-- Document “works on Windows / macOS / Linux” activation commands.
-
-### Done when
-
-- [ ] Starter kit / your `main.py` runs inside an activated venv  
-- [ ] Package import works without `sys.path` hacks  
-- [ ] README shows how a teammate recreates the env from `requirements.txt`  
-- [ ] Project pushed to GitHub (no `venv/` committed)
-
-## Interview Q&A
-
-Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
-
-1. Why is `import json` preferred over writing your own JSON parser?
-2. When would you use `os.path.join` instead of string concatenation?
-3. What goes into `requirements.txt` and what should never go there?
-4. How is a multi-file package folder similar to a reusable app unit in a larger project?
-5. Why do we add `venv/` to `.gitignore` but commit `requirements.txt`?
-6. What is `if __name__ == "__main__":` for?
-7. Difference between `json.load` and `json.loads`?
-
-**Q1. Module vs package?**  
-**A:** A module is a single `.py` file. A package is a directory of modules (with `__init__.py`) that can be imported as a hierarchy, e.g. `mypkg.submod`.
-
-**Q2. Purpose of** `if __name__ == "__main__":`**?**  
-**A:** Code under this block runs only when the file is executed directly, not when imported. Enables reusable modules that also work as scripts.
-
-**Q3. Difference between** `json.load` **and** `json.loads`**?**  
-**A:** `load` reads from a file object; `loads` parses a JSON string. (`dump` / `dumps` are the write-side pair.)
-
-**Q4. What is pip?**  
-**A:** Python's package installer; downloads third-party libraries from PyPI into your environment's `site-packages`.
-
-**Q5. How do you share dependencies with team?**  
-**A:** `pip freeze > requirements.txt`; teammates run `pip install -r requirements.txt` inside their venv.
-
-**Q6. Absolute vs relative import?**  
-**A:** Absolute uses the full package path from the project root; relative uses `.` / `..` from the current package file. Use absolute from `main.py`; relative is common inside `__init__.py` and sibling modules.
+`venv/` is large and OS-specific. `requirements.txt` is the recipe; each machine builds its own sandbox.
 
 ---
 
+## Lab
+
+Combine a local module, an import, and the `__main__` guard. No venv required in class. No `open()`, no CSV.
+
+### Problem
+
+`namaste` is stuck in a script that prints as soon as anyone imports it.
+
+### What to Build
+
+Two files in one folder: a quiet helper module and a small driver.
+
+### Requirements
+
+- `greetings.py` — `namaste(name)` returns a string; demo print only under `if __name__ == "__main__":`
+- `main.py` — import and print `namaste("Priya")` (or another name)
+- Running `main.py` must **not** print the demo line from `greetings.py`
+- Running `greetings.py` **does** print the demo
+
+### Expected Behavior
+
+Import stays quiet. Direct run shows the demo.
+
+### Sample Run
+
+```text
+$ python main.py
+Namaste, Priya!
+
+$ python greetings.py
+Running as script: Namaste, Ravi!
+```
+
+### Constraints
+
+No packages required. No `try` / `except`. No files other than the two `.py` modules.
+
+### Bonus
+
+Add `APP_VERSION` in `greetings.py` and print it from `main.py`.
+
+---
+
+## Mini-Project (Assignment): Project Bootstrap Template
+
+**Why this matters:** Later CLI and file apps start as a folder: venv, a small package, `main.py`, and a README a teammate can follow.
+
+**Lab kit:** [15_Lab_Assets/16_venv_package_bootstrap/](../15_Lab_Assets/16_venv_package_bootstrap/)
+
+| File | What you do |
+|------|-------------|
+| `starter/campus_utils/formatters.py` | Finish `format_inr` |
+| `starter/campus_utils/__init__.py` | Re-export so `from campus_utils import format_inr` works |
+| `starter/main.py` | Already imports — run it inside an activated venv |
+| `broken/` | Fix the import / formatter bug |
+| `solution/` | Do **not** copy this |
+
+Optional polish with the toolkit from last module: [30_ksr_utils_toolkit](../15_Lab_Assets/30_ksr_utils_toolkit/).
+
+This is **not** the two-file lab. Same import ideas, plus isolation and a package layout.
+
+### Objective
+
+Ship a `py_starter`-style skeleton: venv + `campus_utils` + `main.py` + README.
+
+### Story / Scenario
+
+A teammate clones your repo on a lab PC. They should recreate the environment from `requirements.txt` and run `main.py` without `sys.path` hacks.
+
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| `venv/` + `requirements.txt` | Isolated env; freeze after any installs |
+| `campus_utils/` | `__init__.py` + at least `formatters.py` |
+| `main.py` | Imports package helpers; prints a short demo |
+| README | Activate, install, run — Windows and macOS/Linux |
+
+A small JSON defaults file is **optional stretch** (Files week will go deeper). Do not spend the core ticket on `open()`.
+
+### Expected Behavior
+
+- `format_inr` prints a ₹ amount from `main.py`
+- Package import works from the project root
+
+### Sample Run
+
+```text
+$ source venv/bin/activate
+$ python main.py
+₹1,234.50
+```
+
+### Bonus Challenges
+
+- Second helper module + relative re-export in `__init__.py`
+- Pin versions in `requirements.txt` (`package==1.2.3`)
+- Optional: load a tiny JSON defaults **string** or, after Files week, `data/sample.json`
+
+### Done when
+
+- [ ] `starter/main.py` runs inside an activated venv
+- [ ] Package import works without `sys.path` hacks
+- [ ] README shows recreate-from-`requirements.txt`
+- [ ] No `venv/` committed when you push
+
+---
+
+## Interview Q&A
+
+**Q1. Module vs package?**  
+A module is one `.py` file. A package is a folder of modules (typically with `__init__.py`) imported as a hierarchy, e.g. `campus_utils.formatters`.
+
+**Q2. Why `venv`?**  
+It isolates pip installs per project so two apps on one machine do not fight over library versions. Commit `requirements.txt`, not `venv/`.
+
+**Q3. What is `if __name__ == "__main__":` for?**  
+That block runs only when the file is executed as a script, not when imported. Keeps modules reusable and quiet.
+
+**Q4. `json.dumps` vs `json.dump`?**  
+`dumps` / `loads` work on **strings**. `dump` / `load` work on **file objects** (Files week). Prefer the string pair until you have `open`.
+
+**Q5. Absolute vs relative import?**  
+Absolute uses the full package path (`from campus_utils.formatters import format_inr`) — use it from `main.py`. Relative uses `.` / `..` from the current package file — common in `__init__.py`. Relative imports fail on a loose `python some_module.py`.
+
+**Q6. Why `os.path.join` instead of `"folder/" + "file"`?**  
+Separators differ on Windows vs macOS/Linux. `join` builds a path for the current OS.
+
+**Q7. How do you share dependencies?**  
+`pip freeze > requirements.txt`. Teammates activate their venv and run `pip install -r requirements.txt`.
+
+**Q8. Why prefer `import json` over writing your own parser?**  
+JSON is a standard format. The stdlib module is tested, handles types like `true`/`null`, and is what APIs expect.
+
+---
+
+## Cheat Sheet
+
+```text
+python -m venv venv     → create sandbox
+source venv/bin/activate → macOS/Linux on
+venv\Scripts\activate   → Windows on
+pip freeze > requirements.txt
+pip install -r requirements.txt
+deactivate              → leave sandbox
+
+import math             → math.sqrt
+from math import sqrt   → sqrt (named)
+import datetime as dt   → alias
+from math import *      → avoid
+
+from pkg import name    → package re-export
+from .mod import name   → relative (inside package only)
+
+if __name__ == "__main__":
+                        → demo / CLI; skipped on import
+
+datetime.strftime       → date text
+json.dumps / loads      → dict ↔ JSON string
+os.path.join(...)       → portable path
+random.choice / sample  → demo picks (seed for class)
+```
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can create, activate, and freeze a venv
+[ ] I can import a stdlib module and my own .py file
+[ ] I can explain ModuleNotFoundError (folder / name)
+[ ] I can layout a package with __init__.py
+[ ] I can use a relative import inside the package
+[ ] I can guard demos with if __name__ == "__main__"
+[ ] I can round-trip a dict with json.dumps / loads
+[ ] I completed the two-file lab
+[ ] I attempted the venv + campus_utils mini-project
+[ ] I can explain module vs package in an interview
+```
+
+---
+
+## What's Next?
+
+You can now split functions across files and keep each project’s libraries in a sandbox.
+
+Next, [OOP](03_OOP.md) groups **data and behaviour** into classes — an account is no longer a loose `balance` plus functions; it becomes an object with methods.

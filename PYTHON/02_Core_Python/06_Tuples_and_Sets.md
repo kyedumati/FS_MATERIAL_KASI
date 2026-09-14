@@ -1,92 +1,434 @@
-# Tuples and Sets in Python 3
+# Module 06 — Tuples and Sets
 
-**Module:** Core Python · Collections  
-**Previous module:** Lists
-**Next module:** Dictionaries
+**Phase:** Core Python
 
----
-
-**Module Outcome:**
-
-- Use a **tuple** when the record should stay sealed (receipt, GPS drop, roll+name)
-- Use a **set** when duplicates must die (unique emails, tags, SKUs)
-- Unpack a tuple and convert list ↔ set without losing the point of each
-
-### Tuples — the sealed envelope
-
-A **tuple** is like a printed receipt or Aadhaar-linked record: once created, you should **not change** the fields. You can **read** them, pass them around, and unpack them into variables.
-
-**Icons:** Employee · Order · Bank · Payroll · Laptop
-
-**Where used?**
-- **Employee Management Portal** — fixed employee row `(emp_id, name, dept)` snapshots
-- **Swiggy** — product catalog rows, shipping status tuples
-- **HDFC Bank** — immutable transaction snapshots (date, type, ₹ amount)
-- College apps — GPS campus coords, exam slot `(date, room)`
-- **Apollo Hospitals** — appointment keys, unique tag sets for departments
-
-**Use tuples when:**
-
-- Data should not change accidentally (database row snapshot, GPS point `(lat, lon)`).
-- Returning **multiple values** from a function: `return name, salary, dept`.
-- Using as **dictionary keys** (lists cannot be keys — not hashable).
-
-### Sets — the unique guest list
-
-A **set** is like a club entry register that **automatically rejects duplicates**. If two people with the same employee ID try to enter, only one entry remains.
-
-**Use sets when:**
-
-- You need **unique** values: unique user IDs, unique tags, unique cities visited.
-- You need fast **membership check**: `"Python" in skills_set`.
-- You need **math-style** comparisons: students in both batches, products only in warehouse A.
+**Previous:** [Lists](05_Lists.md)  
+**Next:** [Dictionaries](07_Dictionaries.md)
 
 ---
 
-## Concepts and Definitions
+## Module Outcome
 
-| Term | Definition |
-|------|------------|
-| **Tuple** | Ordered, **immutable** sequence written with parentheses `( )`. |
-| **Immutability** | Cannot change, add, or remove elements after creation. |
-| **Packing** | Combining values into one tuple: `t = 1, 2, 3`. |
-| **Unpacking** | Assigning tuple elements to variables: `x, y, z = t`. |
-| **Set** | Unordered collection of **unique** hashable items; `{}` or `set()`. |
-| **Hashable** | Object that can be used in sets/dict keys (int, str, tuple of hashables — not list). |
-| **Union (`\|`)** | All elements in either set. |
-| **Intersection (`&`)** | Elements in both sets. |
-| **Difference (`-`)** | In first set but not second. |
-| **Symmetric difference (`^`)** | In one set or the other, not both. |
-| **frozenset** | Immutable set (advanced; used as dict key). |
+Seal an ordered record as a tuple, unpack it, convert list ↔ tuple, and use a set for unique values and fast membership.
+
+By the end of this module you will be able to:
+
+- Create a tuple as a sealed ordered record
+- Avoid the `(42,)` one-item trap; index, slice, `count`, and `index`
+- Unpack a tuple and swap two values
+- Convert list ↔ tuple
+- Build a set; write an empty set as `set()` — not `{}`
+- Deduplicate a list; test membership with `in`
+- Use light union (`|`) and intersection (`&`)
 
 ---
 
-## Step-by-Step Notes with Annotated Python 3 Code
+## 1. Why This Concept Matters
 
-### Part A — Tuples
+A list is the right bag when the collection should change. Some data should **not** change by accident — a printed receipt, a GPS drop, an employee snapshot. A **tuple** is an ordered, **immutable** sequence.
 
-#### Step 1 — Create and read tuples
+Imports are a different problem. Emails and product IDs often arrive twice. A **set** keeps each value **once** and answers “is this id already here?”
 
-```python
-# CREATE — parentheses optional for packing
-employee = ("EMP-101", "Ananya Sharma", "Engineering")
-single = (42,)              # comma required for 1-item tuple
-not_a_tuple = (42)          # just int 42 — common mistake!
-
-# READ — same indexing/slicing as lists
-print(employee[0])          # EMP-101
-print(employee[-1])         # Engineering
-print(employee[1:3])        # ('Ananya Sharma', 'Engineering')
-
-# IMMUTABLE — this fails:
-# employee[0] = "EMP-999"   # TypeError: 'tuple' object does not support item assignment
+```text
+receipt  →  ("ORD-5001", 2499.0, "Delivered")   sealed
+ids      →  {101, 102, 103}                      unique
 ```
 
-**Note:**
-- Wrong: Writing `(42)` and thinking it is a 1-tuple — it is just an int.
-- Prefer: Always use a trailing comma for a 1-tuple: `(42,)`.
+---
 
-Create an Employee Management Portal employee tuple and print each field by index.
+## 2. Create a tuple
+
+### Understand
+
+A tuple is written with parentheses `( )`. Order is kept. You cannot assign to an element.
+
+Use it to freeze a receipt, GPS point, or catalog row so a typo cannot silently rewrite the record.
+
+### How It Works
+
+```python
+employee = ("EMP-101", "Ananya Sharma", "Engineering")
+print(employee)
+
+receipt = ("ORD-5001", 2499.00, "Delivered")
+print(f"Order {receipt[0]}: ₹{receipt[1]} — {receipt[2]}")
+```
+
+**Expected Output:**
+
+```
+('EMP-101', 'Ananya Sharma', 'Engineering')
+Order ORD-5001: ₹2499.0 — Delivered
+```
+
+Parentheses are optional when packing: `order = "ORD-1", 999.0, "Paid"` is still a tuple.
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — parentheses alone group an expression
+single = (42)         # int, not a tuple
+
+# Prefer — the trailing comma makes a 1-tuple
+single = (42,)
+```
+
+### Try It
+
+Create `emp = ("EMP-204", "Priya Nair", "HR")`. Print each field by index on one line.
+
+---
+
+## 3. Read a tuple — you cannot edit
+
+### Understand
+
+Indexing and slicing work like lists: `t[0]`, `t[-1]`, `t[1:3]`. Helpers: `.count(x)`, `.index(x)`, `len(t)`.
+
+Assignment to an element raises `TypeError`. To “change” a field, build a **new** tuple.
+
+### How It Works
+
+```python
+scores = (78, 92, 85, 92, 88)
+print(scores[0])
+print(scores[-1])
+print(scores.count(92))
+print(scores.index(85))
+
+shipment = ("ORD-9", 1499.0, "Packed")
+print(len(shipment))
+# shipment[2] = "Shipped"   # TypeError — leave commented
+
+one = (100,)
+not_tuple = (100)
+print(type(one), type(not_tuple))
+```
+
+**Expected Output:**
+
+```
+78
+88
+2
+2
+3
+<class 'tuple'> <class 'int'>
+```
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong
+employee[0] = "EMP-999"     # TypeError
+
+# Prefer — new tuple
+employee = ("EMP-999",) + employee[1:]
+```
+
+A tuple of immutables can later be a **dict key**. A list cannot. That matters in the next module — remember the rule, do not build dicts here.
+
+### Try It
+
+Compare `one = (100,)` and `not_tuple = (100)`. Print both `type(...)` results.
+
+---
+
+## 4. Unpack and swap
+
+### Understand
+
+Unpacking names the fields: `order_id, amount, status = order`. The number of names must match the length.
+
+Swap is one line: `a, b = b, a`. No temp variable.
+
+```text
+order_summary  →  ("ORD-5001", 2499.0, "Delivered")
+                       ↓ unpack
+order_id="ORD-5001"  amount=2499.0  status="Delivered"
+```
+
+### How It Works
+
+```python
+a, b = "Ravi", "Priya"
+a, b = b, a
+print(a, b)
+
+date, category, amount = ("31-07-2026", "Food", 450.0)
+print(f"{date} | {category} | ₹{amount}")
+```
+
+**Expected Output:**
+
+```
+Priya Ravi
+31-07-2026 | Food | ₹450.0
+```
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — count does not match
+x, y = (1, 2, 3)      # ValueError
+
+# Prefer
+x, y, z = (1, 2, 3)
+```
+
+### Try It
+
+Swap `left = "Tea"` and `right = "Coffee"`, then print both. Unpack `("P010", "Chai Mug", 299)` into `sku`, `name`, `price` and print the name.
+
+---
+
+## 5. list ↔ tuple
+
+### Understand
+
+`tuple(lst)` seals a list. `list(t)` opens a tuple for editing again.
+
+Lists are editable carts. Tuples are sealed snapshots. Convert when the job changes.
+
+A list of tuples is a common catalog: `(sku, name, price)` rows you unpack in a loop.
+
+### How It Works
+
+```python
+ids = [101, 102, 103]
+sealed = tuple(ids)
+print(sealed)
+print(list(sealed))
+
+catalog = [
+    ("P001", "Wireless Mouse", 799),
+    ("P002", "Keyboard", 1499),
+    ("P003", "USB Hub", 599),
+]
+for sku, name, price in catalog:
+    print(f"{sku}: {name} — ₹{price}")
+```
+
+**Expected Output:**
+
+```
+(101, 102, 103)
+[101, 102, 103]
+P001: Wireless Mouse — ₹799
+P002: Keyboard — ₹1499
+P003: USB Hub — ₹599
+```
+
+### ⚠️ WATCH OUT
+
+Converting to a tuple does **not** protect a mutable item *inside* (a list nested in a tuple can still be edited). Prefer simple hashable fields (`str`, `int`) in core work.
+
+### Try It
+
+Convert marks `[78, 92, 85]` to a tuple, then back to a list. Print both.
+
+---
+
+## 6. Create a set — uniqueness
+
+### Understand
+
+A **set** is an unordered collection of **unique** hashable items. Duplicates are dropped.
+
+Empty set is `set()` — **not** `{}` (`{}` is an empty dict, next module).
+
+Signups, tags, and product IDs often arrive with duplicates. A set keeps each value once before import.
+
+### How It Works
+
+```python
+skills = {"Python", "SQL", "Git", "Python"}
+print(sorted(skills))
+
+empty = set()
+print(type(empty))
+
+raw_ids = [101, 102, 101, 103, 102, 104]
+unique_ids = set(raw_ids)
+print("Unique count:", len(unique_ids))
+print(sorted(unique_ids))
+```
+
+**Expected Output:**
+
+```
+['Git', 'Python', 'SQL']
+<class 'set'>
+Unique count: 4
+[101, 102, 103, 104]
+```
+
+`sorted(...)` is for stable display. A set itself has **no** promised print order.
+
+Grow a set with `.add(x)`. Adding a value that is already there is ignored.
+
+```python
+tags = {"sale"}
+tags.add("gift")
+tags.add("sale")
+print(sorted(tags))
+```
+
+**Expected Output:**
+
+```
+['gift', 'sale']
+```
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — empty dict, not empty set
+empty = {}            # dict
+
+# Wrong — list is unhashable
+{[1, 2]}              # TypeError
+
+# Prefer
+empty = set()
+{1, 2}                # ints are hashable
+```
+
+Print order of a set is not guaranteed — use `sorted(...)` in exams and logs.
+
+### Try It
+
+From `[1, 2, 2, 3, 3, 3]`, build a set. Print `len` before and after, then `sorted(unique)`.
+
+---
+
+## 7. Membership with `in`
+
+### Understand
+
+`"Python" in skills` asks whether the value is a member. On a set this is typically fast — ideal for “is this tag / ID allowed?”
+
+### How It Works
+
+```python
+skills = {"Python", "SQL", "Git"}
+print("Python" in skills)
+print("Java" in skills)
+
+allowed = {"electronics", "sale", "gift"}
+tag = "sale"
+if tag in allowed:
+    print("Tag OK")
+else:
+    print("Unknown tag")
+```
+
+**Expected Output:**
+
+```
+True
+False
+Tag OK
+```
+
+### ⚠️ WATCH OUT
+
+Sets are **unordered** — never depend on print order. Prefer `sorted(set(...))` when you need sorted unique output.
+
+### Try It
+
+Given `allowed = {"chai", "samosa", "dosa"}`, print whether `"idli"` is allowed and whether `"chai"` is allowed.
+
+---
+
+## 8. Union and intersection
+
+### Understand
+
+| Op | Meaning | Symbol |
+|----|---------|--------|
+| Union | In either set | `a \| b` |
+| Intersection | In both | `a & b` |
+
+Two batches or two tag lists — “everyone” vs “common only.”
+
+### How It Works
+
+```python
+batch_a = {"Priya", "Ravi", "Dev"}
+batch_b = {"Ravi", "Meera"}
+print(sorted(batch_a | batch_b))
+print(sorted(batch_a & batch_b))
+```
+
+**Expected Output:**
+
+```
+['Dev', 'Meera', 'Priya', 'Ravi']
+['Ravi']
+```
+
+When you start from lists: `set(list_a) & set(list_b)`.
+
+### ⚠️ WATCH OUT
+
+`|` and `&` need **sets** (or compatible set types). `["A"] | ["B"]` is not valid — convert first.
+
+### Try It
+
+Given `batch_2024 = ["A", "B", "C", "D"]` and `batch_2025 = ["C", "D", "E", "F"]`, print students in **both** batches (sorted).
+
+---
+
+## Step-by-Step: Build It
+
+One assemble: seal a catalog row as a tuple, unpack it, then dedupe an import id list with a set.
+
+`dict.fromkeys` below is a **one-line preview** — dictionaries keep insertion order, so this rebuilds a unique list in first-seen order. Full dicts are the next module. You need it only because a set does not keep order.
+
+```python
+row = ("P010", "Chai Mug", 299)
+sku, name, price = row
+print(f"{sku}: {name} — ₹{price}")
+
+raw = "101, 102, 101, 103, 102, 104"
+parts = []
+for piece in raw.split(","):
+    token = piece.strip()
+    if token:
+        parts.append(token)
+
+unique_set = set(parts)
+print("Original count:", len(parts))
+print("Unique count:", len(unique_set))
+print("Set (sorted for display):", sorted(unique_set))
+
+# Preview only — first-seen order (dict keeps insertion order)
+clean = list(dict.fromkeys(parts))
+print("Clean list (order kept):", clean)
+```
+
+**Expected Output:**
+
+```
+P010: Chai Mug — ₹299
+Original count: 6
+Unique count: 4
+Set (sorted for display): ['101', '102', '103', '104']
+Clean list (order kept): ['101', '102', '103', '104']
+```
+
+Empty tokens after split must be skipped — a trailing comma would otherwise become `""`.
+
+---
+
+## Practice Exercises
+
+Attempt each problem before reading the model answer.
+
+1. Create `emp = ("EMP-204", "Priya Nair", "HR")`. Print each field by index on one line.
+
+**Model answer:**
 
 ```python
 emp = ("EMP-204", "Priya Nair", "HR")
@@ -99,7 +441,9 @@ print(emp[0], emp[1], emp[2])
 EMP-204 Priya Nair HR
 ```
 
-Compare a one-element tuple `(100,)` with `(100)` and print their types.
+2. Compare `one = (100,)` and `not_tuple = (100)`. Print both `type(...)` results.
+
+**Model answer:**
 
 ```python
 one = (100,)
@@ -113,551 +457,261 @@ print(type(one), type(not_tuple))
 <class 'tuple'> <class 'int'>
 ```
 
-**Common Error:** Writing `(100)` thinking it is a 1-tuple — parentheses alone do not make a tuple. Need the comma: `(100,)`.
+3. Convert marks `[78, 92, 85]` to a tuple, then back to a list. Print both.
 
-#### Step 2 — Tuple methods (only two!)
-
-```python
-scores = (78, 92, 85, 92, 88)
-
-print(scores.count(92))     # 2
-print(scores.index(85))     # 2 — first index of 85
-print(len(scores))          # 5
-```
-
-Count how many times 92 appears in the scores tuple and find the index of 85.
+**Model answer:**
 
 ```python
-scores = (78, 92, 85, 92, 88)
-print(scores.count(92))
-print(scores.index(85))
-```
-
-Print the length of a shipping tuple with order ID, amount, and status.
-
-```python
-shipment = ("ORD-9", 1499.0, "Packed")
-print(len(shipment))
-```
-
-#### Step 3 — Packing and unpacking
-
-```python
-# PACKING — values bundled into tuple
-order_summary = "ORD-5001", 2499.00, "Delivered"
-print(type(order_summary))  # <class 'tuple'>
-
-# UNPACKING — assign to variables
-order_id, amount, status = order_summary
-print(f"Order {order_id}: ₹{amount} — {status}")
-
-# Extended unpacking with *
-head, *middle, tail = (1, 2, 3, 4, 5)
-print(head, middle, tail)   # 1 [2, 3, 4] 5
-
-# Swap two variables (Pythonic)
-a, b = 10, 20
-a, b = b, a
-print(a, b)                 # 20 10
-```
-
-**Note:**
-- Wrong: Unpacking the wrong number of variables → `ValueError: too many/few values`.
-- Prefer: Match variable count to tuple length.
-
-Unpack an expense tuple into date, category, and amount, then print them in one line.
-
-```python
-date, category, amount = ("31-07-2026", "Food", 450.0)
-print(f"{date} | {category} | ₹{amount}")
+marks = [78, 92, 85]
+t = tuple(marks)
+print(t)
+print(list(t))
 ```
 
 **Expected Output:**
 
 ```
-31-07-2026 | Food | ₹450.0
+(78, 92, 85)
+[78, 92, 85]
 ```
 
-Swap two name strings using tuple unpacking and print the result.
+4. From `[1, 2, 2, 3, 3, 3]`, build a set. Print `len` before and after, then `sorted(unique)`.
 
-```python
-a, b = "Ravi", "Priya"
-a, b = b, a
-print(a, b)
-```
-
-**Expected Output:**
-
-```
-Priya Ravi
-```
-
-#### Step 4 — Tuples as function return values
-
-```python
-def get_employee_info(emp_id):
-    # Simulated lookup
-    if emp_id == 101:
-        return ("Ananya", "Engineering", 85000)   # tuple return
-    return None
-
-result = get_employee_info(101)
-if result:
-    name, dept, salary = result                 # unpack
-    print(f"{name} works in {dept}, CTC ₹{salary}")
-```
-
-Write a `minmax` function that returns min and max as a tuple, then unpack and print them.
-
-```python
-def minmax(nums):
-    return min(nums), max(nums)
-
-lo, hi = minmax([45, 90, 70])
-print(lo, hi)
-```
-
-**Expected Output:**
-
-```
-45 90
-```
-
-Write `split_name` to return first and last name as a tuple, then unpack and print them.
-
-```python
-def split_name(full):
-    first, last = full.split(" ", 1)
-    return first, last
-
-first, last = split_name("Ravi Kumar")
-print(first, last)
-```
-
-#### Step 5 — Tuple of records (e-commerce shipping)
-
-```python
-# List of tuples: (product_id, name, price)
-catalog = [
-    ("P001", "Wireless Mouse", 799),
-    ("P002", "Keyboard", 1499),
-    ("P003", "USB Hub", 599),
-]
-
-for pid, name, price in catalog:                # unpack in loop
-    print(f"{pid}: {name} — ₹{price}")
-```
-
-Loop over catalog product tuples and print SKU, name, and price for each item.
-
-```python
-catalog = [
-    ("P001", "Wireless Mouse", 799),
-    ("P002", "Keyboard", 1499),
-    ("P003", "USB Hub", 599),
-]
-for sku, name, price in catalog:
-    print(f"{sku} {name}: ₹{price}")
-```
-
-Loop the catalog and print only products priced under ₹1000.
-
-```python
-catalog = [
-    ("P001", "Wireless Mouse", 799),
-    ("P002", "Keyboard", 1499),
-    ("P003", "USB Hub", 599),
-]
-for sku, name, price in catalog:
-    if price < 1000:
-        print(f"{sku} {name}: ₹{price}")
-```
-
----
-
-### Part B — Sets
-
-#### Step 6 — Create sets and uniqueness
-
-```python
-# CREATE
-skills = {"Python", "SQL", "Git", "Python"}     # duplicate removed
-empty = set()                                   # NOT {} — that's dict!
-
-# From list — remove duplicates
-raw_ids = [101, 102, 101, 103, 102, 104]
-unique_ids = set(raw_ids)
-print(unique_ids)               # {101, 102, 103, 104} — order not guaranteed
-
-# Membership — fast check
-print("Python" in skills)       # True
-print("Java" in skills)         # False
-```
-
-**Note:**
-- Wrong: Using `{}` for an empty set (that creates an empty **dict**); putting lists inside sets (`TypeError: unhashable`); expecting a fixed set order.
-- Prefer: `set()` for empty; use a tuple (or frozenset) instead of a list; use a list when order matters.
-
-From a list of duplicate employee IDs, build a set of unique IDs and print the count.
-
-```python
-ids = [101, 102, 101, 103, 102]
-unique = set(ids)
-print(len(unique))
-```
-
-**Expected Output:**
-
-```
-4
-```
-
-**Remember:** Sets drop duplicates and are **unordered** — never rely on print order for set contents in exams or production logs.
-
-Check whether Python and Java are in a skills set and print the results.
-
-```python
-skills = {"Python", "SQL", "Git"}
-print("Python" in skills)
-print("Java" in skills)
-```
-
-**Expected Output:**
-
-```
-True
-False
-```
-
-#### Step 7 — Set operations (teams and products)
-
-```python
-team_a = {"Ananya", "Dev", "Meera", "Ravi"}
-team_b = {"Meera", "Priya", "Ravi", "Kiran"}
-
-# UNION — everyone in either team
-all_members = team_a | team_b
-# or: team_a.union(team_b)
-print(all_members)
-
-# INTERSECTION — in both teams (shared resources)
-shared = team_a & team_b
-print(shared)                   # {'Meera', 'Ravi'}
-
-# DIFFERENCE — in A but not B
-only_a = team_a - team_b
-print(only_a)                   # {'Ananya', 'Dev'}
-
-# SYMMETRIC DIFFERENCE — exclusive to one team
-exclusive = team_a ^ team_b
-print(exclusive)                # {'Ananya', 'Dev', 'Priya', 'Kiran'}
-```
-
-Print students in both batches (intersection) and students only in batch A (difference).
-
-```python
-batch_a = {"Priya", "Ravi", "Dev"}
-batch_b = {"Ravi", "Meera"}
-print(batch_a & batch_b)
-print(batch_a - batch_b)
-```
-
-Print the union of two tag sets to combine all tags.
-
-```python
-print({"sale", "new"} | {"gift", "sale"})
-```
-
-#### Step 8 — Modify sets
-
-```python
-cart_categories = {"Electronics", "Books"}
-
-cart_categories.add("Stationery")             # add one
-cart_categories.update(["Home", "Books"])       # add many; Books ignored if present
-cart_categories.remove("Books")                 # KeyError if missing
-cart_categories.discard("Books")                # no error if missing
-removed = cart_categories.pop()                 # removes arbitrary element
-print(cart_categories)
-```
-
-**Note:**
-- Wrong: `remove` on a missing set item → `KeyError`.
-- Prefer: Use `discard` when the item might be absent.
-
-Add Books to a categories set and safely discard Food without error, then print the set.
-
-```python
-cats = {"Electronics"}
-cats.add("Books")
-cats.discard("Food")
-print(cats)
-```
-
-Update a categories set with multiple items from a list and print the result.
-
-```python
-cats = {"Electronics"}
-cats.update(["Home", "Books"])
-print(cats)
-```
-
-#### Step 9 — Practical: deduplicate visitor emails
-
-```python
-signup_emails = [
-    "dev@example.com", "aisha@example.com",
-    "dev@example.com", "meera@example.com", "aisha@example.com"
-]
-
-unique_emails = list(dict.fromkeys(signup_emails))  # preserves order
-# Alternative: list(set(signup_emails))               # order not preserved
-
-print(unique_emails)
-# ['dev@example.com', 'aisha@example.com', 'meera@example.com']
-```
-
-**Note:**
-- Wrong: Treating `set([1, 2, 2])` as a sorted unique list — a set is unordered.
-- Prefer: `sorted(set(...))` when you need sorted unique output.
-
-Deduplicate emails while preserving first-seen order with `dict.fromkeys`, then print the list.
-
-```python
-emails = ["ravi@ksr.in", "priya@ksr.in", "ravi@ksr.in"]
-unique = list(dict.fromkeys(emails))
-print(unique)
-```
-
-**Expected Output:**
-
-```
-['ravi@ksr.in', 'priya@ksr.in']
-```
-
-Show both order-preserving and set-based deduplication of the same email list.
-
-```python
-emails = ["ravi@ksr.in", "priya@ksr.in", "ravi@ksr.in"]
-print(list(dict.fromkeys(emails)))  # order kept
-print(set(emails))  # order not guaranteed
-```
-
-#### Step 10 — Sets with ecommerce tags
-
-```python
-product_a_tags = {"sale", "electronics", "wireless"}
-product_b_tags = {"sale", "gift", "wireless"}
-
-common_tags = product_a_tags & product_b_tags
-print(common_tags)              # {'sale', 'wireless'}
-
-# Tags only on product A
-unique_to_a = product_a_tags - product_b_tags
-print(unique_to_a)              # {'electronics'}
-```
-
-Print tags common to both product tag sets (intersection).
-
-```python
-print({"sale", "wireless"} & {"sale", "gift"})
-```
-
-Print tags that belong to product A but not product B (difference).
-
-```python
-print({"electronics", "sale"} - {"sale", "gift"})
-```
-
----
-
-## Practice Exercises
-
-### Basic
-
-1. Create a tuple for one expense: `(date, category, amount)`. Print each field by unpacking.
-
-   **Model answer:**
-
-```python
-expense = ("2026-08-04", "Food", 450.0)
-date, category, amount = expense
-print(date)
-print(category)
-print(amount)
-```
-
-2. Create a set from `[1, 2, 2, 3, 3, 3]`. Print length before and after.
-
-   **Model answer:**
+**Model answer:**
 
 ```python
 nums = [1, 2, 2, 3, 3, 3]
-print(len(nums))       # 6
+print(len(nums))
 unique = set(nums)
-print(len(unique))     # 3 → {1, 2, 3}
-print(unique)
+print(len(unique))
+print(sorted(unique))
 ```
 
-3. Given `t = (10, 20, 30, 40)`, print first and last using unpacking with `*`.
+**Expected Output:**
 
-   **Model answer:**
-
-```python
-t = (10, 20, 30, 40)
-first, *middle, last = t
-print(first)   # 10
-print(last)    # 40
-print(middle)  # [20, 30]
+```
+6
+3
+[1, 2, 3]
 ```
 
-### Intermediate
+5. Given `batch_2024 = ["A", "B", "C", "D"]` and `batch_2025 = ["C", "D", "E", "F"]`, print students in **both** batches (sorted).
 
-4. Two lists: `batch_2024 = ["A", "B", "C", "D"]` and `batch_2025 = ["C", "D", "E", "F"]`. Find students in both batches using sets.
-
-   **Model answer:**
+**Model answer:**
 
 ```python
 batch_2024 = ["A", "B", "C", "D"]
 batch_2025 = ["C", "D", "E", "F"]
 both = set(batch_2024) & set(batch_2025)
-print(both)  # {'C', 'D'}
+print(sorted(both))
 ```
 
-5. Write a function `split_name(full_name)` returning `(first, last)` for `"Ananya Sharma"`.
+**Expected Output:**
 
-   **Model answer:**
+```
+['C', 'D']
+```
+
+6. Seal `("ORD-9", 1499.0, "Packed")`, unpack into three names, and print `ORD-9 — Packed`. Then add `"Packed"` and `"Shipped"` to a set of statuses and print whether `"Delivered"` is in the set.
+
+**Model answer:**
 
 ```python
-def split_name(full_name):
-    parts = full_name.strip().split()
-    first = parts[0]
-    last = parts[-1] if len(parts) > 1 else ""
-    return first, last
+order_id, amount, status = ("ORD-9", 1499.0, "Packed")
+print(f"{order_id} — {status}")
 
-print(split_name("Ananya Sharma"))  # ('Ananya', 'Sharma')
+statuses = {"Packed", "Shipped"}
+print("Delivered" in statuses)
 ```
 
-6. Remove duplicates from `product_ids = [101, 102, 101, 103, 102]` preserving first-seen order.
+**Expected Output:**
 
-   **Model answer:**
-
-```python
-product_ids = [101, 102, 101, 103, 102]
-seen = set()
-ordered = []
-for pid in product_ids:
-    if pid not in seen:
-        seen.add(pid)
-        ordered.append(pid)
-print(ordered)  # [101, 102, 103]
+```
+ORD-9 — Packed
+False
 ```
 
-### Interview-style
+---
 
-7. Why can a tuple be a dict key but a list cannot? (Hint: hashable / mutable.)
+## Lab
 
-   **Model answer:** Dict keys must be **hashable** (stable hash while in the dict). Tuples of immutables are hashable; lists are **mutable**, so their contents (and hash) could change — Python forbids lists as keys. Example: `{(12.97, 77.59): "Bengaluru office"}` works; `{[12.97, 77.59]: "..."}` raises `TypeError`.
+Combine a sealed tuple, unpacking, and set uniqueness / membership. No `def`, no files. Do not turn this into the comma-separated CLI from the kit.
 
-8. Given sets `A = {1,2,3}` and `B = {3,4,5}`, compute `A | B`, `A & B`, `A - B`, `A ^ B` without running code — then verify.
+### Problem
 
-   **Model answer:** Predicted: `|` union `{1,2,3,4,5}`; `&` intersection `{3}`; `-` difference `{1,2}`; `^` symmetric difference `{1,2,4,5}`.
+A catalog import has a sealed product row plus a messy id list. You must print the product line, unique ids, and whether a sku tag is allowed.
 
-   ```python
-   A = {1, 2, 3}
-   B = {3, 4, 5}
-   print(A | B)
-   print(A & B)
-   print(A - B)
-   print(A ^ B)
-   ```
+### What to Build
 
-9. Return min and max from a list using tuple unpacking from a helper function.
+A short script that unpacks one tuple, dedupes a list into a set, and checks membership.
 
-   **Model answer:**
+### Requirements
 
-```python
-def min_max(values):
-    return min(values), max(values)
+- Seed `row = ("P010", "Chai Mug", 299)` and unpack into `sku`, `name`, `price`
+- Print `sku: name — ₹price`
+- From `[101, 102, 101, 103, 102, 104]`, print original count, unique count, and `sorted(unique)`
+- `allowed = {"mug", "bottle", "notebook"}` — print whether `"mug"` is allowed and whether `"pen"` is allowed
+- Two batches `{"Priya", "Ravi"}` and `{"Ravi", "Dev"}` — print the intersection sorted
 
-lo, hi = min_max([55, 78, 92, 67, 88])
-print(lo, hi)  # 55 92
+### Expected Behavior
+
+Unique count is 4. `"mug"` is allowed; `"pen"` is not. Intersection is `['Ravi']`.
+
+### Sample Run
+
+```text
+P010: Chai Mug — ₹299
+Original count: 6
+Unique count: 4
+[101, 102, 103, 104]
+True
+False
+['Ravi']
 ```
+
+(Your labels may differ; the **shape** should match.)
+
+### Constraints
+
+Top-level statements only — no `def`, no type hints, no files. Empty set, if you need one, is `set()` not `{}`.
+
+### Bonus
+
+Print a first-seen unique list with `list(dict.fromkeys(...))` and label it as a preview — not a dict lesson.
 
 ---
 
 ## Mini-Project (Assignment): Email / Product ID Dedup Tool
 
-**Title:** Clean duplicate IDs before DB import  
-**Lab kit (build here):** [15_Lab_Assets/31_email_id_dedup/](../15_Lab_Assets/31_email_id_dedup/)  
-**Later (overview):** [12_structure_chooser](../15_Lab_Assets/12_structure_chooser/) — pick list vs tuple vs set vs dict
+**Why this matters:** Imports arrive with duplicate ids. Unique count plus a clean list is the same job as cleaning a mailing list or SKU file before a database load.
 
-### What to build
+**Lab kit:** [15_Lab_Assets/31_email_id_dedup/](../15_Lab_Assets/31_email_id_dedup/)
 
-```python
-def deduplicate(items, preserve_order=True):
-    """Remove duplicates from a list of strings or ints."""
-    if preserve_order:
-        return list(dict.fromkeys(items))
-    return list(set(items))
+| File | What you do |
+|------|-------------|
+| `starter/dedup.py` | Split, strip, skip empties; print counts + clean list |
+| `broken/dedup.py` | Loses order or crashes on empty tokens — fix both |
+| `solution/` | Do **not** copy this |
 
-def main():
-    print("=== Dedup Tool ===")
-    raw = input("Enter IDs comma-separated: ")
-    ids = [x.strip() for x in raw.split(",") if x.strip()]
-    print("Original count:", len(ids))
-    clean = deduplicate(ids)
-    print("Unique count:", len(clean))
-    print("Clean list:", clean)
+### Objective
 
-if __name__ == "__main__":
-    main()
-```
+Read a comma-separated line of ids, skip empty tokens, and print original count, unique count, and a clean list in **first-seen** order.
 
-**Sample:**
+### Story / Scenario
 
-```
+Ops paste `101, 102, 101, 103`. Duplicate ids must be stripped before import — without requiring functions yet.
+
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| Prompt | `Enter IDs comma-separated:` |
+| Tokens | Split on `,`, `.strip()` each piece, skip empty |
+| Counts | Print **original count** and **unique count** |
+| Clean list | First-seen order (`list(dict.fromkeys(...))` is the kit preview — not a dict lesson) |
+| Style | Top-level script — **no `def` required**, no type hints |
+
+### Expected Behavior
+
+- Empty tokens after split are ignored
+- Unique count drops duplicates
+- Clean list keeps the first time each id appeared
+
+### Sample Run
+
+```text
+=== Dedup Tool ===
 Enter IDs comma-separated: 101, 102, 101, 103, 102, 104
 Original count: 6
 Unique count: 4
 Clean list: ['101', '102', '103', '104']
 ```
 
-### Stretch
+### Bonus Challenges
 
-- Accept a second mode that does **not** preserve order (`set`).  
-- Deduplicate emails case-insensitively while keeping the first-seen casing.  
+- Second mode: unique via `set` (order may differ — say so in the print)
+- Case-insensitive email dedupe while keeping first-seen casing
+- **Later:** [Data Structures Overview](08_Data_Structures_Overview.md) — when to pick list vs tuple vs set vs dict
 
 ### Done when
 
-- [ ] Lab kit dedup ticket passes  
-- [ ] Comma-separated input prints original vs unique counts  
-- [ ] Order-preserving dedupe matches the sample  
-
-## Interview Q&A
-
-Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
-
-1. If tuples are immutable, why can a tuple containing a list be "changed"? (Mutable element inside — discuss carefully.)
-2. When would you store employee data as tuple vs dict vs list of lists?
-3. Why are sets unordered? Does it matter for "unique product tags"?
-4. Real apps: where might you use set intersection for recommendations ("customers who bought X also bought Y")?
-5. Is `bool` a subclass of `int` affecting `(True, False)` as tuple? (Optional deep dive.)
-
-1. **List vs tuple?**  
-   **A:** List mutable, tuple immutable; tuple slightly faster, can be dict key if all elements hashable.
-
-2. **How to merge two sets?**  
-   **A:** `a | b` or `a.union(b)`.
-
-3. **Are sets ordered in Python 3.7+?**  
-   **A:** No. Sets are **unordered** by language spec — never depend on iteration order. (Dicts keep insertion order since 3.7; that does **not** apply to sets.)
-
-4. **Convert list to tuple and back?**  
-   **A:** `tuple(lst)`, `list(t)`.
-
-5. **When use frozenset?**  
-   **A:** Immutable set as dict key or set element.
+- [ ] `101,102,101,103` → unique count 3, first-seen order preserved
+- [ ] Empty tokens after split are ignored
+- [ ] Original vs unique counts both print
+- [ ] Optional set mode may change order (documented)
+- [ ] No `def` / type hints on the core path
 
 ---
 
+## Interview Q&A
+
+**Q1. List vs tuple?**  
+List is mutable; tuple is immutable. A tuple can be a dict key if all elements are hashable; a list cannot.
+
+**Q2. Why does `(42)` fail as a 1-tuple?**  
+Parentheses alone group an expression. Need the comma: `(42,)`.
+
+**Q3. How do you swap two variables in Python?**  
+`a, b = b, a` (tuple unpacking).
+
+**Q4. Empty set — `{}` or `set()`?**  
+`set()`. `{}` creates an empty **dict**.
+
+**Q5. Are sets ordered in Python 3.7+?**  
+No. Sets are unordered by language rules. Dicts keep insertion order; that does **not** apply to sets.
+
+**Q6. Convert list ↔ tuple?**  
+`tuple(lst)`, `list(t)`.
+
+**Q7. Why can a tuple be a dict key but a list cannot?**  
+Keys must be hashable. Lists are mutable; their contents (and hash) could change.
+
+**Q8. What is `frozenset`?**  
+An **immutable** set — usable as a dict key or as an element inside another set. Know the name for interviews; not required in tonight’s lab.
+
+---
+
+## Cheat Sheet
+
+```text
+(1, 2, 3)           → tuple (sealed, ordered)
+(42,)               → 1-tuple (comma required)
+t[i] / t[a:b]       → read / slice (no t[i] = ...)
+t.count / t.index / len(t)
+a, b = t            → unpack (length must match)
+a, b = b, a         → swap
+tuple(lst) / list(t)→ convert
+{1, 2, 2}           → set {1, 2}  (unique, unordered)
+set()               → empty set  ({} is an empty dict)
+s.add(x)            → add (ignored if already present)
+x in s              → membership
+a | b               → union
+a & b               → intersection
+sorted(s)           → stable display
+```
+
+Sets drop duplicates. Use `sorted` when output order must be stable. First-seen unique lists: `list(dict.fromkeys(items))` — preview only.
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can create a tuple and read by index
+[ ] I know (42,) vs (42)
+[ ] I can unpack and swap
+[ ] I can convert list ↔ tuple
+[ ] I can build a set with set() not {}
+[ ] I can dedupe, test in, and use | / &
+[ ] I completed the lab
+[ ] I attempted the dedup mini-project
+[ ] I can explain list vs tuple vs set in an interview
+```
+
+---
+
+## What's Next?
+
+You can now seal a record and drop duplicates.
+
+Next, [Dictionaries](07_Dictionaries.md) store **named** fields — lookup by key (`emp_id`, SKU, name) instead of by position.

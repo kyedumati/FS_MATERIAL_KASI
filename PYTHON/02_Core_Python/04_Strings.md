@@ -1,297 +1,244 @@
-# Module: Strings
+# Module 04 — Strings
 
-**Phase:** Core Python  
+**Phase:** Core Python
 
-**Previous module:** Flow Control
-**Next module:** Lists
+**Previous:** [Flow Control](03_Flow_Control.md)  
+**Next:** [Lists](05_Lists.md)
 
 ---
 
-**Module Outcome:**
+## Module Outcome
 
-- Slice and clean names, emails, and UPI IDs without breaking Unicode
-- Format a receipt line (`f"₹{amount}"`) instead of glueing commas by hand
-- Spot immutable-string traps before they silently drop an edit
+Create strings, slice and clean them, split and join pieces, and apply those tools to names, emails, phones, and simple report lines.
 
-### What is a string?
+By the end of this module you will be able to:
 
-A **string** (`str`) is a sequence of characters — letters, digits, symbols, spaces — used for names, emails, addresses, JSON text, and HTML.
+- Write strings with quotes and triple quotes
+- Index and slice characters (`start` included, `stop` excluded)
+- Treat strings as immutable — methods return a **new** string; rebind to keep it
+- Clean input with `strip`, `lower`, `upper`, and `title`
+- `split` a line into pieces and `join` pieces back (the pieces come as a list — list methods come next)
+- `replace`, mask digits, and check with `in` / `startswith` / `endswith`
 
-**Icons:** Bank · UPI · Employee · Order · Hospital
+---
 
-**Where used?**
-- **HDFC Bank** / **PhonePe** — mask account/phone digits, parse UPI IDs
-- College apps — roll numbers, email normalize for login
-- **Swiggy** — product titles, URL slugs, invoice lines
-- **Employee Management Portal** — offer-letter templates, employee name formatting
-- **Apollo Hospitals** — patient phone masking, ticket subject cleanup
+## 1. Why This Concept Matters
 
-### Why do we need strings?
+Numbers are easy to store. Names, emails, phones, and error messages are **text**. A registration form does not arrive tidy:
 
-Almost every app stores **text**: student name, email, phone, product title, error message. Before lists and databases, you must clean and slice text (today’s lab kit: email/phone cleaner).
+```text
+"  ravi kumar  "
+"  Admin@College.COM  "
+"9876543210"
+"2026001,Ravi Kumar,88,76,91"
+```
 
-| Without string skills | With string skills |
-|----------------------|--------------------|
-| Messy `"  Ravi@Gmail.COM "` breaks login | `strip()` + `lower()` normalizes input |
-| Show full phone on screen | Mask as `******3210` for privacy |
-| Manual parsing of `"a,b,c"` | `split` / `join` for CSV-lite lines |
+You need to trim spaces, compare emails without caring about case, hide most of a phone on screen, and pull roll / name / marks out of one line.
+
+That work is **string** work. Almost every screen you will build starts as text.
+
+---
+
+## 2. Create a string
+
+### Understand
+
+A string (`str`) is a sequence of characters. `'...'` and `"..."` behave the same. Triple quotes (`"""..."""`) keep line breaks. Python has no separate `char` type — `'A'` is a string of length 1.
+
+### How It Works
 
 ```python
 name = "Ananya Sharma"
 course = 'Python Full Stack'
 bio = """Joined July 2026 batch.
 Based in Bengaluru."""
+print(name)
+print(bio)
 ```
 
-Single and double quotes behave the same. **Triple quotes** allow multiple lines.
-
-Python has **no separate `char` type** — even `'A'` is a string of length 1.
-
-### Indexing — what / why, then syntax
-
-**Definition:** Each character has a position number starting at `0`.  
-**Purpose:** Extract initials, domain from email, last 4 digits of a phone.
-
-Indices start at **0** for the first character.
+**Expected Output:**
 
 ```
+Ananya Sharma
+Joined July 2026 batch.
+Based in Bengaluru.
+```
+
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — types must match
+"42" + 1              # TypeError
+
+# Prefer
+int("42") + 1         # 43
+```
+
+If a quote appears inside the text, wrap with the other quote style, or escape: `"He said \"ok\""`.
+
+### Try It
+
+Print a two-line welcome banner with a triple-quoted string.
+
+---
+
+## 3. Indexing and slicing
+
+### Understand
+
+`s[i]` picks one character. `s[start:stop]` takes a slice — **start included, stop excluded** (same idea as `range`). Indices start at **0**. Negative indices count from the end.
+
+```text
   P  y  t  h  o  n
-  0  1  2  3  4  5   ← positive index
- -6 -5 -4 -3 -2 -1   ← negative index (from end)
+  0  1  2  3  4  5   ← positive
+ -6 -5 -4 -3 -2 -1   ← negative
 ```
+
+Use this to take an initial, the last four digits of a phone, or a middle piece — without rewriting the whole string by hand.
+
+### How It Works
 
 ```python
 lang = "Python"
-print(lang[0])    # P
-print(lang[-1])   # n (last char)
+print(lang[0])
+print(lang[-1])
+print(lang[1:4])
 ```
 
-### Slicing — what / why, then syntax
+**Expected Output:**
 
-**Definition:** Take a contiguous piece of the string with `string[start:stop:step]`.  
-**Purpose:** Pull username from email, reverse a string for drills, skip characters.
+```
+P
+n
+yth
+```
 
-Syntax: `string[start:stop:step]`
-
-- **start** included, **stop** excluded (same rule as `range`)
-- Omit start → from beginning; omit stop → to end
+A phone’s last four digits is the same idea:
 
 ```python
-email = "ravi.kumar@company.com"
-print(email[0:4])      # ravi
-print(email[5:10])     # kumar
-print(email[-4:])      # .com
-print(email[::2])      # every 2nd char — rai.kmr@cmpyom
+phone = "9876543210"
+print(phone[-4:])
 ```
 
-### Immutability — what / why
+**Expected Output:**
 
-**Definition:** You cannot change a character inside an existing string object.  
-**Purpose:** Predict bugs like `name[0] = "A"` (fails); use reassignment / new strings instead (`name = name.upper()`).
+```
+3210
+```
 
-**Immutable** means: once created, the string object cannot change. Methods return **new** strings.
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — index past the end
+"Priya"[10]           # IndexError
+
+# Wrong — thinking stop is included
+"Priya"[0:3]          # "Pri"  (3 characters, not through index 3)
+```
+
+Check `len(s)` when you are unsure. `s[0:3]` is always three characters if the string is long enough.
+
+### Try It
+
+For `name = "Priya"`, print the first character, the last character, and `name[1:4]`.
+
+---
+
+## 4. Immutability
+
+### Understand
+
+Strings cannot change in place. Methods return a **new** string. If you want the name to hold the new value, **rebind**: `city = city.upper()`.
+
+Passing a string around is safe — nothing silently edits the original.
+
+### How It Works
 
 ```python
 city = "mumbai"
-city.upper()     # returns "MUMBAI" — city still "mumbai"
-print(city)      # mumbai
+city.upper()
+print(city)
 
-city = city.upper()   # rebinding variable — OK
-# city[0] = "M"       # TypeError — cannot assign to index
-```
-
-Why it matters: passing strings between functions is safe — no accidental in-place edits.
-
-### Common methods (job daily drivers)
-
-| Method | Purpose | Example |
-|--------|---------|---------|
-| `upper()` / `lower()` | Case change | Normalize email |
-| `strip()` | Remove surrounding whitespace | Clean `input()` |
-| `split(sep)` | Break into list | Parse `"a,b,c"` |
-| `join(iterable)` | Build string from pieces | Build CSV line |
-| `replace(old, new)` | Substitute text | Mask digits |
-| `find(sub)` | Index or -1 | Search domain |
-| `startswith` / `endswith` | Prefix/suffix test | `.pdf` files |
-| `count(sub)` | Occurrences | Count spaces |
-
-### Formatting strings
-
-**f-strings (preferred):**
-
-```python
-emp = "E101"
-name = "Divya"
-print(f"Employee {emp}: {name}")
-print(f"{'Name':<20}{'ID':>6}")
-print(f"{'Divya':<20}{'E101':>6}")
-```
-
----
-
-## Important Concepts and Definitions
-
-| Term | Definition |
-|------|------------|
-| **String (str)** | Immutable sequence of Unicode characters |
-| **Index** | Integer position of character (0-based) |
-| **Slice** | Substring specified by start:stop:step |
-| **Immutable** | Object state cannot change after creation |
-| **Escape sequence** | `\n` newline, `\t` tab, `\\` backslash, `\'` quote |
-| **Method** | Function tied to object: `s.lower()` |
-| **Whitespace** | Spaces, tabs, newlines — often stripped from input |
-| **Delimiter** | Character separating parts: comma, pipe, `@` |
-| **Format specifier** | f-string `{value:width.precision}` control |
-| **Slug** | URL-friendly lowercase hyphenated identifier |
-
----
-
-## Step-by-Step Notes (With Annotated Code)
-
-### Step 1: Creating strings and escapes
-
-```python
-# strings_basics.py
-
-single = 'KSR Trainings'
-double = "Python Full Stack"
-multi = """Line 1: Student Management
-Line 2: Employee Portal
-Line 3: Expense Tracker"""
-
-# Escape sequences
-path = "C:\\Users\\Ravi\\projects"   # backslash in Windows path
-quote = "She said, \"Let's code.\""  # escaped double quotes
-newline = "First line\nSecond line"
-
-print(multi)
-print(newline)
-```
-
-**Note:**
-- Wrong: Comparing or adding strings to numbers (`"42" + 1`); using `is` for string *content* (`a is "hi"`).
-- Prefer: Convert (`int("42") + 1`); use `==` for value compare.
-
-Print a multi-line KSR Student Portal banner using a triple-quoted string.
-
-```python
-msg = """KSR Student Portal
-1. Enter your roll number
-2. View marks and attendance"""
-print(msg)
-```
-
-Store a Windows path with backslashes and print it.
-
-```python
-path = "C:\\Users\\Priya\\projects"
-print(path)
-```
-
-### Step 2: Indexing and slicing — employee email
-
-```python
-email = "priya.nair@datavizon.in"
-
-username = email[:email.find("@")]       # priya.nair
-domain = email[email.find("@") + 1:]    # datavizon.in
-first_letter = email[0].upper()
-
-print("Username:", username)
-print("Domain:", domain)
-print("Initial:", first_letter)
-```
-
-Alternative with split (cleaner):
-
-```python
-username, domain = email.split("@")
-```
-
-**Note:**
-- Wrong: Indexing past the end (`s[100]` on a short string); expecting `s[0:3]` to be 4 characters; confusing negative-step slices like `s[::-1]`.
-- Prefer: Check `len(s)` first; remember stop is exclusive (3 chars); draw an index diagram for reverse slices.
-
-Split ravi.kumar@ksr.in at @ and print username and domain.
-
-```python
-email = "ravi.kumar@ksr.in"
-at = email.find("@")
-print("username:", email[:at])
-print("domain:", email[at + 1 :])
+city = city.upper()
+print(city)
 ```
 
 **Expected Output:**
 
 ```
-username: ravi.kumar
-domain: ksr.in
+mumbai
+MUMBAI
 ```
 
-Print first and last characters and the slice name[1:4] for Priya.
-
-```python
-name = "Priya"
-print(name[0], name[-1])
-print(name[1:4])  # riy
-```
-
-**Expected Output:**
-
-```
-P a
-riy
-```
-
-### Step 3: Immutability demo
+`replace` is the same rule — original stays, unless you save the result:
 
 ```python
 status = "pending"
-print(id(status))
-
-status = status.replace("pending", "approved")   # new string object
-print(status)          # approved
-print(id(status))      # different id than before
-```
-
-**Note:**
-- Wrong: Calling `s.upper()` and expecting `s` to change (`print(s)` still old).
-- Prefer: Assign the result: `s = s.upper()`.
-
-Replace pending with paid in a new string and show the original is unchanged.
-
-```python
-msg = "pending"
-msg2 = msg.replace("pending", "paid")
-print(msg)
-print(msg2)
+updated = status.replace("pending", "approved")
+print(status)
+print(updated)
 ```
 
 **Expected Output:**
 
 ```
 pending
-paid
+approved
 ```
 
-**Remember:** Strings are **immutable** — `replace` / `upper` return a *new* string; rebind if you want to keep the change (`s = s.upper()`).
+### ⚠️ WATCH OUT
 
-Rebuild Ravi with X as the first letter (comment out the invalid index assignment).
+```text
+# Wrong — strings do not support item assignment
+s = "paid"
+s[0] = "X"            # TypeError
 
-```python
-s = "Ravi"
-# s[0] = "X"  # TypeError: strings are immutable — use replace or rebuild
-s2 = "X" + s[1:]
-print(s, s2)
+# Prefer — build a new string
+s = "X" + s[1:]
 ```
 
-### Step 4: Case and strip — login normalization
+Calling `.upper()` or `.replace(...)` without rebinding leaves the variable unchanged.
+
+### Try It
+
+From `msg = "pending"`, create a new string with `"paid"` via `replace`. Print both to prove the original is unchanged.
+
+---
+
+## 5. Clean text — `strip`, `lower`, `upper`
+
+### Understand
+
+Copied login fields often look like `"  PRIYA@COLLEGE.IN  "`. Without cleaning, equals-checks fail even when the account exists.
+
+| Method | Job |
+|--------|-----|
+| `strip()` | Remove surrounding whitespace |
+| `lower()` / `upper()` | Normalize case |
+| `title()` | Name-style capitalize (handy for display) |
+
+Chain them: `raw.strip().lower()`.
+
+### How It Works
 
 ```python
-# Case-insensitive login compare (lab pattern)
+raw = "  hello  "
+print(raw.strip())
+print(raw.strip().upper())
+```
 
+**Expected Output:**
+
+```
+hello
+HELLO
+```
+
+A login compare after clean-up:
+
+```python
 stored_email = "admin@company.com"
-entered = input("Email: ").strip().lower()
+entered = "  Admin@Company.COM  ".strip().lower()
 
 if entered == stored_email:
     print("Login OK")
@@ -299,465 +246,470 @@ else:
     print("Invalid email")
 ```
 
-**Annotation:**
+**Expected Output:**
 
-- `strip()` removes accidental spaces from copy-paste
-- `lower()` avoids case mismatch
+```
+Login OK
+```
 
-**Note:**
-- Wrong: Skipping `.strip()` on input — `" admin "` fails a login compare.
-- Prefer: `.strip()` (and usually `.lower()`) on user-entered text.
+### ⚠️ WATCH OUT
 
-Normalize a spaced, uppercase email with strip and lower, then compare and print it.
+```text
+# Wrong — compare the raw field
+" Admin@college.in " == "admin@college.in"    # False
+
+# Prefer
+entered = raw.strip().lower()
+```
+
+### Try It
+
+Normalize `"  ravi kumar  "` with `strip` and `title()`, then print it.
+
+---
+
+## 6. `split` and `join`
+
+### Understand
+
+`s.split(sep)` cuts one string into **pieces**. Those pieces come back as a list — you will learn list methods in the next module. For now, read a piece by index (`parts[0]`) or unpack into names.
+
+`sep.join(pieces)` glues pieces into one string.
+
+Match the **exact** delimiter in the data (`","` vs `", "`).
+
+### How It Works
 
 ```python
-raw = "  PRIYA@KSR.IN  "
-normalized = raw.strip().lower()
-print(normalized == "priya@ksr.in")
-print(normalized)
+items = "Chai,Samosa,Dosa".split(",")
+print(items)
+print(" | ".join(items))
 ```
 
 **Expected Output:**
 
 ```
-True
-priya@ksr.in
+['Chai', 'Samosa', 'Dosa']
+Chai | Samosa | Dosa
 ```
 
-**Common Error:** Comparing login email without `.strip().lower()` — `" Admin@KSR.IN "` fails even when the account exists.
-
-Strip and title-case a messy name string.
-
-```python
-name = "  ravi kumar  "
-print(name.strip().title())
-```
-
-### Step 5: split and join — task list from CSV line
-
-```python
-line = "Design UI, Build API, Write tests, Deploy"
-tasks = line.split(", ")          # list of 4 tasks
-print(tasks)
-
-# join back with pipe separator
-pipe_format = " | ".join(tasks)
-print(pipe_format)
-```
-
-**Student marks line parse:**
+A marks line is the same pattern:
 
 ```python
 record = "2026042|Priya|78|85|72"
-parts = record.split("|")
-roll, name, py, sql, html = parts
+roll, name, py, sql, html = record.split("|")
 print(f"Roll {roll}: {name} — Python {py}")
 ```
 
-**Note:**
-- Wrong: Splitting with the wrong delimiter (`"a,b,c".split(", ")` vs `split(",")`).
-- Prefer: Match the exact separator in the data.
+**Expected Output:**
 
-Split comma-separated menu items and join them with | separators.
-
-```python
-items = "Chai,Samosa,Dosa".split(",")
-print(" | ".join(items))
+```
+Roll 2026042: Priya — Python 78
 ```
 
-Parse a pipe-separated marks record and print roll, name, and Python marks.
+### ⚠️ WATCH OUT
 
-```python
-roll, name, python, sql, html = "2026003|Ravi|88|72|91".split("|")
-print(roll, name, python)
+```text
+# Wrong — delimiter does not match the data
+"a,b,c".split(", ")   # ['a,b,c']  — one piece
+
+# Prefer
+"a,b,c".split(",")    # ['a', 'b', 'c']
 ```
 
-### Step 6: replace and count — phone masking
+Do not call list methods (`append`, `pop`, `sort`) on the split result yet — that is the next module. Indexing and unpacking are enough here.
 
-```python
-phone = "9876543210"
-masked = phone[:2] + "******" + phone[-2:]
-print(masked)   # 98******10
+### Try It
 
-text = "error: failed error: retry"
-print(text.count("error"))        # 2
-print(text.replace("error", "warn"))  # new string
-```
+Split `"Design UI, Build API, Write tests"` on `", "` and join the pieces with `" | "`. Print the joined line.
 
-Mask a 10-digit phone number showing only the first two and last two digits.
+---
+
+## 7. Replace, mask, and checks
+
+### Understand
+
+- **`replace`** — substitute text (remember to keep the return value)
+- **Mask** — keep some digits, replace the middle with `*`
+- **`in`** — substring membership
+- **`startswith` / `endswith`** — prefix / suffix tests
+
+f-strings (already in I/O) are the everyday way to print a cleaned result.
+
+### How It Works
 
 ```python
 phone = "9876543210"
 masked = phone[:2] + "*" * 6 + phone[-2:]
-print(masked)  # 98******10
+print(masked)
+
+filename = "invoice_july.pdf"
+print(filename.lower().endswith(".pdf"))
 ```
 
 **Expected Output:**
 
 ```
 98******10
+True
 ```
 
-Count fail occurrences in text and replace fail with warn.
-
-```python
-text = "fail retry fail ok"
-print(text.count("fail"))
-print(text.replace("fail", "warn"))
-```
-
-**Expected Output:**
-
-```
-2
-warn retry warn ok
-```
-
-### Step 7: startswith, endswith, in — file and email checks
-
-```python
-filename = "report_q1.pdf"
-
-if filename.lower().endswith(".pdf"):
-    print("PDF document")
-
-url = "https://portal.company.com/login"
-if url.startswith("https://"):
-    print("Secure URL")
-
-email = "user@example.com"
-if "@" in email and "." in email.split("@")[-1]:
-    print("Email looks structurally OK (lite check)")
-```
-
-Check whether invoice_july.pdf ends with .pdf case-insensitively.
-
-```python
-filename = "invoice_july.pdf"
-print(filename.lower().endswith(".pdf"))
-```
-
-Run a lite email validation: require @ and a dot in the domain.
-
-```python
-email = "priya@ksr.in"
-if "@" in email:
-    domain = email.split("@", 1)[1]
-    if "." in domain:
-        print("OK")
-    else:
-        print("Invalid domain")
-else:
-    print("Missing @")
-```
-
-### Step 8: f-string formatting — offer letter snippet
-
-```python
-name = "Karthik Reddy"
-role = "Python Developer Intern"
-ctc = 450000
-
-letter = f"""
-Dear {name},
-
-We are pleased to offer you the role of {role}.
-CTC: ₹{ctc:,} per annum.
-
-Regards,
-HR Team
-"""
-print(letter)
-```
-
-Print a short offer letter with candidate name, role, and formatted CTC.
+A lite email check and a readable line:
 
 ```python
 name = "Priya"
-role = "Intern"
-ctc = 480000
-print("Offer Letter")
-print(f"Candidate: {name}")
-print(f"Role: {role}")
-print(f"CTC: ₹{ctc:,}")
-```
+emp = "E101"
+print(f"Employee {emp}: {name}")
 
-Print aligned Name and Role columns for two employees.
-
-```python
-print(f"{'Name':<10}{'Role':<10}")
-print(f"{'Ravi':<10}{'Backend':<10}")
-print(f"{'Meera':<10}{'QA':<10}")
-```
-
-### Step 9: Job-oriented — generate URL slug
-
-```python
-# slug from course title for LMS URL
-
-title = "  Python Full Stack - July 2026 Batch!!!  "
-slug = title.strip().lower()
-slug = slug.replace(" ", "-")
-# remove simplistic "invalid" chars for demo
-for ch in "!":
-    slug = slug.replace(ch, "")
-
-print(slug)   # python-full-stack---july-2026-batch
-# Production: use regex module — taught later
-```
-
-Convert a course title to a URL slug with strip, lower, and space-to-hyphen.
-
-```python
-title = " Python Training Notes "
-slug = title.strip().lower().replace(" ", "-")
-print(slug)
-```
-
-Clean a noisy course title to lowercase hyphenated form without exclamation marks.
-
-```python
-raw = "Full Stack!!! Python"
-clean = raw.strip().lower().replace(" ", "-").replace("!", "")
-print(clean)
-```
-
-### Step 10: Loop + strings — count vowels
-
-```python
-name = input("Enter name: ")
-vowels = "aeiouAEIOU"
-count = 0
-for ch in name:
-    if ch in vowels:
-        count += 1
-print(f"Vowels in '{name}': {count}")
-```
-
-Count vowels in Ananya Sharma.
-
-```python
-name = "Ananya Sharma"
-vowels = "aeiouAEIOU"
-count = sum(1 for ch in name if ch in vowels)
-print(count)
+email = "priya@ksr.in"
+if "@" in email and "." in email.split("@")[-1]:
+    print("Email looks OK")
 ```
 
 **Expected Output:**
 
 ```
-5
+Employee E101: Priya
+Email looks OK
 ```
 
-Count digit characters in a messy phone string.
+### ⚠️ WATCH OUT
+
+```text
+# Wrong — ignoring the return value
+text.replace("error", "warn")
+print(text)           # still the old string
+
+# Prefer
+text = text.replace("error", "warn")
+```
+
+`email.split("@")[-1]` is the part after `@`. `[-1]` means “last piece” — useful when you only care about the domain.
+
+### Try It
+
+Mask `"9876543210"` as `98******10`. Then print `Employee E101: Divya` with an f-string.
+
+---
+
+## Step-by-Step: Build It
+
+One assemble: clean a name, lite-check an email, mask a phone, parse a marks line — the same skills tonight’s kit uses on messy fields.
 
 ```python
-phone = "98a76b543210"
-digits = sum(1 for ch in phone if ch.isdigit())
-print(digits)
+raw_name = "  ravi kumar  "
+clean_name = raw_name.strip().title()
+print("Name:", clean_name)
+
+email = "ravi@ksr.in"
+if "@" in email and "." in email.split("@")[-1]:
+    print("Email OK")
+else:
+    print("Invalid email")
+
+phone = "9876543210"
+print("Phone:", phone[:2] + "*" * 6 + phone[-2:])
+
+record = "2026001,Ravi Kumar,88,76,91"
+parts = record.split(",")
+roll, name = parts[0], parts[1]
+m1, m2, m3 = float(parts[2]), float(parts[3]), float(parts[4])
+average = (m1 + m2 + m3) / 3
+print(f"Roll: {roll} | Name: {name} | Average: {average:.2f}")
 ```
+
+**Expected Output:**
+
+```
+Name: Ravi Kumar
+Email OK
+Phone: 98******10
+Roll: 2026001 | Name: Ravi Kumar | Average: 85.00
+```
+
+Match the delimiter. This line uses `","` — a pipe-separated file would need `"|"`.
 
 ---
 
 ## Practice Exercises
 
-### Basic
+Attempt each problem before reading the model answer.
 
-1. Given `s = "Full Stack Python"`, print first char, last char, length.
+1. From `"Python"`, print the slice that yields `"tho"` and the last character.
 
-   **Model answer:**
+**Hint:** Start included, stop excluded.
+
+**Model answer:**
 
 ```python
-s = "Full Stack Python"
-print(s[0])      # F
-print(s[-1])     # n
-print(len(s))    # 17
+s = "Python"
+print(s[2:5])
+print(s[-1])
 ```
 
-2. Slice to extract `"Stack"` from the string above.
+**Expected Output:**
 
-   **Model answer:**
-
-```python
-s = "Full Stack Python"
-print(s[5:10])  # Stack
+```
+tho
+n
 ```
 
-3. Convert `"  hello world  "` to `"HELLO WORLD"` using methods only.
+2. Split `"Masala Dosa|80|2"` on `|`. Print `Masala Dosa × 2 = ₹160` using the pieces (cast price and qty).
 
-   **Model answer:**
+**Model answer:**
 
 ```python
-raw = "  hello world  "
-clean = raw.strip().upper()
-print(clean)  # HELLO WORLD
+item, price, qty = "Masala Dosa|80|2".split("|")
+total = int(price) * int(qty)
+print(f"{item} × {qty} = ₹{total}")
 ```
 
-4. Split `"apple,banana,mango"` by comma; print each fruit on new line with for.
+**Expected Output:**
 
-   **Model answer:**
-
-```python
-fruits = "apple,banana,mango".split(",")
-for fruit in fruits:
-    print(fruit)
+```
+Masala Dosa × 2 = ₹160
 ```
 
-### Intermediate
+3. Normalize login email `"  HR@Company.COM  "` with `strip` and `lower`, then compare to `"hr@company.com"`. Print `Match` or `No match`.
 
-1. **Employee portal:** Read email; print username and domain using split.
-
-   **Model answer:**
+**Model answer:**
 
 ```python
-email = input("Email: ").strip()
-username, domain = email.split("@", 1)
-print(f"Username: {username}")
-print(f"Domain: {domain}")
-```
-
-2. Mask Aadhaar-style number: show only last 4 digits (`XXXX-XXXX-1234`).
-
-   **Model answer:**
-
-```python
-aadhaar = input("12-digit Aadhaar: ").strip().replace(" ", "").replace("-", "")
-last4 = aadhaar[-4:]
-print(f"XXXX-XXXX-{last4}")
-```
-
-3. Check password length >= 8 and contains at least one digit (loop + `in`).
-
-   **Model answer:**
-
-```python
-password = input("Password: ")
-has_digit = False
-for ch in password:
-    if ch in "0123456789":
-        has_digit = True
-        break
-if len(password) >= 8 and has_digit:
-    print("Password OK")
+entered = "  HR@Company.COM  ".strip().lower()
+if entered == "hr@company.com":
+    print("Match")
 else:
-    print("Need length >= 8 and at least one digit")
+    print("No match")
 ```
 
-4. Reverse a string using slicing `[::-1]` and using a loop (two ways).
+**Expected Output:**
 
-   **Model answer:**
+```
+Match
+```
+
+4. Mask `"9123456780"` as `91******80`.
+
+**Model answer:**
 
 ```python
-s = "Namaste"
-print(s[::-1])  # slicing
-
-reversed_s = ""
-for ch in s:
-    reversed_s = ch + reversed_s
-print(reversed_s)  # loop
+phone = "9123456780"
+print(phone[:2] + "*" * 6 + phone[-2:])
 ```
 
-### Interview-Oriented
+**Expected Output:**
 
-1. Are strings mutable in Python? What happens with `s[0] = 'x'`?
+```
+91******80
+```
 
-   **Model answer:** Strings are **immutable**. You cannot change a character in place. `s[0] = 'x'` raises `TypeError`. To “change” text, build a new string (slice + concat, `replace`, etc.) and rebind the name.
+5. Join `["Design", "Code", "Test"]` with `" → "`. (A list literal is fine here — you are feeding `join`, not calling list methods.)
 
-2. Difference between `" ".join(list)` and `+` concatenation in a loop? (Performance: join faster.)
+**Model answer:**
 
-   **Model answer:** Building with `result += piece` in a loop creates many temporary strings (quadratic cost in the naive case). `" ".join(parts)` builds the result once from a list — preferred for joining many pieces. Use `+` for a few fixed parts; use `join` for lists of unknown length.
+```python
+print(" → ".join(["Design", "Code", "Test"]))
+```
 
-3. Explain `s[2:8:2]` on `"abcdefghij"`.
+**Expected Output:**
 
-   **Model answer:** `s = "abcdefghij"` → indices 0…9. Slice `s[2:8:2]` starts at index 2 (`c`), stops before 8, step 2 → `c`, `e`, `g` → `"ceg"`.
+```
+Design → Code → Test
+```
 
-4. How check palindrome without reversing? (Two-pointer idea — or compare to `[::-1]`.)
+6. From `status = "open"`, create `closed` via `replace`. Print both.
 
-   **Model answer:** Simple interview answer: `s == s[::-1]` (after normalizing case/spaces if asked). Two-pointer idea without building a reverse copy: left at 0, right at `len(s)-1`; while left < right, compare `s[left]` and `s[right]`; if mismatch, not palindrome; else move inward.
+**Model answer:**
 
-   ```python
-   s = "level"
-   left = 0
-   right = len(s) - 1
-   is_pal = True
-   while left < right:
-       if s[left] != s[right]:
-           is_pal = False
-           break
-       left += 1
-       right -= 1
-   print(is_pal)
-   ```
+```python
+status = "open"
+closed = status.replace("open", "closed")
+print(status)
+print(closed)
+```
+
+**Expected Output:**
+
+```
+open
+closed
+```
 
 ---
 
-## Mini-Project (Assignment): Employee Management Portal / Student Text Utilities CLI
+## Lab
 
-**Title:** Menu-driven text cleaner for registration fields  
-**Lab kit (build here):** [15_Lab_Assets/09_string_parser/](../15_Lab_Assets/09_string_parser/)
+Combine clean, check, mask, and parse in one short script. No `def`, no files.
 
-### What to build
+### Problem
 
-Menu-driven program (`text_utils.py`):
+A registration desk pastes one messy name, one email, one phone, and one CSV marks line. You must print a cleaned report without crashing on a bad email shape.
 
-1. Normalize name (title case + strip)  
-2. Validate email (lite: one `@`, non-empty parts, domain has `.`)  
-3. Mask mobile number  
-4. Parse marks string `roll,name,m1,m2,m3` → formatted report  
-5. Generate slug from course name  
-0. Exit  
+### What to Build
 
-Use functions optional — single file with while menu is fine.
+A short script that hard-codes the four inputs, cleans them, and prints a small report.
 
-**Sample marks parse input:**
+### Requirements
 
-```
-2026001,Ravi Kumar,88,76,91
-```
+- Name: `strip` + `title`
+- Email: `strip` + `lower`, then a lite check (`@` present and the domain part contains `.`)
+- Phone: 10-digit string → display mask `98******10` style (first 2 + last 2)
+- Marks line `roll,name,m1,m2,m3` → print roll, name, and average to 2 decimals
+- Print `Email OK` or `Invalid email`
 
-**Sample output:**
+### Expected Behavior
 
-```
-Roll: 2026001
+Padded / mixed-case name and email become tidy. The original phone digits are not printed in full. Average uses all three marks.
+
+### Sample Run
+
+```text
 Name: Ravi Kumar
-Average: 85.00
+Email OK
+Phone: 98******10
+Roll: 2026001 | Name: Ravi Kumar | Average: 85.00
 ```
 
-### Stretch
+(Your seed values may differ; the **shape** of the output should match.)
 
-- Mask Aadhaar-style input showing only last 4 digits.  
-- Reject emails with spaces after strip.  
+### Constraints
+
+Top-level statements only — no `def`, no type hints, no files.
+
+### Bonus
+
+Reject the email if it still contains a space after `strip`. Print a second mask that shows only the last 4 digits (`******3210`).
+
+---
+
+## Mini-Project (Assignment): Registration Field Cleaner
+
+**Why this matters:** Forms arrive messy. Email must be comparable, phone digits must be extracted, and screens should not show a full mobile number. That is the same cleaning every signup and ticket form needs.
+
+**Lab kit:** [15_Lab_Assets/09_string_parser/](../15_Lab_Assets/09_string_parser/)
+
+| File | What you do |
+|------|-------------|
+| `starter/cleaners.py` | Finish the three blocks (email, digits-only phone, mask). **No `def` required.** |
+| `broken/cleaners.py` | Fix trim / country-code / mask slice bugs |
+| `solution/` | Do **not** copy this |
+
+This is **not** the Step-by-Step assemble from class. Same string tools, kit-shaped ticket.
+
+### Objective
+
+Clean a messy email, keep a 10-digit phone, and mask it for display.
+
+### Story / Scenario
+
+Onboarding pastes `"  Ravi@Gmail.COM "` and `"+91-98765-43210"`. Staff need a normalized email and a masked number — never a traceback.
+
+### Requirements
+
+| Piece | Detail |
+|-------|--------|
+| Email | `strip` + `lower`, then print |
+| Phone | Loop characters; keep digits (`ch.isdigit()` or `ch in "0123456789"`); if the result is 12 digits starting with `91`, drop that prefix; keep only a final length of 10 |
+| Mask | `******` + last 4 characters of a 10-digit phone |
+| Style | Top-level statements only — no `def`, no type hints, no files |
+
+### Expected Behavior
+
+- `"  Ravi@Gmail.COM "` prints as `ravi@gmail.com`
+- `"+91-98765-43210"` becomes `9876543210`
+- `"9876543210"` masks as `******3210`
+
+### Sample Run
+
+```text
+ravi@gmail.com
+9876543210
+******3210
+```
+
+(Print order follows the three blocks in the starter.)
+
+### Bonus Challenges
+
+- Reject emails that still contain spaces after `strip`
+- Mask Aadhaar-style input showing only last 4 digits
+- **Later — Files week:** save cleaned rows to a CSV
 
 ### Done when
 
-- [ ] Lab kit string-parser ticket cleans email/phone as expected  
-- [ ] Menu options 1–5 work and exit on `0`  
-- [ ] Marks parse prints roll, name, and average  
-
-## Interview Q&A
-
-Shared with students after concepts and the mini-project. Use for review and interview prep — questions and model answers are included.
-
-1. Why might HR store employee names as strings even if name looks numeric?
-2. Is `"admin@company.com" == "Admin@company.com"` True? Should login be case-sensitive?
-3. When is splitting better than slicing for parsing?
-4. WhatsApp message vs Python string — both text; what extra does Python string give?
-5. GDPR/privacy: why mask phone numbers in logs?
-
-**Q1. Is Python string mutable?**  
-**A:** No. str is immutable; methods like replace return new strings; assignment rebinds variable name.
-
-**Q2. Difference between `find` and `index`?**  
-**A:** Both search substring; `find` returns -1 if missing; `index` raises ValueError.
-
-**Q3. What does `s[::-1]` do?**  
-**A:** Reverses string with slice step -1.
-
-**Q4. Why use `join` instead of + in loop?**  
-**A:** join is efficient for many concatenations; + creates many intermediate objects.
-
-**Q5. How validate email in production vs beginner lab?**  
-**A:** Lab: structural checks with in/split; production: regex or validator library plus verification mail.
+- [ ] Email is lowercased and stripped
+- [ ] Phone is digits-only and length 10 after dropping a leading `91`
+- [ ] Mask shows `******` plus the last 4 digits
+- [ ] No `def` / type hints / files on the core path
 
 ---
 
+## Interview Q&A
+
+**Q1. Are strings mutable? What happens with `s[0] = 'x'`?**  
+No. Strings are immutable. Index assignment raises `TypeError`. Build a new string and rebind.
+
+**Q2. `find` vs `index`?**  
+Both search for a substring. `find` returns `-1` if missing; `index` raises `ValueError`.
+
+**Q3. What does `s[::-1]` do?**  
+Reverses the string (step `-1`).
+
+**Q4. Why prefer `join` over `+` in a loop?**  
+`join` builds once from the pieces; repeated `+` creates many temporary strings.
+
+**Q5. Why mask phone numbers on screen?**  
+Privacy — do not dump full numbers into logs or shared displays.
+
+**Q6. When is `split` clearer than slicing for parsing?**  
+When the delimiter position varies (email `@`, CSV commas) — split names the pieces; hunting indices does not.
+
+**Q7. Why does `name.upper()` leave `name` unchanged unless you rebind?**  
+Methods return a new string; the original object cannot change. Use `name = name.upper()`.
+
+---
+
+## Cheat Sheet
+
+```text
+"..." / '...'       → create a string
+"""..."""           → multi-line string
+s[i]                → one character (IndexError if out of range)
+s[start:stop]       → slice (stop excluded)
+s[-1] / s[-4:]      → last character / last four
+len(s)              → length
+s.strip()           → trim surrounding whitespace
+s.lower() / .upper() / .title()
+s.replace(a, b)     → new string (rebind to keep it)
+s.split(sep)        → pieces (a list — methods next module)
+sep.join(pieces)    → one string
+s.startswith / .endswith
+"x" in s            → substring check
+"*" * 6             → repeat
+```
+
+Strings are immutable. Methods return new strings.
+
+---
+
+## Completion Checklist
+
+```text
+[ ] I can create strings, including a multi-line banner
+[ ] I can index and slice (stop excluded; negatives from the end)
+[ ] I know strings are immutable and I must rebind
+[ ] I can strip / lower / title before comparing
+[ ] I can split a line and join pieces
+[ ] I can replace, mask digits, and check with in / startswith / endswith
+[ ] I completed the lab
+[ ] I attempted the field-cleaner mini-project
+[ ] I can explain immutability in an interview
+```
+
+---
+
+## What's Next?
+
+You can now clean and slice text, and pull fields out of one line.
+
+Next, [Lists](05_Lists.md) store **many** values in order — carts, marks, and the pieces that `split` already handed you — and let you add, change, and remove them.
