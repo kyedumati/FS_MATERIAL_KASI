@@ -1,4 +1,4 @@
-# PFS Training Material
+# Full Stack Training Material
 
 Structured training material for **Python Full Stack**, **Java Full Stack**, and shared **MySQL / Frontend** topics.
 
