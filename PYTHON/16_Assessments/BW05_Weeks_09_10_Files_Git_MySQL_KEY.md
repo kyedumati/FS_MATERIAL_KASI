@@ -27,7 +27,7 @@
 
 ## C. Short answer — model
 
-History of working states; easy rollback; portfolio proof; collaboration habit for jobs.
+History of working states; easy rollback; portfolio proof; collaboration habit for jobs. Rejected push: `git pull` (resolve conflicts if any), then `git push`. Do not force-push shared `main`.
 
 ## Suggested scoring
 

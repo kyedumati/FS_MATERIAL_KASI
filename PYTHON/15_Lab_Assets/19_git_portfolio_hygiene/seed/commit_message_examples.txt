@@ -1,3 +1,0 @@
-feat: add format_inr helper
-fix: stop committing .env
-docs: add run steps to README

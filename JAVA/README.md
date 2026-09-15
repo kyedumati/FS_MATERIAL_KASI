@@ -1,8 +1,8 @@
 # Java Full Stack Development — Training Material
 
 > **One material policy for the Java program.** Java / Spring Boot notes live in this folder.  
-> **Shared topics** (same files as Python FS): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/README.md`](../MYSQL/README.md).  
-> Pointers only: `08_Frontend/`, `11_React/`. JPA/REST home is `09_Spring_Boot/` — `10_JPA_and_REST/` is a pointer, not a second copy.
+> **Shared topics** (same files as Python FS): [`../GIT/`](../GIT/) (Git and GitHub), [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/README.md`](../MYSQL/README.md).  
+> Pointers only: `05_Git_GitHub/`, `08_Frontend/`, `11_React/`. JPA/REST home is `09_Spring_Boot/` — `10_JPA_and_REST/` is a pointer, not a second copy.
 
 **Source syllabus:** KSR Datavizon *Java Full Stack Development*  
 **Audience:** Learners preparing for entry-level Java / Spring Boot / full-stack roles  
@@ -49,7 +49,7 @@
 | 9 | [04_Collections_Exceptions_IO/01_Collections.md](04_Collections_Exceptions_IO/01_Collections.md) | Collections (`List` / `Set` / `Map`) |
 | 10 | [04_Collections_Exceptions_IO/02_Exception_Handling.md](04_Collections_Exceptions_IO/02_Exception_Handling.md) | Exception handling |
 | 11 | [04_Collections_Exceptions_IO/03_File_Handling.md](04_Collections_Exceptions_IO/03_File_Handling.md) | Files & I/O |
-| 12 | [05_Git_GitHub/01_Git_and_GitHub.md](05_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub (Java `.gitignore`, Maven) |
+| 12 | [../GIT/01_Git_and_GitHub.md](../GIT/01_Git_and_GitHub.md) | Git & GitHub *(shared)* |
 | 13 | [06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs — map: [`MYSQL/README.md`](../MYSQL/README.md) |
 | 14 | [07_JDBC/01_JDBC_CRUD.md](07_JDBC/01_JDBC_CRUD.md) | JDBC CRUD (`PreparedStatement`) |
 | 15 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
@@ -71,7 +71,7 @@
 
 **Pointer (not a second syllabus):** [10_JPA_and_REST/](10_JPA_and_REST/README.md) → teach JPA/REST from `09_Spring_Boot/` `03`–`04`.
 
-**Authored so far:** Foundations + Core Java (`01`–`06`) + OOP Parts 1–3 + [Collections](04_Collections_Exceptions_IO/01_Collections.md) + [Exception Handling](04_Collections_Exceptions_IO/02_Exception_Handling.md) + [File Handling](04_Collections_Exceptions_IO/03_File_Handling.md) + [Git and GitHub](05_Git_GitHub/01_Git_and_GitHub.md) + [MySQL for Full Stack Developers](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) (bridge; SQL depth in [`MYSQL/`](../MYSQL/)) + [JDBC CRUD](07_JDBC/01_JDBC_CRUD.md) (`PreparedStatement`) + [Maven and Spring Boot Setup](09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md) + [Spring Web REST](09_Spring_Boot/02_Spring_Web_REST.md) + [Spring Data JPA and Validation](09_Spring_Boot/03_Spring_Data_JPA_Validation.md) + [REST, DTOs, and Postman](09_Spring_Boot/04_REST_DTOs_Postman.md) + [Spring Security Lite](09_Spring_Boot/05_Spring_Security_Lite.md) with lab kits 01–19 (kit 19: JWT register/login + protect POST; Lab 06 freeze 400/404 + demo bundle; Lab 07 Actuator health + env / PaaS / M0) and [BW01](16_Assessments/BW01_Weeks_01_02_Foundations_Setup.md) / [BW02](16_Assessments/BW02_Weeks_03_04_Flow_Strings_Arrays.md) / [BW03](16_Assessments/BW03_Weeks_05_06_Methods_OOP_Part1.md) / [BW04](16_Assessments/BW04_Weeks_07_08_OOP_Collections.md) / [BW05](16_Assessments/BW05_Weeks_09_10_Exceptions_Files_Git_MySQL.md) / [BW06](16_Assessments/BW06_Weeks_11_12_SQL_JDBC_HTML.md). Shared FRONTEND HTML/CSS/JS is already used. Protected labs [`06_Lab_CRUD_Auth_Consolidation.md`](09_Spring_Boot/06_Lab_CRUD_Auth_Consolidation.md) and [`07_Lab_Deploy_Capstone_Debug.md`](09_Spring_Boot/07_Lab_Deploy_Capstone_Debug.md) (kit 19) and [`08_Servlet_vs_Spring_Interview_Map.md`](09_Spring_Boot/08_Servlet_vs_Spring_Interview_Map.md) (kit 19 point-only; five comparison bullets) are authored. Later rows (CORS recap via `04`, React onward) are still planned file names until those phases are written.
+**Authored so far:** Foundations + Core Java (`01`–`06`) + OOP Parts 1–3 + [Collections](04_Collections_Exceptions_IO/01_Collections.md) + [Exception Handling](04_Collections_Exceptions_IO/02_Exception_Handling.md) + [File Handling](04_Collections_Exceptions_IO/03_File_Handling.md) + [Git and GitHub](../GIT/01_Git_and_GitHub.md) + [MySQL for Full Stack Developers](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) (bridge; SQL depth in [`MYSQL/`](../MYSQL/)) + [JDBC CRUD](07_JDBC/01_JDBC_CRUD.md) (`PreparedStatement`) + [Maven and Spring Boot Setup](09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md) + [Spring Web REST](09_Spring_Boot/02_Spring_Web_REST.md) + [Spring Data JPA and Validation](09_Spring_Boot/03_Spring_Data_JPA_Validation.md) + [REST, DTOs, and Postman](09_Spring_Boot/04_REST_DTOs_Postman.md) + [Spring Security Lite](09_Spring_Boot/05_Spring_Security_Lite.md) with lab kits 01–19 (kit 19: JWT register/login + protect POST; Lab 06 freeze 400/404 + demo bundle; Lab 07 Actuator health + env / PaaS / M0) and [BW01](16_Assessments/BW01_Weeks_01_02_Foundations_Setup.md) / [BW02](16_Assessments/BW02_Weeks_03_04_Flow_Strings_Arrays.md) / [BW03](16_Assessments/BW03_Weeks_05_06_Methods_OOP_Part1.md) / [BW04](16_Assessments/BW04_Weeks_07_08_OOP_Collections.md) / [BW05](16_Assessments/BW05_Weeks_09_10_Exceptions_Files_Git_MySQL.md) / [BW06](16_Assessments/BW06_Weeks_11_12_SQL_JDBC_HTML.md). Shared FRONTEND HTML/CSS/JS is already used. Protected labs [`06_Lab_CRUD_Auth_Consolidation.md`](09_Spring_Boot/06_Lab_CRUD_Auth_Consolidation.md) and [`07_Lab_Deploy_Capstone_Debug.md`](09_Spring_Boot/07_Lab_Deploy_Capstone_Debug.md) (kit 19) and [`08_Servlet_vs_Spring_Interview_Map.md`](09_Spring_Boot/08_Servlet_vs_Spring_Interview_Map.md) (kit 19 point-only; five comparison bullets) are authored. Later rows (CORS recap via `04`, React onward) are still planned file names until those phases are written.
 
 ---
 
@@ -88,7 +88,7 @@ Every teaching module follows the same shape:
 - Interview Q&A (oral; not copied into Practice)  
 - Graded checks: [`16_Assessments/`](16_Assessments/) (biweekly) — not an Assessment block in every module  
 
-**SQL depth** lives in repo **`MYSQL/`** (required labs listed in the MySQL bridge module) — not duplicated here.
+**Git / GitHub** lives in repo **`GIT/`** (S44–S45). **SQL depth** lives in **`MYSQL/`** (required labs listed in the MySQL bridge module). Neither is duplicated here.
 
 > Mermaid diagrams render on GitHub, many Markdown previewers, and Cursor. PDF builds pre-render them to SVG (`./scripts/build.sh java` needs Node/`npx` + Chrome). In plain text viewers you still see the diagram source as a readable sketch.
 

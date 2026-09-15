@@ -1,6 +1,6 @@
 # PFS Training Material
 
-Structured training material for **Python Full Stack**, **Java Full Stack**, and shared **MySQL / Frontend** topics.
+Structured training material for **Python Full Stack**, **Java Full Stack**, and shared **Git / MySQL / Frontend** topics.
 
 ---
 
@@ -8,7 +8,7 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 
 **Audience:** Fresh graduates, non-IT career switchers, and learners targeting entry-level Python / Django / full-stack roles in India.
 
-**Teach:** [`PYTHON/`](PYTHON/) + shared [`FRONTEND/`](FRONTEND/) (HTML/CSS/JS + React) · [`MYSQL/`](MYSQL/).
+**Teach:** [`PYTHON/`](PYTHON/) + shared [`GIT/`](GIT/) · [`FRONTEND/`](FRONTEND/) (HTML/CSS/JS + React) · [`MYSQL/`](MYSQL/).
 
 | Resource | Link |
 |----------|------|
@@ -18,7 +18,7 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 | Toolchain / deliverables / capstone | [Tested_Toolchain.md](PYTHON/Tested_Toolchain.md) · [Standard_Project_Deliverables.md](PYTHON/Standard_Project_Deliverables.md) · [Capstone_CampusCart_One_Pager.md](PYTHON/Capstone_CampusCart_One_Pager.md) |
 | Trainer ops (private) | [PYTHON/14_Trainer_Only/](PYTHON/14_Trainer_Only/) |
 | Student pack | `./scripts/pack_student_share.sh` → `dist/PYTHON_STUDENT/` |
-| Student PDFs | `./scripts/build.sh python` → `PDF/PYTHON/` · `./scripts/build.sh frontend` → `PDF/FRONTEND/` |
+| Student PDFs | `./scripts/build.sh python` → `PDF/PYTHON/` · `./scripts/build.sh git` → `PDF/GIT/` · `./scripts/build.sh frontend` → `PDF/FRONTEND/` |
 
 **Default schedule:** 20 weeks × **1 hour 15 minutes/day** live (100 sessions) · Stack: Python 3, MySQL 8+, Django 5.x, HTML/CSS/JS, React, Flask overview, GitHub, VS Code.
 
@@ -30,7 +30,7 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 
 **Audience:** Learners targeting entry-level Java / Spring Boot / full-stack roles in India (one unified learner voice).
 
-**Teach:** [`JAVA/`](JAVA/) + the **same** shared [`FRONTEND/`](FRONTEND/) and [`MYSQL/`](MYSQL/) — do not copy those topics into the Java folder.
+**Teach:** [`JAVA/`](JAVA/) + the **same** shared [`GIT/`](GIT/), [`FRONTEND/`](FRONTEND/), and [`MYSQL/`](MYSQL/) — do not copy those topics into the Java folder.
 
 | Resource | Link |
 |----------|------|
@@ -40,7 +40,7 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 | Toolchain / deliverables / capstone | [Tested_Toolchain.md](JAVA/Tested_Toolchain.md) · [Standard_Project_Deliverables.md](JAVA/Standard_Project_Deliverables.md) · [Capstone_CampusCart_One_Pager.md](JAVA/Capstone_CampusCart_One_Pager.md) |
 | Trainer ops (private) | [JAVA/14_Trainer_Only/](JAVA/14_Trainer_Only/) |
 | Student pack | `./scripts/pack_student_share.sh java` → `dist/JAVA_STUDENT/` |
-| Student PDFs | `./scripts/build.sh java` → `PDF/JAVA/` · `./scripts/build.sh frontend` → `PDF/FRONTEND/` |
+| Student PDFs | `./scripts/build.sh java` → `PDF/JAVA/` · `./scripts/build.sh git` → `PDF/GIT/` · `./scripts/build.sh frontend` → `PDF/FRONTEND/` |
 
 **Default schedule:** 20 weeks × **1 hour 15 minutes/day** live (100 sessions) · Stack: JDK 17, Maven 3.9+, MySQL 8+, Spring Boot 3.x (Jakarta), HTML/CSS/JS, React, GitHub, VS Code or IntelliJ Community, Postman, JUnit 5.
 
@@ -64,11 +64,11 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 **Python Full Stack path**
 - Start at [`PYTHON/`](PYTHON/) → [Session Calendar](PYTHON/Session_Calendar_100.md).
 - Open the linked modules and lab kits in calendar order (same files for class and homework).
-- Shared topics: [`FRONTEND/`](FRONTEND/) (HTML/CSS/JS + React) · [`MYSQL/`](MYSQL/) (labs listed from the MySQL bridge module).
+- Shared topics: [`GIT/`](GIT/) (Git and GitHub) · [`FRONTEND/`](FRONTEND/) (HTML/CSS/JS + React) · [`MYSQL/`](MYSQL/) (labs listed from the MySQL bridge module).
 
 **Java Full Stack path**
 - Start at [`JAVA/`](JAVA/) → [Session Calendar](JAVA/Session_Calendar_100.md).
-- Same shared `FRONTEND/` and `MYSQL/` files (pointers only inside the Java folder).
+- Same shared `GIT/`, `FRONTEND/`, and `MYSQL/` files (pointers only inside the Java folder).
 - JDBC then JPA; REST-first Spring Boot; Servlets/JSP are one interview-map session only.
 
 **MySQL-only path**
@@ -76,7 +76,7 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 
 **Maintainers (pack / PDF)**
 - Student pack: `./scripts/pack_student_share.sh` (Python) or `./scripts/pack_student_share.sh java`.
-- PDFs: `./scripts/build.sh python` or `./scripts/build.sh java` (also `frontend`, `mysql`).
+- PDFs: `./scripts/build.sh python` or `./scripts/build.sh java` (also `git`, `frontend`, `mysql`).
 - Private ops: `14_Trainer_Only/` inside each program folder — never share. Share each module PDF after teaching (one material).
 
 ---
@@ -92,6 +92,7 @@ PFS_MATERIAL_KASI/
 ├── JAVA/                     # Java FS (calendar, Course_Contents.md, Spring Boot, labs)
 │
 │   Shared topics
+├── GIT/                      # Git + GitHub notes + labs/ (Python FS + Java FS)
 ├── FRONTEND/                 # HTML/CSS/JS + REACT/ (+ labs)
 ├── MYSQL/                    # SQL notes + Course_Contents.md + homework/ + labs/
 │
@@ -132,6 +133,7 @@ chmod +x scripts/build.sh   # first time only
 ./scripts/build.sh mysql
 ./scripts/build.sh python
 ./scripts/build.sh java
+./scripts/build.sh git
 ./scripts/build.sh frontend
 ```
 
@@ -153,9 +155,9 @@ python3 scripts/build_pdfs.py --file MYSQL/07_Joins.md
 
 ### Typical workflow
 
-1. Edit a chapter in `MYSQL/`, `PYTHON/`, `JAVA/`, or `FRONTEND/`.
+1. Edit a chapter in `GIT/`, `MYSQL/`, `PYTHON/`, `JAVA/`, or `FRONTEND/`.
 2. Commit and push the `.md` change to git.
-3. Run `./scripts/build.sh mysql`, `./scripts/build.sh python`, `./scripts/build.sh java`, or `./scripts/build.sh frontend`.
+3. Run `./scripts/build.sh git`, `mysql`, `python`, `java`, or `frontend` as needed.
 4. Upload updated PDFs from `PDF/` to Google Drive / LMS / email.
 
 Generated PDFs mirror the source folder structure — e.g. `MYSQL/07_Joins.md` becomes `PDF/MYSQL/07_Joins.pdf`.

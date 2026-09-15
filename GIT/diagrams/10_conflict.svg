@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 150" role="img" aria-labelledby="title-cf desc-cf">
+  <title id="title-cf">A merge conflict: Git cannot choose between two edits to the same lines</title>
+  <desc id="desc-cf">Your change and a teammate's change both touch the same lines. A human picks the final text, then stages and commits.</desc>
+  <defs>
+    <marker id="arrow-cf" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+      <polygon points="0 0, 12 5, 0 10" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect x="16" y="24" width="160" height="56" rx="10" fill="#1c7ed6"/>
+  <text x="96" y="48" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Your change</text>
+  <text x="96" y="66" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#dbe4ff">README title A</text>
+
+  <rect x="16" y="90" width="160" height="40" rx="10" fill="#7950f2"/>
+  <text x="96" y="116" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Their change</text>
+
+  <line x1="176" y1="52" x2="230" y2="80" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-cf)"/>
+  <line x1="176" y1="110" x2="230" y2="90" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-cf)"/>
+
+  <rect x="242" y="48" width="200" height="56" rx="10" fill="#fff5f5" stroke="#e11d48" stroke-width="2"/>
+  <text x="342" y="72" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#9f1239">Git cannot decide</text>
+  <text x="342" y="90" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#be123c">same lines, two versions</text>
+
+  <line x1="442" y1="76" x2="500" y2="76" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-cf)"/>
+
+  <rect x="512" y="24" width="192" height="106" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+  <text x="608" y="52" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#166534">You decide</text>
+  <text x="608" y="74" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#14532d">edit the file</text>
+  <text x="608" y="94" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#14532d">git add</text>
+  <text x="608" y="114" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#14532d">commit, then push</text>
+</svg>

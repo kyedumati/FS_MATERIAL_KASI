@@ -8,7 +8,7 @@
 
 > **Note:** This FS module is the **bridge** (ER, normalization, JDBC context). Placement-ready SQL depth is taught from **`MYSQL/`** during **Weeks 10–11**. Do not treat SQL as optional. Do not copy `MYSQL/` into `JAVA/`.
 
-**Previous module:** [Git and GitHub](../05_Git_GitHub/01_Git_and_GitHub.md)  
+**Previous module:** [Git and GitHub](../../GIT/01_Git_and_GitHub.md)  
 **Next module:** [JDBC CRUD](../07_JDBC/01_JDBC_CRUD.md)
 
 ---

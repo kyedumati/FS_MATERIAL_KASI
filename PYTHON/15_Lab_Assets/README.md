@@ -35,7 +35,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 | [16_venv_package_bootstrap](16_venv_package_bootstrap/) | ~33–35 | Ticket: Ship a Tiny Utils Package |
 | [17_bank_account_oop](17_bank_account_oop/) | ~36–39 | Ticket: BankAccount Class |
 | [18_safe_input_exceptions](18_safe_input_exceptions/) | ~41 | Ticket: Never Crash on Bad Input |
-| [19_git_portfolio_hygiene](19_git_portfolio_hygiene/) | ~44–45 | Ticket: Clean GitHub Repo Hygiene |
+| [19_git_portfolio_hygiene](19_git_portfolio_hygiene/) | ~44–45 | Pointer → [`GIT/labs/01_git_portfolio_hygiene`](../../GIT/labs/01_git_portfolio_hygiene/) |
 | [20_sql_injection_demo](20_sql_injection_demo/) | ~55 | Ticket: Stop SQL Injection |
 | [24_django_url_views_stub](24_django_url_views_stub/) | ~63–67 | Ticket: Two Pages With One Base Template |
 | [25_flask_notes_api](25_flask_notes_api/) | ~81 | Ticket: Tiny Notes JSON API |
@@ -50,6 +50,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 
 | Kit | Location |
 |-----|----------|
+| Git / GitHub labs | [`GIT/labs/`](../../GIT/labs/) |
 | HTML / CSS / JS labs | [`FRONTEND/labs/`](../../FRONTEND/labs/) |
 | React labs | [`FRONTEND/REACT/labs/`](../../FRONTEND/REACT/labs/) |
 

@@ -1,0 +1,4 @@
+WIP: rewrite spend notes — do not commit this on main yet
+Tea 20
+Lunch 80
+More lines incoming...

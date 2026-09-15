@@ -1,0 +1,6 @@
+# TODO: ignore secrets and generated folders (Python AND Java)
+
+# .env
+# venv/  .venv/  __pycache__/  *.pyc
+# target/  *.class
+# .idea/  .vscode/  .DS_Store

@@ -125,8 +125,8 @@ li {
 }
 
 /* Prefer keeping a heading with the first block after it */
-h2 + p, h2 + ul, h2 + ol, h2 + pre, h2 + table, h2 + .table-wrap, h2 + .callout, h2 + .mermaid-diagram,
-h3 + p, h3 + ul, h3 + ol, h3 + pre, h3 + table, h3 + .table-wrap, h3 + .callout, h3 + .mermaid-diagram {
+h2 + p, h2 + ul, h2 + ol, h2 + pre, h2 + table, h2 + .table-wrap, h2 + .callout, h2 + .mermaid-diagram, h2 + .workflow-diagram,
+h3 + p, h3 + ul, h3 + ol, h3 + pre, h3 + table, h3 + .table-wrap, h3 + .callout, h3 + .mermaid-diagram, h3 + .workflow-diagram {
   page-break-before: avoid;
   break-before: avoid-page;
 }
@@ -171,6 +171,26 @@ code {
   max-height: 240px;
   width: auto;
   height: auto;
+  display: inline-block;
+}
+
+/* Full-width workflow SVGs (Git packing line, Local vs Remote) */
+.workflow-diagram {
+  margin: 0.4em 0 0.55em;
+  padding: 8pt 8pt 6pt;
+  text-align: center;
+  background: #f8fbfd;
+  border: 1px solid #d7e3ec;
+  border-radius: 5px;
+  page-break-inside: avoid;
+  break-inside: avoid-page;
+}
+
+.workflow-diagram svg,
+.workflow-diagram img {
+  max-width: 100%;
+  height: auto;
+  max-height: 320px;
   display: inline-block;
 }
 

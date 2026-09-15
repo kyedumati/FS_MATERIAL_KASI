@@ -1,0 +1,12 @@
+# BROKEN — inverted / dangerous. Fix this file. Do not commit .env.
+
+!.env
+
+# Bug: ignoring source by mistake — remove these:
+*.py
+*.java
+
+# Bug: not ignoring generated output
+# (add venv/, target/, __pycache__/, *.class)
+
+# Bug: not ignoring .idea/ and .DS_Store

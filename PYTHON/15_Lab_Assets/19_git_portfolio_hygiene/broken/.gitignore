@@ -1,6 +1,0 @@
-# BROKEN — these lines are inverted / dangerous
-!.env
-venv/
-# Bug: not ignoring __pycache__
-# Bug: ignoring *.py by mistake — remove this:
-*.py

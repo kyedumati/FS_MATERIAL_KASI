@@ -1,11 +1,11 @@
-# 05 — Git and GitHub
+# Git and GitHub modules moved
 
-| File | Focus | Calendar |
-|------|-------|----------|
-| [01_Git_and_GitHub.md](01_Git_and_GitHub.md) | Local Git, GitHub, Java/Maven `.gitignore` | S44–S45 |
+Git / GitHub now live in the **shared** folder:
 
-**Lab kit:** [15_git_portfolio_hygiene](../15_Lab_Assets/15_git_portfolio_hygiene/) (S44–S45)
+→ [`../../GIT/`](../../GIT/)
 
-**Authored:** Git and GitHub (`01`). Same Git *concepts* as Python FS; examples use `target/`, `*.class`, `.idea/`, and repo names like `campus-canteen-calculator`. No JDBC. No Spring. No Lombok. No MySQL.
+Java Full Stack still schedules these topics in the [Session Calendar](../Session_Calendar_100.md). Open the modules under `GIT/`, not from here.
 
-[Session Calendar](../Session_Calendar_100.md)
+**Start:** [Session 1 — First GitHub push](../../GIT/01_Git_Session1.md)  
+**Course index:** [`GIT/01_Git_and_GitHub.md`](../../GIT/01_Git_and_GitHub.md) (5 sessions, ~6 hours)  
+**Labs:** [`GIT/labs/`](../../GIT/labs/)

@@ -515,7 +515,7 @@ find staticfiles/admin -type f | wc -l
 ## Mini-Project / Activity (Assignment)
 
 **Activity: "Staging Ready Portal" (90 min)**  
-**Lab kit:** [19_git_portfolio_hygiene](../15_Lab_Assets/19_git_portfolio_hygiene/) · [20_sql_injection_demo](../15_Lab_Assets/20_sql_injection_demo/)
+**Lab kit:** [19_git_portfolio_hygiene](../../GIT/labs/01_git_portfolio_hygiene/) · [20_sql_injection_demo](../15_Lab_Assets/20_sql_injection_demo/)
 
 ### What to build
 

@@ -6,7 +6,7 @@
 
 > **Note:** This FS module is the **bridge** (ER, normalization, Django context). Placement-ready SQL depth is taught from **`MYSQL/`** during **Weeks 10–11** (setup → CRUD → joins → transactions → practice). Do not treat SQL as optional.
 
-**Previous module:** Git and GitHub  
+**Previous module:** [Git and GitHub](../../GIT/01_Git_and_GitHub.md)  
 **Next module:** Database Programming Bridge (Python ↔ MySQL)
 
 ---

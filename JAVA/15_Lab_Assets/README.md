@@ -32,7 +32,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 | [12_collections_inventory](12_collections_inventory/) | ~37–40 | Canteen inventory (`List` / `Set` / `Map`) | **Ready** |
 | [13_safe_input_exceptions](13_safe_input_exceptions/) | ~41–42 | Never Crash on Bad Input | **Ready** |
 | [14_expense_files](14_expense_files/) | ~43 | Expense CSV append | **Ready** |
-| [15_git_portfolio_hygiene](15_git_portfolio_hygiene/) | ~44–45 | Java/Maven `.gitignore` + README | **Ready** |
+| [15_git_portfolio_hygiene](15_git_portfolio_hygiene/) | ~44–45 | Pointer → [`GIT/labs/01_git_portfolio_hygiene`](../../GIT/labs/01_git_portfolio_hygiene/) | **Ready** |
 | [16_jdbc_library_crud](16_jdbc_library_crud/) | ~55–58 | Library CRUD + no concat SQL | **Ready** |
 | [17_spring_hello_rest](17_spring_hello_rest/) | ~66–70 | Two JSON endpoints + in-memory GET list | **Ready** |
 | [18_jpa_product_crud](18_jpa_product_crud/) | ~71–74 | Product JPA catalog + DTO / `@Valid` / Postman v1 | **Ready** |
@@ -40,7 +40,7 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 | `20_junit_utils` | ~91–92 | Tests Must Catch the Bug | Planned |
 | `21_ai_review_stub` | optional after S95 | Optional AI recommend endpoint | Planned |
 
-MySQL seed labs stay in [`MYSQL/`](../../MYSQL/) (required via the FS bridge). Frontend kits: [`FRONTEND/labs/`](../../FRONTEND/labs/) · [`FRONTEND/REACT/labs/`](../../FRONTEND/REACT/labs/).
+MySQL seed labs stay in [`MYSQL/`](../../MYSQL/) (required via the FS bridge). Git kits: [`GIT/labs/`](../../GIT/labs/). Frontend kits: [`FRONTEND/labs/`](../../FRONTEND/labs/) · [`FRONTEND/REACT/labs/`](../../FRONTEND/REACT/labs/).
 
 Kits 20+ are created when that calendar phase is authored (teaching-order rule: session **S** kits may only use syntax from sessions **1…S**). Kit 19 core path is register / login (BCrypt + JWT), public GET `/products`, protected POST `/products`. Lab 06 freeze also requires GET by id 200/404, POST invalid with Bearer → 400, README/demo bundle, and peer break-auth on `broken/`. Lab 07 (same kit, later sessions) adds Actuator `/actuator/health`, host env, a PaaS attempt or blocked note, and capstone M0 — it does **not** change Lab 06 freeze Done when.
 

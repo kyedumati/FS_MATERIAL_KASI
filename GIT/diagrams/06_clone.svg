@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 140" role="img" aria-labelledby="title-clone desc-clone">
+  <title id="title-clone">Clone copies a GitHub repo onto your laptop</title>
+  <desc id="desc-clone">git clone copies the GitHub repository into a new folder. That folder already has history and is already connected to origin.</desc>
+  <defs>
+    <marker id="arrow-clone" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+      <polygon points="0 0, 12 5, 0 10" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect x="24" y="28" width="220" height="72" rx="12" fill="#f76707"/>
+  <text x="134" y="60" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff">GitHub repo</text>
+  <text x="134" y="82" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#fff4e6">ksr-mart</text>
+
+  <line x1="244" y1="64" x2="332" y2="64" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-clone)"/>
+  <text x="288" y="52" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">clone</text>
+
+  <rect x="344" y="28" width="352" height="72" rx="12" fill="#2f9e44"/>
+  <text x="520" y="60" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff">New folder on your laptop</text>
+  <text x="520" y="82" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#d3f9d8">history + origin already set</text>
+</svg>

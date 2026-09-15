@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 130" role="img" aria-labelledby="title-pr desc-pr">
+  <title id="title-pr">A Pull Request asks to merge a feature branch into main after review</title>
+  <desc id="desc-pr">feature/login is pushed, a Pull Request is opened, someone reviews, then merge puts the work on main.</desc>
+  <defs>
+    <marker id="arrow-pr" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+      <polygon points="0 0, 12 5, 0 10" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect x="12" y="28" width="150" height="64" rx="12" fill="#1c7ed6"/>
+  <text x="87" y="56" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">feature/login</text>
+  <text x="87" y="76" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#dbe4ff">push the branch</text>
+
+  <line x1="162" y1="60" x2="198" y2="60" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-pr)"/>
+
+  <rect x="210" y="28" width="150" height="64" rx="12" fill="#f76707"/>
+  <text x="285" y="56" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">Pull Request</text>
+  <text x="285" y="76" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#fff4e6">ask to join main</text>
+
+  <line x1="360" y1="60" x2="396" y2="60" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-pr)"/>
+
+  <rect x="408" y="28" width="130" height="64" rx="12" fill="#7950f2"/>
+  <text x="473" y="56" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">review</text>
+  <text x="473" y="76" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#efe9ff">comments</text>
+
+  <line x1="538" y1="60" x2="574" y2="60" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-pr)"/>
+
+  <rect x="586" y="28" width="122" height="64" rx="12" fill="#2f9e44"/>
+  <text x="647" y="56" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">main</text>
+  <text x="647" y="76" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#d3f9d8">Merge button</text>
+</svg>

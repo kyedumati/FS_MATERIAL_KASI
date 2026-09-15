@@ -92,9 +92,12 @@
 
 ### 6. Git & GitHub (**Must**)
 
+Shared notes: [`GIT/README.md`](../GIT/README.md) (same files as Python FS).
+
 - `git init`, status, add, commit, log, branch, merge
-- GitHub: repo, clone, push, pull, README, Java/Maven `.gitignore`
+- GitHub: repo, clone, push, pull, README, `.gitignore` (`target/` **and** `venv/`)
 - Collaboration basics (PR overview)
+- Five sessions in [`GIT/`](../GIT/): first push, daily loop, branches/PRs, desk incidents, IDE (Sessions 3–5 extra lab if live time is only S44–S45)
 
 **Practice:** push every mini project (`target/`, `.env`, `*.class` never committed)
 

@@ -6,7 +6,7 @@
 **Phase:** Advanced Python
 
 **Previous:** Optional after [OOP](03_OOP.md) — not on the Logging → Git path  
-**Next:** Return to the calendar: [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md) after Logging, or MySQL as scheduled
+**Next:** Return to the calendar: [Git and GitHub](../../GIT/01_Git_and_GitHub.md) after Logging, or MySQL as scheduled
 
 ---
 

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 130" role="img" aria-labelledby="title-push desc-push">
+  <title id="title-push">Local KSR_MART folder becomes a GitHub copy</title>
+  <desc id="desc-push">Files on the laptop are committed locally, then pushed to GitHub.</desc>
+  <defs>
+    <marker id="arrow-push" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+      <polygon points="0 0, 12 5, 0 10" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect x="16" y="28" width="150" height="64" rx="12" fill="#3b5bdb"/>
+  <text x="91" y="56" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700" fill="#fff">KSR_MART</text>
+  <text x="91" y="76" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#dbe4ff">files on laptop</text>
+
+  <line x1="166" y1="60" x2="214" y2="60" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-push)"/>
+  <text x="190" y="48" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#dc2626">add</text>
+
+  <rect x="226" y="28" width="150" height="64" rx="12" fill="#2f9e44"/>
+  <text x="301" y="56" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700" fill="#fff">commit</text>
+  <text x="301" y="76" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#d3f9d8">checkpoint here</text>
+
+  <line x1="376" y1="60" x2="424" y2="60" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-push)"/>
+  <text x="400" y="48" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#dc2626">push</text>
+
+  <rect x="436" y="28" width="268" height="64" rx="12" fill="#f76707"/>
+  <text x="570" y="56" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700" fill="#fff">GitHub</text>
+  <text x="570" y="76" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#fff4e6">shared copy online</text>
+</svg>

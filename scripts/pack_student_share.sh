@@ -12,6 +12,7 @@
 #     PYTHON/ or JAVA/
 #     FRONTEND/            # HTML/CSS/JS + FRONTEND/REACT/
 #     MYSQL/
+#     GIT/                 # Git and GitHub
 #     START_HERE.md
 #
 # Still excluded (private): 14_Trainer_Only/, **/solution/, *_KEY.md
@@ -34,17 +35,18 @@ case "$PROG" in
 | Folder | What it is |
 |--------|------------|
 | `PYTHON/` | Python program (calendar, Django, labs, placement) |
+| `GIT/` | Shared Git and GitHub — start at `GIT/README.md` |
 | `FRONTEND/` | Shared HTML / CSS / JS |
 | `FRONTEND/REACT/` | Shared React |
 | `MYSQL/` | Shared SQL — start at `MYSQL/README.md` |
 
 ## How you usually receive material
 
-Trainers share **one module PDF at a time** after that module is taught (from `PDF/PYTHON/…`; frontend days use `PDF/FRONTEND/`).  
+Trainers share **one module PDF at a time** after that module is taught (from `PDF/PYTHON/…`; Git days use `PDF/GIT/`; frontend days use `PDF/FRONTEND/`).  
 This full folder is optional reference if your batch also gets a Drive/LMS zip.
 
 1. Open [`PYTHON/Session_Calendar_100.md`](PYTHON/Session_Calendar_100.md).  
-2. On frontend / React / SQL days, open the folder named in the calendar.  
+2. On Git / frontend / React / SQL days, open the folder named in the calendar.  
 3. Type examples; use `labs/` or `15_Lab_Assets/` starters (not `solution/`).  
 4. Every even week, complete the matching paper in [`PYTHON/16_Assessments/`](PYTHON/16_Assessments/README.md) (student papers only — no `*_KEY`).  
 5. Capstone: [`PYTHON/Capstone_CampusCart_One_Pager.md`](PYTHON/Capstone_CampusCart_One_Pager.md).  
@@ -54,7 +56,7 @@ This full folder is optional reference if your batch also gets a Drive/LMS zip.
     README_BODY='# Python Full Stack — Shared Notes (same as class)
 
 **Schedule:** 20 weeks × 1h 15m — see Session Calendar inside `PYTHON/`.  
-**Shared topics:** `FRONTEND/` (includes `REACT/`), `MYSQL/`.
+**Shared topics:** `GIT/`, `FRONTEND/` (includes `REACT/`), `MYSQL/`.
 
 ## Start
 
@@ -75,17 +77,18 @@ Preferred delivery: module PDF after each teach day. See program README for teac
 | Folder | What it is |
 |--------|------------|
 | `JAVA/` | Java program (calendar, Spring Boot, labs, placement) |
+| `GIT/` | Shared Git and GitHub — start at `GIT/README.md` |
 | `FRONTEND/` | Shared HTML / CSS / JS |
 | `FRONTEND/REACT/` | Shared React |
 | `MYSQL/` | Shared SQL — start at `MYSQL/README.md` |
 
 ## How you usually receive material
 
-Trainers share **one module PDF at a time** after that module is taught (from `PDF/JAVA/…`; frontend days use `PDF/FRONTEND/`).  
+Trainers share **one module PDF at a time** after that module is taught (from `PDF/JAVA/…`; Git days use `PDF/GIT/`; frontend days use `PDF/FRONTEND/`).  
 This full folder is optional reference if your batch also gets a Drive/LMS zip.
 
 1. Open [`JAVA/Session_Calendar_100.md`](JAVA/Session_Calendar_100.md).  
-2. On frontend / React / SQL days, open the folder named in the calendar.  
+2. On Git / frontend / React / SQL days, open the folder named in the calendar.  
 3. Type examples; use `labs/` or `15_Lab_Assets/` starters (not `solution/`).  
 4. Every even week, complete the matching paper in [`JAVA/16_Assessments/`](JAVA/16_Assessments/README.md) (student papers only — no `*_KEY`).  
 5. Capstone: [`JAVA/Capstone_CampusCart_One_Pager.md`](JAVA/Capstone_CampusCart_One_Pager.md).  
@@ -95,7 +98,7 @@ This full folder is optional reference if your batch also gets a Drive/LMS zip.
     README_BODY='# Java Full Stack — Shared Notes (same as class)
 
 **Schedule:** 20 weeks × 1h 15m — see Session Calendar inside `JAVA/`.  
-**Shared topics:** `FRONTEND/` (includes `REACT/`), `MYSQL/`.
+**Shared topics:** `GIT/`, `FRONTEND/` (includes `REACT/`), `MYSQL/`.
 
 ## Start
 
@@ -118,7 +121,7 @@ if [[ ! -d "$PROG_SRC" ]]; then
   echo "error: missing $PROG_SRC" >&2
   exit 1
 fi
-for dep in FRONTEND MYSQL; do
+for dep in GIT FRONTEND MYSQL; do
   if [[ ! -d "$ROOT/$dep" ]]; then
     echo "error: missing shared topic $ROOT/$dep" >&2
     exit 1
@@ -140,7 +143,7 @@ rsync -a \
   --exclude '**/.DS_Store' \
   "$PROG_SRC/" "$PROG_DEST/"
 
-for dep in FRONTEND MYSQL; do
+for dep in GIT FRONTEND MYSQL; do
   rsync -a \
     --exclude '**/solution/' \
     --exclude '.DS_Store' \

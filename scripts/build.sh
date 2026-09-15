@@ -5,6 +5,7 @@
 #   ./scripts/build.sh python             # PYTHON (teach + share same notes)
 #   ./scripts/build.sh java               # JAVA
 #   ./scripts/build.sh frontend           # shared FRONTEND/ (HTML/CSS/JS + React)
+#   ./scripts/build.sh git                # shared GIT/ (Git and GitHub)
 #   ./scripts/build.sh mysql
 #   ./scripts/build.sh --force python
 
@@ -47,9 +48,12 @@ for arg in "$@"; do
     frontend|FRONTEND|fe)
       ARGS+=(--course FRONTEND)
       ;;
+    git|GIT|github|GITHUB)
+      ARGS+=(--course GIT)
+      ;;
     *)
       echo "Unknown argument: $arg"
-      echo "Usage: $0 [--force] [python|java|frontend|mysql|sql ...]"
+      echo "Usage: $0 [--force] [python|java|frontend|git|mysql|sql ...]"
       exit 1
       ;;
   esac

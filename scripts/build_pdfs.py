@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import html as html_module
 import json
@@ -23,7 +24,7 @@ from pypdf import PdfReader, PdfWriter
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_COURSES = ("MYSQL",)
-NESTED_COURSES = ("PYTHON", "JAVA", "FRONTEND", "MYSQL")  # recursive md tree; excludes trainer-only
+NESTED_COURSES = ("PYTHON", "JAVA", "FRONTEND", "MYSQL", "GIT")  # recursive md tree; excludes trainer-only
 TRAINER_ONLY_DIR_NAME = "14_Trainer_Only"
 STYLE_PATH = Path(__file__).resolve().parent / "pdf-style.css"
 MERMAID_CACHE_DIR = ROOT / ".cache" / "mermaid"
@@ -147,6 +148,66 @@ def replace_mermaid_fences(md_text: str, chrome: Path) -> str:
     if rendered or failed:
         print(f"  mermaid: {rendered} diagram(s) rendered" + (f", {failed} failed" if failed else ""))
     return out
+
+
+IMG_TAG_RE = re.compile(
+    r"<img\s+[^>]*?\bsrc=[\"']([^\"']+)[\"'][^>]*/?>",
+    re.IGNORECASE,
+)
+IMAGE_MIME = {
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".gif": "image/gif",
+    ".webp": "image/webp",
+    ".svg": "image/svg+xml",
+}
+
+
+def inline_local_images(html: str, md_path: Path) -> str:
+    """Embed Markdown images so Chrome print still sees them from a temp HTML file."""
+
+    def repl(match: re.Match[str]) -> str:
+        src = html_module.unescape(match.group(1)).strip()
+        if re.match(r"https?:", src, re.I) or src.startswith("data:"):
+            return match.group(0)
+        img_path = (md_path.parent / src).resolve()
+        try:
+            img_path.relative_to(ROOT)
+        except ValueError:
+            print(f"  warning: image outside repo ignored: {src}", file=sys.stderr)
+            return match.group(0)
+        if not img_path.is_file():
+            print(f"  warning: image not found: {src}", file=sys.stderr)
+            return match.group(0)
+
+        alt_m = re.search(r"\balt=[\"']([^\"']*)[\"']", match.group(0), re.I)
+        alt = html_module.unescape(alt_m.group(1)) if alt_m else ""
+        safe_alt = html_module.escape(alt, quote=True)
+        suffix = img_path.suffix.lower()
+        if suffix == ".svg":
+            svg = img_path.read_text(encoding="utf-8")
+            svg = re.sub(r"<\?xml[^>]*\?>", "", svg, count=1).strip()
+            svg = re.sub(r"<!DOCTYPE[^>]*>", "", svg, count=1, flags=re.I).strip()
+            return (
+                f'<div class="workflow-diagram" role="img" aria-label="{safe_alt}">'
+                f"{svg}</div>"
+            )
+        mime = IMAGE_MIME.get(suffix)
+        if not mime:
+            print(f"  warning: unsupported image type: {src}", file=sys.stderr)
+            return match.group(0)
+        payload = base64.b64encode(img_path.read_bytes()).decode("ascii")
+        return (
+            f'<div class="workflow-diagram">'
+            f'<img src="data:{mime};base64,{payload}" alt="{safe_alt}" />'
+            f"</div>"
+        )
+
+    inlined = IMG_TAG_RE.sub(repl, html)
+    if inlined != html:
+        print(f"  images: inlined local files for {md_path.name}")
+    return inlined
 
 
 def md_to_html(md_text: str) -> str:
@@ -724,16 +785,19 @@ def convert_file(
     if strip_trainer:
         md_text = strip_trainer_sections(md_text)
     md_text = replace_mermaid_fences(md_text, chrome)
-    body_html = pair_diagram_revision(
-        style_icon_strips(
-            color_keywords(
-                keep_program_blocks(
-                    style_callouts(
-                        wrap_tables(highlight_code_blocks(md_to_html(md_text)))
+    body_html = inline_local_images(
+        pair_diagram_revision(
+            style_icon_strips(
+                color_keywords(
+                    keep_program_blocks(
+                        style_callouts(
+                            wrap_tables(highlight_code_blocks(md_to_html(md_text)))
+                        )
                     )
                 )
             )
-        )
+        ),
+        md_path,
     )
     title = md_path.stem.replace("_", " ")
     document = wrap_document(title, body_html, css)
@@ -778,8 +842,8 @@ def main() -> int:
     parser.add_argument(
         "--course",
         action="append",
-        choices=["MYSQL", "PYTHON", "JAVA", "FRONTEND", "SQL", "all"],
-        help="Course folder to build (repeatable). Default: MYSQL. PYTHON, JAVA, FRONTEND, and MYSQL are nested trees.",
+        choices=["MYSQL", "PYTHON", "JAVA", "FRONTEND", "GIT", "SQL", "all"],
+        help="Course folder to build (repeatable). Default: MYSQL. PYTHON, JAVA, FRONTEND, MYSQL, and GIT are nested trees.",
     )
     parser.add_argument(
         "--file",

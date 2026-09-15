@@ -1,3 +1,0 @@
-feat: add canteen INR total
-fix: stop committing .env and *.class
-docs: add javac run steps to README

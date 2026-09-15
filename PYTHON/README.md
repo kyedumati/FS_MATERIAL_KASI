@@ -1,8 +1,8 @@
 # Python Full Stack Development — Training Material
 
 > **One material policy for the Python program.** Python/Django notes live in this folder.  
-> **Shared topics** (also for Java FS): [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/README.md`](../MYSQL/README.md).  
-> Pointers only: `06_Frontend/`, `10_React/`. PDFs: `PDF/PYTHON/`.
+> **Shared topics** (also for Java FS): [`../GIT/`](../GIT/) (Git and GitHub), [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/README.md`](../MYSQL/README.md).  
+> Pointers only: `04_Git_GitHub/`, `06_Frontend/`, `10_React/`. PDFs: `PDF/PYTHON/` (Git days: `PDF/GIT/`).
 
 **Source syllabus:** KSR Datavizon *FULL STACK PYTHON 2026–27*  
 **Audience:** Learners preparing for entry-level Python / Django / full-stack roles
@@ -53,7 +53,7 @@
 | 13 | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Exception handling |
 | 14 | [03_Advanced_Python/05_File_Handling.md](03_Advanced_Python/05_File_Handling.md) | File handling |
 | 15 | [03_Advanced_Python/06_Logging_Module.md](03_Advanced_Python/06_Logging_Module.md) | Logging module |
-| 16 | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Git & GitHub |
+| 16 | [../GIT/01_Git_and_GitHub.md](../GIT/01_Git_and_GitHub.md) | Git & GitHub *(shared)* |
 | 17 | [05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs — map: [`MYSQL/README.md`](../MYSQL/README.md) |
 | 18 | [03_Advanced_Python/07_Database_Programming_Bridge.md](03_Advanced_Python/07_Database_Programming_Bridge.md) | Python ↔ MySQL |
 | 19 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
@@ -91,7 +91,7 @@ Every teaching module follows the same shape:
 - Interview Q&A (oral; not copied into Practice)
 - Graded checks: [`16_Assessments/`](16_Assessments/) (biweekly) — not an Assessment block in every module  
 
-**SQL depth** lives in repo **`MYSQL/`** (required labs listed in the MySQL bridge module) — not duplicated here.
+**Git / GitHub** lives in repo **`GIT/`** (S44–S45). **SQL depth** lives in **`MYSQL/`** (required labs listed in the MySQL bridge module). Neither is duplicated here.
 
 > Mermaid diagrams render on GitHub, many Markdown previewers, and Cursor. PDF builds pre-render them to SVG (`./scripts/build.sh python` needs Node/`npx` + Chrome). In plain text viewers you still see the diagram source as a readable sketch.
 

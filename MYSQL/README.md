@@ -53,4 +53,4 @@ SQL depth lives here. Python/Java folders only hold the **bridge** (ER, why the 
 | 15 | 11 | Window functions and CTEs |
 | 16–18 | 12 | Real-time project capstone |
 
-**Sibling shared topic:** [`FRONTEND/`](../FRONTEND/)
+**Sibling shared topics:** [`GIT/`](../GIT/) · [`FRONTEND/`](../FRONTEND/)

@@ -1,0 +1,3 @@
+Add format_inr helper
+Fix ignore so .env is not tracked
+Update README with run steps

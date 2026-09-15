@@ -80,7 +80,7 @@ flowchart TD
 | 09 | `04_Collections_Exceptions_IO/01_Collections.md` | Core+ | List/Set/Map | When to pick | CRUD collections | Contact map |
 | 10 | `04_Collections_Exceptions_IO/02_Exception_Handling.md` | Core+ | try-with-resources | Checked vs unchecked | Robust CLI | Safe input |
 | 11 | `04_Collections_Exceptions_IO/03_File_Handling.md` | Core+ | nio / streams | Text vs binary lite | CSV/JSON files | Expense file logger |
-| 12 | `05_Git_GitHub/01_Git_and_GitHub.md` | Tools | Basic commands | Branching | Daily commits | Portfolio repos |
+| 12 | [`GIT/`](../../GIT/) Sessions 1–5 (3–5 extra lab if only S44–S45) | Tools | First push | Daily loop + PRs | Daily commits | Portfolio repos |
 | 13 | `06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` + [`MYSQL/`](../../MYSQL/) | Data | SQL CRUD, JOIN | Normalization | Workbench labs | Library schema |
 | 14 | `07_JDBC/01_JDBC_CRUD.md` | Data | PreparedStatement | Why not concat SQL | Java CRUD | Library JDBC |
 | 15 | [`FRONTEND/01_HTML.md`](../../FRONTEND/01_HTML.md) | FE | Tags, forms | Semantic HTML | Pages | Profile page |

@@ -26,13 +26,14 @@ From the repo root:
 ```bash
 ./scripts/build.sh python             # → PDF/PYTHON/
 ./scripts/build.sh java               # → PDF/JAVA/
+./scripts/build.sh git                # → PDF/GIT/ (shared Git and GitHub)
 ./scripts/build.sh frontend           # → PDF/FRONTEND/ (shared HTML/CSS/JS + React)
 # rebuild one module after Mermaid/CSS changes:
 python3 scripts/build_pdfs.py --force --file PYTHON/03_Advanced_Python/01_Functions_Decorators_Generators.md
 python3 scripts/build_pdfs.py --force --file JAVA/06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md
 ```
 
-PDFs are written to `PDF/PYTHON/`, `PDF/JAVA/`, or `PDF/FRONTEND/` mirroring the source tree.
+PDFs are written to `PDF/PYTHON/`, `PDF/JAVA/`, `PDF/GIT/`, or `PDF/FRONTEND/` mirroring the source tree.
 
 (`14_Trainer_Only` is excluded automatically.)
 
@@ -45,7 +46,7 @@ Optional full markdown mirror (still excludes `14_Trainer_Only/`, `solution/`, `
 ./scripts/pack_student_share.sh java    # → dist/JAVA_STUDENT/
 ```
 
-Also share sibling **`MYSQL/`** (or build MySQL PDFs below) for SQL weeks.
+Also share sibling **`GIT/`** and **`MYSQL/`** (or build those PDFs) for Git and SQL weeks.
 
 ## Other builds
 

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-labelledby="title-without desc-without">
+  <title id="title-without">Without Git: many copies. With history: one project.</title>
+  <desc id="desc-without">Left side shows many confusing project zip copies. Right side shows one project folder with a clear history of checkpoints.</desc>
+  <defs>
+    <marker id="arrow-need" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+      <polygon points="0 0, 12 5, 0 10" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <text x="170" y="28" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Without Git</text>
+  <text x="550" y="28" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">What we need</text>
+
+  <rect x="24" y="44" width="292" height="216" rx="12" fill="#fff5f5" stroke="#fda4af" stroke-width="2"/>
+  <rect x="404" y="44" width="292" height="216" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+
+  <rect x="44" y="64" width="252" height="36" rx="8" fill="#e11d48"/>
+  <text x="170" y="87" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">KSR_MART_final.zip</text>
+
+  <rect x="44" y="110" width="252" height="36" rx="8" fill="#fb7185"/>
+  <text x="170" y="133" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">KSR_MART_final2.zip</text>
+
+  <rect x="44" y="156" width="252" height="36" rx="8" fill="#fb7185"/>
+  <text x="170" y="179" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">KSR_MART_USE_THIS.zip</text>
+
+  <text x="170" y="228" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#9f1239">Which copy is the real project?</text>
+
+  <rect x="424" y="64" width="252" height="44" rx="8" fill="#2f9e44"/>
+  <text x="550" y="91" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700" fill="#fff">KSR_MART/</text>
+
+  <rect x="444" y="128" width="212" height="28" rx="6" fill="#d3f9d8" stroke="#2f9e44"/>
+  <text x="550" y="147" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532d">Today: login page works</text>
+
+  <rect x="444" y="164" width="212" height="28" rx="6" fill="#d3f9d8" stroke="#2f9e44"/>
+  <text x="550" y="183" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532d">Yesterday: cart total fixed</text>
+
+  <rect x="444" y="200" width="212" height="28" rx="6" fill="#d3f9d8" stroke="#2f9e44"/>
+  <text x="550" y="219" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532d">Monday: first working demo</text>
+
+  <line x1="328" y1="152" x2="392" y2="152" stroke="#dc2626" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-need)"/>
+</svg>

@@ -1,0 +1,14 @@
+.env
+venv/
+.venv/
+__pycache__/
+*.pyc
+target/
+*.class
+out/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.pem
+credentials.json

@@ -1,6 +1,6 @@
 # One Material Policy — Teach and Share the Same Notes
 
-**Rule:** One version of module notes. Teach from `PYTHON/` (and shared `FRONTEND/`, `MYSQL/`). Share **that same** content with students — usually the **module PDF after that module is taught**.
+**Rule:** One version of module notes. Teach from `PYTHON/` (and shared `GIT/`, `FRONTEND/`, `MYSQL/`). Share **that same** content with students — usually the **module PDF after that module is taught**.
 
 Do **not** maintain a second “student-only” rewrite of the syllabus, and do **not** strip Practice **Model answer** blocks for sharing.
 
@@ -37,7 +37,7 @@ Do **not** paste that day’s `.py` files back into the module. Do **not** turn 
 ## How to share (recommended)
 
 1. Teach from the module markdown.  
-2. Build PDFs when needed: `./scripts/build.sh python` → `PDF/PYTHON/`. Commit and push those PDFs with the notes.  
+2. Build PDFs when needed: `./scripts/build.sh python` → `PDF/PYTHON/`; Git days `./scripts/build.sh git` → `PDF/GIT/`. Commit and push those PDFs with the notes.  
 3. After the module (or that day’s Focus) is done, share **only that module’s PDF** from GitHub `PDF/` (or Drive/LMS/WhatsApp).  
 4. Homework = **Mini-Project (Assignment)** in the same PDF/notes.
 

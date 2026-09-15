@@ -84,9 +84,12 @@
 
 ### 5. Git & GitHub (**Must**)
 
+Shared notes: [`GIT/README.md`](../GIT/README.md) (same files as Java FS).
+
 - `git init`, status, add, commit, log, branch, merge
-- GitHub: repo, clone, push, pull, README, `.gitignore`
+- GitHub: repo, clone, push, pull, README, `.gitignore` (`venv/` **and** `target/`)
 - Collaboration basics (PR overview)
+- Five sessions in [`GIT/`](../GIT/): first push, daily loop, branches/PRs, desk incidents, IDE (Sessions 3–5 extra lab if live time is only S44–S45)
 
 **Practice:** push every mini project
 

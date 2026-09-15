@@ -3,7 +3,7 @@
 **Phase:** Collections, Exceptions, I/O
 
 **Previous module:** [Exception Handling](02_Exception_Handling.md)  
-**Next module:** [Git and GitHub](../05_Git_GitHub/01_Git_and_GitHub.md)
+**Next module:** [Git and GitHub](../../GIT/01_Git_and_GitHub.md)
 
 **Lab kit:** [15_Lab_Assets/14_expense_files/](../15_Lab_Assets/14_expense_files/)
 
@@ -1628,4 +1628,4 @@ Shared with students after concepts and the mini-project. Use for review and int
 
 ## Next
 
-Finish the [Expense Files lab kit](../15_Lab_Assets/14_expense_files/) and the CSV CLI. Continue with **[Git and GitHub](../05_Git_GitHub/01_Git_and_GitHub.md)** (local commits, Java `.gitignore`). MySQL / JDBC come after Git.
+Finish the [Expense Files lab kit](../15_Lab_Assets/14_expense_files/) and the CSV CLI. Continue with **[Git and GitHub](../../GIT/01_Git_and_GitHub.md)** (local commits, `.gitignore` for `target/` and `venv/`). MySQL / JDBC come after Git.

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" role="img" aria-labelledby="title-br desc-br">
+  <title id="title-br">main stays demo-ready while login work lives on a feature branch</title>
+  <desc id="desc-br">The main line has stable checkpoints. A feature/login line branches off so unfinished login does not sit on main.</desc>
+  <defs>
+    <marker id="arrow-br" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#2f9e44"/>
+    </marker>
+  </defs>
+
+  <text x="70" y="48" text-anchor="end" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700" fill="#2f9e44">main</text>
+  <circle cx="120" cy="42" r="16" fill="#2f9e44"/>
+  <text x="120" y="47" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="700" fill="#fff">demo</text>
+  <line x1="136" y1="42" x2="248" y2="42" stroke="#2f9e44" stroke-width="4"/>
+  <circle cx="264" cy="42" r="16" fill="#2f9e44"/>
+  <text x="264" y="47" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="700" fill="#fff">cart</text>
+  <line x1="280" y1="42" x2="392" y2="42" stroke="#2f9e44" stroke-width="4"/>
+  <circle cx="408" cy="42" r="16" fill="#2f9e44"/>
+  <text x="408" y="47" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="700" fill="#fff">notes</text>
+  <text x="520" y="48" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#166534">demo-ready</text>
+
+  <path d="M264 58 Q264 110 360 110" fill="none" stroke="#1c7ed6" stroke-width="4"/>
+  <text x="70" y="116" text-anchor="end" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c7ed6">feature/login</text>
+  <circle cx="376" cy="110" r="16" fill="#1c7ed6"/>
+  <text x="376" y="115" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="700" fill="#fff">WIP</text>
+  <line x1="392" y1="110" x2="500" y2="110" stroke="#1c7ed6" stroke-width="4"/>
+  <circle cx="516" cy="110" r="16" fill="#1c7ed6"/>
+  <text x="516" y="115" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700" fill="#fff">login</text>
+  <text x="548" y="116" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#1e40af">unfinished on purpose</text>
+
+  <text x="360" y="176" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700" fill="#0f172a">Switch branches to choose which line you are working on.</text>
+</svg>

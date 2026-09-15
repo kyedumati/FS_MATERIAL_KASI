@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title-gh desc-gh">
+  <title id="title-gh">Git lives on your laptop. GitHub is the shared copy online.</title>
+  <desc id="desc-gh">Git records project history on your computer. GitHub holds a shared copy so other people can use the same project.</desc>
+
+  <rect x="24" y="24" width="300" height="132" rx="14" fill="#3b5bdb"/>
+  <text x="174" y="64" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" fill="#fff">Git</text>
+  <text x="174" y="96" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#dbe4ff">On your laptop</text>
+  <text x="174" y="122" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#fff">Keeps the project's history</text>
+  <text x="174" y="142" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" fill="#dbe4ff">Works even if Wi-Fi is off</text>
+
+  <rect x="396" y="24" width="300" height="132" rx="14" fill="#f76707"/>
+  <text x="546" y="64" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" fill="#fff">GitHub</text>
+  <text x="546" y="96" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#fff4e6">A website</text>
+  <text x="546" y="122" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#fff">Shared copy of the project</text>
+  <text x="546" y="142" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" fill="#fff4e6">This is how a team shares</text>
+</svg>

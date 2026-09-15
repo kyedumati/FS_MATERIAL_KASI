@@ -105,6 +105,6 @@ Circle the best option.
 
 ## C. Short answer (1)
 
-Why commit often with clear messages during training?
+Why commit often with clear messages during training? If `git push` is rejected because the remote moved, what do you do (no force-push)?
 
 _(Write 3–6 sentences.)_

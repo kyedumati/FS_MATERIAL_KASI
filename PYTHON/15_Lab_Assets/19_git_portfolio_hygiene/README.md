@@ -1,8 +1,5 @@
-# Ticket: Clean GitHub Repo Hygiene
+# Moved
 
-**Customer:** Hiring manager  
-**Need:** Fix `.gitignore` so secrets/venv are never committed; write a 5-line README.
+This kit now lives in the shared Git pack:
 
-## Broken
-`broken/.gitignore` is wrong — fix it. Do **not** commit `.env`.
-
+→ [`../../../GIT/labs/01_git_portfolio_hygiene/`](../../../GIT/labs/01_git_portfolio_hygiene/)

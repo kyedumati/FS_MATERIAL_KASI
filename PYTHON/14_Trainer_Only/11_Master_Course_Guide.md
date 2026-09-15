@@ -79,7 +79,7 @@ flowchart TD
 | 13 | `03_Advanced_Python/04_Exception_Handling.md` | Advanced | try/except | Custom errors | Robust CLI | Safe file reader |
 | 14 | `03_Advanced_Python/05_File_Handling.md` | Advanced | open modes | CSV/JSON files | with / UTF-8 | Expense CSV |
 | 15 | `03_Advanced_Python/06_Logging_Module.md` | Advanced | levels | basicConfig | handlers | Expense logger |
-| 16 | `04_Git_GitHub/01_Git_and_GitHub.md` | Tools | Basic commands | Branching | Daily commits | Portfolio repos |
+| 16 | [`GIT/`](../../GIT/) Sessions 1–5 (3–5 extra lab if only S44–S45) | Tools | First push | Daily loop + PRs | Daily commits | Portfolio repos |
 | 17 | `05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` + [Required MySQL labs](../05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) / [`MYSQL/`](../../MYSQL/) | Data | SQL CRUD, JOIN | Normalization | Workbench labs | Library schema |
 | 18 | `03_Advanced_Python/07_Database_Programming_Bridge.md` | Advanced | Connector flow | SQL from Python | CRUD script | Student DB script |
 | 19 | [`FRONTEND/01_HTML.md`](../../FRONTEND/01_HTML.md) | FE | Tags, forms | Semantic HTML | Pages | Profile page |

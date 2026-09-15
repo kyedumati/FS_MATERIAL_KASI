@@ -3,7 +3,7 @@
 **Phase:** Advanced Python
 
 **Previous:** [File Handling](05_File_Handling.md)  
-**Next:** [Git and GitHub](../04_Git_GitHub/01_Git_and_GitHub.md)
+**Next:** [Git and GitHub](../../GIT/01_Git_and_GitHub.md)
 
 ---
 

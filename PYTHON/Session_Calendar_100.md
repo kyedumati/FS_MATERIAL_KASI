@@ -15,11 +15,11 @@
 
 **Rule:** One live session = **one primary focus** (one concept block + one mini-lab). Do not schedule two full modules in one 75-minute class.
 
-**Engagement rule:** Start from a lab ticket (`15_Lab_Assets/`, or `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for Definition/Purpose as needed.
+**Engagement rule:** Start from a lab ticket (`15_Lab_Assets/`, or `GIT/labs/`, `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for Definition/Purpose as needed.
 
 **Biweekly Assessment:** After every even week (Weeks 2, 4, … 20), complete the matching paper from [`16_Assessments/`](16_Assessments/README.md) (BW01–BW10) as homework or Friday wrap-up. Graded papers live only under `16_Assessments/` — not inside modules.
 
-**Shared topics (repo root):** `MYSQL/` · `FRONTEND/` (includes `FRONTEND/REACT/`) — scheduled here, authored outside this folder.
+**Shared topics (repo root):** `GIT/` · `MYSQL/` · `FRONTEND/` (includes `FRONTEND/REACT/`) — scheduled here, authored outside this folder.
 
 **Typical class shape** (timing lives here — not repeated in every module):
 
@@ -97,8 +97,8 @@
 | 41 | 9 | Exceptions try/except + custom | [03_Advanced_Python/04_Exception_Handling.md](03_Advanced_Python/04_Exception_Handling.md) | Safe input lab |
 | 42 | 9 | Files + `with` + CSV/JSON | [03_Advanced_Python/05_File_Handling.md](03_Advanced_Python/05_File_Handling.md) | CSV append |
 | 43 | 9 | Logging levels | [03_Advanced_Python/06_Logging_Module.md](03_Advanced_Python/06_Logging_Module.md) | Logger in expense app |
-| 44 | 9 | Git local: add/commit/branch | [04_Git_GitHub/01_Git_and_GitHub.md](04_Git_GitHub/01_Git_and_GitHub.md) | Daily commit habit |
-| 45 | 9 | GitHub push + README | same | Public repo live |
+| 44 | 9 | Git Session 1: first GitHub push | [../GIT/01_Git_Session1.md](../GIT/01_Git_Session1.md) | KSR_MART on GitHub |
+| 45 | 9 | Git Session 2: daily loop + clone | [../GIT/02_Git_Session2.md](../GIT/02_Git_Session2.md) | Hygiene lab; homework [Session 3](../GIT/03_Git_Session3.md) · [4](../GIT/04_Git_Session4.md) · [5](../GIT/05_Git_Session5.md) |
 
 ## Phase C — MySQL & Python DB (Sessions 46–55)
 
