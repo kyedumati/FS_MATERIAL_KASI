@@ -1,0 +1,16 @@
+---
+description: Always rebuild, commit, and push student PDFs with training notes
+alwaysApply: true
+---
+
+# Push student PDFs with the notes
+
+`PDF/` is tracked. Student PDFs must go to origin with the matching markdown.
+
+When committing or pushing training notes (`PYTHON/`, `JAVA/`, `FRONTEND/`, `MYSQL/`, `GIT/`):
+
+1. Rebuild the matching PDFs (`./scripts/build.sh python|java|frontend|mysql|git`, or `python3 scripts/build_pdfs.py --force --file <path>` for one module).
+2. Stage the generated files under `PDF/` in the **same commit** as the markdown.
+3. Do not push notes without those PDFs. Do not add `PDF/` back to `.gitignore`.
+
+Still ignore: `dist/`, `.pdf_pages/`, `.pdf_pages_review/`, `.pdf_check/`, `.cache/`, and `14_Trainer_Only/`.
