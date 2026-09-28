@@ -7,7 +7,7 @@ Not owned by `PYTHON/` or `JAVA/`.
 
 | Order | Module | Labs |
 |------:|--------|------|
-| 1 | [01_HTML.md](01_HTML.md) | [labs/21_html_profile_form](labs/21_html_profile_form/) |
+| 1 | [01_HTML.md](01_HTML.md) (chapters in [HTML/](HTML/)) | [labs/21_html_profile_form](labs/21_html_profile_form/) |
 | 2 | [02_CSS_and_Responsive.md](02_CSS_and_Responsive.md) | [labs/22_css_responsive_cards](labs/22_css_responsive_cards/) |
 | 3 | [03_JavaScript_DOM_Forms.md](03_JavaScript_DOM_Forms.md) | [labs/23_js_form_validation](labs/23_js_form_validation/) |
 
