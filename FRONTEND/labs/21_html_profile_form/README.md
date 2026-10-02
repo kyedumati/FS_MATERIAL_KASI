@@ -1,11 +1,10 @@
-# Ticket: Placement Profile Page
+# Ticket: Employee Profile
 
-**Customer:** Placement cell  
-**Need:** Semantic HTML profile + accessible contact form (labels tied to inputs).
+**Customer:** Acme HR  
+**Need:** Semantic HTML employee profile + accessible form (labels tied to inputs).
 
 ## Starter
 Complete `starter/index.html` TODOs.
 
 ## Broken
-Missing labels / inputs without `id` — fix a11y.
-
+A `div` is used as the heading. Inputs have no `id`.

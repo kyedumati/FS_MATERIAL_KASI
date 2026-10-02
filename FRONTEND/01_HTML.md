@@ -12,7 +12,7 @@
 
 HTML stands for HyperText Markup Language. It is the language used on the Web to write web pages. Hypertext is the way pages link to each other. Markup means the tags that tell a browser how to structure the page: headings, paragraphs, lists, images, tables, and forms.
 
-This tutorial explains current HTML, the living standard implemented by browsers, with a short overview of each topic and a practical example.
+This tutorial explains current HTML, the living standard implemented by browsers, with a short overview of each topic and a practical example. The examples are pages from Acme HR, an employee portal for an office in Hyderabad.
 
 ## Audience
 
@@ -31,15 +31,13 @@ Before proceeding you should be able to:
 
 | Chapter | File |
 |--------:|------|
-| 1. Overview and basic tags | [HTML/01_Document_and_Tags.md](HTML/01_Document_and_Tags.md) |
-| 2. Elements and attributes | [HTML/02_Elements_and_Attributes.md](HTML/02_Elements_and_Attributes.md) |
-| 3. Formatting and phrase tags | [HTML/03_Text.md](HTML/03_Text.md) |
-| 4. Meta tags and comments | [HTML/04_Head_Meta_Comments.md](HTML/04_Head_Meta_Comments.md) |
-| 5. Images | [HTML/05_Images.md](HTML/05_Images.md) |
-| 6. Tables | [HTML/06_Tables.md](HTML/06_Tables.md) |
-| 7. Lists | [HTML/07_Lists.md](HTML/07_Lists.md) |
-| 8. Links, image maps, email, and iframes | [HTML/08_Links_and_Iframes.md](HTML/08_Links_and_Iframes.md) |
-| 9. Blocks | [HTML/09_Page_Regions.md](HTML/09_Page_Regions.md) |
-| 10. Forms | [HTML/10_Forms.md](HTML/10_Forms.md) |
-| 11. Multimedia | [HTML/11_Media.md](HTML/11_Media.md) |
-| 12. Header, style sheets, and script | [HTML/12_Style_and_Script.md](HTML/12_Style_and_Script.md) |
+| 1. Web & HTML Fundamentals | [HTML/Module_01_Web_and_HTML_Fundamentals.md](HTML/Module_01_Web_and_HTML_Fundamentals.md) |
+| 2. Text, Formatting & Attributes | [HTML/Module_02_Text_Formatting_and_Attributes.md](HTML/Module_02_Text_Formatting_and_Attributes.md) |
+| 3. Links, Images & Lists | [HTML/Module_03_Links_Images_and_Lists.md](HTML/Module_03_Links_Images_and_Lists.md) |
+| 4. HTML Tables | [HTML/Module_04_HTML_Tables.md](HTML/Module_04_HTML_Tables.md) |
+| 5. HTML Forms | [HTML/Module_05_HTML_Forms.md](HTML/Module_05_HTML_Forms.md) |
+| 6. Semantic HTML | [HTML/Module_06_Semantic_HTML.md](HTML/Module_06_Semantic_HTML.md) |
+| 7. Multimedia & Modern HTML | [HTML/Module_07_Multimedia_and_Modern_HTML.md](HTML/Module_07_Multimedia_and_Modern_HTML.md) |
+| 8. Accessibility & SEO Basics | [HTML/Module_08_Accessibility_and_SEO.md](HTML/Module_08_Accessibility_and_SEO.md) |
+| 9. HTML Development Practices | [HTML/Module_09_HTML_Development_Practices.md](HTML/Module_09_HTML_Development_Practices.md) |
+| 10. Practical HTML Project | [HTML/Module_10_Practical_HTML_Project.md](HTML/Module_10_Practical_HTML_Project.md) |

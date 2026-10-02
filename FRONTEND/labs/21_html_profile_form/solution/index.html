@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anita Sharma — Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acme HR — Employee profile</title>
 </head>
 <body>
   <header>
-    <h1>Anita Sharma</h1>
+    <h1>Acme HR</h1>
     <nav aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#profile">Profile</a>
+      <a href="#update">Update</a>
     </nav>
   </header>
   <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>Python full-stack learner building CampusCart.</p>
+    <section id="profile">
+      <h2>Employee profile</h2>
+      <p>Ananya Rao, Engineering, Hyderabad.</p>
     </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <form>
+    <section id="update">
+      <h2>Update profile</h2>
+      <form action="/employees" method="post" enctype="multipart/form-data">
         <p>
-          <label for="name">Name</label>
-          <input id="name" name="name" required />
+          <label for="name">Employee name</label>
+          <input id="name" name="name" type="text" required>
         </p>
         <p>
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required />
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" required>
         </p>
         <p>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
+          <label for="photo">Photo</label>
+          <input id="photo" name="photo" type="file" accept="image/*">
         </p>
-        <button type="submit">Send</button>
+        <button type="submit">Save profile</button>
       </form>
     </section>
   </main>
