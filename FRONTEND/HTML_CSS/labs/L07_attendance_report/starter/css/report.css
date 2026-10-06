@@ -1,0 +1,75 @@
+/* AcmeHR — attendance report */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1b2430;
+  background-color: #f4f6f8;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #1a365d;
+  color: #ffffff;
+}
+
+header p {
+  margin: 0;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  display: block;
+  padding: 12px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+main {
+  max-width: 880px;
+  margin: 24px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #1a365d;
+}
+
+/* TODO 1: .table-scroll — only this box scrolls sideways */
+
+/* TODO 2: table — full width, single lines between cells */
+
+/* TODO 3: caption — left-aligned, bold, 8px space below */
+
+/* TODO 4: th and td — 8px 12px padding, 1px #d0d7de line below, left-aligned, no line breaks */
+
+/* TODO 5: header cells — 2px navy line below, 0.875rem, colour #3d4654 */
+
+/* TODO 6: every even body row — background #f4f6f8 */
+
+/* TODO 7: footer cells — 2px navy line above, no line below, bold */
+
+/* TODO 8: .num — right-aligned, every digit the same width */
+
+/* TODO 9: .status pill — 2px 8px padding, fully rounded, 0.875rem, bold;
+           .on-time #dcfce7 / #166534, .late #fef3c7 / #92400e, .leave #e0e7ff / #3730a3 */

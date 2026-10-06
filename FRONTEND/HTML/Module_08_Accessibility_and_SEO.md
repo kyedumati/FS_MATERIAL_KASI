@@ -73,7 +73,7 @@ Landmarks are how a screen reader moves around the page. `<header>`, `<nav>`, `<
 
 ## 3. Proper Heading Hierarchy
 
-A page has one `<h1>`. On the home page that heading is Acme HR. Do not skip heading levels. The directory is an `<h2>`. An employee name is an `<h3>`. This is a review of the heading module. An hgroup subtitle is a `p`.
+A page has one `<h1>`. In these notes the `<h1>` is the site name, Acme HR, on every page. The page topic is the `<h2>` (Directory, Leave request) and also appears in `<title>`. Do not skip heading levels. An employee name is an `<h3>`. This is a review of the heading module. An hgroup subtitle is a `p`.
 
 ### Example
 
@@ -139,7 +139,7 @@ A page has one `<h1>`. On the home page that heading is Acme HR. Do not skip hea
 
 ## 5. Accessible Links & Buttons
 
-Link text names the destination: Directory, Leave. A button's text names the action: Submit leave. `target="_blank"` is paired with `rel="noopener noreferrer"`. A link styled as a button is still an `<a>` when it navigates, and a `<button>` when it submits or opens the dialog.
+Link text names the destination: Directory, Leave. A button's text names the action: Submit leave. Current browsers treat `target="_blank"` as `noopener` by default; use `rel="noreferrer"` when you want to withhold the referrer. A link styled as a button is still an `<a>` when it navigates, and a `<button>` when it submits or opens the dialog.
 
 ### Example
 
@@ -190,13 +190,17 @@ Labels were introduced with the leave form. This module checks them. Each contro
   </header>
   <main>
     <form action="/leave" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="csrfmiddlewaretoken" value="…">
       <p>
         <label for="reason">Reason</label>
         <textarea id="reason" name="reason" required></textarea>
       </p>
       <p>
-        <label for="employee-id">Employee ID</label>
-        <input id="employee-id" name="employee_id" type="text" value="E-1042" readonly>
+        <label for="leave-type">Leave type</label>
+        <select id="leave-type" name="leave_type" required>
+          <option value="">Choose a type</option>
+          <option value="casual">Casual</option>
+        </select>
       </p>
       <button type="submit">Submit leave</button>
     </form>
@@ -211,7 +215,7 @@ Labels were introduced with the leave form. This module checks them. Each contro
 
 ## 7. Keyboard Accessibility
 
-A person can reach every link, button, and field with the Tab key, in an order that follows the page. Do not remove the focus outline unless another visible style replaces it. The CSS module ships `:focus-visible` for that ring. The confirm dialog, once opened with `showModal()`, keeps focus inside the dialog until it closes.
+A person can reach every link, button, and field with the Tab key, in an order that follows the page. Do not remove the focus outline unless another visible style replaces it. The CSS module ships `:focus-visible` for that ring. The confirm dialog, once opened (invoker button or `showModal()`), keeps focus inside the dialog until it closes.
 
 ### Example
 
@@ -250,13 +254,14 @@ A person can reach every link, button, and field with the Tab key, in an order t
 
 ## 8. `tabindex` — Basic Understanding
 
-`tabindex` is only `0` and `-1`. `0` puts an element in the natural tab order. `-1` takes it out of the tab order and still allows a script to focus it. Do not use `1`, `2`, or any positive number. Positive values rearrange the order and are easy to get wrong. Most controls need no `tabindex` at all.
+`tabindex` accepts any integer. Prefer only `0` and `-1`. `0` puts an element in the natural tab order. `-1` takes it out of the tab order and still allows a script to focus it. Positive values (`1`, `2`, …) are valid but discouraged: they force a custom order that is easy to break when the page changes. Most controls need no `tabindex` at all.
 
 | Value | Meaning |
 |-------|---------|
 | omitted | Links, buttons, and fields are already in the tab order |
 | `0` | Add an element to the natural order |
 | `-1` | Remove it from the tab order; a script may still focus it |
+| positive | Valid but avoided — jumps the element ahead in a fixed order |
 
 ### Example
 
@@ -389,7 +394,7 @@ Many elements have an implicit role. `<nav>` is navigation. `<button>` is a butt
 
 ## 12. HTML & SEO
 
-Search tools read the title, the headings, the text, and the links. The `<title>` is the tab name and the usual search link. One clear `<h1>` names the page. Real sentences in paragraphs are the content. A page built only from images of text gives the index little to read.
+Search tools read the title, the headings, the text, and the links. The `<title>` is the tab name and the usual search link. In these notes the `<h1>` is the site name; the page topic sits in `<title>` and in the main `<h2>`. Real sentences in paragraphs are the content. A page built only from images of text gives the index little to read. An internal HR portal is often `noindex`; treat the SEO sections as practice for public pages, not as a requirement for Acme HR itself.
 
 ### Example
 
@@ -448,7 +453,7 @@ Search tools read the title, the headings, the text, and the links. The `<title>
 
 ## 14. SEO-Friendly Headings
 
-The headings already follow one `<h1>` and no skipped levels. For search, those headings also name the real topics: Directory, Leave request, Payslip. A heading that says "Welcome" and nothing else wastes the outline. The employee name is the article heading because that is the topic of the article.
+The headings already follow one `<h1>` (site name) and no skipped levels. The `<h2>` headings name the real topics: Directory, Leave request, Payslip. A heading that says "Welcome" and nothing else wastes the outline. The employee name is the article heading because that is the topic of the article.
 
 ### Example
 

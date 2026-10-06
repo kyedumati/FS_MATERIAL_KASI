@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Specificity — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+
+    #deadline { color: #dc2626; }   /* (1,0,0) red   */
+    .notice   { color: #15803d; }   /* (0,1,0) green */
+    p         { color: #6b7280; }   /* (0,0,1) grey  */
+  </style>
+</head>
+<body>
+  <p>1. Only "p" matches → grey.</p>
+  <p class="notice">2. "p" and ".notice" match → green wins.</p>
+  <p class="notice" id="deadline">3. All three match → red wins.</p>
+</body>
+</html>

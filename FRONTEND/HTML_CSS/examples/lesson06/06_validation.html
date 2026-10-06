@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    p { margin: 0 0 12px; }
+  </style>
+</head>
+<body>
+  <form action="/leave" method="post">
+    <p>
+      <label for="from-date">From (required)</label><br>
+      <input type="date" id="from-date" name="from_date" required min="2026-10-01" max="2027-03-31">
+    </p>
+    <p>
+      <label for="reason">Reason (required, at most 200 characters)</label><br>
+      <textarea id="reason" name="reason" rows="3" cols="40" required maxlength="200"></textarea>
+    </p>
+    <button type="submit">Apply for leave</button>
+  </form>
+</body>
+</html>

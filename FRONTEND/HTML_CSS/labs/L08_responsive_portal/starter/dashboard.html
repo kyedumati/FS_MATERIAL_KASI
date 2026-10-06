@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- TODO 1: the viewport tag -->
+  <title>HR dashboard — AcmeHR</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header>
+    <p>AcmeHR</p>
+    <nav>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Directory</a></li>
+        <li><a href="#">Leave</a></li>
+        <li><a href="#">Attendance</a></li>
+        <li><a href="#">Reports</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <h1>HR dashboard</h1>
+
+    <section class="tiles">
+      <div class="tile"><p>Headcount</p><p class="number">248</p></div>
+      <div class="tile"><p>On leave today</p><p class="number">12</p></div>
+      <div class="tile"><p>Late arrivals today</p><p class="number">5</p></div>
+      <div class="tile"><p>Open leave requests</p><p class="number">7</p></div>
+    </section>
+
+    <section class="panel requests">
+      <h2>Leave requests waiting for approval</h2>
+      <ul>
+        <li><strong>Arjun Reddy</strong> — Casual leave, 2 days</li>
+        <li><strong>Meera Iyer</strong> — Earned leave, 5 days</li>
+        <li><strong>Fatima Khan</strong> — Sick leave, 1 day</li>
+      </ul>
+    </section>
+
+    <section class="panel office">
+      <h2>Our Hyderabad office</h2>
+      <!-- TODO 2: a picture: office-wide.png (640x320) from 40rem, otherwise office-tall.png (320x300); alt text -->
+    </section>
+  </main>
+</body>
+</html>

@@ -93,7 +93,7 @@ An internal link stays on the Acme HR site. `directory.html` and `leave.html` ar
 
 ## 4. `target`, `rel` and `download`
 
-`target="_blank"` opens the link in a new tab. Pair it with `rel="noopener noreferrer"`. `noopener` blocks the new page from reaching back into this one. `noreferrer` withholds the address of this page. `download` asks the browser to save the file. A payslip PDF can use `download`.
+`target="_blank"` opens the link in a new tab. Current browsers treat `_blank` as `noopener` by default, so the new page cannot reach back into this one. `rel="noreferrer"` still withholds the address of this page when you want that. Writing `rel="noopener noreferrer"` remains fine and makes the intent explicit. `download` asks the browser to save the file. A payslip PDF can use `download`.
 
 ### Example
 

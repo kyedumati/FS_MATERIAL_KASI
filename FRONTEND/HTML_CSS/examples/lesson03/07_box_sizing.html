@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>box-sizing — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .ruler { width: 300px; height: 8px; background-color: #1b2430; }
+    .box {
+      width: 300px;
+      padding: 20px;
+      border: 5px solid #1a365d;
+      background-color: #bfdbfe;
+      margin: 8px 0 24px;
+    }
+    .content-box { box-sizing: content-box; }
+    .border-box  { box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div class="ruler"></div>
+  <div class="box content-box">content-box: 300 + 40 + 10 = 350px wide</div>
+  <div class="ruler"></div>
+  <div class="box border-box">border-box: exactly 300px wide</div>
+</body>
+</html>

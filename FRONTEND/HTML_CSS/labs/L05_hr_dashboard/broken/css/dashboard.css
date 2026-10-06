@@ -1,0 +1,135 @@
+/* AcmeHR — HR dashboard */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1b2430;
+  background-color: #f4f6f8;
+}
+
+/* Header sticks to the top while the page scrolls */
+header {
+  position: sticky;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #1a365d;
+  color: #ffffff;
+}
+
+header p {
+  margin: 0;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  display: block;
+  padding: 12px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Page layout: title, tiles, then two panels side by side */
+.dashboard {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "title    title"
+    "tiles    tiles"
+    "requests departments";
+  gap: 16px;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.dashboard h1 {
+  grid-area: title;
+  margin: 0;
+  font-size: 1.75rem;
+  color: #1a365d;
+}
+
+.tiles        { grid-area: tiles; }
+.requests     { grid-area: request; }
+.departments  { grid-area: departments; }
+
+/* Tiles: as many columns as fit, each at least 180px */
+.tiles {
+  display: grid;
+  grid-template-column: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.tile,
+.panel {
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+}
+
+.tile p {
+  margin: 0;
+}
+
+.number {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #1a365d;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: #dc2626;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.panel h2 {
+  margin: 0 0 8px;
+  font-size: 1.125rem;
+  color: #1a365d;
+}
+
+.panel ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* Department counts: label left, number right */
+.departments dl {
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin: 0;
+}
+
+.departments dd {
+  margin: 0;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #3d4654;
+}

@@ -1,4 +1,4 @@
-# Session Calendar — 20 Weeks × 100 Live Sessions
+# Session Calendar — 21 Weeks × 105 Live Sessions
 
 **Schedule source of truth.** Follow the modules listed here in order. Classroom pacing follows this calendar.
 
@@ -6,16 +6,16 @@
 |---------|--------|
 | Live class | **1 hour 15 minutes** |
 | Days | Mon–Fri (5 sessions / week) |
-| Length | **20 weeks** |
-| Total live sessions | **100** |
-| Live hours | 100 × 1.25h = **125 hours** |
+| Length | **21 weeks** (20 + bridge week 12A for HTML & CSS) |
+| Total live sessions | **105** (S1–S100 + HTML & CSS sessions F1–F9, which replace the old S59–S62) |
+| Live hours | 105 × 1.25h = **131.25 hours** |
 | Homework | ~45–90 min after most sessions |
 
 **Compressed option:** 16 weeks is *not* recommended for this syllabus at 75 minutes/day. Use only with Saturday labs or fewer React/JPA outcomes.
 
 **Rule:** One live session = **one primary focus** (one concept block + one mini-lab). Do not schedule two full modules in one 75-minute class.
 
-**Engagement rule:** Start from a lab ticket (`15_Lab_Assets/`, or `GIT/labs/`, `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for Definition/Purpose as needed.
+**Engagement rule:** Start from a lab ticket (`15_Lab_Assets/`, or `GIT/labs/`, `FRONTEND/HTML_CSS/labs/`, `FRONTEND/labs/`, `FRONTEND/REACT/labs/`), then open module notes for Definition/Purpose as needed.
 
 **Biweekly Assessment:** After every even week (Weeks 2, 4, … 20), complete the matching paper from [`16_Assessments/`](16_Assessments/README.md) (BW01–BW10) as homework or Friday wrap-up. Graded papers live only under `16_Assessments/` — not inside modules.
 
@@ -122,14 +122,21 @@
 | 57 | 12 | JDBC INSERT/UPDATE/DELETE | same | No string-concat SQL |
 | 58 | 12 | JDBC Library CRUD mini + injection note | same | Push JDBC CRUD |
 
-## Phase D — Frontend (Sessions 59–65)
+## Phase D — Frontend (Sessions F1–F9, 63–65)
+
+**HTML & CSS (F1–F9):** nine sessions from the [HTML & CSS learning path](../FRONTEND/HTML_CSS/README.md), one AcmeHR page per session. They are numbered F1–F9 so that every other session keeps its number; week **12A** is the extra bridge week.
 
 | S# | Wk | Focus | Module | Homework |
 |---:|---:|-------|--------|---------|
-| 59 | 12 | HTML structure & semantic | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | Profile page |
-| 60 | 12 | Forms & a11y basics | same | Labeled form |
-| 61 | 13 | CSS box model + Flex | [../FRONTEND/02_CSS_and_Responsive.md](../FRONTEND/02_CSS_and_Responsive.md) | Layout |
-| 62 | 13 | Responsive + media queries | same | Mobile screenshot |
+| F1 | 12 | How the web works & first page | [Lesson_01](../FRONTEND/HTML_CSS/Lesson_01_How_the_Web_Works_and_Your_First_Page.md) · [lab](../FRONTEND/HTML_CSS/labs/L01_welcome_page/README.md) | Welcome page served locally |
+| F2 | 12 | Content & first CSS | [Lesson_02](../FRONTEND/HTML_CSS/Lesson_02_Content_and_Your_First_CSS.md) · [lab](../FRONTEND/HTML_CSS/labs/L02_leave_policy/README.md) | Leave policy page |
+| F3 | 12A | Page structure & box model | [Lesson_03](../FRONTEND/HTML_CSS/Lesson_03_Page_Structure_and_the_Box_Model.md) · [lab](../FRONTEND/HTML_CSS/labs/L03_employee_profile/README.md) | Employee profile |
+| F4 | 12A | Images, navigation & Flexbox | [Lesson_04](../FRONTEND/HTML_CSS/Lesson_04_Images_Navigation_and_Flexbox.md) · [lab](../FRONTEND/HTML_CSS/labs/L04_employee_directory/README.md) | Employee directory |
+| F5 | 12A | Grid & positioning | [Lesson_05](../FRONTEND/HTML_CSS/Lesson_05_Grid_and_Positioning.md) · [lab](../FRONTEND/HTML_CSS/labs/L05_hr_dashboard/README.md) | HR dashboard |
+| F6 | 12A | Forms (GET/POST, what the server receives) | [Lesson_06](../FRONTEND/HTML_CSS/Lesson_06_Forms.md) · [lab](../FRONTEND/HTML_CSS/labs/L06_apply_leave/README.md) | Apply-for-leave form |
+| F7 | 12A | Tables | [Lesson_07](../FRONTEND/HTML_CSS/Lesson_07_Tables.md) · [lab](../FRONTEND/HTML_CSS/labs/L07_attendance_report/README.md) | Attendance report |
+| F8 | 13 | Responsive design | [Lesson_08](../FRONTEND/HTML_CSS/Lesson_08_Responsive_Design.md) · [lab](../FRONTEND/HTML_CSS/labs/L08_responsive_portal/README.md) | Dashboard on a phone |
+| F9 | 13 | Polish, accessibility & final project | [Lesson_09](../FRONTEND/HTML_CSS/Lesson_09_Polish_Accessibility_and_Final_Project.md) · [lab](../FRONTEND/HTML_CSS/labs/L09_final_project/README.md) | Final project: AcmeHR portal |
 | 63 | 13 | JS variables, DOM, events | [../FRONTEND/03_JavaScript_DOM_Forms.md](../FRONTEND/03_JavaScript_DOM_Forms.md) | Click counter |
 | 64 | 13 | Form validation | same | Validate contact |
 | 65 | 13 | `fetch` JSON overview | same | Portfolio page push |

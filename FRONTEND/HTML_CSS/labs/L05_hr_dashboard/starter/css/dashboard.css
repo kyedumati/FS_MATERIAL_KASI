@@ -1,0 +1,95 @@
+/* AcmeHR — HR dashboard */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1b2430;
+  background-color: #f4f6f8;
+}
+
+/* TODO 5: the header sticks to the top while the page scrolls, above everything else */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #1a365d;
+  color: #ffffff;
+}
+
+header p {
+  margin: 0;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  display: block;
+  padding: 12px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* TODO 1: .dashboard — a grid with two columns (2fr 1fr) and three named rows of areas:
+           title title / tiles tiles / requests departments. 16px gap, max-width 1040px, centred, 24px padding.
+           Give .dashboard h1, .tiles, .requests and .departments their grid-area names.
+           (Keep .dashboard h1 margin 0, font-size 1.75rem, colour #1a365d.) */
+
+/* TODO 2: .tiles — a grid with as many columns as fit, each at least 180px; 16px gap */
+
+.tile,
+.panel {
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+}
+
+/* TODO 3: make .tile the anchor for the badge */
+
+.tile p {
+  margin: 0;
+}
+
+.number {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #1a365d;
+}
+
+/* TODO 4: .badge — placed 8px outside the tile's top-right corner; red #dc2626 pill, white bold 0.75rem text, padding 2px 8px */
+
+.panel h2 {
+  margin: 0 0 8px;
+  font-size: 1.125rem;
+  color: #1a365d;
+}
+
+.panel ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* TODO 6: .departments dl — two columns: names take the space, numbers only as wide as needed; 8px gap; no margin */
+
+.departments dd {
+  margin: 0;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #3d4654;
+}

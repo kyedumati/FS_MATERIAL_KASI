@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — AcmeHR</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; margin: 0; background-color: #f4f6f8; }
+    .dashboard {
+      display: grid;
+      grid-template-areas:
+        "title"
+        "tiles"
+        "requests"
+        "departments";
+      gap: 12px;
+      padding: 16px;
+    }
+    @media (min-width: 40rem) {
+      .dashboard {
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+          "title    title"
+          "tiles    tiles"
+          "requests departments";
+        padding: 24px;
+      }
+    }
+    h1 { grid-area: title; margin: 0; color: #1a365d; font-size: clamp(1.5rem, 1rem + 2.5vw, 2rem); }
+    .tiles { grid-area: tiles; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 12px; }
+    .requests { grid-area: requests; }
+    .departments { grid-area: departments; }
+    .tile, .panel { padding: 12px; background-color: #ffffff; border: 1px solid #d0d7de; border-radius: 8px; }
+    .tile p, .panel p { margin: 0; }
+    .number { font-size: 1.5rem; font-weight: bold; color: #1a365d; }
+  </style>
+</head>
+<body>
+  <main class="dashboard">
+    <h1>HR dashboard</h1>
+    <section class="tiles">
+      <div class="tile"><p>Headcount</p><p class="number">248</p></div>
+      <div class="tile"><p>On leave today</p><p class="number">12</p></div>
+      <div class="tile"><p>Late arrivals</p><p class="number">5</p></div>
+      <div class="tile"><p>Open requests</p><p class="number">7</p></div>
+    </section>
+    <section class="panel requests"><p><strong>Leave requests waiting for approval</strong></p><p>Arjun Reddy · Meera Iyer · Fatima Khan</p></section>
+    <section class="panel departments"><p><strong>Headcount by department</strong></p><p>Engineering 112 · Product 38</p></section>
+  </main>
+</body>
+</html>

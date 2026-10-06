@@ -296,7 +296,7 @@ A table is data in rows and columns. A payslip is that kind of data: a label and
 
 ## 8. Real-World Data Tables
 
-This is the September payslip. Basic ₹50,000, HRA ₹20,000, and special allowance ₹15,000 make a gross of ₹85,000. PF ₹6,000 and professional tax ₹200 leave a net pay of ₹78,800. Earnings and deductions are grouped with a spanning header row.
+This is the September payslip. Basic ₹50,000, HRA ₹20,000, and special allowance ₹15,000 make a gross of ₹85,000. PF ₹6,000 and professional tax ₹200 leave a net pay of ₹78,800. Earnings and deductions each sit in their own `<tbody>`. The group title is a row header with `scope="rowgroup"`. Do not use `scope="colgroup"` here: there is no `<colgroup>`, and these titles label rows, not columns.
 
 ### Example
 
@@ -328,7 +328,7 @@ This is the September payslip. Basic ₹50,000, HRA ₹20,000, and special allow
       </thead>
       <tbody>
         <tr>
-          <th colspan="2" scope="colgroup">Earnings</th>
+          <th colspan="2" scope="rowgroup">Earnings</th>
         </tr>
         <tr>
           <th scope="row">Basic</th>
@@ -346,8 +346,10 @@ This is the September payslip. Basic ₹50,000, HRA ₹20,000, and special allow
           <th scope="row">Gross</th>
           <td>₹85,000</td>
         </tr>
+      </tbody>
+      <tbody>
         <tr>
-          <th colspan="2" scope="colgroup">Deductions</th>
+          <th colspan="2" scope="rowgroup">Deductions</th>
         </tr>
         <tr>
           <th scope="row">PF</th>

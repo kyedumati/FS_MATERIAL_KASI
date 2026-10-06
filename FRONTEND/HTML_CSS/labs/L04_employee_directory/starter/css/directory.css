@@ -1,0 +1,40 @@
+/* AcmeHR — employee directory */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1b2430;
+  background-color: #f4f6f8;
+}
+
+/* TODO 1: header — logo on the left, links on the right, vertically centred,
+           navy #1a365d background, white text, padding 0 24px.
+           header p — no margin, bold. */
+
+/* TODO 2: nav links in a row: no bullets, no list indent;
+           each link a padded (12px) white block with no underline */
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #1a365d;
+}
+
+/* TODO 3: .cards — a row of cards that wraps, 16px gaps */
+
+/* TODO 4: .card — grows and shrinks from 260px; avatar and text side by side,
+           vertically centred, 12px gap; white background, 16px padding,
+           1px #d0d7de border, 8px rounded corners */
+
+/* TODO 5: round avatars; card h2 and p with no margins; h2 navy 1.0625rem; p 0.875rem #3d4654 */

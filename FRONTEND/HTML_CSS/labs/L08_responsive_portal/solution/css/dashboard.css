@@ -1,0 +1,120 @@
+/* AcmeHR — HR dashboard */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1b2430;
+  background-color: #f4f6f8;
+}
+
+header p {
+  margin: 0;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  display: block;
+  padding: 12px 0;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.tile,
+.panel {
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+}
+
+.tile p {
+  margin: 0;
+}
+
+.number {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #1a365d;
+}
+
+.panel h2 {
+  margin: 0 0 8px;
+  font-size: 1.125rem;
+  color: #1a365d;
+}
+
+.dashboard h1 { grid-area: title; margin: 0; color: #1a365d; }
+.tiles        { grid-area: tiles; }
+.requests     { grid-area: requests; }
+.office       { grid-area: office; }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Base: phones */
+header {
+  padding: 8px 16px;
+  background-color: #1a365d;
+  color: #ffffff;
+}
+
+nav ul {
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+
+.dashboard {
+  display: grid;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 16px;
+  gap: 16px;
+  grid-template-areas:
+    "title"
+    "tiles"
+    "requests"
+    "office";
+}
+
+.dashboard h1 {
+  font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+  gap: 16px;
+}
+
+/* From 640px wide */
+@media (min-width: 40rem) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+  }
+
+  .dashboard {
+    padding: 24px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title    title"
+      "tiles    tiles"
+      "requests office";
+  }
+}

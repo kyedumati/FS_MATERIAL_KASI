@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR dashboard — AcmeHR</title>
+  <meta name="description" content="Today's workforce figures and leave requests waiting for approval.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/acmehr.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <p class="logo">AcmeHR</p>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="dashboard.html" aria-current="page">Dashboard</a></li>
+        <li><a href="apply-leave.html">Leave</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="policies/leave.html">Policies</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="page dashboard">
+    <h1>HR dashboard</h1>
+
+    <section class="tiles" aria-label="Today">
+      <div class="tile"><p>Headcount</p><p class="number">248</p></div>
+      <div class="tile"><p>On leave today</p><p class="number">12</p></div>
+      <div class="tile"><p>Late arrivals today</p><p class="number">5</p></div>
+      <div class="tile">
+        <span class="badge">3 new</span>
+        <p>Open leave requests</p>
+        <p class="number">7</p>
+      </div>
+    </section>
+
+    <section class="panel requests">
+      <h2>Leave requests waiting for approval</h2>
+      <ul>
+        <li><strong>Arjun Reddy</strong> — Casual leave, 2 days</li>
+        <li><strong>Meera Iyer</strong> — Earned leave, 5 days</li>
+        <li><strong>Fatima Khan</strong> — Sick leave, 1 day</li>
+      </ul>
+    </section>
+
+    <section class="panel departments">
+      <h2>Headcount by department</h2>
+      <dl class="counts">
+        <dt>Engineering</dt><dd>112</dd>
+        <dt>Product</dt><dd>38</dd>
+        <dt>Finance</dt><dd>26</dd>
+        <dt>Human Resources</dt><dd>14</dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>AcmeHR · Sample data for this course</p>
+  </footer>
+</body>
+</html>

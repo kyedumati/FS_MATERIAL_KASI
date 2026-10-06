@@ -1,0 +1,45 @@
+/* ==========================================================================
+   AcmeHR — one stylesheet for every page
+   1. Design tokens   2. Base   3. Header and footer   4. Page layouts
+   5. Components      6. Forms  7. Tables              8. States and motion
+   ========================================================================== */
+
+/* 1. Design tokens — change a value here and every page follows */
+:root {
+  --color-brand: #1a365d;
+  --color-brand-hover: #2c5282;
+  --color-ink: #1b2430;
+  --color-muted: #3d4654;
+  --color-page: #f4f6f8;
+  --color-surface: #ffffff;
+  --color-border: #d0d7de;
+  --color-field-border: #6b7280;
+  --color-link: #1a56db;
+  --color-focus: #ea580c;
+  --color-danger: #dc2626;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+
+  --radius: 8px;
+  --radius-small: 6px;
+}
+
+/* 2. Base — box-sizing, body, images, links, headings, skip link */
+
+/* 3. Header and footer — mobile first; sticky header from 40rem */
+
+/* 4. Page layouts — .page, .page-narrow, .card, the dashboard grid */
+
+/* 5. Components — panels, tiles, cards, badges, status pills, label–value lists, FAQ */
+
+/* 6. Forms — fields, rows, choices, button */
+
+/* 7. Tables — scroll wrapper, data table, numbers */
+
+/* 8. States and motion — focus ring, hover, transitions, reduced motion */
+
+/* Wider screens — @media (min-width: 40rem) */

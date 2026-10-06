@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selectors — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+
+    p { color: #1b2430; }                     /* element: every p              */
+    .notice { background-color: #fef3c7; }    /* class: every class="notice"   */
+    #deadline { font-weight: bold; }          /* id: the one id="deadline"     */
+    li strong { color: #1a56db; }             /* descendant: strong inside li  */
+    h1, h2 { font-family: Georgia, serif; }   /* group: every h1 and every h2  */
+  </style>
+</head>
+<body>
+  <h1>Leave policy</h1>
+  <p>A normal paragraph.</p>
+  <p class="notice">A paragraph with class="notice".</p>
+  <p class="notice" id="deadline">A paragraph with class="notice" and id="deadline".</p>
+  <h2>Leave types</h2>
+  <ul>
+    <li><strong>Casual leave</strong> — strong inside li: blue</li>
+  </ul>
+  <p><strong>Strong inside p</strong> — not blue</p>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Units — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .px  { font-size: 16px; }
+    .rem { font-size: 1.25rem; }   /* 1.25 × the root font size (16px by default) = 20px */
+    .bar { background-color: #bfdbfe; margin: 8px 0; }
+    .half { width: 50%; }
+  </style>
+</head>
+<body>
+  <p class="px">font-size: 16px</p>
+  <p class="rem">font-size: 1.25rem — grows if the reader sets a bigger default font</p>
+  <div class="bar half">width: 50% of the parent</div>
+  <div class="bar">width: auto (a block takes 100%)</div>
+</body>
+</html>

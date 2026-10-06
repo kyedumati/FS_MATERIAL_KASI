@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex-direction — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .row, .column { display: flex; gap: 8px; background-color: #e2e8f0; padding: 8px; margin-bottom: 12px; }
+    .column { flex-direction: column; }
+    span { padding: 8px 16px; background-color: #1a365d; color: #ffffff; }
+  </style>
+</head>
+<body>
+  <p>flex-direction: row (default)</p>
+  <div class="row"><span>Casual</span><span>Sick</span><span>Earned</span></div>
+  <p>flex-direction: column</p>
+  <div class="column"><span>Casual</span><span>Sick</span><span>Earned</span></div>
+</body>
+</html>

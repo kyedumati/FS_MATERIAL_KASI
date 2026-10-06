@@ -14,7 +14,6 @@ body {
 }
 
 .card {
-  flex: 1 1 260px;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 1rem;
@@ -24,5 +23,9 @@ body {
   .cards {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .card {
+    flex: 1 1 260px;
   }
 }

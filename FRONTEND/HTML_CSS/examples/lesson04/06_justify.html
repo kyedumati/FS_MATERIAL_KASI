@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>justify-content — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .row { display: flex; background-color: #e2e8f0; margin-bottom: 12px; }
+    .row span { padding: 8px 16px; background-color: #1a365d; color: #ffffff; }
+    .start   { justify-content: flex-start; }
+    .center  { justify-content: center; }
+    .end     { justify-content: flex-end; }
+    .between { justify-content: space-between; }
+  </style>
+</head>
+<body>
+  <p>flex-start (default)</p>
+  <div class="row start"><span>Home</span><span>Profile</span><span>Leave</span></div>
+  <p>center</p>
+  <div class="row center"><span>Home</span><span>Profile</span><span>Leave</span></div>
+  <p>flex-end</p>
+  <div class="row end"><span>Home</span><span>Profile</span><span>Leave</span></div>
+  <p>space-between</p>
+  <div class="row between"><span>Home</span><span>Profile</span><span>Leave</span></div>
+</body>
+</html>

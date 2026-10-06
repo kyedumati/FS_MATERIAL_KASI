@@ -8,7 +8,7 @@ This pass is the HTML for three pages: home (`index.html`), the directory (`dire
 
 ## 1. Build a Multi-Page Website
 
-The site is three documents in one folder. Home introduces the Hyderabad office. The directory lists staff and shows one payslip. The leave page collects a request. Each file has a doctype, `lang`, charset, viewport, a title, and a link to `styles.css`.
+The site is three documents in one folder. Home introduces the Hyderabad office. The directory lists staff and shows one payslip. The leave page collects a request. Each file has a doctype, `lang`, charset, viewport, a title, and a link to `styles.css`. For these local files a relative `href="styles.css"` is fine. Under Django or Spring a route like `/leave/new/` would break that path — use `{% static %}` or `th:href="@{...}"` instead.
 
 | File | Page |
 |------|------|
@@ -274,7 +274,7 @@ The directory page includes the September payslip for Ananya Rao. The caption na
         </thead>
         <tbody>
           <tr>
-            <th colspan="2" scope="colgroup">Earnings</th>
+            <th colspan="2" scope="rowgroup">Earnings</th>
           </tr>
           <tr>
             <th scope="row">Basic</th>
@@ -292,8 +292,10 @@ The directory page includes the September payslip for Ananya Rao. The caption na
             <th scope="row">Gross</th>
             <td>₹85,000</td>
           </tr>
+        </tbody>
+        <tbody>
           <tr>
-            <th colspan="2" scope="colgroup">Deductions</th>
+            <th colspan="2" scope="rowgroup">Deductions</th>
           </tr>
           <tr>
             <th scope="row">PF</th>
@@ -323,7 +325,7 @@ The directory page includes the September payslip for Ananya Rao. The caption na
 
 ## 7. Forms
 
-The leave page posts to `/leave`. A file input needs `enctype="multipart/form-data"`. Each control has a label. The employee id is `readonly`, so it is submitted. A disabled control would not be. `required="false"` is still required, so the optional certificate omits `required`. The dialog heading is Confirm leave request. `open` would be non-modal. This dialog is modal, so the script calls `showModal()`.
+The leave page posts to `/leave`. A file input needs `enctype="multipart/form-data"`. Each control has a label. The POST includes a CSRF token so Django or Spring Security will accept it. The signed-in employee is shown as text; the server takes identity from the session, not from a form field. `required="false"` is still required, so the optional certificate omits `required`. The leave-type select starts with an empty option so `required` can block submit. Every button has an explicit `type`. Confirm closes the dialog and, when its value is `confirm`, submits the leave form.
 
 ### Example
 
@@ -347,11 +349,9 @@ The leave page posts to `/leave`. A file input needs `enctype="multipart/form-da
   </header>
   <main>
     <h2>Leave request</h2>
-    <form action="/leave" method="post" enctype="multipart/form-data">
-      <p>
-        <label for="employee-id">Employee ID</label>
-        <input id="employee-id" name="employee_id" type="text" value="E-1042" readonly>
-      </p>
+    <p>Signed in as Ananya Rao (E-1042).</p>
+    <form id="leave-form" action="/leave" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="csrfmiddlewaretoken" value="…">
       <p>
         <label for="email">Work email</label>
         <input id="email" name="email" type="email" autocomplete="email" required>
@@ -379,20 +379,30 @@ The leave page posts to `/leave`. A file input needs `enctype="multipart/form-da
         <input id="certificate" name="certificate" type="file" accept=".pdf,application/pdf">
       </p>
       <button type="submit">Submit leave</button>
-      <button type="button" id="open-confirm">Review leave</button>
+      <button type="button" id="open-confirm" command="show-modal" commandfor="confirm-leave">Review leave</button>
     </form>
     <dialog id="confirm-leave">
       <h2>Confirm leave request</h2>
       <p>Submit this leave request?</p>
       <form method="dialog">
-        <button value="cancel">Cancel</button>
-        <button value="confirm">Confirm</button>
+        <button type="submit" value="cancel">Cancel</button>
+        <button type="submit" value="confirm">Confirm</button>
       </form>
     </dialog>
   </main>
   <script>
-    document.querySelector("#open-confirm").addEventListener("click", function () {
-      document.querySelector("#confirm-leave").showModal();
+    const leaveForm = document.querySelector("#leave-form");
+    const dialog = document.querySelector("#confirm-leave");
+    const openConfirm = document.querySelector("#open-confirm");
+    if (!("command" in HTMLButtonElement.prototype)) {
+      openConfirm.addEventListener("click", function () {
+        dialog.showModal();
+      });
+    }
+    dialog.addEventListener("close", function () {
+      if (dialog.returnValue === "confirm") {
+        leaveForm.requestSubmit();
+      }
     });
   </script>
 </body>
@@ -461,7 +471,7 @@ Home uses `header`, `nav`, `main`, `section`, `aside`, `footer`, and `address`. 
 
 ## 9. Accessibility
 
-This is a review of alt text, labels, and headings. The staff photo has alt text. Every leave field has a label whose `for` matches the control `id`. The page has one `h1`. The directory is an `h2`. An employee is an `h3`. `tabindex` is only `0` and `-1`, and these pages do not need a positive value. `target="_blank"` is paired with `rel="noopener noreferrer"` if a holiday link leaves the site.
+This is a review of alt text, labels, and headings. The staff photo has alt text. Every leave field has a label whose `for` matches the control `id`. The page has one `h1` (the site name, Acme HR). The directory is an `h2`. An employee is an `h3`. Prefer `tabindex` of `0` or `-1` only; these pages need neither. Current browsers treat `target="_blank"` as `noopener` by default; `rel="noreferrer"` is still useful when you want to withhold the referrer.
 
 ### Example
 
@@ -599,7 +609,7 @@ Open the directory and inspect an employee article. Confirm the heading level is
 
 ## 13. Final Project Review
 
-Home, directory, and leave share the header, the nav, and the office address. The directory holds three articles, the staff photo, and the payslip. The leave page holds the form and the confirm dialog. Money is in ₹. The next module writes `styles.css` for these same pages. Django will serve that file from `static/`. Spring Boot will serve it from `src/main/resources/static/`.
+Home, directory, and leave share the header, the nav, and the office address. The directory holds three articles, the staff photo, and the payslip. The leave page holds the form and the confirm dialog. Money is in ₹. The next module writes `styles.css` for these same pages. Django will serve that file from `static/` with `{% static %}`. Spring Boot will serve it from `src/main/resources/static/` with `th:href="@{...}"`.
 
 ### Example
 

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Errors from the server — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    p { margin: 0 0 4px; }
+    .error-summary { padding: 8px 12px; border: 1px solid #b91c1c; color: #b91c1c; margin-bottom: 16px; }
+    .error { color: #b91c1c; font-size: 0.875rem; }
+    input[aria-invalid="true"] { border: 2px solid #b91c1c; }
+  </style>
+</head>
+<body>
+  <form action="/leave" method="post">
+    <p class="error-summary">Please fix 1 error below.</p>
+    <p><label for="to-date">To</label></p>
+    <p><input type="date" id="to-date" name="to_date" value="2026-10-05"
+              aria-invalid="true" aria-describedby="to-date-error"></p>
+    <p class="error" id="to-date-error">The end date must be on or after the start date (6 October 2026).</p>
+  </form>
+</body>
+</html>

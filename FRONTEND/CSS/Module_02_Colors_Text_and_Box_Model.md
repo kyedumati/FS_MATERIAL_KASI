@@ -118,7 +118,7 @@ h2 {
 
 ## 20. Backgrounds
 
-`background-color` fills the box. `background-image` paints a picture behind the content. `background-repeat` controls tiling. `background-position` places the image. `background-size` sets its size. A solid colour is enough for the Acme HR page. An image is an extra layer, not a replacement for the text.
+`background-color` fills the box. `background-image` paints a picture behind the content. `background-repeat` controls tiling. `background-position` places the image. `background-size` sets its size. A solid colour is enough for the Acme HR page. An image is an extra layer, not a replacement for the text. Links keep the browser's default blue unless you restyle them — on a navy header that blue fails contrast, so set the nav link colour explicitly.
 
 ### Example
 
@@ -130,6 +130,10 @@ body {
 
 header {
   background-color: #1a365d;
+  color: #ffffff;
+}
+
+header a {
   color: #ffffff;
 }
 ```

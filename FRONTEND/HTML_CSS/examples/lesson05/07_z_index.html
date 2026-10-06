@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>z-index — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .box {
+      position: absolute;
+      width: 200px;
+      padding: 16px;
+      color: #ffffff;
+    }
+    .one   { top: 16px;  left: 16px;  background-color: #1a365d; z-index: 1; }
+    .two   { top: 40px;  left: 96px;  background-color: #047857; z-index: 3; }
+    .three { top: 64px;  left: 176px; background-color: #b45309; z-index: 2; }
+    .space { height: 130px; }
+  </style>
+</head>
+<body>
+  <div class="box one">one — z-index: 1</div>
+  <div class="box two">two — z-index: 3</div>
+  <div class="box three">three — z-index: 2</div>
+  <div class="space"></div>
+</body>
+</html>

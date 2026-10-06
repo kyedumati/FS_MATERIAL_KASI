@@ -4,7 +4,7 @@
 **Previous:** [CSS Development Practices](Module_06_CSS_Development_Practices.md)  
 **Next:** [JavaScript DOM Forms](../03_JavaScript_DOM_Forms.md)
 
-This pass styles the same three pages as the HTML project: `index.html`, `directory.html`, and `leave.html`. The rules live in one `styles.css`. Django serves it from `static/`. Spring Boot serves it from `src/main/resources/static/`.
+This pass styles the same three pages as the HTML project: `index.html`, `directory.html`, and `leave.html`. The rules live in one `styles.css`. Django serves it from `static/` — link with `{% static 'css/styles.css' %}`. Spring Boot serves it from `src/main/resources/static/` — link with `th:href="@{/css/styles.css}"`. A relative `href="styles.css"` is fine for the local files in this folder; it breaks on nested app routes.
 
 ## 104. Build a Responsive Multi-Page Website
 
@@ -232,7 +232,7 @@ Each employee is an article with the class `employee-card`. The card is `positio
 .employee-card {
   position: relative;
   background-color: #ffffff;
-  border: 1px solid #d0d7de;
+  border: 1px solid #6e7781;
   padding: 1rem;
 }
 
@@ -348,7 +348,7 @@ label {
 input, select, textarea {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #d0d7de;
+  border: 1px solid #6e7781;
   font: inherit;
 }
 
@@ -365,7 +365,7 @@ table {
 }
 
 th, td {
-  border: 1px solid #d0d7de;
+  border: 1px solid #6e7781;
   padding: 0.5rem;
   text-align: left;
 }
@@ -780,7 +780,7 @@ Inspect a card and confirm the grid tracks. Inspect the header and confirm `posi
 }
 
 .employee-card {
-  border: 1px solid #d0d7de;
+  border: 1px solid #6e7781;
   padding: 1rem;
 }
 ```
@@ -834,7 +834,7 @@ The finished `styles.css` below is the file linked from home, the directory, and
   --page: #f4f6f8;
   --surface: #ffffff;
   --muted: #3d4654;
-  --line: #d0d7de;
+  --line: #6e7781;
   --space: 1rem;
 }
 

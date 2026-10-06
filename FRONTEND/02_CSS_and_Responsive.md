@@ -5,6 +5,9 @@
 **Previous:** [HTML](01_HTML.md)  
 **Next:** [JavaScript DOM Forms](03_JavaScript_DOM_Forms.md)
 
+
+> **Reference.** This is a topic-by-topic lookup. To learn or teach HTML and CSS, follow the [HTML & CSS learning path](HTML_CSS/README.md) — 9 lessons, in teaching order, with labs.
+
 ---
 
 ## About the Tutorial

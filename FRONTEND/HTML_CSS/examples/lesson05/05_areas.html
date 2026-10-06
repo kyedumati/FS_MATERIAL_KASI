@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template areas — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; }
+    .page {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      grid-template-areas:
+        "header header"
+        "menu   main"
+        "footer footer";
+      gap: 8px;
+    }
+    header { grid-area: header; }
+    nav    { grid-area: menu; }
+    main   { grid-area: main; }
+    footer { grid-area: footer; }
+    header, nav, main, footer { padding: 16px; background-color: #e2e8f0; }
+    main { height: 160px; }
+  </style>
+</head>
+<body class="page">
+  <header>header</header>
+  <nav>nav (area "menu")</nav>
+  <main>main</main>
+  <footer>footer</footer>
+</body>
+</html>

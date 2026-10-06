@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex shorthand — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .cards { display: flex; flex-wrap: wrap; gap: 16px; }
+    .card {
+      flex: 1 1 240px;   /* grow, shrink, start at 240px */
+      padding: 16px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cards">
+    <div class="card">Ananya Rao</div>
+    <div class="card">Karthik Menon</div>
+    <div class="card">Meera Iyer</div>
+    <div class="card">Rahul Sharma</div>
+    <div class="card">Fatima Khan</div>
+  </div>
+</body>
+</html>

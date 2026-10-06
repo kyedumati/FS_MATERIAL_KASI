@@ -6,6 +6,9 @@
 **Previous (Java FS):** [JDBC CRUD](../JAVA/07_JDBC/01_JDBC_CRUD.md)  
 **Next:** [CSS and Responsive](02_CSS_and_Responsive.md)
 
+
+> **Reference.** This is a topic-by-topic lookup. To learn or teach HTML and CSS, follow the [HTML & CSS learning path](HTML_CSS/README.md) — 9 lessons, in teaching order, with labs.
+
 ---
 
 ## About the Tutorial

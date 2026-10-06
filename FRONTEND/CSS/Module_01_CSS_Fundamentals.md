@@ -525,7 +525,7 @@ A pseudo-element styles a part of an element, or inserts a piece of content. It 
 
 ## 12. CSS Cascade
 
-The cascade decides which rule wins when two rules set the same property. Origin and importance come first. Then specificity. Then source order. A later CSS rule wins only when specificity is equal. These two rules have the same specificity. The second colour is the one the browser uses.
+The cascade decides which rule wins when two rules set the same property. Compare origin and importance first (user-agent, user, author; then `!important` layers). Inside the author origin, `@layer` order comes next, then specificity, then source order. An inline `style=""` attribute beats a class or element rule unless an `!important` declaration outranks it. A later CSS rule wins only when specificity is equal. These two rules have the same specificity. The second colour is the one the browser uses.
 
 ### Example
 
@@ -765,13 +765,13 @@ h1 {
 
 ## 17. `px`, `%`, `em`, `rem`, `vw`, `vh`
 
-`px` is a fixed screen pixel. `%` is a share of the parent. `em` is a multiple of the element's font size, and for padding it uses the element's own font size. `rem` is a multiple of the root font size. `vw` is a percentage of the viewport width. `vh` is a percentage of the viewport height. Use `rem` for type so a reader who enlarges the root font enlarges the page.
+`px` is a CSS reference pixel, not a raw device pixel on a high-density screen. `%` is a share of the parent. For `font-size`, `em` is relative to the parent's font size, so nested `em` sizes compound (`1.2em` inside `1.2em` is larger than `1.2em` alone). For properties like `padding`, `em` uses the element's own font size. `rem` is a multiple of the root font size and does not compound that way. `vw` is a percentage of the viewport width. `vh` is a percentage of the viewport height. Use `rem` for type so a reader who enlarges the root font enlarges the page.
 
 | Unit | Measured against |
 |------|------------------|
-| `px` | A fixed pixel |
+| `px` | A CSS reference pixel |
 | `%` | The parent, for widths |
-| `em` | The current font size |
+| `em` | Parent font size for `font-size`; own font size for most other properties |
 | `rem` | The root font size |
 | `vw` | The viewport width |
 | `vh` | The viewport height |

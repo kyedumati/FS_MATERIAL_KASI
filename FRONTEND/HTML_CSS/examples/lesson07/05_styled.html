@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled table — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    table {
+      border-collapse: collapse;   /* one line between cells, not two */
+      width: 100%;
+    }
+    caption {
+      text-align: left;
+      font-weight: bold;
+      padding-bottom: 8px;
+    }
+    th, td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #d0d7de;
+      text-align: left;
+    }
+    thead th {
+      border-bottom: 2px solid #1a365d;
+    }
+    .num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;   /* every digit the same width */
+    }
+    tbody tr:nth-child(even) {
+      background-color: #f4f6f8;            /* zebra stripes */
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <caption>Attendance, Monday 5 October 2026</caption>
+    <thead>
+      <tr>
+        <th scope="col">Employee</th>
+        <th scope="col">Check-in</th>
+        <th scope="col">Check-out</th>
+        <th scope="col" class="num">Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Ananya Rao</th><td>09:02</td><td>18:10</td><td class="num">9.1</td></tr>
+      <tr><th scope="row">Karthik Menon</th><td>09:41</td><td>18:30</td><td class="num">8.8</td></tr>
+      <tr><th scope="row">Meera Iyer</th><td>08:55</td><td>17:20</td><td class="num">8.4</td></tr>
+      <tr><th scope="row">Rahul Sharma</th><td>10:05</td><td>19:00</td><td class="num">8.9</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

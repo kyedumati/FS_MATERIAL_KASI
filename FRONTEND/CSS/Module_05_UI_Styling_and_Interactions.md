@@ -8,7 +8,7 @@ These rules style the leave form, the buttons, and the September payslip. Motion
 
 ## 74. Styling HTML Forms
 
-Labels stack above the fields. Fields share a width, a border, and padding. The leave form stays in normal flow under the directory. Set `box-sizing: border-box` on the universal selector so the padding stays inside the width.
+Labels stack above the fields. Fields share a width, a border, and padding. The leave form stays in normal flow under the directory. Set `box-sizing: border-box` on the universal selector so the padding stays inside the width. UI component boundaries need about 3:1 contrast against the adjacent surface. A light grey like `#d0d7de` on white is only about 1.5:1 — use a darker line such as `#6e7781`.
 
 ### Example
 
@@ -27,7 +27,7 @@ input, select, textarea {
   width: 100%;
   max-width: 24rem;
   padding: 0.5rem;
-  border: 1px solid #d0d7de;
+  border: 1px solid #6e7781;
   font: inherit;
 }
 ```
@@ -125,7 +125,7 @@ table {
 }
 
 th, td {
-  border: 1px solid #d0d7de;
+  border: 1px solid #6e7781;
   padding: 0.5rem;
   text-align: left;
 }
@@ -214,7 +214,7 @@ nav a {
 
 .employee-card {
   background-color: #ffffff;
-  border: 1px solid #d0d7de;
+  border: 1px solid #6e7781;
   padding: 1rem;
 }
 ```
@@ -381,7 +381,7 @@ input:focus {
 
 ## 81. `:focus-visible`
 
-Ship `:focus-visible`. It matches when the browser would draw a focus ring for a keyboard user. Do not remove an outline unless another visible style replaces it. The leave button keeps a 2 pixel navy outline, offset from the box.
+Ship `:focus-visible`. It matches when the browser would draw a focus ring for a keyboard user. Do not remove an outline unless another visible style replaces it. On light surfaces use a navy ring. On the navy header that same navy outline disappears, so header links need a light ring.
 
 ### Example
 
@@ -390,6 +390,10 @@ Ship `:focus-visible`. It matches when the browser would draw a focus ring for a
 :focus-visible {
   outline: 2px solid #1a365d;
   outline-offset: 2px;
+}
+
+header :focus-visible {
+  outline-color: #ffffff;
 }
 ```
 
@@ -405,6 +409,10 @@ Ship `:focus-visible`. It matches when the browser would draw a focus ring for a
 <body>
   <header>
     <h1>Acme HR</h1>
+    <nav>
+      <a href="directory.html">Directory</a>
+      <a href="leave.html">Leave</a>
+    </nav>
   </header>
   <main>
     <a href="directory.html">Directory</a>
@@ -586,13 +594,17 @@ a.button:hover {
 
 ## 86. CSS Transforms
 
-`transform` moves, scales, or rotates a box without changing the layout around it. A card can lift a few pixels on hover. That move is motion. Wrap it the same way as a transition. The directory does not depend on the lift. The name stays readable if the transform never runs.
+`transform` moves, scales, or rotates a box without changing the layout around it. A card can lift a few pixels on hover. That move is motion. Pair the transform with a `transition` so the card eases instead of jumping. Wrap both the same way as other motion. The directory does not depend on the lift. The name stays readable if the transform never runs.
 
 ### Example
 
 ```css
 /* styles.css */
 @media (prefers-reduced-motion: no-preference) {
+  .employee-card {
+    transition: transform 0.2s;
+  }
+
   .employee-card:hover {
     transform: translateY(-2px);
   }
@@ -628,15 +640,20 @@ a.button:hover {
 
 ## 87. CSS Animations
 
-An animation runs a set of keyframes, once or in a loop. A transition runs when a property changes. Acme HR uses one transition, on the button. A looping animation is not part of the portal. The labs do not use animations.
+An animation runs a set of keyframes, once or in a loop. A transition runs when a property changes (see the button example above). The sample below is an animation: `@keyframes` names the steps, and `animation` applies them. A looping decoration is not part of the Acme HR portal. The labs do not use animations.
 
 ### Example
 
 ```css
-/* styles.css */
+/* Demo only — not used on the Acme HR pages or in the labs. */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  a.button {
-    transition: background-color 0.2s;
+  .status-badge {
+    animation: fade-in 0.4s ease-out;
   }
 }
 ```
@@ -647,7 +664,7 @@ An animation runs a set of keyframes, once or in a loop. A transition runs when 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acme HR — Motion</title>
+  <title>Acme HR — Animation</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -655,7 +672,7 @@ An animation runs a set of keyframes, once or in a loop. A transition runs when 
     <h1>Acme HR</h1>
   </header>
   <main>
-    <a class="button" href="directory.html">Open the directory</a>
+    <p class="status-badge">Leave submitted</p>
   </main>
 </body>
 </html>
@@ -663,19 +680,23 @@ An animation runs a set of keyframes, once or in a loop. A transition runs when 
 
 **This will produce the following result:**
 
-![Browser output — transition only](screens/05_animation.png)
+![Browser output — fade-in animation](screens/05_animation.png)
 
 ## 88. `@keyframes`
 
-`@keyframes` names the steps of an animation. The labs do not use `@keyframes`. The sample below fades a badge. Leave it out of the Acme HR pages. The button transition does not need keyframes.
+`@keyframes` names the steps of an animation. Nothing moves until a rule also sets `animation` (or `animation-name`) that refers to that name. The labs do not use `@keyframes`. Leave looping motion out of the Acme HR pages. The button transition does not need keyframes.
 
 ### Example
 
 ```css
-/* Not used on the Acme HR pages or in the labs. */
+/* Demo only — not used on the Acme HR pages or in the labs. */
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+.status-badge {
+  animation: fade-in 0.4s ease-out;
 }
 ```
 
@@ -685,7 +706,7 @@ An animation runs a set of keyframes, once or in a loop. A transition runs when 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acme HR</title>
+  <title>Acme HR — Keyframes</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -693,7 +714,7 @@ An animation runs a set of keyframes, once or in a loop. A transition runs when 
     <h1>Acme HR</h1>
   </header>
   <main>
-    <p>The portal does not run this animation.</p>
+    <p class="status-badge">Leave submitted</p>
   </main>
 </body>
 </html>
@@ -701,11 +722,11 @@ An animation runs a set of keyframes, once or in a loop. A transition runs when 
 
 **This will produce the following result:**
 
-![Browser output — no keyframe animation](screens/05_keyframes.png)
+![Browser output — keyframes applied](screens/05_keyframes.png)
 
 ## 89. Accessibility & Focus States
 
-Ship `:focus-visible`. Do not remove an outline unless another visible style replaces it. Muted text must clear 4.5:1 on the page background. A link needs an underline or another cue besides colour. The payslip amounts stay in a table with headers. The styles do not remove those headers.
+Ship `:focus-visible`. Do not remove an outline unless another visible style replaces it. Use a light focus ring on the navy header. Muted text must clear 4.5:1 on the page background. Input and card borders need about 3:1 against the adjacent surface. A link needs an underline or another cue besides colour. The payslip amounts stay in a table with headers. The styles do not remove those headers.
 
 ### Example
 
@@ -728,6 +749,10 @@ a {
   outline: 2px solid #1a365d;
   outline-offset: 2px;
 }
+
+header :focus-visible {
+  outline-color: #ffffff;
+}
 ```
 
 ```html
@@ -742,6 +767,9 @@ a {
 <body>
   <header>
     <h1>Acme HR</h1>
+    <nav>
+      <a href="directory.html">Directory</a>
+    </nav>
   </header>
   <main>
     <p><a href="directory.html">Directory</a></p>

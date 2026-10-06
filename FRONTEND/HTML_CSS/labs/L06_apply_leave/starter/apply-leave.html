@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply for leave — AcmeHR</title>
+  <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+  <header>
+    <p>AcmeHR</p>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Directory</a></li>
+        <li><a href="#">Leave</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Apply for leave</h1>
+    <p>Balance: Casual 8 · Sick 10 · Earned 15 days</p>
+
+    <!-- TODO: a form that POSTs to /leave and can upload a file. Every field: a label linked with for/id, and a name.
+         1. Leave type (select, required): empty first option, then casual, sick, earned, maternity, paternity, lop
+         2. From and To (date, required) inside <div class="dates">
+         3. Duration (fieldset + legend): radios Full day (checked) / First half / Second half — one group
+         4. Reason (textarea, required, at most 200 characters)
+         5. Supporting document (file, optional, PDF or images only)
+         6. Checkbox "Email my team about this leave" (value yes) inside <div class="field field-check">
+         7. A submit button "Apply for leave"
+         Wrap each label + control in <div class="field">. -->
+  </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply for leave — AcmeHR</title>
+  <link rel="stylesheet" href="form.css">
+</head>
+<body>
+  <header>
+    <p>AcmeHR</p>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Directory</a></li>
+        <li><a href="#">Leave</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Apply for leave</h1>
+    <p>Balance: Casual 8 · Sick 10 · Earned 15 days</p>
+
+    <form action="/leave" method="post" enctype="multipart/form-data">
+      <div class="field">
+        <label for="leave-type">Leave type</label>
+        <select id="leave-type" name="leave_type" required>
+          <option value="">Choose a leave type</option>
+          <option value="casual">Casual leave</option>
+          <option value="sick">Sick leave</option>
+          <option value="earned">Earned leave</option>
+          <option value="maternity">Maternity leave</option>
+          <option value="paternity">Paternity leave</option>
+          <option value="lop">Loss of pay</option>
+        </select>
+      </div>
+
+      <div class="dates">
+        <div class="field">
+          <label for="from-date">From</label>
+          <input type="date" id="from-date" name="from_date" required>
+        </div>
+        <div class="field">
+          <label for="to-date">To</label>
+          <input type="date" id="to-date" name="to_date" required>
+        </div>
+      </div>
+
+      <fieldset>
+        <legend>Duration</legend>
+        <input type="radio" id="full-day" name="duration" value="full" checked>
+        <label for="full-day">Full day</label>
+        <input type="radio" id="first-half" name="duration" value="first_half">
+        <label for="first-half">First half</label>
+        <input type="radio" id="second-half" name="duration" value="second_half">
+        <label for="second-half">Second half</label>
+      </fieldset>
+
+      <div class="field">
+        <label for="reason">Reason</label>
+        <textarea id="reason" name="reason" rows="4" required maxlength="200"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="document">Supporting document (optional, PDF or image)</label>
+        <input type="file" id="document" name="document" accept=".pdf,image/*">
+      </div>
+
+      <div class="field field-check">
+        <input type="checkbox" id="notify" name="notify_team" value="yes">
+        <label for="notify">Email my team about this leave</label>
+      </div>
+
+      <button type="submit">Apply for leave</button>
+    </form>
+  </main>
+</body>
+</html>

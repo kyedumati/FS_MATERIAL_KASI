@@ -1,0 +1,90 @@
+/* AcmeHR — employee directory */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1b2430;
+  background-color: #f4f6f8;
+}
+
+/* Header: logo on the left, navigation on the right */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #1a365d;
+  color: #ffffff;
+}
+
+header p {
+  margin: 0;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  display: block;
+  padding: 12px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #1a365d;
+}
+
+/* Cards: wrap onto new rows, equal gaps */
+.cards {
+  display: flex;
+  gap: 16px;
+}
+
+.card {
+  flex: 1 1 260px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+}
+
+.card img {
+  border-radius: 50%;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.0625rem;
+  color: #1a365d;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #3d4654;
+}

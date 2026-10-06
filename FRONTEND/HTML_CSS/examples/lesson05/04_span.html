@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spanning — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .tile { padding: 16px; background-color: #ffffff; border: 1px solid #d0d7de; border-radius: 8px; }
+    .tile p { margin: 0; }
+    .number { font-size: 1.75rem; font-weight: bold; color: #1a365d; }
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .wide { grid-column: span 2; }    /* two columns */
+    .full { grid-column: 1 / -1; }    /* from the first line to the last */
+  </style>
+</head>
+<body>
+  <div class="tiles">
+    <div class="tile full"><p>Welcome back, Rahul. 7 leave requests need your attention.</p></div>
+    <div class="tile wide"><p>Leave utilisation this quarter</p><p class="number">62%</p></div>
+    <div class="tile"><p>Headcount</p><p class="number">248</p></div>
+    <div class="tile"><p>On leave today</p><p class="number">12</p></div>
+    <div class="tile"><p>Late arrivals today</p><p class="number">5</p></div>
+    <div class="tile"><p>New joiners</p><p class="number">3</p></div>
+  </div>
+</body>
+</html>

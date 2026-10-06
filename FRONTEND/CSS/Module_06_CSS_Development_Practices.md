@@ -87,7 +87,7 @@ A class is reusable. `button` styles the leave submit control and the directory 
 
 ## 93. Organizing CSS Files
 
-Keep one `styles.css` for these pages. Order the file as variables, then base elements, then layout, then components. Django serves the file from `static/`. Spring Boot serves it from `src/main/resources/static/`. The HTML links it with `<link rel="stylesheet" href="styles.css">`. A second page uses the same link.
+Keep one `styles.css` for these pages. Order the file as variables, then base elements, then layout, then components. Django serves the file from `static/`. Spring Boot serves it from `src/main/resources/static/`. Local lesson files can use `<link rel="stylesheet" href="styles.css">`, but that relative path breaks on routes such as `/leave/new/`. In Django use `{% load static %}` and `{% static 'css/styles.css' %}`. In Thymeleaf use `th:href="@{/css/styles.css}"`.
 
 ### Example
 
@@ -482,7 +482,7 @@ When a card overflows the phone, check `width`, `min-width`, and a missing `flex
 
 ## 102. Flexbox & Grid DevTools
 
-Browsers mark a flex or grid container with a badge in the Elements panel. Open it to see the tracks, the gap, and the item sizes. Use it on the header to confirm the main axis. Use it on the directory to confirm the columns. `flex: 1 1 260px` means grow, shrink, and basis. The overlay shows that basis.
+Browsers mark a flex or grid container with a badge in the Elements panel. Open it to see the tracks, the gap, and the item sizes. Use it on the header to confirm the main axis. Use it on the directory to confirm the columns. `flex: 1 1 260px` means grow, shrink, and basis. Put that shorthand in the row query. On a column the 260px would be height. The overlay shows the basis on the main axis.
 
 ### Example
 
@@ -490,12 +490,19 @@ Browsers mark a flex or grid container with a badge in the Elements panel. Open 
 /* styles.css */
 .cards {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
 }
 
-.employee-card {
-  flex: 1 1 260px;
+@media (min-width: 40rem) {
+  .cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .employee-card {
+    flex: 1 1 260px;
+  }
 }
 ```
 
@@ -545,6 +552,10 @@ The device toolbar in developer tools sets a viewport width. Check the directory
   .cards {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .employee-card {
+    flex: 1 1 260px;
   }
 }
 ```

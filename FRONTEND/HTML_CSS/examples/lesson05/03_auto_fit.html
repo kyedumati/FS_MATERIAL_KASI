@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>auto-fit — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .tile { padding: 16px; background-color: #ffffff; border: 1px solid #d0d7de; border-radius: 8px; }
+    .tile p { margin: 0; }
+    .number { font-size: 1.75rem; font-weight: bold; color: #1a365d; }
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="tiles">
+    <div class="tile"><p>Headcount</p><p class="number">248</p></div>
+    <div class="tile"><p>On leave today</p><p class="number">12</p></div>
+    <div class="tile"><p>Late arrivals today</p><p class="number">5</p></div>
+    <div class="tile"><p>Attrition, last 12 months</p><p class="number">8.4%</p></div>
+    <div class="tile"><p>Open leave requests</p><p class="number">7</p></div>
+    <div class="tile"><p>New joiners this month</p><p class="number">3</p></div>
+  </div>
+</body>
+</html>

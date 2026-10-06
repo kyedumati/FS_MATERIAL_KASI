@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button states — AcmeHR</title>
+  <style>
+    :root {
+      --color-brand: #1a365d;
+      --color-ink: #1b2430;
+      --color-muted: #3d4654;
+      --color-surface: #ffffff;
+      --color-border: #d0d7de;
+      --color-focus: #ea580c;
+      --space-2: 8px;
+      --space-4: 16px;
+      --radius: 8px;
+    }
+    body { font-family: system-ui, sans-serif; color: var(--color-ink); }
+    body { padding: var(--space-4); }
+    .button {
+      padding: 10px 20px;
+      border: 0;
+      border-radius: 6px;
+      background-color: var(--color-brand);
+      color: #ffffff;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #2c5282;
+      transform: translateY(-2px);   /* lift it 2px */
+    }
+    .button:active {
+      transform: translateY(0);
+    }
+    .button:focus-visible {
+      outline: 3px solid var(--color-focus);
+      outline-offset: 2px;
+    }
+
+    /* People who ask their system for less motion get no movement */
+    @media (prefers-reduced-motion: reduce) {
+      .button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="button" id="apply" type="button">Apply for leave</button>
+</body>
+</html>

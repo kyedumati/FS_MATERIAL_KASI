@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>align-items — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .row { display: flex; height: 96px; background-color: #e2e8f0; margin-bottom: 12px; }
+    .row span { padding: 8px 16px; background-color: #1a365d; color: #ffffff; }
+    .stretch { align-items: stretch; }
+    .start   { align-items: flex-start; }
+    .center  { align-items: center; }
+  </style>
+</head>
+<body>
+  <p>stretch (default)</p>
+  <div class="row stretch"><span>AcmeHR</span><span>Home</span><span>Profile</span></div>
+  <p>flex-start</p>
+  <div class="row start"><span>AcmeHR</span><span>Home</span><span>Profile</span></div>
+  <p>center</p>
+  <div class="row center"><span>AcmeHR</span><span>Home</span><span>Profile</span></div>
+</body>
+</html>

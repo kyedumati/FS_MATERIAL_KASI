@@ -40,7 +40,7 @@ The clip in this module is a short HR policy recording. The dialog says Confirm 
 
 ## 2. `<video>`
 
-`<video>` plays a picture with sound. `controls` shows the play bar. `width` and `height` reserve the box. The same leave policy can be a short clip. The words inside the element are a fallback when the browser cannot play the file.
+`<video>` plays a picture with sound. `controls` shows the play bar. `width` and `height` reserve the box. The same leave policy can be a short clip. The words inside the element are a fallback only when the browser does not support `<video>` at all. A missing or broken file does not show that text; the player stays empty or shows its own error.
 
 ### Example
 
@@ -302,7 +302,7 @@ An external page uses an absolute URL in `src`. Trust the page you embed. It run
 
 ## 10. `<dialog>`
 
-`<dialog>` is a window on the page. The `open` attribute shows it as non-modal: the rest of the page still works. A modal needs `showModal()` in script. The confirm dialog is modal, so the script calls `showModal()`. The heading inside the dialog is Confirm leave request. `method="dialog"` on a form closes the dialog and records the button value.
+`<dialog>` is a window on the page. The `open` attribute shows it as non-modal: the rest of the page still works. A modal can open without your own script: a button with `command="show-modal"` and `commandfor` pointing at the dialog id invokes it. `showModal()` in script is the older path and still works as a fallback. A lightweight alternative for non-modal overlays is the `popover` attribute. The heading inside the dialog is Confirm leave request. `method="dialog"` on a form closes the dialog and records the button value. Give every button an explicit `type`.
 
 ### Example
 
@@ -320,21 +320,16 @@ An external page uses an absolute URL in `src`. Trust the page you embed. It run
   </header>
   <main>
     <h2>Leave request</h2>
-    <button type="button" id="open-confirm">Review leave</button>
+    <button type="button" command="show-modal" commandfor="confirm-leave">Review leave</button>
     <dialog id="confirm-leave">
       <h2>Confirm leave request</h2>
       <p>Submit casual leave for 6 October 2026?</p>
       <form method="dialog">
-        <button value="cancel">Cancel</button>
-        <button value="confirm">Confirm</button>
+        <button type="submit" value="cancel">Cancel</button>
+        <button type="submit" value="confirm">Confirm</button>
       </form>
     </dialog>
   </main>
-  <script>
-    document.querySelector("#open-confirm").addEventListener("click", function () {
-      document.querySelector("#confirm-leave").showModal();
-    });
-  </script>
 </body>
 </html>
 ```
@@ -345,7 +340,7 @@ An external page uses an absolute URL in `src`. Trust the page you embed. It run
 
 ## 11. Native HTML Interactivity
 
-`<details>`, `<dialog>`, and form validation work without a script, except a modal dialog. `showModal()` is the script a modal needs. The `open` attribute is the non-modal path and needs no script. Prefer these elements before adding a script for the same job. The leave form's `required` checks are the same kind of built-in behaviour.
+`<details>`, form validation, `popover`, and invoker buttons (`command` / `commandfor`) work without a custom script. A modal `<dialog>` can open the same way; `showModal()` remains the script fallback. The `open` attribute is the non-modal dialog path and needs no script. Prefer these elements before adding a script for the same job. The leave form's `required` checks are the same kind of built-in behaviour.
 
 ### Example
 

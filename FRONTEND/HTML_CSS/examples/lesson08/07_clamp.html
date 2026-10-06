@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fluid type — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; }
+    h1 {
+      font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);   /* at least 1.5rem, at most 2.5rem */
+      color: #1a365d;
+      margin: 0;
+    }
+    p { max-width: 60ch; }    /* about 60 characters per line, for comfortable reading */
+  </style>
+</head>
+<body>
+  <h1>Employee directory</h1>
+  <p>The heading grows with the screen but never gets smaller than 1.5rem or larger than 2.5rem. Long lines of text are capped at about sixty characters so they stay easy to read on a wide monitor.</p>
+</body>
+</html>

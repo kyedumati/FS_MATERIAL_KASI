@@ -1,0 +1,29 @@
+/* AcmeHR — leave policy page */
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1b2430;
+  background-color: #f4f6f8;
+}
+
+h1 {
+  color: #1a365d;
+}
+
+h2 {
+  color: #1a365d;
+  font-family: Georgia, serif;
+}
+
+a {
+  color: #1a56db;
+}
+
+li strong {
+  color: #1a365d;
+}
+
+.note {
+  background-color: #fef3c7;
+}

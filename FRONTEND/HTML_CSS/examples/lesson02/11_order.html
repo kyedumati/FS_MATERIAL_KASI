@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source order — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+
+    .status { color: #15803d; }   /* green — written first */
+    .status { color: #b45309; }   /* amber — written later, same specificity: wins */
+  </style>
+</head>
+<body>
+  <p class="status">Leave status: Pending</p>
+</body>
+</html>

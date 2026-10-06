@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance report — AcmeHR</title>
+  <link rel="stylesheet" href="css/report.css">
+</head>
+<body>
+  <header>
+    <p>AcmeHR</p>
+    <nav>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Directory</a></li>
+        <li><a href="#">Leave</a></li>
+        <li><a href="#">Reports</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Daily attendance report</h1>
+    <p>Engineering · General shift 09:00–18:00 · Sample data for this course</p>
+
+      <table>
+        <thead>
+          <tr>
+            <td>Employee</td>
+            <td>Check-in</td>
+            <td>Check-out</td>
+            <td class="num">Hours</td>
+            <td>Status</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Ananya Rao</th><td>09:02</td><td>18:10</td><td>9.1</td><td><span class="status on-time">On time</span></td></tr>
+          <tr><th scope="row">Karthik Menon</th><td>09:41</td><td>18:30</td><td>8.8</td><td><span class="status late"></span></td></tr>
+          <tr><th scope="row">Arjun Reddy</th><td>08:55</td><td class="num">8.4</td><td><span class="status on-time">On time</span></td></tr>
+          <tr><th scope="row">Fatima Khan</th><td>—</td><td>—</td><td>0.0</td><td><span class="status leave">On leave</span></td></tr>
+          <tr><th scope="row">Priya Nair</th><td>10:05</td><td>19:00</td><td>8.9</td><td><span class="status late">Late</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th scope="row">Team</th><td colspan="2">4 present · 1 on leave</td><td class="num">35.2</td><td>2 late</td></tr>
+        </tfoot>
+      </table>
+  </main>
+</body>
+</html>

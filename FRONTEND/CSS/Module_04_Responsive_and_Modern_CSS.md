@@ -99,7 +99,7 @@ Mobile-first means the base CSS is the narrow layout. A `min-width` query adds r
 
 ## 60. Media Queries
 
-A media query applies rules when a condition is true. `@media (min-width: 40rem)` is true when the viewport is 40rem or wider. Flex-wrap and a min-width breakpoint do different jobs. `flex-wrap` moves an item to the next line when the row is full. The breakpoint switches the layout on purpose, from a column to a row, at a width you choose.
+A media query applies rules when a condition is true. `@media (min-width: 40rem)` is true when the viewport is 40rem or wider. Flex-wrap and a min-width breakpoint do different jobs. `flex-wrap` moves an item to the next line when the row is full. The breakpoint switches the layout on purpose, from a column to a row, at a width you choose. `flex-basis` follows the main axis. `flex: 1 1 260px` belongs in the row query. On a column that 260px would be the height of each card.
 
 ### Example
 
@@ -116,10 +116,10 @@ A media query applies rules when a condition is true. `@media (min-width: 40rem)
     flex-direction: row;
     flex-wrap: wrap;
   }
-}
 
-.employee-card {
-  flex: 1 1 260px;
+  .employee-card {
+    flex: 1 1 260px;
+  }
 }
 ```
 
@@ -153,7 +153,7 @@ A media query applies rules when a condition is true. `@media (min-width: 40rem)
 
 ## 61. Breakpoints
 
-A breakpoint is the width where the layout changes. Choose it from the content, not from a phone brand. The directory cards start at `flex: 1 1 260px`. Around `40rem` there is room for more than one card, so that is the breakpoint. A second step at `64rem` can widen the page margin. Two or three steps are enough for Acme HR.
+A breakpoint is the width where the layout changes. Choose it from the content, not from a phone brand. Around `40rem` there is room for more than one card, so that is the breakpoint. From that width the cards use `flex: 1 1 260px` on the row. A second step at `64rem` can widen the page margin. Two or three steps are enough for Acme HR.
 
 ### Example
 
@@ -358,10 +358,10 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
   }
-}
 
-.employee-card {
-  flex: 1 1 260px;
+  .employee-card {
+    flex: 1 1 260px;
+  }
 }
 ```
 
@@ -633,7 +633,7 @@ A container query styles an element from the size of a parent, not the viewport.
 ### Example
 
 ```css
-/* Not used in the labs. */
+/* Demo — the labs still use a viewport min-width query. */
 .directory {
   container-type: inline-size;
 }
@@ -659,7 +659,12 @@ A container query styles an element from the size of a parent, not the viewport.
     <h1>Acme HR</h1>
   </header>
   <main>
-    <p>The labs use a viewport min-width query for the directory.</p>
+    <section class="directory">
+      <article class="employee-card">
+        <h2>Ananya Rao</h2>
+        <p>Engineering</p>
+      </article>
+    </section>
   </main>
 </body>
 </html>
@@ -667,7 +672,7 @@ A container query styles an element from the size of a parent, not the viewport.
 
 **This will produce the following result:**
 
-![Browser output — container query not applied in the lab](screens/04_container.png)
+![Browser output — container query on the directory](screens/04_container.png)
 
 ## 72. CSS Nesting — Awareness
 

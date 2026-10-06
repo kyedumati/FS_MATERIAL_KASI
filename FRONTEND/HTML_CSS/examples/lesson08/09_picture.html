@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive image — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; }
+    img {
+      max-width: 100%;   /* never wider than its container */
+      height: auto;      /* keep the shape when it shrinks */
+    }
+  </style>
+</head>
+<body>
+  <h2>Our Hyderabad office</h2>
+  <picture>
+    <source media="(min-width: 40rem)" srcset="images/office-wide.png" width="640" height="320">
+    <img src="images/office-tall.png" alt="Illustration of the office towers in HITEC City" width="320" height="300">
+  </picture>
+</body>
+</html>

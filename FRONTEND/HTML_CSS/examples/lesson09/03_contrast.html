@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contrast — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    p { margin: 0 0 12px; padding: 8px 12px; }
+    .ink    { color: #1b2430; }
+    .grey   { color: #6b7280; }
+    .light  { color: #9ca3af; }
+    .badge  { color: #ffffff; background-color: #dc2626; display: inline-block; }
+    input   { font: inherit; padding: 6px; width: 340px; }
+    .weak   { border: 1px solid #d0d7de; }
+    .strong { border: 1px solid #6b7280; }
+  </style>
+</head>
+<body>
+  <p class="ink">#1b2430 on white — 15.65 : 1 — passes</p>
+  <p class="grey">#6b7280 on white — 4.83 : 1 — passes for body text</p>
+  <p class="light">#9ca3af on white — 2.54 : 1 — fails: too light to read</p>
+  <p class="badge">White on #dc2626 — 4.83 : 1 — passes</p>
+  <p><input class="weak" value="Border #d0d7de — 1.45 : 1 — fails"></p>
+  <p><input class="strong" value="Border #6b7280 — 4.83 : 1 — passes"></p>
+</body>
+</html>

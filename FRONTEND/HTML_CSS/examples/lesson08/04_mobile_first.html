@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile first — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; }
+    .panel { padding: 16px; background-color: #e2e8f0; border-radius: 8px; }
+
+    /* Base: phones — one column */
+    .layout {
+      display: grid;
+      gap: 16px;
+    }
+
+    /* From 640px wide: two columns */
+    @media (min-width: 40rem) {
+      .layout {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="panel">Leave requests waiting for approval</div>
+    <div class="panel">Headcount by department</div>
+  </div>
+</body>
+</html>

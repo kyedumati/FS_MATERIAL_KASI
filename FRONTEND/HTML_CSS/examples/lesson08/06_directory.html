@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directory — AcmeHR</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; background-color: #f4f6f8; }
+    /* No media query: each column is at least 220px — or the full width if the screen is narrower */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 12px;
+    }
+    .card { display: flex; align-items: center; gap: 12px; padding: 12px; background-color: #ffffff; border: 1px solid #d0d7de; border-radius: 8px; }
+    .card img { border-radius: 50%; }
+    .card h2 { margin: 0; font-size: 1rem; }
+    .card p { margin: 0; font-size: 0.875rem; color: #3d4654; }
+  </style>
+</head>
+<body>
+  <section class="cards">
+    <article class="card"><img src="images/ananya-rao.png" alt="" width="56" height="56"><div><h2>Ananya Rao</h2><p>Senior Software Engineer</p></div></article>
+    <article class="card"><img src="images/karthik-menon.png" alt="" width="56" height="56"><div><h2>Karthik Menon</h2><p>Engineering Manager</p></div></article>
+    <article class="card"><img src="images/meera-iyer.png" alt="" width="56" height="56"><div><h2>Meera Iyer</h2><p>Accountant</p></div></article>
+    <article class="card"><img src="images/rahul-sharma.png" alt="" width="56" height="56"><div><h2>Rahul Sharma</h2><p>HR Executive</p></div></article>
+    <article class="card"><img src="images/fatima-khan.png" alt="" width="56" height="56"><div><h2>Fatima Khan</h2><p>Product Designer</p></div></article>
+    <article class="card"><img src="images/arjun-reddy.png" alt="" width="56" height="56"><div><h2>Arjun Reddy</h2><p>QA Engineer</p></div></article>
+  </section>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select and textarea — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    p { margin: 0 0 12px; }
+  </style>
+</head>
+<body>
+  <p>
+    <label for="leave-type">Leave type</label><br>
+    <select id="leave-type" name="leave_type">
+      <option value="">Choose a leave type</option>
+      <option value="casual">Casual leave</option>
+      <option value="sick">Sick leave</option>
+      <option value="earned">Earned leave</option>
+      <option value="maternity">Maternity leave</option>
+      <option value="paternity">Paternity leave</option>
+      <option value="lop">Loss of pay</option>
+    </select>
+  </p>
+  <p>
+    <label for="reason">Reason</label><br>
+    <textarea id="reason" name="reason" rows="4" cols="40"></textarea>
+  </p>
+</body>
+</html>

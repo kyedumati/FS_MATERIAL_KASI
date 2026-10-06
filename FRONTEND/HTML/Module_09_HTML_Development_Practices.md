@@ -138,7 +138,7 @@ Current HTML does not use `<font>`, `<center>`, `<marquee>`, or the `bgcolor` at
 
 ## 5. Common HTML Mistakes
 
-A `<div>` is not a heading. An input without an `id` cannot be tied to a label. `required="false"` is still required. A file field without `enctype="multipart/form-data"` does not send the file. `target="_blank"` without `rel="noopener noreferrer"` is incomplete. Skipped heading levels break the outline. A missing `alt` on a staff photo is a missing name.
+A `<div>` is not a heading. An input without an `id` cannot be tied to a label. `required="false"` is still required. A file field without `enctype="multipart/form-data"` does not send the file. A POST under Django or Spring without a CSRF token returns 403. Current browsers treat `target="_blank"` as `noopener` by default; add `rel="noreferrer"` when you want to withhold the referrer. Skipped heading levels break the outline. A missing `alt` on a staff photo is a missing name.
 
 ### Example
 
@@ -157,6 +157,7 @@ A `<div>` is not a heading. An input without an `id` cannot be tied to a label. 
   <main>
     <h2>Leave request</h2>
     <form action="/leave" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="csrfmiddlewaretoken" value="…">
       <p>
         <label for="certificate">Medical certificate</label>
         <input id="certificate" name="certificate" type="file" accept=".pdf,application/pdf">

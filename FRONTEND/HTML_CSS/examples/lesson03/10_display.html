@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>display — AcmeHR</title>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    span { background-color: #bfdbfe; width: 120px; padding: 4px; }
+    .inline-block { display: inline-block; }
+    .block { display: block; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <p>inline: <span>Casual</span> <span>Sick</span> — width is ignored</p>
+  <p>inline-block: <span class="inline-block">Casual</span> <span class="inline-block">Sick</span> — width works, stays in the line</p>
+  <p>block: <span class="block">Casual</span> <span class="block">Sick</span></p>
+  <p>none: <span class="hidden">Casual</span> — the span is gone</p>
+</body>
+</html>
