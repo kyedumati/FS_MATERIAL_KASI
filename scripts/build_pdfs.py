@@ -27,8 +27,6 @@ DEFAULT_COURSES = ("MYSQL",)
 NESTED_COURSES = ("PYTHON", "JAVA", "FRONTEND", "MYSQL", "GIT")  # recursive md tree; excludes trainer-only
 TRAINER_ONLY_DIR_NAME = "14_Trainer_Only"
 STYLE_PATH = Path(__file__).resolve().parent / "pdf-style.css"
-NOTEBOOK_STYLE_PATH = Path(__file__).resolve().parent / "pdf-style-notebook.css"
-FONTS_DIR = Path(__file__).resolve().parent / "fonts"
 MERMAID_CACHE_DIR = ROOT / ".cache" / "mermaid"
 MERMAID_CLI = ("npx", "-y", "@mermaid-js/mermaid-cli@11.4.2")
 MERMAID_FENCE = re.compile(r"```mermaid[ \t]*\n(.*?)```", re.DOTALL)
@@ -698,50 +696,13 @@ def wrap_leading_meta(html: str) -> str:
     return f'<div class="pdf-meta">{"".join(meta)}</div>{rest}'
 
 
-def font_face_css() -> str:
-    """Embed local OFL fonts so Chrome print-to-PDF does not need the network."""
-    faces: list[str] = []
-    catalog = (
-        ("Kalam", "Kalam-Regular.ttf", 400),
-        ("Kalam", "Kalam-Bold.ttf", 700),
-        ("Patrick Hand", "PatrickHand-Regular.ttf", 400),
-    )
-    for family, filename, weight in catalog:
-        path = FONTS_DIR / filename
-        if not path.exists():
-            continue
-        payload = base64.b64encode(path.read_bytes()).decode("ascii")
-        faces.append(
-            f"""@font-face {{
-  font-family: "{family}";
-  font-weight: {weight};
-  font-style: normal;
-  font-display: swap;
-  src: url("data:font/ttf;base64,{payload}") format("truetype");
-}}"""
-        )
-    return "\n".join(faces)
-
-
-def pdf_theme_for(md_path: Path) -> str:
-    """Handwritten notebook look is Git-only until other courses opt in."""
-    try:
-        parts = md_path.resolve().relative_to(ROOT).parts
-    except ValueError:
-        parts = md_path.parts
-    if "GIT" in parts:
-        return "notebook"
-    return ""
-
-
-def wrap_document(title: str, body_html: str, css: str, theme: str = "") -> str:
+def wrap_document(title: str, body_html: str, css: str) -> str:
     body_html, h1_title = peel_first_h1(body_html)
     body_html = wrap_leading_meta(body_html)
     display_title = h1_title or title
     safe_title = html_module.escape(display_title)
-    html_class = f' class="theme-{html_module.escape(theme)}"' if theme else ""
     return f"""<!DOCTYPE html>
-<html lang="en"{html_class}>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=794, initial-scale=1">
@@ -839,7 +800,7 @@ def convert_file(
         md_path,
     )
     title = md_path.stem.replace("_", " ")
-    document = wrap_document(title, body_html, css, theme=pdf_theme_for(md_path))
+    document = wrap_document(title, body_html, css)
 
     with tempfile.TemporaryDirectory(prefix="md2pdf_") as tmp:
         html_path = Path(tmp) / f"{md_path.stem}.html"
@@ -917,9 +878,7 @@ def main() -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
-    css = font_face_css() + "\n" + STYLE_PATH.read_text(encoding="utf-8")
-    if NOTEBOOK_STYLE_PATH.exists():
-        css += "\n" + NOTEBOOK_STYLE_PATH.read_text(encoding="utf-8")
+    css = STYLE_PATH.read_text(encoding="utf-8")
     built = 0
 
     if args.file:
