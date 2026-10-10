@@ -1,5 +1,7 @@
 # Python Full Stack Development — Training Material
 
+**Kasi Yedumati · Full Stack Training**
+
 > **One material policy for the Python program.** Python/Django notes live in this folder.  
 > **Shared topics** (also for Java FS): [`../GIT/`](../GIT/) (Git and GitHub), [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/README.md`](../MYSQL/README.md).  
 > Pointers only: `04_Git_GitHub/`, `06_Frontend/`, `10_React/`. PDFs: `PDF/PYTHON/` (Git days: `PDF/GIT/`).

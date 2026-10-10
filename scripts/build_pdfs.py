@@ -27,6 +27,7 @@ DEFAULT_COURSES = ("MYSQL",)
 NESTED_COURSES = ("PYTHON", "JAVA", "FRONTEND", "MYSQL", "GIT")  # recursive md tree; excludes trainer-only
 TRAINER_ONLY_DIR_NAME = "14_Trainer_Only"
 STYLE_PATH = Path(__file__).resolve().parent / "pdf-style.css"
+BRAND_LINE = "Kasi Yedumati · Full Stack Training"
 MERMAID_CACHE_DIR = ROOT / ".cache" / "mermaid"
 MERMAID_CLI = ("npx", "-y", "@mermaid-js/mermaid-cli@11.4.2")
 MERMAID_FENCE = re.compile(r"```mermaid[ \t]*\n(.*?)```", re.DOTALL)
@@ -696,11 +697,25 @@ def wrap_leading_meta(html: str) -> str:
     return f'<div class="pdf-meta">{"".join(meta)}</div>{rest}'
 
 
+def peel_brand_line(html: str) -> str:
+    """Drop a leading brand paragraph so README PDFs do not show it twice."""
+    brand = re.escape(BRAND_LINE)
+    return re.sub(
+        rf"^\s*<p>(?:<strong>)?{brand}(?:</strong>)?</p>\s*",
+        "",
+        html,
+        count=1,
+        flags=re.IGNORECASE,
+    )
+
+
 def wrap_document(title: str, body_html: str, css: str) -> str:
     body_html, h1_title = peel_first_h1(body_html)
+    body_html = peel_brand_line(body_html)
     body_html = wrap_leading_meta(body_html)
     display_title = h1_title or title
     safe_title = html_module.escape(display_title)
+    safe_brand = html_module.escape(BRAND_LINE)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -710,6 +725,7 @@ def wrap_document(title: str, body_html: str, css: str) -> str:
   <style>{css}</style>
 </head>
 <body>
+  <div class="pdf-brand">{safe_brand}</div>
   <div class="pdf-doc-title">{safe_title}</div>
   <main class="pdf-body">
 {body_html}

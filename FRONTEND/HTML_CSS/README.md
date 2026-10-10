@@ -1,5 +1,7 @@
 # HTML & CSS for Full Stack — Learning Path
 
+**Kasi Yedumati · Full Stack Training**
+
 **Shared topic** for Python Full Stack and Java Full Stack · 9 sessions · Project: **AcmeHR**
 
 This folder teaches HTML and CSS **together**, in the order you will use them at work. Every lesson builds one real page of AcmeHR, an employee management system. By Lesson 9 you have a small, responsive, accessible portal that you will later serve from Django or Spring Boot.

@@ -33,6 +33,16 @@ body {
   background: #fff;
 }
 
+.pdf-brand {
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #1f7a8c;
+  margin: 0 0 4pt;
+  page-break-after: avoid;
+  break-after: avoid-page;
+}
+
 .pdf-doc-title {
   text-align: left;
   font-weight: 700;

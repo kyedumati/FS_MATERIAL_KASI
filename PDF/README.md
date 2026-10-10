@@ -1,10 +1,14 @@
 # Generated PDFs
 
+**Kasi Yedumati · Full Stack Training**
+
 This folder is **auto-generated**. Do not edit files here.
 
 **Git:** student PDFs **are committed and pushed** to origin with the matching markdown. After you change a module `.md`, rebuild that PDF and include `PDF/**` in the same commit. Temporary preview folders (`.pdf_pages/`, `.cache/`) stay gitignored.
 
 **Requirements:** Python (`markdown`, `pygments`), Google Chrome, and **Node.js (`npx`)** so Mermaid diagrams render as SVG (not raw ```mermaid code).
+
+Every student PDF gets a masthead brand line: **Kasi Yedumati · Full Stack Training** (from `scripts/build_pdfs.py` + `pdf-style.css`).
 
 ## PDF visual conventions (in Markdown)
 

@@ -1,5 +1,7 @@
 # MySQL (MySQL 8+)
 
+**Kasi Yedumati · Full Stack Training**
+
 **Shared topic pack** — used by Python Full Stack, Java Full Stack, and a MySQL-only course.  
 Not owned by `PYTHON/` or `JAVA/`.
 

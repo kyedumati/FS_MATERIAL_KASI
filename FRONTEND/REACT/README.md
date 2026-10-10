@@ -1,5 +1,7 @@
 # React (under FRONTEND)
 
+**Kasi Yedumati · Full Stack Training**
+
 Part of the shared [`FRONTEND/`](../) pack — used by Python Full Stack and Java Full Stack.
 
 | Order | Module | Labs |

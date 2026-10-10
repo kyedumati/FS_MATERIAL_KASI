@@ -1,5 +1,7 @@
 # Java Full Stack Development — Training Material
 
+**Kasi Yedumati · Full Stack Training**
+
 > **One material policy for the Java program.** Java / Spring Boot notes live in this folder.  
 > **Shared topics** (same files as Python FS): [`../GIT/`](../GIT/) (Git and GitHub), [`../FRONTEND/`](../FRONTEND/) (HTML/CSS/JS + [`REACT/`](../FRONTEND/REACT/)), [`../MYSQL/README.md`](../MYSQL/README.md).  
 > Pointers only: `05_Git_GitHub/`, `08_Frontend/`, `11_React/`. JPA/REST home is `09_Spring_Boot/` — `10_JPA_and_REST/` is a pointer, not a second copy.

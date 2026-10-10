@@ -1,5 +1,7 @@
 # Git and GitHub
 
+**Kasi Yedumati · Full Stack Training**
+
 **Shared topic pack** — used by Python Full Stack and Java Full Stack.  
 Not owned by `PYTHON/` or `JAVA/`.
 

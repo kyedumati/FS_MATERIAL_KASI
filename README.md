@@ -1,5 +1,7 @@
 # Full Stack Training Material
 
+**Kasi Yedumati · Full Stack Training**
+
 Structured training material for **Python Full Stack**, **Java Full Stack**, and shared **Git / MySQL / Frontend** topics.
 
 ---
