@@ -1,6 +1,6 @@
 # Lesson 2 — Content & Your First CSS
 
-**Course:** HTML & CSS for Full Stack · **Session 2 of 9** · [Learning path](README.md) · **Previous:** [Lesson 1](Lesson_01_How_the_Web_Works_and_Your_First_Page.md) · **Next:** Lesson 3 — Page Structure & the Box Model
+**Course:** HTML & CSS for Full Stack · **Session 2 of 9** · [Learning path](README.md) · **Previous:** [Lesson 1](Lesson_01_How_the_Web_Works_and_Your_First_Page.md) · **Next:** [Lesson 3 — Page Structure & the Box Model](Lesson_03_Page_Structure_and_the_Box_Model.md)
 
 **Module Outcome:** You can mark up a text page with the right elements, link pages together, attach a stylesheet, and explain why one CSS rule beats another.
 
@@ -510,4 +510,4 @@ In Lesson 3 you add spacing, borders and a white card with the **box model**.
 
 👉 [Lab 02 — AcmeHR leave policy page](labs/L02_leave_policy/README.md)
 
-**Next:** Lesson 3 — Page Structure & the Box Model (the AcmeHR **Employee profile** page).
+**Next:** [Lesson 3 — Page Structure & the Box Model](Lesson_03_Page_Structure_and_the_Box_Model.md) (the AcmeHR **Employee profile** page).

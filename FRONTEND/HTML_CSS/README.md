@@ -63,7 +63,7 @@ You cannot debug a layout without the box model, and you cannot fix a CSS confli
 
 **6. One project, not seventeen disconnected examples.** Every lesson adds a page to the same AcmeHR site, using the same stylesheet. In the Django and Spring phases, these exact pages become your templates.
 
-**What is left out on purpose.** Rare elements (`sub`, `sup`, `abbr`, audio and video players, iframes) and advanced CSS (animations with `@keyframes`, nesting) are not taught in class. They are in the reference modules below, for when you need them.
+**What is left out on purpose.** Rare elements (`sub`, `sup`, `abbr`, audio and video players, iframes) and advanced CSS (animations with `@keyframes`, nesting) are not taught in these nine lessons. Look them up in MDN when a project needs them.
 
 ---
 
@@ -108,13 +108,6 @@ Every lesson has the same parts, so you always know where to look:
 - **Validator:** [validator.w3.org/nu](https://validator.w3.org/nu/)
 
 ---
-
-## Reference modules
-
-The older topic-by-topic modules stay available as a **reference for lookup**, not for reading from start to finish:
-
-- [HTML reference](../01_HTML.md) — every HTML topic, one by one
-- [CSS reference](../02_CSS_and_Responsive.md) — every CSS topic, one by one
 
 **Next phase:** [JavaScript, DOM & Forms](../03_JavaScript_DOM_Forms.md)
 

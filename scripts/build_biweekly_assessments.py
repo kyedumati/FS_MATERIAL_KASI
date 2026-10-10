@@ -538,7 +538,7 @@ def main() -> None:
         if not path.exists():
             print("skip missing FRONTEND", rel)
             continue
-        # FRONTEND/01_HTML.md -> ../PYTHON/16_Assessments/
+        # FRONTEND/HTML_CSS/... -> ../PYTHON/16_Assessments/
         depth = len(Path(rel).parts) - 1
         prefix = "../" * (depth + 1) + "PYTHON/16_Assessments/"
         if strip_and_point(path, bw_id, when, prefix):

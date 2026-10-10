@@ -7,10 +7,8 @@ Not owned by `PYTHON/` or `JAVA/`.
 
 | Order | Module | Labs |
 |------:|--------|------|
-| 1 | **[HTML & CSS — 9 lessons](HTML_CSS/README.md)** (teach and study from here) | One lab per lesson, in [HTML_CSS/labs/](HTML_CSS/labs/) |
+| 1 | **[HTML & CSS — 9 lessons](HTML_CSS/README.md)** | One lab per lesson, in [HTML_CSS/labs/](HTML_CSS/labs/) |
 | 2 | [03_JavaScript_DOM_Forms.md](03_JavaScript_DOM_Forms.md) | [labs/23_js_form_validation](labs/23_js_form_validation/) |
-
-**Reference only** (look up a single topic; not a teaching order): [HTML reference](01_HTML.md) · [CSS reference](02_CSS_and_Responsive.md). Their older labs [21](labs/21_html_profile_form/) and [22](labs/22_css_responsive_cards/) are replaced by the HTML & CSS labs.
 
 **Python FS schedule:** HTML & CSS sessions F1–F9 in Weeks 12 and 12A, then JavaScript S60–S62 — [Session Calendar](../PYTHON/Session_Calendar_100.md)  
 **Java FS schedule:** HTML & CSS sessions F1–F9 in Weeks 12, 12A and 13, then JavaScript S63–S65 — [Session Calendar](../JAVA/Session_Calendar_100.md)

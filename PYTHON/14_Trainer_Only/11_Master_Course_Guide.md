@@ -82,23 +82,22 @@ flowchart TD
 | 16 | [`GIT/`](../../GIT/) Sessions 1–5 (3–5 extra lab if only S44–S45) | Tools | First push | Daily loop + PRs | Daily commits | Portfolio repos |
 | 17 | `05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` + [Required MySQL labs](../05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) / [`MYSQL/`](../../MYSQL/) | Data | SQL CRUD, JOIN | Normalization | Workbench labs | Library schema |
 | 18 | `03_Advanced_Python/07_Database_Programming_Bridge.md` | Advanced | Connector flow | SQL from Python | CRUD script | Student DB script |
-| 19 | [`FRONTEND/01_HTML.md`](../../FRONTEND/01_HTML.md) | FE | Tags, forms | Semantic HTML | Pages | Profile page |
-| 20 | [`FRONTEND/02_CSS_and_Responsive.md`](../../FRONTEND/02_CSS_and_Responsive.md) | FE | Box model, Flex | Responsive | Layouts | Landing page |
-| 21 | [`FRONTEND/03_JavaScript_DOM_Forms.md`](../../FRONTEND/03_JavaScript_DOM_Forms.md) | FE | DOM events | Async fetch | Validation | Form + API call |
-| 22 | `07_Django/01_Django_Introduction_and_Setup.md` | BE | MTV, venv, settings | Project vs app | startproject | Portal scaffold |
-| 23 | `07_Django/02_URLs_Views_Templates_Static.md` | BE | `path()`, FBV | MTV request flow | Templates | First pages |
-| 24 | `07_Django/03_Models_ORM_Admin.md` | BE | Model fields, migrate | ORM CRUD | Admin | Catalog models |
-| 25 | `07_Django/04_Forms_Sessions_Auth.md` | BE | ModelForm, login | Sessions/auth | Protected views | Auth CRUD app |
-| 26 | `07_Django/05_Security_and_Deployment.md` | BE | CSRF, env, DEBUG | Deploy checklist | WhiteNoise | Staging deploy |
-| 27 | `07_Django/06_Lab_CRUD_Auth_Consolidation.md` | BE lab | — | End-to-end flow | **Guided lab day** | Working CRUD+auth |
-| 28 | `07_Django/07_Lab_Deploy_Capstone_Debug.md` | BE lab | `check --deploy` | Debug prod issues | **Guided lab day** | Live URL |
-| 29 | `08_Flask/01_Flask_Overview.md` | BE | Routes | Django vs Flask | Micro API | Notes API |
-| 30 | `09_APIs_REST/01_APIs_JSON_Postman_DRF.md` | APIs | REST verbs | Status codes | Postman | DRF CRUD |
-| 31 | [`FRONTEND/REACT/01_React_Fundamentals.md`](../../FRONTEND/REACT/01_React_Fundamentals.md) | FE | Components, hooks | State | SPA basics | UI components |
-| 32 | [`FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md`](../../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | FE | useEffect, Router | CORS | API integrate | React + Django |
-| 33 | `11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md` | Quality | assert/pytest | Debug flow | Write tests | Tested utils |
-| 34 | `13_Placement/01_Career_Resume_Interview.md` | Jobs | Role keywords | STAR stories | Mocks | Resume + LinkedIn |
-| 35 | `12_AI_Integration/01_AI_Integration_Lite.md` | **Stretch only** | API call pattern | ML-via-API idea | Optional demo | Optional widget |
+| 19 | [`FRONTEND/HTML_CSS/README.md`](../../FRONTEND/HTML_CSS/README.md) | FE | HTML+CSS path | Semantic + Flex/Grid | AcmeHR pages | Portal pages |
+| 20 | [`FRONTEND/03_JavaScript_DOM_Forms.md`](../../FRONTEND/03_JavaScript_DOM_Forms.md) | FE | DOM events | Async fetch | Validation | Form + API call |
+| 21 | `07_Django/01_Django_Introduction_and_Setup.md` | BE | MTV, venv, settings | Project vs app | startproject | Portal scaffold |
+| 22 | `07_Django/02_URLs_Views_Templates_Static.md` | BE | `path()`, FBV | MTV request flow | Templates | First pages |
+| 23 | `07_Django/03_Models_ORM_Admin.md` | BE | Model fields, migrate | ORM CRUD | Admin | Catalog models |
+| 24 | `07_Django/04_Forms_Sessions_Auth.md` | BE | ModelForm, login | Sessions/auth | Protected views | Auth CRUD app |
+| 25 | `07_Django/05_Security_and_Deployment.md` | BE | CSRF, env, DEBUG | Deploy checklist | WhiteNoise | Staging deploy |
+| 26 | `07_Django/06_Lab_CRUD_Auth_Consolidation.md` | BE lab | — | End-to-end flow | **Guided lab day** | Working CRUD+auth |
+| 27 | `07_Django/07_Lab_Deploy_Capstone_Debug.md` | BE lab | `check --deploy` | Debug prod issues | **Guided lab day** | Live URL |
+| 28 | `08_Flask/01_Flask_Overview.md` | BE | Routes | Django vs Flask | Micro API | Notes API |
+| 29 | `09_APIs_REST/01_APIs_JSON_Postman_DRF.md` | APIs | REST verbs | Status codes | Postman | DRF CRUD |
+| 30 | [`FRONTEND/REACT/01_React_Fundamentals.md`](../../FRONTEND/REACT/01_React_Fundamentals.md) | FE | Components, hooks | State | SPA basics | UI components |
+| 31 | [`FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md`](../../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | FE | useEffect, Router | CORS | API integrate | React + Django |
+| 32 | `11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md` | Quality | assert/pytest | Debug flow | Write tests | Tested utils |
+| 33 | `13_Placement/01_Career_Resume_Interview.md` | Jobs | Role keywords | STAR stories | Mocks | Resume + LinkedIn |
+| 34 | `12_AI_Integration/01_AI_Integration_Lite.md` | **Stretch only** | API call pattern | ML-via-API idea | Optional demo | Optional widget |
 
 > **Django package = seven files:** teaching modules `01`–`05` plus two **protected lab days** `06`–`07`. Do not invent “modules 08–12.”
 

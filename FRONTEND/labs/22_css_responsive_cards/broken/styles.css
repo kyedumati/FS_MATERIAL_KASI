@@ -1,3 +1,0 @@
-.cards { display: flex; } /* Bug: no wrap — overflows a narrow screen */
-.card { width: 400px; padding: 4px; }
-/* Bug: no min-width query */

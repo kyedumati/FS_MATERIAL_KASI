@@ -83,22 +83,21 @@ flowchart TD
 | 12 | [`GIT/`](../../GIT/) Sessions 1–5 (3–5 extra lab if only S44–S45) | Tools | First push | Daily loop + PRs | Daily commits | Portfolio repos |
 | 13 | `06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md` + [`MYSQL/`](../../MYSQL/) | Data | SQL CRUD, JOIN | Normalization | Workbench labs | Library schema |
 | 14 | `07_JDBC/01_JDBC_CRUD.md` | Data | PreparedStatement | Why not concat SQL | Java CRUD | Library JDBC |
-| 15 | [`FRONTEND/01_HTML.md`](../../FRONTEND/01_HTML.md) | FE | Tags, forms | Semantic HTML | Pages | Profile page |
-| 16 | [`FRONTEND/02_CSS_and_Responsive.md`](../../FRONTEND/02_CSS_and_Responsive.md) | FE | Box model, Flex | Responsive | Layouts | Landing page |
-| 17 | [`FRONTEND/03_JavaScript_DOM_Forms.md`](../../FRONTEND/03_JavaScript_DOM_Forms.md) | FE | DOM events | Async fetch | Validation | Form + API call |
-| 18 | `09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md` | BE | Maven, starters | JAR vs war lite | start.spring.io | Hello Boot |
-| 19 | `09_Spring_Boot/02_Spring_Web_REST.md` | BE | annotations | Request lifecycle | JSON endpoints | In-memory API |
-| 20 | `09_Spring_Boot/03_Spring_Data_JPA_Validation.md` | BE | Entity, repo | ORM vs JDBC | Persist catalog | Product JPA |
-| 21 | `09_Spring_Boot/04_REST_DTOs_Postman.md` | BE | DTO, status | Mapping | Postman | Validated API |
-| 22 | `09_Spring_Boot/05_Spring_Security_Lite.md` | BE | JWT lite | AuthN vs AuthZ | Protected routes | Login API |
-| 23 | `09_Spring_Boot/06_Lab_CRUD_Auth_Consolidation.md` | BE lab | — | End-to-end flow | **Guided lab day** | Working CRUD+auth |
-| 24 | `09_Spring_Boot/07_Lab_Deploy_Capstone_Debug.md` | BE lab | env, profiles | Debug prod issues | **Guided lab day** | Live URL |
-| 25 | `09_Spring_Boot/08_Servlet_vs_Spring_Interview_Map.md` | BE | Buzzwords | Why Spring won | Oral map | 5-bullet note |
-| 26 | [`FRONTEND/REACT/01_React_Fundamentals.md`](../../FRONTEND/REACT/01_React_Fundamentals.md) | FE | Components, hooks | State | SPA basics | UI components |
-| 27 | [`FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md`](../../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | FE | useEffect, Router | CORS | API integrate | React + Spring |
-| 28 | `12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md` | Quality | JUnit 5 | Debug flow | Write tests | Tested utils |
-| 29 | `13_Placement/01_Career_Resume_Interview.md` | Jobs | Role keywords | STAR stories | Mocks | Resume + LinkedIn |
-| 30 | `12_AI_Integration/01_AI_Integration_Lite.md` | **Stretch only** | API call pattern | Never blocks jobs | Optional demo | Optional widget |
+| 15 | [`FRONTEND/HTML_CSS/README.md`](../../FRONTEND/HTML_CSS/README.md) | FE | HTML+CSS path | Semantic + Flex/Grid | AcmeHR pages | Portal pages |
+| 16 | [`FRONTEND/03_JavaScript_DOM_Forms.md`](../../FRONTEND/03_JavaScript_DOM_Forms.md) | FE | DOM events | Async fetch | Validation | Form + API call |
+| 17 | `09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md` | BE | Maven, starters | JAR vs war lite | start.spring.io | Hello Boot |
+| 18 | `09_Spring_Boot/02_Spring_Web_REST.md` | BE | annotations | Request lifecycle | JSON endpoints | In-memory API |
+| 19 | `09_Spring_Boot/03_Spring_Data_JPA_Validation.md` | BE | Entity, repo | ORM vs JDBC | Persist catalog | Product JPA |
+| 20 | `09_Spring_Boot/04_REST_DTOs_Postman.md` | BE | DTO, status | Mapping | Postman | Validated API |
+| 21 | `09_Spring_Boot/05_Spring_Security_Lite.md` | BE | JWT lite | AuthN vs AuthZ | Protected routes | Login API |
+| 22 | `09_Spring_Boot/06_Lab_CRUD_Auth_Consolidation.md` | BE lab | — | End-to-end flow | **Guided lab day** | Working CRUD+auth |
+| 23 | `09_Spring_Boot/07_Lab_Deploy_Capstone_Debug.md` | BE lab | env, profiles | Debug prod issues | **Guided lab day** | Live URL |
+| 24 | `09_Spring_Boot/08_Servlet_vs_Spring_Interview_Map.md` | BE | Buzzwords | Why Spring won | Oral map | 5-bullet note |
+| 25 | [`FRONTEND/REACT/01_React_Fundamentals.md`](../../FRONTEND/REACT/01_React_Fundamentals.md) | FE | Components, hooks | State | SPA basics | UI components |
+| 26 | [`FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md`](../../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | FE | useEffect, Router | CORS | API integrate | React + Spring |
+| 27 | `12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md` | Quality | JUnit 5 | Debug flow | Write tests | Tested utils |
+| 28 | `13_Placement/01_Career_Resume_Interview.md` | Jobs | Role keywords | STAR stories | Mocks | Resume + LinkedIn |
+| 29 | `12_AI_Integration/01_AI_Integration_Lite.md` | **Stretch only** | API call pattern | Never blocks jobs | Optional demo | Optional widget |
 
 > **Spring Boot package = seven files:** teaching modules `01`–`05` plus two **protected lab days** `06`–`07`. File `08` is a **one-session** Servlet vs Spring interview map — not a Servlets/JSP backbone. JPA/REST are taught in `03`–`04`; [`10_JPA_and_REST/`](../10_JPA_and_REST/README.md) is a pointer only.
 

@@ -3,7 +3,7 @@
 **Phase:** Database (Java talking to MySQL)
 
 **Previous module:** [MySQL for Full Stack Developers](../06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md)  
-**Next module:** [HTML (shared FRONTEND)](../../FRONTEND/01_HTML.md)
+**Next module:** [HTML & CSS (shared FRONTEND)](../../FRONTEND/HTML_CSS/README.md)
 
 **Lab kit:** [15_Lab_Assets/16_jdbc_library_crud/](../15_Lab_Assets/16_jdbc_library_crud/)
 
@@ -1520,4 +1520,4 @@ Shared with students after concepts and the mini-project. Use for review and int
 
 ## Next
 
-Finish the [Library JDBC lab kit](../15_Lab_Assets/16_jdbc_library_crud/) and push the CLI (no secrets in git). Continue with **[HTML](../../FRONTEND/01_HTML.md)** (shared frontend). Spring Boot / JPA come after HTML/CSS/JS — they will reuse this `PreparedStatement` habit under the hood.
+Finish the [Library JDBC lab kit](../15_Lab_Assets/16_jdbc_library_crud/) and push the CLI (no secrets in git). Continue with **[HTML & CSS](../../FRONTEND/HTML_CSS/README.md)** (shared frontend). Spring Boot / JPA come after HTML/CSS/JS — they will reuse this `PreparedStatement` habit under the hood.

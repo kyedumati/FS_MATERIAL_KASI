@@ -2,7 +2,7 @@
 
 **Shared topic** (Python FS + Java FS).
 
-**Previous:** [CSS and Responsive](02_CSS_and_Responsive.md)
+**Previous:** [HTML & CSS learning path](HTML_CSS/README.md)
 **Next (Python FS):** [Django Introduction](../PYTHON/07_Django/01_Django_Introduction_and_Setup.md)  
 **Next (Java FS):** [Maven and Spring Boot Setup](../JAVA/09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md)
 

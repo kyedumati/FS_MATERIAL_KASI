@@ -3,7 +3,7 @@
 **Phase:** Advanced Python
 
 **Previous:** [MySQL for Full Stack Developers](../05_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md)  
-**Next:** [HTML (shared FRONTEND)](../../FRONTEND/01_HTML.md)
+**Next:** [HTML & CSS (shared FRONTEND)](../../FRONTEND/HTML_CSS/README.md)
 
 ---
 

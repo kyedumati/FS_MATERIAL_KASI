@@ -1,3 +1,0 @@
-/* TODO: .cards flex column, then a min-width query for a wrapping row */
-/* TODO: .card uses flex: 1 1 260px only in that row query — grow, shrink, and basis on the row axis */
-body { font-family: system-ui, sans-serif; margin: 1rem; }

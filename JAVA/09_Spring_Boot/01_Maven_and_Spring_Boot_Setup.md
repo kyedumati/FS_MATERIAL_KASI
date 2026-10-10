@@ -2,7 +2,7 @@
 
 **Phase:** Backend (first JSON API)
 
-**Previous module:** [JavaScript, DOM, and Forms](../../FRONTEND/03_JavaScript_DOM_Forms.md) (shared FRONTEND — also [HTML](../../FRONTEND/01_HTML.md) · [CSS and Responsive](../../FRONTEND/02_CSS_and_Responsive.md))  
+**Previous module:** [JavaScript, DOM, and Forms](../../FRONTEND/03_JavaScript_DOM_Forms.md) (shared FRONTEND — after [HTML & CSS](../../FRONTEND/HTML_CSS/README.md))  
 **Next module:** [Spring Web REST](02_Spring_Web_REST.md)
 
 ---

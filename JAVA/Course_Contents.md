@@ -128,8 +128,7 @@ Shared notes: [`GIT/README.md`](../GIT/README.md) (same files as Python FS).
 
 ### 9. Front-End Fundamentals (**Must**)
 
-- **HTML:** structure, forms, tables, semantic tags — `FRONTEND/01_HTML.md`
-- **CSS:** selectors, box model, Flexbox, responsive design — `FRONTEND/02_CSS_and_Responsive.md`
+- **HTML & CSS:** structure, forms, tables, Flexbox, Grid, responsive — `FRONTEND/HTML_CSS/README.md` (9 lessons)
 - **JavaScript:** variables, functions, DOM, events, forms, fetch basics — `FRONTEND/03_JavaScript_DOM_Forms.md`
 
 **Mini project:** Responsive landing page + contact form validation  

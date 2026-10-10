@@ -52,22 +52,21 @@
 | 12 | [../GIT/01_Git_and_GitHub.md](../GIT/01_Git_and_GitHub.md) | Git & GitHub *(shared)* |
 | 13 | [06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md](06_Database_MySQL/01_MySQL_for_Full_Stack_Developers.md) | MySQL bridge + required labs — map: [`MYSQL/README.md`](../MYSQL/README.md) |
 | 14 | [07_JDBC/01_JDBC_CRUD.md](07_JDBC/01_JDBC_CRUD.md) | JDBC CRUD (`PreparedStatement`) |
-| 15 | [../FRONTEND/01_HTML.md](../FRONTEND/01_HTML.md) | HTML *(shared)* |
-| 16 | [../FRONTEND/02_CSS_and_Responsive.md](../FRONTEND/02_CSS_and_Responsive.md) | CSS & responsive *(shared)* |
-| 17 | [../FRONTEND/03_JavaScript_DOM_Forms.md](../FRONTEND/03_JavaScript_DOM_Forms.md) | JavaScript, DOM, forms *(shared)* |
-| 18 | [09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md](09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md) | Maven + Spring Boot setup |
-| 19 | [09_Spring_Boot/02_Spring_Web_REST.md](09_Spring_Boot/02_Spring_Web_REST.md) | Spring Web REST (Thymeleaf overview only) |
-| 20 | [09_Spring_Boot/03_Spring_Data_JPA_Validation.md](09_Spring_Boot/03_Spring_Data_JPA_Validation.md) | Spring Data JPA + validation |
-| 21 | [09_Spring_Boot/04_REST_DTOs_Postman.md](09_Spring_Boot/04_REST_DTOs_Postman.md) | REST, DTOs, Postman |
-| 22 | [09_Spring_Boot/05_Spring_Security_Lite.md](09_Spring_Boot/05_Spring_Security_Lite.md) | Spring Security lite (JWT) |
-| 23 | [09_Spring_Boot/06_Lab_CRUD_Auth_Consolidation.md](09_Spring_Boot/06_Lab_CRUD_Auth_Consolidation.md) | **Protected lab:** CRUD + auth |
-| 24 | [09_Spring_Boot/07_Lab_Deploy_Capstone_Debug.md](09_Spring_Boot/07_Lab_Deploy_Capstone_Debug.md) | **Protected lab:** deploy + debug |
-| 25 | [09_Spring_Boot/08_Servlet_vs_Spring_Interview_Map.md](09_Spring_Boot/08_Servlet_vs_Spring_Interview_Map.md) | Servlet vs Spring (interview map only) |
-| 26 | [../FRONTEND/REACT/01_React_Fundamentals.md](../FRONTEND/REACT/01_React_Fundamentals.md) | React fundamentals *(shared)* |
-| 27 | [../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md](../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | Hooks, routing, API, deploy *(shared)* |
-| 28 | [12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md](12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md) | Testing, debugging, clean code |
-| 29 | [13_Placement/01_Career_Resume_Interview.md](13_Placement/01_Career_Resume_Interview.md) | Resume, interview, placement |
-| 30 | [12_AI_Integration/01_AI_Integration_Lite.md](12_AI_Integration/01_AI_Integration_Lite.md) | AI lite — **optional stretch only** |
+| 15 | [../FRONTEND/HTML_CSS/README.md](../FRONTEND/HTML_CSS/README.md) | HTML & CSS — 9 lessons *(shared)* |
+| 16 | [../FRONTEND/03_JavaScript_DOM_Forms.md](../FRONTEND/03_JavaScript_DOM_Forms.md) | JavaScript, DOM, forms *(shared)* |
+| 17 | [09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md](09_Spring_Boot/01_Maven_and_Spring_Boot_Setup.md) | Maven + Spring Boot setup |
+| 18 | [09_Spring_Boot/02_Spring_Web_REST.md](09_Spring_Boot/02_Spring_Web_REST.md) | Spring Web REST (Thymeleaf overview only) |
+| 19 | [09_Spring_Boot/03_Spring_Data_JPA_Validation.md](09_Spring_Boot/03_Spring_Data_JPA_Validation.md) | Spring Data JPA + validation |
+| 20 | [09_Spring_Boot/04_REST_DTOs_Postman.md](09_Spring_Boot/04_REST_DTOs_Postman.md) | REST, DTOs, Postman |
+| 21 | [09_Spring_Boot/05_Spring_Security_Lite.md](09_Spring_Boot/05_Spring_Security_Lite.md) | Spring Security lite (JWT) |
+| 22 | [09_Spring_Boot/06_Lab_CRUD_Auth_Consolidation.md](09_Spring_Boot/06_Lab_CRUD_Auth_Consolidation.md) | **Protected lab:** CRUD + auth |
+| 23 | [09_Spring_Boot/07_Lab_Deploy_Capstone_Debug.md](09_Spring_Boot/07_Lab_Deploy_Capstone_Debug.md) | **Protected lab:** deploy + debug |
+| 24 | [09_Spring_Boot/08_Servlet_vs_Spring_Interview_Map.md](09_Spring_Boot/08_Servlet_vs_Spring_Interview_Map.md) | Servlet vs Spring (interview map only) |
+| 25 | [../FRONTEND/REACT/01_React_Fundamentals.md](../FRONTEND/REACT/01_React_Fundamentals.md) | React fundamentals *(shared)* |
+| 26 | [../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md](../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | Hooks, routing, API, deploy *(shared)* |
+| 27 | [12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md](12_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md) | Testing, debugging, clean code |
+| 28 | [13_Placement/01_Career_Resume_Interview.md](13_Placement/01_Career_Resume_Interview.md) | Resume, interview, placement |
+| 29 | [12_AI_Integration/01_AI_Integration_Lite.md](12_AI_Integration/01_AI_Integration_Lite.md) | AI lite — **optional stretch only** |
 
 **Pointer (not a second syllabus):** [10_JPA_and_REST/](10_JPA_and_REST/README.md) → teach JPA/REST from `09_Spring_Boot/` `03`–`04`.
 
