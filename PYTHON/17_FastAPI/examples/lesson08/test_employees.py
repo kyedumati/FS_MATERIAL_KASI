@@ -5,6 +5,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 os.environ["DATABASE_URL"] = "sqlite:///./test_acme.db"
+os.environ["SECRET_KEY"] = "test-only-secret-not-for-real-use-0123456789"
 Path("test_acme.db").unlink(missing_ok=True)
 
 from main import app

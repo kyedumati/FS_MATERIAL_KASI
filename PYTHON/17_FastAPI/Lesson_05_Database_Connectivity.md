@@ -108,7 +108,32 @@ def seed(db):
     db.commit()
 ```
 
-`db` is one session: `db = SessionLocal()`. `commit` writes the rows. `close` returns the connection. The example file does this from a `lifespan` function FastAPI runs at startup.
+`db` is one session: `db = SessionLocal()`. `commit` writes the rows. `close` returns the connection. FastAPI calls `seed` from a `lifespan` function, which runs once at startup:
+
+```python
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    Base.metadata.create_all(engine)
+    db = SessionLocal()
+    try:
+        seed(db)
+    finally:
+        db.close()
+    yield
+
+app = FastAPI(title="AcmeHR", lifespan=lifespan)
+```
+
+| Line | Job |
+|---|---|
+| `Base.metadata.create_all(engine)` | Creates every table class that is missing. An existing table is left alone |
+| Code before `yield` | Runs once, when the server starts |
+| Code after `yield` | Runs once, when the server stops. Nothing is needed here |
+| `lifespan=lifespan` | Tells FastAPI to use it |
+
+Copy this block as it is. You do not need to change `async` or `yield`. Today the job is: create the table, then seed.
 
 The list route asks the session, not a Python list.
 
@@ -164,22 +189,37 @@ You should see six rows. Restart `fastapi dev`. The six rows are still there. `s
 <details class="fold" markdown="1">
 <summary>Lab — Ticket ACME-205</summary>
 
-HR wants the six employees stored in `training_db`, and the directory route must read that table. The SQL for the table is in section 1.
+HR wants the six employees stored in `training_db`, and the directory route must read that table.
 
 ```text
 PYTHON/17_FastAPI/labs/L05_mysql/
-├── starter/main.py
-└── solution/main.py
+├── broken/main.py      ← Part A. Fix this file.
+├── starter/main.py     ← Part B. Complete the TODOs.
+└── solution/main.py    ← Open only after the checklist passes.
 ```
 
-`starter/main.py` has the health routes and a TODO where the table and the two GET routes belong. The SQL for the table is in section 1 of this lesson.
+MySQL must be running. Set `DATABASE_URL` in the terminal if your login is not `trainee` / `password123`. To start a part with an empty table, run `DROP TABLE IF EXISTS employee;` in MySQL first.
 
-### Prove it works
+### Part A — Fix the broken API (10 min)
+
+`broken/main.py` starts, and it has **4 bugs**. Fix them in order. The first one hides the second.
+
+1. After startup, `GET /employees` is `[]`, and `SELECT * FROM employee;` shows no rows.
+2. Once rows are saved, restart `fastapi dev` again. The start crashes with `IntegrityError` and `Duplicate entry 'E-1042'`.
+3. `GET /employees/E-1042` is **404**, although Ananya is in the table.
+4. `GET /employees?department=Engineering` returns all six people.
+
+### Part B — Build it yourself (15 min)
+
+`starter/main.py` has the connection, `SEED`, `EmployeeOut`, and the `lifespan` function from section 2. Write the `Employee` class, the body of `seed`, and the two GET routes.
+
+### Part C — Prove it works (5 min)
 
 - [ ] After `fastapi dev main.py`, MySQL shows six rows in `employee`.
 - [ ] `GET /employees/E-1042` is Ananya and **200**.
 - [ ] `GET /employees/E-9999` is **404**.
-- [ ] Restart the server. The six rows are still there. A second restart does not create duplicate Ananya rows.
+- [ ] `GET /employees?department=Engineering` is only E-1042, E-1043, and E-1047.
+- [ ] Restart the server twice. The six rows are still there, and there are no duplicate Ananya rows.
 
 Open `solution/main.py` only after the checklist passes.
 

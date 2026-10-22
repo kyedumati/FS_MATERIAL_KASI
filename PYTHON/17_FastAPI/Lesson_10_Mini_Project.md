@@ -40,10 +40,10 @@ Then, in this order:
 1. Open `/docs`. `GET /health` is **200**.
 2. `GET /employees?department=Engineering` returns Ananya, Karthik, and Arjun from MySQL.
 3. `GET /employees/E-9999` is **404**.
-4. `POST /login` as Rahul. Copy nothing by hand. Click **Authorize** and call `GET /me`. The role is `hr`.
+4. Click **Authorize** on `/docs` and log in as Rahul. You do not need to paste a token: **Authorize** calls `POST /login` and keeps the token for you. Call `GET /me`. The role is `hr`.
 5. Call `GET /me` logged out. **401**.
-6. Open `http://127.0.0.1:5500/register.html`. Change the Employee ID to `E-1049` (Lesson 9 already created `E-1048`) and register. The page says `Created`.
-7. Submit an empty name. The page shows **422** and `Field required`.
+6. Open `http://127.0.0.1:5500/register.html`. Log in as Rahul by typing his email and password into the page. Change the Employee ID to `E-1049` (Lesson 9 already created `E-1048`) and register. The page says `Created`.
+7. Submit an empty name. The page shows **422** and `String should have at least 1 character`.
 8. In MySQL, `SELECT employee_id, name FROM employee WHERE employee_id = 'E-1049';` matches the page.
 
 That is the demo.
@@ -105,7 +105,7 @@ Use the project that already has `register.html`. The broken page for Part A is 
 
 ### Part A — Fix the page (10 min)
 
-Serve `broken/register.html` on port 5500 with the API running. Submit the form. The page shows **401**. Put the `Authorization` header back, the same header `register.html` sends.
+Serve `broken/register.html` on port 5500 with the API running. Log in as Rahul. The page says `Logged in.` Submit the registration. The page shows **401**: the page has a token but does not send it. Put the `Authorization` header back, the same header `register.html` sends.
 
 ### Part B — Demo (15 min)
 

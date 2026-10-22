@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register employee — AcmeHR</title>
+</head>
+<body>
+  <h1>Register an employee</h1>
+
+  <h2>1. Log in as HR</h2>
+  <form id="login">
+    <p><label>Email <input name="username" type="email" required></label></p>
+    <p><label>Password <input name="password" type="password" required></label></p>
+    <button type="submit">Log in</button>
+  </form>
+
+  <h2>2. Register</h2>
+  <form id="register">
+    <p><label>Employee ID <input name="employee_id" value="E-1048" required></label></p>
+    <p><label>Name <input name="name" value="Sana Qureshi"></label></p>
+    <p><label>Designation <input name="designation" value="HR Executive" required></label></p>
+    <p><label>Department <input name="department" value="Human Resources" required></label></p>
+    <p><label>Email <input name="email" type="email" value="sana.qureshi@acme.example" required></label></p>
+    <p><label>Phone <input name="phone"></label></p>
+    <button type="submit">Register</button>
+  </form>
+  <p id="result"></p>
+  <script>
+    const result = document.querySelector("#result");
+    // The token lives only in this variable. Reloading the page logs you out.
+    let token = null;
+
+    // TODO: on submit of #login, POST the form to http://127.0.0.1:8000/login
+    // as application/x-www-form-urlencoded. On success store access_token in token.
+    // On failure write "Login failed: wrong email or password." in #result.
+
+    // TODO: on submit of #register, stop with "Log in first." when token is null.
+    // Otherwise POST the fields as JSON to http://127.0.0.1:8000/employees,
+    // with the header Authorization: Bearer <token>.
+    // Write "Created <name> (<id>)" on success, or the status and detail on an error.
+  </script>
+</body>
+</html>

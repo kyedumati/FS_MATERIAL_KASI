@@ -26,6 +26,7 @@ acmehr-api/
 │   └── employees.py        ← the routes
 ├── .env                    ← your machine. Not committed
 ├── .env.example            ← the names of the settings, committed
+├── .gitignore              ← keeps .env, venv/, and test databases out of Git
 ├── requirements.txt
 └── test_employees.py
 ```
@@ -123,7 +124,7 @@ The tests check `/health`, Ananya's name, and a **404** for `E-9999`.
 
 **Common error:** `ModuleNotFoundError: database`. The terminal is not in the folder that contains `main.py`. `cd` there, then `fastapi dev main.py`.
 
-**Common error:** You committed `.env`. It holds the database password. Add `.env` to `.gitignore` and keep `.env.example`.
+**Common error:** You committed `.env`. It holds the database password. The example folder already has a `.gitignore` that lists `.env`. Copy it into your project before your first commit.
 
 ---
 
@@ -152,17 +153,33 @@ Split `main.py` into this layout and add one test.
 
 ```text
 PYTHON/17_FastAPI/labs/L07_structure/
-└── solution/          ← the finished project
+├── broken/      ← Part A. A split project with bugs.
+├── starter/     ← Part B. The split files, with TODOs.
+└── solution/    ← Open only after the checklist passes.
 ```
 
-Build the project in your `acmehr-api` folder. Use [`examples/lesson07/`](examples/lesson07/) when you want to compare a file.
+Each folder is a whole project. `cd` into it, copy `.env.example` to `.env`, then run `fastapi dev main.py` and `pytest test_employees.py` from there.
 
-### Prove it works
+### Part A — Fix the broken project (10 min)
 
-- [ ] `fastapi dev main.py` from `acmehr-api` serves `GET /employees/E-1042`.
+`broken/` starts, and it has **3 bugs**:
+
+1. `/docs` has no **employees** section, and `GET /employees/E-1042` is **404**.
+2. After you fix 1, `GET /employees/E-1042` is still **404**. Read the path `/docs` shows for that route.
+3. `pytest test_employees.py` uses MySQL, not a fresh SQLite file. No `test_acme.db` appears. Depending on your MySQL, the tests fail with `Can't connect` or `Access denied`, or they quietly run against your class database.
+
+### Part B — Build the split (15 min)
+
+`starter/` has every file from section 1. Write `get_db`, move your four write routes from Lesson 6 into `routers/employees.py` with `Depends(get_db)`, include the router in `main.py`, and finish the two TODO tests.
+
+### Part C — Prove it works (5 min)
+
+- [ ] `fastapi dev main.py` serves `GET /employees/E-1042`.
 - [ ] `/docs` groups those routes under **employees**.
-- [ ] `.env` is not committed. `.env.example` is.
+- [ ] `.env` is not committed. `.env.example` and `.gitignore` are.
 - [ ] `pytest test_employees.py` prints `3 passed`.
+
+Then do the same split in your own `acmehr-api` folder.
 
 </details>
 

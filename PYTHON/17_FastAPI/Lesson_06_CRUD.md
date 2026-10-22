@@ -130,13 +130,24 @@ The employee API must create, update, and delete rows in `training_db`.
 
 ```text
 PYTHON/17_FastAPI/labs/L06_crud/
-├── starter/main.py
-└── solution/main.py
+├── broken/main.py      ← Part A. Fix this file.
+├── starter/main.py     ← Part B. Complete the TODOs.
+└── solution/main.py    ← Open only after the checklist passes.
 ```
 
-`starter/main.py` reads the table. The write routes are TODOs. `solution/main.py` is the finished file.
+### Part A — Fix the broken API (10 min)
 
-### Prove it works
+`broken/main.py` starts, and it has **3 bugs**:
+
+1. POST Sana as `E-1048` twice. The second answer is **500**, not **400** and `Employee id already exists`.
+2. PATCH `E-1048` with only `{"designation": "Lead HR Executive"}`. The answer is **500**, and the terminal says `Column 'name' cannot be null`.
+3. DELETE `E-1048` is **204**, but GET `E-1048` still returns Sana, and MySQL still has her row.
+
+### Part B — Build the write routes (15 min)
+
+`starter/main.py` reads the table and already has `EmployeeCreate`, `EmployeeUpdate`, and `EmployeeOut`. Write POST, PUT, PATCH, and DELETE from the TODOs.
+
+### Part C — Prove it works (5 min)
 
 - [ ] POST Sana as `E-1048` returns **201**, and a MySQL `SELECT` shows her.
 - [ ] POST the same id returns **400**.

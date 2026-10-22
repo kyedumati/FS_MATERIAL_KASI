@@ -10,7 +10,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import User
 
-SECRET_KEY = os.getenv("SECRET_KEY", "acmehr-class-secret-change-me-please")
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY is not set. Copy .env.example to .env.")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 

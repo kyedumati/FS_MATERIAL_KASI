@@ -6,9 +6,18 @@
 </head>
 <body>
   <h1>Register an employee</h1>
+
+  <h2>1. Log in as HR</h2>
+  <form id="login">
+    <p><label>Email <input name="username" type="email" required></label></p>
+    <p><label>Password <input name="password" type="password" required></label></p>
+    <button type="submit">Log in</button>
+  </form>
+
+  <h2>2. Register</h2>
   <form id="register">
     <p><label>Employee ID <input name="employee_id" value="E-1048" required></label></p>
-    <p><label>Name <input name="name" value="Sana Qureshi" required></label></p>
+    <p><label>Name <input name="name" value="Sana Qureshi"></label></p>
     <p><label>Designation <input name="designation" value="HR Executive" required></label></p>
     <p><label>Department <input name="department" value="Human Resources" required></label></p>
     <p><label>Email <input name="email" type="email" value="sana.qureshi@acme.example" required></label></p>
@@ -18,26 +27,36 @@
   <p id="result"></p>
   <script>
     const result = document.querySelector("#result");
+    // The token lives only in this variable. Reloading the page logs you out.
+    let token = null;
 
-    document.querySelector("#register").addEventListener("submit", async (event) => {
+    document.querySelector("#login").addEventListener("submit", async (event) => {
       event.preventDefault();
-      result.textContent = "Sending…";
-      const data = Object.fromEntries(new FormData(event.target));
-      if (!data.phone) delete data.phone;
-
+      result.textContent = "Logging in…";
       const login = await fetch("http://127.0.0.1:8000/login", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          username: "rahul.sharma@acme.example",
-          password: "Acme#1045",
-        }),
+        body: new URLSearchParams(new FormData(event.target)),
       });
       if (!login.ok) {
-        result.textContent = "Login failed. Is fastapi dev running?";
+        token = null;
+        result.textContent = "Login failed: wrong email or password.";
         return;
       }
-      const token = (await login.json()).access_token;
+      token = (await login.json()).access_token;
+      event.target.reset();
+      result.textContent = "Logged in. You can register an employee.";
+    });
+
+    document.querySelector("#register").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!token) {
+        result.textContent = "Log in first.";
+        return;
+      }
+      result.textContent = "Sending…";
+      const data = Object.fromEntries(new FormData(event.target));
+      if (!data.phone) delete data.phone;
 
       const response = await fetch("http://127.0.0.1:8000/employees", {
         method: "POST",
