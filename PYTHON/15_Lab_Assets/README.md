@@ -38,7 +38,6 @@ Notes teach; **these folders run**. Start every major concept with a **customer 
 | [19_git_portfolio_hygiene](19_git_portfolio_hygiene/) | ~44–45 | Pointer → [`GIT/labs/01_git_portfolio_hygiene`](../../GIT/labs/01_git_portfolio_hygiene/) |
 | [20_sql_injection_demo](20_sql_injection_demo/) | ~55 | Ticket: Stop SQL Injection |
 | [24_django_url_views_stub](24_django_url_views_stub/) | ~63–67 | Ticket: Two Pages With One Base Template |
-| [25_flask_notes_api](25_flask_notes_api/) | ~81 | Ticket: Tiny Notes JSON API |
 | [26_unittest_utils](26_unittest_utils/) | ~91–92 | Ticket: Tests Must Catch the Bug |
 | [27_terminal_workspace](27_terminal_workspace/) | ~01–02 | Ticket: Messy Desktop → Clean Workspace |
 | [29_ai_review_stub](29_ai_review_stub/) | optional after S95 | Ticket: Optional AI Recommend Endpoint |

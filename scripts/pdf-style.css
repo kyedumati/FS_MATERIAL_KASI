@@ -106,6 +106,34 @@ h2 {
   break-after: avoid-page;
 }
 
+/* Lab and Homework. Folded in the notes; printed in full here.
+   A PDF page cannot open and close, so the body is always shown. */
+details.fold {
+  border: 1px solid #c5d9e4;
+  border-left: 4px solid #1f7a8c;
+  border-radius: 6px;
+  padding: 8pt 12pt 10pt;
+  margin: 12pt 0 14pt;
+  background: #f8fbfc;
+}
+
+details.fold > summary {
+  font-size: 13.5pt;
+  font-weight: 700;
+  color: #0f5f73;
+  list-style: none;
+  page-break-after: avoid;
+  break-after: avoid-page;
+}
+
+details.fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.fold > *:not(summary) {
+  display: block !important;
+}
+
 h3 {
   font-size: 12pt;
   color: #156577;

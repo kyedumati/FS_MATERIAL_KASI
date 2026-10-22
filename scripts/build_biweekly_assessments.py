@@ -77,7 +77,7 @@ BW_META = {
         "file": "BW09_Weeks_17_18_APIs_React.md",
         "title": "Biweekly Assessment BW09 — Weeks 17–18",
         "sessions": "S81–90",
-        "topics": "Flask overview, REST/JSON/Postman/DRF, React fundamentals, hooks/routing/CORS",
+        "topics": "REST/JSON/Postman/DRF, React fundamentals, hooks/routing/CORS",
         "coding_note": "API + React concepts.",
     },
     "BW10": {
@@ -289,7 +289,7 @@ PAPERS["BW09"] = {
         mcq("HTTP 201 usually means:", "Created", "Not found", "Server error", "Redirect forever", "a"),
         mcq("Postman is used to:", "Manually test API requests", "Replace MySQL", "Compile C", "Design only logos", "a"),
         mcq("DRF serializers mainly:", "Validate/convert data", "Style HTML", "Commit git", "Run npm", "a"),
-        mcq("Flask is:", "A lightweight Python web framework", "A CSS framework", "A database", "A React hook", "a"),
+        mcq("A DRF ViewSet groups:", "List, create, retrieve, update, and destroy", "Only CSS files", "Git remotes", "MySQL users", "a"),
         mcq("React component state updates should:", "Use setState/useState", "Edit DOM with innerHTML always", "Restart MySQL", "Change git remote", "a"),
         mcq("`useEffect` often handles:", "Side effects / fetch on mount", "SQL indexes", "CSS only", "pip install", "a"),
         mcq("CORS errors appear when:", "Browser blocks cross-origin API calls", "Python syntax wrong", "Git not installed", "f-string missing", "a"),
@@ -299,7 +299,7 @@ PAPERS["BW09"] = {
         mcq("Props in React are:", "Inputs from parent to child", "SQL primary keys", "Git remotes", "venv names", "a"),
     ],
     "coding": [
-        "Write a minimal Flask (or sketch) JSON endpoint `GET /notes` returning a list of note dicts.",
+        "Sketch a DRF list endpoint `GET /api/notes/` that returns a list of note dicts.",
         "Write a React function component that shows a product name from props and a quantity in `useState`, with + button.",
     ],
     "short": "Why is CORS a browser rule, and what must the API allow for a Vite React app on another port?",

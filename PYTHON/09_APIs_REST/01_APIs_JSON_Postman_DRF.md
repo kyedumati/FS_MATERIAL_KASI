@@ -2,7 +2,7 @@
 
 **Phase:** APIs & REST  
 
-**Previous module:** Flask Overview  
+**Previous module:** [Lab Deploy + Capstone Debug](../07_Django/07_Lab_Deploy_Capstone_Debug.md)  
 **Next module:** [React Fundamentals](../../FRONTEND/REACT/01_React_Fundamentals.md)
 
 ---
@@ -405,7 +405,7 @@ print(resp.json())
 ```
 
 **Note:**
-- `requests` to the wrong port → connection refused (Django usually `8000`, Flask `5000`).
+- `requests` to the wrong port → connection refused (Django dev server is usually `8000`).
 - List endpoints return an **array** — treating it as a dict → `KeyError` on `['id']`.
 - Ignore status codes at your peril — check `resp.ok` (or equivalent) so failures are not silent.
 

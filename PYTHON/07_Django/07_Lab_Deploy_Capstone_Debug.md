@@ -5,7 +5,7 @@
 **Goal:** Production-like config verified + at least one **live or staging URL** (or documented blocked-by-platform note with local `check --deploy` green)
 
 **Previous module:** Lab CRUD Auth Consolidation
-**Next module:** Flask Overview
+**Next module:** [APIs, JSON, Postman & DRF](../09_APIs_REST/01_APIs_JSON_Postman_DRF.md)
 
 ---
 

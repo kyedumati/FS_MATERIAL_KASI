@@ -27,7 +27,7 @@
 | 14 | Models, forms, auth start | | | ☐ | ☐ | | | | |
 | 15 | Security + Lab 06 CRUD/auth | | | ☐ | ☐ | | | | |
 | 16 | Lab 06–07 + capstone shell | | | ☐ | ☐ | | | | |
-| 17 | Flask lite + DRF/Postman | | | ☐ | ☐ | | | | |
+| 17 | DRF/Postman | | | ☐ | ☐ | | | | |
 | 18 | React + API fetch | | | ☐ | ☐ | | | | |
 | 19 | Testing + capstone polish | | | ☐ | ☐ | | | | |
 | 20 | Placement + demo day (AI optional) | | | ☐ | ☐ | | | | |

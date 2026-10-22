@@ -467,8 +467,8 @@ Shared with students after concepts and the mini-project. Use for review and int
 **Q2. Explain MTV.**  
 **A:** Model handles data; View handles request logic; Template renders HTML. URL dispatcher routes URLs to views.
 
-**Q3. Difference between Flask and Django?**  
-**A:** Flask is minimal/micro — you choose components; Django is batteries-included with ORM, admin, auth conventions. Django suits large CRUD portals; Flask suits small APIs/services.
+**Q3. What does “batteries included” mean for Django?**  
+**A:** Django ships ORM, admin, auth, templates, and security helpers so a typical CRUD portal does not start from an empty web server.
 
 **Q4. Purpose of `manage.py`?**  
 **A:** CLI to run development server, migrations, shell, createsuperuser — sets `DJANGO_SETTINGS_MODULE` and delegates to Django management framework.

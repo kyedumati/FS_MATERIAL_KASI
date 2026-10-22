@@ -2,7 +2,7 @@
 
 **Program:** Python Full Stack Development (KSR Datavizon syllabus 2026–27)  
 **Audience:** Learners preparing for entry-level Python / Django / full-stack roles
-**Stack:** Python 3 · MySQL 8+ · Django 5.x · HTML/CSS/JS · React · Flask (overview) · Git/GitHub · VS Code · Postman  
+**Stack:** Python 3 · MySQL 8+ · Django 5.x · HTML/CSS/JS · React · Git/GitHub · VS Code · Postman  
 **Default schedule:** **DURATION = 20 weeks** · **HOURS_PER_DAY = 1 hour 15 minutes** (Mon–Fri live class)  
 **Live contact:** 20 × 5 × 1.25h = **125 hours** (100 sessions)  
 **Homework:** ~45–90 min most days → total engagement well above brochure **150+ hours**  
@@ -32,7 +32,7 @@
         ↓
 [Django: project → templates → models/ORM → forms → auth → admin]
         ↓
-[Flask lite] → [REST APIs + DRF + Postman + JSON]
+[REST APIs + DRF + Postman + JSON]
         ↓
 [React + API integration]
         ↓
@@ -53,7 +53,7 @@ flowchart TD
   D --> E[MySQL + Python DB]
   E --> F[HTML CSS JS]
   F --> G[Django + labs]
-  G --> H[Flask + REST APIs]
+  G --> H[REST APIs + DRF]
   H --> I[React]
   I --> J[Testing]
   J --> K[Capstone + Placement]
@@ -91,13 +91,12 @@ flowchart TD
 | 25 | `07_Django/05_Security_and_Deployment.md` | BE | CSRF, env, DEBUG | Deploy checklist | WhiteNoise | Staging deploy |
 | 26 | `07_Django/06_Lab_CRUD_Auth_Consolidation.md` | BE lab | — | End-to-end flow | **Guided lab day** | Working CRUD+auth |
 | 27 | `07_Django/07_Lab_Deploy_Capstone_Debug.md` | BE lab | `check --deploy` | Debug prod issues | **Guided lab day** | Live URL |
-| 28 | `08_Flask/01_Flask_Overview.md` | BE | Routes | Django vs Flask | Micro API | Notes API |
-| 29 | `09_APIs_REST/01_APIs_JSON_Postman_DRF.md` | APIs | REST verbs | Status codes | Postman | DRF CRUD |
-| 30 | [`FRONTEND/REACT/01_React_Fundamentals.md`](../../FRONTEND/REACT/01_React_Fundamentals.md) | FE | Components, hooks | State | SPA basics | UI components |
-| 31 | [`FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md`](../../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | FE | useEffect, Router | CORS | API integrate | React + Django |
-| 32 | `11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md` | Quality | assert/pytest | Debug flow | Write tests | Tested utils |
-| 33 | `13_Placement/01_Career_Resume_Interview.md` | Jobs | Role keywords | STAR stories | Mocks | Resume + LinkedIn |
-| 34 | `12_AI_Integration/01_AI_Integration_Lite.md` | **Stretch only** | API call pattern | ML-via-API idea | Optional demo | Optional widget |
+| 28 | `09_APIs_REST/01_APIs_JSON_Postman_DRF.md` | APIs | REST verbs | Status codes | Postman | DRF CRUD |
+| 29 | [`FRONTEND/REACT/01_React_Fundamentals.md`](../../FRONTEND/REACT/01_React_Fundamentals.md) | FE | Components, hooks | State | SPA basics | UI components |
+| 30 | [`FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md`](../../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | FE | useEffect, Router | CORS | API integrate | React + Django |
+| 31 | `11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md` | Quality | assert/pytest | Debug flow | Write tests | Tested utils |
+| 32 | `13_Placement/01_Career_Resume_Interview.md` | Jobs | Role keywords | STAR stories | Mocks | Resume + LinkedIn |
+| 33 | `12_AI_Integration/01_AI_Integration_Lite.md` | **Stretch only** | API call pattern | ML-via-API idea | Optional demo | Optional widget |
 
 > **Django package = seven files:** teaching modules `01`–`05` plus two **protected lab days** `06`–`07`. Do not invent “modules 08–12.”
 
@@ -150,7 +149,7 @@ flowchart TD
 | 14 | 66–70 | Templates, models, forms | Admin + forms |
 | 15 | 71–75 | Auth, security, Lab 06 start | Login CRUD |
 | 16 | 76–80 | Lab 06–07 + capstone shell | Deploy checks + M0/M1 |
-| 17 | 81–85 | Flask lite + DRF/Postman | Product API |
+| 17 | 81–85 | DRF/Postman | Product API |
 | 18 | 86–90 | React + API connect | SPA list UI |
 | 19 | 91–95 | Testing + capstone build/deploy | Live/staging URL |
 | 20 | 96–100 | Placement + defense | Demo day |

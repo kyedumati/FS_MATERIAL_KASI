@@ -218,6 +218,8 @@ def md_to_html(md_text: str) -> str:
         "sane_lists",
         "nl2br",
         "attr_list",
+        # Markdown inside <details markdown="1"> (Lab / Homework folds).
+        "md_in_html",
     ]
     return markdown.markdown(md_text, extensions=extensions)
 

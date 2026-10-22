@@ -22,9 +22,9 @@ Structured training material for **Python Full Stack**, **Java Full Stack**, and
 | Student pack | `./scripts/pack_student_share.sh` → `dist/PYTHON_STUDENT/` |
 | Student PDFs | `./scripts/build.sh python` → `PDF/PYTHON/` · `./scripts/build.sh git` → `PDF/GIT/` · `./scripts/build.sh frontend` → `PDF/FRONTEND/` |
 
-**Default schedule:** 20 weeks × **1 hour 15 minutes/day** live (100 sessions) · Stack: Python 3, MySQL 8+, Django 5.x, HTML/CSS/JS, React, Flask overview, GitHub, VS Code.
+**Default schedule:** 20 weeks × **1 hour 15 minutes/day** live (100 sessions) · Stack: Python 3, MySQL 8+, Django 5.x, HTML/CSS/JS, React, GitHub, VS Code.
 
-**Phases:** Foundations → Core Python → Advanced Python → Git → MySQL → Frontend → Django → Flask/REST → React → Testing/AI lite → Placement.
+**Phases:** Foundations → Core Python → Advanced Python → Git → MySQL → Frontend → Django → REST → React → Testing/AI lite → Placement.
 
 ---
 

@@ -428,7 +428,7 @@ return (
 
 3. Document CORS error screenshot + fix in README.
    **Model answer:**
-   Screenshot the browser console CORS error. Fix by allowing the React origin on the API (Django `CORS_ALLOWED_ORIGINS` or Flask-CORS). README: cause → fix setting → verify `GET` succeeds.
+   Screenshot the browser console CORS error. Fix by allowing the React origin on the API (Django `CORS_ALLOWED_ORIGINS`). README: cause → fix setting → verify `GET` succeeds.
 
 ### Intermediate
 

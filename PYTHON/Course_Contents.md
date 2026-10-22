@@ -22,7 +22,7 @@
 | 4     | 10–11 | MySQL (**required labs**) + Python DB | CRUD apps talking to MySQL |
 | 5     | 12–13 | HTML, CSS, JavaScript + Django start | Front pages + first Django site |
 | 6     | 14–16 | Django auth, labs `06`–`07`, capstone shell | Auth CRUD + deploy checks |
-| 7     | 17–18 | Flask lite + DRF + React | REST APIs & SPA integration |
+| 7     | 17–18 | DRF + React | REST APIs & SPA integration |
 | 8     | 19–20 | Testing, capstone, placement (**AI optional**) | Portfolio + interview readiness |
 
 ---
@@ -133,15 +133,7 @@ Shared notes: [`GIT/README.md`](../GIT/README.md) (same files as Java FS).
 
 ---
 
-### 9. Flask (*Must overview*)
-
-- Flask vs Django (when to use which)
-- Minimal routes, templates, JSON responses
-- Small API or micro-service demo
-
----
-
-### 10. APIs, JSON, Postman (**Must**)
+### 9. APIs, JSON, Postman (**Must**)
 
 - What is an API? REST principles
 - JSON read/write in Python
@@ -150,7 +142,7 @@ Shared notes: [`GIT/README.md`](../GIT/README.md) (same files as Java FS).
 
 ---
 
-### 11. React (**Must**)
+### 10. React (**Must**)
 
 - Introduction, install & setup (Vite)
 - Components, Props, State
@@ -164,7 +156,7 @@ Shared notes: [`GIT/README.md`](../GIT/README.md) (same files as Java FS).
 
 ---
 
-### 12. Testing, Debugging, Clean Code (**Must**)
+### 11. Testing, Debugging, Clean Code (**Must**)
 
 - Debugging in VS Code
 - Logging review
@@ -173,7 +165,7 @@ Shared notes: [`GIT/README.md`](../GIT/README.md) (same files as Java FS).
 
 ---
 
-### 13. AI Integration (*Optional stretch / brochure*)
+### 12. AI Integration (*Optional stretch / brochure*)
 
 - **Only after** deployed Django MVP + SQL confidence + GitHub portfolio
 - AI Integration with Python programming (overview)
@@ -183,7 +175,7 @@ Shared notes: [`GIT/README.md`](../GIT/README.md) (same files as Java FS).
 
 ---
 
-### 14. Miscellaneous — Soft Skills & Placement (**Must**)
+### 13. Miscellaneous — Soft Skills & Placement (**Must**)
 
 - Agile (Scrum) overview
 - Daily assignments & weekly assessments

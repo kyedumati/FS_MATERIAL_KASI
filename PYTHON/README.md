@@ -10,7 +10,7 @@
 **Audience:** Learners preparing for entry-level Python / Django / full-stack roles
 **Default schedule:** **20 weeks × 1 hour 15 minutes/day** (Mon–Fri live) — see Session Calendar  
 **Live contact = 125 hours (100 sessions)** + daily homework  
-**Stack:** Python 3 · MySQL 8+ · Django 5.x · HTML/CSS/JS · React · Flask (overview) · Git/GitHub · VS Code · Postman  
+**Stack:** Python 3 · MySQL 8+ · Django 5.x · HTML/CSS/JS · React · Git/GitHub · VS Code · Postman  
 
 ---
 
@@ -19,9 +19,10 @@
 1. [**Session Calendar**](Session_Calendar_100.md) — 100 sessions, one focus each  
 2. [**Tested Toolchain**](Tested_Toolchain.md) · [**Project deliverables**](Standard_Project_Deliverables.md) · [**Capstone one-pager**](Capstone_CampusCart_One_Pager.md)  
 3. [**Lab Assets**](15_Lab_Assets/) · [**Biweekly Assessments**](16_Assessments/)  
-4. [Course Contents (syllabus map)](Course_Contents.md)  
-5. Open the **same** module files in Session Calendar order  
-6. Optional: [Professional Python Deep Dive](03_Advanced_Python/08_Professional_Python_Deep_Dive.md)  
+4. [**FastAPI**](17_FastAPI/README.md) — 10 sessions, AcmeHR API, after HTML and MySQL and before Django  
+5. [Course Contents (syllabus map)](Course_Contents.md)  
+6. Open the **same** module files in Session Calendar order  
+7. Optional: [Professional Python Deep Dive](03_Advanced_Python/08_Professional_Python_Deep_Dive.md)  
 
 ### Typical class shape (75 min)
 
@@ -67,13 +68,12 @@
 | 25 | [07_Django/05_Security_and_Deployment.md](07_Django/05_Security_and_Deployment.md) | Security & deployment (`load_dotenv`, `STORAGES`, `check --deploy`) |
 | 26 | [07_Django/06_Lab_CRUD_Auth_Consolidation.md](07_Django/06_Lab_CRUD_Auth_Consolidation.md) | **Protected lab:** CRUD + auth |
 | 27 | [07_Django/07_Lab_Deploy_Capstone_Debug.md](07_Django/07_Lab_Deploy_Capstone_Debug.md) | **Protected lab:** deploy + debug |
-| 28 | [08_Flask/01_Flask_Overview.md](08_Flask/01_Flask_Overview.md) | Flask overview |
-| 29 | [09_APIs_REST/01_APIs_JSON_Postman_DRF.md](09_APIs_REST/01_APIs_JSON_Postman_DRF.md) | APIs, JSON, Postman, DRF (**full CRUD code in-module**) |
-| 30 | [../FRONTEND/REACT/01_React_Fundamentals.md](../FRONTEND/REACT/01_React_Fundamentals.md) | React fundamentals *(shared)* |
-| 31 | [../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md](../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | Hooks, routing, API, deploy *(shared)* |
-| 32 | [11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md](11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md) | Testing, debugging, clean code |
-| 33 | [13_Placement/01_Career_Resume_Interview.md](13_Placement/01_Career_Resume_Interview.md) | Resume, interview, placement |
-| 34 | [12_AI_Integration/01_AI_Integration_Lite.md](12_AI_Integration/01_AI_Integration_Lite.md) | AI lite — **optional stretch only** |
+| 28 | [09_APIs_REST/01_APIs_JSON_Postman_DRF.md](09_APIs_REST/01_APIs_JSON_Postman_DRF.md) | APIs, JSON, Postman, DRF (**full CRUD code in-module**) |
+| 29 | [../FRONTEND/REACT/01_React_Fundamentals.md](../FRONTEND/REACT/01_React_Fundamentals.md) | React fundamentals *(shared)* |
+| 30 | [../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md](../FRONTEND/REACT/02_React_Hooks_Routing_API_Deploy.md) | Hooks, routing, API, deploy *(shared)* |
+| 31 | [11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md](11_Testing_Clean_Code/01_Testing_Debugging_Clean_Code.md) | Testing, debugging, clean code |
+| 32 | [13_Placement/01_Career_Resume_Interview.md](13_Placement/01_Career_Resume_Interview.md) | Resume, interview, placement |
+| 33 | [12_AI_Integration/01_AI_Integration_Lite.md](12_AI_Integration/01_AI_Integration_Lite.md) | AI lite — **optional stretch only** |
 
 **Optional enrichment (not numbered above):** [Professional Python Deep Dive](03_Advanced_Python/08_Professional_Python_Deep_Dive.md) — after Git / Saturday; not on the critical path to Django.
 
@@ -108,7 +108,7 @@ Every teaching module follows the same shape:
 | AI Integration last | **Stretch after** deployed MVP | Never delays core competence / placement |
 | Thin Django calendar | 5 teach modules + **2 lab days** (`06`–`07`) | Career-switcher consolidation time |
 
-Brochure modules **preserved:** Core Python, Advanced Python (incl. decorators/generators, logging, DB programming), MySQL DDL/DML/DQL/TCL/JOINS, Django full path, Flask, Frontend, React, AI Integration, Agile/resume/live project.
+Brochure modules **preserved:** Core Python, Advanced Python (incl. decorators/generators, logging, DB programming), MySQL DDL/DML/DQL/TCL/JOINS, Django full path, Frontend, React, AI Integration, Agile/resume/live project.
 
 ---
 

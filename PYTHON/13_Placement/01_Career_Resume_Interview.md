@@ -230,7 +230,7 @@ Write a daily 20-minute drill covering yesterday's commit, one coding puzzle, an
 **Example (BPO → Developer):**  
 S: Handled 50+ customer tickets daily in telecom process.  
 T: Team wanted automated FAQ responses.  
-A: Learned Python, built Flask FAQ API prototype in training capstone.  
+A: Learned Python, built a Django FAQ endpoint in the training capstone.  
 R: Reduced lookup time in demo scenario; motivated completing the KSR full-stack course.
 
 Write a STAR story for making tasks private per owner in the Task Manager project.
@@ -366,9 +366,9 @@ Open to junior developer roles — connect via LinkedIn.
 
 ### Interview-style
 
-1. Answer: "Difference between Django and Flask?" in 45 sec.
+1. Answer: "What does Django give you that a plain Python script does not?" in 45 sec.
    **Model answer:**
-   Django is batteries-included (ORM, admin, auth) for larger apps; Flask is a lightweight microframework where you add extensions as needed. I use Django for full portals and Flask for small APIs/prototypes.
+   Django is a web framework: URL routing, templates or JSON APIs, an ORM, admin, auth, and security defaults. A script runs only the code you write. Django is the structure for a multi-page app that talks to MySQL.
 
 2. Walk through your capstone architecture on whiteboard.
    **Model answer:**

@@ -465,7 +465,7 @@ Create `notes/my_roadmap.md` in VS Code:
 - Timeline: 16 weeks
 - Week 1–6: Core + Advanced Python + Git
 - Week 7–11: MySQL + Frontend + Django start
-- Week 12–16: Django labs + Flask + DRF + React
+- Week 12–16: Django labs + DRF + React
 - Week 17–20: Testing, capstone, placement (AI optional)
 - Portfolio target: Student management mini app
 ```
@@ -551,7 +551,7 @@ Draft a weekly habit plan with study schedule and Naukri keywords to watch.
 
 3. Compare two job posts on Naukri/LinkedIn for "Python Developer" (entry-level) — note required skills vs this course map.
 
-   **Model answer:** Typical entry posts ask: Python basics, Git, SQL/MySQL, Django/Flask, REST APIs, HTML/CSS/JS, sometimes React. Map to this course: Foundations → Core Python → Git → MySQL → Frontend → Django/Flask → APIs → React → Testing/Placement. Soft skills (communication, problem-solving) appear often — practice explaining projects in plain English.
+   **Model answer:** Typical entry posts ask: Python basics, Git, SQL/MySQL, Django, REST APIs, HTML/CSS/JS, sometimes React. Map to this course: Foundations → Core Python → Git → MySQL → Frontend → Django → APIs → React → Testing/Placement. Soft skills (communication, problem-solving) appear often — practice explaining projects in plain English.
 
 4. Write pseudocode for **task manager**: add task, list tasks, mark complete, exit.
 

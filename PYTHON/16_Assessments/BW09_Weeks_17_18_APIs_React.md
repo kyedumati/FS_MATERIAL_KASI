@@ -1,7 +1,7 @@
 # Biweekly Assessment BW09 — Weeks 17–18
 
 **Sessions covered:** S81–90  
-**Topics:** Flask overview, REST/JSON/Postman/DRF, React fundamentals, hooks/routing/CORS
+**Topics:** REST/JSON/Postman/DRF, React fundamentals, hooks/routing/CORS
 
 **Timebox:** 45–60 minutes (homework or Friday of the even week).  
 **Rules:** Closed notes unless your trainer allows open notes. No copying.  
@@ -37,11 +37,11 @@ Circle the best option.
    c) Style HTML
    d) Commit git
 
-5. Flask is:
-   a) A lightweight Python web framework
-   b) A CSS framework
-   c) A database
-   d) A React hook
+5. A DRF ViewSet groups:
+   a) List, create, retrieve, update, and destroy
+   b) Only CSS files
+   c) Git remotes
+   d) MySQL users
 
 6. React component state updates should:
    a) Edit DOM with innerHTML always
@@ -89,7 +89,7 @@ Circle the best option.
 
 ## B. Coding (2)
 
-1. Write a minimal Flask (or sketch) JSON endpoint `GET /notes` returning a list of note dicts.
+1. Sketch a DRF list endpoint `GET /api/notes/` that returns a list of note dicts.
 
 ```python
 # your code

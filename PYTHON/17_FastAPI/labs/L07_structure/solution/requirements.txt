@@ -1,0 +1,5 @@
+fastapi[standard]
+sqlalchemy
+mysql-connector-python
+python-dotenv
+pytest

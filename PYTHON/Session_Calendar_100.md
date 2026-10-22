@@ -163,7 +163,7 @@
 
 | S# | Wk | Focus | Module | Homework |
 |---:|---:|-------|--------|---------|
-| 81 | 17 | Flask routes + JSON lite | [08_Flask/01_Flask_Overview.md](08_Flask/01_Flask_Overview.md) | Notes API stub |
+| 81 | 17 | What is an API + JSON in Python | [09_APIs_REST/01_APIs_JSON_Postman_DRF.md](09_APIs_REST/01_APIs_JSON_Postman_DRF.md) | dumps/loads notes |
 | 82 | 17 | REST + status codes + Postman | [09_APIs_REST/01_APIs_JSON_Postman_DRF.md](09_APIs_REST/01_APIs_JSON_Postman_DRF.md) | Collection v1 |
 | 83 | 17 | DRF serializer + viewset | same | List/create works |
 | 84 | 17 | DRF URLs + validation errors | same | Postman CRUD |

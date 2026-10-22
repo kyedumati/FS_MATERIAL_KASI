@@ -16,8 +16,8 @@
 
 ## Prerequisites
 
-- **Optional stretch module** — only after Flask/Django API + a simple frontend form/`fetch`
-- `pip install scikit-learn` (or course Flask/Django project ready)
+- **Optional stretch module** — only after a Django API + a simple frontend form/`fetch`
+- `pip install scikit-learn` (or course Django project ready)
 
 ---
 
@@ -32,7 +32,7 @@ Most **junior Python full-stack** roles want you to:
 **Icons:** Order · Laptop · Employee · Bank · Payroll
 
 **Where used?**
-- **Swiggy** — canteen review sentiment / spam filter behind a Flask route
+- **Swiggy** — canteen review sentiment / spam filter behind a Django API route
 - College apps — simple chatbot FAQ endpoint on the student portal
 - CRM / support — summarize tickets via remote model API
 - **HDFC Bank** — fraud/risk scores consumed as JSON (you wire the call, not train GPT)
@@ -47,7 +47,7 @@ Employers do **not** expect you to publish research papers or build GPT from scr
 | **Local tiny ML** | scikit-learn spam classifier | Offline demo, interviews "I know fit/predict" |
 | **Remote model API** | HTTP POST to hosted LLM | Chatbot, summarizer in product |
 
-Both end the same way for your React/Flask app: **JSON in, JSON out**.
+Both end the same way for your React/Django app: **JSON in, JSON out**.
 
 ### Architecture diagram
 
@@ -55,7 +55,7 @@ Both end the same way for your React/Flask app: **JSON in, JSON out**.
 [User browser]
      |  text
      v
-[Flask/Django endpoint]  --->  [Model: local sklearn OR remote API]
+[Django endpoint]  --->  [Model: local sklearn OR remote API]
      |
      v
   JSON { "label": "positive", "score": 0.92 }
@@ -100,7 +100,7 @@ print(model.predict(vec.transform(["amazing thali"])))
 
 **Common Error:** Hardcoding `API_KEY = "sk-..."` in source → leaked key on GitHub. Always `os.environ.get(...)`.
 
-**Interview:** "Did you train GPT?" → No — "I called a hosted model API / tiny sklearn classifier from Flask/Django and returned JSON to the UI."
+**Interview:** "Did you train GPT?" → No — "I called a hosted model API / tiny sklearn classifier from Django and returned JSON to the UI."
 
 Write a short markdown note describing the train/predict flow and the rule to never ship API keys in code.
 
@@ -165,7 +165,7 @@ print(mock_analyze("Good filter coffee in Hyderabad"))
 
 **Note:**
 - No input validation → crash or abuse — add length limits and strip text.
-- CORS again on AI Flask → browser block — reuse the same cors-headers pattern.
+- CORS again on the AI API → browser block — reuse the same cors-headers pattern.
 
 Write an async function that POSTs review text to `/api/analyze` and returns parsed JSON from the response.
 
@@ -266,60 +266,71 @@ model.fit(texts, labels)
 print(model.predict(['good job']))        # expect [1]
 print(model.predict(['awful delay']))     # expect [0]
 
-# Optional: save for Flask
+# Optional: save for the API
 import joblib
 joblib.dump(model, 'ml/sentiment_model.joblib')
 ```
 
-### Part B — Flask prediction endpoint
+### Part B — Django prediction endpoint
 
-`ai_app/app.py`:
+`ai_app/views.py`:
 
 ```python
-import os
-from flask import Flask, request, jsonify
 import joblib
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-app = Flask(__name__)
 model = joblib.load('ml/sentiment_model.joblib')
 
-@app.route('/api/health')
-def health():
-    return jsonify({'status': 'ok', 'service': 'sentiment-api'})
+@api_view(['GET'])
+def health(request):
+    return Response({'status': 'ok', 'service': 'sentiment-api'})
 
-@app.route('/api/analyze', methods=['POST'])
-def analyze():
-    data = request.get_json()
+@api_view(['POST'])
+def analyze(request):
+    data = request.data
     if not data or 'text' not in data:
-        return jsonify({'error': 'text field required'}), 400
-    text = data['text'].strip()
+        return Response({'error': 'text field required'}, status=400)
+    text = str(data['text']).strip()
     if not text:
-        return jsonify({'error': 'text cannot be empty'}), 400
+        return Response({'error': 'text cannot be empty'}, status=400)
     if len(text) > 5000:
-        return jsonify({'error': 'text too long'}), 400
+        return Response({'error': 'text too long'}, status=400)
 
     prediction = int(model.predict([text])[0])
     label = 'positive' if prediction == 1 else 'negative'
-    return jsonify({'label': label, 'text_length': len(text)})
+    return Response({'label': label, 'text_length': len(text)})
+```
+
+Wire it in `urls.py`:
+
+```python
+from django.urls import path
+from ai_app.views import analyze, health
+
+urlpatterns = [
+    path('api/health', health),
+    path('api/analyze', analyze),
+]
 ```
 
 Test:
 
 ```bash
-curl -X POST http://127.0.0.1:5000/api/analyze \
+curl -X POST http://127.0.0.1:8000/api/analyze \
   -H "Content-Type: application/json" \
   -d '{"text":"I love this course"}'
 ```
 
-### Part C — Django equivalent (sketch)
+### Part C — Load the model once
 
-Use `@api_view(['POST'])`, load joblib model once, return `Response({'label': ...})` — same pattern as Flask.
+Load the joblib file when the module imports, as in Part B. Training inside the view on every request makes the server slow.
 
 ### Part D — React analyzer UI (pattern)
 
 Form with textarea → `fetch POST /api/analyze` → show loading → display `label` or error. Disable submit while loading; validate empty text client-side.
 
-Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analyze; replace with real LLM API in production.
+The analyze endpoint can return `{'reply': mock_chat_reply(text)}` — same UI swap as analyze; replace with a real LLM API in production.
 
 ---
 
@@ -331,7 +342,7 @@ Flask route returns `{'reply': mock_chat_reply(text)}` — same UI swap as analy
    **Model answer:**
 
 ```bash
-curl -s http://127.0.0.1:5000/api/health
+curl -s http://127.0.0.1:8000/api/health
 ```
 
    Expect JSON like `{"status": "ok"}` (or similar). Paste status code + body into your lab notes.
@@ -340,9 +351,9 @@ curl -s http://127.0.0.1:5000/api/health
    **Model answer:**
 
 ```bash
-curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":"great product"}'
-curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":"terrible service"}'
-curl -s -X POST http://127.0.0.1:5000/api/analyze -H 'Content-Type: application/json' -d '{"text":""}'
+curl -s -X POST http://127.0.0.1:8000/api/analyze -H 'Content-Type: application/json' -d '{"text":"great product"}'
+curl -s -X POST http://127.0.0.1:8000/api/analyze -H 'Content-Type: application/json' -d '{"text":"terrible service"}'
+curl -s -X POST http://127.0.0.1:8000/api/analyze -H 'Content-Type: application/json' -d '{"text":""}'
 ```
 
    Empty text should return **400** with an error message.
@@ -358,13 +369,13 @@ echo 'MODEL_API_KEY=your_key_here' > .env.example
 
 ### Intermediate
 
-1. Add `score` using `predict_proba` in Flask response.
+1. Add `score` using `predict_proba` in the analyze response.
    **Model answer:**
 
 ```python
 proba = model.predict_proba([text])[0]
 label = model.classes_[proba.argmax()]
-return jsonify({"label": str(label), "score": float(proba.max())})
+return Response({"label": str(label), "score": float(proba.max())})
 ```
 
 2. Chat UI with message history displayed as list.
@@ -402,7 +413,7 @@ logger.info("analyze request len=%s", len(text))
 ### What to build
 
 - Trained sklearn model OR documented mock
-- Flask or Django POST `/api/analyze`
+- Django POST `/api/analyze`
 - Simple UI (React or HTML) with loading state
 - README: architecture diagram, ethics note, how to run
 - No secrets in repo
@@ -430,7 +441,7 @@ Shared with students after concepts and the mini-project. Use for review and int
 5. How would you explain your mini-project in 30 seconds to interviewer?
 
 **Q1. Have you worked with AI/ML in projects?**  
-**A:** Integrated sentiment analysis via Flask API using scikit-learn model and React UI; understand calling external model APIs with env-based keys.
+**A:** Integrated sentiment analysis via a Django API using a scikit-learn model and a React UI; understand calling external model APIs with env-based keys.
 
 **Q2. scikit-learn used for?**  
 **A:** Traditional ML in Python — classification, regression, clustering; good for tabular/text baselines.

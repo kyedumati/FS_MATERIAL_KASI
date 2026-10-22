@@ -8,7 +8,7 @@
 2. **d** — Created
 3. **c** — Manually test API requests
 4. **b** — Validate/convert data
-5. **a** — A lightweight Python web framework
+5. **a** — List, create, retrieve, update, and destroy
 6. **d** — Use setState/useState
 7. **c** — Side effects / fetch on mount
 8. **b** — Browser blocks cross-origin API calls
@@ -19,7 +19,7 @@
 
 ## B. Coding — model points
 
-1. Write a minimal Flask (or sketch) JSON endpoint `GET /notes` returning a list of note dicts.
+1. Sketch a DRF list endpoint `GET /api/notes/` that returns a list of note dicts.
    - Award marks for correctness + teaching-order constraints respected.
 
 2. Write a React function component that shows a product name from props and a quantity in `useState`, with + button.
