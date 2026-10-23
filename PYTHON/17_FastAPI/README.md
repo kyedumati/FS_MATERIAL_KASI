@@ -86,7 +86,7 @@ flowchart LR
 
 - Type the code. Running a pasted file hides the mistakes you need to see.
 - Open `/docs` after every change and try the endpoint there.
-- Do the lab at the end of the lesson. **Lab** and **Homework** are folded. Open the heading to read them.
+- Do the lab at the end of the lesson. **Lab** and **Homework** are folded. **Expand** opens that section. **Collapse** closes it. The PDF prints both in full.
 - The code for that lab is the matching folder under `labs/`. The lesson prints the path. Open `solution/` only after the checklist passes.
 
 | Part | What it gives you |

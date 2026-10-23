@@ -141,7 +141,7 @@ A PATCH with `"email": "not-an-email"` is **422**, and the row does not change. 
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-204</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-204</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 The directory must not show salary, and a partial update must not accept a broken email.
 
@@ -177,7 +177,7 @@ Open `solution/main.py` only after the checklist passes.
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Finish the lab in `acmehr-api`.
 2. **Transfer drill (15 minutes).** Add a `notes` key on one employee. GET that employee and confirm `notes` is not in the JSON. Remove the key afterwards if you do not want it in the list.

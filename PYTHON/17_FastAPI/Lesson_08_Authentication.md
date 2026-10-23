@@ -180,7 +180,7 @@ Log in as Ananya and delete `E-1044`. **403**. The row stays. Log in as Rahul an
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-208</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-208</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 Only HR may change or delete an employee.
 
@@ -218,7 +218,7 @@ In each folder, copy `.env.example` to `.env` before `fastapi dev main.py`.
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Push the login routes to your `acmehr-api` repo. Do not commit `.env`.
 2. **Transfer drill (15 minutes).** Add Karthik as a third user with role `manager`. Confirm his `/me` role, and confirm he receives **403** on delete.

@@ -232,7 +232,7 @@ That page is written from the two functions. You did not design it.
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-201</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-201</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 Employees need proof the API is running before any screen is connected.
 
@@ -298,7 +298,7 @@ app = FastAPI(title="AcmeHR")
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Finish the lab in your `acmehr-api` folder.
 2. **Transfer drill (15 minutes).** In a second file, or a second route you delete afterwards, add `GET /ping` for a library API that returns `{"status": "ok"}`. Same idea, different word. The path is the only thing that changed.

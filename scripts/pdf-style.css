@@ -106,8 +106,9 @@ h2 {
   break-after: avoid-page;
 }
 
-/* Lab and Homework. Folded in the notes; printed in full here.
-   A PDF page cannot open and close, so the body is always shown. */
+/* Lab and Homework. The notes fold these and show Expand / Collapse.
+   A PDF page cannot open and close, so the builder marks the section open
+   and the handout prints the body. The buttons are omitted here. */
 details.fold {
   border: 1px solid #c5d9e4;
   border-left: 4px solid #1f7a8c;
@@ -130,8 +131,9 @@ details.fold > summary::-webkit-details-marker {
   display: none;
 }
 
-details.fold > *:not(summary) {
-  display: block !important;
+details.fold .fold-open,
+details.fold .fold-shut {
+  display: none !important;
 }
 
 h3 {

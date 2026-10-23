@@ -125,7 +125,7 @@ Log in as Ananya instead and register a new id. The page shows **403** and `HR o
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-209</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-209</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 The registration page must create an employee and show an error when the API rejects the body.
 
@@ -163,7 +163,7 @@ In `starter/`, add `CORSMiddleware` to `main.py`. `register.html` has both forms
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Push `register.html` and the CORS change to your `acmehr-api` repo.
 2. **Transfer drill (15 minutes).** Add a second page `whoami.html` that logs in as Ananya and writes the JSON from `GET /me` on the page.

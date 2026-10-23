@@ -1,0 +1,43 @@
+/* Markdown preview only. Lab and Homework use <details class="fold">.
+   Expand shows when the section is closed. Collapse shows when it is open. */
+
+details.fold > summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+
+details.fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.fold .fold-title {
+  font-weight: 700;
+  flex: 1;
+}
+
+details.fold .fold-open,
+details.fold .fold-shut {
+  border: 1px solid #1f7a8c;
+  border-radius: 4px;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: #0f5f73;
+  background: #fff;
+}
+
+details.fold .fold-shut {
+  display: none;
+}
+
+details.fold[open] .fold-open {
+  display: none;
+}
+
+details.fold[open] .fold-shut {
+  display: inline-block;
+}

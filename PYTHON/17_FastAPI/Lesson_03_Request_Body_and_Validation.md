@@ -201,7 +201,7 @@ Send that same body again. **400** and `{"detail":"Employee id already exists"}`
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-203</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-203</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 HR cannot store a registration that has no name, a broken email, or an id that is not `E-` plus four digits.
 
@@ -244,7 +244,7 @@ Open `solution/main.py` only after the checklist passes.
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Finish the lab in `acmehr-api`. Keep this `main.py`.
 2. **Transfer drill (15 minutes).** Add a `BookCreate` model and `POST /books`. `title` is required, `isbn` matches 13 digits, `year` is optional. One bad isbn must return 422. Delete the book route afterwards if you want `/docs` to stay an employee API.

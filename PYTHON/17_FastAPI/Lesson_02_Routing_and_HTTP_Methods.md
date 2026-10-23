@@ -253,7 +253,7 @@ Response code **201**. Then **GET /employees/E-1048** and Sana is in the list.
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-202</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-202</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 The directory and the profile need live data.
 
@@ -296,7 +296,7 @@ Open `solution/main.py` only after the checklist passes.
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Finish the lab in `acmehr-api`.
 2. **Transfer drill (15 minutes).** Add `GET /books/{book_id}` and `GET /books?subject=Python` beside the employee routes, with one hard-coded book. Remove those two routes when the drill is done so `/docs` stays the employee API.

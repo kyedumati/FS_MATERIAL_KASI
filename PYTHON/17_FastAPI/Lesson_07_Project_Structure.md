@@ -147,7 +147,7 @@ The tests check `/health`, Ananya's name, and a **404** for `E-9999`.
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-207</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-207</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 Split `main.py` into this layout and add one test.
 
@@ -184,7 +184,7 @@ Then do the same split in your own `acmehr-api` folder.
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Push the split project to your own GitHub repo `acmehr-api`.
 2. **Transfer drill (15 minutes).** Create `routers/health.py` with its own `APIRouter` and move `GET /health` into it. Remove the route from `main.py` and include the new router instead. The test for `/health` still passes.

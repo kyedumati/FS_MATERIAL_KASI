@@ -187,7 +187,7 @@ You should see six rows. Restart `fastapi dev`. The six rows are still there. `s
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-205</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-205</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 HR wants the six employees stored in `training_db`, and the directory route must read that table.
 
@@ -226,7 +226,7 @@ Open `solution/main.py` only after the checklist passes.
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Finish the lab in `acmehr-api`. Create, update, and delete come next, on this same table.
 2. **Transfer drill (15 minutes).** In MySQL, `INSERT` one more employee and read that person with GET. Delete that row when you are done so the class seed stays the six people.

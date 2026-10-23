@@ -211,6 +211,29 @@ def inline_local_images(html: str, md_path: Path) -> str:
     return inlined
 
 
+_FOLD_TAG_RE = re.compile(
+    r"<details\b[^>]*\bclass=\"[^\"]*\bfold\b[^\"]*\"[^>]*>",
+    re.IGNORECASE,
+)
+
+
+def open_folds_for_print(html: str) -> str:
+    """Chrome's print layout drops the body of a closed details element.
+
+    display:block on the children does not bring that body back. The open
+    attribute does. Lab and Homework stay collapsed in the notes, where the
+    Expand and Collapse controls work, and print in full here.
+    """
+
+    def repl(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        if re.search(r"\bopen\b", tag):
+            return tag
+        return tag[:-1] + " open>"
+
+    return _FOLD_TAG_RE.sub(repl, html)
+
+
 def md_to_html(md_text: str) -> str:
     extensions = [
         "tables",
@@ -817,6 +840,7 @@ def convert_file(
         ),
         md_path,
     )
+    body_html = open_folds_for_print(body_html)
     title = md_path.stem.replace("_", " ")
     document = wrap_document(title, body_html, css)
 

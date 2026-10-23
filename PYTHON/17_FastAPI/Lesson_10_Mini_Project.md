@@ -97,7 +97,7 @@ You will meet routes, status codes, and JSON again. The names of the classes cha
 ---
 
 <details class="fold" markdown="1">
-<summary>Lab — Ticket ACME-210</summary>
+<summary><span class="fold-title">Lab — Ticket ACME-210</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 Demonstrate the employee API.
 
@@ -121,7 +121,7 @@ Run the eight steps in section 1 from your own project.
 </details>
 
 <details class="fold" markdown="1">
-<summary>Homework</summary>
+<summary><span class="fold-title">Homework</span><span class="fold-open">Expand</span><span class="fold-shut">Collapse</span></summary>
 
 1. Push `acmehr-api` with a README that lists the eight demo steps and the classroom logins.
 2. **Transfer drill.** In the README, write five lines: what FastAPI is for on AcmeHR, and what you expect Django to add for the same screens.
