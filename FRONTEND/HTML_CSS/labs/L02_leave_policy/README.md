@@ -1,6 +1,6 @@
 # Lab 02 — AcmeHR Leave Policy Page
 
-**Lesson:** [Lesson 2 — Content & Your First CSS](../../Lesson_02_Content_and_Your_First_CSS.md) · **Time:** 35 minutes
+**Lesson:** [Lesson 2 — Content & Your First CSS](../../02_Content_and_Your_First_CSS.md) · **Time:** 35 minutes
 
 **Ticket:** ACME-102 · **Customer:** Acme HR team
 **Need:** Employees must be able to read the leave policy in AcmeHR (requirement: *Employee Self-Service → Access policies*). The page must be reachable from the home page, have a correct heading outline, and use the AcmeHR stylesheet.

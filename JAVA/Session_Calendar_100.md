@@ -128,15 +128,15 @@
 
 | S# | Wk | Focus | Module | Homework |
 |---:|---:|-------|--------|---------|
-| F1 | 12 | How the web works & first page | [Lesson_01](../FRONTEND/HTML_CSS/Lesson_01_How_the_Web_Works_and_Your_First_Page.md) · [lab](../FRONTEND/HTML_CSS/labs/L01_welcome_page/README.md) | Welcome page served locally |
-| F2 | 12 | Content & first CSS | [Lesson_02](../FRONTEND/HTML_CSS/Lesson_02_Content_and_Your_First_CSS.md) · [lab](../FRONTEND/HTML_CSS/labs/L02_leave_policy/README.md) | Leave policy page |
-| F3 | 12A | Page structure & box model | [Lesson_03](../FRONTEND/HTML_CSS/Lesson_03_Page_Structure_and_the_Box_Model.md) · [lab](../FRONTEND/HTML_CSS/labs/L03_employee_profile/README.md) | Employee profile |
-| F4 | 12A | Images, navigation & Flexbox | [Lesson_04](../FRONTEND/HTML_CSS/Lesson_04_Images_Navigation_and_Flexbox.md) · [lab](../FRONTEND/HTML_CSS/labs/L04_employee_directory/README.md) | Employee directory |
-| F5 | 12A | Grid & positioning | [Lesson_05](../FRONTEND/HTML_CSS/Lesson_05_Grid_and_Positioning.md) · [lab](../FRONTEND/HTML_CSS/labs/L05_hr_dashboard/README.md) | HR dashboard |
-| F6 | 12A | Forms (GET/POST, what the server receives) | [Lesson_06](../FRONTEND/HTML_CSS/Lesson_06_Forms.md) · [lab](../FRONTEND/HTML_CSS/labs/L06_apply_leave/README.md) | Apply-for-leave form |
-| F7 | 12A | Tables | [Lesson_07](../FRONTEND/HTML_CSS/Lesson_07_Tables.md) · [lab](../FRONTEND/HTML_CSS/labs/L07_attendance_report/README.md) | Attendance report |
-| F8 | 13 | Responsive design | [Lesson_08](../FRONTEND/HTML_CSS/Lesson_08_Responsive_Design.md) · [lab](../FRONTEND/HTML_CSS/labs/L08_responsive_portal/README.md) | Dashboard on a phone |
-| F9 | 13 | Polish, accessibility & final project | [Lesson_09](../FRONTEND/HTML_CSS/Lesson_09_Polish_Accessibility_and_Final_Project.md) · [lab](../FRONTEND/HTML_CSS/labs/L09_final_project/README.md) | Final project: AcmeHR portal |
+| F1 | 12 | How the web works & first page | [01](../FRONTEND/HTML_CSS/01_How_the_Web_Works_and_Your_First_Page.md) · [lab](../FRONTEND/HTML_CSS/labs/L01_welcome_page/README.md) | Welcome page served locally |
+| F2 | 12 | Content & first CSS | [02](../FRONTEND/HTML_CSS/02_Content_and_Your_First_CSS.md) · [lab](../FRONTEND/HTML_CSS/labs/L02_leave_policy/README.md) | Leave policy page |
+| F3 | 12A | Page structure & box model | [03](../FRONTEND/HTML_CSS/03_Page_Structure_and_the_Box_Model.md) · [lab](../FRONTEND/HTML_CSS/labs/L03_employee_profile/README.md) | Employee profile |
+| F4 | 12A | Images, navigation & Flexbox | [04](../FRONTEND/HTML_CSS/04_Images_Navigation_and_Flexbox.md) · [lab](../FRONTEND/HTML_CSS/labs/L04_employee_directory/README.md) | Employee directory |
+| F5 | 12A | Grid & positioning | [05](../FRONTEND/HTML_CSS/05_Grid_and_Positioning.md) · [lab](../FRONTEND/HTML_CSS/labs/L05_hr_dashboard/README.md) | HR dashboard |
+| F6 | 12A | Forms (GET/POST, what the server receives) | [06](../FRONTEND/HTML_CSS/06_Forms.md) · [lab](../FRONTEND/HTML_CSS/labs/L06_apply_leave/README.md) | Apply-for-leave form |
+| F7 | 12A | Tables | [07](../FRONTEND/HTML_CSS/07_Tables.md) · [lab](../FRONTEND/HTML_CSS/labs/L07_attendance_report/README.md) | Attendance report |
+| F8 | 13 | Responsive design | [08](../FRONTEND/HTML_CSS/08_Responsive_Design.md) · [lab](../FRONTEND/HTML_CSS/labs/L08_responsive_portal/README.md) | Dashboard on a phone |
+| F9 | 13 | Polish, accessibility & final project | [09](../FRONTEND/HTML_CSS/09_Polish_Accessibility_and_Final_Project.md) · [lab](../FRONTEND/HTML_CSS/labs/L09_final_project/README.md) | Final project: AcmeHR portal |
 | 63 | 13 | JS variables, DOM, events | [../FRONTEND/03_JavaScript_DOM_Forms.md](../FRONTEND/03_JavaScript_DOM_Forms.md) | Click counter |
 | 64 | 13 | Form validation | same | Validate contact |
 | 65 | 13 | `fetch` JSON overview | same | Portfolio page push |

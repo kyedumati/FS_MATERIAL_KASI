@@ -1,6 +1,6 @@
 # Lab 01 — AcmeHR Welcome Page
 
-**Lesson:** [Lesson 1 — How the Web Works & Your First Page](../../Lesson_01_How_the_Web_Works_and_Your_First_Page.md) · **Time:** 35 minutes
+**Lesson:** [Lesson 1 — How the Web Works & Your First Page](../../01_How_the_Web_Works_and_Your_First_Page.md) · **Time:** 35 minutes
 
 **Ticket:** ACME-101 · **Customer:** Acme HR team
 **Need:** Employees open AcmeHR and land on a welcome page. It must have a correct skeleton, show the ₹ sign correctly, and pass the W3C validator.

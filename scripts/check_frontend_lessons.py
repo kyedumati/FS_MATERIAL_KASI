@@ -20,19 +20,19 @@ COURSE = ROOT / "FRONTEND" / "HTML_CSS"
 # What each lesson teaches. Later lessons may use everything from earlier ones.
 LESSONS = [
     {
-        "md": "Lesson_01_How_the_Web_Works_and_Your_First_Page.md",
+        "md": "01_How_the_Web_Works_and_Your_First_Page.md",
         "dirs": ["examples/lesson01", "labs/L01_welcome_page"],
         "tags": {"html", "head", "meta", "title", "body", "h1", "p"},
         "props": set(),
     },
     {
-        "md": "Lesson_02_Content_and_Your_First_CSS.md",
+        "md": "02_Content_and_Your_First_CSS.md",
         "dirs": ["examples/lesson02", "labs/L02_leave_policy"],
         "tags": {"h2", "h3", "h4", "h5", "h6", "br", "ul", "ol", "li", "a", "strong", "em", "link", "style"},
         "props": {"font-family", "line-height", "color", "background-color", "font-weight", "outline"},
     },
     {
-        "md": "Lesson_03_Page_Structure_and_the_Box_Model.md",
+        "md": "03_Page_Structure_and_the_Box_Model.md",
         "dirs": ["examples/lesson03", "labs/L03_employee_profile"],
         "tags": {"header", "nav", "main", "section", "aside", "footer", "div", "span", "dl", "dt", "dd"},
         "props": {"margin", "margin-top", "margin-right", "margin-bottom", "margin-left", "margin-inline",
@@ -42,39 +42,39 @@ LESSONS = [
                   "font-size", "text-align"},
     },
     {
-        "md": "Lesson_04_Images_Navigation_and_Flexbox.md",
+        "md": "04_Images_Navigation_and_Flexbox.md",
         "dirs": ["examples/lesson04", "labs/L04_employee_directory"],
         "tags": {"img", "article", "figure", "figcaption"},
         "props": {"flex-direction", "justify-content", "align-items", "flex-wrap", "gap", "flex",
                   "text-decoration", "object-fit", "min-width"},
     },
     {
-        "md": "Lesson_05_Grid_and_Positioning.md",
+        "md": "05_Grid_and_Positioning.md",
         "dirs": ["examples/lesson05", "labs/L05_hr_dashboard"],
         "tags": set(),
         "props": {"grid-template-columns", "grid-column", "grid-template-areas", "grid-area",
                   "position", "top", "right", "bottom", "left", "z-index", "align-self"},
     },
     {
-        "md": "Lesson_06_Forms.md",
+        "md": "06_Forms.md",
         "dirs": ["examples/lesson06", "labs/L06_apply_leave"],
         "tags": {"form", "label", "input", "select", "option", "textarea", "button", "fieldset", "legend"},
         "props": {"font", "accent-color", "cursor", "outline-offset"},
     },
     {
-        "md": "Lesson_07_Tables.md",
+        "md": "07_Tables.md",
         "dirs": ["examples/lesson07", "labs/L07_attendance_report"],
         "tags": {"table", "caption", "thead", "tbody", "tfoot", "tr", "th", "td"},
         "props": {"border-collapse", "font-variant-numeric", "white-space", "overflow-x", "caption-side"},
     },
     {
-        "md": "Lesson_08_Responsive_Design.md",
+        "md": "08_Responsive_Design.md",
         "dirs": ["examples/lesson08", "labs/L08_responsive_portal"],
         "tags": {"picture", "source"},
         "props": set(),
     },
     {
-        "md": "Lesson_09_Polish_Accessibility_and_Final_Project.md",
+        "md": "09_Polish_Accessibility_and_Final_Project.md",
         "dirs": ["examples/lesson09", "labs/L09_final_project"],
         "tags": {"details", "summary"},
         "props": {"transition", "transform", "border-color", "border-bottom-color"},

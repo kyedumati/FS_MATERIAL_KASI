@@ -1,6 +1,6 @@
 # Lab 03 — code folder
 
-**Lesson:** [Lesson 3 — Request Body and Validation](../../Lesson_03_Request_Body_and_Validation.md), section **Lab**
+**Lesson:** [Lesson 3 — Request Body and Validation](../../03_Request_Body_and_Validation.md), section **Lab**
 
 The steps and the checklist are in the lesson. This folder is the code.
 

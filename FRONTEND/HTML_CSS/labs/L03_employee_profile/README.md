@@ -1,6 +1,6 @@
 # Lab 03 — AcmeHR Employee Profile
 
-**Lesson:** [Lesson 3 — Page Structure & the Box Model](../../Lesson_03_Page_Structure_and_the_Box_Model.md) · **Time:** 35 minutes
+**Lesson:** [Lesson 3 — Page Structure & the Box Model](../../03_Page_Structure_and_the_Box_Model.md) · **Time:** 35 minutes
 
 **Ticket:** ACME-103 · **Customer:** Acme HR team
 **Need:** Employees can view their own profile (requirement: *Employee Management → Employee Profile*, *Employee Self-Service → View profile*). The page shows employment details and contact information, uses the AcmeHR header and navigation, and works in a narrow browser window.

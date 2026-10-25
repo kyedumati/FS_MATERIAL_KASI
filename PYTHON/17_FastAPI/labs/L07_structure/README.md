@@ -1,6 +1,6 @@
 # Lab 07 — code folder
 
-**Lesson:** [Lesson 7 — Project structure](../../Lesson_07_Project_Structure.md), section **Lab**
+**Lesson:** [Lesson 7 — Project structure](../../07_Project_Structure.md), section **Lab**
 
 The steps and the checklist are in the lesson. This folder is the code.
 

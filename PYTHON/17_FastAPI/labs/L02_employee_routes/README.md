@@ -1,6 +1,6 @@
 # Lab 02 — code folder
 
-**Lesson:** [Lesson 2 — Routing and HTTP Methods](../../Lesson_02_Routing_and_HTTP_Methods.md), section **Lab**
+**Lesson:** [Lesson 2 — Routing and HTTP Methods](../../02_Routing_and_HTTP_Methods.md), section **Lab**
 
 The steps and the checklist are in the lesson. This folder is the code.
 

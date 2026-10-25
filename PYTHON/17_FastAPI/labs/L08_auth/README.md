@@ -1,6 +1,6 @@
 # Lab 08 — code folder
 
-**Lesson:** [Lesson 8 — Authentication](../../Lesson_08_Authentication.md), section **Lab**
+**Lesson:** [Lesson 8 — Authentication](../../08_Authentication.md), section **Lab**
 
 The steps and the checklist are in the lesson. This folder is the code.
 

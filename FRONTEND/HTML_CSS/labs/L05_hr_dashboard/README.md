@@ -1,6 +1,6 @@
 # Lab 05 — AcmeHR HR Dashboard
 
-**Lesson:** [Lesson 5 — Grid & Positioning](../../Lesson_05_Grid_and_Positioning.md) · **Time:** 35 minutes
+**Lesson:** [Lesson 5 — Grid & Positioning](../../05_Grid_and_Positioning.md) · **Time:** 35 minutes
 
 **Ticket:** ACME-105 · **Customer:** Acme HR team
 **Need:** HR managers see today's workforce figures and the leave requests waiting for them on one dashboard (requirements: *Reporting & Analytics → HR dashboards*, *Leave Management → Leave approval*).

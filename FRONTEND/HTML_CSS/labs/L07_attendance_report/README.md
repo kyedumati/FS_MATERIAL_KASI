@@ -1,6 +1,6 @@
 # Lab 07 — AcmeHR Attendance Report
 
-**Lesson:** [Lesson 7 — Tables](../../Lesson_07_Tables.md) · **Time:** 35 minutes
+**Lesson:** [Lesson 7 — Tables](../../07_Tables.md) · **Time:** 35 minutes
 
 **Ticket:** ACME-107 · **Customer:** Acme HR team
 **Need:** Managers see each day's check-in and check-out times, hours, and late arrivals for their team (requirements: *Attendance Management → Daily reports*, *Reporting → Late arrivals*). The report must work with a screen reader and on a phone.

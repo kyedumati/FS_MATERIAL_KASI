@@ -1,6 +1,6 @@
 # Lab 09 — code folder
 
-**Lesson:** [Lesson 9 — Frontend and CORS](../../Lesson_09_Frontend_and_CORS.md), section **Lab**
+**Lesson:** [Lesson 9 — Frontend and CORS](../../09_Frontend_and_CORS.md), section **Lab**
 
 The steps and the checklist are in the lesson. This folder is the code.
 

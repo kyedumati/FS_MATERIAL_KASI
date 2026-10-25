@@ -1,6 +1,6 @@
 # Lab 08 — Make AcmeHR Responsive
 
-**Lesson:** [Lesson 8 — Responsive Design](../../Lesson_08_Responsive_Design.md) · **Time:** 35 minutes
+**Lesson:** [Lesson 8 — Responsive Design](../../08_Responsive_Design.md) · **Time:** 35 minutes
 
 **Ticket:** ACME-108 · **Customer:** Acme HR team
 **Need:** Managers check the dashboard on their phones. Today it only works on a desktop. Make it work from 320px phones to wide monitors (BRD success metric: more than 90% of employees use self-service).

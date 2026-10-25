@@ -1,6 +1,6 @@
 # Lab 05 — code folder
 
-**Lesson:** [Lesson 5 — Database connectivity](../../Lesson_05_Database_Connectivity.md), section **Lab**
+**Lesson:** [Lesson 5 — Database connectivity](../../05_Database_Connectivity.md), section **Lab**
 
 The steps and the checklist are in the lesson. This folder is the code.
 

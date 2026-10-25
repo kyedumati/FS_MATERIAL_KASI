@@ -1,6 +1,6 @@
 # Lab 04 — AcmeHR Employee Directory
 
-**Lesson:** [Lesson 4 — Images, Navigation & Flexbox](../../Lesson_04_Images_Navigation_and_Flexbox.md) · **Time:** 35 minutes
+**Lesson:** [Lesson 4 — Images, Navigation & Flexbox](../../04_Images_Navigation_and_Flexbox.md) · **Time:** 35 minutes
 
 **Ticket:** ACME-104 · **Customer:** Acme HR team
 **Need:** Employees can browse a contact directory of colleagues (requirement: *Employee Management → Employee Directory*). Each card shows a photo, name, designation and department. Cards wrap to fit the screen.

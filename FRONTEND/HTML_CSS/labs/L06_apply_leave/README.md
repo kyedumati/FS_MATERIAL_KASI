@@ -1,6 +1,6 @@
 # Lab 06 — AcmeHR Apply for Leave
 
-**Lesson:** [Lesson 6 — Forms](../../Lesson_06_Forms.md) · **Time:** 35 minutes
+**Lesson:** [Lesson 6 — Forms](../../06_Forms.md) · **Time:** 35 minutes
 
 **Ticket:** ACME-106 · **Customer:** Acme HR team
 **Need:** Employees apply for leave online (requirements: *Leave Management → Apply leave*, *Employee Self-Service → Leave applications*). The form must send every field correctly to the server, upload an optional document, and be usable with the keyboard alone.

@@ -1,6 +1,6 @@
 # Lab 01 — code folder
 
-**Lesson:** [Lesson 1 — Introduction to FastAPI](../../Lesson_01_Introduction_to_FastAPI.md), section **Lab**
+**Lesson:** [Lesson 1 — Introduction to FastAPI](../../01_Introduction_to_FastAPI.md), section **Lab**
 
 The steps and the checklist are in the lesson. This folder is the code.
 

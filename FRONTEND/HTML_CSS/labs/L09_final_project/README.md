@@ -1,6 +1,6 @@
 # Lab 09 — Final Project: The AcmeHR Portal
 
-**Lesson:** [Lesson 9 — Polish, Accessibility & Final Project](../../Lesson_09_Polish_Accessibility_and_Final_Project.md) · **Time:** session lab (35 min) + about 6 hours of homework · **Work:** individual
+**Lesson:** [Lesson 9 — Polish, Accessibility & Final Project](../../09_Polish_Accessibility_and_Final_Project.md) · **Time:** session lab (35 min) + about 6 hours of homework · **Work:** individual
 
 **Ticket:** ACME-109 · **Customer:** Acme HR team
 **Need:** A first, static version of the AcmeHR employee portal for the Phase 1 demo. It will become the templates of the Django / Spring Boot application in the next phase, so the HTML must be clean, semantic and consistent.

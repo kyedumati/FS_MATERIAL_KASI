@@ -1,6 +1,6 @@
 # Lab 06 — code folder
 
-**Lesson:** [Lesson 6 — CRUD](../../Lesson_06_CRUD.md), section **Lab**
+**Lesson:** [Lesson 6 — CRUD](../../06_CRUD.md), section **Lab**
 
 The steps and the checklist are in the lesson. This folder is the code.
 
