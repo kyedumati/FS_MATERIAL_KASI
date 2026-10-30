@@ -1,7 +1,8 @@
 import os
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, Request, Response
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.exc import IntegrityError
@@ -37,6 +38,17 @@ class Employee(Base):
     phone = Column(String(20), nullable=True)
 
 
+class EmployeeOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    employee_id: str
+    name: str
+    designation: str
+    department: str
+    email: EmailStr
+    phone: str | None = None
+
+
 class EmployeeCreate(BaseModel):
     employee_id: str = Field(pattern=r"^E-\d{4}$")
     name: str = Field(min_length=1)
@@ -61,32 +73,91 @@ class EmployeeUpdate(BaseModel):
         return value
 
 
-class EmployeeOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
+class EmployeeRepository:
+    def __init__(self, db):
+        self.db = db
 
-    employee_id: str
-    name: str
-    designation: str
-    department: str
-    email: EmailStr
-    phone: str | None = None
+    def get_all(self, department=None):
+        query = self.db.query(Employee)
+        if department is not None:
+            query = query.filter(Employee.department == department)
+        return query.all()
+
+    def get(self, employee_id):
+        return self.db.query(Employee).filter(Employee.employee_id == employee_id).one_or_none()
+
+    def count(self):
+        return self.db.query(Employee).count()
+
+    def add(self, values):
+        self.db.add(Employee(**values))
+
+    def update(self, row, values):
+        for key, value in values.items():
+            setattr(row, key, value)
+        return row
+
+    def delete(self, row):
+        self.db.delete(row)
 
 
-def seed(db):
-    if db.query(Employee).count() > 0:
-        return
-    for employee_id, name, designation, department, email, phone in SEED:
-        db.add(
-            Employee(
-                employee_id=employee_id,
-                name=name,
-                designation=designation,
-                department=department,
-                email=email,
-                phone=phone,
+class EmployeeNotFound(Exception):
+    pass
+
+
+class DuplicateEmployeeId(Exception):
+    pass
+
+
+class EmployeeService:
+    def __init__(self, db):
+        self.db = db
+        self.repo = EmployeeRepository(db)
+
+    def get_all(self, department=None):
+        return self.repo.get_all(department)
+
+    def get(self, employee_id):
+        row = self.repo.get(employee_id)
+        if row is None:
+            raise EmployeeNotFound(employee_id)
+        return row
+
+    # TODO: register(data). Replaces the Lesson 5 version that checked repo.get first.
+    # repo.add(data.model_dump()), then commit.
+    # A repeated employee_id raises IntegrityError on commit: rollback, then raise DuplicateEmployeeId.
+    # Otherwise return self.get(data.employee_id).
+
+    # TODO: replace(employee_id, data). self.get() raises EmployeeNotFound for an unknown id.
+    # repo.update the row with every field of data. The id in the path wins.
+    # Commit, then return self.get(employee_id).
+
+    def update(self, employee_id, changes):
+        row = self.get(employee_id)
+        self.repo.update(row, changes.model_dump(exclude_unset=True))
+        self.db.commit()
+        return self.get(employee_id)
+
+    def delete(self, employee_id):
+        row = self.get(employee_id)
+        self.repo.delete(row)
+        self.db.commit()
+
+    def seed(self, people):
+        if self.repo.count() > 0:
+            return
+        for employee_id, name, designation, department, email, phone in people:
+            self.repo.add(
+                {
+                    "employee_id": employee_id,
+                    "name": name,
+                    "designation": designation,
+                    "department": department,
+                    "email": email,
+                    "phone": phone,
+                }
             )
-        )
-    db.commit()
+        self.db.commit()
 
 
 @asynccontextmanager
@@ -94,13 +165,23 @@ async def lifespan(app: FastAPI):
     Base.metadata.create_all(engine)
     db = SessionLocal()
     try:
-        seed(db)
+        EmployeeService(db).seed(SEED)
     finally:
         db.close()
     yield
 
 
 app = FastAPI(title="AcmeHR", lifespan=lifespan)
+
+
+@app.exception_handler(EmployeeNotFound)
+def employee_not_found(request: Request, exc: EmployeeNotFound):
+    return JSONResponse(status_code=404, content={"detail": "Employee not found"})
+
+
+@app.exception_handler(DuplicateEmployeeId)
+def duplicate_employee_id(request: Request, exc: DuplicateEmployeeId):
+    return JSONResponse(status_code=400, content={"detail": "Employee id already exists"})
 
 
 @app.get("/")
@@ -117,10 +198,7 @@ def health():
 def list_employees(department: str | None = None):
     db = SessionLocal()
     try:
-        query = db.query(Employee)
-        if department is not None:
-            query = query.filter(Employee.department == department)
-        return query.all()
+        return EmployeeService(db).get_all(department)
     finally:
         db.close()
 
@@ -129,26 +207,38 @@ def list_employees(department: str | None = None):
 def get_employee(employee_id: str):
     db = SessionLocal()
     try:
-        row = db.query(Employee).filter(Employee.employee_id == employee_id).one_or_none()
-        if row is None:
-            raise HTTPException(status_code=404, detail="Employee not found")
-        return row
+        return EmployeeService(db).get(employee_id)
     finally:
         db.close()
 
 
-# TODO: POST /employees with status 201 and response_model=EmployeeOut.
-# Body is EmployeeCreate. add, commit, refresh, return the row.
-# A repeated employee_id raises IntegrityError: rollback, then 400 "Employee id already exists".
+@app.post("/employees", status_code=201, response_model=EmployeeOut)
+def create_employee(employee: EmployeeCreate):
+    db = SessionLocal()
+    try:
+        return EmployeeService(db).register(employee)
+    finally:
+        db.close()
 
 
-# TODO: PUT /employees/{employee_id}. Body is EmployeeCreate.
-# Unknown id is 404. Copy every field onto the row. The id in the path wins. Commit.
+# TODO: PUT /employees/{employee_id} with response_model=EmployeeOut. Body is EmployeeCreate.
+# Return EmployeeService(db).replace(employee_id, employee).
 
 
-# TODO: PATCH /employees/{employee_id}. Body is EmployeeUpdate.
-# Unknown id is 404. Copy only changes.model_dump(exclude_unset=True). Commit.
+@app.patch("/employees/{employee_id}", response_model=EmployeeOut)
+def update_employee(employee_id: str, changes: EmployeeUpdate):
+    db = SessionLocal()
+    try:
+        return EmployeeService(db).update(employee_id, changes)
+    finally:
+        db.close()
 
 
-# TODO: DELETE /employees/{employee_id} with status 204.
-# Unknown id is 404. delete, commit, return Response(status_code=204).
+@app.delete("/employees/{employee_id}", status_code=204)
+def delete_employee(employee_id: str):
+    db = SessionLocal()
+    try:
+        EmployeeService(db).delete(employee_id)
+        return Response(status_code=204)
+    finally:
+        db.close()

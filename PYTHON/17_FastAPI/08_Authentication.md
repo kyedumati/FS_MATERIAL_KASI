@@ -8,7 +8,7 @@
 |---|---|
 | **You will build** | `POST /login`, `GET /me`, and a delete route that checks the role |
 | **New words** | Authentication, authorization, hash, token |
-| **You need** | The project split into `database.py`, `models.py`, `schemas.py`, and `routers/` |
+| **You need** | The project split into `database.py`, `models.py`, `schemas.py`, `repositories/`, `services/`, and `routers/` |
 
 **From the requirements.** HR manages employee records. An employee may see the directory. Only HR may change or delete a record. The password is stored as a hash, never as the text the person typed.
 
@@ -41,7 +41,15 @@ sequenceDiagram
 pip install bcrypt PyJWT
 ```
 
-`bcrypt` turns a password into a hash. `PyJWT` builds the token. The new files in [`examples/lesson08/`](examples/lesson08/) are `security.py`, `routers/auth.py`, and the `User` class in `models.py`.
+`bcrypt` turns a password into a hash. `PyJWT` builds the token. Login follows the same three layers as the employee routes. The new pieces in [`examples/lesson08/`](examples/lesson08/) are:
+
+| File | Layer | Job |
+|---|---|---|
+| `models.py` | Table | The `User` class |
+| `repositories/user_repository.py` | Repository | `get_by_email`, `count`, `add` |
+| `services/auth_service.py` | Service | `login` checks the password and returns a token. `seed` adds the two practice users |
+| `routers/auth.py` | Route | `POST /login` and `GET /me` |
+| `security.py` | Helpers and dependencies | Hash, token, `get_current_user`, `require_hr` |
 
 ```python
 class User(Base):
@@ -82,16 +90,46 @@ A default written in the code would be in every copy of the repo, and anyone cou
 
 **A token is signed, not encrypted.** Paste one into [jwt.io](https://jwt.io) and you can read `sub` and `role` without the key. The signature only stops someone from *changing* them. Never put a password, a salary, or anything private in a token.
 
+The repository finds a user by email. The service decides whether the password is right:
+
+```python
+class InvalidCredentials(Exception):
+    pass
+
+class AuthService:
+    def __init__(self, db: Session):
+        self.db = db
+        self.repo = UserRepository(db)
+
+    def login(self, email, password):
+        user = self.repo.get_by_email(email)
+        if user is None or not verify_password(password, user.password_hash):
+            raise InvalidCredentials()
+        return create_token(user.email, user.role)
+```
+
+An unknown email and a wrong password raise the same error. A caller cannot tell which emails exist.
+
 `POST /login` reads the form fields `/docs` sends. The box labelled **username** is the email.
 
 ```python
+def get_auth_service(db: Session = Depends(get_db)) -> AuthService:
+    return AuthService(db)
+
 @router.post("/login")
-def login(form: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == form.username).one_or_none()
-    if user is None or not verify_password(form.password, user.password_hash):
-        raise HTTPException(status_code=401, detail="Wrong email or password")
-    return {"access_token": create_token(user.email, user.role), "token_type": "bearer"}
+def login(form: OAuth2PasswordRequestForm = Depends(), service: AuthService = Depends(get_auth_service)):
+    return {"access_token": service.login(form.username, form.password), "token_type": "bearer"}
 ```
+
+In `main.py`, a third exception handler sits next to the two employee handlers:
+
+```python
+@app.exception_handler(InvalidCredentials)
+def invalid_credentials(request: Request, exc: InvalidCredentials):
+    return JSONResponse(status_code=401, content={"detail": "Wrong email or password"})
+```
+
+`lifespan` seeds both tables: `EmployeeService(db).seed(SEED)`, then `AuthService(db).seed(USERS)`. `USERS` is the two practice logins. `seed` stores `hash_password(password)`, never the password.
 
 In `/docs`, authorize with Rahul's email and password. Then call `GET /me`.
 
@@ -114,7 +152,7 @@ def require_hr(user: User = Depends(get_current_user)):
     return user
 ```
 
-`require_hr` depends on `get_current_user`, which is where the token is read:
+`require_hr` depends on `get_current_user`, which is where the token is read. Both live in `security.py`, not in a service: they read a request header and answer 401 or 403, which is HTTP work. The user lookup still goes through the repository.
 
 ```python
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
@@ -124,7 +162,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
-    user = db.query(User).filter(User.email == payload.get("sub")).one_or_none()
+    user = UserRepository(db).get_by_email(payload.get("sub"))
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token")
     return user
@@ -135,7 +173,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 | `OAuth2PasswordBearer(tokenUrl="login")` | Reads `Authorization: Bearer <token>` from the request. No header is **401**. It also adds the **Authorize** button to `/docs` |
 | `jwt.decode(...)` | Checks the signature and `exp`. A changed, expired, or foreign token raises `PyJWTError`, which becomes **401** |
 | `payload.get("sub")` | The email that `create_token` put in the token |
-| `db.query(User)...` | Loads the user from the table, so the role comes from the database, not from the token |
+| `UserRepository(db).get_by_email(...)` | Loads the user from the table, so the role comes from the database, not from the token |
 
 A bad or missing token is **401**. A real user with the wrong role is **403**.
 
@@ -146,10 +184,13 @@ A bad or missing token is **401**. A real user with the wrong role is **403**.
 def update_employee(
     employee_id: str,
     changes: EmployeeUpdate,
-    db: Session = Depends(get_db),
+    service: EmployeeService = Depends(get_employee_service),
     user=Depends(require_hr),
 ):
+    return service.update(employee_id, changes)
 ```
+
+`EmployeeService` does not change. Who may call it is decided in the route, before the service runs.
 
 Log in as Ananya and delete `E-1044`. **403**. The row stays. Log in as Rahul and delete a person you created for the exercise. **204**.
 
@@ -173,6 +214,7 @@ Log in as Ananya and delete `E-1044`. **403**. The row stays. Log in as Rahul an
 **Key takeaways**
 
 - The table stores a hash, not the password.
+- Login has the same layers: `UserRepository` finds the user, `AuthService.login` checks the password, and `InvalidCredentials` becomes **401**.
 - Login returns a token. Later requests send `Authorization: Bearer <token>`.
 - `/me` proves the token. `require_hr` proves the role.
 - A wrong password is **401**. A non-HR delete, replace, or update is **403**.
@@ -203,7 +245,7 @@ In each folder, copy `.env.example` to `.env` before `fastapi dev main.py`.
 
 ### Part B — Build it (15 min)
 
-`starter/` has the `User` table, the two seeded logins, `hash_password`, and `create_token`. Write `verify_password`, `get_current_user`, `require_hr`, `POST /login`, and `GET /me`. Then add `Depends(require_hr)` to PUT, PATCH, and DELETE.
+`starter/` has the `User` table, `UserRepository`, `AuthService.seed`, the `InvalidCredentials` handler, `hash_password`, and `create_token`. Write `verify_password`, `AuthService.login`, `get_current_user`, `require_hr`, `POST /login`, and `GET /me`. Then add `Depends(require_hr)` to PUT, PATCH, and DELETE.
 
 ### Part C — Prove it works (5 min)
 

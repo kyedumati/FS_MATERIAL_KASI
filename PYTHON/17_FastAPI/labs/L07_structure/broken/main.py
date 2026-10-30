@@ -1,10 +1,11 @@
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 
 from database import Base, SessionLocal, engine
-from models import Employee
 from routers.employees import router as employees_router
+from services.employee_service import DuplicateEmployeeId, EmployeeNotFound, EmployeeService
 
 SEED = [
     ("E-1042", "Ananya Rao", "Senior Software Engineer", "Engineering", "ananya.rao@acme.example", "+91 90000 01042"),
@@ -16,35 +17,28 @@ SEED = [
 ]
 
 
-def seed(db):
-    if db.query(Employee).count() > 0:
-        return
-    for employee_id, name, designation, department, email, phone in SEED:
-        db.add(
-            Employee(
-                employee_id=employee_id,
-                name=name,
-                designation=designation,
-                department=department,
-                email=email,
-                phone=phone,
-            )
-        )
-    db.commit()
-
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(engine)
     db = SessionLocal()
     try:
-        seed(db)
+        EmployeeService(db).seed(SEED)
     finally:
         db.close()
     yield
 
 
 app = FastAPI(title="AcmeHR", lifespan=lifespan)
+
+
+@app.exception_handler(EmployeeNotFound)
+def employee_not_found(request: Request, exc: EmployeeNotFound):
+    return JSONResponse(status_code=404, content={"detail": "Employee not found"})
+
+
+@app.exception_handler(DuplicateEmployeeId)
+def duplicate_employee_id(request: Request, exc: DuplicateEmployeeId):
+    return JSONResponse(status_code=400, content={"detail": "Employee id already exists"})
 
 
 @app.get("/")

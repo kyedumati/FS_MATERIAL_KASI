@@ -8,11 +8,11 @@
 |                    |                                                   |
 | ------------------ | ------------------------------------------------- |
 | **You will build** | `POST /employees` that rejects a bad registration |
-| **New words**      | Request body, model, required, optional, 422      |
+| **New words**      | Request body, model, required, optional, custom rule, 422 |
 | **You need**       | The employee routes in `acmehr-api/main.py` |
 
 
-**From the requirements.** HR registers an employee: id, name, designation, department, work email, and an optional phone. A missing name, an id that is not `E-1042` shape, or an email without `@` must not be stored.
+**From the requirements.** HR registers an employee: id, name, designation, department, work email, and an optional phone. A missing name, an id that is not `E-1042` shape, an email without `@`, or an email that is not `@acme.example` must not be stored.
 
 ---
 
@@ -58,7 +58,7 @@ Add the import and the class above the routes. Then add `email` and `phone` to e
 The whole file is [`examples/lesson03/01_register.py`](examples/lesson03/01_register.py).
 
 ```python
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 class EmployeeCreate(BaseModel):
     employee_id: str = Field(pattern=r"^E-\d{4}$")
@@ -67,17 +67,30 @@ class EmployeeCreate(BaseModel):
     department: str
     email: EmailStr
     phone: str | None = None
+
+    @field_validator("email")
+    @classmethod
+    def company_email(cls, value):
+        if not value.endswith("@acme.example"):
+            raise ValueError("must be an acme.example address")
+        return value
 ```
 
 
-| Line                  | Job                                                   |
-| --------------------- | ----------------------------------------------------- |
-| `BaseModel`           | The class FastAPI can check a JSON body against       |
-| `Field(pattern=...)`  | `employee_id` must look like `E-1042`                 |
-| `Field(min_length=1)` | `name` cannot be an empty string                      |
-| `EmailStr`            | The value must be an email address                    |
-| `phone: str \| None = None` | Optional. A missing phone is stored as `null`         |
-| `designation: str`    | Required. No default, so a missing designation is 422 |
+| Line                        | Job                                                              |
+| --------------------------- | ---------------------------------------------------------------- |
+| `BaseModel`                 | The class FastAPI can check a JSON body against                  |
+| `Field(pattern=...)`        | `employee_id` must look like `E-1042`                            |
+| `Field(min_length=1)`       | `name` cannot be an empty string                                 |
+| `EmailStr`                  | The value must be an email address                               |
+| `phone: str \| None = None` | Optional. A missing phone is stored as `null`                    |
+| `designation: str`          | Required. No default, so a missing designation is 422            |
+| `company_email`             | Your rule. A real email that is not `@acme.example` is still 422 |
+
+
+`Field` and `EmailStr` check shape. They do not know Acme's domain. `company_email` runs after `EmailStr`, so a missing email and `"not-an-email"` never reach it. `"sana.qureshi@gmail.com"` is a real email, then this method rejects it. Return `value`. The stored email is whatever you return.
+
+Lesson 4 uses the same decorator on the PATCH model, for a different rule. Leave `company_email` on `EmployeeCreate`.
 
 
 Replace `create_employee` so the argument is the model, not a dict. `model_dump()` turns the checked model back into a dictionary you can store.
@@ -95,6 +108,8 @@ def create_employee(employee: EmployeeCreate):
 Point `replace_employee` at `EmployeeCreate` too, so a full replace is checked the same way. PATCH still takes a `dict`. A partial update has a different shape. The next page separates that shape.
 
 **Common error:** `ImportError` mentioning `email-validator`. The install was `fastapi` without `[standard]`. Run `pip install "fastapi[standard]"` in the active venv.
+
+**Common error:** `company_email` does not `return value`. The check passes and the stored email is `null`.
 
 ---
 
@@ -135,13 +150,17 @@ Point `replace_employee` at `EmployeeCreate` too, so a full replace is checked t
 
 `loc` says where the problem is: in the body, the field `name`. `msg` says what is wrong. The function `create_employee` did not run.
 
-Two more bodies to send yourself:
+Three more bodies to send yourself:
 
 
-| Body problem              | `loc`                     | `msg`                                                                       |
-| ------------------------- | ------------------------- | --------------------------------------------------------------------------- |
-| `"email": "not-an-email"` | `["body", "email"]`       | `value is not a valid email address: An email address must have an @-sign.` |
-| `"employee_id": "1042"`   | `["body", "employee_id"]` | `String should match pattern '^E-\\d{4}$'`                                  |
+| Body problem                       | `loc`                     | `msg`                                                                       |
+| ---------------------------------- | ------------------------- | --------------------------------------------------------------------------- |
+| `"email": "not-an-email"`          | `["body", "email"]`       | `value is not a valid email address: An email address must have an @-sign.` |
+| `"email": "sana.qureshi@gmail.com"` | `["body", "email"]`       | `Value error, must be an acme.example address`                              |
+| `"employee_id": "1042"`            | `["body", "employee_id"]` | `String should match pattern '^E-\\d{4}$'`                                  |
+
+
+The gmail address is a real email. `EmailStr` accepts it. `company_email` raises `ValueError`, and that text is the `msg`. `create_employee` does not run.
 
 
 Now send a valid registration. Phone is left out on purpose.
@@ -186,6 +205,7 @@ Send that same body again. **400** and `{"detail":"Employee id already exists"}`
 3. **(Medium)** Send `"employee_id": "E-1042"` with Ananya's other fields filled in correctly. Which status comes back, 400 or 422, and why that one?
 4. **(Medium)** PUT `/employees/E-1048` with a body whose email is `not-an-email`. The stored row does not change.
 5. **(Stretch)** PATCH still accepts `{"email": "not-an-email"}`. Confirm with a GET. That loose dict is closed when PATCH gets its own model.
+6. **(Easy)** POST a valid registration whose email is `sana.qureshi@gmail.com`. `loc` ends with `email`. `msg` is your `ValueError` text.
 
 **Interview:** *Where can a value arrive, and what is each place for?* — The path picks one resource. The query filters a list. The body carries the fields.
 
@@ -196,6 +216,7 @@ Send that same body again. **400** and `{"detail":"Employee id already exists"}`
 - A model lists the fields. FastAPI checks the body before the function runs.
 - A field with no default is required. `= None` makes it optional.
 - A failed check is **422**. Read `loc` and `msg`.
+- A rule `Field` cannot express goes in a `field_validator`. A failed check is still **422**.
 - A duplicate id is **400**, because only your code knows the list.
 
 ---
@@ -226,7 +247,7 @@ A missing `name` is already **422**. Leave that rule in place.
 
 ### Part B — Build the model (15 min)
 
-In the starter, replace the `dict` on `create_employee` with `EmployeeCreate`. Add `email` and `phone` to the six people already in the list. A repeated id returns **400** with detail `Employee id already exists`.
+In the starter, replace the `dict` on `create_employee` with `EmployeeCreate`. Add `email` and `phone` to the six people already in the list. The email must end with `@acme.example`. That check is `company_email`, not a `Field`. A repeated id returns **400** with detail `Employee id already exists`.
 
 ### Part C — Prove it works (5 min)
 
@@ -234,6 +255,7 @@ In the starter, replace the `dict` on `create_employee` with `EmployeeCreate`. A
 - [ ] POST the same id again returns **400**.
 - [ ] A missing `name` returns **422** and `loc` ends with `name`.
 - [ ] `"email": "not-an-email"` returns **422**.
+- [ ] `"email": "sana.qureshi@gmail.com"` returns **422** and `msg` contains `acme.example`.
 - [ ] `"employee_id": "1042"` returns **422**.
 - [ ] GET `/employees?department=Engineering` still returns only the Engineering rows.
 

@@ -1,7 +1,8 @@
 import os
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, Request, Response
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.exc import IntegrityError
@@ -72,21 +73,99 @@ class EmployeeUpdate(BaseModel):
         return value
 
 
-def seed(db):
-    if db.query(Employee).count() > 0:
-        return
-    for employee_id, name, designation, department, email, phone in SEED:
-        db.add(
-            Employee(
-                employee_id=employee_id,
-                name=name,
-                designation=designation,
-                department=department,
-                email=email,
-                phone=phone,
+class EmployeeRepository:
+    def __init__(self, db):
+        self.db = db
+
+    def get_all(self, department=None):
+        query = self.db.query(Employee)
+        if department is not None:
+            query = query.filter(Employee.department == department)
+        return query.all()
+
+    def get(self, employee_id):
+        return self.db.query(Employee).filter(Employee.employee_id == employee_id).one_or_none()
+
+    def count(self):
+        return self.db.query(Employee).count()
+
+    def add(self, values):
+        self.db.add(Employee(**values))
+
+    def update(self, row, values):
+        for key, value in values.items():
+            setattr(row, key, value)
+        return row
+
+    def delete(self, row):
+        self.db.delete(row)
+
+
+class EmployeeNotFound(Exception):
+    pass
+
+
+class DuplicateEmployeeId(Exception):
+    pass
+
+
+class EmployeeService:
+    def __init__(self, db):
+        self.db = db
+        self.repo = EmployeeRepository(db)
+
+    def get_all(self, department=None):
+        return self.repo.get_all(department)
+
+    def get(self, employee_id):
+        row = self.repo.get(employee_id)
+        if row is None:
+            raise EmployeeNotFound(employee_id)
+        return row
+
+    def register(self, data):
+        self.repo.add(data.model_dump())
+        try:
+            self.db.commit()
+        except IntegrityError:
+            self.db.rollback()
+            raise DuplicateEmployeeId(data.employee_id)
+        return self.get(data.employee_id)
+
+    def replace(self, employee_id, data):
+        row = self.get(employee_id)
+        values = data.model_dump()
+        values["employee_id"] = employee_id
+        self.repo.update(row, values)
+        self.db.commit()
+        return self.get(employee_id)
+
+    def update(self, employee_id, changes):
+        row = self.get(employee_id)
+        self.repo.update(row, changes.model_dump(exclude_unset=True))
+        self.db.commit()
+        return self.get(employee_id)
+
+    def delete(self, employee_id):
+        row = self.get(employee_id)
+        self.repo.delete(row)
+        self.db.commit()
+
+    def seed(self, people):
+        if self.repo.count() > 0:
+            return
+        for employee_id, name, designation, department, email, phone in people:
+            self.repo.add(
+                {
+                    "employee_id": employee_id,
+                    "name": name,
+                    "designation": designation,
+                    "department": department,
+                    "email": email,
+                    "phone": phone,
+                }
             )
-        )
-    db.commit()
+        self.db.commit()
 
 
 @asynccontextmanager
@@ -94,13 +173,23 @@ async def lifespan(app: FastAPI):
     Base.metadata.create_all(engine)
     db = SessionLocal()
     try:
-        seed(db)
+        EmployeeService(db).seed(SEED)
     finally:
         db.close()
     yield
 
 
 app = FastAPI(title="AcmeHR", lifespan=lifespan)
+
+
+@app.exception_handler(EmployeeNotFound)
+def employee_not_found(request: Request, exc: EmployeeNotFound):
+    return JSONResponse(status_code=404, content={"detail": "Employee not found"})
+
+
+@app.exception_handler(DuplicateEmployeeId)
+def duplicate_employee_id(request: Request, exc: DuplicateEmployeeId):
+    return JSONResponse(status_code=400, content={"detail": "Employee id already exists"})
 
 
 @app.get("/")
@@ -117,10 +206,7 @@ def health():
 def list_employees(department: str | None = None):
     db = SessionLocal()
     try:
-        query = db.query(Employee)
-        if department is not None:
-            query = query.filter(Employee.department == department)
-        return query.all()
+        return EmployeeService(db).get_all(department)
     finally:
         db.close()
 
@@ -129,10 +215,7 @@ def list_employees(department: str | None = None):
 def get_employee(employee_id: str):
     db = SessionLocal()
     try:
-        row = db.query(Employee).filter(Employee.employee_id == employee_id).one_or_none()
-        if row is None:
-            raise HTTPException(status_code=404, detail="Employee not found")
-        return row
+        return EmployeeService(db).get(employee_id)
     finally:
         db.close()
 
@@ -141,14 +224,7 @@ def get_employee(employee_id: str):
 def create_employee(employee: EmployeeCreate):
     db = SessionLocal()
     try:
-        row = Employee(**employee.model_dump())
-        db.add(row)
-        db.commit()
-        db.refresh(row)
-        return row
-    except IntegrityError:
-        db.rollback()
-        raise HTTPException(status_code=400, detail="Employee id already exists")
+        return EmployeeService(db).register(employee)
     finally:
         db.close()
 
@@ -157,15 +233,7 @@ def create_employee(employee: EmployeeCreate):
 def replace_employee(employee_id: str, employee: EmployeeCreate):
     db = SessionLocal()
     try:
-        row = db.query(Employee).filter(Employee.employee_id == employee_id).one_or_none()
-        if row is None:
-            raise HTTPException(status_code=404, detail="Employee not found")
-        for key, value in employee.model_dump().items():
-            setattr(row, key, value)
-        row.employee_id = employee_id
-        db.commit()
-        db.refresh(row)
-        return row
+        return EmployeeService(db).replace(employee_id, employee)
     finally:
         db.close()
 
@@ -174,14 +242,7 @@ def replace_employee(employee_id: str, employee: EmployeeCreate):
 def update_employee(employee_id: str, changes: EmployeeUpdate):
     db = SessionLocal()
     try:
-        row = db.query(Employee).filter(Employee.employee_id == employee_id).one_or_none()
-        if row is None:
-            raise HTTPException(status_code=404, detail="Employee not found")
-        for key, value in changes.model_dump(exclude_unset=True).items():
-            setattr(row, key, value)
-        db.commit()
-        db.refresh(row)
-        return row
+        return EmployeeService(db).update(employee_id, changes)
     finally:
         db.close()
 
@@ -190,11 +251,7 @@ def update_employee(employee_id: str, changes: EmployeeUpdate):
 def delete_employee(employee_id: str):
     db = SessionLocal()
     try:
-        row = db.query(Employee).filter(Employee.employee_id == employee_id).one_or_none()
-        if row is None:
-            raise HTTPException(status_code=404, detail="Employee not found")
-        db.delete(row)
-        db.commit()
+        EmployeeService(db).delete(employee_id)
         return Response(status_code=204)
     finally:
         db.close()

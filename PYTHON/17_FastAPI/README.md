@@ -31,9 +31,9 @@ flowchart TD
 | 2 | [Routing and HTTP methods](02_Routing_and_HTTP_Methods.md) | Retrieve an employee by id and by department | [L02](labs/L02_employee_routes/README.md) |
 | 3 | [Request body and validation](03_Request_Body_and_Validation.md) | Employee registration with checks | [L03](labs/L03_employee_registration/README.md) |
 | 4 | [Response models and error handling](04_Response_Models_and_Errors.md) | A clean employee response, and a 404 | [L04](labs/L04_response_model/README.md) |
-| 5 | [Database connectivity](05_Database_Connectivity.md) | Employee rows in MySQL | [L05](labs/L05_mysql/README.md) |
+| 5 | [Database connectivity](05_Database_Connectivity.md) | Employee rows in MySQL, read through a route, a service, and a repository | [L05](labs/L05_mysql/README.md) |
 | 6 | [CRUD](06_CRUD.md) | Create, read, update, and delete employees | [L06](labs/L06_crud/README.md) |
-| 7 | [Project structure](07_Project_Structure.md) | Routers, schemas, `Depends`, `.env`, one test | [L07](labs/L07_structure/README.md) |
+| 7 | [Project structure](07_Project_Structure.md) | `routers/`, `services/`, `repositories/`, `Depends`, `.env`, one test | [L07](labs/L07_structure/README.md) |
 | 8 | [Authentication](08_Authentication.md) | A token on a protected employee route | [L08](labs/L08_auth/README.md) |
 | 9 | [Frontend and CORS](09_Frontend_and_CORS.md) | The registration page calls the API | [L09](labs/L09_frontend/README.md) |
 | 10 | [Mini-project and revision](10_Mini_Project.md) | Demo the Employee Management API | [L10](labs/L10_demo/README.md) |

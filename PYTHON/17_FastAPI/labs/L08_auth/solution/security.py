@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models import User
+from repositories.user_repository import UserRepository
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
@@ -38,7 +39,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
-    user = db.query(User).filter(User.email == payload.get("sub")).one_or_none()
+    user = UserRepository(db).get_by_email(payload.get("sub"))
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token")
     return user

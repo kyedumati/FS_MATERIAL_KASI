@@ -1,18 +1,23 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from database import get_db
 from models import User
-from security import create_token
+from services.auth_service import AuthService
 
 router = APIRouter(tags=["auth"])
 
 
-# TODO: POST /login with form: OAuth2PasswordRequestForm = Depends().
-# form.username is the email. Unknown email or wrong password is 401 "Wrong email or password".
-# Return {"access_token": create_token(...), "token_type": "bearer"}.
+def get_auth_service(db: Session = Depends(get_db)) -> AuthService:
+    return AuthService(db)
 
 
-# TODO: GET /me with user = Depends(get_current_user).
+# TODO: POST /login with form: OAuth2PasswordRequestForm = Depends()
+# and service: AuthService = Depends(get_auth_service).
+# form.username is the email. Return {"access_token": service.login(...), "token_type": "bearer"}.
+# A wrong login raises InvalidCredentials, which main.py turns into 401.
+
+
+# TODO: GET /me with user = Depends(get_current_user) from security.
 # Return {"email": ..., "role": ...}.

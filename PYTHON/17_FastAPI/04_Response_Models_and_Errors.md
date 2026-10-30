@@ -27,7 +27,7 @@ flowchart LR
 
 Ananya's row in the list now includes `"salary": 90000`. That key stays in memory. It does not leave the API.
 
-Add these two classes under `EmployeeCreate`. The whole file is [`examples/lesson04/01_response_model.py`](examples/lesson04/01_response_model.py).
+Add these two classes under `EmployeeCreate`. Leave `company_email` on `EmployeeCreate`. The whole file is [`examples/lesson04/01_response_model.py`](examples/lesson04/01_response_model.py).
 
 ```python
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator

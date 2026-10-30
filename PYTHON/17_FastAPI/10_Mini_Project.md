@@ -59,8 +59,11 @@ Use these sentences. Each one names a piece of the API.
 | How does a route run? | `fastapi dev` starts Uvicorn. Uvicorn calls the FastAPI route. |
 | Why 422? | The body failed `EmployeeCreate` or `EmployeeUpdate`. The function did not run. |
 | Why is salary missing? | `response_model=EmployeeOut` drops keys that are not on that model. |
-| Where is the row? | In `training_db.employee`, after `commit`. |
-| Why `Depends`? | It opens a session for the route and closes it afterwards. |
+| Where is the row? | In `training_db.employee`, after `EmployeeService` calls `commit`. |
+| Where is the SQL? | Only in `repositories/`. `EmployeeRepository` and `UserRepository` hold every query. |
+| Where are the rules? | In `services/`. A duplicate id, a missing employee, and a wrong password are decided there. |
+| Who chooses 404, 400, and 401? | The exception handlers in `main.py`. The services raise named errors. |
+| Why `Depends`? | It builds a service on a session for the route and closes the session afterwards. |
 | Why 401 and 403? | 401 is a bad or missing token. 403 is a known user whose role is not HR. |
 | Why did the browser block the page? | The page origin was not in `allow_origins`. |
 
@@ -84,9 +87,9 @@ You will meet routes, status codes, and JSON again. The names of the classes cha
 
 1. **(Easy)** Run the eight demo steps without looking at the list. Tick each one after it works.
 2. **(Medium)** Explain 422, 401, and 403 with one AcmeHR example each.
-3. **(Stretch)** Draw the folder tree of `acmehr-api` from memory: `main.py`, `database.py`, `models.py`, `schemas.py`, `routers/`, `register.html`.
+3. **(Stretch)** Draw the folder tree of `acmehr-api` from memory: `main.py`, `database.py`, `models.py`, `schemas.py`, `security.py`, `repositories/`, `services/`, `routers/`, `register.html`. Draw an arrow for each import.
 
-**Interview:** *Walk me through one request.* — The page posts JSON to `/employees` with a bearer token. FastAPI checks the token and the role, checks the body against `EmployeeCreate`, inserts a row, commits, and returns 201 as `EmployeeOut`.
+**Interview:** *Walk me through one request.* — The page posts JSON to `/employees` with a bearer token. FastAPI checks the token and the role, checks the body against `EmployeeCreate`, and hands the route an `EmployeeService`. The service asks the repository to add the row, commits, and the route returns 201 as `EmployeeOut`.
 
 **Key takeaways**
 
@@ -117,6 +120,7 @@ Run the eight steps in section 1 from your own project.
 - [ ] An empty name shows **422** on the page, not in `/docs` only.
 - [ ] Delete as Ananya is **403**.
 - [ ] You can say what `commit`, `response_model`, and `allow_origins` do, in one sentence each.
+- [ ] You can say what the router, the service, and the repository each own, in one sentence each.
 
 </details>
 

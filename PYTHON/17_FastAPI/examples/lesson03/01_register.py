@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, Response
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 app = FastAPI(title="AcmeHR")
 
@@ -62,6 +62,13 @@ class EmployeeCreate(BaseModel):
     department: str
     email: EmailStr
     phone: str | None = None
+
+    @field_validator("email")
+    @classmethod
+    def company_email(cls, value):
+        if not value.endswith("@acme.example"):
+            raise ValueError("must be an acme.example address")
+        return value
 
 
 def find_employee(employee_id: str) -> dict:

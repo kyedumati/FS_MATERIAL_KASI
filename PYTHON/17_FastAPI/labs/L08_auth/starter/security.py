@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models import User
+from repositories.user_repository import UserRepository
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
@@ -34,7 +35,7 @@ def create_token(email: str, role: str) -> str:
 
 # TODO: def get_current_user(token = Depends(oauth2_scheme), db = Depends(get_db)).
 # Decode the token with SECRET_KEY. A PyJWTError is 401 "Invalid token".
-# Load the User whose email is payload["sub"]. No such user is 401.
+# Load the user with UserRepository(db).get_by_email(payload["sub"]). No such user is 401.
 
 
 # TODO: def require_hr(user = Depends(get_current_user)).

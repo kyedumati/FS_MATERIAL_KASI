@@ -64,6 +64,13 @@ class EmployeeCreate(BaseModel):
     email: EmailStr
     phone: str | None = None
 
+    @field_validator("email")
+    @classmethod
+    def company_email(cls, value):
+        if not value.endswith("@acme.example"):
+            raise ValueError("must be an acme.example address")
+        return value
+
 
 class EmployeeUpdate(BaseModel):
     name: str | None = Field(default=None, min_length=1)

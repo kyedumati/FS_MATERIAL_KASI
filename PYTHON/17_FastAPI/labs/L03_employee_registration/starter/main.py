@@ -76,7 +76,7 @@ def create_employee(employee: dict):
     # TODO: replace dict with an EmployeeCreate model.
     # employee_id matches E- and 4 digits, for example E-1048.
     # name has at least 1 character.
-    # email is an email address.
+    # email is an email address on acme.example. That domain check is a field_validator.
     # phone is optional.
     # A repeated employee_id returns 400 with detail "Employee id already exists".
     if "employee_id" not in employee or "name" not in employee:
